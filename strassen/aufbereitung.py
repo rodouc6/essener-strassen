@@ -16,6 +16,10 @@ _MARKER = [
 ]
 _KOLUMNENTITEL = re.compile(r"^\s*Essener Straßen\s*$", re.MULTILINE)
 _SEITENZAHL = re.compile(r"^\s*\d{1,3}\s*$", re.MULTILINE)
+# OCR-Fehler: „ß" am Zeilenanfang wird als „B" gelesen. Nur „stra-\nBe…" (Fragment
+# beginnt mit „e") wird korrigiert zu „straße…" (9 Fälle). Andere „-\nB"-Fälle
+# (Komposita wie „Essen-Bredeney") bleiben unangetastet.
+_OCR_FEHLER = re.compile(r"([Ss]tra)-\n\s*B(?=e)")
 # Silbentrennung: Trennstrich am Zeilenende vor Kleinbuchstabe.
 # Vor Großbuchstabe ist der Strich Namensbestandteil (Franz-Arens-Straße).
 _TRENNUNG = re.compile(r"-\n(?=[a-zäöüß])")
@@ -29,6 +33,7 @@ def bereinige(text: str) -> str:
 def verbinde_zeilen(text: str) -> str:
     for muster, ersatz in _MARKER:
         text = muster.sub(ersatz, text)
+    text = _OCR_FEHLER.sub(r"\1ß", text)
     text = _TRENNUNG.sub("", text)
     text = text.replace("\n", " ")
     return re.sub(r"\s+", " ", text).strip()

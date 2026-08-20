@@ -25,3 +25,18 @@ def test_kolumnentitel_und_seitenzahl_entfernt():
     assert "Essener Straßen" not in sauber
     assert "\n211" not in sauber
     assert "Kruselbeek" in sauber
+
+
+def test_ocr_fehler_stra_be_wird_zu_strasse():
+    """OCR liest ß am Zeilenanfang als B: Stra-\nBe… → Straße…
+    Nur dieser eindeutige Fall wird korrigiert (9 Vorkommen im Material)."""
+    roh = "Kronenstra-\nBeek: Schl.-Nr.: 12345"
+    assert "Kronenstraße" in verbinde_zeilen(roh)
+
+
+def test_komposita_essen_bredeney_bleiben_erhalten():
+    """Andere -\nB-Fälle sind legitime Komposita und bleiben unangetastet."""
+    roh = "Fundstelle bei Essen-\nBredeney liegt hier"
+    result = verbinde_zeilen(roh)
+    assert "Essen- Bredeney" in result
+    assert "Essenßredeney" not in result
