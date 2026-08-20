@@ -111,8 +111,35 @@ README ausgewiesen wird — Qualität belegt statt behauptet.
 ### Stufe 4 — Ableitung
 
 `konkordanz_1936.csv` entsteht aus `namen.csv`: für jede Straße das Namensstadium, das am
-Stichtag 31.12.1936 galt, verknüpft mit dem heutigen Lemma. Straßen, deren Datierung den
-Stichtag nicht sicher entscheidet, werden **gekennzeichnet, nicht geraten**.
+Erhebungsstand des Adressbuchs galt, verknüpft mit dem heutigen Lemma. Straßen, deren
+Datierung den Stichtag nicht sicher entscheidet, werden **gekennzeichnet, nicht geraten**.
+
+#### Der Stichtag wird gemessen, nicht gesetzt
+
+Welchen Stand das Adressbuch abbildet, ist keine Nebensache: Allein für 1936 sind 54
+Umbenennungen datiert, für 1935 79 und für den 20.11.1937 eine Massenumbenennung von 273
+Straßen. Ein falsch gewählter Stichtag verdirbt die Auflösung dieser Adressen.
+
+Der Stand lässt sich aus den Daten selbst bestimmen: Für jede datierte Umbenennung wird
+geprüft, welche Namensform das Adressbuch tatsächlich verwendet. Eine Vorabmessung gegen
+den (schwächeren) Wikipedia-Extrakt ergibt:
+
+| Umbenennung im Jahr | Adressbuch nutzt alten Namen | nutzt neuen Namen |
+|---|--:|--:|
+| 1934 | 24 | 38 |
+| 1935 | 22 | 32 |
+| 1936 | 20 | 22 |
+| 1937 | 196 | 15 |
+| 1938 | 3 | 0 |
+
+Die Umbenennungen von 1937 sind fast durchweg **nicht** nachvollzogen, die von 1934/35
+überwiegend schon; 1936 ist die Übergangszone. Der Erhebungsstand liegt damit im Lauf des
+Jahres 1936.
+
+Mit Dickhoffs taggenauen Daten wird diese Rechnung monatsscharf wiederholt und der
+Erhebungsstand eingegrenzt; das Ergebnis wird im Datensatz dokumentiert. Beide Quellen
+validieren sich dabei gegenseitig — Abweichungen einzelner Straßen vom ermittelten Stand
+sind Kandidaten für Parse- oder Quellenfehler und gehen nach `pruefung.csv`.
 
 ## 4. Datenmodell
 
