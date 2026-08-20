@@ -196,7 +196,7 @@ essener-strassen/
 ├── CITATION.cff           maschinenlesbare Zitierangabe
 ├── datapackage.json       Frictionless-Schema (Data Dictionary maschinenlesbar)
 ├── daten/                 strassen.csv, namen.csv, konkordanz_1936.csv
-├── code/                  Parser, Validierung, Ableitung
+├── strassen/              Parser, Validierung, Ableitung (Paketname; 'code' kollidiert mit der Stdlib)
 ├── docs/                  Spec, Qualitätsbericht, Entscheidungen
 └── ocr/                   Arbeitsstand — von der Veröffentlichung ausgeschlossen
 ```
