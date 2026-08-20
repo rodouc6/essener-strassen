@@ -13,13 +13,15 @@ wo kein Marker (auch tolerant) gefunden wird, bleibt das Feld leer statt geraten
 import re
 from typing import NamedTuple
 
+from strassen.namen import MONATE
+
 _NUMMER = re.compile(r"^\s*(\d{1,5})\b")
 
 # Marker-Bausteine, roh (ohne Gruppen) zur Wiederverwendung in Lookaheads.
 _M_KLASSE = r"Str\.?\s*-?\s*K[lI]\.?\s*:"
 _M_GRUPPE = r"Str\.?\s*-?\s*Gr\.?\s*:"
-_MONAT = (r"(?:Januar|Februar|März|April|Mai|Juni|Juli|August|September"
-          r"|Oktober|November|Dezember)")
+# Monatsnamen aus strassen.namen übernommen (eine Quelle statt Duplikat).
+_MONAT = r"(?:" + "|".join(MONATE) + r")"
 # Datumsstempel eines Namensstadiums: entweder ein volles Datum ('16. Mai 1902:')
 # oder eine ungefähre Jahresangabe ohne Tag/Monat ('vor 1898:', 'um 1850:',
 # 'etwa 1860:') — über 380 Fälle im Material, die sonst als Teil der
