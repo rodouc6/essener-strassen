@@ -58,3 +58,29 @@ def test_komma_am_seitenende_wird_nicht_ins_lemma_gezogen():
     assert "Siehe Kruppallee" in eintraege[0].rumpf
     assert eintraege[1].lemma_roh == "Kruselbeek"
     assert eintraege[1].buchseite == 211
+
+
+def test_anker_ohne_lemma_wird_optional_in_verworfene_erfasst():
+    """Ein Anker ohne davorstehendes Lemma-Doppelpunkt-Muster wird nicht
+    stillschweigend verworfen: mit übergebener verworfene-Liste landet er
+    dort als (buchseite, kontext_ausschnitt) statt spurlos zu verschwinden
+    (zuletzt 8 Fälle im echten Material)."""
+    seiten = [(300, "Anlage ohne Eigenname Schl.-Nr.: 09999, Stadtteil Nirgendwo, "
+                    "Str.-Kl.: Gemeindestraße. "
+                    "Kütings Garten: Schl.-Nr.: 01838, Stadtteil Freisenbruch.")]
+    verworfene = []
+    eintraege = segmentiere(seiten, verworfene=verworfene)
+    assert len(eintraege) == 1
+    assert eintraege[0].lemma_roh == "Kütings Garten"
+    assert len(verworfene) == 1
+    buchseite, kontext = verworfene[0]
+    assert buchseite == 300
+    assert "Eigenname" in kontext
+
+
+def test_segmentiere_ohne_verworfene_parameter_bleibt_kompatibel():
+    """Bestehende Aufrufe segmentiere(seiten) ohne den neuen Parameter
+    müssen unverändert funktionieren."""
+    seiten = [(211, "Kruselbeek: Schl.-Nr.: 01827, Stadtteil Fischlaken.")]
+    eintraege = segmentiere(seiten)
+    assert len(eintraege) == 1

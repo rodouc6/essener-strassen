@@ -9,6 +9,10 @@ kann bei langen Rümpfen daneben liegen) wird die Lemma-Position je Anker exakt 
 Text zwischen dem Ende des vorigen Ankers und dem Beginn des aktuellen bestimmt.
 Der Rumpf des Vorgängers endet dann exakt am Lemma-Beginn des Nachfolgers — es
 gibt keine Lücke und keine Überlappung zwischen den Einträgen.
+
+Ein Anker ohne davorstehendes Lemma-Muster wird nicht stillschweigend verworfen:
+mit dem optionalen Parameter verworfene (eine übergebene Liste) wird er als
+(buchseite, kontext_ausschnitt) angehängt, sichtbar für erschliessen.main.
 """
 import re
 from typing import NamedTuple
@@ -33,7 +37,7 @@ class Eintrag(NamedTuple):
     buchseite: int
 
 
-def segmentiere(seiten) -> list:
+def segmentiere(seiten, verworfene=None) -> list:
     # Seiten aneinanderhängen und merken, wo jede beginnt, um den Beleg zu bestimmen.
     text_teile, grenzen, position = [], [], 0
     for nummer, text in seiten:
@@ -71,6 +75,13 @@ def segmentiere(seiten) -> list:
             versatz = len(roh) - len(roh.lstrip())
             lemma_start = fenster_start + lemma_treffer.start(1) + versatz
             kandidaten.append((lemma, lemma_start, m.end()))
+        elif verworfene is not None:
+            # Kein auffindbares Lemma vor diesem Anker: der Eintrag geht sonst
+            # stillschweigend verloren. Statt ihn zu verwerfen, wird er sichtbar
+            # gemacht — precision-first, siehe erschliessen.main (grund="Anker
+            # ohne Lemma"). Der Kontext-Ausschnitt dient der manuellen Prüfung.
+            kontext = (vorlauf[-80:] + volltext[m.start():m.end()]).strip()
+            verworfene.append((buchseite_von(m.start()), kontext))
         fenster_start = m.end()
 
     eintraege = []
