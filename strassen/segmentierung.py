@@ -16,8 +16,12 @@ from typing import NamedTuple
 # Sch + bis zu drei fehlgelesene Zeichen + optionaler Punkt/Bindestrich + Nr + Doppelpunkt
 ANKER = re.compile(r"Sch[a-zA-Z!|]{0,3}\.?\s*-?\s*Nr\.?\s*:")
 # Lemma: das Stichwort unmittelbar vor dem Anker, abgetrennt durch einen Doppelpunkt,
-# der als letztes Nicht-Leerzeichen vor der Suchfenstergrenze steht.
-_LEMMA = re.compile(r"([^.;:]{2,60}?)\s*:\s*$")
+# der als letztes Nicht-Leerzeichen vor der Suchfenstergrenze steht. Das Komma ist
+# ausgeschlossen, weil Seiten mit einem Komma enden können (Fortsetzung auf der
+# Folgeseite, z. B. "...Siehe Kruppallee," am Ende von Seite 210) — ohne den
+# Ausschluss würde die Lemma-Suche über das Komma hinweg rückwärts weiterlaufen
+# und Reste des vorigen Rumpfs ins Lemma ziehen.
+_LEMMA = re.compile(r"([^.,;:]{2,60}?)\s*:\s*$")
 
 
 class Eintrag(NamedTuple):
@@ -55,8 +59,14 @@ def segmentiere(seiten) -> list:
         vorlauf = volltext[fenster_start:m.start()]
         lemma_treffer = _LEMMA.search(vorlauf)
         if lemma_treffer:
-            lemma = lemma_treffer.group(1).strip()
-            lemma_start = fenster_start + lemma_treffer.start(1)
+            roh = lemma_treffer.group(1)
+            lemma = roh.strip()
+            # Führende Leerzeichen der Gruppe gehören noch zur vorigen Seite, wenn
+            # der Seitenumbruch genau dorthin fällt (Fuge zwischen den mit " "
+            # verbundenen Seiten). Für den Seitenbeleg zählt der erste tatsächliche
+            # Lemma-Buchstabe, nicht das Leerzeichen davor.
+            versatz = len(roh) - len(roh.lstrip())
+            lemma_start = fenster_start + lemma_treffer.start(1) + versatz
             kandidaten.append((lemma, lemma_start, m.end()))
         fenster_start = m.end()
 

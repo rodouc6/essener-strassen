@@ -32,3 +32,21 @@ def test_eintrag_ueber_seitengrenze_behaelt_startseite():
     assert eintraege[0].buchseite == 210
     assert "Kruppallee" in eintraege[0].rumpf
     assert eintraege[1].buchseite == 211
+
+
+def test_komma_am_seitenende_wird_nicht_ins_lemma_gezogen():
+    """Echter Fall S. 210/211: Die Seite endet mit einem Komma ('...Siehe
+    Kruppallee,'), nicht mit einem Punkt. Ohne Komma-Ausschluss in der
+    Lemma-Regex sucht die Rückwärtssuche über das Komma hinweg weiter und
+    zieht 'Siehe Kruppallee,' ins Lemma des Folgeeintrags ('Siehe Kruppallee,
+    Kruselbeek' statt 'Kruselbeek'), wodurch auch die Buchseite falsch auf
+    210 statt 211 fällt."""
+    seiten = [(210, "Kruppstraße: Schl.-Nr.: 01826, Stadtteile Holsterhausen und Südviertel, "
+                    "Str.-Kl.: Kreisstraße, Gemeindestraße, Str.-Gr.: Familienname, "
+                    "16. Mai 1902: Kruppstraße. Siehe Kruppallee,"),
+              (211, "Kruselbeek: Schl.-Nr.: 01827, Stadtteil Fischlaken.")]
+    eintraege = segmentiere(seiten)
+    assert eintraege[0].lemma_roh == "Kruppstraße"
+    assert "Siehe Kruppallee" in eintraege[0].rumpf
+    assert eintraege[1].lemma_roh == "Kruselbeek"
+    assert eintraege[1].buchseite == 211
