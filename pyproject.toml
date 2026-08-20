@@ -1,0 +1,9 @@
+[project]
+name = "essener-strassen"
+version = "0.1.0"
+description = "Straßenverzeichnis Essen aus Dickhoff 2015 als Forschungsdatensatz"
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

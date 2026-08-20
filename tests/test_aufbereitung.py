@@ -1,0 +1,27 @@
+from strassen.aufbereitung import verbinde_zeilen, bereinige
+
+
+def test_zerrissener_marker_bleibt_erhalten():
+    """Str.-\nKl.: darf nicht zu 'Str.Kl.:' entstellt werden — der Bindestrich
+    gehört zum Marker, er ist kein Silbentrennstrich (661 Fälle im Material)."""
+    roh = "Am Schroer: Schl.-Nr.: 00127, Stadtteil Byfang, Str.-\nKl.: Gemeindestraße"
+    assert "Str.-Kl.:" in verbinde_zeilen(roh)
+
+
+def test_echte_silbentrennung_wird_aufgeloest():
+    roh = "Admiral-Scheer-Straße: Schl.-Nr.: 00012, Stadtteil Süd-\nviertel, Str.-Kl.:"
+    assert "Südviertel" in verbinde_zeilen(roh)
+
+
+def test_bindestrich_im_namen_bleibt():
+    """Ein Trennstrich vor Großbuchstabe ist Namensbestandteil, keine Silbentrennung."""
+    roh = "Franz-Arens-Straße: Schl.-Nr.: 00947"
+    assert "Franz-Arens-Straße" in verbinde_zeilen(roh)
+
+
+def test_kolumnentitel_und_seitenzahl_entfernt():
+    roh = "Essener Straßen\n\nKruselbeek: Schl.-Nr.: 01827, Stadtteil Fischlaken\n\n211\n"
+    sauber = bereinige(roh)
+    assert "Essener Straßen" not in sauber
+    assert "\n211" not in sauber
+    assert "Kruselbeek" in sauber
