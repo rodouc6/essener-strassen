@@ -60,3 +60,16 @@ def test_erlaeuterung_mit_jahreszahl_wird_nicht_als_stadium_gelesen():
     k = parse_kopf(rumpf)
     assert "Mutterrolle" not in k.rest
     assert k.rest == ", 16. Oktober 1916: Pottgießerstraße."
+
+
+def test_klammerzusatz_am_stadiumsende_bleibt_geschlossen():
+    """Realer Fall (Altenessener Straße, Schl.-Nr. 00053): der Punkt in
+    '(Verl.)' darf das Stadium nicht schon innerhalb der Klammer beenden —
+    nur der echte Satzpunkt danach tut das. Die alte 'stoppe am ersten
+    Punkt'-Regel kappte hier auf '...(Verl.' statt '...(Verl.)'."""
+    rumpf = ("00053, Str.-Gr.: Lagebezeichnung, "
+             "09. Juli 1915: Altenessener Straße (Verl.). "
+             "Die Erläuterung beginnt hier.")
+    k = parse_kopf(rumpf)
+    assert k.rest.endswith("Altenessener Straße (Verl.).")
+    assert "Erläuterung" not in k.rest

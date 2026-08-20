@@ -50,9 +50,21 @@ _GRUPPE = re.compile(
     r"(?=,\s*(?:urspr\.:|" + _DATUM + r")|\.\s|$)"
 )
 # Kopfende: der Punkt nach dem letzten „Datum: Name"-Paar bzw. nach der Namensgruppe.
-# Der Namensteil schließt Ziffern aus, damit die Suche nicht über die Tagesziffer
-# eines nachfolgenden Datums hinweg an dessen Punkt ('09.') hängen bleibt.
-_STADIUM = re.compile(_DATUM + r"\s*[^.\d]{1,80}?\.")
+# Ein Namensteil endet nicht am ERSTEN Punkt, sondern am ersten echten
+# Satzende-Punkt (gefolgt von Leerzeichen+Großbuchstabe/Ziffer oder
+# Stringende) — Abkürzungs-/Klammerpunkte ('(Verl.)', 'St.-Ingbert-Höhe')
+# bleiben so Namensbestandteil statt den Rest fälschlich mittendrin
+# abzuschneiden (232 Fälle im Material, u. a. Altenessener Straße
+# Schl.-Nr. 00053: '...(Verl.' statt '...(Verl.)'). Die Erläuterungs-Prosa
+# beginnt praktisch immer großgeschrieben nach dem echten Satzpunkt, ein
+# komma-loses Folgestadium ohne Erläuterung dazwischen mit einer Tagesziffer
+# (Natorpstraße: '...(Verl). 17. März 1971: ...') — beides zählt als
+# Satzende. Ziffern bleiben im Namensteil selbst weiterhin komplett
+# ausgeschlossen: verhindert unverändert, dass die Suche über die Tagesziffer
+# eines nachfolgenden, komma-getrennten Datums hinweg an dessen Punkt
+# ('09.') hängen bleibt.
+_NAMENSTEIL = r"(?:(?!\.(?:\s+[0-9A-ZÄÖÜ]|\s*$))[^\d\n]){1,80}"
+_STADIUM = re.compile(_DATUM + r"\s*" + _NAMENSTEIL + r"\.(?=\s+[0-9A-ZÄÖÜ]|\s*$)")
 # Maximale Lücke zwischen zwei Stadien, damit sie noch als zusammenhängende
 # Namenskette direkt nach dem Kopf gelten. Auch mit der Monatsnamen-Beschränkung
 # bleibt ein Rest-Risiko: ein echtes Datum mit echtem Monat und Doppelpunkt tief
