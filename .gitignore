@@ -1,0 +1,5 @@
+# OCR-Arbeitsstand: enthält urheberrechtlich geschützte Volltexte (Dickhoff 2015).
+# Nur lokal, nie veröffentlichen — siehe docs/specs/2026-08-20-…-design.md, Abschnitt 2.
+ocr/seiten/
+ocr/log/
+__pycache__/
