@@ -13,8 +13,11 @@ gibt keine Lücke und keine Überlappung zwischen den Einträgen.
 import re
 from typing import NamedTuple
 
-# Sch + bis zu drei fehlgelesene Zeichen + optionaler Punkt/Bindestrich + Nr + Doppelpunkt
-ANKER = re.compile(r"Sch[a-zA-Z!|]{0,3}\.?\s*-?\s*Nr\.?\s*:")
+# Sch + bis zu drei fehlgelesene Zeichen + optionaler Punkt/Komma/Bindestrich
+# + Nr + Doppelpunkt. Komma statt Punkt ('Schl,-Nr.:', 11 Fälle im Material,
+# z. B. Herkendell S. 156) fehlte in der ersten Fassung — der Eintrag wurde
+# dadurch komplett verpasst und sein Text blutete in den rest des Vorgängers.
+ANKER = re.compile(r"Sch[a-zA-Z!|]{0,3}[.,]?\s*-?\s*Nr\.?\s*:")
 # Lemma: das Stichwort unmittelbar vor dem Anker, abgetrennt durch einen Doppelpunkt,
 # der als letztes Nicht-Leerzeichen vor der Suchfenstergrenze steht. Das Komma ist
 # ausgeschlossen, weil Seiten mit einem Komma enden können (Fortsetzung auf der

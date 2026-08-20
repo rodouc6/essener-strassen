@@ -18,18 +18,30 @@ _NUMMER = re.compile(r"^\s*(\d{1,5})\b")
 # Marker-Bausteine, roh (ohne Gruppen) zur Wiederverwendung in Lookaheads.
 _M_KLASSE = r"Str\.?\s*-?\s*K[lI]\.?\s*:"
 _M_GRUPPE = r"Str\.?\s*-?\s*Gr\.?\s*:"
+_MONAT = (r"(?:Januar|Februar|März|April|Mai|Juni|Juli|August|September"
+          r"|Oktober|November|Dezember)")
 # Datumsstempel eines Namensstadiums: entweder ein volles Datum ('16. Mai 1902:')
 # oder eine ungefähre Jahresangabe ohne Tag/Monat ('vor 1898:', 'um 1850:',
 # 'etwa 1860:') — über 380 Fälle im Material, die sonst als Teil der
-# Namensgruppe fehlgelesen würden.
-_DATUM = r"(?:\d{1,2}\.\s*\w+\s+\d{4}|(?:vor|nach|um|etwa|gegen)\s+\d{4})\s*:"
+# Namensgruppe fehlgelesen würden. Der Monatsname ist bewusst auf echte Monate
+# beschränkt (nicht \w+): sonst liest die Regex in der Erläuterung z. B.
+# 'am 02. Mai 1739. Mutterrolle 1826: ...' die Endziffern von '1739' als Tag
+# ('39.') und 'Mutterrolle' als Monat und zieht die ganze Erläuterung in rest
+# (Pottgießerstraße, S. 264 — real vorgekommen, 112 betroffene Einträge).
+_DATUM = (r"(?:\d{1,2}\.\s*" + _MONAT + r"\s+\d{4}"
+          r"|(?:vor|nach|um|etwa|gegen)\s+\d{4})\s*:")
 
+# Fallback auf ".\s": vereinzelt fehlt im OCR der Doppelpunkt nach 'Str.-Kl'/
+# 'Str.-Gr' (5 Fälle); ohne Satzende-Grenze würde das Feld sonst den kompletten
+# restlichen Eintrag inklusive Erläuterung verschlucken. Die Stadtteil-Regex
+# erlaubt (anders als vorher) Kommas in der Aufzählung selbst — sie endet erst
+# am nächsten Feldmarker, nicht am ersten Komma ('Stadtteile Altendorf,
+# Bochold, Schönebeck und Westviertel' wurde sonst still auf 'Altendorf'
+# gekappt, Altendorfer Straße S. 30).
 _STADTTEIL = re.compile(
-    r"Stadtteile?\s+([^,;]+?)(?=,|\s+" + _M_KLASSE + r"|\s+" + _M_GRUPPE + r"|$)"
+    r"Stadtteile?\s+(.+?)(?=,?\s*" + _M_KLASSE + r"|,?\s*" + _M_GRUPPE
+    + r"|\.\s|$)"
 )
-# Fallback auf ".\s": vereinzelt fehlt im OCR der Doppelpunkt nach 'Str.-Gr'
-# (5 Fälle); ohne Satzende-Grenze würde die Klasse sonst den kompletten
-# restlichen Eintrag inklusive Erläuterung verschlucken.
 _KLASSE = re.compile(_M_KLASSE + r"\s*(.+?)(?=,?\s*" + _M_GRUPPE + r"|\.\s|$)")
 _GRUPPE = re.compile(
     _M_GRUPPE + r"\s*(.+?)"
@@ -39,6 +51,13 @@ _GRUPPE = re.compile(
 # Der Namensteil schließt Ziffern aus, damit die Suche nicht über die Tagesziffer
 # eines nachfolgenden Datums hinweg an dessen Punkt ('09.') hängen bleibt.
 _STADIUM = re.compile(_DATUM + r"\s*[^.\d]{1,80}?\.")
+# Maximale Lücke zwischen zwei Stadien, damit sie noch als zusammenhängende
+# Namenskette direkt nach dem Kopf gelten. Auch mit der Monatsnamen-Beschränkung
+# bleibt ein Rest-Risiko: ein echtes Datum mit echtem Monat und Doppelpunkt tief
+# in der Erläuterung (z. B. ein Zitat oder eine Quellenangabe). Ein Sprung über
+# mehr als diese Lücke gilt als Erläuterungstext, nicht als Fortsetzung der
+# Namenskette.
+_MAX_LUECKE = 40
 
 
 class Kopf(NamedTuple):
@@ -55,6 +74,21 @@ class Kopf(NamedTuple):
 # (5 Fälle im Material). Solche Fragmente werden verworfen statt als Wert
 # ausgegeben — precision-first: leer statt falsch.
 _MARKER_FRAGMENT = re.compile(r"^Str\.?\s*-?\s*[KG]")
+
+
+def _stadienkette(schwanz: str) -> list:
+    """Nur eine ununterbrochene Kette von Stadien direkt nach dem Kopfbereich
+    akzeptieren. Bricht ab, sobald zwischen zwei Treffern mehr als
+    _MAX_LUECKE Zeichen Prosatext ohne Stadium-Muster liegen — verhindert,
+    dass ein vereinzeltes datumsartiges Muster tief in der Erläuterung die
+    Kette künstlich fortsetzt."""
+    treffer = list(_STADIUM.finditer(schwanz))
+    kette = []
+    for t in treffer:
+        if kette and t.start() - kette[-1].end() > _MAX_LUECKE:
+            break
+        kette.append(t)
+    return kette
 
 
 def _teile(wert: str) -> list:
@@ -88,7 +122,7 @@ def parse_kopf(rumpf: str):
     # Ende des letzten Namensstadiums.
     start = mg.end() if mg else (mk.end() if mk else m.end())
     schwanz = rumpf[start:]
-    stadien = list(_STADIUM.finditer(schwanz))
+    stadien = _stadienkette(schwanz)
     rest = schwanz[:stadien[-1].end()] if stadien else schwanz.split(". ")[0]
 
     return Kopf(schl_nr=schl_nr, stadtteile=stadtteile, strassenklassen=klassen,

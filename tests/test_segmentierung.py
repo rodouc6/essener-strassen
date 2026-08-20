@@ -9,6 +9,14 @@ def test_verstuemmelter_anker_wird_erkannt():
         assert ANKER.search(f"Beispielstraße: {variante} 01234"), variante
 
 
+def test_komma_statt_punkt_nach_schl_wird_erkannt():
+    """'Schl,-Nr.:' (Komma statt Punkt) kam im echten OCR 11-mal vor
+    (u. a. Herkendell S. 156, Kalthofweg S. 188, Im Dreieck S. 175) und
+    wurde vom Anker verpasst, wodurch der Eintrag komplett fehlte und sein
+    Text in den rest des Vorgängers blutete."""
+    assert ANKER.search("Herkendell: Schl,-Nr.: 03676, Stadtteil Kettwig")
+
+
 def test_eintrag_traegt_lemma_und_buchseite():
     seiten = [(211, "Kruselbeek: Schl.-Nr.: 01827, Stadtteil Fischlaken, "
                     "Str.-Kl.: Gemeindestraße. Erläuterung. "

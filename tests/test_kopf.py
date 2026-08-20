@@ -34,3 +34,29 @@ def test_fehlende_strassenklasse_ergibt_leere_liste():
 
 def test_ohne_schluesselnummer_kein_kopf():
     assert parse_kopf("Stadtteil Byfang, Str.-Gr.: Flurname.") is None
+
+
+def test_stadtteile_mit_komma_und_und():
+    """Reale Aufzählung mit mehreren Kommas und 'und' (Altendorfer Straße,
+    S. 30, 4 Stadtteile) — die reine Komma-Grenze der ersten Fassung kappte
+    die Liste still auf das erste Element."""
+    rumpf = ("00050, Stadtteile Altendorf, Bochold, Schönebeck und Westviertel, "
+             "Str.-Kl.: Bundesstraße, Landstraße, Str.-Gr.: Lagebezeichnung, "
+             "04. Dezember 1901: Altendorfer Straße.")
+    k = parse_kopf(rumpf)
+    assert k.stadtteile == ["Altendorf", "Bochold", "Schönebeck", "Westviertel"]
+
+
+def test_erlaeuterung_mit_jahreszahl_wird_nicht_als_stadium_gelesen():
+    """Realer Fall (Pottgießerstraße, S. 264): '... am 02. Mai 1739.
+    Mutterrolle 1826: Besitzer ist ...' in der Erläuterung. Ohne Beschränkung
+    auf echte Monatsnamen liest die Stadium-Regex '39.' (Endziffern von
+    '1739') als Tag und 'Mutterrolle' als Monat und zieht die gesamte
+    Erläuterung in rest."""
+    rumpf = ("02453, Stadtteil Frohnhausen, Str.-Kl.: Gemeindestraße, "
+             "Str.-Gr.: Hofname, 16. Oktober 1916: Pottgießerstraße. Der "
+             "Pottgießerhof gehörte der Familie Pottgießer am 02. Mai 1739. "
+             "Mutterrolle 1826: Besitzer ist Eberhard Pottgießer.")
+    k = parse_kopf(rumpf)
+    assert "Mutterrolle" not in k.rest
+    assert k.rest == ", 16. Oktober 1916: Pottgießerstraße."
