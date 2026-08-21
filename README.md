@@ -132,7 +132,7 @@ Primärschlüssel: (`schl_nr`, `stadium`). Beispiel (Schl.-Nr. 01838, Buchseite 
 Damit lässt sich der Name der Straße zu jedem beliebigen Stichtag ableiten — nicht nur
 zum Erhebungsstand 1936.
 
-### `daten/konkordanz_1936.csv` (393 Zeilen)
+### `daten/konkordanz_1936.csv` (425 Zeilen)
 
 Abgeleitet aus `namen.csv`: für jede Straße mit `status=automatisch` das Namensstadium,
 das zum Erhebungsstand des Adressbuchs Essen 1936 galt (Arbeitsstichtag **1936-06-30**,
@@ -147,8 +147,8 @@ heutigen Namen.
 | `schl_nr` | amtliche Schlüsselnummer | siehe oben |
 | `datum_praezision` | Genauigkeit der zugrunde liegenden Datierung | wie in `namen.csv` |
 | `quelle` | Herkunft der Angabe | wörtlich „Dickhoff 2015" |
-| `zusatz` | abgetrennter Klammerzusatz aus der Quelle | z. B. „(tlw.)", „(Verl.)"; leer wenn keiner vorlag (131 von 393 Zeilen gefüllt) |
-| `eindeutig` | ob `(stadtteil, ehemalig)` auf genau eine `schl_nr` trifft | `ja` (356) \| `nein` (37, Kollisionen) |
+| `zusatz` | abgetrennter Klammerzusatz aus der Quelle | z. B. „(tlw.)", „(Verl.)"; leer wenn keiner vorlag (134 von 425 Zeilen gefüllt) |
+| `eindeutig` | ob `(stadtteil, ehemalig)` auf genau eine `schl_nr` trifft | `ja` (386) \| `nein` (39, Kollisionen) |
 
 Straßen mit `status=unsicher` gehen **nicht** in die Konkordanz ein, da ihr heutiger
 Name selbst nicht belastbar ist. Einträge, deren Namenskette intern widersprüchlich ist
@@ -158,12 +158,12 @@ Prüffall geführt (s. [Bekannte Grenzen](#bekannte-grenzen)).
 ## Bezifferte Qualität
 
 - **388** OCR-Buchseiten → **3.343** vom Parser segmentierte Einträge.
-- `daten/strassen.csv`: **3.338** Zeilen, davon **238** mit `status=unsicher`
-  (**3.100** `automatisch`).
+- `daten/strassen.csv`: **3.338** Zeilen, davon **241** mit `status=unsicher`
+  (**3.097** `automatisch`).
 - `daten/namen.csv`: **5.286** Namensstadien (Datierungsgenauigkeit: **4.579** `tag`,
   **314** `unbekannt`, **215** `jahr`, **178** `vor`).
-- `daten/konkordanz_1936.csv`: **393** Zeilen (**356** `eindeutig=ja`, 37 `eindeutig=nein`;
-  **131** mit Klammerzusatz).
+- `daten/konkordanz_1936.csv`: **425** Zeilen (**386** `eindeutig=ja`, 39 `eindeutig=nein`;
+  **134** mit Klammerzusatz).
 
 ### Drei unabhängige Selbstprüfungen
 
@@ -208,10 +208,10 @@ nur Stufe 1+2 (`strassen/erschliessen.py`) ausführen; `daten/strassen.csv` und
 Ehrlichkeit über die Grenzen dieses Datensatzes ist Teil seines Qualitätsanspruchs —
 nichts hier ist verschwiegen, um sauberer zu wirken:
 
-- **238 unsichere Einträge** (`status=unsicher` in `strassen.csv`) sind vom Parser nicht
+- **241 unsichere Einträge** (`status=unsicher` in `strassen.csv`) sind vom Parser nicht
   sicher erschlossen; ihre Felder (insbesondere `strassenklasse`) können OCR-Rauschen
   enthalten. Sie gehen bewusst nicht in die Konkordanz ein.
-- **101 Konkordanz-Prüffälle** (`daten/pruefung_konkordanz.csv`, nicht Teil des
+- **69 Konkordanz-Prüffälle** (`daten/pruefung_konkordanz.csv`, nicht Teil des
   Publikationsumfangs, s. u.): Straßen, deren letztes Namensstadium vom aktuellen Lemma
   abweicht (unvollständige oder korrupte Namenskette in der Quelle). Sie erscheinen
   **nicht** in `konkordanz_1936.csv`, sondern werden gekennzeichnet statt geraten.

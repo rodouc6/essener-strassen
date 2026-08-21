@@ -746,7 +746,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00672,Drumannstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Historiker",,100,automatisch
 00673,Druschelpfad,Stadtwald,Gemeindestraße,"Person, Mann, Deutscher, Kruppscher Beamter, Siedlung",,100,automatisch
 00674,BDudenstraße,Werden,Gemeindestraße,"Person, Mann, Deutscher, Abt, Historiker, 16",,100,automatisch
-00685,Dudweilerstraße,Leithe,Gemeindestraße,"Stadt und Ort, 14",Merziger Aue,100,automatisch
+00685,Dudweilerstraße,Leithe,Gemeindestraße,"Stadt und Ort, 14",Merziger Aue,100,unsicher
 00675,Dückerstraße,Werden,Gemeindestraße,"Person, Mann, Deutscher, Abt",,100,automatisch
 00676,Dümptener Straße,Bedingrade,Gemeindestraße,Bauernschaft,,100,automatisch
 00677,Dünkelbergstraße,Bergeborbeck,Gemeindestraße,"Person, Mann, Deutscher, Kruppscher Beamter, Siedlung",,100,automatisch
@@ -906,7 +906,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00957,Fischlaker Höfe,Fischlaken,Gemeindestraße,Lagebezeichnung,,114,unsicher
 00862,Fischlaker Straße,Fischlaken,Gemeindestraße,Lagebezeichnung,,114,automatisch
 00863,Fischweiher,Kray,Gemeindestraße,Gewässer,,114,automatisch
-00864,Flachsmarkt,Stadtkern,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Platz, 16",Markt,114,automatisch
+00864,Flachsmarkt,Stadtkern,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Platz, 16",Markt,114,unsicher
 00865,Flakerfeld,Überruhr- Holthausen,Gemeindestraße,Hofname,Flakering,114,automatisch
 00866,Flakering - Ehemaliger Hof Flake 1970 Flakering,Überruhr- Holthausen,Gemeindestraße,"Hofname, 02",,115,unsicher
 03287,Flandernstraße,Bochold; Bergeborbeck,Gemeindestraße,Stadt und Ort,,115,automatisch
@@ -2754,7 +2754,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02842,Schwanenbuschstraße,Huttrop,Gemeindestraße,Lagebezeichnung,,299,automatisch
 02843,Schwanenkampstraße,Westviertel,Gemeindestraße,Freigut,,299,automatisch
 02844,Schwanhildenhöhe,Stoppenberg,Gemeindestraße,"Person, Frau, Äbtissin",,299,automatisch
-02845,Schwanhildenstraße,Stoppenberg,Gemeindestraße,"Person, Frau, Äbtissin, 04",Schwanhildenhöhe,299,automatisch
+02845,Schwanhildenstraße,Stoppenberg,Gemeindestraße,"Person, Frau, Äbtissin, 04",Schwanhildenhöhe,299,unsicher
 02846,Schwarzbachstraße,Kray,Gemeindestraße,Gewässer,,300,automatisch
 02847,Schwarze Horn,Stadtkern,Gemeindestraße,Lagebezeichnung,,300,unsicher
 02849,Schwarze Meer,Stadtkern,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Flurname",,300,automatisch
