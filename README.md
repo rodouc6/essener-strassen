@@ -75,7 +75,7 @@ maschinenlesbare Schema liegt zusätzlich in [`datapackage.json`](datapackage.js
 | `strassenklasse` | Straßenklasse | Gemeindestraße, Kreisstraße, Landstraße, Bundesstraße, Autobahn, Hauptstraße …; mehrere durch `; ` getrennt; bei `status=unsicher` z. T. OCR-verunreinigt |
 | `namensgruppe` | Str.-Gr. der Quelle, wörtlich übernommen | Text (Flurname, Person, Lagebezeichnung, Stadt und Ort …) |
 | `verweis_auf` | Ziel-Lemma bei „Siehe X" | Text oder leer (223 von 3.338 Zeilen gefüllt) |
-| `buchseite` | Beleg: Seite in Dickhoff 2015 | ganzzahlig, 2–388 |
+| `buchseite` | Beleg: Seite in Dickhoff 2015 | ganzzahlig, 23–362 (Einträge nur im Lexikonteil; das Buch umfasst die Scan-Seiten 2–388, Titelei/Einleitung/Register enthalten keine Einträge) |
 | `status` | Prüfstatus des Eintrags | `automatisch` \| `geprueft` \| `unsicher` |
 
 ### `daten/namen.csv` (5.286 Zeilen)
