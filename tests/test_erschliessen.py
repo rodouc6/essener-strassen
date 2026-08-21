@@ -291,3 +291,64 @@ def test_namensgruppe_mit_rauschzeichen_wird_weiterhin_geflaggt(tmp_path):
     assert len(treffer) == 1
     zeile = [z for z in strassen if z["lemma"] == "Rauschgruppe"][0]
     assert zeile["status"] == "unsicher"
+
+
+# --- MINOR 2 (Whole-Branch-Review): 'Siehe' tief in der Erläuterung darf das
+# 'kein Namensstadium erkannt'-Netz nicht unterdrücken --------------------
+
+_SEITE4 = (
+    "Testverweisstraße: Schl.-Nr.: 07001, Stadtteil Musterhausen, "
+    "Str.-Kl.: Gemeindestraße, Str.-Gr.: Person, "
+    "14. November A 0, EEE 1935: Testverweisstraße. Dies ist eine lange "
+    "Erläuterung ohne inhaltlichen Bezug zum folgenden Verweis. "
+    "Siehe Anderestraße. "
+    "Kurzverweis: Schl.-Nr.: 07002, Stadtteil Musterhausen, "
+    "Str.-Kl.: Gemeindestraße, Str.-Gr.: Flurname, "
+    "01. Januar 1900, Kurzverweis. Siehe Zielstraße."
+)
+
+
+def _lauf4(tmp_path):
+    ocr_dir = tmp_path / "ocr4"
+    ocr_dir.mkdir()
+    (ocr_dir / "s600.txt").write_text(_SEITE4, encoding="utf-8")
+    ausgabe_dir = tmp_path / "daten4"
+    kennzahlen = main(ocr_dir=ocr_dir, ausgabe_dir=ausgabe_dir)
+    with open(ausgabe_dir / "strassen.csv", encoding="utf-8") as f:
+        strassen = list(csv.DictReader(f))
+    with open(ausgabe_dir / "pruefung.csv", encoding="utf-8") as f:
+        pruefung = list(csv.DictReader(f))
+    return kennzahlen, strassen, pruefung
+
+
+def test_siehe_tief_in_erlaeuterung_unterdrueckt_pruefungsnetz_nicht(tmp_path):
+    """OCR-verstümmeltes Datum (kein Stadium erkennbar) UND ein 'Siehe X' weit
+    hinten in einer inhaltlich unabhängigen Erläuterung (Analogon zu den realen
+    stillen Verlusten 00685, 00864, 02845): der Eintrag muss trotz des fernen
+    'Siehe' als 'kein Namensstadium erkannt' markiert werden, statt
+    stillschweigend als 'automatisch' durchzulaufen. verweis_auf bleibt dabei
+    trotzdem gefüllt (der Verweis selbst ist ja real vorhanden, nur eben kein
+    Ersatz für das fehlende Stadium)."""
+    _, strassen, pruefung = _lauf4(tmp_path)
+    treffer = [z for z in pruefung
+               if z["grund"] == "kein Namensstadium erkannt"
+               and z["lemma_roh"] == "Testverweisstraße"]
+    assert len(treffer) == 1
+    zeile = [z for z in strassen if z["lemma"] == "Testverweisstraße"][0]
+    assert zeile["status"] == "unsicher"
+    assert zeile["verweis_auf"] == "Anderestraße"
+
+
+def test_siehe_direkt_im_kopfbereich_zaehlt_weiterhin_als_verweis_eintrag(tmp_path):
+    """Ein echter, kurzer Verweis-Eintrag ohne eigene Namenskette (Datum
+    OCR-verstümmelt, 'Siehe X' folgt aber direkt im Kopfbereich, Analogon zu
+    den realen Fällen 01078, 02224) bleibt weiterhin unauffällig — das Netz
+    greift nur bei einem FERNEN 'Siehe', nicht bei jedem."""
+    _, strassen, pruefung = _lauf4(tmp_path)
+    treffer = [z for z in pruefung
+               if z["grund"] == "kein Namensstadium erkannt"
+               and z["lemma_roh"] == "Kurzverweis"]
+    assert treffer == []
+    zeile = [z for z in strassen if z["lemma"] == "Kurzverweis"][0]
+    assert zeile["status"] == "automatisch"
+    assert zeile["verweis_auf"] == "Zielstraße"

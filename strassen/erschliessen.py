@@ -16,7 +16,12 @@ bleibt in strassen.csv/namen.csv erhalten. Gründe:
     typisches Symptom einer bei der Segmentierung abgeschnittenen oder
     verunreinigten Lemma-Erkennung.
   - "kein Namensstadium erkannt": der Kopf ist lesbar, aber weder ein
-    Namensstadium noch ein Verweis ("Siehe ...") ließ sich finden.
+    Namensstadium noch ein Verweis ("Siehe ...") im Kopfbereich (die ersten
+    _VERWEIS_KOPF_FENSTER Zeichen des Rumpfs) ließ sich finden. Ein "Siehe"
+    tief in einer inhaltlich unabhängigen Erläuterung zählt dabei NICHT als
+    Ersatz für ein fehlendes Stadium — sonst verschwinden Einträge mit
+    verstümmeltem Datum still, nur weil zufällig weiter hinten ein "Siehe"
+    auf eine andere Straße verweist (s. _VERWEIS_KOPF_FENSTER unten).
   - "Namensstadium auffällig": mindestens ein erkanntes Namensstadium ist zu
     kurz/lang oder enthält Nicht-Namenszeichen bzw. eine lange Ziffernfolge
     (OCR-Bildrauschen, das als Stadium fehlinterpretiert wurde).
@@ -45,6 +50,21 @@ from strassen.namen import parse_namenskette
 from strassen.ausgabe import schreibe_strassen, schreibe_namen, schreibe_pruefung
 
 _VERWEIS = re.compile(r"Siehe\s+([A-ZÄÖÜ][^.,;]{2,60})")
+# Fenster (Zeichen ab Rumpfanfang), in dem ein 'Siehe X' als Ersatz für ein
+# fehlendes Namensstadium gilt (reiner Verweis-Eintrag ohne eigene Namenskette,
+# z. B. 'Schl.-Nr.: ..., Str.-Gr.: ..., 01. Januar 1900, Kurzverweis. Siehe
+# Zielstraße.' — das Datum ist hier OCR-verstümmelt, aber 'Siehe' folgt direkt
+# im Kopfbereich). Ein 'Siehe' TIEF in einer Erläuterung (z. B. ein beiläufiger
+# Verweis auf eine andere, thematisch verwandte Straße nach einer langen,
+# inhaltlich unabhängigen Worterklärung) ist dagegen KEIN Ersatz dafür — sonst
+# verschwinden Einträge mit ebenfalls verstümmeltem Datum still aus pruefung.csv,
+# nur weil zufällig irgendwo weiter hinten ein 'Siehe' auf eine andere Straße
+# steht (reale stille Verluste: 00685, 00864, 02845). Empirisch trennt 120
+# Zeichen die echten Kurz-Verweise (Position 102/107) sauber von diesen Fällen
+# (Position 127/198/253). Betrifft NUR diese Prüfung — verweis_auf selbst wird
+# weiterhin über den ganzen Rumpf gesucht (223 belegte Fälle, auch mit langer
+# Erläuterung vor einem berechtigten 'Siehe').
+_VERWEIS_KOPF_FENSTER = 120
 
 # Auffälliges Lemma (Länge): die weit überwiegende Mehrheit echter
 # Straßennamen ist kurz. Alles darüber wird nicht verworfen, sondern nur zur
@@ -138,6 +158,7 @@ def main(ocr_dir="ocr/seiten", ausgabe_dir="daten"):
             continue
 
         mv = _VERWEIS.search(e.rumpf)
+        mv_kopf = _VERWEIS.search(e.rumpf[:_VERWEIS_KOPF_FENSTER])
         stadien = parse_namenskette(k.rest)
         stadtteile_str = "; ".join(k.stadtteile)
         klasse_str = "; ".join(k.strassenklassen)
@@ -150,7 +171,7 @@ def main(ocr_dir="ocr/seiten", ausgabe_dir="daten"):
             gruende.append("Lemma auffällig (Länge)")
         if _lemma_form_auffaellig(e.lemma_roh):
             gruende.append("Lemma auffällig (Form)")
-        if not stadien and not mv:
+        if not stadien and not mv_kopf:
             gruende.append("kein Namensstadium erkannt")
         rauschnamen = [s.name for s in stadien if _name_auffaellig(s.name)]
         if rauschnamen:
