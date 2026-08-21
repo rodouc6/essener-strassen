@@ -1,6 +1,7 @@
 # Erhebungsstand des Adressbuchs Essen 1936
 
-Misst, welchen Namensstand das Adressbuch Essen 1936 (`/home/christos/Projekte/AdressbuchEssen-v2/data/essen1936.csv`)
+Misst, welchen Namensstand das Adressbuch Essen 1936 (Adressbuch-Datensatz des
+Kartenprojekts, siehe README, Abschnitt „Externe Eingaben")
 tatsächlich abbildet, und leitet daraus die Konkordanz für das Kartenprojekt ab
 (`strassen/stichtag.py`, `tests/test_stichtag.py`).
 

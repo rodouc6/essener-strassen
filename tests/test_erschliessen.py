@@ -3,6 +3,8 @@ Anker ohne Lemma, auffällige Lemmata und Köpfe ohne Namensstadium landen alle
 sichtbar in pruefung.csv statt stillschweigend zu verschwinden oder zu fehlen.
 """
 import csv
+import subprocess
+import sys
 
 from strassen.erschliessen import (
     main, _lemma_form_auffaellig, _name_auffaellig, _feld_zu_lang,
@@ -352,3 +354,35 @@ def test_siehe_direkt_im_kopfbereich_zaehlt_weiterhin_als_verweis_eintrag(tmp_pa
     zeile = [z for z in strassen if z["lemma"] == "Kurzverweis"][0]
     assert zeile["status"] == "automatisch"
     assert zeile["verweis_auf"] == "Zielstraße"
+
+
+# --- MINOR 7: sinnvoller Exitcode ------------------------------------------
+
+def test_cli_exit_code_1_bei_leerem_ocr_verzeichnis(tmp_path):
+    """`python3 -m strassen.erschliessen` muss Exitcode 1 liefern, wenn kein
+    einziger Straßeneintrag erzeugt wurde (leeres/falsches ocr_dir) — vorher
+    war der Exitcode unabhängig vom Ergebnis immer 0."""
+    ocr_dir = tmp_path / "ocr_leer"
+    ocr_dir.mkdir()
+    ausgabe_dir = tmp_path / "daten"
+    code = (
+        "import sys; from strassen.erschliessen import main; "
+        f"kz = main(ocr_dir={str(ocr_dir)!r}, ausgabe_dir={str(ausgabe_dir)!r}); "
+        "sys.exit(0 if kz['strassen'] else 1)"
+    )
+    ergebnis = subprocess.run([sys.executable, "-c", code], capture_output=True)
+    assert ergebnis.returncode == 1
+
+
+def test_cli_exit_code_0_bei_erfolgreichem_lauf(tmp_path):
+    ocr_dir = tmp_path / "ocr"
+    ocr_dir.mkdir()
+    (ocr_dir / "s300.txt").write_text(_SEITE, encoding="utf-8")
+    ausgabe_dir = tmp_path / "daten"
+    code = (
+        "import sys; from strassen.erschliessen import main; "
+        f"kz = main(ocr_dir={str(ocr_dir)!r}, ausgabe_dir={str(ausgabe_dir)!r}); "
+        "sys.exit(0 if kz['strassen'] else 1)"
+    )
+    ergebnis = subprocess.run([sys.executable, "-c", code], capture_output=True)
+    assert ergebnis.returncode == 0

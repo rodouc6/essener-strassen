@@ -187,6 +187,22 @@ liegt komfortabel im gesamten Zeitfenster (Februar 1936 bis Januar 1937), in dem
 weitere Umbenennung mehr auf den Datensatz einwirkt, eine engere Festlegung wäre durch
 die Daten nicht gedeckt. Details: [`docs/erhebungsstand.md`](docs/erhebungsstand.md).
 
+## Externe Eingaben
+
+Stufe 3+4 (`strassen/veroeffentlichen.py`) brauchen zwei Referenzquellen des
+Essener Kartenprojekts (Schwesterprojekt, **nicht Teil dieses Repos**):
+
+- `data/essen1936.csv` — der Adressbuch-Datensatz Essen 1936, liefert die
+  Straßennamen für die Erhebungsstand-Messung (`docs/erhebungsstand.md`).
+- `shared/strassen_aktuell.csv` — das amtliche Straßenverzeichnis, liefert den
+  Abgleich in der dritten Selbstprüfung (`docs/qualitaet.md`, Abschnitt 3).
+
+Beide Pfade sind Modulkonstanten in `strassen/veroeffentlichen.py`
+(`ADRESSBUCH_PFAD`, `AMTLICHES_VERZEICHNIS_PFAD`), per `--adressbuch` bzw.
+`--amtliches-verzeichnis` überschreibbar. Ohne diese beiden Dateien lassen sich
+nur Stufe 1+2 (`strassen/erschliessen.py`) ausführen; `daten/strassen.csv` und
+`daten/namen.csv` sind davon unabhängig.
+
 ## Bekannte Grenzen
 
 Ehrlichkeit über die Grenzen dieses Datensatzes ist Teil seines Qualitätsanspruchs —
@@ -213,6 +229,13 @@ nichts hier ist verschwiegen, um sauberer zu wirken:
 - **3 echte Schlüsselnummer-Dubletten**: Bei drei Schlüsselnummern liegen zwei
   Einträge vor. Ursache nicht abschließend geklärt (OCR-Doppellesung vs. tatsächliche
   Dublette in der Quelle); beide Vorkommen sind im Datensatz erhalten.
+- **15 von 223 `verweis_auf`-Werten lösen nicht auf ein Lemma in `strassen.csv`
+  auf** — überwiegend OCR-Bindestrich-Artefakte im Zielnamen (Leerzeichen um
+  den Bindestrich, z. B. „Elsa- Brändström-Straße" statt korrekt
+  „Elsa-Brändström-Straße") oder Doppelziele („Porscheplatz und Am
+  Porscheplatz"), die das einfache Lemma-Muster nicht auflöst. Der Verweis
+  selbst bleibt roh erhalten, statt ihn zu erraten oder stillschweigend zu
+  bereinigen.
 - **Goldstandard-Stichprobe noch ausstehend:** Eine Zeichen-für-Zeichen-Prüfung von 50
   zufällig gezogenen Einträgen gegen den Original-Scan zur Ermittlung einer bezifferten
   Feldfehlerquote ist geplant, aber noch nicht durchgeführt (siehe

@@ -219,4 +219,8 @@ def main(ocr_dir="ocr/seiten", ausgabe_dir="daten"):
 
 
 if __name__ == "__main__":
-    sys.exit(0 if main() else 0)
+    kennzahlen = main()
+    # Exitcode 1, wenn kein einziger Straßeneintrag erzeugt wurde (leeres oder
+    # falsch adressiertes ocr_dir, kaputte Segmentierung) — ein stiller
+    # Erfolg (Exit 0) bei null Ergebniszeilen wäre irreführend.
+    sys.exit(0 if kennzahlen["strassen"] else 1)
