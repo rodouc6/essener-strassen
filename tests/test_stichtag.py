@@ -64,6 +64,26 @@ def test_baue_konkordanz_laesst_nur_zusatz_unterschied_aus():
     assert baue_konkordanz(strassen, namen, "1936-06-30") == []
 
 
+def test_baue_konkordanz_behaelt_informationstragenden_teil_zusatz():
+    """Fix-Runde 2: '(tlw.)' ('teilweise') ist kein rein administrativer Zusatz wie
+    '(Verl.)'/'(Umb.)', sondern sagt, dass nur ein Teil der Straße den historischen
+    Namen trug — das ist Information, die beim bloßen 'unverändert'-Drop verloren
+    ginge (Fund: schl_nr 00318 Beisenstraße, Katernberg, 1936 'Beisenstraße
+    (tlw.)'). Die Zeile bleibt daher in der Konkordanz, mit ehemalig == heutig und
+    gefülltem zusatz."""
+    strassen = [{"schl_nr": "00318", "lemma": "Beisenstraße", "stadtteile": "Katernberg",
+                 "buchseite": "1"}]
+    namen = [{"schl_nr": "00318", "stadium": "1", "gueltig_ab": "1900-01-01",
+              "datum_praezision": "tag", "name": "Beisenstraße"},
+             {"schl_nr": "00318", "stadium": "2", "gueltig_ab": "1909-03-05",
+              "datum_praezision": "tag", "name": "Beisenstraße (tlw.)"}]
+    k = baue_konkordanz(strassen, namen, "1936-06-30")
+    assert len(k) == 1
+    assert k[0]["ehemalig"] == "Beisenstraße"
+    assert k[0]["heutig"] == "Beisenstraße"
+    assert k[0]["zusatz"] == "(tlw.)"
+
+
 def test_baue_konkordanz_markiert_kollisionen_als_nicht_eindeutig():
     """Zwei Straßen im selben Stadtteil, die (nach Zusatz-Abtrennung) denselben
     historischen Namen tragen, sind für den Adressbuch-Abgleich nicht unterscheidbar

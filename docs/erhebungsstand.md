@@ -109,8 +109,9 @@ Konkordanz, da ihr heutiger Name selbst nicht belastbar ist.
 taggenaue Dickhoff-Datierung mehr Umbenennungen sicher vor bzw. nach dem
 Stichtag einordnen kann als die gröbere Vorabmessung.
 
-**Diese 576 sind durch Fix-Runde 1 (s. u.) überholt** — die dortigen 392
-Einträge sind der aktuelle, produktive Stand von `daten/konkordanz_1936.csv`.
+**Diese 576 sind durch Fix-Runde 1 und Fix-Runde 2 (s. u.) überholt** — die
+dortigen 393 Einträge sind der aktuelle, produktive Stand von
+`daten/konkordanz_1936.csv`.
 
 ## Fix-Runde 1 (Review von Task 7)
 
@@ -274,3 +275,77 @@ Vor-Fix-Runde-Messung und ist durch Ruling C überholt.)
   `{"stadtteil": "Freisenbruch", "ehemalig": "Klosterstraße", "heutig":
   "Kütings Garten", "zusatz": "", "eindeutig": "ja"}`, exakt wie vor der
   Fix-Runde (der Brief-Testfall ist von keinem der drei Rulings betroffen).
+
+## Fix-Runde 2 (Re-Review von Task 7)
+
+Restfund aus der Re-Review: Der „unverändert"-Drop aus Fix-Runde 1 (Zusatz-Fund)
+verwarf **alle** Zeilen mit `ehemalig == heutig` nach Zusatz-Abtrennung, auch dann,
+wenn der Zusatz selbst inhaltliche Information trug. Konkreter Fall: schl_nr 00318
+Beisenstraße (Katernberg) — 1936 galt laut Dickhoff „Beisenstraße (tlw.)"; nach
+Abtrennung von „(tlw.)" ist `ehemalig == heutig == "Beisenstraße"`, und die Zeile
+wurde kommentarlos verworfen. Das kostet Information: „(tlw.)" heißt „teilweise" —
+nur ein Teil der Straße trug 1936 diesen Namen, und das ist etwas, das eine
+Konkordanz eigentlich festhalten sollte, statt es stillschweigend zu verschlucken.
+
+**Empirische Prüfung der 83 betroffenen Zeilen aus Fix-Runde 1** (per Zusatz
+klassifiziert, vor der Ruling-C-Prüfung, siehe Analyse-Lauf):
+
+| Zusatz (klein, normalisiert) | Anzahl | Einordnung |
+|---|---:|---|
+| leer | — (nicht Teil der 83; das ist der reguläre Brief-Fall) | — |
+| `(verl.)` | 60 | administrativ (Verlängerung) |
+| `(verl)` | 18 | administrativ (Verlängerung) |
+| `(umb.)` | 2 | administrativ (Umbenennung/Umnumerierung ohne Namensänderung) |
+| `(essen)` | 1 | administrativ (Ortsklammer) |
+| `(rüttenscheid)` | 1 | administrativ (Ortsklammer) |
+| `(tlw.)` | 1 | **informationstragend** (Teilangabe) |
+
+82 von 83 sind damit tatsächlich rein administrativ — das bestätigt exakt die
+Einschätzung der Re-Review („82 harmlos"). Nur der eine `(tlw.)`-Fall (00318) trägt
+echte Information. Der Ruling erlaubt in diesem Fall ausdrücklich, die
+Behalten-Regel auf „(tlw.)"-artige Teil-Zusätze zu beschränken — das wurde
+umgesetzt.
+
+**Umsetzung.** Neue Funktion `_ist_teil_zusatz()` in `strassen/stichtag.py`: erkennt
+Teil-Indikatoren wie „tlw.", „tiw.", „tIw.", „t!w.", „ttw.", „tlIw." (OCR-Varianten
+von „teilweise", tolerant über ein Muster `t[il]{0,3}w|teil`) im Zusatz-Kern (Klammern,
+Punkte, Ausrufezeichen und Leerzeichen entfernt). Der „unverändert"-Drop in
+`_kandidat_oder_pruefung` greift nur noch, wenn `ehemalig == heutig` **und** weder
+`zusatz_ehemalig` noch `zusatz_heutig` ein Teil-Indikator ist. Trifft ein
+Teil-Indikator zu, bleibt die Zeile in der Konkordanz — mit `ehemalig == heutig`,
+gefülltem `zusatz`, und `eindeutig` wie gewohnt über die Kollisions-Logik bestimmt.
+Test: `test_baue_konkordanz_behaelt_informationstragenden_teil_zusatz` (Muster
+00318).
+
+**Bekannte Grenze:** Das Muster deckt nicht jede denkbare OCR-Variante ab — z. B.
+„(tim.)" (w zu m verlesen), die an anderer Stelle im Datensatz vorkommt (aber nicht
+unter den hier betroffenen 83), würde nicht erkannt. Im aktuellen Datensatz ist das
+folgenlos, da unter den 83 betroffenen Zeilen nur die eine `(tlw.)`-Schreibweise
+vorkommt; sollte künftig eine weitere Variante auftreten, würde sie (konservativ,
+im Zweifel nicht raten) als administrativ behandelt und die Zeile gedroppt — im
+Zweifelsfall also eher zu viel verworfen als zu wenig, was dem precision-first-
+Prinzip entspricht (kein Fantasie-Konkordanzeintrag), aber bei einem echten
+Informationsverlust erneut auffallen müsste.
+
+### Neue Kennzahlen (Stichtag 1936-06-30, nur `status=automatisch`)
+
+- Konkordanzeinträge gesamt: **393** (vorher 392 nach Fix-Runde 1, +1 durch den
+  00318-Fall; ursprünglich 576)
+- davon `eindeutig=ja`: 356 / `eindeutig=nein`: 37
+- davon mit nicht-leerem `zusatz`: 131
+- davon mit `ehemalig == heutig` (Teil-Zusatz-Fälle): **1** (00318)
+- Prüffälle (`daten/pruefung_konkordanz.csv`): weiterhin 101 (unverändert — Fix-Runde 2
+  betrifft nur den „unverändert"-Drop, nicht Ruling C)
+- Adressbuch-Matchquote der bereinigten `ehemalig`-Namen: 333/393 (84,7 %) literal,
+  357/393 (90,8 %) mit `_norm_strasse` — praktisch unverändert gegenüber Fix-Runde 1
+  (ein einzelner zusätzlicher Eintrag ändert die Quote kaum)
+
+### Stichprobe 00318
+
+`daten/konkordanz_1936.csv` enthält jetzt:
+```
+Katernberg,Beisenstraße,Beisenstraße,00318,tag,Dickhoff 2015,(tlw.),ja
+```
+— stadtteil, ehemalig und heutig stimmen mit dem Rohbefund überein
+(„Beisenstraße (tlw.)", Katernberg), der Zusatz „(tlw.)" ist erhalten, die Zeile ist
+nicht mehr stillschweigend verschwunden.

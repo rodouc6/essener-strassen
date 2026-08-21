@@ -42,6 +42,24 @@ def _trenne_zusatz(name: str):
     return name[:m.start()].strip(), m.group().strip()
 
 
+_TEIL_ZUSATZ_MUSTER = re.compile(r"t[il]{0,3}w|teil", re.IGNORECASE)
+
+
+def _ist_teil_zusatz(zusatz: str) -> bool:
+    """Erkennt informationstragende Teil-/Verlängerungsangaben wie '(tlw.)'
+    ('teilweise' — nur ein Teil der Straße trug diesen Namen), auch OCR-Varianten
+    ('(tiw.)', '(tIw.)', '(t!w.)', '(ttw.)', '(tlIw.)' ...). Im Unterschied dazu
+    gelten rein administrative Zusätze (leer, '(Verl.)'/'(Umb.)' — Verlängerung/
+    Umbenennung ohne inhaltliche Namensänderung — oder Ortsklammern wie '(Essen)',
+    '(Rüttenscheid)') als harmlos: Fix-Runde 2 (Task-7-Review) hat empirisch
+    bestätigt, dass 82 von 83 betroffenen Fällen im Datensatz genau dieser
+    administrativen Art sind und korrekt ohne Konkordanzeintrag bleiben; nur
+    'tlw.'-artige Teil-Zusätze tragen echte, sonst verlorene Information."""
+    kern = zusatz.strip().strip("(){}")
+    kern = re.sub(r"[.\!\s]", "", kern)
+    return bool(_TEIL_ZUSATZ_MUSTER.search(kern))
+
+
 def _norm_vergleich(name: str) -> str:
     """Normalisiert für den mechanischen Konsistenz-Check zwischen dem chronologisch
     letzten Stadium und dem aktuellen Lemma: kleinschreiben, Whitespace
@@ -155,12 +173,18 @@ def _kandidat_oder_pruefung(strasse, stadien, stichtag: str):
     # Zusatz-Abtrennung (Ruling A) VOR dem 'unverändert'-Check: manche Stadien
     # unterscheiden sich vom Lemma nur durch einen Klammerzusatz wie '(Verl.)' —
     # nach dessen Abtrennung ist der Name in Wahrheit unverändert und braucht
-    # keinen Konkordanzeintrag (sonst entstünden sinnentleerte Zeilen mit
-    # ehemalig == heutig, die keine echte Umbenennung mehr abbilden).
+    # (in der Regel) keinen Konkordanzeintrag. Fix-Runde 2: Ausnahme für
+    # informationstragende Teil-Zusätze wie '(tlw.)' ('teilweise') — die sagen,
+    # dass nur ein Teil der Straße den historischen Namen trug, und das ginge sonst
+    # verloren (Fund: schl_nr 00318 Beisenstraße). Rein administrative Zusätze
+    # (leer, '(Verl.)'/'(Umb.)', Ortsklammern wie '(Essen)') bleiben harmlos und
+    # werden weiterhin verworfen — sonst entstünden sinnentleerte Zeilen mit
+    # ehemalig == heutig ohne echte Umbenennung.
     ehemalig, zusatz_ehemalig = _trenne_zusatz(treffer["name"].strip())
     heutig, zusatz_heutig = _trenne_zusatz(strasse["lemma"].strip())
     if ehemalig == heutig:
-        return None                       # Name unverändert — kein Konkordanzeintrag
+        if not (_ist_teil_zusatz(zusatz_ehemalig) or _ist_teil_zusatz(zusatz_heutig)):
+            return None                   # Name unverändert, Zusatz administrativ/leer
 
     letztes = _letztes_datiertes_stadium(stadien)
     letztes_roh = letztes["name"].strip() if letztes else ""
