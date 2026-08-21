@@ -1,0 +1,67 @@
+{
+  "name": "essener-strassen",
+  "title": "Essener Straßenverzeichnis: Namen und Umbenennungen",
+  "description": "Strukturiertes Verzeichnis der Essener Straßen mit datierter Namensgeschichte, erschlossen aus Erwin Dickhoff: Essener Straßen (Klartext-Verlag, Essen 2015).",
+  "licenses": [{"name": "CC-BY-4.0", "path": "https://creativecommons.org/licenses/by/4.0/"}],
+  "sources": [{
+    "title": "Erwin Dickhoff: Essener Straßen. Klartext-Verlag, Essen 2015",
+    "path": "urn:isbn:9783837512311"
+  }],
+  "resources": [
+    {
+      "name": "strassen",
+      "path": "daten/strassen.csv",
+      "format": "csv",
+      "encoding": "utf-8",
+      "schema": {
+        "primaryKey": "schl_nr",
+        "fields": [
+          {"name": "schl_nr", "type": "string", "description": "amtliche Schlüsselnummer, fünfstellig"},
+          {"name": "lemma", "type": "string", "description": "heutiger Straßenname (Stichwort des Eintrags)"},
+          {"name": "stadtteile", "type": "string", "description": "Stadtteil(e), mehrere mit '; ' getrennt"},
+          {"name": "strassenklasse", "type": "string", "description": "Gemeindestraße, Kreisstraße, Landstraße; mehrere mit '; ' getrennt"},
+          {"name": "namensgruppe", "type": "string", "description": "Str.-Gr. der Quelle, wörtlich übernommen"},
+          {"name": "verweis_auf", "type": "string", "description": "Ziel-Lemma bei 'Siehe X', sonst leer"},
+          {"name": "buchseite", "type": "integer", "description": "Beleg: Seite in Dickhoff 2015"},
+          {"name": "status", "type": "string", "constraints": {"enum": ["automatisch", "geprueft", "unsicher"]}}
+        ]
+      }
+    },
+    {
+      "name": "namen",
+      "path": "daten/namen.csv",
+      "format": "csv",
+      "encoding": "utf-8",
+      "schema": {
+        "primaryKey": ["schl_nr", "stadium"],
+        "foreignKeys": [{"fields": "schl_nr", "reference": {"resource": "strassen", "fields": "schl_nr"}}],
+        "fields": [
+          {"name": "schl_nr", "type": "string", "description": "Fremdschlüssel auf strassen.csv"},
+          {"name": "stadium", "type": "integer", "description": "laufende Nummer der Namensstufe, 1 = älteste"},
+          {"name": "gueltig_ab", "type": "string", "description": "ISO-Datum oder Jahr, leer wenn unbekannt"},
+          {"name": "datum_praezision", "type": "string", "constraints": {"enum": ["tag", "monat", "jahr", "vor", "nach", "unbekannt"]}},
+          {"name": "name", "type": "string", "description": "Straßenname in diesem Stadium"},
+          {"name": "ist_urspruenglich", "type": "string", "constraints": {"enum": ["wahr", "falsch"]}}
+        ]
+      }
+    },
+    {
+      "name": "konkordanz_1936",
+      "path": "daten/konkordanz_1936.csv",
+      "format": "csv",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {"name": "stadtteil", "type": "string"},
+          {"name": "ehemalig", "type": "string", "description": "Name zum Erhebungsstand des Adressbuchs 1936 (Arbeitsstichtag 1936-06-30), Klammerzusatz bereits abgetrennt (siehe Feld 'zusatz')"},
+          {"name": "heutig", "type": "string", "description": "heutiger Name"},
+          {"name": "schl_nr", "type": "string", "description": "amtliche Schlüsselnummer, fünfstellig"},
+          {"name": "datum_praezision", "type": "string", "description": "Genauigkeit der zugrunde liegenden Datierung"},
+          {"name": "quelle", "type": "string", "description": "Herkunft der Angabe, wörtlich 'Dickhoff 2015'"},
+          {"name": "zusatz", "type": "string", "description": "abgetrennter Klammerzusatz aus der Quelle (z. B. '(tlw.)', '(Verl.)'), leer wenn keiner vorlag"},
+          {"name": "eindeutig", "type": "string", "constraints": {"enum": ["ja", "nein"]}, "description": "'nein', wenn derselbe (stadtteil, ehemalig)-Name im selben Stadtteil auf mehr als eine schl_nr trifft (Kollision)"}
+        ]
+      }
+    }
+  ]
+}

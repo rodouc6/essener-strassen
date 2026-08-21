@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+title: "Essener Straßenverzeichnis: Namen und Umbenennungen"
+message: "Wenn Sie diesen Datensatz nutzen, zitieren Sie ihn bitte wie folgt."
+type: dataset
+authors:
+  - family-names: "AUSSTEHEND: vom Projektinhaber einzutragen"
+    given-names: "AUSSTEHEND: vom Projektinhaber einzutragen"
+abstract: >-
+  Strukturiertes Verzeichnis der Essener Straßen mit datierter Namensgeschichte,
+  erschlossen aus Erwin Dickhoff: Essener Straßen (Klartext-Verlag, Essen 2015).
+  Erlaubt die Auflösung historischer Essener Adressen zu beliebigen Stichtagen.
+keywords:
+  - Essen
+  - Straßennamen
+  - historische Geographie
+  - Digital Humanities
+  - Adressbuch
+license: CC-BY-4.0
+references:
+  - type: book
+    title: "Essener Straßen"
+    authors:
+      - family-names: "Dickhoff"
+        given-names: "Erwin"
+    publisher:
+      name: "Klartext-Verlag"
+    year: 2015
+    isbn: "978-3-8375-1231-1"
