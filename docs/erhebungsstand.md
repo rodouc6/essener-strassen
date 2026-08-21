@@ -109,6 +109,124 @@ Konkordanz, da ihr heutiger Name selbst nicht belastbar ist.
 taggenaue Dickhoff-Datierung mehr Umbenennungen sicher vor bzw. nach dem
 Stichtag einordnen kann als die gröbere Vorabmessung.
 
+**Diese 576 sind durch Fix-Runde 1 (s. u.) überholt** — die dortigen 392
+Einträge sind der aktuelle, produktive Stand von `daten/konkordanz_1936.csv`.
+
+## Fix-Runde 1 (Review von Task 7)
+
+Die Review von Task 7 fand drei mechanische Probleme in der 576er-Konkordanz.
+Der Controller hat dazu drei bindende Rulings getroffen, alle in
+`strassen/stichtag.py` umgesetzt (`baue_konkordanz`, neue Funktion
+`pruefe_konkordanz`) und mit Tests in `tests/test_stichtag.py` abgesichert.
+
+**Ruling A — Klammerzusätze.** 228 von 576 Zeilen trugen Dickhoffs
+Klammervermerke („(tlw.)", „(Verl.)", auch OCR-Varianten wie „{tlw.)",
+„(t!w.)") noch im `ehemalig`-Namen und konnten dadurch nie einen
+Adressbuch-Eintrag treffen. `baue_konkordanz` trennt jetzt jeden
+Klammerausdruck am Namensende in eine eigene Spalte `zusatz` ab (Muster:
+öffnende Klammer `(` oder `{`, schließende `)` oder `}`, beliebiger Inhalt
+dazwischen) — sowohl für `ehemalig` als auch, falls vorhanden, für `heutig`
+(in den echten Daten kommt das bei `heutig` nicht vor). Die
+Umbenennungs-Information („nur Teil/Verlängerung betroffen") bleibt so
+erhalten, der Name wird aber matchbar.
+
+**Ruling B — Kollisionen.** Zwei Straßen im selben Stadtteil können nach der
+Zusatz-Abtrennung denselben historischen Namen tragen (z. B. „Hochstraße" in
+Kettwig kommt zweimal vor: schl_nr 03601 und 03736, beide zu
+`(stadtteil, ehemalig)` = `(Kettwig, Hochstraße)`). Für den Adressbuch-Abgleich
+sind sie nicht unterscheidbar. Jede Konkordanzzeile trägt jetzt eine Spalte
+`eindeutig` (`ja`/`nein`); alle Mitglieder einer Kollisionsgruppe werden
+`nein`. Ein nachgelagerter Consumer darf `eindeutig=nein`-Zeilen nicht mehr
+still ineinander überschreiben, sondern muss sie erkennbar unterscheiden
+oder verwerfen.
+
+**Ruling C — mechanisches Konsistenz-Netz.** Mehrere Zeilen entstanden aus
+unvollständigen oder korrupten Namensketten, z. B. schl_nr 00286: einziges
+Stadium in `daten/namen.csv` ist „Marktplatz" (1900), das Lemma aber
+„Barbarossaplatz" — die tatsächliche Umbenennung vom 14.11.1935 fehlt als
+Stadium-Eintrag, die alte Konkordanzzeile „Marktplatz → Barbarossaplatz" war
+dadurch falsch datiert. `baue_konkordanz` vergleicht jetzt für jede Straße
+das chronologisch letzte datierte Stadium (zusatzbereinigt, normalisiert:
+kleinschreiben, Whitespace vereinheitlicht, ß/ss angeglichen,
+„str."/„straße" vereinheitlicht) mit dem aktuellen Lemma. Bei Abweichung
+wird die Zeile **nicht** in die Konkordanz aufgenommen, sondern als
+Prüffall zurückgegeben. Diese Prüfung ist vom Stichtag selbst unabhängig
+(sie fragt nach der Konsistenz der ganzen Kette), hängt hier aber am
+Stichtag-Parameter, weil nur die Straßen interessieren, die am Stichtag
+überhaupt eine (potenzielle) Konkordanzzeile erzeugen würden — daher die
+Signatur `pruefe_konkordanz(strassen, namen, stichtag)` (mit Stichtag,
+abweichend vom Vorschlag im Ruling, aber dokumentiert).
+
+Wichtig für Ruling C: Der Zusatz muss VOR dem Vergleich abgetrennt werden.
+Ohne das hätten 256 der 529 im Datensatz global auftretenden
+Ketten-Abweichungen fälschlich als Prüffall gegolten — reine
+Formatierungsfälle wie „Aachener Straße (Verl.)" vs. Lemma „Aachener
+Straße", bei denen die Kette in Wahrheit konsistent ist.
+
+Die 7 vom Review benannten Fälle (00286, 03625, 03609, 00495, 00347, 00176,
+00177) landen alle korrekt in `daten/pruefung_konkordanz.csv`, nicht mehr in
+der Konkordanz — geprüft per Test und per Lauf auf den echten Daten.
+
+`daten/pruefung_konkordanz.csv` verwendet dieselben Spaltennamen wie das von
+`erschliessen` erzeugte `daten/pruefung.csv` (`buchseite`, `grund`), mit
+`lemma` statt `lemma_roh` und `befund` statt `rohtext` — bewusst eine
+eigene Datei, damit ein erneuter Pipeline-Lauf (`erschliessen` →
+`pruefung.csv`) die Konkordanz-Prüffälle nicht überschreibt.
+
+**Ergänzender Fund beim Umsetzen von Ruling A (nicht separat beauftragt,
+aber eine direkte Konsequenz davon):** Bei 83 der ursprünglich 576 Zeilen
+unterschied sich das Stadium vom Lemma nur durch einen Klammerzusatz (z. B.
+Stadium „Aachener Straße (Verl.)" vs. Lemma „Aachener Straße") — nach
+Abtrennung des Zusatzes ist der Name unverändert, es liegt also gar keine
+echte Umbenennung vor. Der ursprüngliche „Name unverändert"-Check (aus dem
+Brief) verglich nur die rohen Strings und griff hier nicht, weil sich die
+rohen Strings durch den Zusatz unterschieden. Mit Ruling A hätte das sonst
+83 sinnentleerte Konkordanzzeilen erzeugt (`ehemalig` == `heutig`). Der
+Check wurde daher auf die zusatzbereinigten Namen verlegt (vor dem
+Ruling-C-Konsistenz-Check); diese 83 Fälle erzeugen jetzt korrekt gar
+keinen Eintrag. Test: `test_baue_konkordanz_laesst_nur_zusatz_unterschied_aus`.
+
+### Neue Kennzahlen (Stichtag 1936-06-30, nur `status=automatisch`)
+
+Die ursprünglichen 576 Zeilen zerfallen jetzt in drei Gruppen: 392 echte
+Konkordanzeinträge, 101 Prüffälle (Ruling C) und 83 durch Zusatz-Abtrennung
+als „unverändert" erkannte Nicht-Umbenennungen (392 + 101 + 83 = 576).
+
+- Konkordanzeinträge gesamt: **392** (vorher 576)
+- davon `eindeutig=ja`: 355
+- davon `eindeutig=nein` (Kollisionen, Ruling B): 37
+- davon mit nicht-leerem `zusatz` (Ruling A): 130
+- Prüffälle (`daten/pruefung_konkordanz.csv`): **101**
+- als „unverändert" erkannt und daher weder Konkordanz noch Prüffall: **83**
+- Adressbuch-Matchquote der bereinigten `ehemalig`-Namen: **332 / 392**
+  (84,7 %) literal (roh, kleingeschrieben, wie in der Review gemessen — dort
+  vorher 288/348 bei den bereits „sauberen", zusatzfreien Zeilen); mit
+  zusätzlicher „str."/„straße"-Normalisierung (`_norm_strasse`) **356 / 392**
+  (90,8 %). Die verbleibenden Nicht-Treffer sind überwiegend Straßen, die
+  1936 noch nicht bebaut/adressiert waren, oder Schreibvarianten, die über
+  die vereinbarte Normalisierung hinausgehen — beides außerhalb des Scopes
+  dieser Fix-Runde.
+
+### Minor-Fixes
+
+Bei der Erhebungsstand-Messung (jährlich wie monatlich) bleiben Straßen
+unberücksichtigt, deren `gueltig_ab` nur ein Jahr angibt (keinen Tag) UND
+die zugleich das einzige Stadium ihrer Straße sind — ohne Vorgänger-Stadium
+gibt es keinen Übergang zu zählen. 7 Stadien in `daten/namen.csv` tragen
+exakt `gueltig_ab=1936` (jahr- oder vor-Präzision); davon sind 4
+(schl_nr 00118, 02150, 03635, 03750) zugleich das einzige Stadium ihrer
+Straße und werden dadurch von der Messung vollständig übergangen (die
+übrigen 3 haben weitere Stadien und tragen dort ganz normal zu jährlichen
+Übergängen bei, sofern diese tagesgenau datiert sind).
+
+Die Kommentierung von `_vergleichbar` wurde ergänzt: 'vor'-Präzision wird
+dort wie 'jahr'-Präzision behandelt (nur der Jahreswert, konservativ auf
+Jahresende gelegt); das ist unproblematisch, weil 'vor' bedeutet „irgendwann
+vor diesem Jahr" — das tatsächliche Datum kann also nur noch früher liegen,
+die Reihenfolge zu späteren Stadien bleibt korrekt, und bei Stichtags- bzw.
+Kettenvergleichen mit einem so späten Bezugspunkt wie 1936 wirkt sich das
+nicht aus.
+
 ## Selbstdurchsicht (5 Stichproben gegen Rohtext und Adressbuch)
 
 | schl_nr | ehemalig (Konkordanz) | heutig | Adressbuch: ehemalig-Treffer | Adressbuch: heutig-Treffer |
@@ -132,3 +250,27 @@ den Ursprungsdaten (Dickhoff-Erschließung), nicht im hier implementierten
 Code. Der Adressbuch-Abgleich (11 Treffer „Herderstraße", 0 Treffer
 „Woermannstraße") bestätigt empirisch, dass die Konkordanzzeile trotz der
 Datenlücke korrekt ist.
+
+(03425 selbst zeigt hier übrigens gerade die Grenze von Ruling C: das
+einzige Stadium „Herderstraße" ≠ Lemma „Woermannstraße", müsste also
+eigentlich ein Prüffall sein. Es bleibt aber ein Prüffall — der Lauf auf den
+echten Daten bestätigt das, s. u.; die Stichprobe hier oben stammt aus der
+Vor-Fix-Runde-Messung und ist durch Ruling C überholt.)
+
+### Stichproben Fix-Runde 1
+
+- **00286 raus?** Ja — `baue_konkordanz` liefert keine Zeile für 00286 mehr;
+  `pruefe_konkordanz` liefert dafür genau einen Prüffall mit
+  `grund="Namenskette unvollständig (letztes Stadium ≠ Lemma)"` und
+  `lemma="Barbarossaplatz"`.
+- **„Hochstraße" matchbar?** Ja — sechs Konkordanzzeilen mit
+  `ehemalig="Hochstraße"` (schl_nr 03601, 00141, 00886, 03736, 02466, 02468),
+  je nach Fall mit `zusatz="(tiw.)"` oder ohne. Davon sind vier über
+  `eindeutig="nein"` als Kollision markiert (zwei in Kettwig: 03601/03736;
+  zwei in Werden: 00886/02466 — Ruling B greift hier tatsächlich in echten
+  Daten), die übrigen zwei (Stadtkern/00141, Kupferdreh/02468) sind
+  `eindeutig="ja"`.
+- **01838 unverändert korrekt?** Ja — weiterhin
+  `{"stadtteil": "Freisenbruch", "ehemalig": "Klosterstraße", "heutig":
+  "Kütings Garten", "zusatz": "", "eindeutig": "ja"}`, exakt wie vor der
+  Fix-Runde (der Brief-Testfall ist von keinem der drei Rulings betroffen).
