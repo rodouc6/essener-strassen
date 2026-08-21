@@ -6,6 +6,7 @@ import csv
 
 from strassen.erschliessen import (
     main, _lemma_form_auffaellig, _name_auffaellig, _feld_zu_lang,
+    _namensgruppe_auffaellig,
 )
 
 _SEITE = (
@@ -199,9 +200,10 @@ def test_feld_zu_lang_direkt():
 
 
 def test_feld_auffaellig_laenge_landet_in_pruefung(tmp_path):
-    """IMPORTANT: ein ungewöhnlich langes strassenklasse/namensgruppe-Feld
-    (>60 Zeichen, typisches Symptom eines nicht erkannten Markers) wird
-    markiert."""
+    """IMPORTANT: ein ungewöhnlich langes strassenklasse-Feld (>60 Zeichen,
+    typisches Symptom eines nicht erkannten Markers) wird markiert. Die
+    Schwelle für strassenklasse bleibt unverändert bei 60 (Fix-Runde 1,
+    Teil 2: nur die namensgruppe-Heuristik wurde nachjustiert, s. u.)."""
     _, strassen, _, pruefung = _lauf2(tmp_path)
     treffer = [z for z in pruefung if z["grund"] == "Feld auffällig (Länge)"]
     assert len(treffer) == 1
@@ -218,3 +220,74 @@ def test_marker_variante_ohne_r_im_gesamtlauf():
     k = parse_kopf("01261, Stadtteil Stadtkern, St.-Gr.: Person, "
                     "01. Januar 1900: Helenenstraße.")
     assert k.namensgruppe == "Person"
+
+
+# --- Fix-Runde 1, Teil 2 (Ruling 3): namensgruppe-Heuristik nachjustiert ---
+
+def test_namensgruppe_auffaellig_direkt():
+    """Ruling 3: strassenklasse-Schwelle (60) bleibt unverändert
+    (test_feld_zu_lang_direkt); namensgruppe wird eigenständig geprüft —
+    >150 Zeichen ODER Rauschzeichen ODER Ziffern-Cluster ≥3. Lange, aber
+    saubere mehrteilige Klassifikationen (echte Buchtaxonomie, z. B.
+    Leibnizstraße, 122 Zeichen) bleiben unauffällig."""
+    lang_aber_sauber = ("Person, Mann, Deutscher, Philosoph, Wissenschaftler, "
+                        "Mathematiker, Diplomat, Physiker, Historiker, "
+                        "Politiker, Bibliothekar")
+    assert len(lang_aber_sauber) < 150
+    assert _namensgruppe_auffaellig(lang_aber_sauber) is False
+    assert _namensgruppe_auffaellig("Essener Geschichte und Örtlichkeit") is False
+    assert _namensgruppe_auffaellig("x" * 151) is True
+    # Rauschzeichen (Unterstrich, wie im realen Fall 'Franz-Fischer-Weg_'):
+    assert _namensgruppe_auffaellig("Industrie und Wirtschaft, Franz-Fischer-Weg_") is True
+    # Ziffern-Cluster ab 3 Stellen (Jahreszahl in namensgruppe ist ein
+    # Fehlerindiz, vgl. den echten Altendorfer-Bleed-Fall):
+    assert _namensgruppe_auffaellig("etwa 1921: Nelkenstraße") is True
+    assert _namensgruppe_auffaellig("Haus Nr. 12") is False
+
+
+_SEITE3 = (
+    "Langname Sauber: Schl.-Nr.: 05900, Stadtteil Rüttenscheid, "
+    "Str.-Kl.: Gemeindestraße, "
+    "Str.-Gr.: Person, Mann, Deutscher, Philosoph, Wissenschaftler, "
+    "Mathematiker, Diplomat, Physiker, Historiker, Politiker, Bibliothekar, "
+    "01. Januar 1950: Langname Sauber. "
+    "Rauschgruppe: Schl.-Nr.: 06000, Stadtteil Byfang, "
+    "Str.-Kl.: Gemeindestraße, "
+    "Str.-Gr.: Industrie und Wirtschaft, Franz-Fischer-Weg_, "
+    "02. Februar 1950: Rauschgruppe."
+)
+
+
+def _lauf3(tmp_path):
+    ocr_dir = tmp_path / "ocr3"
+    ocr_dir.mkdir()
+    (ocr_dir / "s500.txt").write_text(_SEITE3, encoding="utf-8")
+    ausgabe_dir = tmp_path / "daten3"
+    kennzahlen = main(ocr_dir=ocr_dir, ausgabe_dir=ausgabe_dir)
+    with open(ausgabe_dir / "strassen.csv", encoding="utf-8") as f:
+        strassen = list(csv.DictReader(f))
+    with open(ausgabe_dir / "pruefung.csv", encoding="utf-8") as f:
+        pruefung = list(csv.DictReader(f))
+    return kennzahlen, strassen, pruefung
+
+
+def test_lange_aber_saubere_namensgruppe_wird_nicht_mehr_geflaggt(tmp_path):
+    """Ruling 3, Kernziel: eine lange, aber inhaltlich saubere
+    Kategorien-Liste (>60, aber <150 Zeichen, keine Rauschzeichen) löst
+    'Feld auffällig (Länge)' nicht mehr aus — vorher (Teil 1 dieser
+    Fix-Runde) wäre sie fälschlich markiert worden."""
+    _, strassen, pruefung = _lauf3(tmp_path)
+    treffer = [z for z in pruefung
+               if z["grund"] == "Feld auffällig (Länge)" and z["lemma_roh"] == "Langname Sauber"]
+    assert treffer == []
+    zeile = [z for z in strassen if z["lemma"] == "Langname Sauber"][0]
+    assert zeile["status"] == "automatisch"
+
+
+def test_namensgruppe_mit_rauschzeichen_wird_weiterhin_geflaggt(tmp_path):
+    _, strassen, pruefung = _lauf3(tmp_path)
+    treffer = [z for z in pruefung
+               if z["grund"] == "Feld auffällig (Länge)" and z["lemma_roh"] == "Rauschgruppe"]
+    assert len(treffer) == 1
+    zeile = [z for z in strassen if z["lemma"] == "Rauschgruppe"][0]
+    assert zeile["status"] == "unsicher"

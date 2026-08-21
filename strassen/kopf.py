@@ -32,7 +32,12 @@ _NUMMER = re.compile(r"^\s*(\d(?:[ ]?\d){0,5})\b")
 # an zweiter Stelle — ohne die blieb z. B. namensgruppe leer statt gefüllt.
 _M_STR = r"S[tl]r?\.?\s*-?\s*"
 _M_KLASSE = _M_STR + r"K[lI]\.?\s*:"
-_M_GRUPPE = _M_STR + r"Gr\.?\s*:"
+# 'Gr?' toleriert zusätzlich das fehlende zweite 'r' ('Str.-G.:', Ilse-Menz-
+# Weg Schl.-Nr. 00700); '[:;]' toleriert ein Semikolon statt Doppelpunkt
+# nach dem Marker ('Str.-Gr.;', St.-Ingbert-Höhe Schl.-Nr. 02728) — beide
+# ließen namensgruppe bisher leer und die nachfolgende _KLASSE-Suche (ohne
+# erkannten Grenzmarker) blutete in die Namenskette hinein.
+_M_GRUPPE = _M_STR + r"Gr?\.?\s*[:;]"
 # Monatsnamen aus strassen.namen übernommen (eine Quelle statt Duplikat).
 _MONAT = r"(?:" + "|".join(MONATE) + r")"
 # Datumsstempel eines Namensstadiums: entweder ein volles Datum ('16. Mai 1902:')

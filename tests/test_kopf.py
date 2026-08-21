@@ -99,3 +99,27 @@ def test_marker_variante_ohne_r_wird_erkannt():
              "01. Januar 1900: Helenenstraße.")
     k = parse_kopf(rumpf)
     assert k.namensgruppe == "Person"
+
+
+def test_marker_mit_semikolon_statt_doppelpunkt_wird_erkannt():
+    """'Str.-Gr.;' (Semikolon statt Doppelpunkt) kam im OCR vor
+    (St.-Ingbert-Höhe, Schl.-Nr. 02728) — ohne Toleranz blieb namensgruppe
+    leer und strassenklasse blutete in die nachfolgende Namenskette
+    ('Gemeindestraße; Ort; etwa 1921: Nelkenstraße; 14')."""
+    rumpf = ("02728, Stadtteil Leithe, Str.-Kl.: Gemeindestraße, "
+             "Str.-Gr.; Stadt und Ort, etwa 1921: Nelkenstraße, "
+             "14. November 1935: St.-Ingbert-Höhe.")
+    k = parse_kopf(rumpf)
+    assert k.namensgruppe == "Stadt und Ort"
+    assert k.strassenklassen == ["Gemeindestraße"]
+
+
+def test_marker_ohne_zweites_r_wird_erkannt():
+    """'Str.-G.:' (fehlendes zweites 'r' in 'Gr') kam im OCR vor
+    (Ilse-Menz-Weg, Schl.-Nr. 00700)."""
+    rumpf = ("00700, Stadtteil Stadtkern, Str.-Kl.: Gemeindestraße, "
+             "Str.-G.: Person, Frau, Deutsche, Kinobetreiberin, "
+             "20. April 2004: Ilse-Menz-Weg.")
+    k = parse_kopf(rumpf)
+    assert k.namensgruppe == "Person, Frau, Deutsche, Kinobetreiberin"
+    assert k.strassenklassen == ["Gemeindestraße"]

@@ -20,9 +20,15 @@ bleibt in strassen.csv/namen.csv erhalten. Gründe:
   - "Namensstadium auffällig": mindestens ein erkanntes Namensstadium ist zu
     kurz/lang oder enthält Nicht-Namenszeichen bzw. eine lange Ziffernfolge
     (OCR-Bildrauschen, das als Stadium fehlinterpretiert wurde).
-  - "Feld auffällig (Länge)": strassenklasse oder namensgruppe ist
-    ungewöhnlich lang (>60 Zeichen) — typisches Symptom eines nicht erkannten
-    Feldmarkers, dessen Wert dadurch Folgetext verschluckt.
+  - "Feld auffällig (Länge)": strassenklasse ist ungewöhnlich lang
+    (>60 Zeichen) ODER namensgruppe ist auffällig (>150 Zeichen, enthält
+    Rauschzeichen oder einen Ziffern-Cluster ≥3 Stellen) — typisches
+    Symptom eines nicht erkannten Feldmarkers, dessen Wert dadurch
+    Folgetext verschluckt. Die Schwellen unterscheiden sich zwischen den
+    beiden Feldern, weil namensgruppe im Material legitim lange,
+    mehrteilige Kategorien-Listen enthält (z. B. 'Person, Mann, Deutscher,
+    Philosoph, ...'), während strassenklasse solche langen, aber sauberen
+    Werte nicht kennt (Fix-Runde 1, Teil 2 — Ruling 3, s. task-5-report.md).
   - "Schlüsselnummer mehrfach": dieselbe schl_nr kommt bei mehreren Einträgen
     vor — welcher davon die "echte" Nummer trägt, wird nicht geraten,
     sondern beide werden zur manuellen Prüfung markiert.
@@ -63,6 +69,18 @@ _NAME_MIN_ZEICHEN = 3
 _NAME_MAX_ZEICHEN = 60
 _FELD_MAX_ZEICHEN = 60
 
+# namensgruppe-Heuristik (Ruling 3): eigene, großzügigere Erlaubnisliste, da
+# namensgruppe im Material legitim kommagetrennte Kategorien führt (anders
+# als Lemma/Namensstadium, wo ein Komma nie zum Namen gehört) — Komma ist
+# hier deshalb zusätzlich erlaubt. Ein Ziffern-Cluster ab 3 Stellen
+# (Jahreszahl) ist dagegen ein Fehlerindiz: der Altendorfer-Bleed-Fall
+# ('etwa 1921: Nelkenstraße' in strassenklasse) zeigt, dass eine Jahreszahl
+# in diesen Feldern nie legitim vorkommt, sondern immer aus einer
+# verrutschten Namenskette stammt.
+_ERLAUBTE_SONDERZEICHEN_GRUPPE = set(" ,.-()'’/&„\"")
+_ZIFFERNFOLGE_GRUPPE = re.compile(r"\d{3,}")
+_NAMENSGRUPPE_MAX_ZEICHEN = 150
+
 
 def _lemma_auffaellig(lemma: str) -> bool:
     return len(lemma) > _LEMMA_MAX_ZEICHEN or len(lemma.split()) > _LEMMA_MAX_WOERTER
@@ -88,6 +106,14 @@ def _name_auffaellig(name: str) -> bool:
 
 def _feld_zu_lang(text: str) -> bool:
     return len(text) > _FELD_MAX_ZEICHEN
+
+
+def _namensgruppe_auffaellig(text: str) -> bool:
+    if len(text) > _NAMENSGRUPPE_MAX_ZEICHEN:
+        return True
+    if not all(ch.isalnum() or ch in _ERLAUBTE_SONDERZEICHEN_GRUPPE for ch in text):
+        return True
+    return bool(_ZIFFERNFOLGE_GRUPPE.search(text))
 
 
 def main(ocr_dir="ocr/seiten", ausgabe_dir="daten"):
@@ -129,7 +155,7 @@ def main(ocr_dir="ocr/seiten", ausgabe_dir="daten"):
         rauschnamen = [s.name for s in stadien if _name_auffaellig(s.name)]
         if rauschnamen:
             gruende.append("Namensstadium auffällig")
-        if _feld_zu_lang(klasse_str) or _feld_zu_lang(k.namensgruppe):
+        if _feld_zu_lang(klasse_str) or _namensgruppe_auffaellig(k.namensgruppe):
             gruende.append("Feld auffällig (Länge)")
 
         for grund in gruende:

@@ -2341,6 +2341,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01537,1,1973-02-21,tag,lländerhöhe,falsch
 01450,1,,unbekannt,Friedenstraße,wahr
 01450,2,1937-11-20,tag,lländerweg,falsch
+00700,1,2004-04-20,tag,IIse-Menz-Weg,falsch
 01451,1,1971-12-05,tag,Im Ährenfeld,falsch
 01452,1,1923-09-24,tag,Im Ahrfeld,falsch
 01454,1,1924-02-05,tag,Im Arlenkamp,falsch
@@ -4472,8 +4473,9 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02727,1,1904-02-04,tag,Kapellenstraße,falsch
 02727,2,1910-09-16,tag,Walpurgisstraße (tiw.),falsch
 02727,3,1926-09-18,tag,St,falsch
-02728,1,1935,jahr,St.-Ingbert-Höhe,falsch
-02728,2,1953-03-03,tag,St.-Ingbert-Höhe (Verl.),falsch
+02728,1,1921,jahr,Nelkenstraße,falsch
+02728,2,1935-11-14,tag,St.-Ingbert-Höhe,falsch
+02728,3,1953-03-03,tag,St.-Ingbert-Höhe (Verl.),falsch
 02919,1,1896-02-13,tag,Schulstraße,falsch
 02919,2,1915-07-09,tag,Stadtfeld,falsch
 02921,1,1957-07-15,tag,Stadtwaldplatz,falsch
