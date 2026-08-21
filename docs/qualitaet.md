@@ -11,13 +11,14 @@ Drei unabhängige Selbstprüfungen des erschlossenen Datensatzes.
 
 ## 2. Alphabetische Ordnung
 
-- aus der Sortierung fallende Lemmata: 117
-  - davon bereits als „unsicher" gekennzeichnet: 39
-  - davon neu auffällig (bisher „automatisch"): 78
+- aus der Sortierung fallende Lemmata: 73
+  - davon bereits als „unsicher" gekennzeichnet: 38
+  - davon neu auffällig (bisher „automatisch"): 35
+  (bekannte Grenze: die Prüfung vergleicht nur direkte Nachbarn — zwei aufeinanderfolgende, gleichsinnig falsch sortierte Lemmata bleiben unentdeckt)
 
 ## 3. Abgleich mit dem amtlichen Straßenverzeichnis
 
-- bestätigt: 3157
-- nicht im Verzeichnis: 181
+- bestätigt: 3196
+- nicht im Verzeichnis: 142
   (erwartbar bei aufgehobenen Straßen — nicht automatisch ein Fehler)
 

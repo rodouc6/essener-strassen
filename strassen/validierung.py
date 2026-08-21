@@ -10,10 +10,18 @@ from collections import Counter
 from pathlib import Path
 
 
+_UMLAUTE = {"ä": "ae", "ö": "oe", "ü": "ue", "ß": "ss"}
+
+
 def _sortierschluessel(lemma: str) -> str:
-    s = unicodedata.normalize("NFKD", lemma.lower())
-    s = "".join(c for c in s if not unicodedata.combining(c))
-    return s.replace("ß", "ss")
+    """Wörterbuchübliche Umlaut-Expansion (ä→ae, ö→oe, ü→ue, ß→ss) statt bloßem
+    Diakritika-Strip — sonst sortiert z. B. 'Lünink' wie 'Lunink' ein und bricht
+    an Nachbarn wie 'Luftschacht' fälschlich die Alphabet-Prüfung (Task-6-Fund)."""
+    s = lemma.lower()
+    for a, b in _UMLAUTE.items():
+        s = s.replace(a, b)
+    s = unicodedata.normalize("NFKD", s)
+    return "".join(c for c in s if not unicodedata.combining(c))
 
 
 def pruefe_schluesselnummern(strassen) -> dict:
@@ -28,6 +36,10 @@ def pruefe_schluesselnummern(strassen) -> dict:
 
 
 def pruefe_alphabet(strassen) -> list:
+    """Bekannte Grenze: vergleicht nur direkte Nachbarn (i-1, i, i+1). Zwei
+    aufeinanderfolgende, in derselben falschen Reihenfolge falsch sortierte
+    Lemmata bleiben unentdeckt, weil dann keines von beiden lokal aus der
+    Ordnung fällt (Interface bindend, nicht umgebaut — Ruling Fix-Runde 1)."""
     auffaellig = []
     schluessel = [(_sortierschluessel(z["lemma"]), z) for z in strassen]
     for i in range(1, len(schluessel) - 1):
@@ -67,7 +79,10 @@ def schreibe_bericht(ergebnisse: dict, pfad):
          "## 2. Alphabetische Ordnung\n",
          f"- aus der Sortierung fallende Lemmata: {len(alphabet)}",
          f'  - davon bereits als „unsicher" gekennzeichnet: {len(bereits_unsicher)}',
-         f'  - davon neu auffällig (bisher „automatisch"): {len(neu_auffaellig)}\n',
+         f'  - davon neu auffällig (bisher „automatisch"): {len(neu_auffaellig)}',
+         "  (bekannte Grenze: die Prüfung vergleicht nur direkte Nachbarn — "
+         "zwei aufeinanderfolgende, gleichsinnig falsch sortierte Lemmata "
+         "bleiben unentdeckt)\n",
          "## 3. Abgleich mit dem amtlichen Straßenverzeichnis\n",
          f"- bestätigt: {ergebnisse['amtlich']['bestaetigt']}",
          f"- nicht im Verzeichnis: {len(ergebnisse['amtlich']['unbekannt'])}",

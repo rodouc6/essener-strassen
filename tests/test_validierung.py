@@ -24,3 +24,16 @@ def test_abgleich_mit_amtlichem_verzeichnis():
     e = pruefe_gegen_amtlich(strassen, {"kruppstraße"})
     assert e["bestaetigt"] == 1
     assert "Kriippstraße" in e["unbekannt"]
+
+
+def test_umlaut_wird_woerterbuchueblich_einsortiert():
+    """ü wird zu 'ue' expandiert (nicht nur Diakritika gestrichen) — sonst wird
+    z. B. 'Am Luftschacht' fälschlich als Ausreißer zwischen 'Am Lünink' und
+    'Am Markuskreuz' gemeldet (Task-6-Selbstdurchsicht-Fund, echte Buchreihenfolge:
+    Lünink vor Luftschacht vor Markuskreuz — mit ü→ue korrekt sortiert)."""
+    strassen = [{"schl_nr": "1", "lemma": "Am Lindenbruch"},
+                {"schl_nr": "2", "lemma": "Am Lünink"},
+                {"schl_nr": "3", "lemma": "Am Luftschacht"},
+                {"schl_nr": "4", "lemma": "Am Markuskreuz"}]
+    auffaellig = pruefe_alphabet(strassen)
+    assert not any(x["lemma"] == "Am Luftschacht" for x in auffaellig)

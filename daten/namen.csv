@@ -2121,7 +2121,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01297,1,1959-02-02,tag,Hexberg,falsch
 03682,1,,unbekannt,Hexenbergweg,wahr
 01298,1,1899,jahr,Hexentaufe,falsch
-01299,1,1908,jahr,Christinenplatz,falsch
+01299,1,1908-04-09,tag,Christinenplatz,falsch
 01299,2,1909-11-26,tag,Heymannplatz,falsch
 01302,1,1897-09-06,tag,Helenenstraße,falsch
 01302,2,1906-01-26,tag,Hildegardstraße,falsch
@@ -2168,7 +2168,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01325,1,1937-11-20,tag,Hoeffkengarten,falsch
 01326,1,1893-05-13,tag,Turmstraße,falsch
 01326,2,1915-07-09,tag,Höhenweg,falsch
-01327,1,1860,jahr,B Mördergasse,falsch
+01327,1,1860,jahr,Mördergasse,falsch
 01327,2,1868-01-17,tag,Lordstraße (tlw.),falsch
 01327,3,1954-07-15,tag,Hölderlinstraße,falsch
 01328,1,,unbekannt,Hölle,wahr
@@ -2479,7 +2479,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02049,1,2014-10-01,tag,Isingplatz,falsch
 01526,1,1912-01-26,tag,Ittenbachstraße,falsch
 00192,1,1907,jahr,Arndtstraße,falsch
-00192,2,1977-02-25,tag,Jacob-Grimm- J Straße,falsch
+00192,2,1977-02-25,tag,Jacob-Grimm- Straße,falsch
 01560,1,1922-06-02,tag,Jacobsallee,falsch
 01566,1,1954-07-15,tag,Jacob-Weber-Straße,falsch
 01561,1,1868-01-17,tag,Jägerstraße,falsch
@@ -2518,6 +2518,9 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01576,1,1920-03-06,tag,Johann-Kruse- Straße,falsch
 01882,1,2013-08-30,tag,Johann-Wilhelm-Scheidt-Straße,falsch
 00712,1,2005-09-13,tag,John-Lennon-Straße,falsch
+01592,1,1892-03-29,tag,Nordstraße,falsch
+01592,2,1933-11-17,tag,Bruchweiher,falsch
+01592,3,1971-09-22,tag,Josef-Hoeren-Straße,falsch
 01577,1,1890-11-18,tag,Schulstraße,falsch
 01577,2,1937-11-20,tag,Joseph-Boismard-Weg,falsch
 01590,1,1860-02-17,tag,Neugasse,falsch
@@ -2628,7 +2631,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01709,1,1965-06-03,tag,Karmelitenweg,falsch
 01664,1,,unbekannt,Am Markt,wahr
 01664,2,1903-03-12,tag,Kampstraße,falsch
-01664,3,1935-01-14,tag,K Karnaper Markt,falsch
+01664,3,1935-01-14,tag,Karnaper Markt,falsch
 01665,1,,unbekannt,Essen- Horster-Straße,wahr
 01665,2,1899-02-24,tag,Karnaper Straße,falsch
 01665,3,1905-12-14,tag,Königstraße,falsch
@@ -5159,6 +5162,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03429,1,1902-11-27,tag,Voßstraße,falsch
 03429,2,1915-07-09,tag,Wolbeckstraße,falsch
 03429,3,1931-02-12,tag,Wolbeckstraße (Verl.),falsch
+03430,1,1931-12-11,tag,Woldrüggen,falsch
 03451,1,1914-05-10,tag,Wolfsbachweg (tlw.),falsch
 03451,2,1961-12-13,tag,Wolfsbachtal,falsch
 03431,1,1914-05-10,tag,Wolfsbachweg,falsch
