@@ -3,3 +3,10 @@
 ocr/seiten/
 ocr/log/
 __pycache__/
+
+# Kuratierungs-Arbeitsdateien: enthalten kurze wörtliche Dickhoff-Zitate (Belegfunktion,
+# je ≤ 200 Zeichen roher OCR-Ausschnitt) — die Publikations-Policy schließt sie aus.
+# Bleiben lokal für den Round-Trip-Workflow (sichten -> korrigieren -> Lauf wiederholen),
+# werden aber nicht (mehr) versioniert (CRITICAL 1) — s. README, Publikationsumfang.
+daten/pruefung.csv
+daten/pruefung_konkordanz.csv
