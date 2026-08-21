@@ -73,3 +73,29 @@ def test_klammerzusatz_am_stadiumsende_bleibt_geschlossen():
     k = parse_kopf(rumpf)
     assert k.rest.endswith("Altenessener Straße (Verl.).")
     assert "Erläuterung" not in k.rest
+
+
+def test_ziffernblock_mit_leerzeichen_wird_toleriert():
+    """OCR trennt den Ziffernblock manchmal mit einem Leerzeichen ('01 544')
+    — ohne Toleranz brach _NUMMER am ersten Fragment ab ('01'), wodurch
+    mehrere verschiedene Straßen auf derselben (falschen, zu kurzen) Nummer
+    kollidierten (u. a. 11 Straßen auf 00001; Hachestraße '011 52' wurde
+    unauffällig zu 00011 statt 01152)."""
+    rumpf = "01 544, Stadtteil Rüttenscheid, Str.-Kl.: Gemeindestraße."
+    k = parse_kopf(rumpf)
+    assert k.schl_nr == "01544"
+
+
+def test_ziffernblock_zu_lang_ergibt_keinen_kopf():
+    """Nach dem Entfernen der Leerzeichen dürfen es nicht mehr als 5 Ziffern
+    sein — sonst lieber kein Kopf (None) als eine geratene Nummer."""
+    assert parse_kopf("1 2 3 4 5 6, Stadtteil X.") is None
+
+
+def test_marker_variante_ohne_r_wird_erkannt():
+    """'St.-Gr.:' (fehlendes 'r' in 'Str') kam im OCR vor (4 Zeilen, u. a.
+    Helenenstraße Schl.-Nr. 01261) — ohne Toleranz blieb namensgruppe leer."""
+    rumpf = ("01261, Stadtteil Stadtkern, St.-Gr.: Person, "
+             "01. Januar 1900: Helenenstraße.")
+    k = parse_kopf(rumpf)
+    assert k.namensgruppe == "Person"

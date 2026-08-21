@@ -23,12 +23,20 @@ from typing import NamedTuple
 # dadurch komplett verpasst und sein Text blutete in den rest des Vorgängers.
 ANKER = re.compile(r"Sch[a-zA-Z!|]{0,3}[.,]?\s*-?\s*Nr\.?\s*:")
 # Lemma: das Stichwort unmittelbar vor dem Anker, abgetrennt durch einen Doppelpunkt,
-# der als letztes Nicht-Leerzeichen vor der Suchfenstergrenze steht. Das Komma ist
-# ausgeschlossen, weil Seiten mit einem Komma enden können (Fortsetzung auf der
-# Folgeseite, z. B. "...Siehe Kruppallee," am Ende von Seite 210) — ohne den
-# Ausschluss würde die Lemma-Suche über das Komma hinweg rückwärts weiterlaufen
-# und Reste des vorigen Rumpfs ins Lemma ziehen.
-_LEMMA = re.compile(r"([^.,;:]{2,60}?)\s*:\s*$")
+# der als letztes Nicht-Leerzeichen vor der Suchfenstergrenze steht. Komma,
+# Semikolon und Doppelpunkt beenden die Rückwärtssuche immer. Ein Punkt tut
+# das nur, wenn er NICHT Teil einer Abkürzung ist (Bindestrich oder Buchstabe
+# folgt direkt, z. B. 'St.-Ingbert-Höhe') — sonst schnitt die alte, jeden
+# Punkt ausschließende Fassung Lemmata mit Abkürzungspunkt auf den Teil nach
+# dem Punkt zusammen (>=21 betroffene Zeilen im Material, z. B.
+# '-Ingbert-Höhe' statt 'St.-Ingbert-Höhe'). Ein echter Satzende-Punkt
+# (gefolgt von Leerzeichen, nicht Bindestrich/Buchstabe) bricht wie bisher ab
+# — ohne den Ausschluss würde die Lemma-Suche über das Komma bzw. den
+# Satzpunkt hinweg rückwärts weiterlaufen und Reste des vorigen Rumpfs ins
+# Lemma ziehen.
+_LEMMA = re.compile(
+    r"((?:(?!,|;|:|\.(?!-|[A-Za-zÄÖÜäöüß]))[^\n]){2,60}?)\s*:\s*$"
+)
 
 
 class Eintrag(NamedTuple):

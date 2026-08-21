@@ -78,6 +78,19 @@ def test_anker_ohne_lemma_wird_optional_in_verworfene_erfasst():
     assert "Eigenname" in kontext
 
 
+def test_lemma_mit_abkuerzungspunkt_bleibt_vollstaendig():
+    """'St.-Ingbert-Höhe' wurde bislang am Punkt nach 'St' abgeschnitten
+    ([^.,;:] schließt jeden Punkt aus) — das Lemma kam nur als
+    '-Ingbert-Höhe' an (>=21 betroffene Zeilen im Material, u. a. S. 227/272).
+    Ein Punkt, der direkt von einem Bindestrich oder Buchstaben gefolgt wird
+    (Abkürzung), darf die Rückwärtssuche nicht abbrechen; ein echter
+    Satzende-Punkt (gefolgt von Leerzeichen) weiterhin schon."""
+    seiten = [(227, "Vorheriger Eintrag endet hier. "
+                    "St.-Ingbert-Höhe: Schl.-Nr.: 02728, Stadtteil Byfang.")]
+    eintraege = segmentiere(seiten)
+    assert eintraege[0].lemma_roh == "St.-Ingbert-Höhe"
+
+
 def test_segmentiere_ohne_verworfene_parameter_bleibt_kompatibel():
     """Bestehende Aufrufe segmentiere(seiten) ohne den neuen Parameter
     müssen unverändert funktionieren."""

@@ -15,11 +15,24 @@ from typing import NamedTuple
 
 from strassen.namen import MONATE
 
-_NUMMER = re.compile(r"^\s*(\d{1,5})\b")
+# Der Ziffernblock der Schlüsselnummer wird gelegentlich vom OCR mit einem
+# Leerzeichen mitten in der Zahl zerrissen ('01 544'). Ohne Toleranz brach
+# die alte Fassung (\d{1,5}) am ersten Fragment ab ('01') — mehrere
+# verschiedene Straßen kollidierten dadurch auf derselben, zu kurzen Nummer
+# (u. a. 11 Straßen auf 00001; Hachestraße '011 52' unauffällig zu 00011
+# statt 01152). Bis zu 5 optionale Leerzeichen zwischen den Ziffern werden
+# toleriert; nach dem Entfernen der Leerzeichen wird auf 1–5 Ziffern
+# validiert (parse_kopf) — mehr als 5 Ziffern ergeben lieber keinen Kopf
+# (None) als eine geratene Nummer (precision-first).
+_NUMMER = re.compile(r"^\s*(\d(?:[ ]?\d){0,5})\b")
 
 # Marker-Bausteine, roh (ohne Gruppen) zur Wiederverwendung in Lookaheads.
-_M_KLASSE = r"Str\.?\s*-?\s*K[lI]\.?\s*:"
-_M_GRUPPE = r"Str\.?\s*-?\s*Gr\.?\s*:"
+# 'S[tl]r?' toleriert neben 'Str' auch das fehlende 'r' ('St.-Gr.:', 4 Fälle
+# im Material, u. a. Helenenstraße Schl.-Nr. 01261) und die l/I-Verwechslung
+# an zweiter Stelle — ohne die blieb z. B. namensgruppe leer statt gefüllt.
+_M_STR = r"S[tl]r?\.?\s*-?\s*"
+_M_KLASSE = _M_STR + r"K[lI]\.?\s*:"
+_M_GRUPPE = _M_STR + r"Gr\.?\s*:"
 # Monatsnamen aus strassen.namen übernommen (eine Quelle statt Duplikat).
 _MONAT = r"(?:" + "|".join(MONATE) + r")"
 # Datumsstempel eines Namensstadiums: entweder ein volles Datum ('16. Mai 1902:')
@@ -87,7 +100,7 @@ class Kopf(NamedTuple):
 # und die Klassen-Regex mangels Grenze bis zum nächsten Marker-Bruchstück liest
 # (5 Fälle im Material). Solche Fragmente werden verworfen statt als Wert
 # ausgegeben — precision-first: leer statt falsch.
-_MARKER_FRAGMENT = re.compile(r"^Str\.?\s*-?\s*[KG]")
+_MARKER_FRAGMENT = re.compile(r"^" + _M_STR + r"[KG]")
 
 
 def _stadienkette(schwanz: str) -> list:
@@ -115,7 +128,10 @@ def parse_kopf(rumpf: str):
     m = _NUMMER.match(rumpf)
     if not m:
         return None
-    schl_nr = m.group(1).zfill(5)
+    ziffern = m.group(1).replace(" ", "")
+    if not (1 <= len(ziffern) <= 5):
+        return None
+    schl_nr = ziffern.zfill(5)
 
     stadtteile = []
     ms = _STADTTEIL.search(rumpf)
