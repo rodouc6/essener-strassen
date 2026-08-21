@@ -123,6 +123,25 @@ def test_baue_konkordanz_laesst_inkonsistente_namenskette_aus():
     assert baue_konkordanz(strassen, namen, "1936-06-30") == []
 
 
+def test_baue_konkordanz_toleriert_leerzeichen_um_bindestrich():
+    """OCR-Artefakt aus dem echten Material (schl_nr 00013, Buchseite 24): das
+    letzte Namensstadium liest sich 'Adolf- Rath-Straße' (Leerzeichen nach dem
+    ersten Bindestrich), das Lemma lautet korrekt 'Adolf-Rath-Straße'. Vor dem Fix
+    ließ das mechanische Konsistenz-Netz (Ruling C) diese Zeile als Prüffall
+    auflaufen, obwohl es sich erkennbar um denselben Namen handelt — nach der
+    Bindestrich-Normalisierung in _norm_vergleich wird sie korrekt als
+    Konkordanzeintrag erkannt."""
+    strassen = [{"schl_nr": "00013", "lemma": "Adolf-Rath-Straße", "stadtteile": "Kray",
+                 "buchseite": "24"}]
+    namen = [{"schl_nr": "00013", "stadium": "1", "gueltig_ab": "1900-01-01",
+              "datum_praezision": "tag", "name": "Adolf- Rath-Straße"}]
+    k = baue_konkordanz(strassen, namen, "1936-06-30")
+    assert len(k) == 1
+    assert k[0]["ehemalig"] == "Adolf- Rath-Straße"
+    assert k[0]["heutig"] == "Adolf-Rath-Straße"
+    assert pruefe_konkordanz(strassen, namen, "1936-06-30") == []
+
+
 def test_pruefe_konkordanz_findet_inkonsistente_namenskette():
     """Derselbe 00286-Fall landet bei pruefe_konkordanz als Prüffall mit Begründung."""
     strassen = [{"schl_nr": "00286", "lemma": "Barbarossaplatz", "stadtteile": "Stoppenberg",

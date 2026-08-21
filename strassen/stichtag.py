@@ -63,9 +63,12 @@ def _ist_teil_zusatz(zusatz: str) -> bool:
 def _norm_vergleich(name: str) -> str:
     """Normalisiert für den mechanischen Konsistenz-Check zwischen dem chronologisch
     letzten Stadium und dem aktuellen Lemma: kleinschreiben, Whitespace
-    vereinheitlichen, ß/ss angleichen, 'str.'/'straße' vereinheitlichen."""
+    vereinheitlichen, Whitespace um Bindestriche entfernen (OCR-Artefakte wie
+    'Adolf- Rath-Straße' vs. 'Adolf-Rath-Straße' sind derselbe Name), ß/ss
+    angleichen, 'str.'/'straße' vereinheitlichen."""
     s = (name or "").strip().lower()
     s = re.sub(r"\s+", " ", s)
+    s = re.sub(r"\s*-\s*", "-", s)
     s = s.replace("ß", "ss")
     s = re.sub(r"str\.?$", "strasse", s)
     return s
