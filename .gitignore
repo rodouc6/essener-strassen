@@ -10,3 +10,9 @@ __pycache__/
 # werden aber nicht (mehr) versioniert (CRITICAL 1) — s. README, Publikationsumfang.
 daten/pruefung.csv
 daten/pruefung_konkordanz.csv
+
+# Goldstandard-Scan-Ausschnitte: urheberrechtlich geschützte Seitenbilder
+# (Dickhoff 2015), nur lokal für die manuelle Prüfung — s. strassen/goldstandard.py,
+# docs/goldstandard/ANLEITUNG.md. stichprobe.csv selbst (nur geparste Werte,
+# keine Bilder) bleibt versioniert.
+docs/goldstandard/scans/
