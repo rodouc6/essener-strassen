@@ -69,7 +69,9 @@ def schreibe_bericht(ergebnisse: dict, pfad):
     bereits_unsicher = [z for z in alphabet if z.get("status") == "unsicher"]
     neu_auffaellig = [z for z in alphabet if z.get("status") != "unsicher"]
     z = ["# Qualitätsbericht\n",
-         "Drei unabhängige Selbstprüfungen des erschlossenen Datensatzes.\n",
+         "Drei unabhängige Selbstprüfungen des erschlossenen Datensatzes. Die "
+         "konkreten Ausreißer (Lemma, Schlüsselnummer, Grund; ohne Textzitate) "
+         "stehen in [`daten/pruefung_validierung.csv`](../daten/pruefung_validierung.csv).\n",
          "## 1. Schlüsselnummern\n",
          f"- Bereich: {ergebnisse['nummern']['bereich'][0]}–"
          f"{ergebnisse['nummern']['bereich'][1]}",
@@ -82,9 +84,12 @@ def schreibe_bericht(ergebnisse: dict, pfad):
          f'  - davon neu auffällig (bisher „automatisch"): {len(neu_auffaellig)}',
          "  (bekannte Grenze: die Prüfung vergleicht nur direkte Nachbarn — "
          "zwei aufeinanderfolgende, gleichsinnig falsch sortierte Lemmata "
-         "bleiben unentdeckt)\n",
+         "bleiben unentdeckt; Fälle in daten/pruefung_validierung.csv, "
+         "grund=Alphabet)\n",
          "## 3. Abgleich mit dem amtlichen Straßenverzeichnis\n",
          f"- bestätigt: {ergebnisse['amtlich']['bestaetigt']}",
          f"- nicht im Verzeichnis: {len(ergebnisse['amtlich']['unbekannt'])}",
-         "  (erwartbar bei aufgehobenen Straßen — nicht automatisch ein Fehler)\n"]
+         "  (erwartbar bei aufgehobenen Straßen — nicht automatisch ein Fehler; "
+         "Fälle in daten/pruefung_validierung.csv, "
+         "grund=„nicht im amtlichen Verzeichnis\")\n"]
     Path(pfad).write_text("\n".join(z) + "\n", encoding="utf-8")

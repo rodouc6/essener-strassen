@@ -46,6 +46,7 @@ MONATSSCHARF_BIS = "1937-12"
 FELDER_KONKORDANZ = ["stadtteil", "ehemalig", "heutig", "schl_nr",
                       "datum_praezision", "quelle", "zusatz", "eindeutig"]
 FELDER_PRUEFUNG_KONKORDANZ = ["buchseite", "lemma", "grund", "befund"]
+FELDER_PRUEFUNG_VALIDIERUNG = ["lemma", "schl_nr", "grund"]
 
 # Straßenname aus der Adresse-Spalte des Adressbuchs: alles vor der ersten auf
 # Whitespace folgenden Ziffer (Hausnummer), z. B. 'Grenzstr. 25' -> 'Grenzstr.'.
@@ -77,6 +78,34 @@ def lade_adressbuch_strassennamen(pfad) -> set:
             if name:
                 namen.add(name)
     return namen
+
+
+def _schreibe_pruefung_validierung(strassen, ergebnisse: dict, pfad):
+    """IMPORTANT 5: die konkreten Ausreißer der Selbstprüfungen (Alphabet-
+    Ausreißer, nicht-amtlich bestätigte Lemmata) als Prüfliste — NUR
+    Lemma/Schlüsselnummer/Grund, keine Textzitate (precision-first: sichtbar
+    machen, ohne urheberrechtlich geschützten Quelltext zu reproduzieren).
+    docs/qualitaet.md verweist auf diese Datei (strassen/validierung.py,
+    schreibe_bericht)."""
+    zeilen = []
+    for z in ergebnisse["alphabet"]:
+        zeilen.append({"lemma": z["lemma"], "schl_nr": z.get("schl_nr", ""),
+                       "grund": "Alphabet"})
+
+    # unbekannt enthält rohe Lemma-Strings (pruefe_gegen_amtlich); über den
+    # exakten Lemma-Text lässt sich die/die zugehörige(n) schl_nr zurück auf
+    # die Straßenliste auflösen, ohne die Normalisierung aus validierung.py
+    # zu duplizieren.
+    schl_nr_je_lemma = defaultdict(list)
+    for s in strassen:
+        schl_nr_je_lemma[s["lemma"]].append(s["schl_nr"])
+    for lemma in ergebnisse["amtlich"]["unbekannt"]:
+        for schl_nr in schl_nr_je_lemma.get(lemma, [""]):
+            zeilen.append({"lemma": lemma, "schl_nr": schl_nr,
+                           "grund": "nicht im amtlichen Verzeichnis"})
+
+    _schreibe_csv(zeilen, pfad, FELDER_PRUEFUNG_VALIDIERUNG)
+    return zeilen
 
 
 def _schreibe_erhebungsstand(jaehrlich, monatlich, stichtag: str, von: str, bis: str,
@@ -174,6 +203,8 @@ def main(daten_dir="daten", docs_dir="docs", adressbuch=ADRESSBUCH_PFAD,
         "amtlich": pruefe_gegen_amtlich(strassen, amtliche),
     }
     schreibe_bericht(ergebnisse, docs / "qualitaet.md")
+    pruefung_validierung = _schreibe_pruefung_validierung(
+        strassen, ergebnisse, daten / "pruefung_validierung.csv")
 
     # --- Stufe 4: Konkordanz-Ableitung ------------------------------------------
     strassen_automatisch = [s for s in strassen if s.get("status") == "automatisch"]
@@ -201,6 +232,7 @@ def main(daten_dir="daten", docs_dir="docs", adressbuch=ADRESSBUCH_PFAD,
         "alphabet_auffaellig": len(ergebnisse["alphabet"]),
         "amtlich_bestaetigt": ergebnisse["amtlich"]["bestaetigt"],
         "amtlich_unbekannt": len(ergebnisse["amtlich"]["unbekannt"]),
+        "pruefung_validierung": len(pruefung_validierung),
         "strassen_automatisch": len(strassen_automatisch),
         "konkordanz": len(konkordanz),
         "pruefung_konkordanz": len(pruefung_konkordanz),

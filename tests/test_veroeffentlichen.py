@@ -84,6 +84,23 @@ def test_erzeugt_alle_vier_artefakte(tmp_path):
     assert kennzahlen["strassen_automatisch"] == 1
 
 
+def test_pruefung_validierung_enthaelt_nur_lemma_schl_nr_grund_keine_zitate(tmp_path):
+    """IMPORTANT 5: 'Unsichere Straße' (schl_nr 00002) ist nicht im amtlichen
+    Verzeichnis bestätigt (nur 'Aachener Straße' ist dort gelistet) und muss mit
+    grund='nicht im amtlichen Verzeichnis' auftauchen — ausschließlich Lemma,
+    Schlüsselnummer und Grund, kein Rohtext/Zitat."""
+    daten, docs, amtlich, adressbuch = _schreibe_fixture(tmp_path)
+    main(daten_dir=str(daten), docs_dir=str(docs), adressbuch=str(adressbuch),
+         amtliches_verzeichnis=str(amtlich), stichtag="1936-06-30")
+    with open(daten / "pruefung_validierung.csv", encoding="utf-8") as f:
+        zeilen = list(csv.DictReader(f))
+    assert set(zeilen[0].keys()) == {"lemma", "schl_nr", "grund"}
+    treffer = [z for z in zeilen if z["grund"] == "nicht im amtlichen Verzeichnis"]
+    assert len(treffer) == 1
+    assert treffer[0]["lemma"] == "Unsichere Straße"
+    assert treffer[0]["schl_nr"] == "00002"
+
+
 def test_lauf_ist_byte_identisch_reproduzierbar(tmp_path):
     daten, docs, amtlich, adressbuch = _schreibe_fixture(tmp_path)
     main(daten_dir=str(daten), docs_dir=str(docs), adressbuch=str(adressbuch),
