@@ -58,6 +58,24 @@ Näheres zur Ankererkennung, zur OCR-Fehlertoleranz und zur Stufenarchitektur:
 [`docs/specs/2026-08-20-strassenverzeichnis-datensatz-design.md`](docs/specs/2026-08-20-strassenverzeichnis-datensatz-design.md),
 Abschnitt 3.
 
+### Abhängigkeiten
+
+Der Parser (`strassen/aufbereitung.py`, `segmentierung.py`, `kopf.py`, `namen.py`,
+`validierung.py`, `stichtag.py`, `ausgabe.py`, `veroeffentlichen.py`) ist **reine
+Standardbibliothek** (`re`, `csv`, `pathlib`, `unicodedata`, `argparse`) — bewusst
+ohne Installationshürde, damit er ohne Zusatzaufwand nachvollziehbar bleibt. Nur das
+OCR-Skript (`strassen/ocr_lauf.py`, `python3 -m strassen.ocr_lauf <Quellverzeichnis>`,
+das die beiden Dickhoff-PDFs in `ocr/seiten/` zerlegt) braucht zusätzlich:
+
+- **numpy**, **Pillow** — Bundsteg-Erkennung und Bildzuschnitt
+- **tesseract-ocr** mit dem Sprachpaket **deu** — die eigentliche OCR
+- **poppler-utils** (`pdftoppm`) — PDF-Seiten zu PNG rendern
+
+Da die PDFs und `ocr/seiten/` selbst nicht veröffentlicht werden (s.
+[Publikationsumfang](#publikationsumfang)), betrifft das ausschließlich die lokale
+Neuerstellung des OCR-Rohtexts, nicht die Nachvollziehbarkeit des veröffentlichten
+Datensatzes.
+
 ## Data Dictionary
 
 Zwei verknüpfte Tabellen statt einer flachen Konkordanz, weil ein Straßeneintrag

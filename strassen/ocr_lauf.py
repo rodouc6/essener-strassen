@@ -4,7 +4,13 @@ Je PDF-Seite: 300 dpi rendern, Bundsteg (weißer Mittelstreifen) suchen, dort in
 linke/rechte Buchseite teilen, beide Hälften einzeln mit tesseract (deu) lesen.
 Die Buchseitenzahl wird aus der laufenden Nummer abgeleitet; die im Scan gedruckte
 Zahl dient nur der Kontrolle (sie fehlt im OCR gelegentlich).
+
+Nur dieses Skript benötigt die OCR-Abhängigkeiten (numpy, Pillow, tesseract-ocr
+mit deu-Sprachpaket, poppler-utils/pdftoppm) — der Parser (strassen/aufbereitung.py
+usw.) liest die fertigen Buchseiten-Textdateien und kommt ohne sie aus (siehe
+README, Methodenabschnitt).
 """
+import argparse
 import subprocess
 import sys
 from concurrent.futures import ProcessPoolExecutor
@@ -13,10 +19,10 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-HIER = Path(__file__).resolve().parent
-QUELLE = HIER.parent
-SEITEN = HIER / "seiten"
-LOG = HIER / "log"
+HIER = Path(__file__).resolve().parent     # strassen/ (Skriptverzeichnis)
+WURZEL = HIER.parent                       # Repo-Wurzel
+SEITEN = WURZEL / "ocr" / "seiten"         # gitignored (s. .gitignore)
+LOG = WURZEL / "ocr" / "log"               # gitignored (s. .gitignore)
 
 # (PDF, erste Buchseite auf PDF-Seite 1, Seitenzahl)
 BAENDE = [
@@ -56,10 +62,10 @@ def ocr(png_pfad, ziel_ohne_endung):
 
 
 def verarbeite(auftrag):
-    pdf, pdf_seite, buchseite_links = auftrag
+    pdf, pdf_seite, buchseite_links, quelle = auftrag
     tmp = LOG / f"tmp_{pdf_seite}_{buchseite_links}"
     subprocess.run(["pdftoppm", "-f", str(pdf_seite), "-l", str(pdf_seite),
-                    "-r", "300", "-gray", "-png", str(QUELLE / pdf), str(tmp)],
+                    "-r", "300", "-gray", "-png", str(Path(quelle) / pdf), str(tmp)],
                    check=True, capture_output=True)
     treffer = sorted(LOG.glob(f"tmp_{pdf_seite}_{buchseite_links}-*.png"))
     if not treffer:
@@ -80,11 +86,12 @@ def verarbeite(auftrag):
     return ergebnis
 
 
-def main():
+def main(quelle):
+    """quelle: Pfad zum Verzeichnis mit den beiden Dickhoff-PDFs (BAENDE)."""
     auftraege = []
     for pdf, erste, n in BAENDE:
         for i in range(1, n + 1):
-            auftraege.append((pdf, i, erste + (i - 1) * 2))
+            auftraege.append((pdf, i, erste + (i - 1) * 2, str(quelle)))
     SEITEN.mkdir(parents=True, exist_ok=True)
     LOG.mkdir(parents=True, exist_ok=True)
     fertig = 0
@@ -104,5 +111,13 @@ def main():
     print(f"Fertig: {fertig} Doppelseiten → {len(list(SEITEN.glob('*.txt')))} Buchseiten")
 
 
+def _cli():
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("quelle",
+                    help="Verzeichnis mit den beiden Dickhoff-PDFs (s. BAENDE)")
+    a = p.parse_args()
+    main(a.quelle)
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(_cli())
