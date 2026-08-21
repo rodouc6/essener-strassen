@@ -47,12 +47,26 @@ Beleg zu sichern. Ein regelbasierter, deterministischer Parser — bewusst kein
 Sprachmodell, damit Fehler sichtbar scheitern statt plausibel falsche Angaben zu
 erzeugen — segmentiert die 388 OCR-Seiten in 3.343 Einträge und zerlegt jeden
 Eintragskopf in Schlüsselnummer, Stadtteil, Straßenklasse, Namensgruppe und die
-datierte Namensstadien-Kette. Drei unabhängige Selbstprüfungen (Schlüsselnummern-
-Fortlauf, alphabetische Ordnung, Abgleich mit dem amtlichen Straßenverzeichnis)
-markieren auffällige Einträge als `status=unsicher`, statt sie stillschweigend
-durchzulassen. Aus den Namensstadien wird schließlich, für einen historisch
-begründeten Stichtag, eine Konkordanz zum Namensstand des Adressbuchs Essen 1936
-abgeleitet.
+datierte Namensstadien-Kette. Dabei markieren Plausibilitäts-Heuristiken der
+Erschließung selbst (`strassen/erschliessen.py`: z. B. ein auffällig langes oder
+falsch geformtes Lemma, ein nicht erkennbares Namensstadium, eine mehrfach
+vergebene Schlüsselnummer) auffällige Einträge unmittelbar beim Parsen als
+`status=unsicher`, statt sie stillschweigend durchzulassen — die jeweilige
+Begründung landet in `daten/pruefung.csv`.
+
+Davon **unabhängig** laufen anschließend, auf dem fertigen `daten/strassen.csv`,
+drei weitere Selbstprüfungen (Schlüsselnummern-Fortlauf, alphabetische Ordnung,
+Abgleich mit dem amtlichen Straßenverzeichnis, `strassen/validierung.py`) als
+zusätzlicher Gegen-Check. Sie **setzen `status` nicht neu**, sondern erzeugen den
+Qualitätsbericht [`docs/qualitaet.md`](docs/qualitaet.md) und die Prüfliste
+[`daten/pruefung_validierung.csv`](daten/pruefung_validierung.csv) (nur Lemma,
+Schlüsselnummer, Grund — keine Textzitate) und weisen dort aus, welcher Anteil
+ihrer Treffer bereits über die Erschließungs-Heuristiken als `unsicher` markiert
+war und welcher neu auffällt (d. h. bisher `automatisch` war, s.
+[Bezifferte Qualität](#bezifferte-qualität)). Aus den Namensstadien wird
+schließlich, für einen historisch begründeten Stichtag, eine Konkordanz zum
+Namensstand des Adressbuchs Essen 1936 abgeleitet
+(`strassen/veroeffentlichen.py`, s. u.).
 
 Näheres zur Ankererkennung, zur OCR-Fehlertoleranz und zur Stufenarchitektur:
 [`docs/specs/2026-08-20-strassenverzeichnis-datensatz-design.md`](docs/specs/2026-08-20-strassenverzeichnis-datensatz-design.md),
@@ -159,7 +173,8 @@ Prüffall geführt (s. [Bekannte Grenzen](#bekannte-grenzen)).
 | alphabetische Ordnung der Lemmata | **73** aus der Sortierung fallende Lemmata (38 bereits als `unsicher` markiert, 35 neu auffällig) |
 | Abgleich mit dem amtlichen Straßenverzeichnis (`strassen_aktuell.csv`) | **3.196** bestätigt, 142 nicht im Verzeichnis (erwartbar bei aufgehobenen Straßen) |
 
-Details, Methodik und Interpretation: [`docs/qualitaet.md`](docs/qualitaet.md).
+Details, Methodik und Interpretation: [`docs/qualitaet.md`](docs/qualitaet.md); die
+konkreten Treffer (Lemma, Schlüsselnummer, Grund): `daten/pruefung_validierung.csv`.
 
 ### Erhebungsstand des Adressbuchs Essen 1936
 
@@ -209,7 +224,8 @@ nichts hier ist verschwiegen, um sauberer zu wirken:
 
 Zum veröffentlichten (Zenodo-)Stand gehören:
 
-- `daten/strassen.csv`, `daten/namen.csv`, `daten/konkordanz_1936.csv`
+- `daten/strassen.csv`, `daten/namen.csv`, `daten/konkordanz_1936.csv`,
+  `daten/pruefung_validierung.csv` (nur Lemma/Schlüsselnummer/Grund, keine Zitate)
 - der Code (`strassen/`, inkl. `strassen/ocr_lauf.py`)
 - diese Dokumentation (README, LICENSE, CITATION.cff, `datapackage.json`, `docs/`)
 
