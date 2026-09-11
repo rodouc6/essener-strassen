@@ -37,7 +37,7 @@
           {"name": "schl_nr", "type": "string", "description": "Fremdschlüssel auf strassen.csv"},
           {"name": "stadium", "type": "integer", "description": "laufende Nummer der Namensstufe, 1 = älteste"},
           {"name": "gueltig_ab", "type": "string", "description": "ISO-Datum oder Jahr, leer wenn unbekannt"},
-          {"name": "datum_praezision", "type": "string", "constraints": {"enum": ["tag", "monat", "jahr", "vor", "nach", "unbekannt"]}},
+          {"name": "datum_praezision", "type": "string", "constraints": {"enum": ["tag", "monat", "jahr", "jahrhundert", "vor", "nach", "unbekannt"]}},
           {"name": "name", "type": "string", "description": "Straßenname in diesem Stadium"},
           {"name": "ist_urspruenglich", "type": "string", "constraints": {"enum": ["wahr", "falsch"]}}
         ]

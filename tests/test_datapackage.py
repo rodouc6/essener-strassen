@@ -36,3 +36,10 @@ def test_foreign_key_auf_strassen_bleibt_erhalten():
     paket = _lade()
     namen = next(r for r in paket["resources"] if r["name"] == "namen")
     assert namen["schema"]["foreignKeys"][0]["reference"]["resource"] == "strassen"
+
+
+def test_datum_praezision_enum_enthaelt_jahrhundert():
+    paket = json.loads(Path("datapackage.json").read_text(encoding="utf-8"))
+    namen = next(r for r in paket["resources"] if r["name"] == "namen")
+    feld = next(f for f in namen["schema"]["fields"] if f["name"] == "datum_praezision")
+    assert "jahrhundert" in feld["constraints"]["enum"]

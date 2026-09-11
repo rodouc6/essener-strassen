@@ -116,8 +116,8 @@ maschinenlesbare Schema liegt zusätzlich in [`datapackage.json`](datapackage.js
 |---|---|---|
 | `schl_nr` | Fremdschlüssel auf `strassen.csv` | siehe oben |
 | `stadium` | laufende Nummer der Namensstufe | ganzzahlig, 1 = älteste |
-| `gueltig_ab` | Datum, ab dem der Name in diesem Stadium galt | ISO-Datum, Jahr, oder leer bei `unbekannt` |
-| `datum_praezision` | Genauigkeit der Datierung | `tag` \| `monat` \| `jahr` \| `vor` \| `nach` \| `unbekannt` |
+| `gueltig_ab` | Datum, ab dem der Name in diesem Stadium galt | ISO-Datum, Jahr, erstes Jahr eines Jahrhunderts bei `jahrhundert`, oder leer bei `unbekannt` |
+| `datum_praezision` | Genauigkeit der Datierung | `tag` \| `monat` \| `jahr` \| `jahrhundert` (nur Jahrhundert bekannt; `gueltig_ab` = erstes Jahr, z. B. 16. Jh. → 1501) \| `vor` \| `nach` \| `unbekannt` |
 | `name` | Straßenname in diesem Stadium | Text |
 | `ist_urspruenglich` | Angabe stammt aus Dickhoffs `urspr.:`-Vermerk ohne Datum | `wahr` \| `falsch` |
 

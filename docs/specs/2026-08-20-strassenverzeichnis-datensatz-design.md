@@ -167,7 +167,7 @@ einer flachen Tabelle nur als unparsbares Textfeld unterzubringen wäre.
 | `schl_nr` | Fremdschlüssel auf `strassen.csv` |
 | `stadium` | laufende Nummer der Namensstufe, 1 = älteste |
 | `gueltig_ab` | ISO-Datum, soweit bekannt |
-| `datum_praezision` | `tag` \| `monat` \| `jahr` \| `vor` \| `nach` \| `unbekannt` |
+| `datum_praezision` | `tag` \| `monat` \| `jahr` \| `jahrhundert` \| `vor` \| `nach` \| `unbekannt` |
 | `name` | Straßenname in diesem Stadium |
 | `ist_urspruenglich` | wahr bei `urspr.:`-Angaben ohne Datum |
 
