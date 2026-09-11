@@ -278,3 +278,11 @@ def test_kein_klassenwort_ohne_stadtteilangabe_und_ohne_klassenwort():
     k = parse_kopf(rumpf)
     assert k.strassenklassen == []
     assert "Straßenklasse ohne Marker" not in k.hinweise
+
+
+def test_feldende_am_stringende():
+    """Ein Klassenwert am absoluten Textende behält sonst seinen Schlusspunkt."""
+    rumpf = "04000, Stadtteil Musterhausen, Str.-Kl.: Gemeindestraße."
+    k = parse_kopf(rumpf)
+    assert k.strassenklassen == ["Gemeindestraße"]
+    assert k.hinweise == ()

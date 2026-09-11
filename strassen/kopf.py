@@ -46,7 +46,7 @@ _M_GRUPPE = _M_STR + r"Gr?\.?\s*[:;]"
 # Feldende: ein Punkt mit Leerzeichen, der NICHT auf eine Ziffer folgt — sonst
 # springt die Grenze auf die Tagesziffer eines Datums ('14. Dezember', An der
 # Blumenwiese 01552; 46 Namensgruppen im Material endeten so auf einer Zahl).
-_FELDENDE = r"(?<!\d)\.\s"
+_FELDENDE = r"(?<!\d)\.(?=\s|$)"
 # Namensgruppe endet außerdem vor einer Tagesziffer (mit optionalem OCR-Stern
 # '*03.', Eligiushöhe 00756) — auch dann, wenn das Datum dahinter verstümmelt ist
 # (Overhammshof 02356: '21. Januar mm nm …'). So bleibt die Namensgruppe sauber und
