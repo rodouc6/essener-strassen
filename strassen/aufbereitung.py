@@ -27,9 +27,16 @@ _SEITENZAHL = re.compile(r"^\s*\d{1,3}\s*$", re.MULTILINE)
 # echten, bislang unbeobachteten Zwei-Buchstaben-Inhalts erhöhen.
 # Auch ein einzelner Kleinbuchstabe (OCR las 'C' als 'c', S. 87 — Goldstandard
 # 00540 'c Cäcilienstraße'). Von 29 solchen Zeilen im Material ist eine ein
-# echter Abschnittskopf, 28 sind Randrauschen; beides darf weg.
+# echter Abschnittskopf, 28 sind Randrauschen; beides darf weg. ABER: eine
+# Kleinbuchstaben-Zeile kann auch der Rest einer Silbentrennung sein
+# ('Emm-\na\n…' → 'Emma'), die erst in verbinde_zeilen/_TRENNUNG aufgelöst wird
+# (bereinige läuft vorher). Deshalb per Lookbehind ausgeschlossen, wenn die
+# Vorzeile mit '-' endet — geprüft 2026-09-11: von 29 Kleinbuchstaben-Zeilen im
+# Korpus ist keine (0) einer Trennzeile nachgestellt, die Bedingung greift also
+# aktuell nirgends ein, schützt aber gegen künftige/unbeobachtete Fälle.
 _ABSCHNITTSKOPF = re.compile(
-    r"^[ \t]*[A-Za-zÄÖÜäöü](?:[ \t]*,[ \t]*[A-ZÄÖÜ])?[ \t]*$", re.MULTILINE)
+    r"^[ \t]*[A-ZÄÖÜ](?:[ \t]*,[ \t]*[A-ZÄÖÜ])?[ \t]*$"
+    r"|(?<!-\n)^[ \t]*[a-zäöü][ \t]*$", re.MULTILINE)
 # OCR-Fehler: „ß" am Zeilenanfang wird als „B" gelesen. Nur „stra-\nBe…" (Fragment
 # beginnt mit „e") wird korrigiert zu „straße…" (9 Fälle). Andere „-\nB"-Fälle
 # (Komposita wie „Essen-Bredeney") bleiben unangetastet.
@@ -40,7 +47,11 @@ _TRENNUNG = re.compile(r"-\n(?=[a-zäöüß])")
 # Randrauschen (Scanrand, 36 Seiten): eine Zeile nur aus Wörtern mit ≤3 Buchstaben,
 # ohne Ziffer und Satzzeichen ('mm nm mm nn nn', 'EEE EEE', 'Vs u'). Wird NUR als
 # erste oder letzte nichtleere Zeile einer Seite entfernt — mitten im Text könnte
-# eine solche Zeile ('an der A') legitim sein.
+# eine solche Zeile ('an der A') legitim sein. Geprüft 2026-09-11: gegen den
+# gesamten Korpus (ocr/seiten/*.txt, nach Kolumnentitel-/Seitenzahl-/
+# Abschnittskopf-Entfernung) angewandt auf jeweils erste/letzte nichtleere
+# Zeile ergeben sich 36 Treffer ('Vs u', 'ME', 'KL', 'EEE EEE', 'mm nm mm nn nn'
+# u. a.) — alle Rauschen (Scanrand-Fragmente), keine legitimen Kurzphrasen.
 _RANDRAUSCHEN = re.compile(r"^\s*(?:[A-Za-zÄÖÜäöüß]{1,3}\s+)*[A-Za-zÄÖÜäöüß]{1,3}\s*$")
 # Stadtteil-Marker-Varianten (13 der 14 leeren Stadtteil-Felder): 'Stadt-teil',
 # 'Stadttei!', 'Stadteil', 'Stadttteil', 'Stadtteit', 'StadtteilX' ohne Leerzeichen.

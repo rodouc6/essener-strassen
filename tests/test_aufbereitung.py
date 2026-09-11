@@ -142,3 +142,13 @@ def test_stadtteilen_in_prosa_bleibt_unangetastet():
 def test_und_zwischen_klein_und_gross_wird_getrennt():
     assert verbinde_zeilen("FrillendorfundStoppenberg") == "Frillendorf und Stoppenberg"
     assert verbinde_zeilen("Hundstraße") == "Hundstraße"
+
+
+def test_kleinbuchstabe_nach_trennstrich_bleibt_erhalten():
+    """Eine einzelne Kleinbuchstaben-Zeile, die Rest einer Silbentrennung ist
+    ('Emm-\\na\\n…' → 'Emma'), darf nicht als Abschnittskopf verschwinden —
+    sonst geht die Trennungs-Auflösung in verbinde_zeilen kaputt."""
+    roh = "Emm-\na\nweiterer Text."
+    sauber = bereinige(roh)
+    assert "\na\n" in sauber
+    assert "Emma weiterer Text." in verbinde_zeilen(sauber)
