@@ -301,7 +301,7 @@ def test_namensgruppe_mit_rauschzeichen_wird_weiterhin_geflaggt(tmp_path):
 _SEITE4 = (
     "Testverweisstraße: Schl.-Nr.: 07001, Stadtteil Musterhausen, "
     "Str.-Kl.: Gemeindestraße, Str.-Gr.: Person, "
-    "14. November A 0, EEE 1935: Testverweisstraße. Dies ist eine lange "
+    "14. November A 0, EEE 19 35: Testverweisstraße. Dies ist eine lange "
     "Erläuterung ohne inhaltlichen Bezug zum folgenden Verweis. "
     "Siehe Anderestraße. "
     "Kurzverweis: Schl.-Nr.: 07002, Stadtteil Musterhausen, "

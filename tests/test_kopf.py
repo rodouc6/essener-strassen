@@ -123,3 +123,99 @@ def test_marker_ohne_zweites_r_wird_erkannt():
     k = parse_kopf(rumpf)
     assert k.namensgruppe == "Person, Frau, Deutsche, Kinobetreiberin"
     assert k.strassenklassen == ["Gemeindestraße"]
+
+
+from strassen.namen import parse_namenskette
+
+
+def test_fallback_kappt_nicht_am_tagespunkt():
+    """Kamerunstraße, Schl.-Nr. 01635, S. 188 — Goldstandard-Fehler: keine Kette.
+    Die strenge Kettenerkennung scheitert, weil nach dem letzten Stadium ein Komma
+    statt eines Punkts steht; der alte Fallback zerschnitt den Rest bei '26. '."""
+    rumpf = ("01635, Stadtteil Gerschede, Str.-Kl.: Gemeindestraße, Str.-Gr.: Stadt und Ort, "
+             "26. Mai 1939: Kamerunstraße, Kamerun, eine ehemalige deutsche Kolonie im Westen "
+             "Zentralafrikas, nach 1918 französisches bzw. britisches Mandatsgebiet, seit 1961 "
+             "unabhängige Republik. Siehe auch Askaristraße,")
+    k = parse_kopf(rumpf)
+    assert k.namensgruppe == "Stadt und Ort"
+    s = parse_namenskette(k.rest)
+    assert [(x.gueltig_ab, x.name) for x in s] == [("1939-05-26", "Kamerunstraße")]
+
+
+def test_feldgrenze_springt_nicht_auf_tagesziffer():
+    """An der Blumenwiese, Schl.-Nr. 01552, S. 48: Namensgruppe endete bei '14'."""
+    rumpf = ("01552, Stadtteil Kray, Str.-Kl.: Gemeindestraße, Str.-Gr.: Lagebezeichnung, "
+             "14. Dezember 1999: An der Blumenwiese. Sie war eine von zwei Straßen.")
+    k = parse_kopf(rumpf)
+    assert k.namensgruppe == "Lagebezeichnung"
+    assert parse_namenskette(k.rest)[0].gueltig_ab == "1999-12-14"
+
+
+def test_komma_vor_datum_darf_fehlen():
+    """Hirtsieferstraße, Schl.-Nr. 01316, S. 160: '… Stadtverordneter 01. Oktober 1920: …'"""
+    rumpf = ("01316, Stadtteil Holsterhausen, Str.-Kl.: Gemeindestraße, Str.-Gr.: Person, Mann, "
+             "Deutscher, Politiker, Stadtverordneter 01. Oktober 1920: Mercatorstraße, "
+             "29. August 1946: Hirtsieferstraße. Heinrich Hirtsiefer *1876.")
+    k = parse_kopf(rumpf)
+    assert k.namensgruppe == "Person, Mann, Deutscher, Politiker, Stadtverordneter"
+    assert [x.gueltig_ab for x in parse_namenskette(k.rest)] == ["1920-10-01", "1946-08-29"]
+
+
+def test_namensgruppe_endet_vor_verstuemmeltem_datum():
+    """Overhammshof, Schl.-Nr. 02356, S. 254 (Seitenumbruch mit Rauschen): Namensgruppe
+    war 'Hofname, 21'. Das Rauschen selbst entfernt Task 7; hier zählt nur die Grenze."""
+    rumpf = ("02356, Stadtteil Fischlaken, Str.-Kl.: Gemeindestraße, Str.-Gr.: Hofname, "
+             "21. Januar mm nm mm nn nn 1970: Overhammshof. Nach dem Hofe Overhamm.")
+    assert parse_kopf(rumpf).namensgruppe == "Hofname"
+
+
+def test_namensgruppe_endet_vor_stern_tagesziffer():
+    """Eligiushöhe, Schl.-Nr. 00756, S. 106: '…, Heiliger, *03. Oktober 1932: Eligiushöhe'."""
+    rumpf = ("00756, Stadtteil Kupferdreh, Str.-Kl.: Gemeindestraße, Str.-Gr.: Person, Mann, "
+             "Deutscher, Bischof, Heiliger, *03. Oktober 1932: Eligiushöhe. Eligius war.")
+    assert parse_kopf(rumpf).namensgruppe == "Person, Mann, Deutscher, Bischof, Heiliger"
+
+
+def test_kette_mit_st_abkuerzung_bleibt_vollstaendig():
+    """St. Annental, Schl.-Nr. 02727, S. 309."""
+    rumpf = ("02727, Stadtteile Bergerhausen und Rellinghausen, Str.-Kl.: Gemeindestraße, "
+             "Str.-Gr.: Kirche und Kloster, 04. Februar 1904: Kapellenstraße, 16. September 1910: "
+             "Walpurgisstraße (tiw.), 18. September 1926: St. Annental. Am 25. Juli 1516 wurde bei "
+             "Gelegenheit einer Kirmes aus der Rellinghauser Kirche ein Gefäß gestohlen.")
+    k = parse_kopf(rumpf)
+    assert k.rest.endswith("St. Annental.")
+    assert [x.name for x in parse_namenskette(k.rest)][-1] == "St. Annental"
+
+
+def test_marker_varianten_strassenklasse():
+    """Adolfstraße 00015 'Str.-KL:', Amselweg 00265 'Str.-K.:', An den Friedhöfen 00150
+    'Str.-Kt.:', Dachsfeld 00590 'Str:-Kl.:', Cäcilienstraße 00540 'Str.-Kl.;',
+    Brandstorstraße 00421 'Str.-Kl.;:'."""
+    for marker in ["Str.-KL:", "Str.-K.:", "Str.-Kt.:", "Str:-Kl.:", "Str.-Kl.;", "Str.-Kl.;:"]:
+        rumpf = (f"00015, Stadtteil Rüttenscheid, {marker} Gemeindestraße, Str.-Gr.: "
+                 "Männlicher Vorname, 06. September 1897: Adolfstraße.")
+        k = parse_kopf(rumpf)
+        assert k.strassenklassen == ["Gemeindestraße"], marker
+        assert k.namensgruppe == "Männlicher Vorname", marker
+
+
+def test_kopf_hat_hinweise_tupel():
+    rumpf = "00127, Stadtteil Byfang, Str.-Kl.: Gemeindestraße, Str.-Gr.: Flurname, 31. März 1955: Am Schroer."
+    assert parse_kopf(rumpf).hinweise == ()
+
+
+def test_stadium_ohne_doppelpunkt_in_kette_wird_abgegrenzt():
+    """Berghausbusch, Schl.-Nr. 00471, S. 84."""
+    rumpf = ("00471, Stadtteil Kupferdreh, Str.-Kl.: Gemeindestraße, Str.-Gr.: Familienname, "
+             "11. Dezember 1974 Berghausbusch. Jan Hendrich Berghaus war Bauer.")
+    k = parse_kopf(rumpf)
+    assert k.namensgruppe == "Familienname"
+    assert [x.name for x in parse_namenskette(k.rest)] == ["Berghausbusch"]
+
+
+def test_prosa_datum_nach_kette_wird_nicht_angehaengt():
+    """Kein Stadium aus 'Am 25. Juli 1516 Wurde' (Wort vor dem Datum)."""
+    rumpf = ("02727, Stadtteil X, Str.-Kl.: Gemeindestraße, Str.-Gr.: Kirche, "
+             "18. September 1926: St. Annental. Am 25. Juli 1516 Wurde bei Gelegenheit.")
+    k = parse_kopf(rumpf)
+    assert k.rest.endswith("St. Annental.")

@@ -13,7 +13,7 @@ wo kein Marker (auch tolerant) gefunden wird, bleibt das Feld leer statt geraten
 import re
 from typing import NamedTuple
 
-from strassen.namen import MONATE
+from strassen.datum import DATUMSSTEMPEL_MUSTER, SATZENDE, lese_datum
 
 # Der Ziffernblock der Schlüsselnummer wird gelegentlich vom OCR mit einem
 # Leerzeichen mitten in der Zahl zerrissen ('01 544'). Ohne Toleranz brach
@@ -30,59 +30,42 @@ _NUMMER = re.compile(r"^\s*(\d(?:[ ]?\d){0,5})\b")
 # 'S[tl]r?' toleriert neben 'Str' auch das fehlende 'r' ('St.-Gr.:', 4 Fälle
 # im Material, u. a. Helenenstraße Schl.-Nr. 01261) und die l/I-Verwechslung
 # an zweiter Stelle — ohne die blieb z. B. namensgruppe leer statt gefüllt.
-_M_STR = r"S[tl]r?\.?\s*-?\s*"
-_M_KLASSE = _M_STR + r"K[lI]\.?\s*:"
+_M_STR = r"S[tl]r?[.:]?\s*-?\s*"
+# Klassen-Marker: 'Kl', 'KI', 'KL' (Adolfstraße 00015 u. a., 4 Fälle), 'K.' (Amselweg
+# 00265, 9 Fälle), 'Kt' (An den Friedhöfen 00150, 2 Fälle); Trenner ':' oder ';',
+# auch doppelt ('Str.-Kl.;:', Brandstorstraße 00421). 8 Fälle mit ';' ließen die
+# Straßenklasse bisher leer (Goldstandard: Cäcilienstraße 00540).
+_M_KLASSE = _M_STR + r"K[lILt]?\.?\s*[:;]+"
 # 'Gr?' toleriert zusätzlich das fehlende zweite 'r' ('Str.-G.:', Ilse-Menz-
 # Weg Schl.-Nr. 00700); '[:;]' toleriert ein Semikolon statt Doppelpunkt
 # nach dem Marker ('Str.-Gr.;', St.-Ingbert-Höhe Schl.-Nr. 02728) — beide
 # ließen namensgruppe bisher leer und die nachfolgende _KLASSE-Suche (ohne
 # erkannten Grenzmarker) blutete in die Namenskette hinein.
 _M_GRUPPE = _M_STR + r"Gr?\.?\s*[:;]"
-# Monatsnamen aus strassen.namen übernommen (eine Quelle statt Duplikat).
-_MONAT = r"(?:" + "|".join(MONATE) + r")"
-# Datumsstempel eines Namensstadiums: entweder ein volles Datum ('16. Mai 1902:')
-# oder eine ungefähre Jahresangabe ohne Tag/Monat ('vor 1898:', 'um 1850:',
-# 'etwa 1860:') — über 380 Fälle im Material, die sonst als Teil der
-# Namensgruppe fehlgelesen würden. Der Monatsname ist bewusst auf echte Monate
-# beschränkt (nicht \w+): sonst liest die Regex in der Erläuterung z. B.
-# 'am 02. Mai 1739. Mutterrolle 1826: ...' die Endziffern von '1739' als Tag
-# ('39.') und 'Mutterrolle' als Monat und zieht die ganze Erläuterung in rest
-# (Pottgießerstraße, S. 264 — real vorgekommen, 112 betroffene Einträge).
-_DATUM = (r"(?:\d{1,2}\.\s*" + _MONAT + r"\s+\d{4}"
-          r"|(?:vor|nach|um|etwa|gegen)\s+\d{4})\s*:")
 
-# Fallback auf ".\s": vereinzelt fehlt im OCR der Doppelpunkt nach 'Str.-Kl'/
-# 'Str.-Gr' (5 Fälle); ohne Satzende-Grenze würde das Feld sonst den kompletten
-# restlichen Eintrag inklusive Erläuterung verschlucken. Die Stadtteil-Regex
-# erlaubt (anders als vorher) Kommas in der Aufzählung selbst — sie endet erst
-# am nächsten Feldmarker, nicht am ersten Komma ('Stadtteile Altendorf,
-# Bochold, Schönebeck und Westviertel' wurde sonst still auf 'Altendorf'
-# gekappt, Altendorfer Straße S. 30).
+# Feldende: ein Punkt mit Leerzeichen, der NICHT auf eine Ziffer folgt — sonst
+# springt die Grenze auf die Tagesziffer eines Datums ('14. Dezember', An der
+# Blumenwiese 01552; 46 Namensgruppen im Material endeten so auf einer Zahl).
+_FELDENDE = r"(?<!\d)\.\s"
+# Namensgruppe endet außerdem vor einer Tagesziffer (mit optionalem OCR-Stern
+# '*03.', Eligiushöhe 00756) — auch dann, wenn das Datum dahinter verstümmelt ist
+# (Overhammshof 02356: '21. Januar mm nm …'). So bleibt die Namensgruppe sauber und
+# das kaputte Datum landet sichtbar im Rest statt unsichtbar in der Gruppe.
+_TAGESZIFFER = r",?\s*\*?\d{1,3}[.,]\s"
+
 _STADTTEIL = re.compile(
-    r"Stadtteile?\s+(.+?)(?=,?\s*" + _M_KLASSE + r"|,?\s*" + _M_GRUPPE
-    + r"|\.\s|$)"
+    r"Stadtteile?\s+(.+?)(?=,?\s*" + _M_KLASSE + r"|,?\s*" + _M_GRUPPE + r"|" + _FELDENDE + r"|$)"
 )
-_KLASSE = re.compile(_M_KLASSE + r"\s*(.+?)(?=,?\s*" + _M_GRUPPE + r"|\.\s|$)")
+_KLASSE = re.compile(_M_KLASSE + r"\s*(.+?)(?=,?\s*" + _M_GRUPPE + r"|" + _FELDENDE + r"|$)")
 _GRUPPE = re.compile(
     _M_GRUPPE + r"\s*(.+?)"
-    r"(?=,\s*(?:urspr\.:|" + _DATUM + r")|\.\s|$)"
+    r"(?=,?\s*(?:urspr\.|" + DATUMSSTEMPEL_MUSTER + r")|" + _TAGESZIFFER + r"|" + _FELDENDE + r"|$)"
 )
-# Kopfende: der Punkt nach dem letzten „Datum: Name"-Paar bzw. nach der Namensgruppe.
-# Ein Namensteil endet nicht am ERSTEN Punkt, sondern am ersten echten
-# Satzende-Punkt (gefolgt von Leerzeichen+Großbuchstabe/Ziffer oder
-# Stringende) — Abkürzungs-/Klammerpunkte ('(Verl.)', 'St.-Ingbert-Höhe')
-# bleiben so Namensbestandteil statt den Rest fälschlich mittendrin
-# abzuschneiden (232 Fälle im Material, u. a. Altenessener Straße
-# Schl.-Nr. 00053: '...(Verl.' statt '...(Verl.)'). Die Erläuterungs-Prosa
-# beginnt praktisch immer großgeschrieben nach dem echten Satzpunkt, ein
-# komma-loses Folgestadium ohne Erläuterung dazwischen mit einer Tagesziffer
-# (Natorpstraße: '...(Verl). 17. März 1971: ...') — beides zählt als
-# Satzende. Ziffern bleiben im Namensteil selbst weiterhin komplett
-# ausgeschlossen: verhindert unverändert, dass die Suche über die Tagesziffer
-# eines nachfolgenden, komma-getrennten Datums hinweg an dessen Punkt
-# ('09.') hängen bleibt.
-_NAMENSTEIL = r"(?:(?!\.(?:\s+[0-9A-ZÄÖÜ]|\s*$))[^\d\n]){1,80}"
-_STADIUM = re.compile(_DATUM + r"\s*" + _NAMENSTEIL + r"\.(?=\s+[0-9A-ZÄÖÜ]|\s*$)")
+# Namensteil eines Stadiums in der strengen Kettenerkennung: keine Ziffern, endet am
+# gemeinsamen Satzende (datum.SATZENDE — Abkürzungspunkte 'St.', 'II.' zählen nicht).
+_NAMENSTEIL = r"(?:(?!" + SATZENDE + r")[^\d\n]){1,80}"
+_STADIUM = re.compile(DATUMSSTEMPEL_MUSTER + r"\s*(?P<name>" + _NAMENSTEIL + r")" + SATZENDE)
+_SATZENDE = re.compile(SATZENDE)
 # Maximale Lücke zwischen zwei Stadien, damit sie noch als zusammenhängende
 # Namenskette direkt nach dem Kopf gelten. Auch mit der Monatsnamen-Beschränkung
 # bleibt ein Rest-Risiko: ein echtes Datum mit echtem Monat und Doppelpunkt tief
@@ -98,6 +81,7 @@ class Kopf(NamedTuple):
     strassenklassen: list
     namensgruppe: str
     rest: str
+    hinweise: tuple = ()
 
 
 # Ein echter Feldwert beginnt nie mit einem (auch fragmentierten) Marker — das
@@ -108,15 +92,21 @@ class Kopf(NamedTuple):
 _MARKER_FRAGMENT = re.compile(r"^" + _M_STR + r"[KG]")
 
 
+def _position_erlaubt(schwanz: str, start: int) -> bool:
+    davor = schwanz[:start].rstrip()
+    return davor == "" or davor.endswith(",")
+
+
 def _stadienkette(schwanz: str) -> list:
     """Nur eine ununterbrochene Kette von Stadien direkt nach dem Kopfbereich
-    akzeptieren. Bricht ab, sobald zwischen zwei Treffern mehr als
-    _MAX_LUECKE Zeichen Prosatext ohne Stadium-Muster liegen — verhindert,
-    dass ein vereinzeltes datumsartiges Muster tief in der Erläuterung die
-    Kette künstlich fortsetzt."""
-    treffer = list(_STADIUM.finditer(schwanz))
+    akzeptieren (Lücke ≤ _MAX_LUECKE). Stempel ohne regulären Doppelpunkt zählen nur
+    am Kettenanfang oder nach Komma und mit großgeschriebenem Namen (Spec Regel 15) —
+    dieselbe Positionsregel wie namen.parse_namenskette."""
     kette = []
-    for t in treffer:
+    for t in _STADIUM.finditer(schwanz):
+        if t.group("trenner") != ":":
+            if not _position_erlaubt(schwanz, t.start()) or not t.group("name").strip()[:1].isupper():
+                continue
         if kette and t.start() - kette[-1].end() > _MAX_LUECKE:
             break
         kette.append(t)
@@ -137,6 +127,7 @@ def parse_kopf(rumpf: str):
     if not (1 <= len(ziffern) <= 5):
         return None
     schl_nr = ziffern.zfill(5)
+    hinweise = []
 
     stadtteile = []
     ms = _STADTTEIL.search(rumpf)
@@ -153,12 +144,17 @@ def parse_kopf(rumpf: str):
     if mg:
         gruppe = mg.group(1).strip().rstrip(",")
 
-    # Rest = ab der Namensgruppe (bzw. Klasse/Nummer, falls Gruppe fehlt) bis zum
-    # Ende des letzten Namensstadiums.
     start = mg.end() if mg else (mk.end() if mk else m.end())
     schwanz = rumpf[start:]
     stadien = _stadienkette(schwanz)
-    rest = schwanz[:stadien[-1].end()] if stadien else schwanz.split(". ")[0]
+    if stadien:
+        rest = schwanz[:stadien[-1].end()]
+    else:
+        # Fallback: bis zum ersten echten Satzende — NICHT bis zum ersten '. ', das
+        # die Tagesziffer eines sauber gedruckten Datums traf (38 Namensketten im
+        # Material, Goldstandard: Kamerunstraße 01635).
+        ms_ende = _SATZENDE.search(schwanz)
+        rest = schwanz[:ms_ende.end()] if ms_ende else schwanz
 
     return Kopf(schl_nr=schl_nr, stadtteile=stadtteile, strassenklassen=klassen,
-                namensgruppe=gruppe, rest=rest.strip())
+                namensgruppe=gruppe, rest=rest.strip(), hinweise=tuple(hinweise))
