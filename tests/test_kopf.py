@@ -219,3 +219,45 @@ def test_prosa_datum_nach_kette_wird_nicht_angehaengt():
              "18. September 1926: St. Annental. Am 25. Juli 1516 Wurde bei Gelegenheit.")
     k = parse_kopf(rumpf)
     assert k.rest.endswith("St. Annental.")
+
+
+def test_klassenwort_ohne_marker_wird_uebernommen_mit_hinweis():
+    """Eibergweg, Schl.-Nr. 00733, S. 105: '…, Stadtteil Freisenbruch, Gemeindestraße, Str.-Gr.: …'
+    (13 Fälle im Material; geschlossenes Vokabular)."""
+    rumpf = ("00733, Stadtteil Freisenbruch, Gemeindestraße, Str.-Gr.: Stadt und Ort, "
+             "20. November 1937: Eibergweg.")
+    k = parse_kopf(rumpf)
+    assert k.strassenklassen == ["Gemeindestraße"]
+    assert k.stadtteile == ["Freisenbruch"]
+    assert "Straßenklasse ohne Marker" in k.hinweise
+
+
+def test_klassenwort_ohne_marker_mehrere():
+    rumpf = ("00905, Stadtteile Freisenbruch und Steele, Landstraße, Gemeindestraße, Str.-Gr.: "
+             "Stadt und Ort, 01. Januar 1900: Freisenbruchstraße.")
+    assert parse_kopf(rumpf).strassenklassen == ["Landstraße", "Gemeindestraße"]
+
+
+def test_klassenwort_ohne_marker_nur_zwischen_stadtteil_und_gruppe():
+    """Ein Klassenwort erst in der Namenskette ('… 1901: Hauptstraße') zählt nicht."""
+    rumpf = ("00127, Stadtteil Byfang, Str.-Gr.: Flurname, 31. März 1955: Hauptstraße.")
+    k = parse_kopf(rumpf)
+    assert k.strassenklassen == []
+    assert k.hinweise == ()
+
+
+def test_klassenwert_mit_ocr_fehler_wird_korrigiert():
+    """Auf der Bredde, Schl.-Nr. 00210, S. 57: 'Str.-Kl.: Gemeindstraße' (5 Fälle)."""
+    rumpf = ("00210, Stadtteil Frillendorf, Str.-Kl.: Gemeindstraße, Str.-Gr.: Flurname, "
+             "01. August 1921: Auf der Bredde.")
+    k = parse_kopf(rumpf)
+    assert k.strassenklassen == ["Gemeindestraße"]
+    assert k.hinweise == ("Straßenklasse OCR-korrigiert",)
+
+
+def test_klassenwert_mit_zwei_fehlern_bleibt_wie_gelesen():
+    rumpf = ("00210, Stadtteil Frillendorf, Str.-Kl.: Gemeidstrase, Str.-Gr.: Flurname, "
+             "01. August 1921: Auf der Bredde.")
+    k = parse_kopf(rumpf)
+    assert k.strassenklassen == ["Gemeidstrase"]
+    assert k.hinweise == ()

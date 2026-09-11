@@ -13,7 +13,7 @@ wo kein Marker (auch tolerant) gefunden wird, bleibt das Feld leer statt geraten
 import re
 from typing import NamedTuple
 
-from strassen.datum import DATUMSSTEMPEL_MUSTER, SATZENDE, lese_datum
+from strassen.datum import DATUMSSTEMPEL_MUSTER, SATZENDE, lese_datum, unscharf_eindeutig
 
 # Der Ziffernblock der Schlüsselnummer wird gelegentlich vom OCR mit einem
 # Leerzeichen mitten in der Zahl zerrissen ('01 544'). Ohne Toleranz brach
@@ -91,6 +91,18 @@ class Kopf(NamedTuple):
 # ausgegeben — precision-first: leer statt falsch.
 _MARKER_FRAGMENT = re.compile(r"^" + _M_STR + r"[KG]")
 
+# Geschlossenes Vokabular der Straßenklassen (Auszählung strassen.csv 2026-09-11:
+# Gemeindestraße 3.059, Landstraße 93, Kreisstraße 39, Hauptstraße 22, Bundesstraße 15;
+# Mehrfachnennungen als Kombinationen daraus). Fehlt der Marker 'Str.-Kl.:' ganz, aber
+# ein Wort aus diesem Vokabular steht zwischen Stadtteil-Angabe und 'Str.-Gr.:', wird
+# es übernommen — mit Hinweis, weil der Marker fehlt (13 Fälle, z. B. Eibergweg 00733).
+STRASSENKLASSEN = ("Gemeindestraße", "Kreisstraße", "Landstraße", "Hauptstraße",
+                   "Bundesstraße")
+_KLASSENWORT = re.compile(r"\b(" + "|".join(STRASSENKLASSEN) + r")\b")
+
+HINWEIS_KLASSE_OHNE_MARKER = "Straßenklasse ohne Marker"
+HINWEIS_KLASSE_KORRIGIERT = "Straßenklasse OCR-korrigiert"
+
 
 def _position_erlaubt(schwanz: str, start: int) -> bool:
     davor = schwanz[:start].rstrip()
@@ -151,6 +163,44 @@ def parse_kopf(rumpf: str):
     mg = _GRUPPE.search(rumpf)
     if mg:
         gruppe = mg.group(1).strip().rstrip(",")
+
+    if not klassen and mg:
+        # Regel 19: Klassenwort ohne Marker, nur im Bereich vor 'Str.-Gr.:'. Ohne
+        # 'Str.-Kl.:' liest _STADTTEIL die Klassenwörter als weitere komma-getrennte
+        # Glieder mit ('Stadtteil Freisenbruch, Gemeindestraße', Eibergweg 00733) —
+        # sie stehen darum am Ende der bereits geteilten stadtteile-Liste und werden
+        # von dort abgetrennt, exakt gegen das geschlossene Vokabular geprüft (keine
+        # OCR-Toleranz ohne Marker, precision-first). Fehlt eine Stadtteil-Angabe
+        # ganz, wird stattdessen der Rohtext vor 'Str.-Gr.:' durchsucht.
+        if stadtteile:
+            ende = len(stadtteile)
+            while ende > 0 and stadtteile[ende - 1] in STRASSENKLASSEN:
+                ende -= 1
+            if ende < len(stadtteile):
+                klassen = stadtteile[ende:]
+                stadtteile = stadtteile[:ende]
+                hinweise.append(HINWEIS_KLASSE_OHNE_MARKER)
+        else:
+            gefunden = _KLASSENWORT.findall(rumpf[m.end():mg.start()])
+            if gefunden:
+                klassen = gefunden
+                hinweise.append(HINWEIS_KLASSE_OHNE_MARKER)
+
+    # Regel 20: ein OCR-Fehler im Klassenwert ('Gemeindstraße') wird auf das
+    # Vokabular korrigiert, mit Hinweis; zwei Fehler bleiben wie gelesen.
+    korrigiert = []
+    for klasse in klassen:
+        if klasse in STRASSENKLASSEN:
+            korrigiert.append(klasse)
+            continue
+        kandidat = unscharf_eindeutig(klasse, STRASSENKLASSEN)
+        if kandidat:
+            korrigiert.append(kandidat)
+            if HINWEIS_KLASSE_KORRIGIERT not in hinweise:
+                hinweise.append(HINWEIS_KLASSE_KORRIGIERT)
+        else:
+            korrigiert.append(klasse)
+    klassen = korrigiert
 
     start = mg.end() if mg else (mk.end() if mk else m.end())
     schwanz = rumpf[start:]
