@@ -52,8 +52,8 @@ SEED = 1936                # Erhebungsstand des Adressbuchs — s. CLAUDE.md/REA
 ANZAHL_AUTOMATISCH = 40
 ANZAHL_UNSICHER = 10
 
-FELDER_STICHPROBE = ["schl_nr", "lemma", "buchseite", "band", "pdf_seite", "haelfte",
-                     "feld", "wert", "korrekt", "korrektur"]
+FELDER_STICHPROBE = ["schl_nr", "lemma", "status", "buchseite", "band", "pdf_seite",
+                     "haelfte", "feld", "wert", "korrekt", "korrektur"]
 
 # Reihenfolge der Kopf-Prüffelder je Eintrag (immer geprüft, auch wenn leer —
 # eine leere Angabe im Datensatz gegen eine tatsächlich leere Stelle im Scan zu
@@ -131,6 +131,7 @@ def baue_pruefzeilen(eintrag: dict, stadien: list) -> list:
     die füllt der Prüfer). band/pdf_seite/haelfte aus der Buchseite abgeleitet."""
     band, pdf_seite, haelfte = buchseite_zu_scan(eintrag["buchseite"])
     basis = {"schl_nr": eintrag["schl_nr"], "lemma": eintrag["lemma"],
+              "status": eintrag.get("status", ""),
               "buchseite": eintrag["buchseite"], "band": band,
               "pdf_seite": pdf_seite, "haelfte": haelfte,
               "korrekt": "", "korrektur": ""}
@@ -219,43 +220,97 @@ def lade_stichprobe(pfad=STICHPROBE_PFAD) -> list:
         return list(csv.DictReader(f))
 
 
+def _ist_ja(z) -> bool:
+    return (z.get("korrekt") or "").strip().lower() == "ja"
+
+
 def berechne_statistik(zeilen: list) -> dict:
-    """Je Feldtyp und gesamt: geprüft, korrekt, Fehlerquote (%). Zeilen mit leerem
-    korrekt-Feld (noch nicht geprüft) werden ignoriert."""
+    """Je Feldtyp, je Status-Schicht und gesamt: geprüft, korrekt, Fehlerquote (%).
+    Zeilen mit leerem korrekt-Feld (noch nicht geprüft) werden ignoriert.
+
+    Zusätzlich: eintraege_je_status (wie viele gezogene Einträge je Schicht
+    mindestens einen Fehler haben), fehler (Liste aller korrekt=nein-Zeilen mit
+    Korrektur) und fehlend (nachgetragene Zeilen mit leerem wert — Felder, die der
+    Parser gar nicht geliefert hat, z. B. ein nicht erkanntes Namensstadium)."""
     ausgefuellt = [z for z in zeilen if (z.get("korrekt") or "").strip()]
-    je_feldtyp = defaultdict(lambda: {"geprueft": 0, "korrekt": 0})
-    for z in ausgefuellt:
-        typ = _feldtyp(z["feld"])
-        je_feldtyp[typ]["geprueft"] += 1
-        if z["korrekt"].strip().lower() == "ja":
-            je_feldtyp[typ]["korrekt"] += 1
+
+    def _zaehle(gruppe):
+        d = defaultdict(lambda: {"geprueft": 0, "korrekt": 0})
+        for z in ausgefuellt:
+            k = gruppe(z)
+            d[k]["geprueft"] += 1
+            if _ist_ja(z):
+                d[k]["korrekt"] += 1
+        return d
 
     def _mit_fehlerquote(d):
         geprueft, korrekt = d["geprueft"], d["korrekt"]
         fehlerquote = (geprueft - korrekt) / geprueft * 100 if geprueft else 0.0
         return {"geprueft": geprueft, "korrekt": korrekt, "fehlerquote": fehlerquote}
 
+    je_feldtyp = _zaehle(lambda z: _feldtyp(z["feld"]))
+    je_status = _zaehle(lambda z: z.get("status", ""))
     gesamt = _mit_fehlerquote({"geprueft": len(ausgefuellt),
-                                "korrekt": sum(1 for z in ausgefuellt
-                                               if z["korrekt"].strip().lower() == "ja")})
+                                "korrekt": sum(1 for z in ausgefuellt if _ist_ja(z))})
+
+    eintraege = defaultdict(lambda: {"eintraege": set(), "mit_fehler": set()})
+    for z in ausgefuellt:
+        e = eintraege[z.get("status", "")]
+        e["eintraege"].add(z["schl_nr"])
+        if not _ist_ja(z):
+            e["mit_fehler"].add(z["schl_nr"])
+    eintraege_je_status = {st: {"eintraege": len(e["eintraege"]),
+                                "mit_fehler": len(e["mit_fehler"])}
+                           for st, e in sorted(eintraege.items())}
+
+    fehler = [{"schl_nr": z["schl_nr"], "lemma": z["lemma"],
+               "status": z.get("status", ""), "feld": z["feld"],
+               "wert": z.get("wert", ""), "korrektur": z.get("korrektur", "")}
+              for z in ausgefuellt if not _ist_ja(z)]
+    fehlend = sum(1 for f in fehler if not (f["wert"] or "").strip())
+
     return {"je_feldtyp": {typ: _mit_fehlerquote(d) for typ, d in sorted(je_feldtyp.items())},
+            "je_status": {st: _mit_fehlerquote(d) for st, d in sorted(je_status.items())},
+            "eintraege_je_status": eintraege_je_status,
             "gesamt": gesamt,
+            "fehler": fehler,
+            "fehlend": fehlend,
             "zeilen_gesamt": len(zeilen),
             "zeilen_ausgefuellt": len(ausgefuellt)}
 
 
 def formatiere_ergebnis_md(statistik: dict) -> str:
+    g = statistik["gesamt"]
     zeilen = ["# Goldstandard-Ergebnis\n",
               f"{statistik['zeilen_ausgefuellt']} von {statistik['zeilen_gesamt']} "
-              "Prüfzeilen ausgefüllt.\n",
-              "| Feldtyp | geprüft | korrekt | Fehlerquote |",
-              "|---|--:|--:|--:|"]
+              "Prüfzeilen ausgefüllt"
+              + (f", davon {statistik['fehlend']} nachgetragen (Feld im Datensatz "
+                 "gar nicht vorhanden, im Scan aber gedruckt)."
+                 if statistik.get("fehlend") else ".")
+              + "\n",
+              "## Je Schicht (status)\n",
+              "| Schicht | Einträge | davon mit Fehler | Prüffelder | korrekt | Fehlerquote |",
+              "|---|--:|--:|--:|--:|--:|"]
+    for st, d in statistik["je_status"].items():
+        e = statistik["eintraege_je_status"].get(st, {"eintraege": 0, "mit_fehler": 0})
+        zeilen.append(f"| {st} | {e['eintraege']} | {e['mit_fehler']} | {d['geprueft']} | "
+                       f"{d['korrekt']} | {d['fehlerquote']:.1f} % |")
+    zeilen += ["", "## Je Feldtyp\n",
+               "| Feldtyp | geprüft | korrekt | Fehlerquote |",
+               "|---|--:|--:|--:|"]
     for typ, d in statistik["je_feldtyp"].items():
         zeilen.append(f"| {typ} | {d['geprueft']} | {d['korrekt']} | "
                        f"{d['fehlerquote']:.1f} % |")
-    g = statistik["gesamt"]
     zeilen.append(f"| **gesamt** | **{g['geprueft']}** | **{g['korrekt']}** | "
                    f"**{g['fehlerquote']:.1f} %** |")
+    if statistik["fehler"]:
+        zeilen += ["", "## Fehler im Einzelnen\n",
+                   "| Schl.-Nr. | Lemma | Schicht | Feld | Datensatz | gedruckt/richtig |",
+                   "|---|---|---|---|---|---|"]
+        for f in statistik["fehler"]:
+            wert = f["wert"] if (f["wert"] or "").strip() else "*(fehlt)*"
+            zeilen.append(f"| {f['schl_nr']} | {f['lemma']} | {f['status']} | {f['feld']} | "
+                           f"{wert} | {f['korrektur']} |")
     return "\n".join(zeilen) + "\n"
 
 

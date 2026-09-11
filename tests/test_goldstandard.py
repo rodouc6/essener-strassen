@@ -179,3 +179,91 @@ def test_auswerten_schreibt_ergebnis_md(tmp_path):
     assert ziel.exists()
     assert "lemma" in bericht
     assert ziel.read_text(encoding="utf-8") == bericht
+
+
+# --- Erweiterung (Entwicklungs-Stichprobe 2026-09): Status je Zeile, Auswertung je
+# Schicht, Fehlerliste, fehlende Felder als nachgetragene Zeilen ---
+
+def test_pruefzeilen_tragen_status_des_eintrags():
+    eintrag = {"schl_nr": "00001", "lemma": "Aachener Straße", "buchseite": "23",
+               "stadtteile": "", "strassenklasse": "", "namensgruppe": "",
+               "verweis_auf": "", "status": "unsicher"}
+    zeilen = baue_pruefzeilen(eintrag, [])
+    assert all(z["status"] == "unsicher" for z in zeilen)
+
+
+def test_felder_stichprobe_enthalten_status():
+    from strassen.goldstandard import FELDER_STICHPROBE
+    assert "status" in FELDER_STICHPROBE
+
+
+def _zeile_mit_status(feld, korrekt, status, wert="x", korrektur="", schl_nr="1"):
+    z = _zeile(feld, korrekt)
+    z.update({"status": status, "wert": wert, "korrektur": korrektur,
+              "schl_nr": schl_nr})
+    return z
+
+
+def test_statistik_je_status():
+    zeilen = [
+        _zeile_mit_status("lemma", "ja", "automatisch"),
+        _zeile_mit_status("lemma", "nein", "automatisch"),
+        _zeile_mit_status("lemma", "ja", "unsicher"),
+        _zeile_mit_status("lemma", "ja", "unsicher"),
+        _zeile_mit_status("lemma", "ja", "unsicher"),
+        _zeile_mit_status("lemma", "nein", "unsicher"),
+    ]
+    stat = berechne_statistik(zeilen)
+    assert stat["je_status"]["automatisch"] == {"geprueft": 2, "korrekt": 1,
+                                                 "fehlerquote": 50.0}
+    assert stat["je_status"]["unsicher"] == {"geprueft": 4, "korrekt": 3,
+                                              "fehlerquote": 25.0}
+
+
+def test_statistik_zaehlt_eintraege_mit_fehler_je_status():
+    zeilen = [
+        _zeile_mit_status("lemma", "ja", "automatisch", schl_nr="1"),
+        _zeile_mit_status("stadtteile", "nein", "automatisch", schl_nr="1"),
+        _zeile_mit_status("lemma", "ja", "automatisch", schl_nr="2"),
+        _zeile_mit_status("lemma", "nein", "unsicher", schl_nr="3"),
+        _zeile_mit_status("stadtteile", "nein", "unsicher", schl_nr="3"),
+    ]
+    stat = berechne_statistik(zeilen)
+    # Eintrag 1: ein Fehler, Eintrag 2: sauber, Eintrag 3: zwei Fehler -> je Schicht
+    assert stat["eintraege_je_status"]["automatisch"] == {"eintraege": 2, "mit_fehler": 1}
+    assert stat["eintraege_je_status"]["unsicher"] == {"eintraege": 1, "mit_fehler": 1}
+
+
+def test_statistik_liefert_fehlerliste_mit_korrektur():
+    zeilen = [
+        _zeile_mit_status("lemma", "ja", "automatisch"),
+        _zeile_mit_status("lemma", "nein", "unsicher", wert="c Cäcilienstraße",
+                          korrektur="Cäcilienstraße", schl_nr="00540"),
+    ]
+    stat = berechne_statistik(zeilen)
+    assert stat["fehler"] == [{"schl_nr": "00540", "lemma": "X", "status": "unsicher",
+                               "feld": "lemma", "wert": "c Cäcilienstraße",
+                               "korrektur": "Cäcilienstraße"}]
+
+
+def test_nachgetragene_zeile_mit_leerem_wert_zaehlt_als_fehler():
+    # Fehlendes Namensstadium: Prüfer trägt eine Zeile nach (wert leer, korrekt=nein,
+    # korrektur = gedruckter Wert). Sie zählt als geprüft und als Fehler.
+    zeilen = [_zeile_mit_status("stadium_1_name", "nein", "unsicher", wert="",
+                                korrektur="Kamerunstraße")]
+    stat = berechne_statistik(zeilen)
+    assert stat["je_feldtyp"]["stadium_name"] == {"geprueft": 1, "korrekt": 0,
+                                                    "fehlerquote": 100.0}
+    assert stat["fehlend"] == 1
+
+
+def test_ergebnis_md_enthaelt_schichten_und_fehlerliste():
+    from strassen.goldstandard import formatiere_ergebnis_md
+    zeilen = [
+        _zeile_mit_status("lemma", "ja", "automatisch"),
+        _zeile_mit_status("lemma", "nein", "unsicher", wert="St", korrektur="St. Annental",
+                          schl_nr="02727"),
+    ]
+    md = formatiere_ergebnis_md(berechne_statistik(zeilen))
+    assert "| automatisch |" in md and "| unsicher |" in md
+    assert "02727" in md and "St. Annental" in md

@@ -1,5 +1,15 @@
 # Goldstandard-Stichprobe: Prüfanleitung
 
+> **Stand 2026-09-11 — Entwicklungs-Stichprobe.** Die erste Ziehung (Seed 1936) ist
+> vollständig geprüft; das Ergebnis steht in `ergebnis.md`. Die dort gefundenen Fehler
+> sind ausnahmslos *systematische* Parser-/OCR-Muster (Punkt nach „St."/„II." beendet
+> die Namenskette, numerisches Datum, Seitenumbruch im Kopf, „Str.-Kl.;", getrenntes
+> „Stadt-teile", Abschnittsbuchstabe im Lemma). Sie werden im Parser behoben; die
+> Stichprobe dient damit der Entwicklung und ist als unabhängiges Qualitätsmaß für den
+> reparierten Datensatz **verbraucht** (Fehler gefunden und behoben am selben Sample).
+> Entscheidung: **keine** neue Ziehung — die Zahl wird als Entwicklungs-Stichprobe
+> ausgewiesen, nicht als unabhängige Fehlerquote des Endstands.
+
 Diese Stichprobe misst die tatsächliche Feldfehlerquote des Datensatzes, indem 50
 zufällig gezogene Einträge (40 mit `status=automatisch`, 10 mit `status=unsicher`)
 Zeichen für Zeichen gegen den Original-Scan geprüft werden. Die Prüfung ist ein
@@ -34,7 +44,15 @@ manueller Schritt — dieses Dokument beschreibt ihn.
    - Spalte `korrekt`: `ja` eintragen, wenn der Wert exakt dem gedruckten Inhalt
      entspricht, sonst `nein`.
    - Bei `nein` in Spalte `korrektur` den richtigen Wert eintragen (wie er gedruckt
-     steht bzw. richtig geparst werden sollte).
+     steht bzw. richtig geparst werden sollte — Daten in der Datensatzform, z. B.
+     `1927-08-29` für gedrucktes „29.08.1927").
+   - **Fehlt ein Feld ganz** (der Scan zeigt ein Namensstadium, der Datensatz hat es
+     nicht — dann gibt es dafür auch keine Prüfzeile): eine Zeile **nachtragen**, mit
+     denselben Kopfspalten, `feld` wie üblich benannt (`stadium_1_datum`,
+     `stadium_1_name`), `wert` leer, `korrekt=nein`, `korrektur` = gedruckter Wert.
+     Nur so zählen Auslassungen des Parsers überhaupt als Fehler.
+   - Die Spalte `status` (`automatisch`/`unsicher`) ist vorbelegt und wird nicht
+     bearbeitet; die Auswertung weist die Fehlerquote je Schicht getrennt aus.
 
 3. **OCR-Konventionen gelten als korrekt**, wenn der Sinn exakt erhalten ist —
    maßgeblich ist der **gedruckte Inhalt**, nicht die Zeilenaufteilung der Vorlage.
@@ -54,8 +72,12 @@ manueller Schritt — dieses Dokument beschreibt ihn.
    python3 -m strassen.goldstandard auswerten
    ```
 
-   Das schreibt `docs/goldstandard/ergebnis.md` (Fehlerquote je Feldtyp und gesamt)
-   und gibt es auch auf der Kommandozeile aus.
+   Das schreibt `docs/goldstandard/ergebnis.md` (Fehlerquote je Schicht, je Feldtyp
+   und gesamt, dazu die Liste aller Fehler mit Korrektur) und gibt es auch auf der
+   Kommandozeile aus.
+
+   **Achtung:** `ziehen` überschreibt `stichprobe.csv`. Nach einer Prüfung nicht erneut
+   ziehen, ohne die ausgefüllte Datei zu sichern.
 
 ## Hinweis zur Stichprobe selbst
 

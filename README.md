@@ -176,6 +176,27 @@ Prüffall geführt (s. [Bekannte Grenzen](#bekannte-grenzen)).
 Details, Methodik und Interpretation: [`docs/qualitaet.md`](docs/qualitaet.md); die
 konkreten Treffer (Lemma, Schlüsselnummer, Grund): `daten/pruefung_validierung.csv`.
 
+### Goldstandard-Stichprobe (Entwicklungs-Stichprobe, Stand 2026-09-11)
+
+50 zufällig gezogene Einträge (40 `automatisch`, 10 `unsicher`, Seed 1936) wurden
+Zeichen für Zeichen gegen den Original-Scan geprüft — 478 Prüffelder, davon 10
+nachgetragen (Feld im Scan gedruckt, im Datensatz nicht vorhanden). Ergebnis je Schicht:
+
+| Schicht | Einträge | davon mit Fehler | Prüffelder | Fehlerquote |
+|---|--:|--:|--:|--:|
+| `automatisch` | 40 | 1 | 388 | **0,3 %** |
+| `unsicher` | 10 | 7 | 90 | **17,8 %** |
+
+Die Selbstmarkierung des Parsers trifft: 7 der 8 fehlerhaften Einträge waren bereits als
+`unsicher` gekennzeichnet. Alle 17 Einzelfehler gehen auf **systematische** Parser- und
+OCR-Muster zurück (Punkt nach „St." oder „II." beendet die Namenskette, numerisches Datum
+„29.08.1927", Seitenumbruch im Eintragskopf, „Str.-Kl.;", getrenntes „Stadt-teile",
+Abschnittsbuchstabe im Lemma). Sie werden im Parser behoben; da die Fehler am selben
+Sample gefunden und behoben werden, ist diese Ziehung als **Entwicklungs-Stichprobe**
+zu lesen, nicht als unabhängige Fehlerquote des Endstands. Vollständige Fehlerliste mit
+Korrekturen: [`docs/goldstandard/ergebnis.md`](docs/goldstandard/ergebnis.md);
+Prüfverfahren: [`docs/goldstandard/ANLEITUNG.md`](docs/goldstandard/ANLEITUNG.md).
+
 ### Erhebungsstand des Adressbuchs Essen 1936
 
 Der Namensstand, den das Adressbuch tatsächlich abbildet, wurde nicht angenommen,

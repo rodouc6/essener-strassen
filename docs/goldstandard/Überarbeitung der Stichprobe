@@ -1,0 +1,83 @@
+# Überarbeitung der Stichprobe
+Fehlende Informationen, Korrekturen markiert mit "*"
+
+## Cäcilienstraße
+00540,c Cäcilienstraße,87,1,43,rechts,schl_nr,00540,,
+00540,c Cäcilienstraße,87,1,43,rechts,lemma,c Cäcilienstraße,,
+00540,c Cäcilienstraße,87,1,43,rechts,stadtteile,Rüttenscheid,,
+00540,c Cäcilienstraße,87,1,43,rechts,strassenklasse,*Gemeindeklasse*,,
+00540,c Cäcilienstraße,87,1,43,rechts,namensgruppe,Weiblicher Vorname,,
+00540,c Cäcilienstraße,87,1,43,rechts,verweis_auf,,,
+00540,c Cäcilienstraße,87,1,43,rechts,stadium_1_datum,1897-09-06,,
+00540,c Cäcilienstraße,87,1,43,rechts,stadium_1_name,Cäcilienstraße,,
+
+01022,Gerswidastraße,127,1,63,rechts,schl_nr,01022,,
+01022,Gerswidastraße,127,1,63,rechts,lemma,Gerswidastraße,,
+01022,Gerswidastraße,127,1,63,rechts,stadtteile,Stadtkern,,
+01022,Gerswidastraße,127,1,63,rechts,strassenklasse,Gemeindestraße,,
+01022,Gerswidastraße,127,1,63,rechts,namensgruppe,"Person, Frau, Deutsche, Äbtissin, Essener Geschichte und Örtlichkeit",,
+01022,Gerswidastraße,127,1,63,rechts,verweis_auf,,,
+01022,Gerswidastraße,127,1,63,rechts,stadium_1_datum,vor 1826,,
+01022,Gerswidastraße,127,1,63,rechts,stadium_1_name,II. *Weberstraße*,,
+01022,Gerswidastraße,127,1,63,rechts,stadium_2_datum,1966-06-13,,
+01022,Gerswidastraße,127,1,63,rechts,stadium_2_name,Gerswidastraße,,
+
+01635,Kamerunstraße,188,1,94,links,schl_nr,01635,,
+01635,Kamerunstraße,188,1,94,links,lemma,Kamerunstraße,,
+01635,Kamerunstraße,188,1,94,links,stadtteile,Gerschede,,
+01635,Kamerunstraße,188,1,94,links,strassenklasse,Gemeindestraße,,
+01635,Kamerunstraße,188,1,94,links,namensgruppe,Stadt und Ort,,
+01635,Kamerunstraße,188,1,94,links,verweis_auf,,,
+*01635,Kamerunstraße,188,1,94,links,stadium_1_datum,1939-05-26,,*
+*01635,Kamerunstraße,188,1,94,links,stadium_1_name, Kamerunstraße,,*
+
+02191,Manderscheidtstraße,229,2,14,rechts,schl_nr,02191,,
+02191,Manderscheidtstraße,229,2,14,rechts,lemma,Manderscheidtstraße,,
+02191,Manderscheidtstraße,229,2,14,rechts,stadtteile,*Frillendorf; Stoppenberg*,,
+02191,Manderscheidtstraße,229,2,14,rechts,strassenklasse,Gemeindestraße,,
+02191,Manderscheidtstraße,229,2,14,rechts,namensgruppe,Familienname,,
+02191,Manderscheidtstraße,229,2,14,rechts,verweis_auf,,,
+02191,Manderscheidtstraße,229,2,14,rechts,stadium_1_datum,1969-01-15,,
+02191,Manderscheidtstraße,229,2,14,rechts,stadium_1_name,Manderscheidtstraße,,
+02191,Manderscheidtstraße,229,2,14,rechts,stadium_2_datum,1974-09-18,,
+02191,Manderscheidtstraße,229,2,14,rechts,stadium_2_name,Manderscheidtstraße (Verl),,
+
+02356,Overhammshof,254,2,27,links,schl_nr,02356,,
+02356,Overhammshof,254,2,27,links,lemma,Overhammshof,,
+02356,Overhammshof,254,2,27,links,stadtteile,Fischlaken,,
+02356,Overhammshof,254,2,27,links,strassenklasse,Gemeindestraße,,
+02356,Overhammshof,254,2,27,links,namensgruppe,"Hofname, 21",,
+02356,Overhammshof,254,2,27,links,verweis_auf,,,
+*[abgeschnitten bzw. Fortsetzung auf der nächsten Seite nicht erkannt]
+
+02727,Annental,309,2,54,rechts,schl_nr,02727,,
+02727,Annental,309,2,54,rechts,lemma,Annental,,
+02727,Annental,309,2,54,rechts,stadtteile,Bergerhausen; Rellinghausen,,
+02727,Annental,309,2,54,rechts,strassenklasse,Gemeindestraße,,
+02727,Annental,309,2,54,rechts,namensgruppe,Kirche und Kloster,,
+02727,Annental,309,2,54,rechts,verweis_auf,,,
+02727,Annental,309,2,54,rechts,stadium_1_datum,1904-02-04,,
+02727,Annental,309,2,54,rechts,stadium_1_name,Kapellenstraße,,
+02727,Annental,309,2,54,rechts,stadium_2_datum,1910-09-16,,
+02727,Annental,309,2,54,rechts,stadium_2_name,Walpurgisstraße (tiw.),,
+02727,Annental,309,2,54,rechts,stadium_3_datum,1926-09-18,,
+02727,Annental,309,2,54,rechts,stadium_3_name,St,,
+*[müsste "St. Annental" heißen]*
+
+02774,Schlenterstraße,291,2,45,rechts,schl_nr,02774,,
+02774,Schlenterstraße,291,2,45,rechts,lemma,Schlenterstraße,,
+02774,Schlenterstraße,291,2,45,rechts,stadtteile,Frintrop,,
+02774,Schlenterstraße,291,2,45,rechts,strassenklasse,Gemeindestraße,,
+**02774,Schlenterstraße,291,2,45,rechts,namensgruppe,"Person, Mann, Deutscher, Pfarrer,,
+02774,Schlenterstraße,291,2,45,rechts,stadium_1_datum,29.08.1927,,
+02774,Schlenterstraße,291,2,45,rechts,stadium_1_name,Schlenterstraße,,**+
+
+02949,Spervogelweg,306,2,53,links,schl_nr,02949,,
+02949,Spervogelweg,306,2,53,links,lemma,Spervogelweg,,
+02949,Spervogelweg,306,2,53,links,stadtteile,Freisenbruch,,
+02949,Spervogelweg,306,2,53,links,strassenklasse,Gemeindestraße,,
+02949,Spervogelweg,306,2,53,links,namensgruppe,"Person, Mann, Deutschen, Minnesängerr 27",,
+02949,Spervogelweg,306,2,53,links,verweis_auf,,,
+**02949,Spervogelweg,306,2,53,links,stadium_1_datum,1962-09-27,,
+02949,Spervogelweg,306,2,53,links,stadium_1_name,Spervogelweg,,**
+
