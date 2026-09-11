@@ -76,3 +76,75 @@ def test_naechstes_stadium_ohne_komma_wird_nicht_ins_namensende_gezogen():
     assert [x.name for x in s] == ["Taubenstraße", "Taubenstraße (Verl)", "Natorpstraße"]
     assert [x.gueltig_ab for x in s] == ["1889-07-05", "1925-09-19", "1971-03-17"]
     assert [x.datum_praezision for x in s] == ["tag", "tag", "tag"]
+
+
+def test_st_abkuerzung_bleibt_im_namen():
+    """St. Annental, Schl.-Nr. 02727, S. 309 — Goldstandard-Fehler: Stadium 3 hieß 'St'."""
+    rest = ("04. Februar 1904: Kapellenstraße, 16. September 1910: Walpurgisstraße (tiw.), "
+            "18. September 1926: St. Annental.")
+    s = parse_namenskette(rest)
+    assert [x.name for x in s] == ["Kapellenstraße", "Walpurgisstraße (tiw.)", "St. Annental"]
+
+
+def test_roemische_zahl_bleibt_im_namen():
+    """Gerswidastraße, Schl.-Nr. 01022, S. 127 — Goldstandard-Fehler: Stadium 1 hieß 'II'."""
+    s = parse_namenskette("vor 1826: II. Weberstraße, 13. Juni 1966: Gerswidastraße.")
+    assert s[0].name == "II. Weberstraße"
+    assert s[0].datum_praezision == "vor"
+    assert s[1].name == "Gerswidastraße"
+
+
+def test_stadium_traegt_hinweis_aus_datum():
+    s = parse_namenskette("13, Juni 1973: Eskenshof.")
+    assert s[0].gueltig_ab == "1973-06-13"
+    assert s[0].hinweis == "Datum: Komma nach Tag"
+
+
+def test_regulaeres_stadium_hat_leeren_hinweis():
+    s = parse_namenskette("16. Mai 1902: Kruppstraße.")
+    assert s[0].hinweis == ""
+
+
+def test_datum_ohne_doppelpunkt_am_kettenanfang():
+    """Berghausbusch, Schl.-Nr. 00471, S. 84: '11. Dezember 1974 Berghausbusch. Jan Hendrich B…'"""
+    s = parse_namenskette("11. Dezember 1974 Berghausbusch.")
+    assert [x.name for x in s] == ["Berghausbusch"]
+    assert s[0].hinweis == "Datum ohne Doppelpunkt"
+
+
+def test_datum_ohne_doppelpunkt_nach_komma_in_der_kette():
+    s = parse_namenskette("urspr.: Pottgasse, 07. Februar 1908 Kronenstraße.")
+    assert [x.name for x in s] == ["Pottgasse", "Kronenstraße"]
+
+
+def test_datum_ohne_doppelpunkt_tief_im_text_wird_ignoriert():
+    """Ein Datum, dem ein Wort vorausgeht ('Am 25. Juli 1516 wurde …'), ist Prosa,
+    kein Stadium — auch wenn kopf.rest es einmal enthalten sollte."""
+    s = parse_namenskette("18. September 1926: St. Annental. Am 25. Juli 1516 Wurde")
+    assert [x.name for x in s] == ["St. Annental"]
+
+
+def test_datum_ohne_doppelpunkt_verlangt_grossgeschriebenen_namen():
+    s = parse_namenskette("18. September 1926: St. Annental, 25. Juli 1516 wurde bei")
+    assert [x.name for x in s] == ["St. Annental"]
+
+
+def test_urspr_ohne_doppelpunkt():
+    """Velberter Sträßchen 03203 (S. 330) 'urspr. Velberter Sträßchen.';
+    Bocholder Straße 00379 (S. 72) 'urspr. Bocholder Landstraße, 30. April 1891: Hochstraße'."""
+    s = parse_namenskette("urspr. Bocholder Landstraße, 30. April 1891: Hochstraße.")
+    assert s[0].name == "Bocholder Landstraße"
+    assert s[0].ist_urspruenglich is True
+    assert s[0].hinweis == "urspr. ohne Doppelpunkt"
+    assert s[1].name == "Hochstraße"
+
+
+def test_jahrhundert_stadium():
+    """Viehauser Berg, Schl.-Nr. 03213, S. 332."""
+    s = parse_namenskette("16. Jahrh.: Viehauser Straße, 02. Juni 1922: Viehauser Berg.")
+    assert (s[0].gueltig_ab, s[0].datum_praezision, s[0].name) == ("1501", "jahrhundert", "Viehauser Straße")
+
+
+def test_numerisches_datum_stadium():
+    s = parse_namenskette("29.08.1927: Schlenterstraße.")
+    assert (s[0].gueltig_ab, s[0].name) == ("1927-08-29", "Schlenterstraße")

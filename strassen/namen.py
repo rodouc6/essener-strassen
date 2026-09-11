@@ -1,64 +1,36 @@
 """Namensstadien mit Datum aus dem Kopfrest lesen.
 
-Jedes Stadium ist ein Datum-Name-Paar. Fehlt das Datum ('urspr.:'), wird das
-im Feld datum_praezision ausgewiesen — nicht geschätzt.
-
-Neben dem vollen Tagesdatum kommen im Material ungefähre Jahresangaben vor
-('vor 1898:', 'nach 1900:', 'um 1850:', 'etwa 1860:', 'gegen 1870:') — siehe
-kopf._DATUM, die dieselben Qualifier bereits toleriert. Die Unschärfe wird
-ehrlich ausgewiesen statt geglättet: 'vor'/'nach' behalten ihre Richtung als
-eigene Präzisionsstufe; 'um'/'etwa'/'gegen' bedeuten alle drei dasselbe
-(ungefähr, ohne Richtung) und werden als 'jahr' geführt, weil das Jahr selbst
-die beste verfügbare Angabe ist — precision-first heißt hier: keine Schein-
-genauigkeit vortäuschen, aber auch keine eigene Kategorie für eine Nuance
-erfinden, die das Feldschema nicht vorsieht.
+Jedes Stadium ist ein Datum-Name-Paar. Fehlt das Datum ('urspr.:'), wird das im
+Feld datum_praezision ausgewiesen — nicht geschätzt. Die Datumsformen und die
+Satzende-Regel kommen aus strassen.datum (eine Quelle für kopf.py und namen.py).
 
 'urspr.:' kann mehrfach in derselben Kette vorkommen (22 Einträge im Material,
-z. B. Altenessener Straße Schl.-Nr. 00053: 'urspr.: Viehofer Chausee, ...,
-urspr.: Essen-Horster-Straße, ...') — jede weitere Umbenennung kann selbst
-wieder auf einen zuvor schon einmal gültigen, dann historisch belegten Namen
-zurückgehen. Alle Vorkommen werden erfasst und wie die datierten Stadien nach
-ihrer Position im Text einsortiert, nicht nur das erste.
+z. B. Altenessener Straße Schl.-Nr. 00053) — alle Vorkommen werden erfasst und
+nach Textposition einsortiert. 'urspr.' ohne Doppelpunkt (8 Fälle, z. B. Velberter
+Sträßchen 03203) wird erkannt und mit Hinweis versehen.
 
-Der Name endet an Komma/Semikolon oder an einem echten Satzende-Punkt (Punkt
-gefolgt von Leerzeichen+Großbuchstabe oder Stringende) — nicht an jedem Punkt.
-Abkürzungs-/Klammerpunkte innerhalb des Namens ('St.-Ingbert-Höhe',
-'Altenessener Straße (Verl.)') bleiben so erhalten; nur der abschließende
-Satzpunkt gehört nicht mehr zum Namen.
+Der Name endet an Komma/Semikolon oder an einem echten Satzende (datum.SATZENDE):
+Abkürzungs-/Klammerpunkte ('St. Annental', 'II. Weberstraße', '(Verl.)') bleiben
+Namensbestandteil.
+
+Positionsregel für Stempel ohne Doppelpunkt (Spec Regel 15): Sie zählen nur, wenn
+sie am Anfang von rest stehen oder direkt auf ein Komma folgen (Kettentrenner) UND
+der Name großgeschrieben beginnt. Ein Datum, dem ein Wort vorausgeht ('Am 25. Juli
+1516 wurde'), ist Prosa.
 """
 import re
 from typing import NamedTuple
 
-MONATE = {"Januar": 1, "Februar": 2, "März": 3, "April": 4, "Mai": 5, "Juni": 6,
-          "Juli": 7, "August": 8, "September": 9, "Oktober": 10, "November": 11,
-          "Dezember": 12}
+from strassen.datum import DATUMSSTEMPEL_MUSTER, SATZENDE, MONATE, lese_datum
 
-# Ein Name läuft bis Komma/Semikolon oder bis zu einem Punkt, der ein echtes
-# Satzende markiert (gefolgt von Leerzeichen+Großbuchstabe/Ziffer oder
-# Stringende). Die Ziffer gehört mit dazu: Ein neues Stadium ohne Komma-
-# Trennung ('Taubenstraße (Verl). 17. März 1971: Natorpstraße.', Natorpstraße)
-# beginnt mit der Tagesziffer eines vollen Datums — ohne die Ziffer im
-# Satzende-Muster würde die Namenssuche über den Punkt hinweg in die Tages-
-# ziffer der nächsten Datierung hineinlaufen. Jeder andere Punkt (Abkürzung,
-# Klammerzusatz) bleibt Namensbestandteil.
-_NAME = r"(?:(?!,|;|\.(?:\s+[0-9A-ZÄÖÜ]|\s*$))[^\n]){1,80}"
+__all__ = ["MONATE", "Stadium", "parse_namenskette"]
 
-_URSPR = re.compile(r"urspr\.:\s*(?P<name>" + _NAME + r")")
+_NAME = r"(?:(?!,|;|" + SATZENDE + r")[^\n]){1,80}"
 
-# Ein Stadium ist entweder ein volles Tagesdatum, eine gerichtete ungefähre
-# Jahresangabe (vor/nach) oder eine ungerichtete ungefähre Jahresangabe
-# (um/etwa/gegen) oder ein bloßes Jahr ohne Qualifier — je gefolgt von
-# ':' und dem Namen. (?<!\d) verhindert, dass die Suche mitten in einer
-# längeren Ziffernfolge ansetzt statt an deren Anfang.
-_STADIUM = re.compile(
-    r"(?<!\d)"
-    r"(?:(?P<tag>\d{1,2})\.\s*(?P<monat>" + "|".join(MONATE) + r")\s+(?P<jahr_tag>\d{4})"
-    r"|(?P<qualifier>vor|nach|um|etwa|gegen)\s+(?P<jahr_qual>\d{4})"
-    r"|(?P<jahr_bloss>\d{4})"
-    r")\s*:\s*(?P<name>" + _NAME + r")"
-)
+_URSPR = re.compile(r"urspr\.(?P<trenner>:?)\s*(?P<name>" + _NAME + r")")
+_STADIUM = re.compile(DATUMSSTEMPEL_MUSTER + r"\s*(?P<name>" + _NAME + r")")
 
-_GERICHTET = {"vor": "vor", "nach": "nach"}
+HINWEIS_URSPR_OHNE_DOPPELPUNKT = "urspr. ohne Doppelpunkt"
 
 
 class Stadium(NamedTuple):
@@ -67,32 +39,31 @@ class Stadium(NamedTuple):
     datum_praezision: str
     name: str
     ist_urspruenglich: bool
+    hinweis: str = ""
+
+
+def _position_erlaubt(rest: str, start: int) -> bool:
+    """Für Stempel ohne regulären Doppelpunkt: Kettenanfang oder direkt nach Komma."""
+    davor = rest[:start].rstrip()
+    return davor == "" or davor.endswith(",")
 
 
 def parse_namenskette(rest: str) -> list:
     roh = []
 
-    # 'urspr.:' kann mehrfach vorkommen (s. Moduldoc) — alle Treffer erfassen,
-    # nicht nur den ersten. Gemeinsam mit den datierten Stadien nach
-    # Textposition sortiert, weil ein zweites 'urspr.:' irgendwo mitten in
-    # der Kette stehen kann, nicht nur am Anfang.
     for mu in _URSPR.finditer(rest):
-        roh.append((mu.start(), "", "unbekannt", mu.group("name").strip(), True))
+        hinweis = "" if mu.group("trenner") == ":" else HINWEIS_URSPR_OHNE_DOPPELPUNKT
+        roh.append((mu.start(), "", "unbekannt", mu.group("name").strip(), True, hinweis))
 
     for m in _STADIUM.finditer(rest):
         name = m.group("name").strip()
-        if m.group("tag"):
-            tag, jahr = int(m.group("tag")), int(m.group("jahr_tag"))
-            monat = MONATE[m.group("monat")]
-            roh.append((m.start(), f"{jahr:04d}-{monat:02d}-{tag:02d}", "tag",
-                        name, False))
-        elif m.group("qualifier"):
-            praezision = _GERICHTET.get(m.group("qualifier"), "jahr")
-            roh.append((m.start(), m.group("jahr_qual"), praezision, name, False))
-        else:
-            roh.append((m.start(), m.group("jahr_bloss"), "jahr", name, False))
+        d = lese_datum(m)
+        if d.trenner != ":":
+            if not _position_erlaubt(rest, m.start()) or not name[:1].isupper():
+                continue
+        roh.append((m.start(), d.gueltig_ab, d.praezision, name, False, d.hinweis))
 
     roh.sort(key=lambda x: x[0])
     return [Stadium(stadium=i, gueltig_ab=g, datum_praezision=p, name=n,
-                     ist_urspruenglich=u)
-            for i, (_, g, p, n, u) in enumerate(roh, 1)]
+                     ist_urspruenglich=u, hinweis=h)
+            for i, (_, g, p, n, u, h) in enumerate(roh, 1)]
