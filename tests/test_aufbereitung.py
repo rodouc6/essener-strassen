@@ -81,3 +81,64 @@ def test_zwei_grossbuchstaben_ohne_komma_bleiben_unangetastet():
     roh = "Vollendung des 80. Lebensjahres.\n\nME\n\nBertramstraße: Schl.-Nr.: 00347"
     result = verbinde_zeilen(bereinige(roh))
     assert "ME Bertramstraße" in result
+
+
+def test_abschnittskopf_als_kleinbuchstabe_wird_entfernt():
+    """S. 87: OCR las den Abschnittskopf 'C' als 'c' — Lemma wurde 'c Cäcilienstraße'
+    (Goldstandard 00540). 29 Einzel-Kleinbuchstaben-Zeilen im Material, 28 davon Rauschen."""
+    roh = "Gefangenschaft).\n\nc\n\nCäcilienstraße: Sch!.-Nr.: 00540, Stadtteil Rüttenscheid,"
+    sauber = bereinige(roh)
+    assert "\nc\n" not in sauber
+    assert "Cäcilienstraße" in sauber
+
+
+def test_randrauschen_letzte_zeile_wird_entfernt():
+    """S. 254 endet mit 'mm nm mm nn nn' (Scanrand), mitten im Kopf von Overhammshof 02356."""
+    roh = "Overhammshof: Schl.-Nr.: 02356, Stadtteil Fischlaken,\nStr.-Kl.: Gemeindestraße, Str.-Gr.: Hofname, 21. Januar\n\nmm nm mm nn nn\n"
+    sauber = bereinige(roh)
+    assert "mm nm" not in sauber
+    assert "21. Januar" in sauber
+
+
+def test_randrauschen_erste_zeile_wird_entfernt():
+    roh = "Vs u\n\nAachener Straße: Schl.-Nr.: 00001, Stadtteil Frohnhausen"
+    assert "Vs u" not in bereinige(roh)
+
+
+def test_randrauschen_greift_nicht_mitten_im_text():
+    roh = "Aachener Straße: Schl.-Nr.: 00001,\nan der A\nStadtteil Frohnhausen, Str.-Kl.: Gemeindestraße."
+    assert "an der A" in bereinige(roh)
+
+
+def test_legitime_kurze_randzeile_bleibt():
+    """Zeilen mit Ziffer oder Satzzeichen ('S. 33.', 'Hude.', '18.') sind kein Rauschen."""
+    for zeile in ["1886, 5. 33.", "Hude.", "18."]:
+        roh = f"Text davor.\n{zeile}\n"
+        assert zeile in bereinige(roh), zeile
+
+
+def test_stadtteil_marker_varianten_werden_normalisiert():
+    """Am Stoppenberger Bach 01615 'Stadt-teil', Auf der Bucht 00211 'Stadttei!',
+    Diestweg 02505 'Stadteil', Schönscheidts Hof 02812 'Stadttteil', In der Nähe der
+    Armin… 02874 'Stadtteit', AmWasserturm 00268 'StadtteilBurgaltendorf',
+    Manderscheidtstraße 02191 'Stadt-teile' (Goldstandard)."""
+    faelle = {
+        "01615, Stadt-teil Stoppenberg, Str.-Kl.:": "Stadtteil Stoppenberg",
+        "00211, Stadttei! Heisingen, Str.-Kl.:": "Stadtteil Heisingen",
+        "02505, Stadteil Bochold, Str.-Kl.:": "Stadtteil Bochold",
+        "02812, Stadttteil Kray, Str.-Kl.:": "Stadtteil Kray",
+        "02874, Stadtteit Nordviertel, Str.-Kl.:": "Stadtteil Nordviertel",
+        "00268, StadtteilBurgaltendorf, Str.-Kl.:": "Stadtteil Burgaltendorf",
+        "02191, Stadt-teile FrillendorfundStoppenberg, Str.-Kl.:": "Stadtteile Frillendorf und Stoppenberg",
+    }
+    for roh, erwartet in faelle.items():
+        assert erwartet in verbinde_zeilen(roh), roh
+
+
+def test_stadtteilen_in_prosa_bleibt_unangetastet():
+    assert "Stadtteilen" in verbinde_zeilen("in den Stadtteilen Kray und Leithe")
+
+
+def test_und_zwischen_klein_und_gross_wird_getrennt():
+    assert verbinde_zeilen("FrillendorfundStoppenberg") == "Frillendorf und Stoppenberg"
+    assert verbinde_zeilen("Hundstraße") == "Hundstraße"
