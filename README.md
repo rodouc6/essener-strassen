@@ -110,7 +110,7 @@ maschinenlesbare Schema liegt zusätzlich in [`datapackage.json`](datapackage.js
 | `buchseite` | Beleg: Seite in Dickhoff 2015 | ganzzahlig, 23–362 (Einträge nur im Lexikonteil; das Buch umfasst die Scan-Seiten 2–388, Titelei/Einleitung/Register enthalten keine Einträge) |
 | `status` | Prüfstatus des Eintrags | `automatisch` \| `geprueft` \| `unsicher` |
 
-### `daten/namen.csv` (5.286 Zeilen)
+### `daten/namen.csv` (5.438 Zeilen)
 
 | Feld | Beschreibung | Wertebereich |
 |---|---|---|
@@ -132,7 +132,7 @@ Primärschlüssel: (`schl_nr`, `stadium`). Beispiel (Schl.-Nr. 01838, Buchseite 
 Damit lässt sich der Name der Straße zu jedem beliebigen Stichtag ableiten — nicht nur
 zum Erhebungsstand 1936.
 
-### `daten/konkordanz_1936.csv` (425 Zeilen)
+### `daten/konkordanz_1936.csv` (427 Zeilen)
 
 Abgeleitet aus `namen.csv`: für jede Straße mit `status=automatisch` das Namensstadium,
 das zum Erhebungsstand des Adressbuchs Essen 1936 galt (Arbeitsstichtag **1936-06-30**,
@@ -158,20 +158,20 @@ Prüffall geführt (s. [Bekannte Grenzen](#bekannte-grenzen)).
 ## Bezifferte Qualität
 
 - **388** OCR-Buchseiten → **3.343** vom Parser segmentierte Einträge.
-- `daten/strassen.csv`: **3.338** Zeilen, davon **241** mit `status=unsicher`
-  (**3.097** `automatisch`).
-- `daten/namen.csv`: **5.286** Namensstadien (Datierungsgenauigkeit: **4.579** `tag`,
-  **314** `unbekannt`, **215** `jahr`, **178** `vor`).
-- `daten/konkordanz_1936.csv`: **425** Zeilen (**386** `eindeutig=ja`, 39 `eindeutig=nein`;
-  **134** mit Klammerzusatz).
+- `daten/strassen.csv`: **3.338** Zeilen, davon **244** mit `status=unsicher`
+  (**3.094** `automatisch`).
+- `daten/namen.csv`: **5.438** Namensstadien (Datierungsgenauigkeit: **4.715** `tag`,
+  **323** `unbekannt`, **212** `jahr`, **180** `vor`, **8** `jahrhundert`).
+- `daten/konkordanz_1936.csv`: **427** Zeilen (**388** `eindeutig=ja`, 39 `eindeutig=nein`;
+  **133** mit Klammerzusatz).
 
 ### Drei unabhängige Selbstprüfungen
 
 | Prüfung | Ergebnis |
 |---|---|
 | Schlüsselnummern (amtlich, 1–3771 erwartet) | 3.338 erfasst, 436 Lücken, **3 Dubletten** |
-| alphabetische Ordnung der Lemmata | **73** aus der Sortierung fallende Lemmata (38 bereits als `unsicher` markiert, 35 neu auffällig) |
-| Abgleich mit dem amtlichen Straßenverzeichnis (`strassen_aktuell.csv`) | **3.196** bestätigt, 142 nicht im Verzeichnis (erwartbar bei aufgehobenen Straßen) |
+| alphabetische Ordnung der Lemmata | **69** aus der Sortierung fallende Lemmata (38 bereits als `unsicher` markiert, 31 neu auffällig) |
+| Abgleich mit dem amtlichen Straßenverzeichnis (`strassen_aktuell.csv`) | **3.212** bestätigt, 126 nicht im Verzeichnis (erwartbar bei aufgehobenen Straßen) |
 
 Details, Methodik und Interpretation: [`docs/qualitaet.md`](docs/qualitaet.md); die
 konkreten Treffer (Lemma, Schlüsselnummer, Grund): `daten/pruefung_validierung.csv`.
@@ -195,7 +195,11 @@ Abschnittsbuchstabe im Lemma). Sie werden im Parser behoben; da die Fehler am se
 Sample gefunden und behoben werden, ist diese Ziehung als **Entwicklungs-Stichprobe**
 zu lesen, nicht als unabhängige Fehlerquote des Endstands. Vollständige Fehlerliste mit
 Korrekturen: [`docs/goldstandard/ergebnis.md`](docs/goldstandard/ergebnis.md);
-Prüfverfahren: [`docs/goldstandard/ANLEITUNG.md`](docs/goldstandard/ANLEITUNG.md).
+Prüfverfahren: [`docs/goldstandard/ANLEITUNG.md`](docs/goldstandard/ANLEITUNG.md). Die 21
+Regeln der Reparatur sind in
+[`docs/specs/2026-09-11-parser-reparatur-design.md`](docs/specs/2026-09-11-parser-reparatur-design.md)
+beschrieben, der Nachweis jeder Änderung in
+[`docs/regression/2026-09-parser-reparatur.md`](docs/regression/2026-09-parser-reparatur.md).
 
 ### Erhebungsstand des Adressbuchs Essen 1936
 
