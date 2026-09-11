@@ -37,6 +37,12 @@ bleibt in strassen.csv/namen.csv erhalten. Gründe:
   - "Schlüsselnummer mehrfach": dieselbe schl_nr kommt bei mehreren Einträgen
     vor — welcher davon die "echte" Nummer trägt, wird nicht geraten,
     sondern beide werden zur manuellen Prüfung markiert.
+  - Hinweise aus datum.py/kopf.py wörtlich ("Datum: Komma nach Tag", "Datum ohne
+    Doppelpunkt", "Monatsname OCR-korrigiert", "Datum: Doppeljahr", "Datum: Tag
+    ungültig", "urspr. ohne Doppelpunkt", "Straßenklasse ohne Marker",
+    "Straßenklasse OCR-korrigiert"): tolerant erkannter Wert, übernommen und markiert.
+  - "Stadtteil fehlt" / "Straßenklasse fehlt": Kopffeld leer, obwohl kein reiner
+    Verweis-Eintrag.
 """
 import re
 import sys
@@ -178,6 +184,23 @@ def main(ocr_dir="ocr/seiten", ausgabe_dir="daten"):
             gruende.append("Namensstadium auffällig")
         if _feld_zu_lang(klasse_str) or _namensgruppe_auffaellig(k.namensgruppe):
             gruende.append("Feld auffällig (Länge)")
+        # Toleranz-Hinweise aus Kopf und Stadien werden wörtlich zu Prüfgründen
+        # (Spec 2026-09-11, Regeln 6, 14–20): Wert übernommen UND gekennzeichnet.
+        for hinweis in k.hinweise:
+            if hinweis not in gruende:
+                gruende.append(hinweis)
+        for s in stadien:
+            for hinweis in filter(None, s.hinweis.split("; ")):
+                if hinweis not in gruende:
+                    gruende.append(hinweis)
+        # Leere Kopffelder (Regel 21): im Druck hat praktisch jeder Eintrag Stadtteil
+        # und Straßenklasse; fehlt eines, hat der Parser versagt. Ausnahme: reiner
+        # Verweis-Eintrag (Siehe im Kopf, keine Namenskette), z. B. Grendgasse 01078.
+        reiner_verweis = bool(mv_kopf) and not stadien
+        if not k.stadtteile and not reiner_verweis:
+            gruende.append("Stadtteil fehlt")
+        if not k.strassenklassen and not reiner_verweis:
+            gruende.append("Straßenklasse fehlt")
 
         for grund in gruende:
             rohtext = ("; ".join(rauschnamen)[:200] if grund == "Namensstadium auffällig"

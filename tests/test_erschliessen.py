@@ -22,7 +22,7 @@ _SEITE = (
     "Stadtteil Fischlaken, Str.-Kl.: Gemeindestraße, Str.-Gr.: Lagebezeichnung, "
     "05. Mai 1900: Straße Am Alten Wasserwerk Nördlich Vom Deich. "
     "Sackgasse Ohne Angabe: Schl.-Nr.: 04000, Stadtteil Musterhausen, "
-    "Str.-Kl.: Gemeindestraße."
+    "Str.-Kl.: Gemeindestraße, Str.-Gr.: Flurname."
 )
 
 
@@ -306,7 +306,7 @@ _SEITE4 = (
     "Siehe Anderestraße. "
     "Kurzverweis: Schl.-Nr.: 07002, Stadtteil Musterhausen, "
     "Str.-Kl.: Gemeindestraße, Str.-Gr.: Flurname, "
-    "01. Januar 1900, Kurzverweis. Siehe Zielstraße."
+    "01. Januar 1900: Kurzverweis. Siehe Zielstraße."
 )
 
 
@@ -386,3 +386,72 @@ def test_cli_exit_code_0_bei_erfolgreichem_lauf(tmp_path):
     )
     ergebnis = subprocess.run([sys.executable, "-c", code], capture_output=True)
     assert ergebnis.returncode == 0
+
+
+# --- Task 8: Hinweise aus Kopf/Stadien als Prüfgründe, leere Kopffelder ---
+
+import csv as _csv
+
+
+def _lauf5(tmp_path, seitentext, nummer=100):
+    ocr = tmp_path / "ocr"
+    ocr.mkdir()
+    (ocr / f"s{nummer:03d}.txt").write_text(seitentext, encoding="utf-8")
+    aus = tmp_path / "daten"
+    main(ocr_dir=str(ocr), ausgabe_dir=str(aus))
+    strassen = list(_csv.DictReader(open(aus / "strassen.csv", encoding="utf-8")))
+    pruefung = list(_csv.DictReader(open(aus / "pruefung.csv", encoding="utf-8")))
+    return strassen, pruefung
+
+
+def test_datums_hinweis_wird_pruefgrund_und_unsicher(tmp_path):
+    """Eskenshof, Schl.-Nr. 00817, S. 110: '13, Juni 1973: Eskenshof'."""
+    strassen, pruefung = _lauf5(tmp_path,
+        "Eskenshof: Schl.-Nr.: 00817, Stadtteil Überruhr-Holthausen, Str.-Kl.: Gemeindestraße, "
+        "Str.-Gr.: Hofname, 13, Juni 1973: Eskenshof. Nach dem Behandigungsgut Esken.\n")
+    assert strassen[0]["status"] == "unsicher"
+    assert [z["grund"] for z in pruefung] == ["Datum: Komma nach Tag"]
+
+
+def test_kopf_hinweis_wird_pruefgrund(tmp_path):
+    strassen, pruefung = _lauf5(tmp_path,
+        "Eibergweg: Schl.-Nr.: 00733, Stadtteil Freisenbruch, Gemeindestraße, Str.-Gr.: "
+        "Stadt und Ort, 20. November 1937: Eibergweg. Erläuterung.\n")
+    assert strassen[0]["strassenklasse"] == "Gemeindestraße"
+    assert strassen[0]["status"] == "unsicher"
+    assert "Straßenklasse ohne Marker" in [z["grund"] for z in pruefung]
+
+
+def test_mehrere_hinweise_eines_stadiums_werden_einzelne_gruende(tmp_path):
+    strassen, pruefung = _lauf5(tmp_path,
+        "Testweg: Schl.-Nr.: 00001, Stadtteil X, Str.-Kl.: Gemeindestraße, Str.-Gr.: Hofname, "
+        "13, Novemner 1900: Testweg. Erläuterung.\n")
+    gruende = sorted(z["grund"] for z in pruefung)
+    assert gruende == ["Datum: Komma nach Tag", "Monatsname OCR-korrigiert"]
+
+
+def test_leerer_stadtteil_wird_pruefgrund(tmp_path):
+    """Manderscheidtstraße 02191 (Goldstandard) war trotz leerem Stadtteil 'automatisch'."""
+    strassen, pruefung = _lauf5(tmp_path,
+        "Testweg: Schl.-Nr.: 00001, Str.-Kl.: Gemeindestraße, Str.-Gr.: Hofname, "
+        "01. Januar 1900: Testweg. Erläuterung.\n")
+    assert strassen[0]["status"] == "unsicher"
+    assert "Stadtteil fehlt" in [z["grund"] for z in pruefung]
+
+
+def test_leere_strassenklasse_wird_pruefgrund(tmp_path):
+    strassen, pruefung = _lauf5(tmp_path,
+        "Testweg: Schl.-Nr.: 00001, Stadtteil X, Str.-Gr.: Hofname, "
+        "01. Januar 1900: Testweg. Erläuterung.\n")
+    assert "Straßenklasse fehlt" in [z["grund"] for z in pruefung]
+
+
+def test_reiner_verweis_eintrag_ohne_klasse_bleibt_automatisch(tmp_path):
+    """Grendgasse 01078 (S. 142): '…, Str.-Gr.: X. Siehe Grendplatz.' — kein Stadium,
+    Verweis im Kopf; fehlende Felder sind hier kein Parserfehler."""
+    strassen, pruefung = _lauf5(tmp_path,
+        "Grendgasse: Schl.-Nr.: 01078, Stadtteil Stadtkern, Str.-Gr.: Essener Geschichte. "
+        "Siehe Grendplatz.\n")
+    assert strassen[0]["verweis_auf"] == "Grendplatz"
+    assert "Straßenklasse fehlt" not in [z["grund"] for z in pruefung]
+    assert strassen[0]["status"] == "automatisch"
