@@ -58,7 +58,17 @@ def parse_namenskette(rest: str) -> list:
     for m in _STADIUM.finditer(rest):
         name = m.group("name").strip()
         d = lese_datum(m)
-        if d.trenner != ":":
+        # Ein bloßes Jahr ist der schwächste Stempel: geschrieben als 'jjjj:'
+        # (m.group('jahr_bloss')) oder als Volldatum, dessen Tag/Monat ungültig war
+        # und das lese_datum deshalb auf das Jahr zurückgestuft hat (nicht aber ein
+        # ausdrückliches 'vor/nach/um/etwa/gegen jjjj:' — das ist bewusst so
+        # geschrieben, kein Degradat). Hinter Rauschen liest sich sonst ein
+        # verstümmeltes Volldatum (Tag/Monat verloren) unbemerkt als stilles Jahr
+        # (Dudweilerstraße 00685, S. 104: 'A 0, EEE 1935:' statt '14. November
+        # 1935:'). Ein bloßes Jahr unterliegt deshalb IMMER der Positionsregel,
+        # auch mit regulärem Doppelpunkt-Trenner.
+        schwach = d.praezision == "jahr" and not m.group("qualifier")
+        if d.trenner != ":" or schwach:
             if not _position_erlaubt(rest, m.start()) or not name[:1].isupper():
                 continue
         roh.append((m.start(), d.gueltig_ab, d.praezision, name, False, d.hinweis))

@@ -101,10 +101,18 @@ def _stadienkette(schwanz: str) -> list:
     """Nur eine ununterbrochene Kette von Stadien direkt nach dem Kopfbereich
     akzeptieren (Lücke ≤ _MAX_LUECKE). Stempel ohne regulären Doppelpunkt zählen nur
     am Kettenanfang oder nach Komma und mit großgeschriebenem Namen (Spec Regel 15) —
-    dieselbe Positionsregel wie namen.parse_namenskette."""
+    dieselbe Positionsregel wie namen.parse_namenskette. Ein bloßes Jahr (geschrieben
+    als 'jjjj:' ODER ein Volldatum mit ungültigem Tag/Monat, das lese_datum deshalb
+    auf das Jahr zurückstuft — nicht aber ein ausdrückliches 'vor/nach/um/etwa/gegen
+    jjjj:') unterliegt derselben Regel IMMER, auch mit Doppelpunkt: es ist der
+    schwächste Stempel und degradiert hinter Rauschen sonst ein verstümmeltes
+    Volldatum unbemerkt zu einem stillen Jahr (Dudweilerstraße 00685, S. 104: 'A 0,
+    EEE 1935:' statt '14. November 1935:')."""
     kette = []
     for t in _STADIUM.finditer(schwanz):
-        if t.group("trenner") != ":":
+        d = lese_datum(t)
+        schwach = d.praezision == "jahr" and not t.group("qualifier")
+        if t.group("trenner") != ":" or schwach:
             if not _position_erlaubt(schwanz, t.start()) or not t.group("name").strip()[:1].isupper():
                 continue
         if kette and t.start() - kette[-1].end() > _MAX_LUECKE:

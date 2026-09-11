@@ -148,3 +148,25 @@ def test_jahrhundert_stadium():
 def test_numerisches_datum_stadium():
     s = parse_namenskette("29.08.1927: Schlenterstraße.")
     assert (s[0].gueltig_ab, s[0].name) == ("1927-08-29", "Schlenterstraße")
+
+
+def test_bloss_jahr_hinter_rauschen_wird_nicht_als_stadium_gelesen():
+    """Dudweilerstraße, Schl.-Nr. 00685, S. 104: Das Volldatum '14. November 1935'
+    ist im OCR verstümmelt ('A 0, EEE' statt 'November'). Der Bloße-Jahr-Stempel
+    '1935:', der aus dem Rauschen übrig bleibt, darf das verlorene Tag/Monat nicht
+    stillschweigend zu einem gültigen Jahresdatum degradieren — precision-first:
+    kein Stadium statt eines stillen Falsch-Datums."""
+    s = parse_namenskette("14. November A 0, EEE 1935: Dudweilerstraße.")
+    assert s == []
+
+
+def test_bloss_jahr_in_der_kette_nach_komma_bleibt_gueltig():
+    """'urspr.: Viehofer Chausee, 1908: Parkstraße.' — ein bloßes Jahr direkt nach
+    einem Komma in der Kette (Positionsregel erfüllt) bleibt ein gültiges Stadium."""
+    s = parse_namenskette("urspr.: Viehofer Chausee, 1908: Parkstraße.")
+    assert [(x.gueltig_ab, x.name) for x in s] == [("", "Viehofer Chausee"), ("1908", "Parkstraße")]
+
+
+def test_bloss_jahr_am_kettenanfang_bleibt_gueltig():
+    s = parse_namenskette("1902: Barkhofstraße.")
+    assert [(x.gueltig_ab, x.name) for x in s] == [("1902", "Barkhofstraße")]
