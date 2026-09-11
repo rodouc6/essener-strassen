@@ -33,9 +33,10 @@ ANKER = re.compile(r"Sch[a-zA-Z!|]{0,3}[.,]?\s*-?\s*Nr\.?\s*:")
 # (gefolgt von Leerzeichen, nicht Bindestrich/Buchstabe) bricht wie bisher ab
 # — ohne den Ausschluss würde die Lemma-Suche über das Komma bzw. den
 # Satzpunkt hinweg rückwärts weiterlaufen und Reste des vorigen Rumpfs ins
-# Lemma ziehen.
+# Lemma ziehen. Ein Punkt nach 'St' ('St. Annental', 15 Lemmata im Material) ist ebenfalls
+# Abkürzungspunkt und beendet die Rückwärtssuche nicht (Goldstandard 02727).
 _LEMMA = re.compile(
-    r"((?:(?!,|;|:|\.(?!-|[A-Za-zÄÖÜäöüß]))[^\n]){2,60}?)\s*:\s*$"
+    r"((?:(?!,|;|:|(?<!\bSt)\.(?!-|[A-Za-zÄÖÜäöüß]))[^\n]){2,60}?)\s*:\s*$"
 )
 
 

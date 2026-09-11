@@ -97,3 +97,23 @@ def test_segmentiere_ohne_verworfene_parameter_bleibt_kompatibel():
     seiten = [(211, "Kruselbeek: Schl.-Nr.: 01827, Stadtteil Fischlaken.")]
     eintraege = segmentiere(seiten)
     assert len(eintraege) == 1
+
+
+def test_lemma_mit_st_abkuerzung_und_leerzeichen():
+    """St. Annental, Schl.-Nr. 02727, S. 309 — Goldstandard-Fehler: Lemma war 'Annental'.
+    15 Lemmata im Material beginnen mit 'St. ' (Leerzeichen, nicht Bindestrich)."""
+    seiten = [(309, "Lit.: Herbert Steinhardt. In: Das Münster am Hellweg 1975, S. 139 ff. "
+                    "St. Annental: Schl.-Nr.: 02727, Stadtteile Bergerhausen und Rellinghausen, "
+                    "Str.-Kl.: Gemeindestraße.")]
+    eintraege = segmentiere(seiten)
+    assert eintraege[0].lemma_roh == "St. Annental"
+
+
+def test_lemma_mit_st_bindestrich_bleibt():
+    seiten = [(309, "Text. St.-Ingbert-Höhe: Schl.-Nr.: 02728, Stadtteil Leithe.")]
+    assert segmentiere(seiten)[0].lemma_roh == "St.-Ingbert-Höhe"
+
+
+def test_lemma_endet_weiterhin_am_satzpunkt():
+    seiten = [(211, "Erläuterung endet hier. Kruselbeek: Schl.-Nr.: 01827, Stadtteil Fischlaken.")]
+    assert segmentiere(seiten)[0].lemma_roh == "Kruselbeek"
