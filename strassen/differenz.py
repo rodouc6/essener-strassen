@@ -6,13 +6,22 @@ stillschweigend kippt. Aufruf:
 
   git show HEAD:daten/strassen.csv > /tmp/alt/strassen.csv   (analog namen.csv)
   python3 -m strassen.differenz /tmp/alt daten --ausgabe docs/regression/<datum>.md
+
+Stadien-Zuordnung je schl_nr: zuerst werden Stadien mit identischer Signatur
+(gueltig_ab, datum_praezision, name, ist_urspruenglich) zwischen alt und neu
+gepaart und aus dem Vergleich entfernt (Multimengen-Zuordnung — jedes Vorkommen
+einzeln). Die verbleibenden, nicht per Signatur zuordenbaren Stadien werden in
+ihrer ursprünglichen Reihenfolge paarweise verglichen (datum_veraendert /
+name_veraendert); überzählige Reststadien gelten als gewonnen bzw. verloren.
+So wird eine mittendrin eingefügte oder entfallene Zeile nicht fälschlich als
+Änderung einer unveränderten Nachbarzeile gewertet.
 """
 import argparse
 import csv
 from collections import defaultdict
 from pathlib import Path
 
-_KOPFFELDER = ["lemma", "stadtteile", "strassenklasse", "namensgruppe"]
+_KOPFFELDER = ["lemma", "stadtteile", "strassenklasse", "namensgruppe", "verweis_auf", "buchseite"]
 
 _KATEGORIEN = [
     ("eintrag_neu", "Eintrag neu"),
@@ -44,6 +53,33 @@ def _stadium_text(z):
     return f"{z['gueltig_ab']} {z['name']}".strip()
 
 
+def _stadium_signatur(z):
+    return (z["gueltig_ab"], z["datum_praezision"], z["name"], z["ist_urspruenglich"])
+
+
+def _datum_text(z):
+    zusatz = ", urspr." if z["ist_urspruenglich"] == "wahr" else ""
+    return f"{z['gueltig_ab']} ({z['datum_praezision']}{zusatz})"
+
+
+def _paare_stadien(alt_st, neu_st):
+    """Signatur-Matching (Multimenge) zuerst, Rest paarweise nach Reihenfolge."""
+    neu_index_je_signatur = defaultdict(list)
+    for i, z in enumerate(neu_st):
+        neu_index_je_signatur[_stadium_signatur(z)].append(i)
+
+    zugeordnet_alt, zugeordnet_neu = set(), set()
+    for i, z in enumerate(alt_st):
+        kandidaten = neu_index_je_signatur.get(_stadium_signatur(z))
+        if kandidaten:
+            zugeordnet_neu.add(kandidaten.pop(0))
+            zugeordnet_alt.add(i)
+
+    alt_rest = [z for i, z in enumerate(alt_st) if i not in zugeordnet_alt]
+    neu_rest = [z for i, z in enumerate(neu_st) if i not in zugeordnet_neu]
+    return alt_rest, neu_rest
+
+
 def vergleiche(alt_dir, neu_dir) -> dict:
     alt_s, alt_n = _lade(alt_dir)
     neu_s, neu_n = _lade(neu_dir)
@@ -68,18 +104,20 @@ def vergleiche(alt_dir, neu_dir) -> dict:
             d["status_zu_automatisch"].append(basis)
 
         alt_st, neu_st = alt_n.get(schl, []), neu_n.get(schl, [])
-        # Paarweise nach Position; überzählige Stadien sind gewonnen/verloren.
-        for i in range(max(len(alt_st), len(neu_st))):
-            if i >= len(alt_st):
-                d["stadium_gewonnen"].append({**basis, "neu": _stadium_text(neu_st[i])})
-            elif i >= len(neu_st):
-                d["stadium_verloren"].append({**basis, "alt": _stadium_text(alt_st[i])})
+        alt_rest, neu_rest = _paare_stadien(alt_st, neu_st)
+        # Reststadien (ohne Signatur-Treffer) paarweise nach Reihenfolge;
+        # überzählige Reststadien sind gewonnen/verloren.
+        for i in range(max(len(alt_rest), len(neu_rest))):
+            if i >= len(alt_rest):
+                d["stadium_gewonnen"].append({**basis, "neu": _stadium_text(neu_rest[i])})
+            elif i >= len(neu_rest):
+                d["stadium_verloren"].append({**basis, "alt": _stadium_text(alt_rest[i])})
             else:
-                x, y = alt_st[i], neu_st[i]
-                if (x["gueltig_ab"], x["datum_praezision"]) != (y["gueltig_ab"], y["datum_praezision"]):
+                x, y = alt_rest[i], neu_rest[i]
+                if (x["gueltig_ab"], x["datum_praezision"], x["ist_urspruenglich"]) != \
+                   (y["gueltig_ab"], y["datum_praezision"], y["ist_urspruenglich"]):
                     d["datum_veraendert"].append({**basis, "stadium": x["stadium"],
-                                                  "alt": f"{x['gueltig_ab']} ({x['datum_praezision']})",
-                                                  "neu": f"{y['gueltig_ab']} ({y['datum_praezision']})"})
+                                                  "alt": _datum_text(x), "neu": _datum_text(y)})
                 if x["name"] != y["name"]:
                     d["name_veraendert"].append({**basis, "stadium": x["stadium"],
                                                  "alt": x["name"], "neu": y["name"]})

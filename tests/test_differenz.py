@@ -66,6 +66,39 @@ def test_eintrag_neu_und_entfallen(tmp_path):
     assert d["eintrag_entfallen"] == [{"schl_nr": "1", "lemma": "A"}]
 
 
+def test_verweis_auf_und_buchseite_werden_verglichen(tmp_path):
+    _schreibe(tmp_path / "alt", [_s("1", "A", verweis_auf="", buchseite="1")], [])
+    _schreibe(tmp_path / "neu", [_s("1", "A", verweis_auf="B", buchseite="1")], [])
+    d = vergleiche(tmp_path / "alt", tmp_path / "neu")
+    assert d["kopffeld_veraendert"] == [{"schl_nr": "1", "lemma": "A", "feld": "verweis_auf",
+                                         "alt": "", "neu": "B"}]
+
+
+def test_ist_urspruenglich_veraendert(tmp_path):
+    alt_zeile = _n("1", 1, "1920", "II", "jahr")
+    neu_zeile = dict(alt_zeile)
+    neu_zeile["ist_urspruenglich"] = "wahr"
+    _schreibe(tmp_path / "alt", [_s("1", "A")], [alt_zeile])
+    _schreibe(tmp_path / "neu", [_s("1", "A")], [neu_zeile])
+    d = vergleiche(tmp_path / "alt", tmp_path / "neu")
+    assert d["datum_veraendert"] == [{"schl_nr": "1", "lemma": "A", "stadium": "1",
+                                      "alt": "1920 (jahr)", "neu": "1920 (jahr, urspr.)"}]
+    assert d["name_veraendert"] == []
+
+
+def test_stadium_einfuegung_in_der_mitte_kein_falscher_wechsel(tmp_path):
+    _schreibe(tmp_path / "alt", [_s("1", "A")],
+              [_n("1", 1, "1900-01-01", "Alt A"), _n("1", 2, "1950-01-01", "Alt B")])
+    _schreibe(tmp_path / "neu", [_s("1", "A")],
+              [_n("1", 1, "1900-01-01", "Alt A"), _n("1", 2, "1920-01-01", "Mittelname"),
+               _n("1", 3, "1950-01-01", "Alt B")])
+    d = vergleiche(tmp_path / "alt", tmp_path / "neu")
+    assert d["stadium_gewonnen"] == [{"schl_nr": "1", "lemma": "A", "neu": "1920-01-01 Mittelname"}]
+    assert d["stadium_verloren"] == []
+    assert d["datum_veraendert"] == []
+    assert d["name_veraendert"] == []
+
+
 def test_bericht_enthaelt_zaehlung_und_zeilen(tmp_path):
     _schreibe(tmp_path / "alt", [_s("1", "A")], [])
     _schreibe(tmp_path / "neu", [_s("1", "A")], [_n("1", 1, "1939-05-26", "Kamerunstraße")])
