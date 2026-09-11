@@ -261,3 +261,20 @@ def test_klassenwert_mit_zwei_fehlern_bleibt_wie_gelesen():
     k = parse_kopf(rumpf)
     assert k.strassenklassen == ["Gemeidstrase"]
     assert k.hinweise == ()
+
+
+def test_klassenwort_ohne_marker_ohne_stadtteilangabe():
+    """Synthetisch: die 13 Korpus-Fälle tragen alle eine Stadtteil-Angabe; dieser Test
+    sichert den Fallback ab, wenn diese ganz fehlt."""
+    rumpf = "00733, Gemeindestraße, Str.-Gr.: Stadt und Ort, 20. November 1937: Eibergweg."
+    k = parse_kopf(rumpf)
+    assert k.strassenklassen == ["Gemeindestraße"]
+    assert k.stadtteile == []
+    assert "Straßenklasse ohne Marker" in k.hinweise
+
+
+def test_kein_klassenwort_ohne_stadtteilangabe_und_ohne_klassenwort():
+    rumpf = "00733, Str.-Gr.: Stadt und Ort, 20. November 1937: Eibergweg."
+    k = parse_kopf(rumpf)
+    assert k.strassenklassen == []
+    assert "Straßenklasse ohne Marker" not in k.hinweise

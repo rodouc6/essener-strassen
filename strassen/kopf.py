@@ -173,6 +173,8 @@ def parse_kopf(rumpf: str):
         # OCR-Toleranz ohne Marker, precision-first). Fehlt eine Stadtteil-Angabe
         # ganz, wird stattdessen der Rohtext vor 'Str.-Gr.:' durchsucht.
         if stadtteile:
+            # Nimmt an, dass Klassenwörter zusammenhängend am Ende der
+            # Stadtteil-Liste stehen (so beobachtet in allen 13 Korpus-Fällen).
             ende = len(stadtteile)
             while ende > 0 and stadtteile[ende - 1] in STRASSENKLASSEN:
                 ende -= 1
