@@ -68,6 +68,28 @@ schließlich, für einen historisch begründeten Stichtag, eine Konkordanz zum
 Namensstand des Adressbuchs Essen 1936 abgeleitet
 (`strassen/veroeffentlichen.py`, s. u.).
 
+### Stufe 5 — Unabhängige LLM-Lesung und Korrektur-Overlay
+
+Zusätzlich zu den drei Selbstprüfungen lesen zwei Sprachmodelle unabhängig voneinander
+die Seitenbilder der Stichprobe direkt (`strassen/seiten.py` schneidet die Bild-Ausschnitte,
+`strassen/llm_leser.py` fragt die Modelle über einen OpenAI-kompatiblen Endpunkt ab) — **ohne**
+den OCR-Text zu sehen, damit ein gemeinsamer OCR-Fehler nicht unentdeckt bleibt. Weichen
+beide Modell-Lesungen oder eine Modell-Lesung vom Datensatz ab, landet der Fall in
+`daten/pruefung_llm.csv` (`strassen/llm_vergleich.py`, Unterbefehl `pruefliste`); ein Mensch
+prüft jeden Fund gegen den Scan und trägt bestätigte Korrekturen in `daten/korrekturen.csv`
+ein (`strassen/llm_vergleich.py uebernehmen` übernimmt sie aus der geprüften Prüfliste).
+Das Korrektur-Overlay wendet `strassen/erschliessen.py` als letzten Schritt auf die
+Parser-Ausgabe an (`strassen/korrekturen.py`); jeder betroffene Eintrag erhält
+`status=geprueft` — die höchste Stufe, weil sie bedeutet: der ganze Eintrag wurde gegen den
+Scan geprüft, nicht nur das korrigierte Feld (s. Data Dictionary). **Wichtig:** Die
+Modell-Lesung selbst ändert den Status nie — nur eine von einem Menschen bestätigte
+Korrektur tut das (Option A: Modelle liefern Prüfhinweise, keine automatischen
+Übernahmen). Ein späterer Schwenk zu automatischer Übernahme würde hier ausdrücklich
+ausgewiesen. `daten/pruefung.csv`, das Parser-Protokoll der Erschließung, wird durch
+Korrekturen **nicht** bereinigt — seine Einträge bleiben stehen, auch wenn der
+zugehörige Datensatz-Eintrag inzwischen `status=geprueft` trägt; maßgeblich für den
+aktuellen Stand ist der Status in `strassen.csv`, nicht `pruefung.csv`.
+
 Näheres zur Ankererkennung, zur OCR-Fehlertoleranz und zur Stufenarchitektur:
 [`docs/specs/2026-08-20-strassenverzeichnis-datensatz-design.md`](docs/specs/2026-08-20-strassenverzeichnis-datensatz-design.md),
 Abschnitt 3.
@@ -90,6 +112,14 @@ Da die PDFs und `ocr/seiten/` selbst nicht veröffentlicht werden (s.
 Neuerstellung des OCR-Rohtexts, nicht die Nachvollziehbarkeit des veröffentlichten
 Datensatzes.
 
+Für die **Neuerstellung der LLM-Prüfliste** (`strassen/llm_vergleich.py pruefliste`,
+`strassen/llm_leser.py`) braucht es zusätzlich optional Zugang zu einem
+OpenAI-kompatiblen Inferenzendpunkt, konfiguriert über die Umgebungsvariablen
+`LLM_BASE_URL` und `LLM_API_KEY` (lokal per `.env`, per `.gitignore` von der
+Veröffentlichung ausgeschlossen). Ohne diesen Zugang bleibt die bereits geprüfte
+Prüfliste (`daten/pruefung_llm.csv`) unverändert nutzbar; das Korrektur-Overlay
+(`daten/korrekturen.csv`, `strassen/erschliessen.py`) braucht ihn nicht.
+
 ## Data Dictionary
 
 Zwei verknüpfte Tabellen statt einer flachen Konkordanz, weil ein Straßeneintrag
@@ -108,7 +138,7 @@ maschinenlesbare Schema liegt zusätzlich in [`datapackage.json`](datapackage.js
 | `namensgruppe` | Str.-Gr. der Quelle, wörtlich übernommen | Text (Flurname, Person, Lagebezeichnung, Stadt und Ort …) |
 | `verweis_auf` | Ziel-Lemma bei „Siehe X" | Text oder leer (223 von 3.338 Zeilen gefüllt) |
 | `buchseite` | Beleg: Seite in Dickhoff 2015 | ganzzahlig, 23–362 (Einträge nur im Lexikonteil; das Buch umfasst die Scan-Seiten 2–388, Titelei/Einleitung/Register enthalten keine Einträge) |
-| `status` | Prüfstatus des Eintrags | `automatisch` \| `geprueft` \| `unsicher` |
+| `status` | Prüfstatus des Eintrags | `automatisch` (Parser ohne Prüfgrund) \| `unsicher` (Parser mit Prüfgrund, Wert übernommen und gekennzeichnet) \| `geprueft` (Eintrag vollständig gegen den Scan geprüft, Korrekturen über `daten/korrekturen.csv` angewandt — höchste Stufe) |
 
 ### `daten/namen.csv` (5.456 Zeilen)
 
@@ -155,6 +185,30 @@ Name selbst nicht belastbar ist. Einträge, deren Namenskette intern widersprüc
 (letztes Stadium ≠ Lemma), werden nicht in die Konkordanz aufgenommen, sondern als
 Prüffall geführt (s. [Bekannte Grenzen](#bekannte-grenzen)).
 
+### `daten/korrekturen.csv`
+
+Korrektur-Overlay (Stufe 5, s. o.): manuell gegen den Scan geprüfte Korrekturen, die
+`strassen/erschliessen.py` als letzten Schritt auf die Parser-Ausgabe anwendet. Jede
+Zeile bestätigt oder korrigiert **ein Feld eines Eintrags** — wer eine Zeile einträgt,
+hat den ganzen Eintrag (Kopf und Namensstadien-Kette) gegen den Scan geprüft, deshalb
+erhält der betroffene Eintrag `status=geprueft`, auch wenn nur ein Feld tatsächlich
+abweicht.
+
+| Feld | Beschreibung | Wertebereich |
+|---|---|---|
+| `schl_nr` | Fremdschlüssel auf `strassen.csv` | siehe oben |
+| `feld` | geprüftes Feld | `lemma` \| `stadtteile` \| `strassenklasse` \| `namensgruppe` \| `verweis_auf` \| `stadium_N_datum` \| `stadium_N_name` \| `stadium_N_urspruenglich` \| `eintrag` (Bestätigung ohne Wertänderung) |
+| `wert_alt` | Parser-Wert zum Prüfzeitpunkt, in Stichprobenform (z. B. `vor 1898`) | Text; leer = Stadium an Position N wird nachgetragen; weicht der Wert beim Anwenden vom aktuellen Parser-Ergebnis ab, bricht der Lauf ab — die Stelle muss neu geprüft werden |
+| `wert_neu` | korrigierter Wert | Text; bei Daten der **gedruckte** Text (z. B. `29.08.1927`), nicht die ISO-Form; leer bei beiden Feldern eines Stadiums (`stadium_N_datum` und `stadium_N_name`) = Stadium wird gestrichen |
+| `beleg` | gedruckter Wortlaut der geprüften Stelle | Text, ≤ 200 Zeichen |
+| `quelle` | Herkunft der Korrektur | `goldstandard` \| `llm-lauf` |
+| `datum` | Tag der Prüfung | ISO-Datum |
+
+Diese Datei ist **Eingabe** von `strassen/erschliessen.py`, nicht dessen Protokoll —
+das bleibt `daten/pruefung.csv` (s. u.), das durch Korrekturen **nicht** bereinigt
+wird; wirksam wird eine Korrektur im Datensatz über `status=geprueft` und die
+korrigierten Werte selbst, nicht über eine Änderung an `pruefung.csv`.
+
 ## Bezifferte Qualität
 
 - **388** OCR-Buchseiten → **3.343** vom Parser segmentierte Einträge.
@@ -175,6 +229,19 @@ Prüffall geführt (s. [Bekannte Grenzen](#bekannte-grenzen)).
 
 Details, Methodik und Interpretation: [`docs/qualitaet.md`](docs/qualitaet.md); die
 konkreten Treffer (Lemma, Schlüsselnummer, Grund): `daten/pruefung_validierung.csv`.
+
+### Unabhängige LLM-Lesung
+
+> **Platzhalter bis zum Volllauf.** Dieser Abschnitt beschreibt das Verfahren; die
+> bezifferten Ergebnisse werden erst nach dem vollständigen LLM-Lesungslauf eingetragen.
+> Zahlen: siehe verlinkte Dateien.
+
+Zwei Sprachmodelle lesen die Seitenbilder der Stichprobe unabhängig voneinander und ohne
+Kenntnis des OCR-Texts (s. [Methode, Stufe 5](#stufe-5--unabhängige-llm-lesung-und-korrektur-overlay)).
+Ablauf und Kennzahlen dieses Laufs (Trefferzahlen je Modell, Übereinstimmung mit dem
+Datensatz, Anteil übernommener Korrekturen): [`docs/llm_lesung.md`](docs/llm_lesung.md).
+Die Auswirkung auf die Goldstandard-Fehlerquote (mit vs. ohne LLM-gestützte Prüfung):
+[`docs/goldstandard/ergebnis_llm.md`](docs/goldstandard/ergebnis_llm.md).
 
 ### Goldstandard-Stichprobe (Entwicklungs-Stichprobe, Stand 2026-09-11)
 
@@ -277,6 +344,9 @@ Zum veröffentlichten (Zenodo-)Stand gehören:
 
 - `daten/strassen.csv`, `daten/namen.csv`, `daten/konkordanz_1936.csv`,
   `daten/pruefung_validierung.csv` (nur Lemma/Schlüsselnummer/Grund, keine Zitate)
+- `daten/korrekturen.csv` und `daten/pruefung_llm.csv` — nur Kopffeld- bzw.
+  Namensinhalte (Feldnamen, Werte, Belegtext ≤ 200 Zeichen, Datum, Quelle), keine
+  Bild- oder Modell-Rohdaten
 - der Code (`strassen/`, inkl. `strassen/ocr_lauf.py`)
 - diese Dokumentation (README, LICENSE, CITATION.cff, `datapackage.json`, `docs/`)
 
@@ -290,6 +360,10 @@ Zum veröffentlichten (Zenodo-)Stand gehören:
   ≤ 200 Zeichen roher OCR-Ausschnitt) zur manuellen Klärung auffälliger Fälle. Sie
   dienen dem internen Workflow (Round-Trip: sichten → korrigieren → Lauf wiederholen),
   nicht der Weitergabe.
+- `llm/` — die für die LLM-Lesung erzeugten Seitenbilder und die rohen
+  Modellantworten; per `.gitignore` von der Veröffentlichung ausgeschlossen.
+- `.env` — lokale Zugangsdaten (`LLM_BASE_URL`, `LLM_API_KEY`) für den
+  Inferenzendpunkt; per `.gitignore` ausgeschlossen.
 
 ## Lizenz und Zitierhinweis
 

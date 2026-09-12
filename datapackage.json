@@ -22,7 +22,7 @@
           {"name": "namensgruppe", "type": "string", "description": "Str.-Gr. der Quelle, wörtlich übernommen"},
           {"name": "verweis_auf", "type": "string", "description": "Ziel-Lemma bei 'Siehe X', sonst leer"},
           {"name": "buchseite", "type": "integer", "description": "Beleg: Seite in Dickhoff 2015"},
-          {"name": "status", "type": "string", "constraints": {"enum": ["automatisch", "geprueft", "unsicher"]}}
+          {"name": "status", "type": "string", "constraints": {"enum": ["automatisch", "geprueft", "unsicher"]}, "description": "automatisch = Parser ohne Prüfgrund; unsicher = Parser mit Prüfgrund (Wert übernommen, gekennzeichnet); geprueft = Eintrag vollständig gegen den Scan geprüft, Korrekturen über das Overlay daten/korrekturen.csv angewandt (höchste Stufe)"}
         ]
       }
     },
@@ -58,6 +58,24 @@
           {"name": "quelle", "type": "string", "description": "Herkunft der Angabe, wörtlich 'Dickhoff 2015'"},
           {"name": "zusatz", "type": "string", "description": "abgetrennter Klammerzusatz aus der Quelle (z. B. '(tlw.)', '(Verl.)'), leer wenn keiner vorlag"},
           {"name": "eindeutig", "type": "string", "constraints": {"enum": ["ja", "nein"]}, "description": "'nein', wenn derselbe (stadtteil, ehemalig)-Name im selben Stadtteil auf mehr als eine schl_nr trifft (Kollision)"}
+        ]
+      }
+    },
+    {
+      "name": "korrekturen",
+      "path": "daten/korrekturen.csv",
+      "format": "csv",
+      "encoding": "utf-8",
+      "description": "Manuell gegen den Scan geprüfte Korrekturen, die erschliessen.main als letzten Schritt auf die Parser-Ausgabe anwendet; betroffene Einträge erhalten status=geprueft.",
+      "schema": {
+        "fields": [
+          {"name": "schl_nr", "type": "string", "description": "Fremdschlüssel auf strassen.csv"},
+          {"name": "feld", "type": "string", "description": "lemma | stadtteile | strassenklasse | namensgruppe | verweis_auf | stadium_N_datum | stadium_N_name | stadium_N_urspruenglich | eintrag (Bestätigung ohne Wertänderung)"},
+          {"name": "wert_alt", "type": "string", "description": "Parser-Wert zum Prüfzeitpunkt (Datum in Stichprobenform, z. B. 'vor 1898'); leer = Stadium nachtragen. Weicht er beim Anwenden ab, bricht der Lauf ab."},
+          {"name": "wert_neu", "type": "string", "description": "korrigierter Wert; bei Daten der gedruckte Text ('29.08.1927'); leer bei beiden Feldern eines Stadiums = streichen"},
+          {"name": "beleg", "type": "string", "description": "gedruckter Wortlaut der Stelle, ≤ 200 Zeichen"},
+          {"name": "quelle", "type": "string", "constraints": {"enum": ["goldstandard", "llm-lauf"]}},
+          {"name": "datum", "type": "date", "description": "Tag der Prüfung"}
         ]
       }
     }

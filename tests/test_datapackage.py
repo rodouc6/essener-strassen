@@ -43,3 +43,23 @@ def test_datum_praezision_enum_enthaelt_jahrhundert():
     namen = next(r for r in paket["resources"] if r["name"] == "namen")
     feld = next(f for f in namen["schema"]["fields"] if f["name"] == "datum_praezision")
     assert "jahrhundert" in feld["constraints"]["enum"]
+
+
+def test_datapackage_hat_korrekturen_ressource_mit_feldern():
+    paket = json.loads(Path("datapackage.json").read_text(encoding="utf-8"))
+    r = next(r for r in paket["resources"] if r["name"] == "korrekturen")
+    assert r["path"] == "daten/korrekturen.csv"
+    assert [f["name"] for f in r["schema"]["fields"]] == ["schl_nr", "feld", "wert_alt", "wert_neu", "beleg", "quelle", "datum"]
+
+
+def test_status_beschreibung_nennt_alle_drei_werte():
+    paket = json.loads(Path("datapackage.json").read_text(encoding="utf-8"))
+    strassen = next(r for r in paket["resources"] if r["name"] == "strassen")
+    feld = next(f for f in strassen["schema"]["fields"] if f["name"] == "status")
+    assert feld["constraints"]["enum"] == ["automatisch", "geprueft", "unsicher"]
+    assert "geprueft" in feld.get("description", "") and "Overlay" in feld["description"]
+
+
+def test_korrekturen_csv_hat_kopfzeile():
+    kopf = Path("daten/korrekturen.csv").read_text(encoding="utf-8").splitlines()[0]
+    assert kopf == "schl_nr,feld,wert_alt,wert_neu,beleg,quelle,datum"

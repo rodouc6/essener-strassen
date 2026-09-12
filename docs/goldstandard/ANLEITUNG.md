@@ -79,6 +79,87 @@ manueller Schritt — dieses Dokument beschreibt ihn.
    **Achtung:** `ziehen` überschreibt `stichprobe.csv`. Nach einer Prüfung nicht erneut
    ziehen, ohne die ausgefüllte Datei zu sichern.
 
+## Korrekturen in den Datensatz bringen
+
+Eine ausgefüllte Prüfzeile mit `korrekt=nein` ist noch keine Korrektur im Datensatz —
+sie muss dafür als Zeile in `daten/korrekturen.csv` eingetragen werden. Diese Datei ist
+Eingabe von `strassen/erschliessen.py` (Korrektur-Overlay, `strassen/korrekturen.py`),
+nicht dessen Protokoll: `daten/pruefung.csv`, das Parser-Protokoll der Erschließung,
+wird durch Korrekturen **nicht** bereinigt und bleibt unverändert stehen. Wirksam wird
+eine Korrektur im Datensatz über den Status `geprueft` und die korrigierten Werte
+selbst — nicht über eine Änderung an `pruefung.csv`.
+
+### Spalten von `korrekturen.csv`
+
+| Spalte | Inhalt |
+|---|---|
+| `schl_nr` | Schlüsselnummer des Eintrags |
+| `feld` | `lemma` \| `stadtteile` \| `strassenklasse` \| `namensgruppe` \| `verweis_auf` \| `stadium_N_datum` \| `stadium_N_name` \| `stadium_N_urspruenglich` \| `eintrag` (Bestätigung ohne Wertänderung) |
+| `wert_alt` | aktueller Parser-Wert **in Stichprobenform** (wie er beim Prüfen dastand, z. B. `vor 1898`); leer bei Namensstadien = nachtragen |
+| `wert_neu` | korrigierter Wert; bei Daten der **gedruckte Text**, nicht die ISO-Form (z. B. `29.08.1927`, `um 1900`); leer bei beiden Feldern eines Stadiums = streichen |
+| `beleg` | gedruckter Wortlaut der Stelle, ≤ 200 Zeichen |
+| `quelle` | `goldstandard` \| `llm-lauf` |
+| `datum` | Tag der Prüfung, ISO-Datum |
+
+### Konvention „ganzer Eintrag"
+
+Wer eine Zeile einträgt, hat den **ganzen Eintrag** (Kopf und Namensstadien-Kette)
+gegen den Scan geprüft — nicht nur das eine korrigierte Feld. Deshalb erhält jeder
+Eintrag mit mindestens einer Korrektur- oder Bestätigungszeile `status=geprueft`, die
+höchste Stufe, auch wenn tatsächlich nur ein Feld abweicht.
+
+### Datumsform
+
+`wert_alt` bei einem Datumsfeld steht in der **Stichprobenform**, wie der Parser den
+Wert aktuell liefert (z. B. `vor 1898`, `1902-05-16`) — weicht der Wert beim Anwenden
+vom tatsächlichen Parser-Ergebnis ab, bricht der Lauf ab, weil die Stelle inzwischen
+anders gelesen wird und neu geprüft werden muss. `wert_neu` dagegen trägt den
+**gedruckten Text** aus dem Scan (`29.08.1927`, `um 1900`), nicht die ISO-Form — die
+Normalisierung übernimmt das Overlay selbst (`strassen.datum.lese_text`).
+
+### Nachtragen, Streichen, Bestätigen
+
+- **Nachtragen** (der Scan zeigt ein Namensstadium, das im Datensatz fehlt): Zeilen für
+  `stadium_N_datum` und `stadium_N_name` mit **leerem `wert_alt`** eintragen — `N` ist
+  die Position, die das Stadium im Ergebnis **nach** dem Einfügen tragen soll. Beide
+  Felder (Datum und Name) sind nötig, sonst bricht der Lauf ab. Die Position darf
+  höchstens direkt nach dem Ende der bisherigen Kette liegen.
+- **Streichen** (ein vom Parser erfasstes Stadium existiert im Scan gar nicht): Zeilen
+  für `stadium_N_datum` und `stadium_N_name` mit gefülltem `wert_alt` (dem aktuellen
+  Wert) und **beide `wert_neu` leer** eintragen — nur wenn beide Felder eines Stadiums
+  so markiert sind, wird gestrichen.
+- **Bestätigen** (der ganze Eintrag stimmt, keine Korrektur nötig): eine Zeile mit
+  `feld=eintrag` und leeren `wert_alt`/`wert_neu` eintragen. Bewirkt nur den
+  Statuswechsel auf `geprueft`.
+
+### Anwenden
+
+```bash
+python3 -m strassen.erschliessen
+```
+
+läuft die Pipeline neu und wendet dabei das Korrektur-Overlay auf die frische
+Parser-Ausgabe an. **Abbruch bei abweichendem `wert_alt`:** Stimmt der eingetragene
+`wert_alt` nicht mit dem tatsächlichen Parser-Wert überein, bricht der Lauf mit einer
+`KorrekturFehler`-Meldung ab (kein stiller Fehlanwendungsversuch) — die betroffene
+Stelle muss neu gegen den Scan geprüft und `wert_alt` aktualisiert werden, bevor der
+Lauf erneut gestartet wird.
+
+### Für die LLM-Prüfliste
+
+Funde aus der unabhängigen LLM-Lesung stehen in `daten/pruefung_llm.csv`
+(`strassen/llm_vergleich.py pruefliste`). Nach dem Prüfen gegen den Scan dort die
+Spalten `korrektur` und `beleg` ausfüllen (wie bei der Goldstandard-Stichprobe) und
+anschließend
+
+```bash
+python3 -m strassen.llm_vergleich uebernehmen
+```
+
+ausführen — das überträgt die geprüften Funde nach `daten/korrekturen.csv`
+(`quelle=llm-lauf`). Anschließend wie oben `python3 -m strassen.erschliessen` neu
+laufen lassen, damit die Korrekturen wirksam werden.
+
 ## Hinweis zur Stichprobe selbst
 
 Die Ziehung ist geschichtet (40 automatisch, 10 unsicher) und deterministisch
