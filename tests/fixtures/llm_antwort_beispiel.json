@@ -1,0 +1,15 @@
+{"buchseite": 23, "modell": "inferenz-qwen3-8-27b", "zeitstempel": "2026-09-12T10:00:00+00:00",
+ "prompt_hash": "abc", "rohtext": "", "fehler": "",
+ "eintraege": [
+  {"schl_nr": "1", "lemma": "Aachener Straße", "stadtteile": ["Frohnhausen"],
+   "strassenklasse": ["Gemeindestraße"], "namensgruppe": "Stadt und Ort", "verweis_auf": "",
+   "stadien": [{"datum": "vor 1898", "name": "Victoriastraße (tlw.)", "urspruenglich": false},
+               {"datum": "16.05.1902:", "name": "Aachener Straße", "urspruenglich": false}],
+   "unvollstaendig": false},
+  {"schl_nr": "00002", "lemma": "Abteistraße", "stadtteile": ["Werden"],
+   "strassenklasse": ["Bundesstraße"], "namensgruppe": "Lagebezeichnung", "verweis_auf": "",
+   "stadien": [{"datum": "16. Jh.", "name": "Abteistraße", "urspruenglich": true}],
+   "unvollstaendig": true},
+  {"schl_nr": "00003", "lemma": "Achenbachstraße", "stadtteile": [], "strassenklasse": [],
+   "namensgruppe": "", "verweis_auf": "Achenbachweg", "stadien": [], "unvollstaendig": false}
+ ]}
