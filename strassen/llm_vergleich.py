@@ -332,3 +332,164 @@ def formatiere_kennzahlen_md(kennzahlen: dict) -> str:
                 z.append(f"| {status} | {typ} | {e['verglichen']} | {e['gleich']} | {quote:.1f} % |")
         z.append("")
     return "\n".join(z) + "\n"
+
+
+FELDER_KORREKTUREN = ["schl_nr", "feld", "wert_alt", "wert_neu", "beleg", "quelle", "datum"]
+QUELLE_LLM = "llm-lauf"
+
+
+def _feldtyp(feld: str) -> str:
+    return re.sub(r"^stadium_\d+_", "stadium_", feld)
+
+
+def messe_goldstandard(stichprobe: list, modell) -> dict:
+    """Jedes geprüfte Feld der Stichprobe (soll = korrektur bei korrekt=nein, sonst wert)
+    gegen den Modellwert. Nachgetragene Zeilen (wert leer) zählen als 'fehlend' und gelten
+    als gefunden, wenn das Modell den Sollwert liefert."""
+    m_s, m_n = modell
+    ausgefuellt = [z for z in stichprobe if (z.get("korrekt") or "").strip()]
+    je_feldtyp = defaultdict(lambda: {"geprueft": 0, "korrekt": 0})
+    je_status = defaultdict(lambda: {"geprueft": 0, "korrekt": 0})
+    fehler, fehlend_gesamt, fehlend_gefunden = [], 0, 0
+    for z in ausgefuellt:
+        nein = z["korrekt"].strip().lower() == "nein"
+        soll = z["korrektur"] if nein else z["wert"]
+        ist = feldwert(m_s, m_n, z["schl_nr"], z["feld"])
+        treffer = ist == soll
+        if nein and not (z.get("wert") or "").strip():
+            fehlend_gesamt += 1
+            fehlend_gefunden += treffer
+        for d in (je_feldtyp[_feldtyp(z["feld"])], je_status[z.get("status", "")]):
+            d["geprueft"] += 1
+            d["korrekt"] += treffer
+        if not treffer:
+            fehler.append({"schl_nr": z["schl_nr"], "lemma": z["lemma"], "status": z.get("status", ""),
+                           "feld": z["feld"], "soll": soll, "ist": ist})
+
+    def _q(d):
+        return {**d, "fehlerquote": (d["geprueft"] - d["korrekt"]) / d["geprueft"] * 100 if d["geprueft"] else 0.0}
+
+    gesamt = {"geprueft": len(ausgefuellt), "korrekt": len(ausgefuellt) - len(fehler)}
+    return {"je_feldtyp": {k: _q(v) for k, v in sorted(je_feldtyp.items())},
+            "je_status": {k: _q(v) for k, v in sorted(je_status.items())},
+            "gesamt": _q(gesamt), "fehler": fehler,
+            "fehlend_gesamt": fehlend_gesamt, "fehlend_gefunden": fehlend_gefunden}
+
+
+def formatiere_ergebnis_llm_md(statistiken: dict) -> str:
+    z = ["# Goldstandard-Messung der LLM-Leser\n",
+         "Jedes geprüfte Feld der Goldstandard-Stichprobe (Seed 1936, menschlich geprüft) gegen den",
+         "Wert des jeweiligen Modells. Der Prompt wurde an anderen Seiten entwickelt und nach dieser",
+         "Messung nicht mehr verändert (Spec 2026-09-12, Abschnitt 4).\n"]
+    for kurz, st in statistiken.items():
+        g = st["gesamt"]
+        z += [f"## Modell `{kurz}`\n",
+              f"Gesamt: {g['geprueft']} Felder, {g['korrekt']} korrekt, Fehlerquote {g['fehlerquote']:.1f} %. "
+              f"Vom Parser ausgelassene Felder: {st['fehlend_gefunden']} von {st['fehlend_gesamt']} vom Modell gefunden.\n",
+              "| Schicht/Feldtyp | geprüft | korrekt | Fehlerquote |", "|---|--:|--:|--:|"]
+        for k, v in list(st["je_status"].items()) + list(st["je_feldtyp"].items()):
+            z.append(f"| {k} | {v['geprueft']} | {v['korrekt']} | {v['fehlerquote']:.1f} % |")
+        if st["fehler"]:
+            z += ["", "### Abweichungen\n", "| schl_nr | Lemma | Feld | soll | Modell |", "|---|---|---|---|---|"]
+            for f in st["fehler"]:
+                z.append(f"| {f['schl_nr']} | {f['lemma']} | {f['feld']} | {f['soll']} | {'—' if f['ist'] is None else f['ist']} |")
+        z.append("")
+    return "\n".join(z) + "\n"
+
+
+def uebernehmen(pruefliste: list, korrekturen_vorhanden: list, datum: str) -> list:
+    """Ausgefüllte korrektur-Spalten der Prüfliste -> neue Zeilen für daten/korrekturen.csv.
+    'stadium_N' (ganzes Stadium) erwartet 'DATUM | NAME' und wird zu zwei Nachtragszeilen.
+    'eintrag' ohne Parser-Wert ist eine Parser-Auslassung — nicht per Overlay behebbar."""
+    vorhanden = {(k["schl_nr"], k["feld"], k["wert_neu"]) for k in korrekturen_vorhanden}
+    neu = []
+
+    def _zeile(schl, feld, alt, wert_neu, beleg):
+        if (schl, feld, wert_neu) in vorhanden:
+            return
+        vorhanden.add((schl, feld, wert_neu))
+        neu.append({"schl_nr": schl, "feld": feld, "wert_alt": alt, "wert_neu": wert_neu,
+                    "beleg": beleg, "quelle": QUELLE_LLM, "datum": datum})
+
+    for z in pruefliste:
+        korr = (z.get("korrektur") or "").strip()
+        if not korr:
+            continue
+        schl, feld, alt, beleg = z["schl_nr"], z["feld"], z.get("wert_parser", ""), z.get("beleg", "")
+        if feld == "eintrag":
+            if not alt:
+                raise ValueError(f"{schl}: Eintrag fehlt beim Parser — Parser-Auslassung, nicht per Overlay behebbar")
+            raise ValueError(f"{schl}: 'eintrag' korrigiert man über die einzelnen Felder")
+        m = _STADIUMFELD.match(feld)
+        if m and m.group(2) is None:
+            if alt:
+                raise ValueError(f"{schl} {feld}: Parser hat das Stadium — bei Bestätigung keine Korrektur eintragen")
+            if "|" not in korr:
+                raise ValueError(f"{schl} {feld}: erwartet 'DATUM | NAME'")
+            d, n = (t.strip() for t in korr.split("|", 1))
+            _zeile(schl, f"{feld}_datum", "", d, beleg)
+            _zeile(schl, f"{feld}_name", "", n, beleg)
+            continue
+        _zeile(schl, feld, alt, korr, beleg)
+    return neu
+
+
+def _lade_parser(daten_dir=DATEN_DIR):
+    with open(Path(daten_dir) / "strassen.csv", encoding="utf-8", newline="") as f:
+        strassen = list(csv.DictReader(f))
+    with open(Path(daten_dir) / "namen.csv", encoding="utf-8", newline="") as f:
+        namen = list(csv.DictReader(f))
+    return strassen, namen
+
+
+def _modelle(antworten_dir) -> dict:
+    modelle = {}
+    for ordner in sorted(Path(antworten_dir).glob("*/")):
+        modelle[kurzname(ordner.name)] = {"antworten": lade_antworten(antworten_dir, ordner.name)}
+    return modelle
+
+
+def _cli():
+    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    sub = p.add_subparsers(dest="befehl", required=True)
+    p1 = sub.add_parser("pruefliste"); p1.add_argument("--antworten-dir", default=str(ANTWORTEN_DIR))
+    p1.add_argument("--daten", default=str(DATEN_DIR)); p1.add_argument("--kennzahlen", default=str(KENNZAHLEN_PFAD))
+    p2 = sub.add_parser("goldstandard"); p2.add_argument("--antworten-dir", default=str(ANTWORTEN_DIR))
+    p2.add_argument("--ausgabe", default=str(WURZEL / "docs" / "goldstandard" / "ergebnis_llm.md"))
+    p3 = sub.add_parser("uebernehmen"); p3.add_argument("--daten", default=str(DATEN_DIR))
+    p3.add_argument("--datum", default=date.today().isoformat())
+    a = p.parse_args()
+
+    if a.befehl == "pruefliste":
+        zeilen, kz = baue_pruefliste(_lade_parser(a.daten), _modelle(a.antworten_dir))
+        schreibe_pruefliste(zeilen, Path(a.daten) / "pruefung_llm.csv")
+        Path(a.kennzahlen).write_text(formatiere_kennzahlen_md(kz), encoding="utf-8")
+        print(f"{len(zeilen)} Prüfzeilen; Kennzahlen -> {a.kennzahlen}")
+    elif a.befehl == "goldstandard":
+        from strassen.goldstandard import lade_stichprobe
+        stichprobe = lade_stichprobe()
+        statistiken = {}
+        for kurz, m in _modelle(a.antworten_dir).items():
+            s, n = [], []
+            for antwort in m["antworten"].values():
+                si, ni, _ = normalisiere_antwort(antwort); s += si; n += ni
+            statistiken[kurz] = messe_goldstandard(stichprobe, als_struktur(s, n))
+        Path(a.ausgabe).write_text(formatiere_ergebnis_llm_md(statistiken), encoding="utf-8")
+        for kurz, st in statistiken.items():
+            print(f"{kurz}: Fehlerquote {st['gesamt']['fehlerquote']:.1f} % ({st['gesamt']['geprueft']} Felder)")
+    else:
+        from strassen.korrekturen import KORREKTUREN_PFAD, lade_korrekturen
+        with open(Path(a.daten) / "pruefung_llm.csv", encoding="utf-8", newline="") as f:
+            pruefliste = list(csv.DictReader(f))
+        vorhanden = lade_korrekturen(KORREKTUREN_PFAD)
+        neu = uebernehmen(pruefliste, vorhanden, a.datum)
+        with open(KORREKTUREN_PFAD, "a", encoding="utf-8", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=FELDER_KORREKTUREN)
+            if not vorhanden and f.tell() == 0:
+                w.writeheader()
+            w.writerows(neu)
+        print(f"{len(neu)} Korrekturzeilen übernommen -> {KORREKTUREN_PFAD}")
+
+
+if __name__ == "__main__":
+    _cli()

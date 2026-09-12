@@ -231,3 +231,51 @@ def test_schreibe_pruefliste_spalten(tmp_path):
     with open(pfad, encoding="utf-8", newline="") as f:
         r = csv.DictReader(f)
         assert r.fieldnames == lv.FELDER_PRUEFLISTE
+
+
+def _stichprobe():
+    basis = {"lemma": "Aachener Straße", "status": "automatisch", "buchseite": "23"}
+    return [
+        {**basis, "schl_nr": "00001", "feld": "lemma", "wert": "Aachener Straße", "korrekt": "ja", "korrektur": ""},
+        {**basis, "schl_nr": "00001", "feld": "stadium_2_datum", "wert": "1902-05-16", "korrekt": "ja", "korrektur": ""},
+        {**basis, "schl_nr": "00001", "feld": "stadtteile", "wert": "Frohnhausn", "korrekt": "nein", "korrektur": "Frohnhausen"},
+        {**basis, "schl_nr": "00001", "feld": "stadium_3_name", "wert": "", "korrekt": "nein", "korrektur": "Neuer Name"},   # nachgetragen
+        {**basis, "schl_nr": "00001", "feld": "verweis_auf", "wert": "", "korrekt": "", "korrektur": ""},                   # ungeprüft
+    ]
+
+
+def test_messe_goldstandard_zaehlt_treffer_gegen_soll():
+    s, n, _ = lv.normalisiere_antwort(_antwort())
+    st = lv.messe_goldstandard(_stichprobe(), lv.als_struktur(s, n))
+    assert st["gesamt"] == {"geprueft": 4, "korrekt": 3, "fehlerquote": 25.0}
+    assert st["je_feldtyp"]["stadium_datum"]["korrekt"] == 1
+    assert st["fehlend_gesamt"] == 1 and st["fehlend_gefunden"] == 0
+    assert st["fehler"] == [{"schl_nr": "00001", "lemma": "Aachener Straße", "status": "automatisch",
+                             "feld": "stadium_3_name", "soll": "Neuer Name", "ist": None}]
+
+
+def test_formatiere_ergebnis_llm_md_je_modell():
+    s, n, _ = lv.normalisiere_antwort(_antwort())
+    st = lv.messe_goldstandard(_stichprobe(), lv.als_struktur(s, n))
+    md = lv.formatiere_ergebnis_llm_md({"qwen": st})
+    assert "## Modell `qwen`" in md and "25.0 %" in md
+
+
+def test_uebernehmen_erzeugt_korrekturzeilen_und_ueberspringt_dubletten():
+    pruefliste = [
+        {"schl_nr": "00001", "feld": "lemma", "wert_parser": "Aachener Straße", "korrektur": "Aachenerstraße", "beleg": "Aachenerstraße"},
+        {"schl_nr": "00001", "feld": "stadium_2_datum", "wert_parser": "1902-05-16", "korrektur": "", "beleg": ""},
+        {"schl_nr": "00002", "feld": "stadium_2", "wert_parser": "", "korrektur": "1930 | Neuer Name", "beleg": "1930: Neuer Name"},
+    ]
+    vorhanden = [{"schl_nr": "00001", "feld": "lemma", "wert_alt": "Aachener Straße", "wert_neu": "Aachenerstraße",
+                  "beleg": "", "quelle": "llm-lauf", "datum": "2026-09-01"}]
+    neu = lv.uebernehmen(pruefliste, vorhanden, datum="2026-09-13")
+    assert neu == [
+        {"schl_nr": "00002", "feld": "stadium_2_datum", "wert_alt": "", "wert_neu": "1930", "beleg": "1930: Neuer Name", "quelle": "llm-lauf", "datum": "2026-09-13"},
+        {"schl_nr": "00002", "feld": "stadium_2_name", "wert_alt": "", "wert_neu": "Neuer Name", "beleg": "1930: Neuer Name", "quelle": "llm-lauf", "datum": "2026-09-13"},
+    ]
+
+
+def test_uebernehmen_lehnt_korrektur_fuer_fehlenden_parser_eintrag_ab():
+    with pytest.raises(ValueError):
+        lv.uebernehmen([{"schl_nr": "00003", "feld": "eintrag", "wert_parser": "", "korrektur": "Achenbachstraße", "beleg": ""}], [], "2026-09-13")
