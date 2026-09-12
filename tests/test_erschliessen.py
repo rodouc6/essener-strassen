@@ -493,3 +493,18 @@ def test_vollstaendig_gelesene_kette_hat_keinen_pruefgrund_dafuer(tmp_path):
         "18. November 1904: Kirchstraße, 01. Juni 1926: Klosterstraße, "
         "20. November 1937: Kütings Garten. Erläuterung.\n")
     assert "Namenskette unvollständig gelesen" not in [z["grund"] for z in pruefung]
+
+
+def test_bloße_abkuerzung_als_name_ist_auffaellig():
+    """Abschlussreview: 00334, S. 67 — gedruckt '18. November 1890: III. Rottstraße',
+    die OCR setzte ein Komma hinter 'Ill'; der Name schrumpfte auf die bloße
+    römische Zahl und blieb bisher 'automatisch'."""
+    assert _name_auffaellig("Ill") is True
+    assert _name_auffaellig("III.") is True
+    assert _name_auffaellig("St") is True
+    assert _name_auffaellig("II") is True
+    assert _name_auffaellig("IV.") is True
+    assert _name_auffaellig("12.") is True
+    # vollständige Namen mit solchem Präfix bleiben unauffällig
+    assert _name_auffaellig("II. Weberstraße") is False
+    assert _name_auffaellig("St. Annental") is False

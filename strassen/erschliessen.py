@@ -102,6 +102,12 @@ _ERLAUBTE_SONDERZEICHEN = set(" .-()'’/&„\"")
 _ZIFFERNFOLGE_LANG = re.compile(r"\d{5,}")
 # Freistehendes Ziffern-Token (s. _name_auffaellig, Fix-Runde 4).
 _ZIFFER_TOKEN = re.compile(r"(?<![\w.])\d{1,2}(?![\w.])")
+# Ein Name, der NUR aus einer Abkürzung, einer römischen Zahl oder einer kleinen
+# Zahl besteht (Abschlussreview): 00334, S. 67 druckt '18. November 1890:
+# III. Rottstraße', die OCR setzte hinter 'Ill' ein Komma — der Name endete dort
+# und blieb als 'Ill' bisher 'automatisch'. Solche Reste sind nie ein vollständiger
+# Straßenname. 'Ill' zählt wie in datum.SATZENDE als OCR-Form von 'III'.
+_BLOSSE_ABKUERZUNG = re.compile(r"(?:St|I{1,3}|IV|Ill|\d{1,2})\.?")
 
 _NAME_MIN_ZEICHEN = 3
 _NAME_MAX_ZEICHEN = 60
@@ -170,6 +176,8 @@ def _name_auffaellig(name: str) -> bool:
     # ausgenommen; eine freistehende Ziffer stammt aus Seiten-/Spaltenrauschen
     # des Scans (02335 Obere Aue: '... ze 5 Oberer Schloßhang ...').
     if _ZIFFER_TOKEN.search(name):
+        return True
+    if _BLOSSE_ABKUERZUNG.fullmatch(name):
         return True
     return _satzende_im_namen(name)
 
