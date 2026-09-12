@@ -367,3 +367,60 @@ def test_stempel_nach_semikolon_setzt_kette_fort():
     k = parse_kopf(rumpf)
     s = parse_namenskette(k.rest)
     assert [x.name for x in s] == ["Altname", "Neuname"]
+
+
+def test_starker_stempel_nach_satzpunkt_setzt_kette_fort_natorpstrasse():
+    """Natorpstraße, Schl.-Nr. 02287, S. 243 — Fix Task 12, Runde 2 (Regression):
+    'Taubenstraße (Verl). 17. März 1971: Natorpstraße.' trennt die letzten beiden
+    Stadien durch einen echten Satzpunkt statt durch Komma. Die Positionsregel darf
+    einen STARKEN Stempel (regulärer Doppelpunkt) davon nicht ausschließen, sonst
+    fällt das namensgebende letzte Stadium aus der Kette."""
+    rumpf = ("02287, Stadtteil Ostviertel, Str.-Kl.: Gemeindestraße, Str.-Gr.: "
+             "Person, Mann, Deutscher, Lehrer, 05. Juli 1889: Taubenstraße, "
+             "19. September 1925: Taubenstraße (Verl). 17. März 1971: Natorpstraße. "
+             "Gustav Natorp war Lehrer.")
+    k = parse_kopf(rumpf)
+    s = parse_namenskette(k.rest)
+    assert [x.name for x in s] == ["Taubenstraße", "Taubenstraße (Verl)", "Natorpstraße"]
+
+
+def test_starker_stempel_nach_prosa_setzt_kette_fort_frohnhauser_strasse():
+    """Frohnhauser Straße, Schl.-Nr. 00930, S. 122 — Fix Task 12, Runde 2
+    (Regression): der letzte, namensgebende Stempel steht nach den Wörtern
+    'gemeinsame Bezeichnung am', nicht nach Komma/Semikolon. Als starker Stempel
+    (regulärer Doppelpunkt) muss er die Kette trotzdem fortsetzen."""
+    rumpf = ("00930, Stadtteile Stadtkern, Westviertel, Holsterhausen und "
+             "Frohnhausen, Str.-Kl.: Kreisstraße, Landstraße, Str.-Gr.: "
+             "Lagebezeichnung, um 1860: Frohnhauser Straße, vor 1885: "
+             "Herrenbankstraße (Umb.), urspr.: Essen-Mülheimer-Straße (Umb.), "
+             "gemeinsame Bezeichnung am 13. Dezember 1901: Frohnhauser Straße. "
+             "Siehe Frohnhauser Platz.")
+    k = parse_kopf(rumpf)
+    s = parse_namenskette(k.rest)
+    assert [x.name for x in s] == [
+        "Frohnhauser Straße", "Herrenbankstraße (Umb.)",
+        "Essen-Mülheimer-Straße (Umb.)", "Frohnhauser Straße",
+    ]
+
+
+def test_schwacher_stempel_nach_satzpunkt_stoppt_die_kette_weiterhin():
+    """St. Annental, Schl.-Nr. 02727 — bestehender Prosafall: ein SCHWACHER Stempel
+    ('Am 25. Juli 1516 wurde', kein Doppelpunkt) nach einem Satzpunkt bleibt Prosa
+    und darf die Kette nicht fortsetzen — die Lockerung in Runde 3 gilt nur für
+    starke Stempel."""
+    rumpf = ("02727, Stadtteil X, Str.-Kl.: Gemeindestraße, Str.-Gr.: Kirche, "
+             "18. September 1926: St. Annental. Am 25. Juli 1516 Wurde bei Gelegenheit.")
+    k = parse_kopf(rumpf)
+    assert k.rest.endswith("St. Annental.")
+
+
+def test_starker_stempel_ausserhalb_der_namenslaenge_bleibt_prosa():
+    """Ein starker Stempel weit hinter dem letzten Stadium (mehr als
+    _MAX_NAMENSLAENGE Zeichen) gehört nicht mehr zur Kette, selbst wenn er
+    regulär mit Doppelpunkt geschrieben ist — sonst würde jedes spät im
+    Fließtext zitierte Datum die Kette künstlich verlängern."""
+    fuelltext = "Aus welchem Anlass die Straße diesen Namen erhielt ist unklar" + "!" * 45
+    rumpf = ("00001, Stadtteil X, Str.-Kl.: Gemeindestraße, Str.-Gr.: Flurname, "
+             "01. Januar 1900: X. " + fuelltext + " 01. Januar 1950: Y.")
+    k = parse_kopf(rumpf)
+    assert k.rest.endswith("X.")
