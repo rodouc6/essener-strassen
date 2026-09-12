@@ -152,13 +152,13 @@ def scan_dateiname(schl_nr: str, buchseite) -> str:
 
 
 def rendere_ausschnitt(band: int, pdf_seite: int, haelfte: str, quelle_dir,
-                        ziel_png: Path) -> None:
-    """Rendert die PDF-Seite bei 150 dpi, findet den Bundsteg (s. ocr_lauf.py) und
+                        ziel_png: Path, dpi: int = 150) -> None:
+    """Rendert die PDF-Seite bei `dpi` (Standard 150) dpi, findet den Bundsteg (s. ocr_lauf.py) und
     schneidet die passende Hälfte als PNG nach ziel_png zu."""
     pdf_name = BAENDE[band - 1][0]
     tmp_praefix = ziel_png.parent / f"_tmp_{band}_{pdf_seite}"
     subprocess.run(
-        ["pdftoppm", "-f", str(pdf_seite), "-l", str(pdf_seite), "-r", "150",
+        ["pdftoppm", "-f", str(pdf_seite), "-l", str(pdf_seite), "-r", str(dpi),
          "-gray", "-png", str(Path(quelle_dir) / pdf_name), str(tmp_praefix)],
         check=True, capture_output=True)
     treffer = sorted(ziel_png.parent.glob(f"_tmp_{band}_{pdf_seite}-*.png"))

@@ -16,3 +16,8 @@ daten/pruefung_konkordanz.csv
 # docs/goldstandard/ANLEITUNG.md. stichprobe.csv selbst (nur geparste Werte,
 # keine Bilder) bleibt versioniert.
 docs/goldstandard/scans/
+
+# LLM-Lesung (Spec 2026-09-12): Seitenbilder und Rohantworten enthalten geschützte
+# Inhalte bzw. Transkriptionen der Quelle; Zugangsdaten in .env.
+llm/
+.env
