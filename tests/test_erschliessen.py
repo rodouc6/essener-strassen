@@ -508,3 +508,41 @@ def test_bloße_abkuerzung_als_name_ist_auffaellig():
     # vollständige Namen mit solchem Präfix bleiben unauffällig
     assert _name_auffaellig("II. Weberstraße") is False
     assert _name_auffaellig("St. Annental") is False
+
+
+# --- Task 8: Korrektur-Overlay im Gesamtlauf ---
+
+
+def test_main_wendet_korrekturen_an_und_zaehlt(tmp_path):
+    """Eine Bestätigungszeile (feld=eintrag) im Korrektur-Overlay setzt status=geprueft
+    und zählt in kennzahlen['korrigiert']; ohne korrekturen_pfad bleibt der Lauf unverändert."""
+    from strassen.korrekturen import FELDER_KORREKTUREN
+
+    _, strassen, _, _ = _lauf(tmp_path)
+    schl_nr = strassen[0]["schl_nr"]
+    lemma = strassen[0]["lemma"]
+    assert strassen[0]["status"] != "geprueft"
+
+    korr_pfad = tmp_path / "korrekturen.csv"
+    with open(korr_pfad, "w", encoding="utf-8", newline="") as f:
+        w = _csv.DictWriter(f, fieldnames=FELDER_KORREKTUREN)
+        w.writeheader()
+        w.writerow({"schl_nr": schl_nr, "feld": "eintrag", "wert_alt": "", "wert_neu": "",
+                    "beleg": "Scan geprüft", "quelle": "goldstandard", "datum": "2026-09-12"})
+
+    ausgabe_dir = tmp_path / "daten"
+    ocr_dir = tmp_path / "ocr"
+    kennzahlen = main(ocr_dir=ocr_dir, ausgabe_dir=ausgabe_dir, korrekturen_pfad=str(korr_pfad))
+    with open(ausgabe_dir / "strassen.csv", encoding="utf-8") as f:
+        strassen_korrigiert = list(_csv.DictReader(f))
+    treffer = [z for z in strassen_korrigiert if z["schl_nr"] == schl_nr][0]
+    assert treffer["status"] == "geprueft"
+    assert treffer["lemma"] == lemma
+    assert kennzahlen["korrigiert"] == 1
+
+    kennzahlen_ohne = main(ocr_dir=ocr_dir, ausgabe_dir=ausgabe_dir, korrekturen_pfad="")
+    with open(ausgabe_dir / "strassen.csv", encoding="utf-8") as f:
+        strassen_unveraendert = list(_csv.DictReader(f))
+    treffer2 = [z for z in strassen_unveraendert if z["schl_nr"] == schl_nr][0]
+    assert treffer2["status"] != "geprueft"
+    assert kennzahlen_ohne["korrigiert"] == 0

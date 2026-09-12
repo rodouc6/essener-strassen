@@ -64,6 +64,7 @@ from strassen.kopf import parse_kopf
 from strassen.namen import parse_namenskette, unverarbeiteter_rest
 from strassen.datum import SATZENDE
 from strassen.ausgabe import schreibe_strassen, schreibe_namen, schreibe_pruefung
+from strassen.korrekturen import KORREKTUREN_PFAD, lade_korrekturen, wende_an
 
 _VERWEIS = re.compile(r"Siehe\s+([A-ZÄÖÜ][^.,;]{2,60})")
 # Fenster (Zeichen ab Rumpfanfang), in dem ein 'Siehe X' als Ersatz für ein
@@ -194,7 +195,7 @@ def _namensgruppe_auffaellig(text: str) -> bool:
     return bool(_ZIFFERNFOLGE_GRUPPE.search(text))
 
 
-def main(ocr_dir="ocr/seiten", ausgabe_dir="daten"):
+def main(ocr_dir="ocr/seiten", ausgabe_dir="daten", korrekturen_pfad=""):
     ziel = Path(ausgabe_dir)
     ziel.mkdir(parents=True, exist_ok=True)
 
@@ -291,17 +292,23 @@ def main(ocr_dir="ocr/seiten", ausgabe_dir="daten"):
             pruefung.append({"buchseite": z["buchseite"], "lemma_roh": z["lemma"],
                              "grund": "Schlüsselnummer mehrfach", "rohtext": ""})
 
+    # Korrektur-Overlay (Spec 2026-09-12, 3.4): manuell geprüfte Korrekturen, status=geprueft.
+    # Leerer Pfad -> keine Korrekturen (Standard für Tests und Regressionsmessung des
+    # reinen Parsers); der Skriptaufruf unten übergibt die Standarddatei.
+    protokoll = wende_an(strassen, namen, lade_korrekturen(korrekturen_pfad) if korrekturen_pfad else [])
+
     schreibe_strassen(strassen, ziel / "strassen.csv")
     schreibe_namen(namen, ziel / "namen.csv")
     schreibe_pruefung(pruefung, ziel / "pruefung.csv")
     kennzahlen = {"eintraege": len(eintraege), "strassen": len(strassen),
-                  "namensstadien": len(namen), "pruefung": len(pruefung)}
+                  "namensstadien": len(namen), "pruefung": len(pruefung),
+                  "korrigiert": protokoll["eintraege"]}
     print(kennzahlen)
     return kennzahlen
 
 
 if __name__ == "__main__":
-    kennzahlen = main()
+    kennzahlen = main(korrekturen_pfad=KORREKTUREN_PFAD)
     # Exitcode 1, wenn kein einziger Straßeneintrag erzeugt wurde (leeres oder
     # falsch adressiertes ocr_dir, kaputte Segmentierung) — ein stiller
     # Erfolg (Exit 0) bei null Ergebniszeilen wäre irreführend.

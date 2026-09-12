@@ -19,6 +19,7 @@ from pathlib import Path
 from strassen.datum import lese_text
 from strassen.differenz import als_struktur, vergleiche
 from strassen.goldstandard import formatiere_datum
+from strassen.korrekturen import FELDER_KORREKTUREN
 
 WURZEL = Path(__file__).resolve().parent.parent
 ANTWORTEN_DIR = WURZEL / "llm" / "antworten"
@@ -334,7 +335,6 @@ def formatiere_kennzahlen_md(kennzahlen: dict) -> str:
     return "\n".join(z) + "\n"
 
 
-FELDER_KORREKTUREN = ["schl_nr", "feld", "wert_alt", "wert_neu", "beleg", "quelle", "datum"]
 QUELLE_LLM = "llm-lauf"
 
 
