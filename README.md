@@ -158,8 +158,8 @@ Prüffall geführt (s. [Bekannte Grenzen](#bekannte-grenzen)).
 ## Bezifferte Qualität
 
 - **388** OCR-Buchseiten → **3.343** vom Parser segmentierte Einträge.
-- `daten/strassen.csv`: **3.338** Zeilen, davon **270** mit `status=unsicher`
-  (**3.068** `automatisch`).
+- `daten/strassen.csv`: **3.338** Zeilen, davon **271** mit `status=unsicher`
+  (**3.067** `automatisch`).
 - `daten/namen.csv`: **5.457** Namensstadien (Datierungsgenauigkeit: **4.732** `tag`,
   **324** `unbekannt`, **212** `jahr`, **181** `vor`, **8** `jahrhundert`).
 - `daten/konkordanz_1936.csv`: **427** Zeilen (**388** `eindeutig=ja`, 39 `eindeutig=nein`;
@@ -233,10 +233,10 @@ nur Stufe 1+2 (`strassen/erschliessen.py`) ausführen; `daten/strassen.csv` und
 Ehrlichkeit über die Grenzen dieses Datensatzes ist Teil seines Qualitätsanspruchs —
 nichts hier ist verschwiegen, um sauberer zu wirken:
 
-- **241 unsichere Einträge** (`status=unsicher` in `strassen.csv`) sind vom Parser nicht
+- **271 unsichere Einträge** (`status=unsicher` in `strassen.csv`) sind vom Parser nicht
   sicher erschlossen; ihre Felder (insbesondere `strassenklasse`) können OCR-Rauschen
   enthalten. Sie gehen bewusst nicht in die Konkordanz ein.
-- **69 Konkordanz-Prüffälle** (`daten/pruefung_konkordanz.csv`, nicht Teil des
+- **65 Konkordanz-Prüffälle** (`daten/pruefung_konkordanz.csv`, nicht Teil des
   Publikationsumfangs, s. u.): Straßen, deren letztes Namensstadium vom aktuellen Lemma
   abweicht (unvollständige oder korrupte Namenskette in der Quelle). Sie erscheinen
   **nicht** in `konkordanz_1936.csv`, sondern werden gekennzeichnet statt geraten.
