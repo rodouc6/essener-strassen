@@ -6,12 +6,17 @@ liegen gitignored unter llm/antworten/<modell>/sNNN.json; ein Wiederholungslauf
 überspringt vorhandene Antworten, sofern sie aus demselben Prompt-Stand stammen
 (prompt_hash).
 
-  python3 -m strassen.llm_leser --modell inferenz-qwen3-8-27b [--seiten 23-30] [--neu]
+  python3 -m strassen.llm_leser --modell inferenz-qwen3-8-27b [--seiten 23-30] [--neu] [--parallel 4]
 
 Konfiguration über Umgebungsvariablen LLM_BASE_URL (OpenAI-kompatibler Endpunkt, mit
 oder ohne '/chat/completions') sowie je Modell LLM_API_KEY_QWEN bzw. LLM_API_KEY_MISTRAL,
 mit LLM_API_KEY als Rückfall, falls kein modellspezifischer Schlüssel gesetzt ist; eine
 .env in der Repo-Wurzel wird gelesen, gesetzte Umgebungsvariablen haben Vorrang.
+
+--parallel N liest N Seiten gleichzeitig (ThreadPoolExecutor); Standard 1 (sequenziell).
+Ein Rate-Limit-Abbruch (429/5xx) auf einer Seite stoppt die anderen laufenden Seiten
+nicht — der Lauf bricht erst nach deren Abschluss ab, ein Wiederholungslauf holt die
+fehlenden Seiten aus dem Cache heraus nach.
 """
 import argparse
 import base64
@@ -222,6 +227,70 @@ def lies_seite(buchseite, modell: str, png_pfad, prompt: str, sende_fn,
     return ergebnis
 
 
+def lies_seiten(seiten: list, modell: str, seiten_dir, prompt: str, sende_fn, ziel_dir=ANTWORTEN_DIR,
+                neu: bool = False, parallel: int = 1, schlafen=time.sleep, melde=print) -> dict:
+    """Mehrere Buchseiten lesen, wahlweise mit `parallel` gleichzeitigen Anfragen
+    (ThreadPoolExecutor; parallel=1 läuft als einfache Schleife wie bisher). Seiten
+    ohne Seitenbild werden übersprungen und gezählt. Ein LaufAbbruch (429/5xx nach
+    allen Wiederholungen) auf einer Seite lässt die übrigen Seiten fertig laufen —
+    die abgebrochene Seite landet in 'abgebrochen'; am Ende wird, falls nicht leer,
+    ein LaufAbbruch mit den betroffenen Seiten ausgelöst (Wiederholungslauf holt sie
+    nach, da bereits gesicherte Seiten aus dem Cache bedient werden). Jede andere
+    Ausnahme wird erst nach Abschluss des Pools weitergereicht."""
+    from strassen.seiten import seiten_dateiname
+
+    zu_lesen = []
+    ohne_bild = 0
+    for b in seiten:
+        png = Path(seiten_dir) / seiten_dateiname(b)
+        if png.exists():
+            zu_lesen.append((b, png))
+        else:
+            ohne_bild += 1
+
+    def _eine_seite(eintrag):
+        b, png = eintrag
+        return b, lies_seite(b, modell, png, prompt, sende_fn, ziel_dir, neu, schlafen)
+
+    gelesen = unlesbar = 0
+    abgebrochen = []
+
+    def _verarbeite(b, erg):
+        nonlocal gelesen, unlesbar
+        gelesen += 1
+        unlesbar += erg["fehler"] == "unlesbar"
+        melde(f"s{b:03d}: {len(erg['eintraege'] or [])} Einträge"
+              f"{' (unlesbar)' if erg['fehler'] else ''}…")
+
+    if parallel > 1:
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(max_workers=parallel) as pool:
+            futuren = [(b, pool.submit(lies_seite, b, modell, png, prompt, sende_fn, ziel_dir, neu, schlafen))
+                       for b, png in zu_lesen]
+            for b, future in futuren:
+                try:
+                    erg = future.result()
+                except LaufAbbruch:
+                    abgebrochen.append(b)
+                    continue
+                _verarbeite(b, erg)
+    else:
+        for b, png in zu_lesen:
+            try:
+                erg = lies_seite(b, modell, png, prompt, sende_fn, ziel_dir, neu, schlafen)
+            except LaufAbbruch:
+                abgebrochen.append(b)
+                continue
+            _verarbeite(b, erg)
+
+    ergebnis = {"gelesen": gelesen, "unlesbar": unlesbar, "ohne_bild": ohne_bild, "abgebrochen": abgebrochen}
+    if abgebrochen:
+        raise LaufAbbruch(f"Seiten {sorted(abgebrochen)} nach {MAX_HTTP_VERSUCHE} Versuchen (429/5xx) "
+                          f"abgebrochen — beim nächsten Lauf werden die übrigen Seiten aus dem Cache "
+                          f"übersprungen und nur diese nachgeholt")
+    return ergebnis
+
+
 def _cli():
     from strassen.seiten import SEITEN_DIR, parse_seitenbereich, seiten_dateiname
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -230,6 +299,8 @@ def _cli():
     p.add_argument("--neu", action="store_true", help="vorhandene Antworten neu anfordern")
     p.add_argument("--seiten-dir", default=str(SEITEN_DIR))
     p.add_argument("--antworten-dir", default=str(ANTWORTEN_DIR))
+    p.add_argument("--parallel", type=int, default=1,
+                    help="gleichzeitige Anfragen; 4–6 für schnelle Läufe, 1 bei Rate-Limits")
     a = p.parse_args()
     lade_env()
     try:
@@ -240,25 +311,16 @@ def _cli():
     sende_fn = partial(sende, base_url=base_url, api_key=api_key)
     prompt = lade_prompt()
     seiten = parse_seitenbereich(a.seiten)
-    gelesen = unlesbar = ohne_bild = 0
-    for b in seiten:
-        png = Path(a.seiten_dir) / seiten_dateiname(b)
-        if not png.exists():
-            ohne_bild += 1
-            continue
-        try:
-            erg = lies_seite(b, a.modell, png, prompt, sende_fn, a.antworten_dir, a.neu)
-        except LaufAbbruch as e:
-            # Erwarteter Abbruch (429/5xx erschöpft) — kein Traceback, die bereits
-            # gesicherten Seiten bleiben gültig und werden beim nächsten Lauf ergänzt.
-            print(f"Fehler: {e}", file=sys.stderr)
-            sys.exit(1)
-        gelesen += 1
-        unlesbar += erg["fehler"] == "unlesbar"
-        print(f"s{b:03d}: {len(erg['eintraege'] or [])} Einträge{' (unlesbar)' if erg['fehler'] else ''}",
-              flush=True)
-    print(f"{gelesen} Seiten, davon {unlesbar} unlesbar — Modell {a.modell}"
-          + (f"; {ohne_bild} Seiten ohne Seitenbild übersprungen" if ohne_bild else ""))
+    try:
+        erg = lies_seiten(seiten, a.modell, a.seiten_dir, prompt, sende_fn, a.antworten_dir, a.neu,
+                          a.parallel)
+    except LaufAbbruch as e:
+        # Erwarteter Abbruch (429/5xx erschöpft) — kein Traceback, die bereits
+        # gesicherten Seiten bleiben gültig und werden beim nächsten Lauf ergänzt.
+        print(f"Fehler: {e}", file=sys.stderr)
+        sys.exit(1)
+    print(f"{erg['gelesen']} Seiten, davon {erg['unlesbar']} unlesbar — Modell {a.modell}"
+          + (f"; {erg['ohne_bild']} Seiten ohne Seitenbild übersprungen" if erg['ohne_bild'] else ""))
 
 
 if __name__ == "__main__":

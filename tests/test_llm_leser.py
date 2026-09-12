@@ -1,4 +1,5 @@
 import json
+import threading
 
 import pytest
 
@@ -283,3 +284,78 @@ def test_lies_seite_fordert_bei_abweichendem_prompt_hash_neu_an(tmp_path):
     assert len(aufrufe) == 1
     assert erg["prompt_hash"] == ll.prompt_hash("P") and erg["eintraege"] == []
     assert json.loads(ziel.read_text(encoding="utf-8"))["prompt_hash"] == ll.prompt_hash("P")
+
+
+def _pngs(tmp_path, seiten):
+    for b in seiten:
+        (tmp_path / f"s{b:03d}.png").write_bytes(b"\x89PNG")
+
+
+def test_lies_seiten_parallel_liest_alle_seiten(tmp_path):
+    seiten_dir = tmp_path / "seiten"
+    seiten_dir.mkdir()
+    seiten = [1, 2, 3, 4, 5]
+    _pngs(seiten_dir, seiten)
+    sperre = threading.Lock()
+    zaehler = {"n": 0}
+
+    def sende_fn(anfrage):
+        with sperre:
+            zaehler["n"] += 1
+        return '[{"schl_nr": "1"}]'
+
+    gemeldet = []
+    erg = ll.lies_seiten(seiten, "m", seiten_dir, "PROMPT", sende_fn, tmp_path / "antworten",
+                         parallel=3, melde=gemeldet.append)
+    assert zaehler["n"] == 5
+    assert erg == {"gelesen": 5, "unlesbar": 0, "ohne_bild": 0, "abgebrochen": []}
+    for b in seiten:
+        assert (tmp_path / "antworten" / "m" / f"s{b:03d}.json").exists()
+    assert len(gemeldet) == 5
+    assert all("Einträge" in m for m in gemeldet)
+
+
+def test_lies_seiten_ein_abgebrochene_seite_stoppt_andere_nicht(tmp_path):
+    seiten_dir = tmp_path / "seiten"
+    seiten_dir.mkdir()
+    seiten = [1, 2, 3]
+    # Jede Seite braucht ein eigenes Bild, damit sende_fn die kaputte Seite erkennt.
+    for b in seiten:
+        (seiten_dir / f"s{b:03d}.png").write_bytes(f"PNG{b}".encode())
+
+    with pytest.raises(ll.LaufAbbruch) as exc:
+        ll.lies_seiten(seiten, "m", seiten_dir, "P", _sende_fn_seite2_kaputt(seiten_dir),
+                       tmp_path / "antworten", schlafen=lambda s: None)
+    assert "2" in str(exc.value)
+    for b in [1, 3]:
+        assert (tmp_path / "antworten" / "m" / f"s{b:03d}.json").exists()
+    assert not (tmp_path / "antworten" / "m" / "s002.json").exists()
+
+
+def _sende_fn_seite2_kaputt(seiten_dir):
+    inhalt_seite2 = (seiten_dir / "s002.png").read_bytes()
+
+    def sende_fn(anfrage):
+        bild_b64 = anfrage["messages"][0]["content"][1]["image_url"]["url"]
+        import base64 as _b64
+        rohbild = _b64.b64decode(bild_b64.split(",", 1)[1])
+        if rohbild == inhalt_seite2:
+            raise ll.HttpFehler(503, "kaputt")
+        return '[{"schl_nr": "1"}]'
+    return sende_fn
+
+
+def test_lies_seiten_seite_ohne_bild_wird_gezaehlt(tmp_path):
+    seiten_dir = tmp_path / "seiten"
+    seiten_dir.mkdir()
+    _pngs(seiten_dir, [1, 3])  # Seite 2 fehlt
+    erg = ll.lies_seiten([1, 2, 3], "m", seiten_dir, "P", lambda a: "[]", tmp_path / "antworten")
+    assert erg == {"gelesen": 2, "unlesbar": 0, "ohne_bild": 1, "abgebrochen": []}
+
+
+def test_lies_seiten_parallel_eins_verhaelt_sich_wie_bisher(tmp_path):
+    seiten_dir = tmp_path / "seiten"
+    seiten_dir.mkdir()
+    _pngs(seiten_dir, [1, 2])
+    erg = ll.lies_seiten([1, 2], "m", seiten_dir, "P", lambda a: "[]", tmp_path / "antworten", parallel=1)
+    assert erg == {"gelesen": 2, "unlesbar": 0, "ohne_bild": 0, "abgebrochen": []}
