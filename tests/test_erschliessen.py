@@ -455,3 +455,28 @@ def test_reiner_verweis_eintrag_ohne_klasse_bleibt_automatisch(tmp_path):
     assert strassen[0]["verweis_auf"] == "Grendplatz"
     assert "Straßenklasse fehlt" not in [z["grund"] for z in pruefung]
     assert strassen[0]["status"] == "automatisch"
+
+
+def test_unverarbeiteter_rest_wird_pruefgrund(tmp_path):
+    """Am Thyssenhaus, Schl.-Nr. 00217, S. 44: '04. Februar 19377: Am Thyssenhaus.'
+    — die verstümmelte Jahreszahl lässt keinen Stempel matchen; ohne eigenen
+    Prüfgrund verschwindet das fehlende Stadium unsichtbar (Fix Task 12)."""
+    strassen, pruefung = _lauf5(tmp_path,
+        "Am Thyssenhaus: Schl.-Nr.: 00217, Stadtteil Frohnhausen, Str.-Kl.: Gemeindestraße, "
+        "Str.-Gr.: Hofname, 22. Februar 1961: Am Rheinstahlhaus, "
+        "04. Februar 19377: Am Thyssenhaus. Erläuterung folgt.\n")
+    assert strassen[0]["status"] == "unsicher"
+    gruende = [z["grund"] for z in pruefung]
+    assert "Namenskette unvollständig gelesen" in gruende
+    treffer = [z for z in pruefung if z["grund"] == "Namenskette unvollständig gelesen"]
+    assert "19377" in treffer[0]["rohtext"]
+
+
+def test_vollstaendig_gelesene_kette_hat_keinen_pruefgrund_dafuer(tmp_path):
+    """Kütings Garten, Schl.-Nr. 01838, S. 213 — vollständige Kette ohne Rest."""
+    strassen, pruefung = _lauf5(tmp_path,
+        "Kütings Garten: Schl.-Nr.: 01838, Stadtteil Freisenbruch, "
+        "Str.-Kl.: Gemeindestraße, Str.-Gr.: Lagebezeichnung, "
+        "18. November 1904: Kirchstraße, 01. Juni 1926: Klosterstraße, "
+        "20. November 1937: Kütings Garten. Erläuterung.\n")
+    assert "Namenskette unvollständig gelesen" not in [z["grund"] for z in pruefung]

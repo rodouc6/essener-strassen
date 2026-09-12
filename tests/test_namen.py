@@ -170,3 +170,22 @@ def test_bloss_jahr_in_der_kette_nach_komma_bleibt_gueltig():
 def test_bloss_jahr_am_kettenanfang_bleibt_gueltig():
     s = parse_namenskette("1902: Barkhofstraße.")
     assert [(x.gueltig_ab, x.name) for x in s] == [("1902", "Barkhofstraße")]
+
+
+def test_unverarbeiteter_rest_findet_verstuemmeltes_datum():
+    """Am Thyssenhaus, Schl.-Nr. 00217, S. 44: '04. Februar 19377: Am Thyssenhaus.'
+    — die verstümmelte Jahreszahl (5 statt 4 Ziffern) lässt keinen Stempel matchen;
+    der Text bleibt unverarbeitet liegen, ohne dass irgendein Prüfgrund das anzeigt."""
+    from strassen.namen import unverarbeiteter_rest
+    rest = "22. Februar 1961: Am Rheinstahlhaus, 04. Februar 19377: Am Thyssenhaus."
+    residue = unverarbeiteter_rest(rest)
+    assert "19377" in residue
+
+
+def test_unverarbeiteter_rest_ist_leer_bei_vollstaendig_gelesener_kette():
+    """Kütings Garten, Schl.-Nr. 01838, S. 213 — vollständig gelesene Kette:
+    kein unverarbeiteter Rest bleibt übrig."""
+    from strassen.namen import unverarbeiteter_rest
+    rest = ("18. November 1904: Kirchstraße, 01. Juni 1926: Klosterstraße, "
+            "20. November 1937: Kütings Garten.")
+    assert unverarbeiteter_rest(rest) == ""

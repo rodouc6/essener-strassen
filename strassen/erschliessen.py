@@ -43,6 +43,15 @@ bleibt in strassen.csv/namen.csv erhalten. Gründe:
     "Straßenklasse OCR-korrigiert"): tolerant erkannter Wert, übernommen und markiert.
   - "Stadtteil fehlt" / "Straßenklasse fehlt": Kopffeld leer, obwohl kein reiner
     Verweis-Eintrag.
+  - "Namenskette unvollständig gelesen": im Kopfrest bleibt nach der erkannten
+    Namenskette (urspr. + Stadien) Text übrig, der eine Ziffer enthält — ein
+    Datumsfragment, das kein Muster mehr trifft (z. B. eine verstümmelte,
+    fünfstellige Jahreszahl '19377'), verschwand bisher unsichtbar: der neue,
+    genauere Parser verwirft das Rauschen korrekt, aber ohne Kennzeichnung sieht
+    der Eintrag fehlerfrei aus, obwohl ihm ein gedrucktes Stadium fehlt
+    (Fix Task 12; 00217, 00595, 00720, 01386, 03560). Eine Ziffer im Rest ist das
+    Kriterium, weil jedes unread gebliebene Datumsfragment eine trägt — reiner
+    Erläuterungstext ohne Ziffern löst dagegen keinen Prüfgrund aus.
 """
 import re
 import sys
@@ -52,7 +61,7 @@ from pathlib import Path
 from strassen.aufbereitung import aufbereiten
 from strassen.segmentierung import segmentiere
 from strassen.kopf import parse_kopf
-from strassen.namen import parse_namenskette
+from strassen.namen import parse_namenskette, unverarbeiteter_rest
 from strassen.ausgabe import schreibe_strassen, schreibe_namen, schreibe_pruefung
 
 _VERWEIS = re.compile(r"Siehe\s+([A-ZÄÖÜ][^.,;]{2,60})")
@@ -201,10 +210,17 @@ def main(ocr_dir="ocr/seiten", ausgabe_dir="daten"):
             gruende.append("Stadtteil fehlt")
         if not k.strassenklassen and not reiner_verweis:
             gruende.append("Straßenklasse fehlt")
+        residuum = unverarbeiteter_rest(k.rest)
+        if re.search(r"\d", residuum):
+            gruende.append("Namenskette unvollständig gelesen")
 
         for grund in gruende:
-            rohtext = ("; ".join(rauschnamen)[:200] if grund == "Namensstadium auffällig"
-                       else e.rumpf[:200])
+            if grund == "Namensstadium auffällig":
+                rohtext = "; ".join(rauschnamen)[:200]
+            elif grund == "Namenskette unvollständig gelesen":
+                rohtext = residuum[:200]
+            else:
+                rohtext = e.rumpf[:200]
             pruefung.append({"buchseite": e.buchseite, "lemma_roh": e.lemma_roh,
                              "grund": grund, "rohtext": rohtext})
 

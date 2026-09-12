@@ -23,7 +23,7 @@ from typing import NamedTuple
 
 from strassen.datum import DATUMSSTEMPEL_MUSTER, SATZENDE, MONATE, lese_datum
 
-__all__ = ["MONATE", "Stadium", "parse_namenskette"]
+__all__ = ["MONATE", "Stadium", "parse_namenskette", "unverarbeiteter_rest"]
 
 _NAME = r"(?:(?!,|;|" + SATZENDE + r")[^\n]){1,80}"
 
@@ -48,12 +48,16 @@ def _position_erlaubt(rest: str, start: int) -> bool:
     return davor == "" or davor.endswith(",")
 
 
-def parse_namenskette(rest: str) -> list:
+def _akzeptierte_treffer(rest: str) -> list:
+    """Ein interner Durchlauf über 'urspr.' und die akzeptierten Stadien, jeweils mit
+    Textspanne (start, end) — Basis für parse_namenskette UND unverarbeiteter_rest,
+    damit beide exakt dieselben Treffer als 'gelesen' behandeln."""
     roh = []
 
     for mu in _URSPR.finditer(rest):
         hinweis = "" if mu.group("trenner") == ":" else HINWEIS_URSPR_OHNE_DOPPELPUNKT
-        roh.append((mu.start(), "", "unbekannt", mu.group("name").strip(), True, hinweis))
+        roh.append((mu.start(), mu.end(), "", "unbekannt", mu.group("name").strip(),
+                    True, hinweis))
 
     for m in _STADIUM.finditer(rest):
         name = m.group("name").strip()
@@ -71,9 +75,39 @@ def parse_namenskette(rest: str) -> list:
         if d.trenner != ":" or schwach:
             if not _position_erlaubt(rest, m.start()) or not name[:1].isupper():
                 continue
-        roh.append((m.start(), d.gueltig_ab, d.praezision, name, False, d.hinweis))
+        roh.append((m.start(), m.end(), d.gueltig_ab, d.praezision, name, False, d.hinweis))
 
     roh.sort(key=lambda x: x[0])
+    return roh
+
+
+def parse_namenskette(rest: str) -> list:
+    roh = _akzeptierte_treffer(rest)
     return [Stadium(stadium=i, gueltig_ab=g, datum_praezision=p, name=n,
                      ist_urspruenglich=u, hinweis=h)
-            for i, (_, g, p, n, u, h) in enumerate(roh, 1)]
+            for i, (_, _, g, p, n, u, h) in enumerate(roh, 1)]
+
+
+def unverarbeiteter_rest(rest: str) -> str:
+    """Der Teil von rest, der von keinem akzeptierten Treffer (urspr. + Stadien)
+    erfasst wurde — Rohtext, der zwischen/hinter der erkannten Kette liegen bleibt
+    (Spec-Lücke Fix Task 12: verstümmelte Datumsfragmente wie '19377' lösten bisher
+    keinen Prüfgrund aus, weil kein Muster darauf matcht). Trenner (',', ';',
+    Leerraum) und ein abschließender Punkt zählen nicht als Rest."""
+    spannen = sorted((start, end) for start, end, *_ in _akzeptierte_treffer(rest))
+    stuecke = []
+    pos = 0
+    for start, end in spannen:
+        if start > pos:
+            stuecke.append(rest[pos:start])
+        pos = max(pos, end)
+    stuecke.append(rest[pos:])
+    residuum = "".join(stuecke)
+
+    vorher = None
+    while vorher != residuum:
+        vorher = residuum
+        residuum = residuum.strip().strip(",;")
+        if residuum.endswith("."):
+            residuum = residuum[:-1]
+    return residuum
