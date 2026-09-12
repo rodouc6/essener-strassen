@@ -14,7 +14,7 @@ import re
 from typing import NamedTuple
 
 from strassen.datum import (
-    DATUMSSTEMPEL_ANONYM, DATUMSSTEMPEL_MUSTER, SATZENDE, lese_datum, unscharf_eindeutig,
+    DATUMSSTEMPEL, DATUMSSTEMPEL_ANONYM, DATUMSSTEMPEL_MUSTER, SATZENDE, unscharf_eindeutig,
 )
 
 # Der Ziffernblock der Schlüsselnummer wird gelegentlich vom OCR mit einem
@@ -65,25 +65,40 @@ _GRUPPE = re.compile(
 )
 # Namensteil eines Stadiums in der strengen Kettenerkennung: keine Ziffern, endet am
 # gemeinsamen Satzende (datum.SATZENDE — Abkürzungspunkte 'St.', 'II.' zählen nicht)
-# ODER an einem Komma, dem direkt (nach optionalem Leerraum) 'urspr.' oder der nächste
-# Datumsstempel folgt — sonst bricht ein Stadium wie 'I. Levenhove,' (kein Satzende
-# nach der römischen Zahl, kein Punkt vor dem nächsten Stempel) die ganze Kette ab und
-# reißt alle folgenden Stadien mit aus kopf.rest heraus (Kämmereihude, Schl.-Nr. 01638,
-# S. 185; Fix Task 12). DATUMSSTEMPEL_ANONYM, weil dieselbe benannte Gruppe nicht
-# zweimal im selben Muster vorkommen darf.
+# ODER an einem Komma/Semikolon, dem direkt (nach optionalem Leerraum) 'urspr.' oder
+# der nächste Datumsstempel folgt — sonst bricht ein Stadium wie 'I. Levenhove,' (kein
+# Satzende nach der römischen Zahl, kein Punkt vor dem nächsten Stempel) die ganze
+# Kette ab und reißt alle folgenden Stadien mit aus kopf.rest heraus (Kämmereihude,
+# Schl.-Nr. 01638, S. 185; Fix Task 12, Runde 1). Semikolon zusätzlich zu Komma, weil
+# es im Material parallele Namensgeschichten trennt (Frau-Bertha-Krupp-Straße 00896,
+# S. 118: '…Berthastraße; 23. September 1892: Alexstraße…', Fix Task 12, Runde 2).
+# DATUMSSTEMPEL_ANONYM, weil dieselbe benannte Gruppe nicht zweimal im selben Muster
+# vorkommen darf.
 _NAMENSTEIL = r"(?:(?!" + SATZENDE + r")[^\d\n]){1,80}"
 _STADIUM = re.compile(
     DATUMSSTEMPEL_MUSTER + r"\s*(?P<name>" + _NAMENSTEIL + r")"
-    r"(?:" + SATZENDE + r"|,(?=\s*(?:urspr\.|" + DATUMSSTEMPEL_ANONYM + r")))"
+    r"(?:" + SATZENDE + r"|[,;](?=\s*(?:urspr\.|" + DATUMSSTEMPEL_ANONYM + r")))"
 )
 _SATZENDE = re.compile(SATZENDE)
-# Maximale Lücke zwischen zwei Stadien, damit sie noch als zusammenhängende
-# Namenskette direkt nach dem Kopf gelten. Auch mit der Monatsnamen-Beschränkung
-# bleibt ein Rest-Risiko: ein echtes Datum mit echtem Monat und Doppelpunkt tief
-# in der Erläuterung (z. B. ein Zitat oder eine Quellenangabe). Ein Sprung über
-# mehr als diese Lücke gilt als Erläuterungstext, nicht als Fortsetzung der
-# Namenskette.
-_MAX_LUECKE = 40
+# Maximale Zeichenlänge eines Namens zwischen zwei Stempeln derselben Kette (80 Zeichen
+# Name + etwas Raum für Trenner/Leerzeichen) — ersetzt die frühere, an einem strengen
+# Treffer gemessene _MAX_LUECKE (Fix Task 12, Runde 2). _MAX_LUECKE maß den Abstand ab
+# dem ENDE des letzten strengen `_STADIUM`-Treffers; das Kettenende verschob sich dabei
+# unvorhersehbar, sobald ein einzelner Zwischenstempel aus einem der bekannten, in
+# namen.py tolerierten Gründe (Semikolon statt Komma, fehlender Doppelpunkt mit
+# kleingeschriebenem Namensrest) selbst nicht matchte — der Rest der eigentlich
+# zusammenhängenden Kette fiel dann komplett aus `kopf.rest` heraus (sechs neue
+# Regressionen in Runde 1, u. a. 00896, 00718). Die neue Regel misst stattdessen jeden
+# ROHEN Stempel für sich (DATUMSSTEMPEL.finditer, unabhängig davon, ob `namen.py` ihn
+# später als Namen akzeptiert) und lässt die Kette weiterlaufen, solange jeder Stempel
+# (a) am Kettenanfang oder direkt nach Komma/Semikolon steht und (b) höchstens
+# _MAX_NAMENSLAENGE Zeichen nach dem Ende des vorigen Stempels beginnt — das reicht für
+# den längsten Namen (80 Zeichen) plus Trenner. Ob ein einzelner Zwischenstempel selbst
+# einen gültigen Namen ergibt, entscheidet weiterhin allein `namen.py`; ein nicht
+# lesbarer Zwischenstempel (verstümmeltes Datum) bricht die Kette hier NICHT ab,
+# sondern bleibt als Rauschen in `kopf.rest` liegen — sichtbar über den Prüfgrund
+# 'Namenskette unvollständig gelesen' (Fix Task 12, Runde 1, Teil 2).
+_MAX_NAMENSLAENGE = 90
 
 
 class Kopf(NamedTuple):
@@ -117,31 +132,46 @@ HINWEIS_KLASSE_KORRIGIERT = "Straßenklasse OCR-korrigiert"
 
 def _position_erlaubt(schwanz: str, start: int) -> bool:
     davor = schwanz[:start].rstrip()
-    return davor == "" or davor.endswith(",")
+    return davor == "" or davor.endswith(",") or davor.endswith(";")
 
 
-def _stadienkette(schwanz: str) -> list:
-    """Nur eine ununterbrochene Kette von Stadien direkt nach dem Kopfbereich
-    akzeptieren (Lücke ≤ _MAX_LUECKE). Stempel ohne regulären Doppelpunkt zählen nur
-    am Kettenanfang oder nach Komma und mit großgeschriebenem Namen (Spec Regel 15) —
-    dieselbe Positionsregel wie namen.parse_namenskette. Ein bloßes Jahr (geschrieben
-    als 'jjjj:' ODER ein Volldatum mit ungültigem Tag/Monat, das lese_datum deshalb
-    auf das Jahr zurückstuft — nicht aber ein ausdrückliches 'vor/nach/um/etwa/gegen
-    jjjj:') unterliegt derselben Regel IMMER, auch mit Doppelpunkt: es ist der
-    schwächste Stempel und degradiert hinter Rauschen sonst ein verstümmeltes
-    Volldatum unbemerkt zu einem stillen Jahr (Dudweilerstraße 00685, S. 104: 'A 0,
-    EEE 1935:' statt '14. November 1935:')."""
-    kette = []
-    for t in _STADIUM.finditer(schwanz):
-        d = lese_datum(t)
-        schwach = d.praezision == "jahr" and not t.group("qualifier")
-        if t.group("trenner") != ":" or schwach:
-            if not _position_erlaubt(schwanz, t.start()) or not t.group("name").strip()[:1].isupper():
-                continue
-        if kette and t.start() - kette[-1].end() > _MAX_LUECKE:
+def _stadienkette(schwanz: str):
+    """Das Ende der zusammenhängenden Namenskette direkt nach dem Kopfbereich, als
+    Index in schwanz — oder None, wenn schwanz nicht mit einem Stempel beginnt (dann
+    greift in parse_kopf der alte Fallback: erstes Satzende).
+
+    Die Kette ist der Lauf ALLER rohen Datumsstempel (datum.DATUMSSTEMPEL, unabhängig
+    davon, ob namen.py sie später als Namen akzeptiert), solange jeder Stempel (a) am
+    Kettenanfang oder direkt nach Komma/Semikolon steht (_position_erlaubt — dieselbe
+    Regel wie namen.parse_namenskette) und (b) höchstens _MAX_NAMENSLAENGE Zeichen
+    nach dem Ende des vorigen Stempels beginnt. Der erste Stempel, der (a) oder (b)
+    verletzt, beendet den Lauf — er ist Fließtext oder zu weit entfernt, um noch zur
+    Kette zu gehören (Prosa-Datum, Zitat, Quellenangabe tief in der Erläuterung).
+
+    Das Kettenende selbst ist NICHT einfach das Ende des letzten Laufmitglieds: dessen
+    Name kann sich noch über den rohen Stempel hinaus erstrecken. Es ist das Ende des
+    strengen `_STADIUM`-Treffers ab dem Start des letzten Laufmitglieds, falls der
+    existiert (er endet an SATZENDE oder, Fix Runde 1, an einem Komma/Semikolon vor
+    dem nächsten Stempel/'urspr.'); sonst das nächste SATZENDE nach dem Ende des
+    Laufmitglieds; sonst das Ende von schwanz."""
+    lauf = []
+    for t in DATUMSSTEMPEL.finditer(schwanz):
+        if not _position_erlaubt(schwanz, t.start()):
             break
-        kette.append(t)
-    return kette
+        if lauf and t.start() - lauf[-1].end() > _MAX_NAMENSLAENGE:
+            break
+        lauf.append(t)
+    if not lauf:
+        return None
+
+    letzter = lauf[-1]
+    m = _STADIUM.match(schwanz, letzter.start())
+    if m:
+        return m.end()
+    ms_ende = _SATZENDE.search(schwanz, letzter.end())
+    if ms_ende:
+        return ms_ende.end()
+    return len(schwanz)
 
 
 def _teile(wert: str) -> list:
@@ -217,9 +247,9 @@ def parse_kopf(rumpf: str):
 
     start = mg.end() if mg else (mk.end() if mk else m.end())
     schwanz = rumpf[start:]
-    stadien = _stadienkette(schwanz)
-    if stadien:
-        rest = schwanz[:stadien[-1].end()]
+    ende = _stadienkette(schwanz)
+    if ende is not None:
+        rest = schwanz[:ende]
     else:
         # Fallback: bis zum ersten echten Satzende — NICHT bis zum ersten '. ', das
         # die Tagesziffer eines sauber gedruckten Datums traf (38 Namensketten im

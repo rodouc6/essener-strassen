@@ -43,9 +43,11 @@ class Stadium(NamedTuple):
 
 
 def _position_erlaubt(rest: str, start: int) -> bool:
-    """Für Stempel ohne regulären Doppelpunkt: Kettenanfang oder direkt nach Komma."""
+    """Für Stempel ohne regulären Doppelpunkt: Kettenanfang oder direkt nach Komma
+    oder Semikolon (Semikolon trennt im Material parallele Namensgeschichten, z. B.
+    Frau-Bertha-Krupp-Straße 00896, S. 118; Fix Task 12, Runde 2)."""
     davor = rest[:start].rstrip()
-    return davor == "" or davor.endswith(",")
+    return davor == "" or davor.endswith(",") or davor.endswith(";")
 
 
 def _akzeptierte_treffer(rest: str) -> list:

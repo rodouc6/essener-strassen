@@ -125,7 +125,7 @@ def test_marker_ohne_zweites_r_wird_erkannt():
     assert k.strassenklassen == ["Gemeindestraße"]
 
 
-from strassen.namen import parse_namenskette
+from strassen.namen import parse_namenskette, unverarbeiteter_rest
 
 
 def test_fallback_kappt_nicht_am_tagespunkt():
@@ -313,3 +313,57 @@ def test_stadium_am_komma_bricht_kamerunstraße_nicht_zusaetzlich_auf():
     k = parse_kopf(rumpf)
     s = parse_namenskette(k.rest)
     assert [(x.gueltig_ab, x.name) for x in s] == [("1939-05-26", "Kamerunstraße")]
+
+
+def test_kette_ueber_semikolon_hinweg_frau_bertha_krupp():
+    """Frau-Bertha-Krupp-Straße, Schl.-Nr. 00896, S. 118 — Fix Task 12, Runde 1:
+    kopf._STADIUM matchte auf dieser Kette nur den letzten Stempel (der einzige mit
+    echtem Satzende) und `kopf.rest` reichte per Zufall bis dorthin. Die alte
+    Komma-Abschlussregel (Runde 1) ließ das erste Stadium schon bei 'Berthastraße,'
+    enden (kurz vor dem Semikolon-getrennten zweiten Stadium) — die dadurch verschobene
+    Lücken-Messung (_MAX_LUECKE) brach die Kette vorzeitig ab, 4 von 5 Stadien fielen
+    aus. Die neue, stempelbasierte Kette (Runde 2) muss alle 5 Stadien liefern,
+    Semikolon zählt wie Komma als erlaubte Trennerposition."""
+    rumpf = ("00896, Stadtteil Südviertel, Str.-Kl.: Gemeindestraße, Str.-Gr.: Person, "
+             "Frau, Deutsche, Familie Krupp, Essener Geschichte und Örtlichkeit, "
+             "05. Juli 1889: Berthastraße, 26. Januar 1906: Frau-Berta-Krupp-Straße; "
+             "23. September 1892: Alexstraße, 09. Juli 1915: Frau-Berta-Krupp-Straße "
+             "(Verl), 12. Dezember 1957: Frau-Bertha-Krupp-Straße. Bertha Krupp "
+             "(geb. Eichhoff) *13. Dezember 1831 in Köln.")
+    k = parse_kopf(rumpf)
+    s = parse_namenskette(k.rest)
+    assert [x.name for x in s] == [
+        "Berthastraße", "Frau-Berta-Krupp-Straße", "Alexstraße",
+        "Frau-Berta-Krupp-Straße (Verl)", "Frau-Bertha-Krupp-Straße",
+    ]
+
+
+def test_kette_mit_unlesbarem_zwischenstempel_siebrechtweg():
+    """Siebrechtweg, Schl.-Nr. 00718, S. 303 — Fix Task 12, Runde 1: derselbe
+    Lücken-Bruch traf hier über einen per Positionsregel abgelehnten Zwischenstempel
+    ('04. April 1986 aufgehoben:' — kein Doppelpunkt direkt nach dem Datum,
+    kleingeschriebener Namensrest). Die neue Kette darf davon nicht abbrechen: beide
+    echten Stadien (1974, 2006) bleiben erhalten, der unlesbare Zwischenstempel bleibt
+    als Rauschen im Rest liegen und wird über 'Namenskette unvollständig gelesen'
+    (Fix B, Runde 1) sichtbar statt zu verschwinden."""
+    rumpf = ("00718, Stadtteil Altenessen-Nord, Str.-Kl.: Gemeindestraße, Str.-Gr.: "
+             "Person, Mann, Deutscher, Gerichtsassessor, 11. Dezember 1974: "
+             "Siebrechtweg, 04. April 1986 aufgehoben: Siebrechtweg, 31. Januar 2006: "
+             "Siebrechtweg. Fritz (Friedrich) Siebrecht war ein Dr.-jur. h.c.")
+    k = parse_kopf(rumpf)
+    s = parse_namenskette(k.rest)
+    assert [(x.gueltig_ab, x.name) for x in s] == [
+        ("1974-12-11", "Siebrechtweg"), ("2006-01-31", "Siebrechtweg"),
+    ]
+    residuum = unverarbeiteter_rest(k.rest)
+    assert "1986" in residuum
+
+
+def test_stempel_nach_semikolon_setzt_kette_fort():
+    """Ein Stempel direkt nach Semikolon zählt wie einer nach Komma als
+    Kettenfortsetzung (Fix Task 12, Runde 2)."""
+    rumpf = ("00001, Stadtteil X, Str.-Kl.: Gemeindestraße, Str.-Gr.: Flurname, "
+             "01. Januar 1900: Altname; 02. Februar 1950: Neuname.")
+    k = parse_kopf(rumpf)
+    s = parse_namenskette(k.rest)
+    assert [x.name for x in s] == ["Altname", "Neuname"]
