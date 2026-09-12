@@ -4,50 +4,19 @@
 |---|--:|
 | Eintrag neu | 0 |
 | Eintrag entfallen | 0 |
-| Stadium gewonnen | 159 |
-| Stadium verloren | 7 |
-| Datum verändert | 8 |
-| Name verändert | 34 |
+| Stadium gewonnen | 175 |
+| Stadium verloren | 4 |
+| Datum verändert | 7 |
+| Name verändert | 37 |
 | Kopffeld verändert | 180 |
-| Status automatisch → unsicher | 61 |
-| Status unsicher → automatisch | 58 |
-
-## Prüfung gegen den Druck (Task 12, Spec 5.1)
-
-Geprüft wurden am OCR-Text (`ocr/seiten/s<buchseite>.txt`) alle 7 Einträge unter
-„Stadium verloren", alle 8 unter „Datum verändert", die 6 Einträge unter „Name verändert",
-deren neuer Wert kürzer oder inhaltlich anders ist, und alle 58 Statuswechsel
-`unsicher → automatisch` — zusammen 79 Einzelbefunde, jeweils als `- Prüfung:`-Zeile unter
-dem Listenpunkt.
-
-**Ergebnis:** 73 Befunde bestätigen den neuen Wert (Datumsgewinne, vollständige Namen,
-entferntes Randrauschen) oder sind akzeptierte, als `unsicher` gekennzeichnete Verluste.
-**6 Befunde sind echte Regressionen** — der Eintrag verliert ein gedrucktes Stadium und ist
-dennoch `status=automatisch`, also nicht gekennzeichnet:
-
-| Schl.-Nr. | Lemma | Ursache | Regel |
-|---|---|---|---|
-| 00595 | Dahlhauser Straße | Doppel-Tagesstempel `10./13. April 1905:` nicht modelliert, Rückfall auf bloßes Jahr → Positionsregel verwirft | 15 |
-| 00720 | Eberhardstraße | Spaltenrauschen mitten im Datum (`28. Mai … 1919:`) → Rest-Stempel von Positionsregel verworfen | 15 / Spec 4 („nicht lösbar", soll `unsicher` bleiben) |
-| 01386 | Hünninghausenweg | Störpunkt `19. Mai .1926:` → Rückfall auf bloßes Jahr → Positionsregel verwirft | 15 |
-| 01638 | Kämmereihude | `kopf._STADIUM` kann `I. Levenhove,` nicht abschließen; Lücke > `_MAX_LUECKE` bricht die Kette; 2 von 3 Stadien fehlen | 4 (+ `_MAX_LUECKE`) |
-| 00217 | Am Thyssenhaus | verstümmelte Jahreszahl `19377` → Namen gebendes Stadium fällt aus | Spec 4 („nicht lösbar", soll `unsicher` bleiben) |
-| 03560 | An der Schlucht | Bildunterschrift mitten im Datum (`18. … September 1974:`) | Spec 4 („nicht lösbar", soll `unsicher` bleiben) |
-
-Gemeinsames Muster von 00217, 00720, 01152, 03560: Der alte Parser las das Rauschen als
-Namensteil und löste dadurch den Prüfgrund „Namensstadium auffällig" aus. Der neue Parser
-verwirft das Rauschen sauber — und mit ihm den Prüfgrund. Der Eintrag sieht dann fehlerfrei
-aus, obwohl ihm ein gedrucktes Stadium fehlt. Das verletzt das Erfolgskriterium der Spec
-(„korrigiert oder gekennzeichnet, nie still falsch") und braucht eine eigene Kennzeichnung,
-z. B. einen Prüfgrund, wenn das letzte Stadium nicht zum Lemma passt.
-
-Zwei weitere, kleinere Feldfehler in `automatisch`-Einträgen sind unten kommentiert:
-00500 (Namensgruppe endet auf dem verirrten `O` der Tagesziffer) und 02518 (OCR-verstümmelter
-Name `Wilhelm- "lieswandt-Allee`, von `_name_auffaellig` nicht erkannt).
+| Status automatisch → unsicher | 75 |
+| Status unsicher → automatisch | 46 |
 
 ## Stadium gewonnen
 
 - 00050 Altendorfer Straße — neu: 1883 Limbecker Chaussee
+- 00050 Altendorfer Straße — neu: 1946-03-27 Ernst-Thälmann-Straße (Umb.)
+- 00050 Altendorfer Straße — neu: 1950-10-19 Altendorfer Straße (Verl)
 - 00103 Am Kreuz — neu: 1896-02-13 Georgstraße
 - 00103 Am Kreuz — neu: 1915-07-09 Am Kreuz
 - 00117 Am Ringofen — neu: 1959-09-08 Am Ringofen
@@ -87,7 +56,6 @@ Name `Wilhelm- "lieswandt-Allee`, von `_name_auffaellig` nicht erkannt).
 - 00928 Fritzstraße — neu: 1896-02-13 Fritzstraße
 - 00957 Fischlaker Höfe — neu: 1922-06-02 In den Höfen
 - 00957 Fischlaker Höfe — neu: 1970-12-16 Fischlaker Höfe
-- 01007 Gemperwiese — neu: 1866 Klein Gümperwiese
 - 01011 Gerhard-Küchen-Straße — neu: 1910-12-20 Küchenstraße
 - 01013 Gerichtsstraße — neu: 1891-04-30 Gerichtsstraße
 - 01019 Gerscheder Straße — neu: 1891-04-30 Gerscheder Straße
@@ -136,6 +104,9 @@ Name `Wilhelm- "lieswandt-Allee`, von `_name_auffaellig` nicht erkannt).
 - 01552 An der Blumenwiese — neu: 1999-12-14 An der Blumenwiese
 - 01591 Jenckestraße — neu: 1914-10-09 Kruppstraße (tiw.)
 - 01591 Jenckestraße — neu: 1969-03-19 Jenckestraße
+- 01621 Kaiser-Otto-Platz — neu: Neumarkt
+- 01621 Kaiser-Otto-Platz — neu: 1934-06-05 Isinger Markt
+- 01621 Kaiser-Otto-Platz — neu: 1938-05-14 Kaiser-Otto-Platz
 - 01632 Kallenbergstraße — neu: 1868-01-17 Schlenhofstraße (tlw.)
 - 01632 Kallenbergstraße — neu: 1953-03-03 Hilgerstraße (tlw.)
 - 01633 Kalthofweg — neu: 1954-02-23 Kalthofweg
@@ -166,6 +137,7 @@ Name `Wilhelm- "lieswandt-Allee`, von `_name_auffaellig` nicht erkannt).
 - 02532 Hugo-Knippen-Straße — neu: 1991-11-13 Hugo-Knippen-Straße
 - 02548 Rahmdörne — neu: 1896-02-13 Markenstraße
 - 02548 Rahmdörne — neu: 1915-07-09 Rahmdörne
+- 02632 Rosastraße — neu: 1907-02-01 Rosastraße (Verl
 - 02760 Schichtstraße — neu: 1903-11-27 Steinstraße
 - 02760 Schichtstraße — neu: 1915-07-09 1. Schichtstraße
 - 02769 Schirnbecker Teiche — neu: Eibergstraße
@@ -180,6 +152,11 @@ Name `Wilhelm- "lieswandt-Allee`, von `_name_auffaellig` nicht erkannt).
 - 02934 Steeler Straße — neu: Steeler Chaussee
 - 02960 Stiege — neu: 1953-03-03 1. Stiege
 - 02961 Stiege — neu: 1953-03-03 II. Stiege
+- 02974 Stoppenberger Straße — neu: 1933 Karpinskistraße (Umb.)
+- 02974 Stoppenberger Straße — neu: 1937 Provinzialstraße (tlw.Umb.)
+- 02974 Stoppenberger Straße — neu: 1945-05-15 Stoppenberger Straße (Umb.)
+- 02974 Stoppenberger Straße — neu: 1940-01-12 Provinzialstraße
+- 02974 Stoppenberger Straße — neu: 1964-05-20 Stoppenberger Straße (Verl.)
 - 03021 Sylviastraße — neu: 1897-09-06 Rosastraße (tiw.)
 - 03035 ne eh Schloßstraße - Wasserschloss Borbeck Schliemannstraße — neu: 1894-08-29 Kerckhoffstraße {tlw.)
 - 03035 ne eh Schloßstraße - Wasserschloss Borbeck Schliemannstraße — neu: 1929-07-24 Leisers Feld (tlw.)
@@ -203,6 +180,12 @@ Name `Wilhelm- "lieswandt-Allee`, von `_name_auffaellig` nicht erkannt).
 - 03614 Kettwiger Weinberg — neu: 1977-11-29 Kettwiger Weinberg
 - 03631 Beetstraße — neu: 1880 Beetstraße
 - 03656 Freiligrathstraße — neu: 1978-04-07 Freiligrathstraße (Verl.)
+- 03670 Hauptstraße — neu: 1934-10-02 Adolf-Hitler-Straße (Umb.)
+- 03670 Hauptstraße — neu: 1945-04-26 Hauptstraße (Umb.)
+- 03670 Hauptstraße — neu: 1946-04-04 Mozartstraße
+- 03670 Hauptstraße — neu: 1948-06-15 Bismarckstraße
+- 03670 Hauptstraße — neu: 1970-11-20 Hauptstraße (Verl)
+- 03670 Hauptstraße — neu: 1977-11-29 Hauptstraße (Verl)
 - 03724 Mendener Straße — neu: 1978-03-14 Mendener Straße
 - 03731 Oefte — neu: 0801 Oefte
 - 03745 Schillerstraße — neu: 1930-01-28 Schillerstraße
@@ -210,47 +193,21 @@ Name `Wilhelm- "lieswandt-Allee`, von `_name_auffaellig` nicht erkannt).
 ## Stadium verloren
 
 - 00422 Brandstraße — alt: 1826 aufm Brande
-  - Prüfung: Verlust akzeptiert: Druck S. 78 'urspr.: (16. Jh.): opme Brand, 1826: aufm Brande, etwa 1860: Brandstraße'; Stadium 1 nimmt jetzt den ganzen Ausdruck '(16. Jh.): opme Brand' auf und verschluckt dabei '1826: aufm Brande'. Eintrag ist `unsicher`.
 - 00595 Dahlhauser Straße — alt: 1905-04-13 Schottländerweg
-  - Prüfung: REGRESSION: Druck S. 91 '…, 10./13. April 1905: Schottländerweg, 16. April 1925: Dahlhauser Straße.' Der Doppel-Tagesstempel '10./13. April 1905:' ist im Regelkatalog nicht modelliert; erkannt wird nur das bloße Jahr '1905:', das als schwacher Stempel der Positionsregel (Spec Regel 15) unterliegt und mangels Komma davor verworfen wird. Stadium fehlt, Eintrag bleibt `automatisch` — nicht gekennzeichnet.
 - 00720 Eberhardstraße — alt: 1919 Horststraße (tiw.)
-  - Prüfung: REGRESSION: Druck S. 101 '28. Mai' | Spaltenrauschen 'Tas / Echstenkämperweg - Hof Lohmann' | '1919: Horststraße (tiw.), etwa 1922: Eberhardstraße.' Genau der in Spec Abschnitt 4 als 'nicht durch Regeln lösbar' benannte Fall ('Rauschen mitten im Datum'), der laut Spec `unsicher` bleiben soll. Der Rest-Stempel '1919:' wird von Regel 15 verworfen; mit dem Stadium entfällt auch der bisherige Prüfgrund 'Namensstadium auffällig' — Eintrag jetzt `automatisch`.
 - 01386 Hünninghausenweg — alt: 1926 Lindenstraße (Veri.)
-  - Prüfung: REGRESSION: Druck S. 170 '19. Mai .1926: Lindenstraße (Veri.)' — Störpunkt vor der Jahreszahl. Der Stempel fällt auf das bloße Jahr '1926:' zurück und wird von der Positionsregel (Regel 15) verworfen. Stadium fehlt, Eintrag bleibt `automatisch`.
-- 01638 Kämmereihude — alt: 1915-07-09 I
-  - Prüfung: REGRESSION: Druck S. 185 '13. Februar 1896: Ill. Ziegelstraße, 09. Juli 1915: I. Levenhove, 25. Februar 1937: Kämmereihude.' `kopf._STADIUM` kann 'I. Levenhove,' nicht abschließen (nach römischer Zahl ist der Punkt kein Satzende, Regel 4; danach folgt ein Komma statt eines Satzendes), das Stadium fällt aus der Kette, und die Lücke bis zum nächsten Stempel überschreitet `_MAX_LUECKE` (42 > 40). `kopf.rest` endet deshalb nach 'Ill.'.
-- 01638 Kämmereihude — alt: 1937-02-25 Kämmereihude
-  - Prüfung: REGRESSION (gleiche Ursache): auch das Namen gebende Stadium '25. Februar 1937: Kämmereihude' fehlt. Der Eintrag hat nur noch ein einziges Stadium mit dem Rauschnamen 'Ill' — und ist dennoch `automatisch`.
-- 02632 Rosastraße — alt: 1945-06-18 Rosastraße (Umb.)
-  - Prüfung: Verlust akzeptiert: Druck S. 278 '01. Februar 1907 Rosastraße (Verl. Bis Rüttenscheider Straße), 29. August 1927: Kirdorfstraße (Umb.), 18. Juni 1945: Rosastraße (Umb.).' Der Punkt in '(Verl.' vor großgeschriebenem 'Bis' gilt als Satzende (Regel 4), `kopf.rest` endet dort. Eintrag ist `unsicher` (Hinweis 'Datum ohne Doppelpunkt').
 
 ## Datum verändert
 
 - 00077 Am Freistein — stadium: 2; alt: 1892 (jahr); neu: 1892-03-29 (tag)
-  - Prüfung: korrekt: Druck S. 34 '29, März 1892: Feldstraße' — Komma nach dem Tag (Regel 14), jetzt tagesgenau statt bloßes Jahr.
 - 00192 Jacob-Grimm-Straße — stadium: 1; alt: 1907 (jahr); neu: 1907-09-27 (tag)
-  - Prüfung: korrekt: Druck S. 181 '27. September / 1907: Arndtstraße' (Zeilenumbruch im Datum), jetzt tagesgenau.
 - 00608 Deilbachufer — stadium: 1; alt: 1900 (jahr); neu: 1900-11-13 (tag)
-  - Prüfung: korrekt: Druck S. 92 '13. Novemner 1900: Uferstraße' — Monatsname mit einem OCR-Fehler (Regel 16), jetzt tagesgenau.
 - 01316 Hirtsieferstraße — stadium: 1; alt: 1920 (jahr); neu: 1920-10-01 (tag)
-  - Prüfung: korrekt: Druck S. 161 '… Stadtverordneter 01. Oktober 1920: Mercatorstraße' — Stempel ohne Komma davor (Regel 15), jetzt tagesgenau.
-- 02632 Rosastraße — stadium: 2; alt: 1927-08-29 (tag); neu: 1907-02-01 (tag)
-  - Prüfung: kein Datumsfehler, sondern Folge des oben belegten Kettenabbruchs: Stadium 2 ist jetzt '01. Februar 1907 Rosastraße (Verl' (Druck S. 278) statt des früheren '29. August 1927: Kirdorfstraße (Umb.)'. Der neue Wert steht so im Druck; Eintrag ist `unsicher`.
 - 02926 Stankeitstraße — stadium: 1; alt: 1903 (jahr); neu: 1903-11-27 (tag)
-  - Prüfung: korrekt: Druck S. 310 'Bürgermeisten 27. November / 1903: Moltkestraße', jetzt tagesgenau.
 - 03333 Wehnertweg — stadium: 2; alt: 1910 (jahr); neu: 1910-09-16 (tag)
-  - Prüfung: korrekt: Druck S. 342 '16, September 1910: Altenhof II (tiw.)' — Komma nach dem Tag (Regel 14), jetzt tagesgenau.
 - 03417 Wisthoffweg — stadium: 1; alt: 1897 (jahr); neu: 1897-11-29 (tag)
-  - Prüfung: korrekt: Druck S. 351/352 '29. November' | Seitenumbruch | '1897: Höhenstraße (tlw.)' — Randrauschen entfernt (Regel 12), jetzt tagesgenau.
 
 ## Name verändert
-
-Von den 34 Änderungen sind 28 reine Verlängerungen eines zuvor am Abkürzungs- oder
-Ziffernpunkt abgeschnittenen Namens ('An St' → 'An St. Hedwig', 'I' → 'I. Weberstraße',
-'Platz des 21' → 'Platz des 21. März'; Spec Regeln 1, 2, 4). Sie sind gegen den Druck
-stichprobenweise über die zugehörigen Statuswechsel unten mitgeprüft und werden hier nicht
-einzeln kommentiert. Einzeln geprüft sind die sechs Fälle, in denen der neue Name kürzer
-oder inhaltlich anders ist.
 
 - 00171 Albertus Magnus — stadium: 1; alt: An St; neu: An St. Albertus Magnus
 - 00172 Hedwig — stadium: 1; alt: An St; neu: An St. Hedwig
@@ -261,7 +218,6 @@ oder inhaltlich anders ist.
 - 00177 Stephan — stadium: 1; alt: An St; neu: An St. Stephan
 - 00178 Thomas — stadium: 1; alt: An St; neu: An St. Thomas
 - 00258 Am Fernmeldeamt — stadium: 1; alt: Am Fern- A ee meldeamt; neu: Am Fern- meldeamt
-  - Prüfung: korrekt: Druck S. 33/34 '21. Januar 1970: Am Fern-' | Seitenzahl | 'meldeamt'; das Randrauschen 'A ee' ist jetzt entfernt (Regel 12).
 - 00422 Brandstraße — stadium: 1; alt: (16; neu: (16. Jh.): opme Brand
 - 00502 Buschlandweg — stadium: 1; alt: I; neu: I. Buschlandweg
 - 00613 Dellbrügge — stadium: 1; alt: 1; neu: 1. Dellbrügge
@@ -271,16 +227,16 @@ oder inhaltlich anders ist.
 - 01161 Hagen — stadium: 1; alt: I; neu: I. Hagenstraße
 - 01161 Hagen — stadium: 2; alt: I; neu: I. Hagen
 - 01162 Hagen — stadium: 2; alt: II; neu: II. Hagen
+- 01163 Hagen — stadium: 1; alt: Ill; neu: Ill. Hagenstraße
 - 01163 Hagen — stadium: 2; alt: II; neu: II. Hagen
 - 01258 Heisterholz — stadium: 4; alt: Heisterholz EEE EEE (Verl); neu: Heisterholz (Verl)
-  - Prüfung: korrekt: Druck S. 152/153; das Randrauschen 'EEE EEE' zwischen Name und Zusatz ist jetzt entfernt (Regel 12).
 - 01322 Hochstraße — stadium: 1; alt: IV; neu: IV. Rottstraße
+- 01638 Kämmereihude — stadium: 1; alt: Ill; neu: Ill. Ziegelstraße
+- 01638 Kämmereihude — stadium: 2; alt: I; neu: I. Levenhove
 - 01760 Köllmannstraße — stadium: 1; alt: «77 l l N Zn J Ne | FH E> £ \ SI 1-17 ueN N EIER K/ 13 nun N ASZo.L Köllmannstra; neu: «77 N Zn J Ne | FH E> £ \ SI 1-17 ueN N EIER K/ 13 nun N ASZo.L Köllmannstraße
-  - Prüfung: korrekt: Druck S. 202 'vor 1911:' gefolgt von großflächigem Bildrauschen; die reinen Rauschzeilen 'l' / 'l' sind entfernt (Regel 12) und der Name endet vollständig auf 'Köllmannstraße'. Eintrag bleibt `unsicher`.
 - 02262 Nobermanns Hude — stadium: 1; alt: I; neu: I. Ziegelstraße
-- 02632 Rosastraße — stadium: 2; alt: Kirdorfstraße (Umb.); neu: Rosastraße (Verl
-  - Prüfung: s. o. unter 'Datum verändert': Folge des Kettenabbruchs an '(Verl. Bis'; der neue Wert steht im Druck, Eintrag ist `unsicher`.
 - 02668 Ruschenfeld — stadium: 1; alt: I; neu: I. Ruschenfeld
+- 02670 Ruschenfeld — stadium: 1; alt: Ill; neu: Ill. Ruschenfeld
 - 02727 Annental — stadium: 3; alt: St; neu: St. Annental
 - 02761 Schichtstraße — stadium: 2; alt: I; neu: I. Schichtstraße
 - 02796 Schnieringstraße — stadium: 2; alt: 1; neu: 1. Schnieringstraße
@@ -288,9 +244,7 @@ oder inhaltlich anders ist.
 - 03105 Terwestenweg — stadium: 1; alt: I; neu: I. Terwestenweg
 - 03324 Weberstraße — stadium: 1; alt: I; neu: I. Weberstraße
 - 03328 Weg am Berge — stadium: 2; alt: Weg am EP Berge; neu: Weg am Berge
-  - Prüfung: korrekt: Druck S. 341/342 '20. November 1937: Weg am' | Seitenzahl | 'Berge'; das Randrauschen 'EP' ist entfernt (Regel 12).
 - 03370 Westfalenstraße — stadium: 1; alt: Bredeneyer w Straße; neu: Bredeneyer Straße
-  - Prüfung: korrekt: Druck S. 345/346 '18. November 1890: Bredeneyer' | Seitenzahl | 'Straße'; das Randrauschen 'w' ist entfernt (Regel 12).
 - 03625 An der Seilerei — stadium: 1; alt: Kaiser-Wilhelm-Platz und 21; neu: Kaiser-Wilhelm-Platz und 21. Dezember 1899: Thalstraße
 
 ## Kopffeld verändert
@@ -482,15 +436,19 @@ oder inhaltlich anders ist.
 - 00137 Am Turm
 - 00210 Auf der Bredde
 - 00269 An der Windmühle
+- 00286 Barbarossaplatz
 - 00357 Bieberweg
 - 00379 Bocholder Straße
 - 00400 Borbecker Straße
 - 00417 Brandenburger Straße
 - 00422 Brandstraße
 - 00467 Brunnsiepen
+- 00595 Dahlhauser Straße
 - 00608 Deilbachufer
 - 00623 Dickmannstraße
 - 00628 Diergardtstraße
+- 00718 Siebrechtweg
+- 00720 Eberhardstraße
 - 00733 Eibergweg
 - 00905 Freisenbruchstraße
 - 00939 Fürstäbtissinstraße
@@ -504,20 +462,29 @@ oder inhaltlich anders ist.
 - 01186 Hansastraße
 - 01189 Hans-Luther-Allee
 - 01214 Haus-Berge-Straße
+- 01253 Heinrich-Strunk-Straße
 - 01308 Hindenburgstraße
 - 01333 Höntroper Straße
+- 01360 Holsterhauser Straße
 - 01382 Hülsebergstraße
+- 01386 Hünninghausenweg
 - 01401 Hundebrinkstraße
 - 01453 Imandtstraße
 - 01521 Irmastraße
+- 01539 Im Zauberwald
+- 01621 Kaiser-Otto-Platz
 - 01632 Kallenbergstraße
 - 01672 Kastellgraben
+- 01687 Kelserweg
 - 01834 Külshammerweg
 - 01863 Kleiner Schirnkamp
 - 01994 Lohmühlental
+- 02090 Marktstraße
 - 02171 Müllerstraße
 - 02182 Mönkhoffs Busch
+- 02224 Narzissenweg
 - 02279 Nottekampswinkel
+- 02317 Obernitzstraße
 - 02320 Oberstraße
 - 02474 Paul-Goerens-Straße
 - 02508 Schacht Neu-Cöln
@@ -539,122 +506,53 @@ oder inhaltlich anders ist.
 - 03614 Kettwiger Weinberg
 - 03625 An der Seilerei
 - 03656 Freiligrathstraße
+- 03724 Mendener Straße
 
 ## Status unsicher → automatisch
 
 - 00050 Altendorfer Straße
-  - Prüfung: korrekt: S. 30, Kette vollständig ('1883: Limbecker Chaussee' … '19. Oktober 1950: Altendorfer Straße (Verl)'); das bisher fehlende Anfangsstadium ist jetzt erfasst.
 - 00103 Am Kreuz
-  - Prüfung: korrekt: S. 38, Kette '13. Februar 1896: Georgstraße, 09. Juli 1915: Am Kreuz' jetzt vollständig erfasst (vorher keine Kette).
-- 00199 Asthöwerstraße
-  - Prüfung: korrekt: S. 56, '23. Januar 1957: Asthöwerstraße' — Kette jetzt erkannt.
 - 00208 Am Kreyenkrop
-  - Prüfung: korrekt: S. 39, numerisches Datum '08.10.1896:' (Regel 7) jetzt erkannt; Kette vollständig.
-- 00217 Am Thyssenhaus
-  - Prüfung: REGRESSION: S. 44, Druck '22. Februar 1961: Am Rheinstahlhaus, 04. Februar 19377: Am Thyssenhaus.' Die verstümmelte Jahreszahl '19377' (in Spec Abschnitt 4 ausdrücklich als `unsicher` zu belassen genannt) lässt das Namen gebende Stadium ausfallen; der Eintrag ist trotzdem `automatisch`.
 - 00246 Am Roten Haus
-  - Prüfung: korrekt: S. 42, Kette vollständig; Stadium 2 zieht den anschließenden Erläuterungsanfang mit ('(Verl) Name einer Flur'), weil im Druck der Doppelpunkt fehlt — Wert steht so im Text.
 - 00299 Berliner Platz
-  - Prüfung: korrekt: S. 68, '18. März 1964: Berliner Platz' — Stempel mit Komma statt Doppelpunkt am Namensende, Kette erkannt.
 - 00424 Brauerstraße
-  - Prüfung: korrekt: S. 78, '15. Januar 1895: Brauerstraße' — Kette erkannt.
 - 00491 Bungertstraße
-  - Prüfung: korrekt: S. 85, '16. Jahrhundert: Bungertstraße' → Präzision `jahrhundert`, gueltig_ab 1501 (Regel 8).
 - 00500 Kruppsche Buschhauser Straße
-  - Prüfung: überwiegend korrekt: S. 86, 'O5. Februar 1909: Buschhauser Straße' — Tagesziffer mit OCR-'O' gelesen, Datum richtig. ABER: die Namensgruppe endet auf 'Stadt und Ort, O' (das verirrte 'O' der Tagesziffer) — kleiner Feldfehler in einem `automatisch`-Eintrag.
 - 00502 Buschlandweg
-  - Prüfung: korrekt: S. 86, '21. Oktober 1938: I. Buschlandweg' — der Punkt nach römisch I beendet den Namen nicht mehr (Regel 4).
 - 00540 c Cäcilienstraße
-  - Prüfung: korrekt: S. 87, Marker 'Str.-Kl.;' (Semikolon, Regel 9) jetzt erkannt, Straßenklasse gefüllt.
 - 00588 Carl-Kruft-Straße
-  - Prüfung: korrekt: S. 88, Anfangsstadium '1896: Edelstraße' jetzt erfasst, Kette vollständig.
 - 00613 Dellbrügge
-  - Prüfung: korrekt: S. 93, 'um 1860: 1. Dellbrügge' — Name vollständig statt nur '1'.
 - 00701 ra Unterm Sternenzelt
-  - Prüfung: korrekt: S. 330, Kette unverändert; der frühere Prüfgrund (Lemmarauschen 'ra') entfällt durch die Randrauschen-Bereinigung (Regel 12).
 - 00756 Eligiushöhe
-  - Prüfung: korrekt: S. 106, '*03. Oktober 1932: Eligiushöhe' — OCR-Stern vor der Tagesziffer (Regel 3) jetzt toleriert.
 - 00864 Flachsmarkt
-  - Prüfung: korrekt: S. 114, '16. Jahrh.: Flachsmarkt' → `jahrhundert`, 1501 (Regel 8).
 - 00872 Fließstraße
-  - Prüfung: korrekt: S. 115, '09. Juli 1915: I. Fließstraße' — Name vollständig statt nur 'I'.
-- 00928 Fritzstraße
-  - Prüfung: korrekt: S. 122, '13. Februar 1896: Fritzstraße' — Kette erkannt.
 - 00957 Fischlaker Höfe
-  - Prüfung: korrekt: S. 114, Kette '02. Juni 1922: In den Höfen, 16. Dezember 1970: Fischlaker Höfe' vollständig.
-- 01013 Gerichtsstraße
-  - Prüfung: korrekt: S. 126, '30. April 1891: Gerichtsstraße' — Kette erkannt.
 - 01022 Gerswidastraße
-  - Prüfung: korrekt: S. 127, 'vor 1826: II. Weberstraße' — Name vollständig statt nur 'II'.
 - 01027 Gewerkenstraße
-  - Prüfung: korrekt: S. 128, Kette vollständig inkl. numerischem Datum '26.05.1939:' (Regel 7).
-- 01150 Haardtstraße
-  - Prüfung: korrekt: S. 138, Kette dreistufig vollständig erfasst.
-- 01152 Hachestraße
-  - Prüfung: REGRESSION: S. 138, Druck '06. Mai 1864: Am Bahnhof, 17. Januar 1868: Märkische Straße, 05.' | Bildunterschrift 'FT - Haedenkampstraße - 1916' | 'Juni 1934: Hachestraße.' Das Namen gebende Stadium fällt durch das Rauschen mitten im Datum aus; Eintrag trotzdem `automatisch`. Immerhin korrekt: die zerrissene Schlüsselnummer '011 52' wird jetzt zu 01152 statt 00011 gelesen.
 - 01161 Hagen
-  - Prüfung: korrekt: S. 140, 'um 1860: I. Hagenstraße, 09. Juli 1915: I. Hagen' — beide Namen vollständig.
 - 01207 Hattramstraße
-  - Prüfung: korrekt: S. 145, numerisches Datum '12.03.1903: Hattramstraße' (Regel 7) jetzt als eigenes Stadium erfasst.
 - 01322 Hochstraße
-  - Prüfung: korrekt: S. 162, '18. November 1890: IV. Rottstraße' — Name vollständig statt nur 'IV'.
 - 01535 Im Vaeste
-  - Prüfung: korrekt: S. 178, '16. Juni 1911: Im Vaeste' — Kette erkannt.
 - 01601 y u Prager Straße
-  - Prüfung: korrekt: S. 265, Kette unverändert; der frühere Prüfgrund (Lemmarauschen 'y u') entfällt durch die Randrauschen-Bereinigung (Regel 12).
-- 01635 Kamerunstraße
-  - Prüfung: korrekt: S. 188, '26. Mai 1939: Kamerunstraße' — der Fallback schneidet nicht mehr an der Tagesziffer ab (Regel 1, Goldstandardfall).
 - 01638 Kämmereihude
-  - Prüfung: REGRESSION: s. o. unter 'Stadium verloren' — von drei gedruckten Stadien bleibt nur 'Ill' übrig, und der Eintrag wechselt dabei von `unsicher` zu `automatisch`. Der schwerste Fall dieses Laufs.
 - 01692 Kersthover Höhe
-  - Prüfung: korrekt: S. 194, '31. Juli 1952: Kersthover Höhe' — Kette erkannt.
 - 02016 Lütkenbrauk
-  - Prüfung: korrekt: S. 227, numerisches Datum '02.11.1901: Kruppstraße' (Regel 7) als Stadium 1 ergänzt.
 - 02084 Markt
-  - Prüfung: korrekt: S. 231, '16. Jahrhundert: Markt' → `jahrhundert`, 1501 (Regel 8).
 - 02110 Meerbruchstraße
-  - Prüfung: korrekt: S. 234, 'etwa 1899: Meerbruchstraße' — qualifizierter Jahresstempel erkannt.
 - 02356 Overhammshof
-  - Prüfung: korrekt: S. 254, '21. Januar 1970: Overhammshof' — Kette erkannt (im Druck folgt verstümmeltes Rauschen, das jetzt im Erläuterungstext bleibt, Regel 3).
-- 02518 Wilhelm-Nieswandt-Allee
-  - Prüfung: Datum korrekt (S. 349, '22. November 1990:'), ABER der Name ist OCR-verstümmelt ('Wilhelm- "lieswandt-Allee' statt 'Wilhelm-Nieswandt-Allee') und die Rauschheuristik `_name_auffaellig` greift nicht — Rauschname in einem `automatisch`-Eintrag.
-- 02532 Hugo-Knippen-Straße
-  - Prüfung: korrekt: S. 171, '13. November 1991: Hugo-Knippen-Straße'; die undatierte Vorstufe '(vorm.) Bergheimer Straße (tlw.)' steht im Druck ohne Datum und bleibt daher in der Namensgruppe.
 - 02548 Rahmdörne
-  - Prüfung: korrekt: S. 268, Kette inkl. numerischem Datum '09.07.1915:' (Regel 7) vollständig.
 - 02668 Ruschenfeld
-  - Prüfung: korrekt: S. 283, '05. Juli 1950: I. Ruschenfeld' — Name vollständig statt nur 'I'.
 - 02727 Annental
-  - Prüfung: korrekt: S. 309, '18. September 1926: St. Annental' — der Punkt nach 'St' beendet den Namen nicht mehr (Regel 4, Goldstandardfall).
 - 02760 Schichtstraße
-  - Prüfung: korrekt: S. 289, Kette vollständig, Name '1. Schichtstraße' (im Druck arabische 1 statt römisch I).
 - 02761 Schichtstraße
-  - Prüfung: korrekt: S. 289, '09. Juli 1915: I. Schichtstraße' — Name vollständig statt nur 'I'.
 - 02774 Schlenterstraße
-  - Prüfung: korrekt: S. 291, numerisches Datum '29.08.1927: Schlenterstraße' (Regel 7) erkannt.
 - 02796 Schnieringstraße
-  - Prüfung: korrekt: S. 293, beide Namen vollständig ('1. Schnieringstraße', 'I. Schnieringstraße (Verl.)').
 - 02803 Schockenhecke
-  - Prüfung: korrekt: S. 294, Kette vollständig, Name '1. Schockenhecke'.
 - 02804 Schockenhecke
-  - Prüfung: korrekt: S. 294, Kette vollständig, Name '1. Schockenhecke' (Parallel-Eintrag zu 02803).
 - 02960 Stiege
-  - Prüfung: korrekt: S. 315, '03. März 1953: 1. Stiege' — Name vollständig.
-- 03067 Thiesstraße
-  - Prüfung: korrekt: S. 323, Kette '13. Februar 1896: Schützenstraße, 09. Juli 1915: Thiesstraße' vollständig.
 - 03105 Terwestenweg
-  - Prüfung: korrekt: S. 321, '08. Juni 1960: I. Terwestenweg' — Name vollständig statt nur 'I'.
 - 03324 Weberstraße
-  - Prüfung: korrekt: S. 341, 'vor 1826: I. Weberstraße' — Name vollständig statt nur 'I'.
 - 03388 w WiesenbergstraßBe
-  - Prüfung: korrekt: S. 348, Kette unverändert; der frühere Prüfgrund (Lemmarauschen 'w …ßBe') entfällt durch die Randrauschen-Bereinigung (Regel 12).
-- 03528 Zweigertstraße
-  - Prüfung: korrekt: S. 362, Kette '26. Januar 1906: Felixstraße, 03. Mai 1907: Zweigertstraße' vollständig.
 - 03553 u A NS Auf'm Stöcken
-  - Prüfung: korrekt: S. 59, Kette unverändert; der frühere Prüfgrund (Lemmarauschen 'u A NS') entfällt durch die Randrauschen-Bereinigung (Regel 12).
-- 03560 An der Schlucht
-  - Prüfung: REGRESSION: S. 50, Druck '18. Februar 1916: Schacht-Kronprinz-Straße (tiw.), 18.' | Bildunterschrift 'L N ee ? An der Seilerei - Seilerei Zimmermann 1879 An der Walkmühle' | 'September 1974: An der Schlucht.' Das Namen gebende Stadium fällt durch das Rauschen mitten im Datum aus; Eintrag trotzdem `automatisch`.
 - 03731 Oefte
-  - Prüfung: korrekt: S. 251, '9. Jahrh.: Oefte' → `jahrhundert`, gueltig_ab 0801 (Regel 8).
 - 03745 Schillerstraße
-  - Prüfung: korrekt: S. 290, '… Historiker 28. Januar 1930: Schillerstraße' — Stempel ohne Komma davor (Regel 15), Kette erkannt.

@@ -110,7 +110,7 @@ maschinenlesbare Schema liegt zusätzlich in [`datapackage.json`](datapackage.js
 | `buchseite` | Beleg: Seite in Dickhoff 2015 | ganzzahlig, 23–362 (Einträge nur im Lexikonteil; das Buch umfasst die Scan-Seiten 2–388, Titelei/Einleitung/Register enthalten keine Einträge) |
 | `status` | Prüfstatus des Eintrags | `automatisch` \| `geprueft` \| `unsicher` |
 
-### `daten/namen.csv` (5.438 Zeilen)
+### `daten/namen.csv` (5.457 Zeilen)
 
 | Feld | Beschreibung | Wertebereich |
 |---|---|---|
@@ -158,19 +158,19 @@ Prüffall geführt (s. [Bekannte Grenzen](#bekannte-grenzen)).
 ## Bezifferte Qualität
 
 - **388** OCR-Buchseiten → **3.343** vom Parser segmentierte Einträge.
-- `daten/strassen.csv`: **3.338** Zeilen, davon **244** mit `status=unsicher`
-  (**3.094** `automatisch`).
-- `daten/namen.csv`: **5.438** Namensstadien (Datierungsgenauigkeit: **4.715** `tag`,
-  **323** `unbekannt`, **212** `jahr`, **180** `vor`, **8** `jahrhundert`).
+- `daten/strassen.csv`: **3.338** Zeilen, davon **270** mit `status=unsicher`
+  (**3.068** `automatisch`).
+- `daten/namen.csv`: **5.457** Namensstadien (Datierungsgenauigkeit: **4.732** `tag`,
+  **324** `unbekannt`, **212** `jahr`, **181** `vor`, **8** `jahrhundert`).
 - `daten/konkordanz_1936.csv`: **427** Zeilen (**388** `eindeutig=ja`, 39 `eindeutig=nein`;
-  **133** mit Klammerzusatz).
+  **134** mit Klammerzusatz).
 
 ### Drei unabhängige Selbstprüfungen
 
 | Prüfung | Ergebnis |
 |---|---|
 | Schlüsselnummern (amtlich, 1–3771 erwartet) | 3.338 erfasst, 436 Lücken, **3 Dubletten** |
-| alphabetische Ordnung der Lemmata | **69** aus der Sortierung fallende Lemmata (38 bereits als `unsicher` markiert, 31 neu auffällig) |
+| alphabetische Ordnung der Lemmata | **69** aus der Sortierung fallende Lemmata (40 bereits als `unsicher` markiert, 29 neu auffällig) |
 | Abgleich mit dem amtlichen Straßenverzeichnis (`strassen_aktuell.csv`) | **3.212** bestätigt, 126 nicht im Verzeichnis (erwartbar bei aufgehobenen Straßen) |
 
 Details, Methodik und Interpretation: [`docs/qualitaet.md`](docs/qualitaet.md); die
