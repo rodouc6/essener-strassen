@@ -110,7 +110,7 @@ maschinenlesbare Schema liegt zusätzlich in [`datapackage.json`](datapackage.js
 | `buchseite` | Beleg: Seite in Dickhoff 2015 | ganzzahlig, 23–362 (Einträge nur im Lexikonteil; das Buch umfasst die Scan-Seiten 2–388, Titelei/Einleitung/Register enthalten keine Einträge) |
 | `status` | Prüfstatus des Eintrags | `automatisch` \| `geprueft` \| `unsicher` |
 
-### `daten/namen.csv` (5.457 Zeilen)
+### `daten/namen.csv` (5.456 Zeilen)
 
 | Feld | Beschreibung | Wertebereich |
 |---|---|---|
@@ -132,7 +132,7 @@ Primärschlüssel: (`schl_nr`, `stadium`). Beispiel (Schl.-Nr. 01838, Buchseite 
 Damit lässt sich der Name der Straße zu jedem beliebigen Stichtag ableiten — nicht nur
 zum Erhebungsstand 1936.
 
-### `daten/konkordanz_1936.csv` (427 Zeilen)
+### `daten/konkordanz_1936.csv` (426 Zeilen)
 
 Abgeleitet aus `namen.csv`: für jede Straße mit `status=automatisch` das Namensstadium,
 das zum Erhebungsstand des Adressbuchs Essen 1936 galt (Arbeitsstichtag **1936-06-30**,
@@ -158,11 +158,11 @@ Prüffall geführt (s. [Bekannte Grenzen](#bekannte-grenzen)).
 ## Bezifferte Qualität
 
 - **388** OCR-Buchseiten → **3.343** vom Parser segmentierte Einträge.
-- `daten/strassen.csv`: **3.338** Zeilen, davon **271** mit `status=unsicher`
-  (**3.067** `automatisch`).
-- `daten/namen.csv`: **5.457** Namensstadien (Datierungsgenauigkeit: **4.732** `tag`,
+- `daten/strassen.csv`: **3.338** Zeilen, davon **272** mit `status=unsicher`
+  (**3.066** `automatisch`).
+- `daten/namen.csv`: **5.456** Namensstadien (Datierungsgenauigkeit: **4.731** `tag`,
   **324** `unbekannt`, **212** `jahr`, **181** `vor`, **8** `jahrhundert`).
-- `daten/konkordanz_1936.csv`: **427** Zeilen (**388** `eindeutig=ja`, 39 `eindeutig=nein`;
+- `daten/konkordanz_1936.csv`: **426** Zeilen (**387** `eindeutig=ja`, 39 `eindeutig=nein`;
   **134** mit Klammerzusatz).
 
 ### Drei unabhängige Selbstprüfungen
@@ -200,6 +200,9 @@ Regeln der Reparatur sind in
 [`docs/specs/2026-09-11-parser-reparatur-design.md`](docs/specs/2026-09-11-parser-reparatur-design.md)
 beschrieben, der Nachweis jeder Änderung in
 [`docs/regression/2026-09-parser-reparatur.md`](docs/regression/2026-09-parser-reparatur.md).
+Dass der Endstand mehr unsichere Einträge zählt als der Prototyp der Spec (272 statt 202),
+ist gewollt und keine Regression: leere Kopffelder, Toleranz-Hinweise und unvollständig
+gelesene Namensketten sind seither eigene Prüfgründe — der Prototyp las diese Fälle still.
 
 ### Erhebungsstand des Adressbuchs Essen 1936
 
@@ -233,7 +236,7 @@ nur Stufe 1+2 (`strassen/erschliessen.py`) ausführen; `daten/strassen.csv` und
 Ehrlichkeit über die Grenzen dieses Datensatzes ist Teil seines Qualitätsanspruchs —
 nichts hier ist verschwiegen, um sauberer zu wirken:
 
-- **271 unsichere Einträge** (`status=unsicher` in `strassen.csv`) sind vom Parser nicht
+- **272 unsichere Einträge** (`status=unsicher` in `strassen.csv`) sind vom Parser nicht
   sicher erschlossen; ihre Felder (insbesondere `strassenklasse`) können OCR-Rauschen
   enthalten. Sie gehen bewusst nicht in die Konkordanz ein.
 - **65 Konkordanz-Prüffälle** (`daten/pruefung_konkordanz.csv`, nicht Teil des

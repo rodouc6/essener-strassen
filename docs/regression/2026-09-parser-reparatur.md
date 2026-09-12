@@ -1,28 +1,37 @@
 # Differenzbericht
 
 Verglichen wird der Datenstand **vor der Parser-Reparatur** (`alt` = Commit `c355b1f`,
-`daten/strassen.csv` und `daten/namen.csv`) mit der **Regeneration nach Fix-Runde 4**
+`daten/strassen.csv` und `daten/namen.csv`) mit der **Regeneration nach dem Abschlussreview**
 (`neu` = dieser Lauf, 12. September 2026). Grundlage sind dieselben OCR-Seiten; verändert
 hat sich allein der Parser (21 Regeln, `docs/specs/2026-09-11-parser-reparatur-design.md`).
 
 Jeder Verlust eines Namensstadiums, jede Umdatierung, jede nicht bloß verlängernde
 Namensänderung und jede Statusrückstufung `unsicher → automatisch` wurde einzeln am
 Drucktext (`ocr/seiten/s<buchseite>.txt`) geprüft und mit einer eingerückten
-`- Prüfung:`-Zeile unter dem Listenpunkt belegt — 64 Einzelbefunde. Kein Eintrag dieser
-vier Kategorien bleibt unkommentiert. Keiner der vier verbliebenen Stadienverluste steht
-in einem Eintrag mit Status `automatisch`: alle vier sind in `strassen.csv` als `unsicher`
+`- Prüfung:`-Zeile unter dem Listenpunkt belegt — 65 Einzelbefunde. Kein Eintrag dieser
+vier Kategorien bleibt unkommentiert. Keiner der fünf verbliebenen Stadienverluste steht
+in einem Eintrag mit Status `automatisch`: alle fünf sind in `strassen.csv` als `unsicher`
 gekennzeichnet (precision-first — korrigiert oder gekennzeichnet, nie still falsch).
+
+Zum Verhältnis zu den Prototyp-Zielwerten aus Spec Abschnitt 1 (40 Straßen ohne Namenskette,
+5.370 Stadien, 202 unsichere Einträge): erreicht sind 11 ohne Kette, 5.456 Stadien und 272
+unsichere Einträge. Die ersten beiden Werte liegen deutlich besser als der Prototyp; die
+höhere Zahl unsicherer Einträge ist gewollt und keine Regression, sondern das Ergebnis der
+nach dem Prototyp getroffenen Entscheidungen: leere Kopffelder sind seither ein Prüfgrund
+(Regel 21), jeder tolerant gelesene Wert trägt seinen Toleranz-Hinweis als Prüfgrund, und
+ein nicht vollständig gelesener Kettenrest wird als 'Namenskette unvollständig gelesen'
+gekennzeichnet. Der Prototyp zählte diese Fälle schlicht nicht — er las sie still.
 
 | Kategorie | Anzahl |
 |---|--:|
 | Eintrag neu | 0 |
 | Eintrag entfallen | 0 |
 | Stadium gewonnen | 175 |
-| Stadium verloren | 4 |
+| Stadium verloren | 5 |
 | Datum verändert | 7 |
 | Name verändert | 37 |
 | Kopffeld verändert | 180 |
-| Status automatisch → unsicher | 76 |
+| Status automatisch → unsicher | 77 |
 | Status unsicher → automatisch | 46 |
 
 ## Stadium gewonnen
@@ -213,6 +222,8 @@ gekennzeichnet (precision-first — korrigiert oder gekennzeichnet, nie still fa
   - Prüfung: Verlust akzeptiert: Druck S. 101 '28. Mai' | Spaltenrauschen 'Tas / Echstenkämperweg - Hof Lohmann' | '1919: Horststraße (tiw.), etwa 1922: Eberhardstraße.' Genau der in Spec Abschnitt 4 als nicht regelbar benannte Fall ('Rauschen mitten im Datum'), der laut Spec `unsicher` bleiben soll. Der Eintrag ist `unsicher`.
 - 01386 Hünninghausenweg — alt: 1926 Lindenstraße (Veri.)
   - Prüfung: Verlust akzeptiert: Druck S. 170 '19. Mai .1926: Lindenstraße (Veri.)' — Störpunkt vor der Jahreszahl, der Stempel fällt auf das bloße Jahr '1926:' zurück und wird von der Positionsregel (Regel 15) verworfen. Der Eintrag ist `unsicher`.
+- 02317 Obernitzstraße — alt: 1906-07-20 Obernitzstraße
+  - Prüfung: Verlust akzeptiert (neu im Abschlussreview): Der Eintrag läuft über einen Seitenumbruch — Druck S. 250 'Obernitzstraße: Schl.-Nr.: 02317, Stadtteile Südostviertel und Huttrop, Str.-Kl.: Gemeindestraße, Str.-' und, nach 174 Zeichen Seitenrand- und Kolumnenrauschen ('ir N … lu Na Oberscheidtstraße - Ehemaliger Hof Oberscheidt'), S. 251 'Gr.: Person, Mann, Deutscher, General, 20. Juli 1906: Obernitzstraße.' Der Marker 'Str.-Gr.:' ist durch den Umbruch zerrissen, die Namensgruppe bleibt leer, und der erste Stempel liegt jetzt weiter als _MAX_NAMENSLAENGE (100 Zeichen) hinter dem Kopfbereich — die neue Abstandsregel für den ERSTEN Stempel (Abschlussreview) öffnet dort keine Kette mehr. Der Eintrag ist `unsicher` (Prüfgrund 'kein Namensstadium erkannt'), der Verlust also gekennzeichnet, nicht still.
 
 ## Datum verändert
 
@@ -476,6 +487,7 @@ Kette in Fix-Runde 1 neu gelesen wurde.
 - 00210 Auf der Bredde
 - 00269 An der Windmühle
 - 00286 Barbarossaplatz
+- 00334 Bergknappenweg
 - 00357 Bieberweg
 - 00379 Bocholder Straße
 - 00400 Borbecker Straße
