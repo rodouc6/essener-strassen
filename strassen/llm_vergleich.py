@@ -108,7 +108,7 @@ def lade_antworten(antworten_dir, modell: str) -> dict:
 FELDER_PRUEFLISTE = ["schl_nr", "buchseite", "feld", "wert_parser", "wert_qwen", "wert_mistral",
                      "status_parser", "einig", "korrektur", "beleg"]
 _EINIG_RANG = {"beide": 0, "eines": 1, "unlesbar": 2}
-_STADIUMFELD = re.compile(r"^stadium_(\d+)(?:_(datum|name))?$")
+_STADIUMFELD = re.compile(r"^stadium_(\d+)(?:_(datum|name|urspruenglich))?$")
 
 
 def _stadium_text(z) -> str:
@@ -142,6 +142,8 @@ def feldwert(strassen: dict, namen: dict, schl_nr: str, feld: str):
         return formatiere_datum(z["datum_praezision"], z["gueltig_ab"])
     if art == "name":
         return z["name"]
+    if art == "urspruenglich":
+        return z["ist_urspruenglich"]
     return _stadium_text(z)
 
 
@@ -156,7 +158,16 @@ def _abweichungen(parser_s, parser_n, modell_s, modell_n) -> dict:
         if e["feld"] != "buchseite":
             abw[(e["schl_nr"], e["feld"])] = True
     for e in d["datum_veraendert"]:
-        abw[(e["schl_nr"], f"stadium_{e['stadium']}_datum")] = True
+        # e['alt']/e['neu'] sind differenz._datum_text: 'gueltig_ab (praezision[, urspr.])'.
+        # 'datum_veraendert' feuert auch, wenn nur ist_urspruenglich abweicht (Kernteil ohne
+        # den ', urspr.'-Zusatz dann aber gleich) — das darf keine Phantom-Datumszeile ergeben.
+        n = e["stadium"]
+        alt_kern = e["alt"].replace(", urspr.", "")
+        neu_kern = e["neu"].replace(", urspr.", "")
+        if alt_kern != neu_kern:
+            abw[(e["schl_nr"], f"stadium_{n}_datum")] = True
+        if (", urspr." in e["alt"]) != (", urspr." in e["neu"]):
+            abw[(e["schl_nr"], f"stadium_{n}_urspruenglich")] = True
     for e in d["name_veraendert"]:
         abw[(e["schl_nr"], f"stadium_{e['stadium']}_name")] = True
     for e in d["stadium_verloren"]:
@@ -168,11 +179,21 @@ def _abweichungen(parser_s, parser_n, modell_s, modell_n) -> dict:
     return abw
 
 
-def _stadium_index(stadien, text) -> int:
+def _stadium_index(stadien, text) -> str:
     for z in stadien:
         if _stadium_text_roh(z) == text:
-            return int(z["stadium"])
-    return len(stadien)
+            return str(int(z["stadium"]))
+    return "?"   # nicht zuordenbar — sichtbar kennzeichnen statt eine falsche Nummer zu raten
+
+
+def _ist_abweichung(abw: dict, schl: str, feld: str) -> bool:
+    """(schl, feld) gegen abw prüfen; ein verlorenes/gewonnenes ganzes Stadium
+    (Schlüssel 'stadium_N' ohne Suffix) deckt dabei auch dessen Teilfelder
+    ('stadium_N_datum' usw.) ab."""
+    if (schl, feld) in abw:
+        return True
+    m = _STADIUMFELD.match(feld)
+    return bool(m and m.group(2) and (schl, f"stadium_{m.group(1)}") in abw)
 
 
 def _felder_des_eintrags(strassen, namen, schl_nr, nur_kopf=False) -> list:
@@ -183,27 +204,79 @@ def _felder_des_eintrags(strassen, namen, schl_nr, nur_kopf=False) -> list:
     return felder
 
 
+def _modell_aufbereiten(m: dict):
+    """Antworten eines Modells laden und normalisieren.
+    -> (m_s, m_n, gelesen: set[int], unlesbar: int, probleme: list)."""
+    strassen, namen, probleme = [], [], []
+    gelesen = set()
+    unlesbar = 0
+    for buchseite, antwort in m["antworten"].items():
+        if antwort.get("fehler") == "unlesbar" or antwort.get("eintraege") is None:
+            unlesbar += 1
+            continue
+        gelesen.add(int(buchseite))
+        s, n, pr = normalisiere_antwort(antwort)
+        strassen += s; namen += n; probleme += pr
+    m_s, m_n = als_struktur(strassen, namen)
+    return m_s, m_n, gelesen, unlesbar, probleme
+
+
+def _kennzahlen(p_s_teil, p_n_teil, m_s, unvollst, abw, gelesen, unlesbar, probleme) -> dict:
+    ueber = defaultdict(lambda: defaultdict(lambda: {"verglichen": 0, "gleich": 0}))
+    for schl, z in p_s_teil.items():
+        if schl not in m_s:
+            continue
+        for feld in _felder_des_eintrags(p_s_teil, p_n_teil, schl, nur_kopf=schl in unvollst):
+            typ = re.sub(r"^stadium_\d+_", "stadium_", feld)
+            e = ueber[z["status"]][typ]
+            e["verglichen"] += 1
+            e["gleich"] += not _ist_abweichung(abw, schl, feld)
+    return {
+        "seiten_gelesen": len(gelesen), "seiten_unlesbar": unlesbar,
+        "eintraege_modell": len(m_s),
+        "eintraege_fehlend": sum(1 for schl in p_s_teil if schl not in m_s),
+        "eintraege_nur_modell": sum(1 for schl in m_s if schl not in p_s_teil),
+        "datum_nicht_normalisierbar": len(probleme),
+        "uebereinstimmung": {st: dict(f) for st, f in ueber.items()},
+    }
+
+
+def _zeile(schl, feld, p_s, p_n, seite_je_schl, daten, gelesen, problem_werte) -> dict:
+    buchseite = seite_je_schl.get(schl) or next(
+        (int(daten[k][0][schl]["buchseite"]) for k in daten if schl in daten[k][0]), "")
+    zeile = {"schl_nr": schl, "buchseite": buchseite, "feld": feld,
+             "wert_parser": feldwert(p_s, p_n, schl, feld) or "",
+             "status_parser": p_s[schl]["status"] if schl in p_s else "",
+             "korrektur": "", "beleg": ""}
+    werte, lesbar = {}, True
+    for kurz in KURZNAMEN:
+        if kurz not in daten or int(buchseite or 0) not in gelesen.get(kurz, set()):
+            werte[kurz] = ""
+            lesbar = False
+        else:
+            ersatz = problem_werte.get(kurz, {}).get((schl, feld))
+            werte[kurz] = ersatz if ersatz is not None else (feldwert(*daten[kurz], schl, feld) or "")
+        zeile[f"wert_{kurz}"] = werte[kurz]
+    if not lesbar:
+        zeile["einig"] = "unlesbar"
+    elif len(set(werte.values())) == 1 and werte[KURZNAMEN[0]] != zeile["wert_parser"]:
+        zeile["einig"] = "beide"
+    else:
+        zeile["einig"] = "eines"
+    return zeile
+
+
 def baue_pruefliste(parser, modelle: dict):
     """parser = (strassen, namen) des Parsers; modelle = Kurzname -> {"antworten": {buchseite: antwort}}.
     Liefert (zeilen, kennzahlen). Verglichen werden nur Buchseiten, die das jeweilige Modell
-    gelesen hat; unlesbare Seiten zählen als nicht gelesen."""
+    gelesen hat; unlesbare Seiten zählen als nicht gelesen. Nicht normalisierbare Modelldaten
+    (Datum, Stadien-Struktur) erscheinen unabhängig von 'unvollstaendig' als eigene Zeile."""
     p_s, p_n = als_struktur(*parser)
     seite_je_schl = {schl: int(z["buchseite"]) for schl, z in p_s.items()}
-    daten, kennzahlen, gelesen = {}, {}, {}
-    abweichungen = {}
+    daten, kennzahlen, gelesen, abweichungen, problem_werte = {}, {}, {}, {}, {}
 
     for kurz, m in modelle.items():
-        strassen, namen, probleme = [], [], []
-        gelesen[kurz] = set()
-        unlesbar = 0
-        for buchseite, antwort in m["antworten"].items():
-            if antwort.get("fehler") == "unlesbar" or antwort.get("eintraege") is None:
-                unlesbar += 1
-                continue
-            gelesen[kurz].add(int(buchseite))
-            s, n, pr = normalisiere_antwort(antwort)
-            strassen += s; namen += n; probleme += pr
-        m_s, m_n = als_struktur(strassen, namen)
+        m_s, m_n, gelesen[kurz], unlesbar, probleme = _modell_aufbereiten(m)
         daten[kurz] = (m_s, m_n)
         # Parser-Ausschnitt: nur gelesene Seiten; Modellketten unvollständiger Einträge ausblenden
         p_s_teil = {schl: z for schl, z in p_s.items() if seite_je_schl[schl] in gelesen[kurz]}
@@ -213,50 +286,20 @@ def baue_pruefliste(parser, modelle: dict):
         p_n_vgl = {schl: ([] if schl in unvollst else st) for schl, st in p_n_teil.items()}
         abweichungen[kurz] = _abweichungen(p_s_teil, p_n_vgl, m_s, m_n_vgl)
 
-        ueber = defaultdict(lambda: defaultdict(lambda: {"verglichen": 0, "gleich": 0}))
-        for schl, z in p_s_teil.items():
-            if schl not in m_s:
-                continue
-            for feld in _felder_des_eintrags(p_s_teil, p_n_teil, schl, nur_kopf=schl in unvollst):
-                typ = re.sub(r"^stadium_\d+_", "stadium_", feld)
-                e = ueber[z["status"]][typ]
-                e["verglichen"] += 1
-                e["gleich"] += (schl, feld) not in abweichungen[kurz]
-        kennzahlen[kurz] = {
-            "seiten_gelesen": len(gelesen[kurz]), "seiten_unlesbar": unlesbar,
-            "eintraege_modell": len(m_s),
-            "eintraege_fehlend": sum(1 for schl in p_s_teil if schl not in m_s),
-            "eintraege_nur_modell": sum(1 for schl in m_s if schl not in p_s),
-            "datum_nicht_normalisierbar": len(probleme),
-            "uebereinstimmung": {st: dict(f) for st, f in ueber.items()},
-        }
+        problem_werte[kurz] = {}
+        for p in probleme:
+            schluessel = (p["schl_nr"], p["feld"])
+            anzeige = (f"{p['text']} (nicht normalisierbar)" if p["grund"] == GRUND_DATUM
+                      else f"{p['text']} (nicht als Liste)")
+            abweichungen[kurz][schluessel] = True
+            problem_werte[kurz][schluessel] = anzeige
 
-    zeilen = []
+        kennzahlen[kurz] = _kennzahlen(p_s_teil, p_n_teil, m_s, unvollst, abweichungen[kurz],
+                                       gelesen[kurz], unlesbar, probleme)
+
     alle = set().union(*abweichungen.values()) if abweichungen else set()
-    for schl, feld in alle:
-        buchseite = seite_je_schl.get(schl) or next(
-            (int(daten[k][0][schl]["buchseite"]) for k in daten if schl in daten[k][0]), "")
-        zeile = {"schl_nr": schl, "buchseite": buchseite, "feld": feld,
-                 "wert_parser": feldwert(p_s, p_n, schl, feld) or "",
-                 "status_parser": p_s[schl]["status"] if schl in p_s else "",
-                 "korrektur": "", "beleg": ""}
-        werte, lesbar = {}, True
-        for kurz in KURZNAMEN:
-            if kurz not in daten or int(buchseite or 0) not in gelesen.get(kurz, set()):
-                werte[kurz] = ""
-                lesbar = False
-                continue
-            werte[kurz] = feldwert(*daten[kurz], schl, feld) or ""
-            zeile[f"wert_{kurz}"] = werte[kurz]
-        for kurz in KURZNAMEN:
-            zeile.setdefault(f"wert_{kurz}", "")
-        if not lesbar:
-            zeile["einig"] = "unlesbar"
-        elif len(set(werte.values())) == 1 and werte[KURZNAMEN[0]] != zeile["wert_parser"]:
-            zeile["einig"] = "beide"
-        else:
-            zeile["einig"] = "eines"
-        zeilen.append(zeile)
+    zeilen = [_zeile(schl, feld, p_s, p_n, seite_je_schl, daten, gelesen, problem_werte)
+             for schl, feld in alle]
     zeilen.sort(key=lambda z: (_EINIG_RANG[z["einig"]], z["schl_nr"], z["feld"]))
     return zeilen, kennzahlen
 
@@ -273,7 +316,9 @@ def formatiere_kennzahlen_md(kennzahlen: dict) -> str:
     z = ["# Unabhängige LLM-Lesung — Kennzahlen\n",
          "Zwei bildfähige Modelle haben die Buchseiten unabhängig vom Parser gelesen (nur das",
          "Seitenbild, kein OCR-Text). Die Modelle **verändern den Status nicht** (Option A der",
-         "Spec 2026-09-12); Abweichungen stehen in `daten/pruefung_llm.csv` zur manuellen Prüfung.\n"]
+         "Spec 2026-09-12); Abweichungen stehen in `daten/pruefung_llm.csv` zur manuellen Prüfung.",
+         "Beim Modell fehlende Einträge zählen in `eintraege_fehlend`, nicht in der",
+         "Übereinstimmungsquote — diese misst nur Felder beiderseits vorhandener Einträge.\n"]
     for kurz, k in kennzahlen.items():
         z += [f"## Modell `{kurz}`\n",
               f"- Seiten gelesen: {k['seiten_gelesen']}, unlesbar: {k['seiten_unlesbar']}",

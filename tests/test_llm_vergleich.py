@@ -180,9 +180,36 @@ def test_pruefliste_unlesbare_seite_eines_modells():
 
 
 def test_pruefliste_unvollstaendiger_eintrag_vergleicht_nur_kopf():
-    # 00002 ist im Fixture unvollstaendig=true und hat dort nur 1 Stadium mit unlesbarem Datum
+    # 00002 ist im Fixture unvollstaendig=true; regulärer Stadien-Abgleich entfällt daher,
+    # aber die Problem-Zeile für das nicht normalisierbare Datum "16. Jh." erscheint trotzdem
+    # (Spec 3.3: ein Datenproblem signalisiert einen Muster-/Prompt-Fehler, kein Kuratierungsfall).
     zeilen, _ = lv.baue_pruefliste(_parser(), {"qwen": {"antworten": {23: _antwort()}}, "mistral": {"antworten": {23: _antwort()}}})
-    assert not [z for z in zeilen if z["schl_nr"] == "00002" and z["feld"].startswith("stadium")]
+    stadium_zeilen = [z for z in zeilen if z["schl_nr"] == "00002" and z["feld"].startswith("stadium")]
+    assert [z["feld"] for z in stadium_zeilen] == ["stadium_1_datum"]
+    assert stadium_zeilen[0]["wert_qwen"] == "16. Jh. (nicht normalisierbar)"
+
+
+def test_pruefliste_verlorenes_stadium_zaehlt_datum_und_name_als_abweichung():
+    # Parser hat 2 Stadien zu 00001, das Modell nur das erste (identische Signatur) —
+    # das verlorene 2. Stadium muss Datum UND Name als Abweichung zählen, nicht als 'gleich'.
+    qwen = _modell_antwort(**{"00001": {"stadien": [
+        {"datum": "vor 1898", "name": "Victoriastraße (tlw.)", "urspruenglich": False}]}})
+    _, kz = lv.baue_pruefliste(_parser(), {"qwen": {"antworten": {23: qwen}}, "mistral": {"antworten": {23: _antwort()}}})
+    q = kz["qwen"]["uebereinstimmung"]["automatisch"]
+    assert q["stadium_datum"] == {"verglichen": 2, "gleich": 1}
+    assert q["stadium_name"] == {"verglichen": 2, "gleich": 1}
+
+
+def test_pruefliste_nur_ist_urspruenglich_geaendert_erzeugt_eigene_zeile():
+    # Datum und Name von Stadium 1 bleiben gleich, nur 'urspruenglich' wechselt falsch -> wahr.
+    qwen = _modell_antwort(**{"00001": {"stadien": [
+        {"datum": "vor 1898", "name": "Victoriastraße (tlw.)", "urspruenglich": True},
+        {"datum": "16.05.1902:", "name": "Aachener Straße", "urspruenglich": False}]}})
+    zeilen, _ = lv.baue_pruefliste(_parser(), {"qwen": {"antworten": {23: qwen}}, "mistral": {"antworten": {23: _antwort()}}})
+    stadium1_zeilen = [z for z in zeilen if z["schl_nr"] == "00001" and z["feld"].startswith("stadium_1")]
+    assert [z["feld"] for z in stadium1_zeilen] == ["stadium_1_urspruenglich"]
+    z = stadium1_zeilen[0]
+    assert (z["wert_parser"], z["wert_qwen"]) == ("falsch", "wahr")
 
 
 def test_kennzahlen_uebereinstimmung_je_feldtyp_und_status():
