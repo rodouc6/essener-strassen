@@ -123,9 +123,10 @@ def test_monatsname_mit_einem_ocr_fehler_wird_korrigiert():
 
 
 def test_unbekanntes_monatswort_reduziert_auf_jahr():
+    """Abschlussreview: eigener Hinweis — der Tag ist hier nicht das Problem."""
     d = _stempel("13. Xyzabc 1900: Uferstraße")
     assert (d.gueltig_ab, d.praezision) == ("1900", "jahr")
-    assert "Datum: Tag ungültig" in d.hinweis
+    assert d.hinweis == "Datum: Monat unlesbar"
 
 
 def test_ungueltiger_tag_reduziert_auf_jahr():

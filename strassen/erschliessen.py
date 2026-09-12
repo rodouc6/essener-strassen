@@ -39,7 +39,7 @@ bleibt in strassen.csv/namen.csv erhalten. Gründe:
     sondern beide werden zur manuellen Prüfung markiert.
   - Hinweise aus datum.py/kopf.py wörtlich ("Datum: Komma nach Tag", "Datum ohne
     Doppelpunkt", "Monatsname OCR-korrigiert", "Datum: Doppeljahr", "Datum: Tag
-    ungültig", "urspr. ohne Doppelpunkt", "Straßenklasse ohne Marker",
+    ungültig", "Datum: Monat unlesbar", "urspr. ohne Doppelpunkt", "Straßenklasse ohne Marker",
     "Straßenklasse OCR-korrigiert"): tolerant erkannter Wert, übernommen und markiert.
   - "Stadtteil fehlt" / "Straßenklasse fehlt": Kopffeld leer, obwohl kein reiner
     Verweis-Eintrag.

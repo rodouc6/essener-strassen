@@ -57,6 +57,10 @@ HINWEIS_OHNE_DOPPELPUNKT = "Datum ohne Doppelpunkt"
 HINWEIS_MONAT_KORRIGIERT = "Monatsname OCR-korrigiert"
 HINWEIS_DOPPELJAHR = "Datum: Doppeljahr"
 HINWEIS_TAG_UNGUELTIG = "Datum: Tag ungültig"
+# Eigener Grund für ein nicht lesbares Monatswort (Abschlussreview): der Tag kann
+# tadellos gedruckt sein, unlesbar ist allein der Monat — der Hinweis "Datum: Tag
+# ungültig" wies dort bisher in die falsche Richtung.
+HINWEIS_MONAT_UNLESBAR = "Datum: Monat unlesbar"
 
 
 class Datum(NamedTuple):
@@ -139,7 +143,7 @@ def _tagesdatum(m: re.Match, hinweise: list, trenner: str) -> Datum:
     if monat_nr is None:
         kandidat = unscharf_eindeutig(m.group("monat"), MONATE)
         if kandidat is None:
-            hinweise.append(HINWEIS_TAG_UNGUELTIG)
+            hinweise.append(HINWEIS_MONAT_UNLESBAR)
             return Datum(jahr, "jahr", "; ".join(hinweise), trenner)
         hinweise.append(HINWEIS_MONAT_KORRIGIERT)
         monat_nr = MONATE[kandidat]

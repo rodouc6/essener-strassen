@@ -66,7 +66,8 @@ def lese_datum(match) -> Datum          # ungültiger Tag/Monat: Jahresform + Hi
 `N. Jahrh.:`, sowie jede dieser Formen mit Komma, Semikolon oder ohne Trennzeichen statt
 Doppelpunkt (Regel 15). Ein Tagesdatum mit ungültigem Tag (z. B. „085. Februar 1929")
 wird nicht verworfen, sondern auf die Jahresform reduziert (`praezision=jahr`) und mit
-dem Hinweis „Datum: Tag ungültig" versehen (Regel 6) — das Jahr ist korrekt, der
+dem Hinweis „Datum: Tag ungültig" versehen (Regel 6; ein nicht auflösbares
+Monatswort ergibt entsprechend „Datum: Monat unlesbar") — das Jahr ist korrekt, der
 Informationsverlust wird sichtbar. Der Monatsname wird gegen `MONATE` geprüft; ein Wort mit
 Levenshtein-Distanz 1 zu genau einem Monatsnamen gilt als OCR-korrigiert (Regel 16).
 
@@ -148,7 +149,7 @@ erhält den genannten Prüfgrund und `status=unsicher`.
 | 3 | Namensgruppe endet vor Tagesziffer, auch bei verstümmeltem Datum | – | kopf | sicher |
 | 4 | Punkt nach „St." / röm. Zahl beendet Namen | 16 | datum | sicher |
 | 5 | Lemma „St. X" mit Leerzeichen | 15 | segmentierung | sicher |
-| 6 | Tagesvalidierung 1–31, Monat gültig; sonst nur Jahr | ≥1 | datum | tolerant: „Datum: Tag ungültig" |
+| 6 | Tagesvalidierung 1–31, Monat gültig; sonst nur Jahr | ≥1 | datum | tolerant: „Datum: Tag ungültig" (ungültiger Tag) bzw. „Datum: Monat unlesbar" (Monatswort nicht auflösbar) |
 | 7 | numerisches Datum `dd.mm.jjjj:` | 7 | datum | sicher |
 | 8 | `N. Jahrhundert:` / `Jahrh.:` → `jahrhundert` | 8 | datum | sicher |
 | 9 | Marker `Str.-KL:`, `Str.-K.:`, `Str.-Kt.:`, `Str:-Kl`, `Str.-Kl.;` | 23 | kopf | sicher |
