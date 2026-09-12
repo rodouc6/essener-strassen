@@ -8,12 +8,13 @@ Vier Artefakte, byte-identisch reproduzierbar bei unveränderten Eingaben:
   - `daten/pruefung_konkordanz.csv`  (Konkordanz-Prüffälle)
   - `docs/erhebungsstand.md`         (Erhebungsstand-Messung, jährlich + monatsscharf)
 
-Die Konkordanz wird bewusst NUR aus Straßen mit `status=automatisch` gebaut — der
-Filter stand bisher nur in einer nicht versionierten Kommandozeile (verloren, sobald
-das Terminal schließt), jetzt hier im Code: Straßen mit `status=unsicher` haben
-selbst kein belastbares heutiges Lemma, ein daraus abgeleiteter Konkordanzeintrag
-wäre nicht vertrauenswürdig. Dieselbe Filterung gilt für `pruefe_konkordanz`, damit
-beide Funktionen (wie in `stichtag.py` dokumentiert) exakt komplementär bleiben.
+Die Konkordanz wird bewusst NUR aus Straßen mit `status=automatisch` oder `geprueft`
+gebaut — der Filter stand bisher nur in einer nicht versionierten Kommandozeile
+(verloren, sobald das Terminal schließt), jetzt hier im Code: Straßen mit
+`status=unsicher` haben selbst kein belastbares heutiges Lemma, ein daraus
+abgeleiteter Konkordanzeintrag wäre nicht vertrauenswürdig. Dieselbe Filterung gilt
+für `pruefe_konkordanz`, damit beide Funktionen (wie in `stichtag.py` dokumentiert)
+exakt komplementär bleiben.
 """
 import argparse
 import csv
@@ -29,6 +30,12 @@ from strassen.stichtag import (
     baue_konkordanz, pruefe_konkordanz, messe_erhebungsstand,
     messe_erhebungsstand_monatlich,
 )
+
+# status-Werte, deren heutiges Lemma belastbar genug für die Konkordanz ist:
+# `automatisch` (Selbstprüfungen unauffällig) und `geprueft` (manuell per
+# Korrektur-Overlay bestätigt, strassen/korrekturen.py). `unsicher` bleibt
+# ausgeschlossen.
+STATUS_BELASTBAR = ("automatisch", "geprueft")
 
 # Externe Quellen des Kartenprojekts (nicht Teil dieses Repos, s. README,
 # Abschnitt „Externe Eingaben") — Konstanten mit den bekannten Pfaden, per
@@ -109,12 +116,12 @@ def _schreibe_pruefung_validierung(strassen, ergebnisse: dict, pfad):
 
 
 def _schreibe_erhebungsstand(jaehrlich, monatlich, stichtag: str, von: str, bis: str,
-                              strassen, strassen_automatisch, konkordanz,
+                              strassen, strassen_belastbar, konkordanz,
                               pruefung_konkordanz, pfad):
     eindeutig_ja = sum(1 for k in konkordanz if k["eindeutig"] == "ja")
     eindeutig_nein = sum(1 for k in konkordanz if k["eindeutig"] == "nein")
     mit_zusatz = sum(1 for k in konkordanz if k["zusatz"])
-    unsicher = len(strassen) - len(strassen_automatisch)
+    unsicher = len(strassen) - len(strassen_belastbar)
 
     z = [
         "# Erhebungsstand des Adressbuchs Essen 1936\n",
@@ -162,14 +169,15 @@ def _schreibe_erhebungsstand(jaehrlich, monatlich, stichtag: str, von: str, bis:
         "durch die Daten nicht gedeckt und würde das Ergebnis der Konkordanz nicht "
         "ändern.\n",
         f"## Konkordanz-Ableitung (`daten/konkordanz_1936.csv`, Stichtag {stichtag})\n",
-        "Die Konkordanz wird **nur aus Straßen mit `status=automatisch`** gebaut; "
-        "unsichere Lemmata (`status=unsicher`) gehören nicht in die produktive "
-        "Konkordanz, da ihr heutiger Name selbst nicht belastbar ist. Einträge, "
-        "deren Namenskette intern widersprüchlich ist (letztes Stadium ≠ Lemma "
-        "nach Zusatz-Abtrennung, mechanisches Konsistenz-Netz), landen nicht in "
-        "der Konkordanz, sondern als Prüffall in `daten/pruefung_konkordanz.csv`.\n",
+        "Die Konkordanz wird **nur aus Straßen mit `status=automatisch` oder "
+        "`geprueft`** gebaut; unsichere Lemmata (`status=unsicher`) gehören nicht "
+        "in die produktive Konkordanz, da ihr heutiger Name selbst nicht "
+        "belastbar ist. Einträge, deren Namenskette intern widersprüchlich ist "
+        "(letztes Stadium ≠ Lemma nach Zusatz-Abtrennung, mechanisches "
+        "Konsistenz-Netz), landen nicht in der Konkordanz, sondern als Prüffall "
+        "in `daten/pruefung_konkordanz.csv`.\n",
         f"- Straßen gesamt: {len(strassen)}",
-        f"- davon `status=automatisch` (Basis der Konkordanz): {len(strassen_automatisch)}",
+        f"- davon `status=automatisch` oder `geprueft` (Basis der Konkordanz): {len(strassen_belastbar)}",
         f"- davon `status=unsicher` (ausgeschlossen): {unsicher}",
         f"- Konkordanzeinträge: **{len(konkordanz)}**",
         f"  - davon `eindeutig=ja`: {eindeutig_ja} / `eindeutig=nein` (Kollisionen): {eindeutig_nein}",
@@ -207,12 +215,12 @@ def main(daten_dir="daten", docs_dir="docs", adressbuch=ADRESSBUCH_PFAD,
         strassen, ergebnisse, daten / "pruefung_validierung.csv")
 
     # --- Stufe 4: Konkordanz-Ableitung ------------------------------------------
-    strassen_automatisch = [s for s in strassen if s.get("status") == "automatisch"]
+    strassen_belastbar = [s for s in strassen if s.get("status") in STATUS_BELASTBAR]
 
-    konkordanz = baue_konkordanz(strassen_automatisch, namen, stichtag)
+    konkordanz = baue_konkordanz(strassen_belastbar, namen, stichtag)
     _schreibe_csv(konkordanz, daten / "konkordanz_1936.csv", FELDER_KONKORDANZ)
 
-    pruefung_konkordanz = pruefe_konkordanz(strassen_automatisch, namen, stichtag)
+    pruefung_konkordanz = pruefe_konkordanz(strassen_belastbar, namen, stichtag)
     _schreibe_csv(pruefung_konkordanz, daten / "pruefung_konkordanz.csv",
                   FELDER_PRUEFUNG_KONKORDANZ)
 
@@ -224,7 +232,7 @@ def main(daten_dir="daten", docs_dir="docs", adressbuch=ADRESSBUCH_PFAD,
     monatlich = messe_erhebungsstand_monatlich(
         stadien_je_strasse, adressbuch_namen, monatsscharf_von, monatsscharf_bis)
     _schreibe_erhebungsstand(jaehrlich, monatlich, stichtag, monatsscharf_von,
-                              monatsscharf_bis, strassen, strassen_automatisch,
+                              monatsscharf_bis, strassen, strassen_belastbar,
                               konkordanz, pruefung_konkordanz, docs / "erhebungsstand.md")
 
     kennzahlen = {
@@ -233,7 +241,8 @@ def main(daten_dir="daten", docs_dir="docs", adressbuch=ADRESSBUCH_PFAD,
         "amtlich_bestaetigt": ergebnisse["amtlich"]["bestaetigt"],
         "amtlich_unbekannt": len(ergebnisse["amtlich"]["unbekannt"]),
         "pruefung_validierung": len(pruefung_validierung),
-        "strassen_automatisch": len(strassen_automatisch),
+        "strassen_belastbar": len(strassen_belastbar),
+        "strassen_geprueft": sum(1 for s in strassen if s.get("status") == "geprueft"),
         "konkordanz": len(konkordanz),
         "pruefung_konkordanz": len(pruefung_konkordanz),
     }

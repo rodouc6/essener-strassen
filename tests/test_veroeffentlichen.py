@@ -1,6 +1,7 @@
 """Smoke-Test für strassen.veroeffentlichen: Stufe 3+4 auf einer Mini-Fixture,
-inklusive des status=automatisch-Filters für die Konkordanz-Ableitung (IMPORTANT 2)
-und der Reproduzierbarkeit (zweimaliger Lauf liefert byte-identische Artefakte).
+inklusive des STATUS_BELASTBAR-Filters (`status` in `automatisch`/`geprueft`) für
+die Konkordanz-Ableitung (IMPORTANT 2) und der Reproduzierbarkeit (zweimaliger Lauf
+liefert byte-identische Artefakte).
 """
 import csv
 
@@ -20,6 +21,9 @@ def _schreibe_fixture(tmp_path):
         {"schl_nr": "00002", "lemma": "Unsichere Straße", "stadtteile": "Mitte",
          "strassenklasse": "Gemeindestraße", "namensgruppe": "Flurname", "verweis_auf": "",
          "buchseite": "11", "status": "unsicher"},
+        {"schl_nr": "00003", "lemma": "Geprüfte Straße", "stadtteile": "Rüttenscheid",
+         "strassenklasse": "Gemeindestraße", "namensgruppe": "Person", "verweis_auf": "",
+         "buchseite": "12", "status": "geprueft"},
     ]
     namen = [
         {"schl_nr": "00001", "stadium": "1", "gueltig_ab": "1900-01-01",
@@ -32,6 +36,12 @@ def _schreibe_fixture(tmp_path):
          "datum_praezision": "tag", "name": "Alte Gasse", "ist_urspruenglich": "falsch"},
         {"schl_nr": "00002", "stadium": "2", "gueltig_ab": "1937-05-01",
          "datum_praezision": "tag", "name": "Unsichere Straße", "ist_urspruenglich": "falsch"},
+        # status=geprueft ist genauso belastbar wie status=automatisch und muss
+        # ebenfalls in die Konkordanz einfließen.
+        {"schl_nr": "00003", "stadium": "1", "gueltig_ab": "1905-01-01",
+         "datum_praezision": "tag", "name": "Alte Bahnhofstraße", "ist_urspruenglich": "falsch"},
+        {"schl_nr": "00003", "stadium": "2", "gueltig_ab": "1937-08-01",
+         "datum_praezision": "tag", "name": "Geprüfte Straße", "ist_urspruenglich": "falsch"},
     ]
     with open(daten / "strassen.csv", "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["schl_nr", "lemma", "stadtteile",
@@ -56,20 +66,26 @@ def _schreibe_fixture(tmp_path):
     return daten, docs, amtlich, adressbuch
 
 
-def test_konkordanz_nutzt_nur_status_automatisch(tmp_path):
-    """IMPORTANT 2: der automatisch-Filter steht im Code, nicht nur in einer
-    Kommandozeile. Straße 00002 (status=unsicher) hätte am Stichtag ebenfalls
-    einen Namenswandel (Alte Gasse -> Unsichere Straße), darf aber NICHT in
-    der Konkordanz landen."""
+def test_konkordanz_nutzt_automatisch_und_geprueft(tmp_path):
+    """IMPORTANT 2: der STATUS_BELASTBAR-Filter (automatisch UND geprueft) steht
+    im Code, nicht nur in einer Kommandozeile. Straße 00002 (status=unsicher)
+    hätte am Stichtag ebenfalls einen Namenswandel (Alte Gasse -> Unsichere
+    Straße), darf aber NICHT in der Konkordanz landen. Straße 00003
+    (status=geprueft) ist genauso belastbar wie status=automatisch und MUSS
+    in der Konkordanz erscheinen."""
     daten, docs, amtlich, adressbuch = _schreibe_fixture(tmp_path)
-    main(daten_dir=str(daten), docs_dir=str(docs), adressbuch=str(adressbuch),
-         amtliches_verzeichnis=str(amtlich), stichtag="1936-06-30")
+    kennzahlen = main(daten_dir=str(daten), docs_dir=str(docs), adressbuch=str(adressbuch),
+                       amtliches_verzeichnis=str(amtlich), stichtag="1936-06-30")
     with open(daten / "konkordanz_1936.csv", encoding="utf-8") as f:
         konkordanz = list(csv.DictReader(f))
-    assert len(konkordanz) == 1
-    assert konkordanz[0]["schl_nr"] == "00001"
-    assert konkordanz[0]["ehemalig"] == "Kaiserstraße"
+    assert len(konkordanz) == 2
+    assert {k["schl_nr"] for k in konkordanz} == {"00001", "00003"}
+    ehemalig_je_schl_nr = {k["schl_nr"]: k["ehemalig"] for k in konkordanz}
+    assert ehemalig_je_schl_nr["00001"] == "Kaiserstraße"
+    assert ehemalig_je_schl_nr["00003"] == "Alte Bahnhofstraße"
     assert all(k["schl_nr"] != "00002" for k in konkordanz)
+    assert kennzahlen["strassen_belastbar"] == 2
+    assert kennzahlen["strassen_geprueft"] == 1
 
 
 def test_erzeugt_alle_vier_artefakte(tmp_path):
@@ -80,13 +96,14 @@ def test_erzeugt_alle_vier_artefakte(tmp_path):
     assert (daten / "konkordanz_1936.csv").exists()
     assert (daten / "pruefung_konkordanz.csv").exists()
     assert (docs / "erhebungsstand.md").exists()
-    assert kennzahlen["konkordanz"] == 1
-    assert kennzahlen["strassen_automatisch"] == 1
+    assert kennzahlen["konkordanz"] == 2
+    assert kennzahlen["strassen_belastbar"] == 2
 
 
 def test_pruefung_validierung_enthaelt_nur_lemma_schl_nr_grund_keine_zitate(tmp_path):
-    """IMPORTANT 5: 'Unsichere Straße' (schl_nr 00002) ist nicht im amtlichen
-    Verzeichnis bestätigt (nur 'Aachener Straße' ist dort gelistet) und muss mit
+    """IMPORTANT 5: 'Unsichere Straße' (schl_nr 00002) und 'Geprüfte Straße'
+    (schl_nr 00003) sind nicht im amtlichen Verzeichnis bestätigt (nur
+    'Aachener Straße' ist dort gelistet) und müssen mit
     grund='nicht im amtlichen Verzeichnis' auftauchen — ausschließlich Lemma,
     Schlüsselnummer und Grund, kein Rohtext/Zitat."""
     daten, docs, amtlich, adressbuch = _schreibe_fixture(tmp_path)
@@ -96,9 +113,9 @@ def test_pruefung_validierung_enthaelt_nur_lemma_schl_nr_grund_keine_zitate(tmp_
         zeilen = list(csv.DictReader(f))
     assert set(zeilen[0].keys()) == {"lemma", "schl_nr", "grund"}
     treffer = [z for z in zeilen if z["grund"] == "nicht im amtlichen Verzeichnis"]
-    assert len(treffer) == 1
-    assert treffer[0]["lemma"] == "Unsichere Straße"
-    assert treffer[0]["schl_nr"] == "00002"
+    assert len(treffer) == 2
+    assert {t["lemma"] for t in treffer} == {"Unsichere Straße", "Geprüfte Straße"}
+    assert {t["schl_nr"] for t in treffer} == {"00002", "00003"}
 
 
 def test_lauf_ist_byte_identisch_reproduzierbar(tmp_path):
