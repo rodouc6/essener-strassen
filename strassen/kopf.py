@@ -13,7 +13,9 @@ wo kein Marker (auch tolerant) gefunden wird, bleibt das Feld leer statt geraten
 import re
 from typing import NamedTuple
 
-from strassen.datum import DATUMSSTEMPEL_MUSTER, SATZENDE, lese_datum, unscharf_eindeutig
+from strassen.datum import (
+    DATUMSSTEMPEL_ANONYM, DATUMSSTEMPEL_MUSTER, SATZENDE, lese_datum, unscharf_eindeutig,
+)
 
 # Der Ziffernblock der Schlüsselnummer wird gelegentlich vom OCR mit einem
 # Leerzeichen mitten in der Zahl zerrissen ('01 544'). Ohne Toleranz brach
@@ -62,9 +64,18 @@ _GRUPPE = re.compile(
     r"(?=,?\s*(?:urspr\.|" + DATUMSSTEMPEL_MUSTER + r")|" + _TAGESZIFFER + r"|" + _FELDENDE + r"|$)"
 )
 # Namensteil eines Stadiums in der strengen Kettenerkennung: keine Ziffern, endet am
-# gemeinsamen Satzende (datum.SATZENDE — Abkürzungspunkte 'St.', 'II.' zählen nicht).
+# gemeinsamen Satzende (datum.SATZENDE — Abkürzungspunkte 'St.', 'II.' zählen nicht)
+# ODER an einem Komma, dem direkt (nach optionalem Leerraum) 'urspr.' oder der nächste
+# Datumsstempel folgt — sonst bricht ein Stadium wie 'I. Levenhove,' (kein Satzende
+# nach der römischen Zahl, kein Punkt vor dem nächsten Stempel) die ganze Kette ab und
+# reißt alle folgenden Stadien mit aus kopf.rest heraus (Kämmereihude, Schl.-Nr. 01638,
+# S. 185; Fix Task 12). DATUMSSTEMPEL_ANONYM, weil dieselbe benannte Gruppe nicht
+# zweimal im selben Muster vorkommen darf.
 _NAMENSTEIL = r"(?:(?!" + SATZENDE + r")[^\d\n]){1,80}"
-_STADIUM = re.compile(DATUMSSTEMPEL_MUSTER + r"\s*(?P<name>" + _NAMENSTEIL + r")" + SATZENDE)
+_STADIUM = re.compile(
+    DATUMSSTEMPEL_MUSTER + r"\s*(?P<name>" + _NAMENSTEIL + r")"
+    r"(?:" + SATZENDE + r"|,(?=\s*(?:urspr\.|" + DATUMSSTEMPEL_ANONYM + r")))"
+)
 _SATZENDE = re.compile(SATZENDE)
 # Maximale Lücke zwischen zwei Stadien, damit sie noch als zusammenhängende
 # Namenskette direkt nach dem Kopf gelten. Auch mit der Monatsnamen-Beschränkung

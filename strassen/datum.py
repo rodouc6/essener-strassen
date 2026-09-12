@@ -23,9 +23,12 @@ MONATE = {"Januar": 1, "Februar": 2, "März": 3, "April": 4, "Mai": 5, "Juni": 6
           "Dezember": 12}
 
 # Ein Punkt ist KEIN Satzende, wenn er auf eine Ziffer ('26.'), auf 'St' ('St.
-# Annental') oder auf eine römische Zahl I–IV ('II. Weberstraße') folgt.
+# Annental') oder auf eine römische Zahl I–IV ('II. Weberstraße') folgt. 'Ill'
+# zählt zusätzlich als römisch III: die OCR verwechselt dort regelmäßig 'I' und
+# 'l' ('Ill. Ziegelstraße', Kämmereihude 01638, S. 185; 'Ill. Hagen' = 'III.
+# Hagen', S. 331 u. a. — 14 Belege im Material, ausnahmslos 'III.' im Sinnzusammenhang).
 # Lookbehinds sind je fester Breite; \b ist nullbreit und deshalb erlaubt.
-_KEIN_ABKUERZUNGSPUNKT = r"(?<!\d)(?<!\bSt)(?<!\bI)(?<!\bII)(?<!\bIII)(?<!\bIV)"
+_KEIN_ABKUERZUNGSPUNKT = r"(?<!\d)(?<!\bSt)(?<!\bI)(?<!\bII)(?<!\bIII)(?<!\bIV)(?<!\bIll)"
 SATZENDE = _KEIN_ABKUERZUNGSPUNKT + r"\.(?=\s+[0-9A-ZÄÖÜ]|\s*$)"
 
 _MONAT_WORT = r"(?P<monat>[A-Za-zÄÖÜäöü]{3,9})"     # Prüfung gegen MONATE in lese_datum
@@ -41,6 +44,11 @@ DATUMSSTEMPEL_MUSTER = (
     r")(?!\d)" + _TRENNER
 )
 DATUMSSTEMPEL = re.compile(DATUMSSTEMPEL_MUSTER)
+
+# Gruppenlose Form für Lookaheads: DATUMSSTEMPEL_MUSTER hat benannte Gruppen und
+# darf deshalb nicht zweimal im selben Muster vorkommen (z. B. in einem Lookahead
+# neben dem eigentlichen Treffer, kopf._STADIUM).
+DATUMSSTEMPEL_ANONYM = re.sub(r"\(\?P<[^>]+>", "(?:", DATUMSSTEMPEL_MUSTER)
 
 _GERICHTET = {"vor": "vor", "nach": "nach"}
 

@@ -152,3 +152,11 @@ def test_unscharf_eindeutig_verlangt_eindeutigkeit():
     assert unscharf_eindeutig("Jun", MONATE) == "Juni"
     assert unscharf_eindeutig("Xyz", MONATE) is None
     assert unscharf_eindeutig("Mai", MONATE) is None      # exakt gleich zählt nicht als Distanz 1
+
+
+def test_datumsstempel_anonym_hat_keine_benannten_gruppen():
+    """DATUMSSTEMPEL_ANONYM wird für Lookaheads gebraucht (kopf._STADIUM), wo
+    dieselbe benannte Gruppe nicht zweimal im selben Muster vorkommen darf."""
+    from strassen.datum import DATUMSSTEMPEL_ANONYM
+    assert "(?P<" not in DATUMSSTEMPEL_ANONYM
+    re.compile(DATUMSSTEMPEL_ANONYM + DATUMSSTEMPEL_ANONYM)

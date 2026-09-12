@@ -286,3 +286,30 @@ def test_feldende_am_stringende():
     k = parse_kopf(rumpf)
     assert k.strassenklassen == ["Gemeindestraße"]
     assert k.hinweise == ()
+
+
+def test_stadium_endet_auch_am_komma_vor_dem_naechsten_stempel():
+    """Kämmereihude, Schl.-Nr. 01638, S. 185 — Goldstandard-Fehler: 2 von 3 Stadien
+    fehlten. Nach 'I. Levenhove,' folgt kein Satzende (SATZENDE), sondern ein Komma
+    direkt vor dem nächsten Datumsstempel — die strenge Kettenerkennung muss auch
+    dort ein Stadium abschließen können, sonst bricht die Kette an dieser Stelle ab
+    und ALLE folgenden Stadien fallen aus kopf.rest heraus (_MAX_LUECKE)."""
+    rumpf = ("01638, Stadtteil Katernberg, Str.-Kl.: Gemeindestraße, "
+             "Str.-Gr.: Flurname, 13. Februar 1896: Ill. Ziegelstraße, "
+             "09. Juli 1915: I. Levenhove, 25. Februar 1937: Kämmereihude. "
+             "Erläuterung folgt hier.")
+    k = parse_kopf(rumpf)
+    s = parse_namenskette(k.rest)
+    assert [x.name for x in s] == ["Ill. Ziegelstraße", "I. Levenhove", "Kämmereihude"]
+
+
+def test_stadium_am_komma_bricht_kamerunstraße_nicht_zusaetzlich_auf():
+    """Die Kamerunstraße-Kette (ein einziges Stadium) darf durch die neue
+    Komma-Abschlussregel nicht in mehrere Stadien zerfallen."""
+    rumpf = ("01635, Stadtteil Gerschede, Str.-Kl.: Gemeindestraße, Str.-Gr.: Stadt und Ort, "
+             "26. Mai 1939: Kamerunstraße, Kamerun, eine ehemalige deutsche Kolonie im Westen "
+             "Zentralafrikas, nach 1918 französisches bzw. britisches Mandatsgebiet, seit 1961 "
+             "unabhängige Republik. Siehe auch Askaristraße,")
+    k = parse_kopf(rumpf)
+    s = parse_namenskette(k.rest)
+    assert [(x.gueltig_ab, x.name) for x in s] == [("1939-05-26", "Kamerunstraße")]
