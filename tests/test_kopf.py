@@ -419,6 +419,7 @@ def test_starker_stempel_ausserhalb_der_namenslaenge_bleibt_prosa():
     _MAX_NAMENSLAENGE Zeichen) gehört nicht mehr zur Kette, selbst wenn er
     regulär mit Doppelpunkt geschrieben ist — sonst würde jedes spät im
     Fließtext zitierte Datum die Kette künstlich verlängern."""
+    # Füllzeichen bewusst synthetisch: nur die LÄNGE des Abstands wird geprüft.
     fuelltext = "Aus welchem Anlass die Straße diesen Namen erhielt ist unklar" + "!" * 45
     rumpf = ("00001, Stadtteil X, Str.-Kl.: Gemeindestraße, Str.-Gr.: Flurname, "
              "01. Januar 1900: X. " + fuelltext + " 01. Januar 1950: Y.")

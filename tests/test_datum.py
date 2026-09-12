@@ -79,8 +79,7 @@ def test_blosses_jahr():
 
 def test_stempel_setzt_nicht_mitten_in_ziffernfolge_an():
     """'19862:' (Spervogelweg 02949, S. 306) darf nicht als '9862:' oder '1986' gelesen werden."""
-    assert DATUMSSTEMPEL.search("Minnesängerr 27. September 19862: Spervogelweg") is None \
-        or DATUMSSTEMPEL.search("Minnesängerr 27. September 19862: Spervogelweg").group("jahr_tag") is None
+    assert DATUMSSTEMPEL.search("Minnesängerr 27. September 19862: Spervogelweg") is None
 
 
 def test_monate_vollstaendig():

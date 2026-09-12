@@ -22,10 +22,12 @@ pytestmark = pytest.mark.skipif(not OCR.is_dir(), reason="ocr/seiten/ nur lokal 
 def datensatz(tmp_path_factory):
     aus = tmp_path_factory.mktemp("daten")
     main(ocr_dir=str(OCR), ausgabe_dir=str(aus))
-    strassen = {z["schl_nr"]: z for z in csv.DictReader(open(aus / "strassen.csv", encoding="utf-8"))}
+    with open(aus / "strassen.csv", encoding="utf-8", newline="") as f:
+        strassen = {z["schl_nr"]: z for z in csv.DictReader(f)}
     namen = defaultdict(dict)
-    for z in csv.DictReader(open(aus / "namen.csv", encoding="utf-8")):
-        namen[z["schl_nr"]][int(z["stadium"])] = z
+    with open(aus / "namen.csv", encoding="utf-8", newline="") as f:
+        for z in csv.DictReader(f):
+            namen[z["schl_nr"]][int(z["stadium"])] = z
     return strassen, namen
 
 
