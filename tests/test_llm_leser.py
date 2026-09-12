@@ -159,3 +159,39 @@ def test_sende_baut_openai_kompatible_anfrage(monkeypatch):
     assert erfasst["url"] == "https://h/v1/chat/completions"
     assert erfasst["auth"] == "Bearer k"
     assert erfasst["body"] == {"model": "m"}
+
+
+def test_sende_meldet_antwort_ohne_choices_als_http_502(monkeypatch):
+    class Antwort:
+        def __enter__(self): return self
+        def __exit__(self, *a): return False
+        def read(self):
+            return json.dumps({"error": "x"}).encode()
+
+    def urlopen(req, timeout):
+        return Antwort()
+
+    monkeypatch.setattr(ll.urllib.request, "urlopen", urlopen)
+    with pytest.raises(ll.HttpFehler) as exc:
+        ll.sende({"model": "m"}, "https://h/v1", "k")
+    assert exc.value.status == 502
+
+
+def test_sende_uebersetzt_urlerror_in_http_503(monkeypatch):
+    def urlopen(req, timeout):
+        raise ll.urllib.error.URLError("down")
+
+    monkeypatch.setattr(ll.urllib.request, "urlopen", urlopen)
+    with pytest.raises(ll.HttpFehler) as exc:
+        ll.sende({"model": "m"}, "https://h/v1", "k")
+    assert exc.value.status == 503
+
+
+def test_sende_uebersteht_fehlschlagendes_lesen_der_fehlerantwort(monkeypatch):
+    def urlopen(req, timeout):
+        raise ll.urllib.error.HTTPError("https://h/v1/chat/completions", 500, "msg", hdrs=None, fp=None)
+
+    monkeypatch.setattr(ll.urllib.request, "urlopen", urlopen)
+    with pytest.raises(ll.HttpFehler) as exc:
+        ll.sende({"model": "m"}, "https://h/v1", "k")
+    assert exc.value.status == 500

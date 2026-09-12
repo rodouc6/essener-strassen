@@ -119,17 +119,29 @@ def extrahiere_json(text: str) -> list:
 
 
 def sende(anfrage: dict, base_url: str, api_key: str, timeout: int = 300) -> str:
-    """POST an <base_url>/chat/completions; gibt den Antworttext des Modells zurück."""
+    """POST an <base_url>/chat/completions; gibt den Antworttext des Modells zurück.
+    Fehlerhafte/unerwartete Antworten und Transportfehler werden als HttpFehler(502/503)
+    gemeldet, damit _sende_mit_wiederholung sie wie jeden anderen 5xx-Fehler wiederholt."""
     req = urllib.request.Request(
         f"{base_url}/chat/completions", data=json.dumps(anfrage).encode("utf-8"),
         headers={"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"},
         method="POST")
     try:
         with urllib.request.urlopen(req, timeout=timeout) as antwort:
-            daten = json.loads(antwort.read().decode("utf-8"))
+            rohtext = antwort.read().decode("utf-8")
     except urllib.error.HTTPError as e:
-        raise HttpFehler(e.code, e.read().decode("utf-8", errors="replace")) from e
-    return daten["choices"][0]["message"]["content"]
+        try:
+            text = e.read().decode("utf-8", errors="replace")
+        except Exception:
+            text = ""
+        raise HttpFehler(e.code, text) from e
+    except (urllib.error.URLError, TimeoutError) as e:
+        raise HttpFehler(503, str(e)) from e
+    try:
+        daten = json.loads(rohtext)
+        return daten["choices"][0]["message"]["content"]
+    except (KeyError, IndexError, TypeError, ValueError) as e:
+        raise HttpFehler(502, f"Antwort ohne choices: {rohtext[:200]}") from e
 
 
 def antwort_pfad(ziel_dir, modell: str, buchseite) -> Path:
