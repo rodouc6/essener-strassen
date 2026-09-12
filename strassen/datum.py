@@ -70,6 +70,17 @@ class Datum(NamedTuple):
     trenner: str          # ':' ';' ',' oder ''
 
 
+def lese_text(text: str):
+    """Gedruckter Datumstext ('29.08.1927', 'um 1900', 'im 16. Jahrhundert', auch mit
+    Trenner am Ende) -> Datum; None, wenn kein Stempelmuster passt; leer -> unbekannt.
+    Gemeinsame Funktion für LLM-Vergleich und Korrektur-Overlay (Spec 2026-09-12)."""
+    t = (text or "").strip()
+    if not t:
+        return Datum("", "unbekannt", "", "")
+    m = DATUMSSTEMPEL.fullmatch(t)
+    return lese_datum(m) if m else None
+
+
 def lese_datum(m: re.Match) -> Datum:
     hinweise = []
     trenner = m.group("trenner")

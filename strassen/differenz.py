@@ -7,6 +7,9 @@ stillschweigend kippt. Aufruf:
   git show HEAD:daten/strassen.csv > /tmp/alt/strassen.csv   (analog namen.csv)
   python3 -m strassen.differenz /tmp/alt daten --ausgabe docs/regression/<datum>.md
 
+vergleiche(alt, neu) akzeptiert je Seite ein Verzeichnis oder ein Tupel
+(strassen, namen) mit strassen als Liste/Dict und namen als Liste/Dict.
+
 Stadien-Zuordnung je schl_nr: zuerst werden Stadien mit identischer Signatur
 (gueltig_ab, datum_praezision, name, ist_urspruenglich) zwischen alt und neu
 gepaart und aus dem Vergleich entfernt (Multimengen-Zuordnung — jedes Vorkommen
@@ -34,6 +37,27 @@ _KATEGORIEN = [
     ("status_zu_unsicher", "Status automatisch → unsicher"),
     ("status_zu_automatisch", "Status unsicher → automatisch"),
 ]
+
+
+def als_struktur(strassen, namen):
+    """Listen oder Dicts in die interne Form: strassen[schl_nr] -> Zeile,
+    namen[schl_nr] -> Stadien sortiert nach 'stadium'."""
+    if not isinstance(strassen, dict):
+        strassen = {z["schl_nr"]: z for z in strassen}
+    if not isinstance(namen, dict):
+        gruppen = defaultdict(list)
+        for z in namen:
+            gruppen[z["schl_nr"]].append(z)
+        namen = gruppen
+    for stadien in namen.values():
+        stadien.sort(key=lambda z: int(z["stadium"]))
+    return strassen, namen
+
+
+def _lade_oder_uebernimm(quelle):
+    if isinstance(quelle, tuple):
+        return als_struktur(*quelle)
+    return _lade(quelle)
 
 
 def _lade(verzeichnis):
@@ -80,9 +104,9 @@ def _paare_stadien(alt_st, neu_st):
     return alt_rest, neu_rest
 
 
-def vergleiche(alt_dir, neu_dir) -> dict:
-    alt_s, alt_n = _lade(alt_dir)
-    neu_s, neu_n = _lade(neu_dir)
+def vergleiche(alt, neu) -> dict:
+    alt_s, alt_n = _lade_oder_uebernimm(alt)
+    neu_s, neu_n = _lade_oder_uebernimm(neu)
     d = {k: [] for k, _ in _KATEGORIEN}
 
     for schl in sorted(set(alt_s) | set(neu_s)):

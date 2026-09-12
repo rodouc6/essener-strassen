@@ -105,3 +105,10 @@ def test_bericht_enthaelt_zaehlung_und_zeilen(tmp_path):
     md = formatiere_bericht(vergleiche(tmp_path / "alt", tmp_path / "neu"))
     assert "| Stadium gewonnen | 1 |" in md
     assert "Kamerunstraße" in md
+
+
+def test_vergleiche_nimmt_strukturen_statt_verzeichnisse():
+    alt = ([_s("00001", "A")], [_n("00001", 1, "1900", "A")])
+    neu = ([_s("00001", "B")], [_n("00001", 1, "1900", "A")])
+    d = vergleiche(alt, neu)
+    assert d["kopffeld_veraendert"] == [{"schl_nr": "00001", "lemma": "A", "feld": "lemma", "alt": "A", "neu": "B"}]

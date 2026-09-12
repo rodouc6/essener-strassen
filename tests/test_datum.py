@@ -181,3 +181,26 @@ def test_position_erlaubt_nur_am_kettenanfang_oder_nach_trenner():
     assert position_erlaubt("A. Straße, 1902: X", len("A. Straße, ")) is True
     assert position_erlaubt("A. Straße; 1902: X", len("A. Straße; ")) is True
     assert position_erlaubt("Am 25. Juli 1516 wurde", len("Am ")) is False
+
+
+# --- lese_text ---
+
+from strassen.datum import lese_text
+
+
+def test_lese_text_tagesdatum_numerisch_und_wortform():
+    assert lese_text("29.08.1927")[:2] == ("1927-08-29", "tag")
+    assert lese_text("16. Mai 1902:")[:2] == ("1902-05-16", "tag")
+
+
+def test_lese_text_qualifier_jahr_jahrhundert():
+    assert lese_text("vor 1898")[:2] == ("1898", "vor")
+    assert lese_text("um 1900")[:2] == ("1900", "jahr")
+    assert lese_text("im 16. Jahrhundert")[:2] == ("1501", "jahrhundert")
+    assert lese_text("1927")[:2] == ("1927", "jahr")
+
+
+def test_lese_text_leer_und_unpassend():
+    assert lese_text("")[:2] == ("", "unbekannt")
+    assert lese_text("16. Jh.") is None
+    assert lese_text("Frühjahr 1920") is None
