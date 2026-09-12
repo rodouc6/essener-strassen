@@ -29,6 +29,7 @@ STATUS_MODELL = "modell"
 KURZNAMEN = ("qwen", "mistral")
 KOPFFELDER = ["lemma", "stadtteile", "strassenklasse", "namensgruppe", "verweis_auf"]
 GRUND_DATUM = "Datum nicht normalisierbar"
+GRUND_STADIEN = "Stadien nicht als Liste"
 
 _UNVOLLSTAENDIG = "_unvollstaendig"   # interne Markierung, wird nicht geschrieben
 
@@ -58,7 +59,7 @@ def ist_unvollstaendig(strasse: dict) -> bool:
 def normalisiere_antwort(antwort: dict):
     """Eine Antwortdatei -> (strassen, namen, probleme) in Datensatzform."""
     eintraege = antwort.get("eintraege")
-    buchseite = int(antwort.get("buchseite", 0))
+    buchseite = int(antwort.get("buchseite") or 0)
     if not eintraege:
         return [], [], []
     strassen, namen, probleme = [], [], []
@@ -70,7 +71,16 @@ def normalisiere_antwort(antwort: dict):
             "namensgruppe": _text(e.get("namensgruppe")), "verweis_auf": _text(e.get("verweis_auf")),
             "buchseite": buchseite, "status": STATUS_MODELL,
             _UNVOLLSTAENDIG: bool(e.get("unvollstaendig"))})
-        for i, s in enumerate(e.get("stadien") or [], 1):
+        stadien = e.get("stadien") or []
+        if not isinstance(stadien, list):
+            probleme.append({"schl_nr": schl, "buchseite": buchseite, "feld": "stadien",
+                             "text": str(stadien)[:200], "grund": GRUND_STADIEN})
+            continue
+        for i, s in enumerate(stadien, 1):
+            if not isinstance(s, dict):
+                probleme.append({"schl_nr": schl, "buchseite": buchseite, "feld": f"stadium_{i}",
+                                 "text": str(s)[:200], "grund": GRUND_STADIEN})
+                continue
             text = _text(s.get("datum"))
             d = lese_text(text)
             if d is None:

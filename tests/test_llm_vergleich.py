@@ -48,6 +48,36 @@ def test_normalisiere_unlesbare_antwort_liefert_nichts():
     assert lv.normalisiere_antwort({"buchseite": 5, "eintraege": None, "fehler": "unlesbar"}) == ([], [], [])
 
 
+def test_normalisiere_meldet_stadien_die_keine_liste_sind():
+    antwort = {"buchseite": 23, "eintraege": [
+        {"schl_nr": "1", "lemma": "X", "stadien": {"datum": "1900", "name": "X"}}]}
+    strassen, namen, probleme = lv.normalisiere_antwort(antwort)
+    assert namen == []
+    assert probleme == [{"schl_nr": "00001", "buchseite": 23, "feld": "stadien",
+                         "text": str({"datum": "1900", "name": "X"})[:200], "grund": lv.GRUND_STADIEN}]
+
+
+def test_normalisiere_ueberspringt_stadium_das_kein_dict_ist():
+    antwort = {"buchseite": 23, "eintraege": [
+        {"schl_nr": "1", "lemma": "X", "stadien": ["nicht ein dict"]}]}
+    strassen, namen, probleme = lv.normalisiere_antwort(antwort)
+    assert namen == []
+    assert probleme == [{"schl_nr": "00001", "buchseite": 23, "feld": "stadium_1",
+                         "text": "nicht ein dict", "grund": lv.GRUND_STADIEN}]
+
+
+def test_normalisiere_buchseite_null_wird_null():
+    antwort = {"buchseite": None, "eintraege": [{"schl_nr": "1", "lemma": "X", "stadien": []}]}
+    strassen, _, _ = lv.normalisiere_antwort(antwort)
+    assert strassen[0]["buchseite"] == 0
+
+
+def test_normalisiere_eintrag_ohne_schl_nr():
+    antwort = {"buchseite": 23, "eintraege": [{"lemma": "X", "stadien": []}]}
+    strassen, _, _ = lv.normalisiere_antwort(antwort)
+    assert strassen[0]["schl_nr"] == ""
+
+
 def test_lade_antworten_indexiert_nach_buchseite(tmp_path):
     (tmp_path / "m").mkdir()
     (tmp_path / "m" / "s023.json").write_text(FIXTURE.read_text(encoding="utf-8"), encoding="utf-8")
