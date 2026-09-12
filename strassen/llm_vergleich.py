@@ -12,11 +12,12 @@ import argparse
 import csv
 import json
 import re
+import sys
 from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
 
-from strassen.datum import lese_text
+from strassen.datum import HINWEIS_OHNE_DOPPELPUNKT, lese_text
 from strassen.differenz import als_struktur, vergleiche
 from strassen.goldstandard import formatiere_datum
 from strassen.korrekturen import FELDER_KORREKTUREN
@@ -30,6 +31,7 @@ STATUS_MODELL = "modell"
 KURZNAMEN = ("qwen", "mistral")
 KOPFFELDER = ["lemma", "stadtteile", "strassenklasse", "namensgruppe", "verweis_auf"]
 GRUND_DATUM = "Datum nicht normalisierbar"
+GRUND_DATUM_EINGESCHRAENKT = "Datum nur eingeschränkt lesbar"
 GRUND_STADIEN = "Stadien nicht als Liste"
 
 _UNVOLLSTAENDIG = "_unvollstaendig"   # interne Markierung, wird nicht geschrieben
@@ -90,6 +92,14 @@ def normalisiere_antwort(antwort: dict):
                 gueltig_ab, praezision = "", "unbekannt"
             else:
                 gueltig_ab, praezision = d.gueltig_ab, d.praezision
+                # Zurückgestuftes Datum (ungültiger Tag, OCR-korrigierter Monat): der
+                # normalisierte Wert bleibt, aber die Prüfliste zeigt den Rohtext, damit
+                # der Mensch die Stelle gegen den Scan liest, statt sie stillschweigend
+                # als Abweichung 'Jahr statt Tagesdatum' zu verbuchen.
+                if [h for h in d.hinweis.split("; ") if h and h != HINWEIS_OHNE_DOPPELPUNKT]:
+                    probleme.append({"schl_nr": schl, "buchseite": buchseite,
+                                     "feld": f"stadium_{i}_datum", "text": text,
+                                     "grund": GRUND_DATUM_EINGESCHRAENKT})
             namen.append({"schl_nr": schl, "stadium": i, "gueltig_ab": gueltig_ab,
                           "datum_praezision": praezision, "name": _text(s.get("name")),
                           "ist_urspruenglich": "wahr" if s.get("urspruenglich") else "falsch"})
@@ -101,7 +111,12 @@ def lade_antworten(antworten_dir, modell: str) -> dict:
     ordner = Path(antworten_dir) / modell
     antworten = {}
     for pfad in sorted(ordner.glob("s*.json")):
-        a = json.loads(pfad.read_text(encoding="utf-8"))
+        try:
+            a = json.loads(pfad.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as e:
+            # Abgebrochener Lauf hinterlässt halbe Dateien — klar melden statt mit
+            # einem nackten JSONDecodeError ohne Dateinamen abzustürzen.
+            raise ValueError(f"Antwortdatei {pfad} nicht lesbar: {e}") from e
         antworten[int(pfad.stem.lstrip("s"))] = a
     return antworten
 
@@ -201,7 +216,8 @@ def _felder_des_eintrags(strassen, namen, schl_nr, nur_kopf=False) -> list:
     felder = list(KOPFFELDER)
     if not nur_kopf:
         for z in namen.get(schl_nr, []):
-            felder += [f"stadium_{z['stadium']}_datum", f"stadium_{z['stadium']}_name"]
+            felder += [f"stadium_{z['stadium']}_datum", f"stadium_{z['stadium']}_name",
+                       f"stadium_{z['stadium']}_urspruenglich"]
     return felder
 
 
@@ -272,6 +288,10 @@ def baue_pruefliste(parser, modelle: dict):
     Liefert (zeilen, kennzahlen). Verglichen werden nur Buchseiten, die das jeweilige Modell
     gelesen hat; unlesbare Seiten zählen als nicht gelesen. Nicht normalisierbare Modelldaten
     (Datum, Stadien-Struktur) erscheinen unabhängig von 'unvollstaendig' als eigene Zeile."""
+    # als_struktur indexiert nach schl_nr: die drei bekannten schl_nr-Dubletten in
+    # strassen.csv fallen hier zusammen (die letzte Zeile gewinnt). Unschädlich, weil
+    # korrekturen.wende_an mehrdeutige schl_nr ablehnt und daten_fuer_goldstandard sie
+    # ausdrücklich prüft — die Prüfliste verliert dadurch höchstens eine Dublettenzeile.
     p_s, p_n = als_struktur(*parser)
     seite_je_schl = {schl: int(z["buchseite"]) for schl, z in p_s.items()}
     daten, kennzahlen, gelesen, abweichungen, problem_werte = {}, {}, {}, {}, {}
@@ -290,8 +310,9 @@ def baue_pruefliste(parser, modelle: dict):
         problem_werte[kurz] = {}
         for p in probleme:
             schluessel = (p["schl_nr"], p["feld"])
-            anzeige = (f"{p['text']} (nicht normalisierbar)" if p["grund"] == GRUND_DATUM
-                      else f"{p['text']} (nicht als Liste)")
+            marker = {GRUND_DATUM: "nicht normalisierbar",
+                      GRUND_DATUM_EINGESCHRAENKT: "eingeschränkt lesbar"}.get(p["grund"], "nicht als Liste")
+            anzeige = f"{p['text']} ({marker})"
             abweichungen[kurz][schluessel] = True
             problem_werte[kurz][schluessel] = anzeige
 
@@ -420,6 +441,9 @@ def uebernehmen(pruefliste: list, korrekturen_vorhanden: list, datum: str) -> li
             if not alt:
                 raise ValueError(f"{schl}: Eintrag fehlt beim Parser — Parser-Auslassung, nicht per Overlay behebbar")
             raise ValueError(f"{schl}: 'eintrag' korrigiert man über die einzelnen Felder")
+        if feld.startswith("stadium_?"):
+            raise ValueError(f"{schl}: Stadium konnte nicht eindeutig zugeordnet werden "
+                             f"(stadium_?) — Korrektur über stadium_N_* eintragen")
         m = _STADIUMFELD.match(feld)
         if m and m.group(2) is None:
             if alt:
@@ -432,6 +456,23 @@ def uebernehmen(pruefliste: list, korrekturen_vorhanden: list, datum: str) -> li
             continue
         _zeile(schl, feld, alt, korr, beleg)
     return neu
+
+
+def pruefliste_hat_offene_korrekturen(pfad) -> bool:
+    """Enthält eine vorhandene pruefung_llm.csv ausgefüllte, noch nicht übernommene
+    korrektur-Zellen? Ein Neuaufbau der Prüfliste würde sie überschreiben."""
+    pfad = Path(pfad)
+    if not pfad.is_file():
+        return False
+    with open(pfad, encoding="utf-8", newline="") as f:
+        return any((z.get("korrektur") or "").strip() for z in csv.DictReader(f))
+
+
+def pruefe_prompt_hashes(antworten: dict) -> set:
+    """Die verschiedenen (nicht leeren) prompt_hash-Werte eines Antwortordners.
+    Mehr als einer heißt: die Antworten stammen aus verschiedenen Prompt-Ständen und
+    sind nicht vergleichbar."""
+    return {h for a in antworten.values() if (h := (a.get("prompt_hash") or "").strip())}
 
 
 def _lade_parser(daten_dir=DATEN_DIR):
@@ -458,8 +499,17 @@ def finde_modelle(antworten_dir) -> dict:
 
 
 def _modelle(antworten_dir) -> dict:
-    return {kurz: {"antworten": lade_antworten(antworten_dir, name)}
-            for kurz, name in finde_modelle(antworten_dir).items()}
+    """Kurzname -> {"antworten": ...}. Ohne einen einzigen bekannten Modellordner (falsch
+    getippter --antworten-dir, nur Fremdordner) wird abgebrochen: sonst schrieben die
+    Unterbefehle eine leere Prüfliste bzw. einen leeren Bericht über die vorhandenen."""
+    modelle = {kurz: {"antworten": lade_antworten(antworten_dir, name)}
+               for kurz, name in finde_modelle(antworten_dir).items()}
+    if not modelle:
+        erwartet = "/".join(f"'{k}'" for k in KURZNAMEN)
+        print(f"Fehler: keine Modellantworten unter {antworten_dir} gefunden "
+              f"(erwartet Ordner mit {erwartet} im Namen)", file=sys.stderr)
+        sys.exit(1)
+    return modelle
 
 
 def daten_fuer_goldstandard(antworten: dict, stichprobe: list):
@@ -495,8 +545,19 @@ def _cli():
     a = p.parse_args()
 
     if a.befehl == "pruefliste":
-        zeilen, kz = baue_pruefliste(_lade_parser(a.daten), _modelle(a.antworten_dir))
-        schreibe_pruefliste(zeilen, Path(a.daten) / "pruefung_llm.csv")
+        ziel = Path(a.daten) / "pruefung_llm.csv"
+        if pruefliste_hat_offene_korrekturen(ziel):
+            print("Fehler: pruefung_llm.csv enthält nicht übernommene Korrekturen — "
+                  "erst `uebernehmen` ausführen oder die Datei sichern", file=sys.stderr)
+            sys.exit(1)
+        modelle = _modelle(a.antworten_dir)
+        for kurz, m in modelle.items():
+            hashes = pruefe_prompt_hashes(m["antworten"])
+            if len(hashes) > 1:
+                print(f"Warnung: Modell {kurz} hat Antworten aus {len(hashes)} verschiedenen "
+                      f"Prompt-Ständen ({', '.join(sorted(hashes))})")
+        zeilen, kz = baue_pruefliste(_lade_parser(a.daten), modelle)
+        schreibe_pruefliste(zeilen, ziel)
         Path(a.kennzahlen).write_text(formatiere_kennzahlen_md(kz), encoding="utf-8")
         print(f"{len(zeilen)} Prüfzeilen; Kennzahlen -> {a.kennzahlen}")
     elif a.befehl == "goldstandard":
@@ -504,23 +565,31 @@ def _cli():
         stichprobe = lade_stichprobe()
         statistiken = {}
         for kurz, m in _modelle(a.antworten_dir).items():
+            hashes = pruefe_prompt_hashes(m["antworten"])
+            if len(hashes) > 1:
+                # Eine Messung über zwei Prompt-Stände hinweg misst nichts Bestimmtes.
+                print(f"Fehler: Modell {kurz} hat Antworten aus {len(hashes)} verschiedenen "
+                      f"Prompt-Ständen ({', '.join(sorted(hashes))}) — Messung abgebrochen; "
+                      f"Antwortordner mit einem Stand neu erzeugen", file=sys.stderr)
+                sys.exit(1)
             s, n = daten_fuer_goldstandard(m["antworten"], stichprobe)
             statistiken[kurz] = messe_goldstandard(stichprobe, als_struktur(s, n))
         Path(a.ausgabe).write_text(formatiere_ergebnis_llm_md(statistiken), encoding="utf-8")
         for kurz, st in statistiken.items():
             print(f"{kurz}: Fehlerquote {st['gesamt']['fehlerquote']:.1f} % ({st['gesamt']['geprueft']} Felder)")
     else:
-        from strassen.korrekturen import KORREKTUREN_PFAD, lade_korrekturen
+        from strassen.korrekturen import lade_korrekturen
+        korrekturen_pfad = Path(a.daten) / "korrekturen.csv"   # --daten gilt auch hier
         with open(Path(a.daten) / "pruefung_llm.csv", encoding="utf-8", newline="") as f:
             pruefliste = list(csv.DictReader(f))
-        vorhanden = lade_korrekturen(KORREKTUREN_PFAD)
+        vorhanden = lade_korrekturen(korrekturen_pfad)
         neu = uebernehmen(pruefliste, vorhanden, a.datum)
-        with open(KORREKTUREN_PFAD, "a", encoding="utf-8", newline="") as f:
+        with open(korrekturen_pfad, "a", encoding="utf-8", newline="") as f:
             w = csv.DictWriter(f, fieldnames=FELDER_KORREKTUREN)
             if not vorhanden and f.tell() == 0:
                 w.writeheader()
             w.writerows(neu)
-        print(f"{len(neu)} Korrekturzeilen übernommen -> {KORREKTUREN_PFAD}")
+        print(f"{len(neu)} Korrekturzeilen übernommen -> {korrekturen_pfad}")
 
 
 if __name__ == "__main__":

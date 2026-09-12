@@ -20,7 +20,7 @@ import re
 from collections import defaultdict
 from pathlib import Path
 
-from strassen.datum import lese_text
+from strassen.datum import HINWEIS_OHNE_DOPPELPUNKT, lese_text
 from strassen.goldstandard import formatiere_datum
 
 WURZEL = Path(__file__).resolve().parent.parent
@@ -61,6 +61,12 @@ def _setze(z, art, wert_neu, schl, feld):
         d = lese_text(wert_neu)
         if d is None:
             raise KorrekturFehler(f"{schl} {feld}: Datum {wert_neu!r} nicht normalisierbar")
+        # precision-first: lese_text stuft unsaubere Datumsangaben zurück (ungültiger Tag,
+        # OCR-korrigierter Monat) statt sie zu verwerfen. Im Overlay wäre das ein stiller
+        # Datenverlust — und der Eintrag bekäme trotzdem status=geprueft.
+        if [h for h in d.hinweis.split("; ") if h and h != HINWEIS_OHNE_DOPPELPUNKT]:
+            raise KorrekturFehler(f"{schl} {feld}: Datum {wert_neu!r} nicht sauber lesbar "
+                                  f"({d.hinweis}) — gegen den Scan prüfen")
         z["gueltig_ab"], z["datum_praezision"] = d.gueltig_ab, d.praezision
     elif art == "name":
         z["name"] = wert_neu

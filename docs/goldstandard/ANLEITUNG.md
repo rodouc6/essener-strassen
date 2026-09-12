@@ -77,7 +77,9 @@ manueller Schritt — dieses Dokument beschreibt ihn.
    Kommandozeile aus.
 
    **Achtung:** `ziehen` überschreibt `stichprobe.csv`. Nach einer Prüfung nicht erneut
-   ziehen, ohne die ausgefüllte Datei zu sichern.
+   ziehen, ohne die ausgefüllte Datei zu sichern. Hinzu kommt: Einträge mit
+   `status=geprueft` gehören zu keiner der beiden Schichten, sodass eine neue Ziehung
+   mit Seed 1936 die gespeicherte Entwicklungs-Stichprobe nicht mehr reproduziert.
 
 ## Korrekturen in den Datensatz bringen
 

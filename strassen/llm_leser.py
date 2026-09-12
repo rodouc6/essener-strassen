@@ -3,7 +3,8 @@ schicken und die Antwort als JSON sichern (Spec 2026-09-12, Abschnitt 3.2).
 
 Das Modell sieht NUR das Bild — keinen OCR-Text, keine Parser-Werte. Rohantworten
 liegen gitignored unter llm/antworten/<modell>/sNNN.json; ein Wiederholungslauf
-überspringt vorhandene Antworten.
+überspringt vorhandene Antworten, sofern sie aus demselben Prompt-Stand stammen
+(prompt_hash).
 
   python3 -m strassen.llm_leser --modell inferenz-qwen3-8-27b [--seiten 23-30] [--neu]
 
@@ -17,6 +18,7 @@ import hashlib
 import json
 import os
 import re
+import sys
 import time
 import urllib.error
 import urllib.request
@@ -163,11 +165,17 @@ def _sende_mit_wiederholung(anfrage: dict, sende_fn, schlafen) -> str:
 
 def lies_seite(buchseite, modell: str, png_pfad, prompt: str, sende_fn,
                ziel_dir=ANTWORTEN_DIR, neu: bool = False, schlafen=time.sleep) -> dict:
-    """Eine Buchseite lesen lassen. Vorhandene Antwort wird wiederverwendet (außer neu=True).
+    """Eine Buchseite lesen lassen. Vorhandene Antwort wird wiederverwendet, sofern ihr
+    prompt_hash zum aktuellen Prompt passt (außer neu=True: immer neu anfordern).
     Unlesbares JSON: bis MAX_JSON_VERSUCHE identische Anfragen, dann fehler='unlesbar'."""
     ziel = antwort_pfad(ziel_dir, modell, buchseite)
+    h = prompt_hash(prompt)
     if ziel.exists() and not neu:
-        return json.loads(ziel.read_text(encoding="utf-8"))
+        vorhanden = json.loads(ziel.read_text(encoding="utf-8"))
+        # Antwort aus einem anderen Prompt-Stand zählt als Cache-Fehltreffer: sonst
+        # mischt ein Prompt-Wechsel unbemerkt zwei Stände in einem Antwortordner.
+        if vorhanden.get("prompt_hash") == h:
+            return vorhanden
 
     anfrage = baue_anfrage(modell, prompt, Path(png_pfad).read_bytes())
     rohtext, eintraege = "", None
@@ -181,7 +189,7 @@ def lies_seite(buchseite, modell: str, png_pfad, prompt: str, sende_fn,
 
     ergebnis = {"buchseite": int(buchseite), "modell": modell,
                 "zeitstempel": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-                "prompt_hash": prompt_hash(prompt), "rohtext": rohtext,
+                "prompt_hash": h, "rohtext": rohtext,
                 "eintraege": eintraege, "fehler": "" if eintraege is not None else "unlesbar"}
     ziel.parent.mkdir(parents=True, exist_ok=True)
     ziel.write_text(json.dumps(ergebnis, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -198,21 +206,33 @@ def _cli():
     p.add_argument("--antworten-dir", default=str(ANTWORTEN_DIR))
     a = p.parse_args()
     lade_env()
-    base_url, api_key = konfiguration()
+    try:
+        base_url, api_key = konfiguration()
+    except KonfigurationsFehler as e:
+        print(f"Fehler: {e}", file=sys.stderr)
+        sys.exit(1)
     sende_fn = partial(sende, base_url=base_url, api_key=api_key)
     prompt = lade_prompt()
     seiten = parse_seitenbereich(a.seiten)
-    gelesen = unlesbar = 0
+    gelesen = unlesbar = ohne_bild = 0
     for b in seiten:
         png = Path(a.seiten_dir) / seiten_dateiname(b)
         if not png.exists():
+            ohne_bild += 1
             continue
-        erg = lies_seite(b, a.modell, png, prompt, sende_fn, a.antworten_dir, a.neu)
+        try:
+            erg = lies_seite(b, a.modell, png, prompt, sende_fn, a.antworten_dir, a.neu)
+        except LaufAbbruch as e:
+            # Erwarteter Abbruch (429/5xx erschöpft) — kein Traceback, die bereits
+            # gesicherten Seiten bleiben gültig und werden beim nächsten Lauf ergänzt.
+            print(f"Fehler: {e}", file=sys.stderr)
+            sys.exit(1)
         gelesen += 1
         unlesbar += erg["fehler"] == "unlesbar"
         print(f"s{b:03d}: {len(erg['eintraege'] or [])} Einträge{' (unlesbar)' if erg['fehler'] else ''}",
               flush=True)
-    print(f"{gelesen} Seiten, davon {unlesbar} unlesbar — Modell {a.modell}")
+    print(f"{gelesen} Seiten, davon {unlesbar} unlesbar — Modell {a.modell}"
+          + (f"; {ohne_bild} Seiten ohne Seitenbild übersprungen" if ohne_bild else ""))
 
 
 if __name__ == "__main__":

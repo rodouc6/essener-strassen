@@ -83,8 +83,9 @@ def test_lies_seite_speichert_eintraege_und_metadaten(tmp_path):
 def test_lies_seite_nutzt_vorhandene_antwort_ohne_zu_senden(tmp_path):
     antworten = tmp_path / "antworten"
     (antworten / "m").mkdir(parents=True)
-    (antworten / "m" / "s023.json").write_text(json.dumps({"buchseite": 23, "eintraege": [], "fehler": ""}),
-                                               encoding="utf-8")
+    (antworten / "m" / "s023.json").write_text(
+        json.dumps({"buchseite": 23, "eintraege": [], "fehler": "", "prompt_hash": ll.prompt_hash("P")}),
+        encoding="utf-8")
 
     def sende_fn(anfrage):
         raise AssertionError("darf nicht senden")
@@ -195,3 +196,23 @@ def test_sende_uebersteht_fehlschlagendes_lesen_der_fehlerantwort(monkeypatch):
     with pytest.raises(ll.HttpFehler) as exc:
         ll.sende({"model": "m"}, "https://h/v1", "k")
     assert exc.value.status == 500
+
+
+def test_lies_seite_fordert_bei_abweichendem_prompt_hash_neu_an(tmp_path):
+    # Eine gecachte Antwort aus einem älteren Prompt-Stand darf nicht stillschweigend
+    # weiterverwendet werden — sonst mischen sich Antworten verschiedener Prompts.
+    antworten = tmp_path / "antworten"
+    (antworten / "m").mkdir(parents=True)
+    ziel = antworten / "m" / "s023.json"
+    ziel.write_text(json.dumps({"buchseite": 23, "eintraege": [{"schl_nr": "00001"}], "fehler": "",
+                                "prompt_hash": "alt"}), encoding="utf-8")
+    aufrufe = []
+
+    def sende_fn(anfrage):
+        aufrufe.append(1)
+        return "[]"
+
+    erg = ll.lies_seite(23, "m", _png(tmp_path), "P", sende_fn, ziel_dir=antworten)
+    assert len(aufrufe) == 1
+    assert erg["prompt_hash"] == ll.prompt_hash("P") and erg["eintraege"] == []
+    assert json.loads(ziel.read_text(encoding="utf-8"))["prompt_hash"] == ll.prompt_hash("P")

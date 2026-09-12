@@ -170,3 +170,18 @@ def test_feldaenderung_und_nachtrag_am_gleichen_ziel():
     assert st == [(1, "Victoriastraße (tlw.)", "1898"),
                   (2, "Zwischenname", "1900"),
                   (3, "Aachener Str. (neu)", "1902-05-16")]
+
+
+def test_datum_mit_hinweis_wird_abgelehnt():
+    # lese_text stuft '32.08.1927' auf das Jahr zurück (Hinweis 'Datum: Tag ungültig');
+    # das Overlay darf so etwas nicht stillschweigend als geprueft übernehmen.
+    s, n = _daten()
+    with pytest.raises(ko.KorrekturFehler, match="nicht sauber lesbar"):
+        ko.wende_an(s, n, [_k("00001", "stadium_2_datum", "1902-05-16", "32.08.1927")])
+
+
+def test_datum_ohne_doppelpunkt_bleibt_zulaessig():
+    s, n = _daten()
+    ko.wende_an(s, n, [_k("00001", "stadium_2_datum", "1902-05-16", "29.08.1927:")])
+    ko.wende_an(*_daten(), [_k("00001", "stadium_2_datum", "1902-05-16", "29.08.1927")])
+    assert (n[1]["gueltig_ab"], n[1]["datum_praezision"]) == ("1927-08-29", "tag")

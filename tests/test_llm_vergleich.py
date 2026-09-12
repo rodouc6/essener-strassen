@@ -307,3 +307,58 @@ def test_daten_fuer_goldstandard_meldet_schl_nr_dublette():
     stichprobe = [{"buchseite": "23"}, {"buchseite": "40"}]
     with pytest.raises(ValueError):
         lv.daten_fuer_goldstandard(antworten, stichprobe)
+
+
+def test_lade_antworten_meldet_abgeschnittene_datei(tmp_path):
+    (tmp_path / "m").mkdir()
+    (tmp_path / "m" / "s023.json").write_text('{"buchseite": 23, "eintrae', encoding="utf-8")
+    with pytest.raises(ValueError, match="nicht lesbar"):
+        lv.lade_antworten(tmp_path, "m")
+
+
+def test_pruefliste_hat_offene_korrekturen(tmp_path):
+    leer = tmp_path / "leer.csv"
+    gefuellt = tmp_path / "voll.csv"
+    kopf = ",".join(lv.FELDER_PRUEFLISTE)
+    leer.write_text(f"{kopf}\n00001,23,lemma,A,B,B,unsicher,beide,,\n", encoding="utf-8")
+    gefuellt.write_text(f"{kopf}\n00001,23,lemma,A,B,B,unsicher,beide,Berichtigt,Beleg\n", encoding="utf-8")
+    assert lv.pruefliste_hat_offene_korrekturen(gefuellt) is True
+    assert lv.pruefliste_hat_offene_korrekturen(leer) is False
+    assert lv.pruefliste_hat_offene_korrekturen(tmp_path / "fehlt.csv") is False
+
+
+def test_pruefe_prompt_hashes():
+    assert lv.pruefe_prompt_hashes({23: {"prompt_hash": "a"}, 24: {"prompt_hash": "a"}}) == {"a"}
+    assert lv.pruefe_prompt_hashes({23: {"prompt_hash": "a"}, 24: {"prompt_hash": "b"}}) == {"a", "b"}
+    assert lv.pruefe_prompt_hashes({23: {"prompt_hash": ""}, 24: {}}) == set()
+
+
+def test_uebernehmen_lehnt_nicht_zuordenbares_stadium_ab():
+    with pytest.raises(ValueError, match="stadium_\\?"):
+        lv.uebernehmen([{"schl_nr": "00001", "feld": "stadium_?", "wert_parser": "",
+                         "korrektur": "1930 | Neuer Name", "beleg": ""}], [], "2026-09-13")
+
+
+def test_normalisiere_meldet_eingeschraenkt_lesbares_datum_behaelt_aber_den_wert():
+    antwort = {"buchseite": 23, "eintraege": [
+        {"schl_nr": "1", "lemma": "X", "stadien": [{"datum": "32.08.1927", "name": "X"}]}]}
+    _, namen, probleme = lv.normalisiere_antwort(antwort)
+    assert (namen[0]["gueltig_ab"], namen[0]["datum_praezision"]) == ("1927", "jahr")
+    assert probleme == [{"schl_nr": "00001", "buchseite": 23, "feld": "stadium_1_datum",
+                         "text": "32.08.1927", "grund": lv.GRUND_DATUM_EINGESCHRAENKT}]
+
+
+def test_pruefliste_zeigt_rohtext_eines_eingeschraenkt_lesbaren_datums():
+    qwen = _modell_antwort(**{"00001": {"stadien": [
+        {"datum": "vor 1898", "name": "Victoriastraße (tlw.)", "urspruenglich": False},
+        {"datum": "32.08.1927", "name": "Aachener Straße", "urspruenglich": False}]}})
+    zeilen, _ = lv.baue_pruefliste(_parser(), {"qwen": {"antworten": {23: qwen}},
+                                                "mistral": {"antworten": {23: _antwort()}}})
+    z = next(x for x in zeilen if x["schl_nr"] == "00001" and x["feld"] == "stadium_2_datum")
+    assert z["wert_qwen"] == "32.08.1927 (eingeschränkt lesbar)"
+
+
+def test_kennzahlen_enthalten_stadium_urspruenglich():
+    _, kz = lv.baue_pruefliste(_parser(), {"qwen": {"antworten": {23: _antwort()}},
+                                            "mistral": {"antworten": {23: _antwort()}}})
+    assert kz["qwen"]["uebereinstimmung"]["automatisch"]["stadium_urspruenglich"] == {"verglichen": 2, "gleich": 2}

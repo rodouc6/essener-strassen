@@ -71,7 +71,7 @@ Namensstand des Adressbuchs Essen 1936 abgeleitet
 ### Stufe 5 — Unabhängige LLM-Lesung und Korrektur-Overlay
 
 Zusätzlich zu den drei Selbstprüfungen lesen zwei Sprachmodelle unabhängig voneinander
-die Seitenbilder der Stichprobe direkt (`strassen/seiten.py` schneidet die Bild-Ausschnitte,
+die Seitenbilder direkt (`strassen/seiten.py` rendert alle Buchseiten als ganzseitige Bilder,
 `strassen/llm_leser.py` fragt die Modelle über einen OpenAI-kompatiblen Endpunkt ab) — **ohne**
 den OCR-Text zu sehen, damit ein gemeinsamer OCR-Fehler nicht unentdeckt bleibt. Weichen
 beide Modell-Lesungen oder eine Modell-Lesung vom Datensatz ab, landet der Fall in
@@ -236,12 +236,12 @@ konkreten Treffer (Lemma, Schlüsselnummer, Grund): `daten/pruefung_validierung.
 > bezifferten Ergebnisse werden erst nach dem vollständigen LLM-Lesungslauf eingetragen.
 > Zahlen: siehe verlinkte Dateien.
 
-Zwei Sprachmodelle lesen die Seitenbilder der Stichprobe unabhängig voneinander und ohne
+Zwei Sprachmodelle lesen die ganzseitigen Seitenbilder unabhängig voneinander und ohne
 Kenntnis des OCR-Texts (s. [Methode, Stufe 5](#stufe-5--unabhängige-llm-lesung-und-korrektur-overlay)).
 Ablauf und Kennzahlen dieses Laufs (Trefferzahlen je Modell, Übereinstimmung mit dem
 Datensatz, Anteil übernommener Korrekturen): [`docs/llm_lesung.md`](docs/llm_lesung.md).
-Die Auswirkung auf die Goldstandard-Fehlerquote (mit vs. ohne LLM-gestützte Prüfung):
-[`docs/goldstandard/ergebnis_llm.md`](docs/goldstandard/ergebnis_llm.md).
+Die eigene Fehlerquote der Modelle, gemessen gegen die menschlich geprüfte
+Goldstandard-Stichprobe: [`docs/goldstandard/ergebnis_llm.md`](docs/goldstandard/ergebnis_llm.md).
 
 ### Goldstandard-Stichprobe (Entwicklungs-Stichprobe, Stand 2026-09-11)
 
