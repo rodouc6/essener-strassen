@@ -279,3 +279,31 @@ def test_uebernehmen_erzeugt_korrekturzeilen_und_ueberspringt_dubletten():
 def test_uebernehmen_lehnt_korrektur_fuer_fehlenden_parser_eintrag_ab():
     with pytest.raises(ValueError):
         lv.uebernehmen([{"schl_nr": "00003", "feld": "eintrag", "wert_parser": "", "korrektur": "Achenbachstraße", "beleg": ""}], [], "2026-09-13")
+
+
+def test_finde_modelle_ueberspringt_unbekannte_ordner(tmp_path, capsys):
+    for name in ("inferenz-qwen3-8-27b", "inferenz-mistral-small-4-119b", "fremd"):
+        (tmp_path / name).mkdir()
+    modelle = lv.finde_modelle(tmp_path)
+    assert modelle == {"qwen": "inferenz-qwen3-8-27b", "mistral": "inferenz-mistral-small-4-119b"}
+    assert "fremd" in capsys.readouterr().out
+
+
+def _antwort_seite(buchseite, schl_nr):
+    return {"buchseite": buchseite, "modell": "m", "zeitstempel": "", "prompt_hash": "", "rohtext": "", "fehler": "",
+            "eintraege": [{"schl_nr": schl_nr, "lemma": "X", "stadtteile": [], "strassenklasse": [],
+                           "namensgruppe": "", "verweis_auf": "", "stadien": [], "unvollstaendig": False}]}
+
+
+def test_daten_fuer_goldstandard_nur_seiten_der_stichprobe():
+    antworten = {23: _antwort(), 40: _antwort_seite(40, "00099")}
+    stichprobe = [{"buchseite": "23"}]
+    strassen, namen = lv.daten_fuer_goldstandard(antworten, stichprobe)
+    assert {s["schl_nr"] for s in strassen} == {"00001", "00002", "00003"}
+
+
+def test_daten_fuer_goldstandard_meldet_schl_nr_dublette():
+    antworten = {23: _antwort(), 40: _antwort_seite(40, "00001")}
+    stichprobe = [{"buchseite": "23"}, {"buchseite": "40"}]
+    with pytest.raises(ValueError):
+        lv.daten_fuer_goldstandard(antworten, stichprobe)

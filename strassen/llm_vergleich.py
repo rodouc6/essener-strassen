@@ -5,14 +5,14 @@ daten/pruefung_llm.csv (eine Zeile je abweichendem Feld, Eingabemaske für Korre
 docs/llm_lesung.md (Kennzahlen), docs/goldstandard/ergebnis_llm.md (Messung).
 
   python3 -m strassen.llm_vergleich pruefliste  [--antworten-dir DIR]
-  python3 -m strassen.llm_vergleich goldstandard --modell NAME
+  python3 -m strassen.llm_vergleich goldstandard [--antworten-dir DIR] [--ausgabe PFAD]
   python3 -m strassen.llm_vergleich uebernehmen [--datum JJJJ-MM-TT]
 """
 import argparse
 import csv
 import json
 import re
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
 
@@ -442,11 +442,45 @@ def _lade_parser(daten_dir=DATEN_DIR):
     return strassen, namen
 
 
-def _modelle(antworten_dir) -> dict:
+def finde_modelle(antworten_dir) -> dict:
+    """Kurzname -> Ordnername für alle Ordner unter antworten_dir mit bekanntem
+    Modell-Kurznamen. Ordner ohne bekannten Kurznamen (Tippfehler, Fremdordner)
+    werden mit einer Warnung übersprungen, statt den ganzen Lauf abzubrechen."""
     modelle = {}
     for ordner in sorted(Path(antworten_dir).glob("*/")):
-        modelle[kurzname(ordner.name)] = {"antworten": lade_antworten(antworten_dir, ordner.name)}
+        try:
+            kurz = kurzname(ordner.name)
+        except ValueError:
+            print(f"Warnung: Ordner {ordner.name} ohne bekannten Modell-Kurznamen übersprungen")
+            continue
+        modelle[kurz] = ordner.name
     return modelle
+
+
+def _modelle(antworten_dir) -> dict:
+    return {kurz: {"antworten": lade_antworten(antworten_dir, name)}
+            for kurz, name in finde_modelle(antworten_dir).items()}
+
+
+def daten_fuer_goldstandard(antworten: dict, stichprobe: list):
+    """Nur die Antworten normalisieren und zusammenführen, deren Buchseite in der
+    Goldstandard-Stichprobe vorkommt (andere Seiten sind für die Messung irrelevant
+    und könnten mit Stichproben-fremden schl_nr kollidieren). Meldet per ValueError,
+    wenn eine schl_nr über diese Seiten hinweg mehrfach vorkommt — sonst würde
+    schl_nr-basiertes Nachschlagen (feldwert) leise gegen die falsche Seite messen
+    (im Datensatz gibt es bekannte schl_nr-Dubletten über verschiedene Buchseiten)."""
+    seiten = {int(z["buchseite"]) for z in stichprobe}
+    strassen, namen = [], []
+    for seite, antwort in antworten.items():
+        if seite not in seiten:
+            continue
+        s, n, _ = normalisiere_antwort(antwort)
+        strassen += s
+        namen += n
+    dubletten = {schl for schl, anzahl in Counter(s["schl_nr"] for s in strassen).items() if anzahl > 1}
+    if dubletten:
+        raise ValueError(f"schl_nr mehrfach in den Goldstandard-Seiten: {sorted(dubletten)}")
+    return strassen, namen
 
 
 def _cli():
@@ -470,9 +504,7 @@ def _cli():
         stichprobe = lade_stichprobe()
         statistiken = {}
         for kurz, m in _modelle(a.antworten_dir).items():
-            s, n = [], []
-            for antwort in m["antworten"].values():
-                si, ni, _ = normalisiere_antwort(antwort); s += si; n += ni
+            s, n = daten_fuer_goldstandard(m["antworten"], stichprobe)
             statistiken[kurz] = messe_goldstandard(stichprobe, als_struktur(s, n))
         Path(a.ausgabe).write_text(formatiere_ergebnis_llm_md(statistiken), encoding="utf-8")
         for kurz, st in statistiken.items():
