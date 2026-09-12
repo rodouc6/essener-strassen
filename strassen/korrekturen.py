@@ -40,7 +40,12 @@ def lade_korrekturen(pfad=KORREKTUREN_PFAD) -> list:
     if not pfad.is_file():
         return []
     with open(pfad, encoding="utf-8", newline="") as f:
-        return list(csv.DictReader(f))
+        reader = csv.DictReader(f)
+        zeilen = list(reader)
+        if reader.fieldnames != FELDER_KORREKTUREN:
+            raise KorrekturFehler(
+                f"korrekturen.csv: erwartete Spalten {FELDER_KORREKTUREN}, gefunden {reader.fieldnames}")
+        return zeilen
 
 
 def _ist(z, art):
@@ -73,6 +78,17 @@ def _pruefe_alt(schl, feld, ist, soll_alt):
 
 def wende_an(strassen: list, namen: list, korrekturen: list) -> dict:
     """Wendet alle Korrekturen an (strassen-Zeilen werden mutiert, namen in place ersetzt).
+
+    Feldänderungen (stadium_N_datum/name/urspruenglich mit gefülltem wert_alt)
+    adressieren die PARSER-Nummerierung — Position N, wie sie VOR Streichen/Einfügen
+    in namen.csv steht. Nachträge (wert_alt leer) adressieren dagegen die gedruckte
+    ZIEL-Position — die Nummer, die das Stadium im Ergebnis NACH Streichen/Einfügen
+    tragen soll.
+
+    Bricht eine Korrektur mit KorrekturFehler ab, können frühere Einträge dieses oder
+    vorheriger Durchläufe bereits mutiert sein (kein Rollback) — Aufrufer werten das
+    Ergebnis nur aus, wenn kein Fehler geworfen wurde.
+
     Rückgabe: {"eintraege": korrigierte Einträge, "korrekturen": angewandte Zeilen}."""
     if not korrekturen:
         return {"eintraege": 0, "korrekturen": 0}
@@ -112,6 +128,8 @@ def wende_an(strassen: list, namen: list, korrekturen: list) -> dict:
             if not m:
                 raise KorrekturFehler(f"{schl}: unbekanntes Feld {feld!r}")
             n, art = int(m.group(1)), m.group(2)
+            if n < 1:
+                raise KorrekturFehler(f"{schl} {feld}: Stadiumsnummer muss ≥ 1 sein")
             if alt == "" and art in ("datum", "name"):
                 nachtrag[n][art] = neu
                 continue
@@ -129,8 +147,14 @@ def wende_an(strassen: list, namen: list, korrekturen: list) -> dict:
         for n, teile in nachtrag.items():
             if set(teile) != {"datum", "name"}:
                 raise KorrekturFehler(f"{schl} stadium_{n}: Nachtragen braucht datum UND name (wert_alt leer)")
+            if not teile["datum"] or not teile["name"]:
+                raise KorrekturFehler(f"{schl} stadium_{n}: Nachtragen braucht Datum und Name mit Wert")
         st = [z for i, z in enumerate(st, 1) if i not in streichen]
         for n in sorted(nachtrag):
+            if n > len(st) + 1:
+                raise KorrekturFehler(
+                    f"{schl} stadium_{n}: Nachtragen nur bis Position {len(st) + 1} möglich "
+                    f"({len(st)} Stadien vorhanden, davon ggf. bereits nachgetragen)")
             z = {"schl_nr": schl, "stadium": n, "gueltig_ab": "", "datum_praezision": "unbekannt",
                  "name": "", "ist_urspruenglich": "falsch"}
             _setze(z, "datum", nachtrag[n]["datum"], schl, f"stadium_{n}_datum")
