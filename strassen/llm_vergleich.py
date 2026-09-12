@@ -93,3 +93,187 @@ def lade_antworten(antworten_dir, modell: str) -> dict:
         a = json.loads(pfad.read_text(encoding="utf-8"))
         antworten[int(pfad.stem.lstrip("s"))] = a
     return antworten
+
+
+FELDER_PRUEFLISTE = ["schl_nr", "buchseite", "feld", "wert_parser", "wert_qwen", "wert_mistral",
+                     "status_parser", "einig", "korrektur", "beleg"]
+_EINIG_RANG = {"beide": 0, "eines": 1, "unlesbar": 2}
+_STADIUMFELD = re.compile(r"^stadium_(\d+)(?:_(datum|name))?$")
+
+
+def _stadium_text(z) -> str:
+    return f"{formatiere_datum(z['datum_praezision'], z['gueltig_ab'])} {z['name']}".strip()
+
+
+def _stadium_text_roh(z) -> str:
+    """Wie differenz._stadium_text: unformatiertes gueltig_ab (ohne datum_praezision).
+    Zum Abgleich von stadium_gewonnen/stadium_verloren, deren e['alt']/e['neu'] genau
+    so gebildet werden — formatiere_datum() liefert dort ein anderes Klartext-Ergebnis
+    (z. B. Präfix 'vor'/'nach' oder '(urspr., kein Datum)'), das nie träfe."""
+    return f"{z['gueltig_ab']} {z['name']}".strip()
+
+
+def feldwert(strassen: dict, namen: dict, schl_nr: str, feld: str):
+    """Wert eines Prüffelds in der Form der Goldstandard-Stichprobe; None wenn fehlend."""
+    s = strassen.get(schl_nr)
+    if s is None:
+        return None
+    if feld == "eintrag":
+        return s["lemma"]
+    m = _STADIUMFELD.match(feld)
+    if not m:
+        return s.get(feld)
+    n, art = int(m.group(1)), m.group(2)
+    stadien = namen.get(schl_nr, [])
+    if n > len(stadien):
+        return None
+    z = stadien[n - 1]
+    if art == "datum":
+        return formatiere_datum(z["datum_praezision"], z["gueltig_ab"])
+    if art == "name":
+        return z["name"]
+    return _stadium_text(z)
+
+
+def _abweichungen(parser_s, parser_n, modell_s, modell_n) -> dict:
+    """(schl_nr, feld) -> True für jedes Feld, in dem das Modell vom Parser abweicht.
+    Nutzt differenz.vergleiche (Parser = alt, Modell = neu)."""
+    d = vergleiche((parser_s, parser_n), (modell_s, modell_n))
+    abw = {}
+    for e in d["eintrag_neu"] + d["eintrag_entfallen"]:
+        abw[(e["schl_nr"], "eintrag")] = True
+    for e in d["kopffeld_veraendert"]:
+        if e["feld"] != "buchseite":
+            abw[(e["schl_nr"], e["feld"])] = True
+    for e in d["datum_veraendert"]:
+        abw[(e["schl_nr"], f"stadium_{e['stadium']}_datum")] = True
+    for e in d["name_veraendert"]:
+        abw[(e["schl_nr"], f"stadium_{e['stadium']}_name")] = True
+    for e in d["stadium_verloren"]:
+        n = _stadium_index(parser_n.get(e["schl_nr"], []), e["alt"])
+        abw[(e["schl_nr"], f"stadium_{n}")] = True
+    for e in d["stadium_gewonnen"]:
+        n = _stadium_index(modell_n.get(e["schl_nr"], []), e["neu"])
+        abw[(e["schl_nr"], f"stadium_{n}")] = True
+    return abw
+
+
+def _stadium_index(stadien, text) -> int:
+    for z in stadien:
+        if _stadium_text_roh(z) == text:
+            return int(z["stadium"])
+    return len(stadien)
+
+
+def _felder_des_eintrags(strassen, namen, schl_nr, nur_kopf=False) -> list:
+    felder = list(KOPFFELDER)
+    if not nur_kopf:
+        for z in namen.get(schl_nr, []):
+            felder += [f"stadium_{z['stadium']}_datum", f"stadium_{z['stadium']}_name"]
+    return felder
+
+
+def baue_pruefliste(parser, modelle: dict):
+    """parser = (strassen, namen) des Parsers; modelle = Kurzname -> {"antworten": {buchseite: antwort}}.
+    Liefert (zeilen, kennzahlen). Verglichen werden nur Buchseiten, die das jeweilige Modell
+    gelesen hat; unlesbare Seiten zählen als nicht gelesen."""
+    p_s, p_n = als_struktur(*parser)
+    seite_je_schl = {schl: int(z["buchseite"]) for schl, z in p_s.items()}
+    daten, kennzahlen, gelesen = {}, {}, {}
+    abweichungen = {}
+
+    for kurz, m in modelle.items():
+        strassen, namen, probleme = [], [], []
+        gelesen[kurz] = set()
+        unlesbar = 0
+        for buchseite, antwort in m["antworten"].items():
+            if antwort.get("fehler") == "unlesbar" or antwort.get("eintraege") is None:
+                unlesbar += 1
+                continue
+            gelesen[kurz].add(int(buchseite))
+            s, n, pr = normalisiere_antwort(antwort)
+            strassen += s; namen += n; probleme += pr
+        m_s, m_n = als_struktur(strassen, namen)
+        daten[kurz] = (m_s, m_n)
+        # Parser-Ausschnitt: nur gelesene Seiten; Modellketten unvollständiger Einträge ausblenden
+        p_s_teil = {schl: z for schl, z in p_s.items() if seite_je_schl[schl] in gelesen[kurz]}
+        p_n_teil = {schl: p_n.get(schl, []) for schl in p_s_teil}
+        unvollst = {schl for schl, z in m_s.items() if ist_unvollstaendig(z)}
+        m_n_vgl = {schl: ([] if schl in unvollst else st) for schl, st in m_n.items()}
+        p_n_vgl = {schl: ([] if schl in unvollst else st) for schl, st in p_n_teil.items()}
+        abweichungen[kurz] = _abweichungen(p_s_teil, p_n_vgl, m_s, m_n_vgl)
+
+        ueber = defaultdict(lambda: defaultdict(lambda: {"verglichen": 0, "gleich": 0}))
+        for schl, z in p_s_teil.items():
+            if schl not in m_s:
+                continue
+            for feld in _felder_des_eintrags(p_s_teil, p_n_teil, schl, nur_kopf=schl in unvollst):
+                typ = re.sub(r"^stadium_\d+_", "stadium_", feld)
+                e = ueber[z["status"]][typ]
+                e["verglichen"] += 1
+                e["gleich"] += (schl, feld) not in abweichungen[kurz]
+        kennzahlen[kurz] = {
+            "seiten_gelesen": len(gelesen[kurz]), "seiten_unlesbar": unlesbar,
+            "eintraege_modell": len(m_s),
+            "eintraege_fehlend": sum(1 for schl in p_s_teil if schl not in m_s),
+            "eintraege_nur_modell": sum(1 for schl in m_s if schl not in p_s),
+            "datum_nicht_normalisierbar": len(probleme),
+            "uebereinstimmung": {st: dict(f) for st, f in ueber.items()},
+        }
+
+    zeilen = []
+    alle = set().union(*abweichungen.values()) if abweichungen else set()
+    for schl, feld in alle:
+        buchseite = seite_je_schl.get(schl) or next(
+            (int(daten[k][0][schl]["buchseite"]) for k in daten if schl in daten[k][0]), "")
+        zeile = {"schl_nr": schl, "buchseite": buchseite, "feld": feld,
+                 "wert_parser": feldwert(p_s, p_n, schl, feld) or "",
+                 "status_parser": p_s[schl]["status"] if schl in p_s else "",
+                 "korrektur": "", "beleg": ""}
+        werte, lesbar = {}, True
+        for kurz in KURZNAMEN:
+            if kurz not in daten or int(buchseite or 0) not in gelesen.get(kurz, set()):
+                werte[kurz] = ""
+                lesbar = False
+                continue
+            werte[kurz] = feldwert(*daten[kurz], schl, feld) or ""
+            zeile[f"wert_{kurz}"] = werte[kurz]
+        for kurz in KURZNAMEN:
+            zeile.setdefault(f"wert_{kurz}", "")
+        if not lesbar:
+            zeile["einig"] = "unlesbar"
+        elif len(set(werte.values())) == 1 and werte[KURZNAMEN[0]] != zeile["wert_parser"]:
+            zeile["einig"] = "beide"
+        else:
+            zeile["einig"] = "eines"
+        zeilen.append(zeile)
+    zeilen.sort(key=lambda z: (_EINIG_RANG[z["einig"]], z["schl_nr"], z["feld"]))
+    return zeilen, kennzahlen
+
+
+def schreibe_pruefliste(zeilen, pfad=PRUEFLISTE_PFAD):
+    Path(pfad).parent.mkdir(parents=True, exist_ok=True)
+    with open(pfad, "w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=FELDER_PRUEFLISTE, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(zeilen)
+
+
+def formatiere_kennzahlen_md(kennzahlen: dict) -> str:
+    z = ["# Unabhängige LLM-Lesung — Kennzahlen\n",
+         "Zwei bildfähige Modelle haben die Buchseiten unabhängig vom Parser gelesen (nur das",
+         "Seitenbild, kein OCR-Text). Die Modelle **verändern den Status nicht** (Option A der",
+         "Spec 2026-09-12); Abweichungen stehen in `daten/pruefung_llm.csv` zur manuellen Prüfung.\n"]
+    for kurz, k in kennzahlen.items():
+        z += [f"## Modell `{kurz}`\n",
+              f"- Seiten gelesen: {k['seiten_gelesen']}, unlesbar: {k['seiten_unlesbar']}",
+              f"- Einträge beim Modell: {k['eintraege_modell']}, beim Parser fehlend im Modell: "
+              f"{k['eintraege_fehlend']}, nur beim Modell: {k['eintraege_nur_modell']}",
+              f"- Daten nicht normalisierbar: {k['datum_nicht_normalisierbar']}\n",
+              "| Status (Parser) | Feldtyp | verglichen | gleich | Übereinstimmung |", "|---|---|--:|--:|--:|"]
+        for status, felder in sorted(k["uebereinstimmung"].items()):
+            for typ, e in sorted(felder.items()):
+                quote = e["gleich"] / e["verglichen"] * 100 if e["verglichen"] else 0.0
+                z.append(f"| {status} | {typ} | {e['verglichen']} | {e['gleich']} | {quote:.1f} % |")
+        z.append("")
+    return "\n".join(z) + "\n"
