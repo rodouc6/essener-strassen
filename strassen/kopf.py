@@ -14,8 +14,8 @@ import re
 from typing import NamedTuple
 
 from strassen.datum import (
-    DATUMSSTEMPEL, DATUMSSTEMPEL_ANONYM, DATUMSSTEMPEL_MUSTER, SATZENDE, lese_datum,
-    unscharf_eindeutig,
+    DATUMSSTEMPEL, DATUMSSTEMPEL_ANONYM, DATUMSSTEMPEL_MUSTER, SATZENDE, ist_schwach,
+    position_erlaubt, unscharf_eindeutig,
 )
 
 # Der Ziffernblock der Schlüsselnummer wird gelegentlich vom OCR mit einem
@@ -137,20 +137,6 @@ HINWEIS_KLASSE_OHNE_MARKER = "Straßenklasse ohne Marker"
 HINWEIS_KLASSE_KORRIGIERT = "Straßenklasse OCR-korrigiert"
 
 
-def _position_erlaubt(schwanz: str, start: int) -> bool:
-    davor = schwanz[:start].rstrip()
-    return davor == "" or davor.endswith(",") or davor.endswith(";")
-
-
-def _schwach(t: re.Match) -> bool:
-    """Derselbe 'schwach'-Begriff wie in namen.parse_namenskette: ein Stempel ohne
-    regulären Doppelpunkt ODER ein bloßes Jahr ohne ausdrücklichen Qualifier
-    ('vor/nach/um/etwa/gegen') — der schwächste Stempel, der leicht aus Rauschen
-    entsteht (Dudweilerstraße 00685: 'A 0, EEE 1935:' statt '14. November 1935:')."""
-    d = lese_datum(t)
-    return d.trenner != ":" or (d.praezision == "jahr" and not t.group("qualifier"))
-
-
 def _stadienkette(schwanz: str):
     """Das Ende der zusammenhängenden Namenskette direkt nach dem Kopfbereich, als
     Index in schwanz — oder None, wenn schwanz nicht mit einem Stempel beginnt (dann
@@ -159,8 +145,9 @@ def _stadienkette(schwanz: str):
     Die Kette ist der Lauf ALLER rohen Datumsstempel (datum.DATUMSSTEMPEL, unabhängig
     davon, ob namen.py sie später als Namen akzeptiert), solange jeder Stempel höchstens
     _MAX_NAMENSLAENGE Zeichen nach dem Ende des vorigen Stempels beginnt (b) UND, falls
-    er 'schwach' ist (_schwach — derselbe Begriff wie in namen.parse_namenskette), am
-    Kettenanfang oder direkt nach Komma/Semikolon steht (a, _position_erlaubt). Ein
+    er 'schwach' ist (datum.ist_schwach — dieselbe Regel wie in
+    namen.parse_namenskette), am Kettenanfang oder direkt nach Komma/Semikolon steht
+    (a, datum.position_erlaubt). Ein
     STARKER Stempel (reguläres Datum mit Doppelpunkt oder ausdrücklichem Qualifier)
     setzt die Kette dagegen unabhängig vom vorausgehenden Text fort — der Druck trennt
     zwei Stadien im Regelfall zwar durch Komma, ebenso oft aber durch einen normalen
@@ -182,7 +169,7 @@ def _stadienkette(schwanz: str):
     Laufmitglieds; sonst das Ende von schwanz."""
     lauf = []
     for t in DATUMSSTEMPEL.finditer(schwanz):
-        if _schwach(t) and not _position_erlaubt(schwanz, t.start()):
+        if ist_schwach(t) and not position_erlaubt(schwanz, t.start()):
             break
         if lauf and t.start() - lauf[-1].end() > _MAX_NAMENSLAENGE:
             break

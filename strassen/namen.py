@@ -21,7 +21,8 @@ der Name großgeschrieben beginnt. Ein Datum, dem ein Wort vorausgeht ('Am 25. J
 import re
 from typing import NamedTuple
 
-from strassen.datum import DATUMSSTEMPEL_MUSTER, SATZENDE, MONATE, lese_datum
+from strassen.datum import (DATUMSSTEMPEL_MUSTER, SATZENDE, MONATE, ist_schwach,
+                            lese_datum, position_erlaubt)
 
 __all__ = ["MONATE", "Stadium", "parse_namenskette", "unverarbeiteter_rest"]
 
@@ -42,14 +43,6 @@ class Stadium(NamedTuple):
     hinweis: str = ""
 
 
-def _position_erlaubt(rest: str, start: int) -> bool:
-    """Für Stempel ohne regulären Doppelpunkt: Kettenanfang oder direkt nach Komma
-    oder Semikolon (Semikolon trennt im Material parallele Namensgeschichten, z. B.
-    Frau-Bertha-Krupp-Straße 00896, S. 118; Fix Task 12, Runde 2)."""
-    davor = rest[:start].rstrip()
-    return davor == "" or davor.endswith(",") or davor.endswith(";")
-
-
 def _akzeptierte_treffer(rest: str) -> list:
     """Ein interner Durchlauf über 'urspr.' und die akzeptierten Stadien, jeweils mit
     Textspanne (start, end) — Basis für parse_namenskette UND unverarbeiteter_rest,
@@ -64,18 +57,12 @@ def _akzeptierte_treffer(rest: str) -> list:
     for m in _STADIUM.finditer(rest):
         name = m.group("name").strip()
         d = lese_datum(m)
-        # Ein bloßes Jahr ist der schwächste Stempel: geschrieben als 'jjjj:'
-        # (m.group('jahr_bloss')) oder als Volldatum, dessen Tag/Monat ungültig war
-        # und das lese_datum deshalb auf das Jahr zurückgestuft hat (nicht aber ein
-        # ausdrückliches 'vor/nach/um/etwa/gegen jjjj:' — das ist bewusst so
-        # geschrieben, kein Degradat). Hinter Rauschen liest sich sonst ein
-        # verstümmeltes Volldatum (Tag/Monat verloren) unbemerkt als stilles Jahr
-        # (Dudweilerstraße 00685, S. 104: 'A 0, EEE 1935:' statt '14. November
-        # 1935:'). Ein bloßes Jahr unterliegt deshalb IMMER der Positionsregel,
-        # auch mit regulärem Doppelpunkt-Trenner.
-        schwach = d.praezision == "jahr" and not m.group("qualifier")
-        if d.trenner != ":" or schwach:
-            if not _position_erlaubt(rest, m.start()) or not name[:1].isupper():
+        # Ein schwacher Stempel (datum.ist_schwach: ohne Doppelpunkt oder bloßes
+        # Jahr ohne Qualifier) unterliegt der Positionsregel — dieselbe Regel, mit
+        # der kopf._stadienkette die Kette abgrenzt — und muss zusätzlich einen
+        # großgeschriebenen Namen tragen.
+        if ist_schwach(m):
+            if not position_erlaubt(rest, m.start()) or not name[:1].isupper():
                 continue
         roh.append((m.start(), m.end(), d.gueltig_ab, d.praezision, name, False, d.hinweis))
 

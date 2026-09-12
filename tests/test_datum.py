@@ -1,15 +1,20 @@
 import re
 
-from strassen.datum import SATZENDE, DATUMSSTEMPEL, lese_datum, MONATE
+from strassen.datum import (SATZENDE, DATUMSSTEMPEL, lese_datum, MONATE,
+                            ist_schwach, position_erlaubt)
 
 
 _SATZ = re.compile(SATZENDE)
 
 
-def _stempel(text):
+def _treffer(text):
     m = DATUMSSTEMPEL.search(text)
     assert m, text
-    return lese_datum(m)
+    return m
+
+
+def _stempel(text):
+    return lese_datum(_treffer(text))
 
 
 # --- Satzende (Regel 4) ---
@@ -160,3 +165,19 @@ def test_datumsstempel_anonym_hat_keine_benannten_gruppen():
     from strassen.datum import DATUMSSTEMPEL_ANONYM
     assert "(?P<" not in DATUMSSTEMPEL_ANONYM
     re.compile(DATUMSSTEMPEL_ANONYM + DATUMSSTEMPEL_ANONYM)
+
+
+# --- gemeinsame Regeln für kopf und namen (Abschlussreview) ---
+
+def test_ist_schwach_unterscheidet_starke_und_schwache_stempel():
+    assert ist_schwach(_treffer("1902: Barkhofstraße")) is True        # bloßes Jahr
+    assert ist_schwach(_treffer("13. Juni 1973 Eskenshof")) is True    # ohne Doppelpunkt
+    assert ist_schwach(_treffer("vor 1826: II. Weberstraße")) is False  # Qualifier
+    assert ist_schwach(_treffer("18. September 1926: St. Annental")) is False
+
+
+def test_position_erlaubt_nur_am_kettenanfang_oder_nach_trenner():
+    assert position_erlaubt("1902: X", 0) is True
+    assert position_erlaubt("A. Straße, 1902: X", len("A. Straße, ")) is True
+    assert position_erlaubt("A. Straße; 1902: X", len("A. Straße; ")) is True
+    assert position_erlaubt("Am 25. Juli 1516 wurde", len("Am ")) is False

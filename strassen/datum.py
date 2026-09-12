@@ -97,6 +97,40 @@ def lese_datum(m: re.Match) -> Datum:
     return Datum(m.group("jahr_bloss"), "jahr", "; ".join(hinweise), trenner)
 
 
+def ist_schwach(m: re.Match) -> bool:
+    """Ist der Stempel 'schwach', also leicht aus OCR-Rauschen entstanden?
+
+    Schwach ist ein Stempel ohne regulären Doppelpunkt (Regel 15) ODER ein bloßes
+    Jahr ohne ausdrücklichen Qualifier ('vor/nach/um/etwa/gegen') — geschrieben als
+    'jjjj:' oder als Volldatum, dessen Tag/Monat ungültig war und das lese_datum
+    deshalb auf das Jahr zurückgestuft hat. Hinter Rauschen liest sich sonst ein
+    verstümmeltes Volldatum unbemerkt als stilles Jahr (Dudweilerstraße 00685,
+    S. 104: 'A 0, EEE 1935:' statt '14. November 1935:'). Ein ausdrückliches
+    'vor 1885:' ist dagegen bewusst so geschrieben, kein Degradat.
+
+    Gemeinsame Regel für kopf._stadienkette (Kettenabgrenzung) und
+    namen.parse_namenskette (Annahme eines Stadiums); beide müssen denselben
+    Begriff verwenden, sonst weicht die Kettengrenze von den gelesenen Stadien ab.
+    """
+    d = lese_datum(m)
+    return d.trenner != ":" or (d.praezision == "jahr" and not m.group("qualifier"))
+
+
+def position_erlaubt(text: str, start: int) -> bool:
+    """Darf ein SCHWACHER Stempel an dieser Position eine Kette fortsetzen?
+
+    Nur am Kettenanfang oder direkt nach Komma bzw. Semikolon: der Druck trennt die
+    Stadien einer Kette so (Semikolon trennt parallele Namensgeschichten, z. B.
+    Frau-Bertha-Krupp-Straße 00896, S. 118). Ohne diese Regel zählt jedes verirrte
+    Jahr tief in der Erläuterung — Zitat, Quellenangabe, Prosa wie 'Am 25. Juli 1516
+    wurde' — als Stadium bzw. als Kettenfortsetzung. Für STARKE Stempel gilt sie
+    nicht: die stehen im Material regelmäßig auch nach einem normalen Satzpunkt
+    (Natorpstraße 02287, S. 291).
+    """
+    davor = text[:start].rstrip()
+    return davor == "" or davor.endswith(",") or davor.endswith(";")
+
+
 def _tagesdatum(m: re.Match, hinweise: list, trenner: str) -> Datum:
     jahr = m.group("jahr_tag")
     if m.group("tag_trenner") == ",":
