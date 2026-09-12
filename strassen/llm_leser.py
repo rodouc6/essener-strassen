@@ -116,3 +116,92 @@ def extrahiere_json(text: str) -> list:
     if not isinstance(daten, list) or not all(isinstance(e, dict) for e in daten):
         raise JsonFehler("erwartet: Liste von Objekten")
     return daten
+
+
+def sende(anfrage: dict, base_url: str, api_key: str, timeout: int = 300) -> str:
+    """POST an <base_url>/chat/completions; gibt den Antworttext des Modells zurück."""
+    req = urllib.request.Request(
+        f"{base_url}/chat/completions", data=json.dumps(anfrage).encode("utf-8"),
+        headers={"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"},
+        method="POST")
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as antwort:
+            daten = json.loads(antwort.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        raise HttpFehler(e.code, e.read().decode("utf-8", errors="replace")) from e
+    return daten["choices"][0]["message"]["content"]
+
+
+def antwort_pfad(ziel_dir, modell: str, buchseite) -> Path:
+    return Path(ziel_dir) / modell / f"s{int(buchseite):03d}.json"
+
+
+def _sende_mit_wiederholung(anfrage: dict, sende_fn, schlafen) -> str:
+    for versuch in range(MAX_HTTP_VERSUCHE):
+        try:
+            return sende_fn(anfrage)
+        except HttpFehler as e:
+            if e.status != 429 and e.status < 500:
+                raise
+            if versuch < MAX_HTTP_VERSUCHE - 1:
+                schlafen(2 ** versuch)
+    raise LaufAbbruch(f"{MAX_HTTP_VERSUCHE} Versuche gescheitert (429/5xx) — Lauf abgebrochen, "
+                      f"fehlende Seiten werden beim nächsten Lauf nachgeholt")
+
+
+def lies_seite(buchseite, modell: str, png_pfad, prompt: str, sende_fn,
+               ziel_dir=ANTWORTEN_DIR, neu: bool = False, schlafen=time.sleep) -> dict:
+    """Eine Buchseite lesen lassen. Vorhandene Antwort wird wiederverwendet (außer neu=True).
+    Unlesbares JSON: bis MAX_JSON_VERSUCHE identische Anfragen, dann fehler='unlesbar'."""
+    ziel = antwort_pfad(ziel_dir, modell, buchseite)
+    if ziel.exists() and not neu:
+        return json.loads(ziel.read_text(encoding="utf-8"))
+
+    anfrage = baue_anfrage(modell, prompt, Path(png_pfad).read_bytes())
+    rohtext, eintraege = "", None
+    for _ in range(MAX_JSON_VERSUCHE):
+        rohtext = _sende_mit_wiederholung(anfrage, sende_fn, schlafen)
+        try:
+            eintraege = extrahiere_json(rohtext)
+            break
+        except JsonFehler:
+            continue
+
+    ergebnis = {"buchseite": int(buchseite), "modell": modell,
+                "zeitstempel": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                "prompt_hash": prompt_hash(prompt), "rohtext": rohtext,
+                "eintraege": eintraege, "fehler": "" if eintraege is not None else "unlesbar"}
+    ziel.parent.mkdir(parents=True, exist_ok=True)
+    ziel.write_text(json.dumps(ergebnis, ensure_ascii=False, indent=1), encoding="utf-8")
+    return ergebnis
+
+
+def _cli():
+    from strassen.seiten import SEITEN_DIR, parse_seitenbereich, seiten_dateiname
+    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument("--modell", required=True)
+    p.add_argument("--seiten", help="Buchseiten, z. B. 23-30 (Standard: alle mit Seitenbild)")
+    p.add_argument("--neu", action="store_true", help="vorhandene Antworten neu anfordern")
+    p.add_argument("--seiten-dir", default=str(SEITEN_DIR))
+    p.add_argument("--antworten-dir", default=str(ANTWORTEN_DIR))
+    a = p.parse_args()
+    lade_env()
+    base_url, api_key = konfiguration()
+    sende_fn = partial(sende, base_url=base_url, api_key=api_key)
+    prompt = lade_prompt()
+    seiten = parse_seitenbereich(a.seiten)
+    gelesen = unlesbar = 0
+    for b in seiten:
+        png = Path(a.seiten_dir) / seiten_dateiname(b)
+        if not png.exists():
+            continue
+        erg = lies_seite(b, a.modell, png, prompt, sende_fn, a.antworten_dir, a.neu)
+        gelesen += 1
+        unlesbar += erg["fehler"] == "unlesbar"
+        print(f"s{b:03d}: {len(erg['eintraege'] or [])} Einträge{' (unlesbar)' if erg['fehler'] else ''}",
+              flush=True)
+    print(f"{gelesen} Seiten, davon {unlesbar} unlesbar — Modell {a.modell}")
+
+
+if __name__ == "__main__":
+    _cli()
