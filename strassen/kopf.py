@@ -144,7 +144,8 @@ def _stadienkette(schwanz: str):
 
     Die Kette ist der Lauf ALLER rohen Datumsstempel (datum.DATUMSSTEMPEL, unabhängig
     davon, ob namen.py sie später als Namen akzeptiert), solange jeder Stempel höchstens
-    _MAX_NAMENSLAENGE Zeichen nach dem Ende des vorigen Stempels beginnt (b) UND, falls
+    _MAX_NAMENSLAENGE Zeichen nach dem Ende des vorigen Stempels — beim ersten Stempel:
+    nach dem Beginn des Schwanzes — beginnt (b) UND, falls
     er 'schwach' ist (datum.ist_schwach — dieselbe Regel wie in
     namen.parse_namenskette), am Kettenanfang oder direkt nach Komma/Semikolon steht
     (a, datum.position_erlaubt). Ein
@@ -171,7 +172,13 @@ def _stadienkette(schwanz: str):
     for t in DATUMSSTEMPEL.finditer(schwanz):
         if ist_schwach(t) and not position_erlaubt(schwanz, t.start()):
             break
-        if lauf and t.start() - lauf[-1].end() > _MAX_NAMENSLAENGE:
+        # Abstandsregel, auch für den ERSTEN Stempel — dort gemessen ab Beginn des
+        # Schwanzes (Abschlussreview): ein starker Stempel öffnete die Kette bisher
+        # unabhängig davon, wie tief in der Erläuterung er stand. Vor einem
+        # legitimen Kettenanfang liegt höchstens eine kurze Klausel ('urspr.: Alter
+        # Name, gemeinsame Bezeichnung am', im Material bis ~81 Zeichen).
+        vorher = lauf[-1].end() if lauf else 0
+        if t.start() - vorher > _MAX_NAMENSLAENGE:
             break
         lauf.append(t)
     if not lauf:

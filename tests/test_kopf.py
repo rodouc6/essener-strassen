@@ -1,4 +1,4 @@
-from strassen.kopf import parse_kopf
+from strassen.kopf import parse_kopf, _stadienkette
 
 
 def test_vollstaendiger_kopf():
@@ -424,3 +424,29 @@ def test_starker_stempel_ausserhalb_der_namenslaenge_bleibt_prosa():
              "01. Januar 1900: X. " + fuelltext + " 01. Januar 1950: Y.")
     k = parse_kopf(rumpf)
     assert k.rest.endswith("X.")
+
+
+def test_erster_stempel_weit_im_schwanz_oeffnet_keine_kette():
+    """Abschlussreview: die Abstandsregel _MAX_NAMENSLAENGE gilt auch für den ERSTEN
+    Stempel, gemessen ab Beginn des Schwanzes — sonst öffnet ein beliebig tief in der
+    Erläuterung zitiertes Datum die Kette."""
+    prosa = ("Der Name geht auf einen alten Hof zurueck der hier einst stand und lange "
+             "bestand und niemand mehr kennt")
+    assert len(prosa) > 100      # mehr als _MAX_NAMENSLAENGE vor dem Stempel
+    assert _stadienkette(prosa + ". 01. Januar 1950: Y.") is None
+    rumpf = ("00002, Stadtteil X, Str.-Kl.: Gemeindestraße, Str.-Gr.: Flurname. "
+             + prosa + ". 01. Januar 1950: Y.")
+    k = parse_kopf(rumpf)
+    # ohne Kette greift der Fallback (erstes Satzende); das zitierte Datum bleibt draußen
+    assert "1950" not in k.rest
+
+
+def test_erster_stempel_nach_urspr_klausel_oeffnet_die_kette():
+    """Gegenprobe: eine legitime 'urspr.:'-Klausel vor dem ersten Stempel (im Material
+    bis ~81 Zeichen) bleibt innerhalb der Abstandsregel."""
+    vorlauf = "urspr.: Alter Name, gemeinsame Bezeichnung am"      # ~45 Zeichen
+    assert _stadienkette(vorlauf + " 01. Januar 1950: Neustraße.") is not None
+    rumpf = ("00003, Stadtteil X, Str.-Kl.: Gemeindestraße, Str.-Gr.: Flurname, "
+             + vorlauf + " 01. Januar 1950: Neustraße.")
+    k = parse_kopf(rumpf)
+    assert k.rest.endswith("01. Januar 1950: Neustraße.")
