@@ -123,6 +123,11 @@ _CODE_FENCE = re.compile(r"```(?:json)?\s*(.*?)```", re.DOTALL)
 def extrahiere_json(text: str) -> list:
     """JSON-Liste von Objekten aus einer Modellantwort: Code-Fence bevorzugt, sonst
     vom ersten '[' bis zum letzten ']'."""
+    if not isinstance(text, str):
+        # Der Inferenzserver liefert bei abgeschnittenen Antworten 'content': null
+        # (beobachtet in der Kalibrierung, Task 11). Das ist eine leere Antwort und
+        # gehört in die JSON-Wiederholung, nicht in einen TypeError.
+        raise JsonFehler(f"kein Text in der Antwort (Typ {type(text).__name__})")
     m = _CODE_FENCE.search(text)
     kern = m.group(1) if m else text
     anfang, ende = kern.find("["), kern.rfind("]")
@@ -158,9 +163,13 @@ def sende(anfrage: dict, base_url: str, api_key: str, timeout: int = 300) -> str
         raise HttpFehler(503, str(e)) from e
     try:
         daten = json.loads(rohtext)
-        return daten["choices"][0]["message"]["content"]
+        inhalt = daten["choices"][0]["message"]["content"]
     except (KeyError, IndexError, TypeError, ValueError) as e:
         raise HttpFehler(502, f"Antwort ohne choices: {rohtext[:200]}") from e
+    # 'content': null heißt: Antwort strukturell in Ordnung, aber ohne Text (z. B.
+    # finish_reason 'length'). Als leerer Text weitergeben, damit lies_seite es
+    # wiederholt und die Seite notfalls als 'unlesbar' verbucht.
+    return inhalt if isinstance(inhalt, str) else ""
 
 
 def antwort_pfad(ziel_dir, modell: str, buchseite) -> Path:

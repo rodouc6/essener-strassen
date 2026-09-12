@@ -87,6 +87,16 @@ def test_extrahiere_json_verlangt_liste_von_objekten(text):
         ll.extrahiere_json(text)
 
 
+@pytest.mark.parametrize("wert", [None, 123, ["[]"]])
+def test_extrahiere_json_meldet_nicht_text_als_json_fehler(wert):
+    # Beobachtet in der Kalibrierung (Task 11, Seite 300/qwen): der Inferenzserver
+    # lieferte 'content': null. Das ist eine leere, keine kaputte Antwort — sie muss
+    # als JsonFehler in die Wiederholung laufen und am Ende 'unlesbar' ergeben,
+    # statt den ganzen Lauf mit einem TypeError abzubrechen.
+    with pytest.raises(ll.JsonFehler):
+        ll.extrahiere_json(wert)
+
+
 def test_prompt_datei_existiert_und_hash_stabil():
     prompt = ll.lade_prompt()
     assert "Schl.-Nr." in prompt and "JSON" in prompt
@@ -197,6 +207,26 @@ def test_sende_baut_openai_kompatible_anfrage(monkeypatch):
     assert erfasst["url"] == "https://h/v1/chat/completions"
     assert erfasst["auth"] == "Bearer k"
     assert erfasst["body"] == {"model": "m"}
+
+
+def test_sende_gibt_leeren_text_bei_content_null(monkeypatch):
+    # Beobachtete Antwortform des Inferenzservers (Kalibrierung Task 11, Seite 300):
+    # {"choices": [{"message": {"content": null}, "finish_reason": "length"}]}
+    class Antwort:
+        def __enter__(self): return self
+        def __exit__(self, *a): return False
+        def read(self):
+            return json.dumps({"choices": [{"message": {"content": None},
+                                            "finish_reason": "length"}]}).encode()
+
+    monkeypatch.setattr(ll.urllib.request, "urlopen", lambda req, timeout: Antwort())
+    assert ll.sende({"model": "m"}, "https://h/v1", "k") == ""
+
+
+def test_lies_seite_markiert_leere_antwort_als_unlesbar(tmp_path):
+    png = tmp_path / "s300.png"; png.write_bytes(b"x")
+    erg = ll.lies_seite(300, "m", png, "Lies.", lambda anfrage: "", tmp_path)
+    assert erg["fehler"] == "unlesbar" and erg["eintraege"] is None
 
 
 def test_sende_meldet_antwort_ohne_choices_als_http_502(monkeypatch):

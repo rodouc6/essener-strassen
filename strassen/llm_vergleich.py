@@ -44,10 +44,23 @@ def kurzname(modell: str) -> str:
     raise ValueError(f"kein Kurzname für Modell {modell!r} (erwartet: {', '.join(KURZNAMEN)})")
 
 
+# Weichtrennstrich (U+00AD): Drucksatz der Silbentrennung am Zeilenende, den die Modelle
+# gelegentlich mit ausgeben ('Kriegs\xaderinnerung', Kalibrierung Task 11). Kein gelesenes
+# Zeichen — es zu entfernen ist Normalisierung, keine Korrektur des Gelesenen.
+_WEICHTRENNSTRICH = "\u00ad"
+
+
 def _text(wert) -> str:
     if isinstance(wert, list):
-        return "; ".join(str(w).strip() for w in wert if str(w).strip())
-    return str(wert or "").strip()
+        return "; ".join(t for w in wert if (t := _text(w)))
+    return str(wert or "").replace(_WEICHTRENNSTRICH, "").strip()
+
+
+# Ein Datumsfeld, das nur den Marker 'urspr.'/'ursprünglich' enthält (mit oder ohne
+# Doppelpunkt): das Modell hat den Marker ins falsche Feld geschrieben, sagt damit aber
+# genau das, was auch ein leeres Datum sagt — kein Datum. Kein unlesbares Datum, also
+# keine Prüfzeile. Bleibt daneben Text stehen, greift die Regel nicht (precision-first).
+_NUR_URSPR = re.compile(r"^(?:urspr\.?|ursprünglich)\s*:?$", re.IGNORECASE)
 
 
 def _schl_nr(wert) -> str:
@@ -85,6 +98,8 @@ def normalisiere_antwort(antwort: dict):
                                  "text": str(s)[:200], "grund": GRUND_STADIEN})
                 continue
             text = _text(s.get("datum"))
+            if _NUR_URSPR.match(text):
+                text = ""
             d = lese_text(text)
             if d is None:
                 probleme.append({"schl_nr": schl, "buchseite": buchseite, "feld": f"stadium_{i}_datum",

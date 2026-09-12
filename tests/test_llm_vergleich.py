@@ -362,3 +362,48 @@ def test_kennzahlen_enthalten_stadium_urspruenglich():
     _, kz = lv.baue_pruefliste(_parser(), {"qwen": {"antworten": {23: _antwort()}},
                                             "mistral": {"antworten": {23: _antwort()}}})
     assert kz["qwen"]["uebereinstimmung"]["automatisch"]["stadium_urspruenglich"] == {"verglichen": 2, "gleich": 2}
+
+
+def test_normalisiere_entfernt_weichtrennstriche_aus_werten():
+    # Beobachtete Antwortform (Kalibrierung Task 11, Seite 100/mistral): das Modell gibt
+    # ein am Zeilenende getrenntes Wort mit einem Weichtrennstrich U+00AD zurück
+    # ('Kriegs\xaderinnerung'). Das ist Drucksatz, kein gelesenes Zeichen — es darf den
+    # Wert nicht von dem des Parsers unterscheiden.
+    antwort = {"buchseite": 100, "eintraege": [{
+        "schl_nr": "00678", "lemma": "Düppel\xadstraße", "stadtteile": ["Hutt\xadrop"],
+        "strassenklasse": ["Gemeinde\xadstraße"], "namensgruppe": "Stadt und Ort, Kriegs\xaderinnerung",
+        "verweis_auf": "", "unvollstaendig": False,
+        "stadien": [{"datum": "21. April 1911", "name": "Düppel\xadstraße", "urspruenglich": False}]}]}
+    strassen, namen, probleme = lv.normalisiere_antwort(antwort)
+    assert strassen[0]["namensgruppe"] == "Stadt und Ort, Kriegserinnerung"
+    assert strassen[0]["lemma"] == "Düppelstraße"
+    assert strassen[0]["stadtteile"] == "Huttrop" and strassen[0]["strassenklasse"] == "Gemeindestraße"
+    assert namen[0]["name"] == "Düppelstraße" and probleme == []
+
+
+@pytest.mark.parametrize("datum", ["urspr.", "urspr.:", "ursprünglich", " urspr. "])
+def test_normalisiere_liest_urspr_marker_im_datumsfeld_als_kein_datum(datum):
+    # Beobachtete Antwortform (Kalibrierung Task 11, Seiten 300/260/220, mistral): das
+    # Modell schreibt den Marker 'urspr.' ins Datumsfeld statt allein in 'urspruenglich'.
+    # Der Marker sagt genau, dass es kein Datum gibt — das ist eine Formfrage, kein
+    # unlesbares Datum, und darf keine Prüfzeile 'Datum nicht normalisierbar' erzeugen.
+    antwort = {"buchseite": 300, "eintraege": [{
+        "schl_nr": "02851", "lemma": "Schwelmhöfe", "stadtteile": ["Kray"],
+        "strassenklasse": ["Gemeindestraße"], "namensgruppe": "Familienname",
+        "verweis_auf": "", "unvollstaendig": False,
+        "stadien": [{"datum": datum, "name": "Hofstraße", "urspruenglich": True}]}]}
+    _, namen, probleme = lv.normalisiere_antwort(antwort)
+    assert probleme == []
+    assert namen[0]["gueltig_ab"] == "" and namen[0]["datum_praezision"] == "unbekannt"
+    assert namen[0]["ist_urspruenglich"] == "wahr"
+
+
+def test_normalisiere_meldet_urspr_mit_unlesbarem_zusatz_weiterhin():
+    # Nur der nackte Marker gilt als 'kein Datum'; bleibt daneben Text stehen, ist das
+    # ein echtes Formproblem und muss sichtbar bleiben (precision-first).
+    antwort = {"buchseite": 300, "eintraege": [{
+        "schl_nr": "02851", "lemma": "Schwelmhöfe", "stadtteile": [], "strassenklasse": [],
+        "namensgruppe": "", "verweis_auf": "", "unvollstaendig": False,
+        "stadien": [{"datum": "urspr.: Hofstraße", "name": "Hofstraße", "urspruenglich": True}]}]}
+    _, _, probleme = lv.normalisiere_antwort(antwort)
+    assert [p["grund"] for p in probleme] == [lv.GRUND_DATUM]
