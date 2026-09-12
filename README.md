@@ -116,7 +116,9 @@ Für die **Neuerstellung der LLM-Prüfliste** (`strassen/llm_vergleich.py pruefl
 `strassen/llm_leser.py`) braucht es zusätzlich optional Zugang zu einem
 OpenAI-kompatiblen Inferenzendpunkt, konfiguriert über die Umgebungsvariablen
 `LLM_BASE_URL` und `LLM_API_KEY` (lokal per `.env`, per `.gitignore` von der
-Veröffentlichung ausgeschlossen). Ohne diesen Zugang bleibt die bereits geprüfte
+Veröffentlichung ausgeschlossen); da der Endpunkt je Modell einen eigenen Schlüssel
+verlangt, sticht ein modellspezifischer `LLM_API_KEY_QWEN`/`LLM_API_KEY_MISTRAL` den
+allgemeinen `LLM_API_KEY`, falls beide gesetzt sind. Ohne diesen Zugang bleibt die bereits geprüfte
 Prüfliste (`daten/pruefung_llm.csv`) unverändert nutzbar; das Korrektur-Overlay
 (`daten/korrekturen.csv`, `strassen/erschliessen.py`) braucht ihn nicht.
 

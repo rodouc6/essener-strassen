@@ -25,6 +25,43 @@ def test_konfiguration_ohne_werte_bricht_ab(monkeypatch):
         ll.konfiguration()
 
 
+@pytest.mark.parametrize("roh, erwartet", [
+    ("https://h/api/v1/chat/completions", "https://h/api/v1"),
+    ("https://h/api/v1/", "https://h/api/v1"),
+    ("https://h/api/v1", "https://h/api/v1"),
+    ("https://h/api/v1/chat/completions/", "https://h/api/v1"),
+])
+def test_konfiguration_kappt_chat_completions_und_slash(monkeypatch, roh, erwartet):
+    monkeypatch.setenv("LLM_BASE_URL", roh)
+    monkeypatch.setenv("LLM_API_KEY", "geheim")
+    base_url, _ = ll.konfiguration()
+    assert base_url == erwartet
+
+
+def test_konfiguration_modellspezifischer_schluessel_hat_vorrang(monkeypatch):
+    monkeypatch.setenv("LLM_BASE_URL", "https://h/v1")
+    monkeypatch.setenv("LLM_API_KEY", "allgemein")
+    monkeypatch.setenv("LLM_API_KEY_QWEN", "qwen-schluessel")
+    _, key = ll.konfiguration("inferenz-qwen3-8-27b")
+    assert key == "qwen-schluessel"
+
+
+def test_konfiguration_faellt_auf_allgemeinen_schluessel_zurueck(monkeypatch):
+    monkeypatch.setenv("LLM_BASE_URL", "https://h/v1")
+    monkeypatch.setenv("LLM_API_KEY", "allgemein")
+    monkeypatch.delenv("LLM_API_KEY_MISTRAL", raising=False)
+    _, key = ll.konfiguration("inferenz-mistral-24b")
+    assert key == "allgemein"
+
+
+def test_konfiguration_ohne_schluessel_bricht_ab_mit_beiden_namen(monkeypatch):
+    monkeypatch.setenv("LLM_BASE_URL", "https://h/v1")
+    monkeypatch.delenv("LLM_API_KEY", raising=False)
+    monkeypatch.delenv("LLM_API_KEY_QWEN", raising=False)
+    with pytest.raises(ll.KonfigurationsFehler, match="LLM_API_KEY_QWEN.*LLM_API_KEY|LLM_API_KEY.*LLM_API_KEY_QWEN"):
+        ll.konfiguration("inferenz-qwen3-8-27b")
+
+
 def test_baue_anfrage_traegt_bild_als_base64_und_temperatur_null():
     anfrage = ll.baue_anfrage("inferenz-qwen3-8-27b", "Lies.", b"\x89PNG", max_tokens=123)
     assert anfrage["model"] == "inferenz-qwen3-8-27b"

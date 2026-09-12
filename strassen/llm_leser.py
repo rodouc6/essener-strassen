@@ -8,9 +8,10 @@ liegen gitignored unter llm/antworten/<modell>/sNNN.json; ein Wiederholungslauf
 
   python3 -m strassen.llm_leser --modell inferenz-qwen3-8-27b [--seiten 23-30] [--neu]
 
-Konfiguration über Umgebungsvariablen LLM_BASE_URL (OpenAI-kompatibler Endpunkt, ohne
-'/chat/completions') und LLM_API_KEY; eine .env in der Repo-Wurzel wird gelesen,
-gesetzte Umgebungsvariablen haben Vorrang.
+Konfiguration über Umgebungsvariablen LLM_BASE_URL (OpenAI-kompatibler Endpunkt, mit
+oder ohne '/chat/completions') sowie je Modell LLM_API_KEY_QWEN bzw. LLM_API_KEY_MISTRAL,
+mit LLM_API_KEY als Rückfall, falls kein modellspezifischer Schlüssel gesetzt ist; eine
+.env in der Repo-Wurzel wird gelesen, gesetzte Umgebungsvariablen haben Vorrang.
 """
 import argparse
 import base64
@@ -71,11 +72,27 @@ def lade_env(pfad=ENV_PFAD) -> dict:
     return werte
 
 
-def konfiguration() -> tuple:
-    base_url = os.environ.get("LLM_BASE_URL", "").rstrip("/")
-    api_key = os.environ.get("LLM_API_KEY", "")
+_CHAT_COMPLETIONS = re.compile(r"/chat/completions/?$")
+
+
+def konfiguration(modell: str = "") -> tuple:
+    """Liest base_url/api_key aus der Umgebung. base_url wird um ein trailing '/' und
+    ein optionales trailing '/chat/completions' gekappt, weil sende() das selbst anhängt.
+    Der API-Key ist normalerweise modellspezifisch (der Inferenzserver nutzt eine
+    base_url für alle Modelle, aber je Modell einen eigenen Key): LLM_API_KEY_<KURZ>
+    (z. B. LLM_API_KEY_QWEN) hat Vorrang vor dem allgemeinen LLM_API_KEY."""
+    base_url = _CHAT_COMPLETIONS.sub("", os.environ.get("LLM_BASE_URL", "").rstrip("/"))
+    modell_var = ""
+    if modell:
+        try:
+            from strassen.llm_vergleich import kurzname
+            modell_var = f"LLM_API_KEY_{kurzname(modell).upper()}"
+        except ValueError:
+            modell_var = ""
+    api_key = (os.environ.get(modell_var, "") if modell_var else "") or os.environ.get("LLM_API_KEY", "")
     if not base_url or not api_key:
-        raise KonfigurationsFehler("LLM_BASE_URL und LLM_API_KEY müssen gesetzt sein (.env oder Umgebung)")
+        namen = f"{modell_var} bzw. LLM_API_KEY" if modell_var else "LLM_API_KEY"
+        raise KonfigurationsFehler(f"LLM_BASE_URL und {namen} müssen gesetzt sein (.env oder Umgebung)")
     return base_url, api_key
 
 
@@ -207,7 +224,7 @@ def _cli():
     a = p.parse_args()
     lade_env()
     try:
-        base_url, api_key = konfiguration()
+        base_url, api_key = konfiguration(a.modell)
     except KonfigurationsFehler as e:
         print(f"Fehler: {e}", file=sys.stderr)
         sys.exit(1)
