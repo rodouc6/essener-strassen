@@ -62,6 +62,7 @@ from strassen.aufbereitung import aufbereiten
 from strassen.segmentierung import segmentiere
 from strassen.kopf import parse_kopf
 from strassen.namen import parse_namenskette, unverarbeiteter_rest
+from strassen.datum import SATZENDE
 from strassen.ausgabe import schreibe_strassen, schreibe_namen, schreibe_pruefung
 
 _VERWEIS = re.compile(r"Siehe\s+([A-ZÄÖÜ][^.,;]{2,60})")
@@ -99,6 +100,8 @@ _ERLAUBTE_SONDERZEICHEN = set(" .-()'’/&„\"")
 # das die reine Zeichen-Erlaubnisliste allein nicht abdeckt (Ziffern selbst
 # sind grundsätzlich erlaubt, z. B. '(tlw. 2. Hälfte)').
 _ZIFFERNFOLGE_LANG = re.compile(r"\d{5,}")
+# Freistehendes Ziffern-Token (s. _name_auffaellig, Fix-Runde 4).
+_ZIFFER_TOKEN = re.compile(r"(?<![\w.])\d{1,2}(?![\w.])")
 
 _NAME_MIN_ZEICHEN = 3
 _NAME_MAX_ZEICHEN = 60
@@ -131,12 +134,44 @@ def _lemma_form_auffaellig(lemma: str) -> bool:
     return not _hat_nur_namenszeichen(lemma)
 
 
+def _satzende_im_namen(name: str) -> bool:
+    """Echtes Satzende MITTEN im Namen (Fix-Runde 4).
+
+    Ein Straßenname endet nie mit einem Satz und beginnt dann einen neuen. Steht
+    ein Satzende nach datum.SATZENDE (also ein Punkt, der weder Abkürzungs- noch
+    Ordnungspunkt ist) irgendwo VOR dem Namensende, hat der Parser Folgetext
+    verschluckt — z. B. 02335 Obere Aue, wo nach 'Obere Aue.' Spaltenrauschen der
+    Nachbarseite in den Namen läuft. Ein Punkt am Namensende selbst ist harmlos
+    (er schließt den Namen ab) und zählt deshalb nicht; 'St. Annental',
+    'II. Weberstraße' und '(Verl.)' treffen SATZENDE ohnehin nicht.
+    """
+    rumpf = name.rstrip()
+    for treffer in re.finditer(SATZENDE, rumpf):
+        rest = rumpf[treffer.end():].lstrip()
+        # Nur ein folgendes GROSSbuchstaben-Wort zählt: SATZENDE feuert sonst
+        # auch hinter einer kleingeschriebenen Abkürzung vor einer Ordnungszahl
+        # ('(tlw. 2. Hälfte)'), die legitim zum Namen gehört. Freistehende
+        # Ziffern deckt bereits _ZIFFER_TOKEN ab.
+        if rest and rest[0].isupper():
+            return True
+    return False
+
+
 def _name_auffaellig(name: str) -> bool:
     if not (_NAME_MIN_ZEICHEN <= len(name) <= _NAME_MAX_ZEICHEN):
         return True
     if not _hat_nur_namenszeichen(name):
         return True
-    return bool(_ZIFFERNFOLGE_LANG.search(name))
+    if _ZIFFERNFOLGE_LANG.search(name):
+        return True
+    # Alleinstehendes Ziffern-Token (Fix-Runde 4): ein Straßenname enthält nie
+    # eine nackte ein- oder zweistellige Zahl. Ordnungszahlen behalten ihren
+    # Punkt ('1. Schockenhecke', '(tlw. 2. Hälfte)') und werden vom Lookahead
+    # ausgenommen; eine freistehende Ziffer stammt aus Seiten-/Spaltenrauschen
+    # des Scans (02335 Obere Aue: '... ze 5 Oberer Schloßhang ...').
+    if _ZIFFER_TOKEN.search(name):
+        return True
+    return _satzende_im_namen(name)
 
 
 def _feld_zu_lang(text: str) -> bool:

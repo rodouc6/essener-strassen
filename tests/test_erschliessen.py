@@ -179,6 +179,19 @@ def test_name_auffaellig_direkt():
     assert _name_auffaellig("Nummer 12345 Straße") is True  # Ziffernfolge >4
     assert _name_auffaellig("Kirchstraße") is False
     assert _name_auffaellig("Altenessener Straße (Verl.)") is False
+    # Fix-Runde 4: einzelnes Ziffern-Token (Spaltenrauschen aus dem Scan)
+    assert _name_auffaellig("Obere Aue. ze 5 Oberer Schloßhang- Schloss Borbeck ll") is True
+    assert _name_auffaellig("Am Berge 7 Hof") is True
+    # echte Namen mit Ziffer behalten ihren Punkt und bleiben unauffällig
+    assert _name_auffaellig("Brandstraße (tlw. 2. Hälfte)") is False
+    assert _name_auffaellig("1. Schockenhecke") is False
+    # Fix-Runde 4: echtes Satzende MITTEN im Namen
+    assert _name_auffaellig("Obere Aue. Oberer Schloßhang") is True
+    assert _name_auffaellig("St. Annental") is False
+    assert _name_auffaellig("II. Weberstraße") is False
+    assert _name_auffaellig("Ill. Ziegelstraße") is False
+    assert _name_auffaellig("Graßmannstraße (Verl.)") is False
+    assert _name_auffaellig("Altendorfer Straße") is False
 
 
 def test_namensstadium_rauschen_markiert_ganzen_eintrag(tmp_path):
