@@ -8,8 +8,9 @@ Goldstandard-Messung (Task 12/13) bleibt dadurch eine Messung an ungesehenem Mat
   zusammen 84 Parser-Einträge.
 - Modelle: `inferenz-qwen3-8-27b` (im Folgenden *qwen*) und
   `inferenz-mistral-small-4-119b` (*mistral*), je Seite nur das Seitenbild, `temperature 0`.
-- Endstand des Prompts: **`638b38acd4b2`** (`prompt_hash`; alle 16 ausgewerteten Antworten
-  stammen aus diesem Stand).
+- Endstand des Prompts zur Kalibrierung: `638b38acd4b2` (`prompt_hash`; alle 16
+  ausgewerteten Antworten stammen aus diesem Stand). Aktueller, bindender Hash nach dem
+  Beispiel-Austausch vom 2026-09-12: siehe Nachtrag am Ende dieser Datei.
 - Vergleichsbasis: `daten/strassen.csv` / `daten/namen.csv`, ausgewertet mit
   `python3 -m strassen.llm_vergleich pruefliste`. Die Kalibrierungs-Prüfliste ist
   bewusst **nicht** versioniert; sie entsteht in Task 12 neu.
@@ -100,7 +101,7 @@ auf Seite 100 erneut der Nummernversatz auf, der in Runde 2 dort ausgeblieben wa
 Seite ist für mistral instabil (11 statt 12 Einträge) — die Schwankung ist Modellstreuung,
 keine Folge der Prompt-Änderung: qwen liest dieselbe Seite in jeder Runde vollständig.
 
-## Endstand (Prompt `638b38acd4b2`)
+## Endstand (Prompt `638b38acd4b2`, kalibriert; siehe Nachtrag 2026-09-12 für den aktuellen Hash)
 
 105 Prüfzeilen über die acht Seiten: **25 `beide`**, **79 `eines`**, **1 `unlesbar`**.
 
@@ -178,3 +179,17 @@ Kandidaten für `daten/korrekturen.csv` (hier nur notiert, nicht übernommen):
 Konsequenz für die Auswertung: die Prüfliste sortiert `einig=beide` nach oben. Diese
 Zeilen sind fast durchweg Parser-Defekte und lohnen die manuelle Prüfung zuerst; bei
 `einig=eines` ist in aller Regel qwen der verlässlichere der beiden Leser.
+
+## Nachtrag 2026-09-12 — Beispielobjekt ausgetauscht
+
+Das Beispielobjekt am Ende von `strassen/llm_prompt.md` war der reale Eintrag
+„Aachener Straße" (`schl_nr` 00001) — Teil der von Hand geprüften Goldstandard-Stichprobe.
+Damit die anstehende Goldstandard-Messung für diesen Eintrag nicht kontaminiert wird,
+wurde das Beispiel durch ein fiktives Objekt ersetzt (`Musterweg`, `schl_nr` 09999,
+existiert nicht im Buch). Sonst wurde nichts am Prompt geändert — die Regeln sind der
+oben kalibrierte Stand.
+
+Neuer `prompt_hash`: **`530d5c9e77b5`**. Die Kalibrierungsantworten oben (Runden 1–3,
+Endstand) wurden mit dem vorherigen Hash `638b38acd4b2` erzeugt und bleiben gültig, da
+sich nur das Beispiel, nicht die Regeln, geändert hat. Für alle künftigen Läufe
+(inklusive der Goldstandard-Messung) ist `530d5c9e77b5` der bindende Hash.

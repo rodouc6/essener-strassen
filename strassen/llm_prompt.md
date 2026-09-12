@@ -57,9 +57,9 @@ Regeln:
    dort abgelesen — die Nummern sind NICHT durchgehend fortlaufend (auf einer Seite stehen
    z. B. 00046, 00252, 00054 nebeneinander); nie aus der Reihenfolge weiterzählen.
 
-Beispiel eines Objekts:
-{"schl_nr": "00001", "lemma": "Aachener Straße", "stadtteile": ["Frohnhausen"],
- "strassenklasse": ["Gemeindestraße"], "namensgruppe": "Stadt und Ort", "verweis_auf": "",
- "stadien": [{"datum": "vor 1898", "name": "Victoriastraße (tlw.)", "urspruenglich": false},
-             {"datum": "16.05.1902", "name": "Aachener Straße", "urspruenglich": false}],
+Beispiel eines Objekts (fiktives Beispiel, nicht aus dem Buch):
+{"schl_nr": "09999", "lemma": "Musterweg", "stadtteile": ["Beispielviertel"],
+ "strassenklasse": ["Gemeindestraße"], "namensgruppe": "Flurname", "verweis_auf": "",
+ "stadien": [{"datum": "vor 1900", "name": "Alter Musterweg", "urspruenglich": false},
+             {"datum": "3. März 1925", "name": "Musterweg", "urspruenglich": false}],
  "unvollstaendig": false}
