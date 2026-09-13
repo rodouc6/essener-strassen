@@ -64,7 +64,7 @@ from pathlib import Path
 
 from strassen.aufbereitung import aufbereiten
 from strassen.segmentierung import segmentiere
-from strassen.kopf import parse_kopf
+from strassen.kopf import parse_kopf, bereinige_rand
 from strassen.namen import parse_namenskette, unverarbeiteter_rest
 from strassen.datum import SATZENDE
 from strassen.ausgabe import schreibe_strassen, schreibe_namen, schreibe_pruefung
@@ -225,6 +225,12 @@ def main(ocr_dir="ocr/seiten", ausgabe_dir="daten", korrekturen_pfad=""):
         stadien = parse_namenskette(k.rest)
         stadtteile_str = "; ".join(k.stadtteile)
         klasse_str = "; ".join(k.strassenklassen)
+        # R5: führendes Scanrauschen vor dem Lemma ('} Am Richtenberg') entfernen —
+        # das bereinigte lemma geht in die Straßenzeile UND in die nachfolgenden
+        # Lemma-Prüfungen (sonst flaggt _lemma_form_auffaellig das noch verrauschte
+        # e.lemma_roh unnötig zusätzlich als "Form auffällig"); die pruefung.csv-
+        # Zeilen behalten zur Nachvollziehbarkeit weiterhin e.lemma_roh.
+        lemma, hinweis_rand = bereinige_rand(e.lemma_roh)
 
         # Jeder zutreffende Grund wird einzeln in pruefung.csv sichtbar — ein
         # Eintrag kann mehrere Gründe gleichzeitig haben (z. B. auffälliges
@@ -233,9 +239,11 @@ def main(ocr_dir="ocr/seiten", ausgabe_dir="daten", korrekturen_pfad=""):
         for hinweis in e.hinweise:
             if hinweis not in gruende:
                 gruende.append(hinweis)
-        if _lemma_auffaellig(e.lemma_roh):
+        if hinweis_rand:
+            gruende.append(hinweis_rand)
+        if _lemma_auffaellig(lemma):
             gruende.append("Lemma auffällig (Länge)")
-        if _lemma_form_auffaellig(e.lemma_roh):
+        if _lemma_form_auffaellig(lemma):
             gruende.append("Lemma auffällig (Form)")
         if not stadien and not mv_kopf:
             gruende.append("kein Namensstadium erkannt")
@@ -276,7 +284,7 @@ def main(ocr_dir="ocr/seiten", ausgabe_dir="daten", korrekturen_pfad=""):
                              "grund": grund, "rohtext": rohtext})
 
         strassen.append({
-            "schl_nr": k.schl_nr, "lemma": e.lemma_roh,
+            "schl_nr": k.schl_nr, "lemma": lemma,
             "stadtteile": stadtteile_str,
             "strassenklasse": klasse_str,
             "namensgruppe": k.namensgruppe,

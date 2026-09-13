@@ -136,6 +136,29 @@ _KLASSENWORT = re.compile(r"\b(" + "|".join(STRASSENKLASSEN) + r")\b")
 HINWEIS_KLASSE_OHNE_MARKER = "Straßenklasse ohne Marker"
 HINWEIS_KLASSE_KORRIGIERT = "Straßenklasse OCR-korrigiert"
 
+# R5 (Spec 2026-09-13): führendes Scanrauschen vor einem Kopfwert — Anführungs-/
+# Klammerzeichen ('” An der Braut', ') Am Richtenberg') oder eine Kleinbuchstaben-
+# folge bis 3 Zeichen plus Leerzeichen ('nn Hattenheimer Straße', 'ia Auf dem
+# Sutan'), gefolgt von einem Großbuchstaben. 'Am Handelshof' u. ä. bleiben
+# unverändert, weil der Wert schon mit einem Großbuchstaben beginnt.
+_RAND = re.compile(r"^(?:[„”\"')\]\}|]+\s*|[a-zäöü]{1,3}\s+)(?=[A-ZÄÖÜ])")
+HINWEIS_RANDZEICHEN = "Randzeichen entfernt"
+
+# Feldrest nach dem letzten echten Wert: ein OCR-Leerlauf-Fragment
+# ('; _', '; _ _') am Ende der Stadtteil-/Klassen-Rohstrings, das ohne diese
+# Bereinigung als eigenes (leeres bzw. unterstrich-)Element in die Liste
+# gelangen würde. Kein Hinweis, da reines Trennrauschen ohne Wertcharakter.
+_FELDREST = re.compile(r"\s*;\s*[_\s]*$")
+
+
+def bereinige_rand(wert: str):
+    """Entfernt führendes Scanrauschen (R5) aus einem Kopfwert.
+
+    Gibt (bereinigter Wert, Hinweis) zurück; der Hinweis ist leer, wenn nichts
+    entfernt wurde (precision-first: nur kennzeichnen, wenn wirklich verändert)."""
+    neu = _RAND.sub("", wert, count=1)
+    return (neu, HINWEIS_RANDZEICHEN) if neu != wert else (wert, "")
+
 
 def _stadienkette(schwanz: str):
     """Das Ende der zusammenhängenden Namenskette direkt nach dem Kopfbereich, als
@@ -213,12 +236,12 @@ def parse_kopf(rumpf: str):
     stadtteile = []
     ms = _STADTTEIL.search(rumpf)
     if ms:
-        stadtteile = _teile(ms.group(1))
+        stadtteile = _teile(_FELDREST.sub("", ms.group(1)))
 
     klassen = []
     mk = _KLASSE.search(rumpf)
     if mk:
-        klassen = _teile(mk.group(1))
+        klassen = _teile(_FELDREST.sub("", mk.group(1)))
 
     gruppe = ""
     mg = _GRUPPE.search(rumpf)
@@ -248,6 +271,17 @@ def parse_kopf(rumpf: str):
             if gefunden:
                 klassen = gefunden
                 hinweise.append(HINWEIS_KLASSE_OHNE_MARKER)
+
+    # R5: führendes Scanrauschen in einem Klassen-Element entfernen (vor der
+    # Vokabular-Korrektur — ein verrauschtes Element würde sonst auch dort
+    # nicht erkannt).
+    bereinigt = []
+    for klasse in klassen:
+        klasse, hz = bereinige_rand(klasse)
+        bereinigt.append(klasse)
+        if hz and hz not in hinweise:
+            hinweise.append(hz)
+    klassen = bereinigt
 
     # Regel 20: ein OCR-Fehler im Klassenwert ('Gemeindstraße') wird auf das
     # Vokabular korrigiert, mit Hinweis; zwei Fehler bleiben wie gelesen.

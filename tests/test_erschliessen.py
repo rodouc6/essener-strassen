@@ -561,3 +561,20 @@ def test_anker_hinweis_wird_pruefgrund_und_unsicher(tmp_path):
     assert len(strassen) == 1
     assert strassen[0]["status"] == "unsicher"
     assert "Anker OCR-korrigiert" in [z["grund"] for z in pruefung]
+
+
+# --- Task 4 (Runde 2): Kopffeld-Ränder (R5) ---
+
+
+def test_lemma_randzeichen_wird_bereinigt_und_gekennzeichnet(tmp_path):
+    """OCR-Scanrauschen vor dem Lemma (') Am Richtenberg') wird entfernt, das
+    bereinigte Lemma landet in strassen.csv, und der Eintrag wird als
+    'unsicher' mit Grund 'Randzeichen entfernt' markiert."""
+    strassen, pruefung = _lauf5(tmp_path,
+        ") Am Richtenberg: Schl.-Nr.: 00238, Stadtteil Kray, Str.-Kl.: Gemeindestraße, "
+        "Str.-Gr.: Lagebezeichnung, 1900: Am Richtenberg.\n")
+    assert strassen[0]["lemma"] == "Am Richtenberg"
+    assert strassen[0]["status"] == "unsicher"
+    treffer = [z for z in pruefung if z["grund"] == "Randzeichen entfernt"]
+    assert len(treffer) == 1
+    assert treffer[0]["lemma_roh"] == ") Am Richtenberg"

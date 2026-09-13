@@ -1,4 +1,6 @@
-from strassen.kopf import parse_kopf, _stadienkette
+import pytest
+
+from strassen.kopf import parse_kopf, _stadienkette, bereinige_rand, HINWEIS_RANDZEICHEN
 
 
 def test_vollstaendiger_kopf():
@@ -451,3 +453,22 @@ def test_erster_stempel_nach_urspr_klausel_oeffnet_die_kette():
              + vorlauf + " 01. Januar 1950: Neustraße.")
     k = parse_kopf(rumpf)
     assert k.rest.endswith("01. Januar 1950: Neustraße.")
+
+
+@pytest.mark.parametrize("roh,soll", [
+    (") Am Richtenberg", "Am Richtenberg"), ("” An der Braut", "An der Braut"),
+    ("„ Gemeindestraße", "Gemeindestraße"), ("nn Hattenheimer Straße", "Hattenheimer Straße"),
+    ("ia Auf dem Sutan", "Auf dem Sutan"),
+])
+def test_bereinige_rand_entfernt_rauschen_mit_hinweis(roh, soll):
+    assert bereinige_rand(roh) == (soll, HINWEIS_RANDZEICHEN)
+
+
+@pytest.mark.parametrize("wert", ["Am Handelshof", "Aachener Straße", "I. Buschlandweg", "Auf'm Uhlenbroich"])
+def test_bereinige_rand_laesst_saubere_werte(wert):
+    assert bereinige_rand(wert) == (wert, "")
+
+
+def test_feldrest_semikolon_unterstrich_entfernt():
+    k = parse_kopf("01008, Stadtteil Holsterhausen; _, Str.-Kl.: Gemeindestraße; _, Str.-Gr.: Flurname, 1900: Test.")
+    assert k.stadtteile == ["Holsterhausen"] and k.strassenklassen == ["Gemeindestraße"]
