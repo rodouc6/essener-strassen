@@ -122,6 +122,8 @@ allgemeinen `LLM_API_KEY`, falls beide gesetzt sind. Ohne diesen Zugang bleibt d
 Prüfliste (`daten/pruefung_llm.csv`) unverändert nutzbar; das Korrektur-Overlay
 (`daten/korrekturen.csv`, `strassen/erschliessen.py`) braucht ihn nicht.
 
+Die Chronik der Entscheidungen steht in [`docs/vorgehen.md`](docs/vorgehen.md).
+
 ## Data Dictionary
 
 Zwei verknüpfte Tabellen statt einer flachen Konkordanz, weil ein Straßeneintrag

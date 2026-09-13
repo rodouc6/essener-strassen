@@ -63,3 +63,10 @@ def test_status_beschreibung_nennt_alle_drei_werte():
 def test_korrekturen_csv_hat_kopfzeile():
     kopf = Path("daten/korrekturen.csv").read_text(encoding="utf-8").splitlines()[0]
     assert kopf == "schl_nr,feld,wert_alt,wert_neu,beleg,quelle,datum"
+
+
+def test_vorgehensseite_nennt_alle_schritte():
+    text = Path("docs/vorgehen.md").read_text(encoding="utf-8")
+    for stichwort in ["2026-08-20", "Goldstandard", "Entwicklungs-Stichprobe", "Parser-Reparatur",
+                      "LLM-Lesung", "Option A", "Korrektur-Overlay", "Parser-Runde 2"]:
+        assert stichwort in text

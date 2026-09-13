@@ -147,6 +147,27 @@ Parser-Ausgabe an. **Abbruch bei abweichendem `wert_alt`:** Stimmt der eingetrag
 Stelle muss neu gegen den Scan geprüft und `wert_alt` aktualisiert werden, bevor der
 Lauf erneut gestartet wird.
 
+### Sichtung der LLM-Prüfliste
+
+Für die Zeilen mit `einig=beide` (beide Modelle lesen übereinstimmend anders als der
+Datensatz) erzeugt
+
+```bash
+python3 -m strassen.pruefbilder [--einig beide] [--quelle DIR] [--ziel DIR]
+```
+
+je Eintrag genau einen Scan-Ausschnitt nach `llm/pruefbilder/` (gitignored, da die
+Seitenbilder urheberrechtlich geschützt sind) sowie eine Übersichtstabelle
+`llm/pruefbilder/index.md`. `--einig` ist mehrfach angebbar (Standard: nur `beide`),
+`--quelle` und `--ziel` weichen nur bei abweichender Verzeichnisstruktur vom
+Vorgabewert ab. Der Lauf ist idempotent — bereits gerenderte Bilder werden nicht neu
+erzeugt.
+
+Ablauf: `llm/pruefbilder/index.md` öffnen, zeilenweise das verlinkte Bild ansehen und
+mit dem Drucktext vergleichen, dann wie unten beschrieben in `daten/pruefung_llm.csv`
+die Spalten `korrektur` und `beleg` ausfüllen und mit `uebernehmen` in den Datensatz
+übertragen.
+
 ### Für die LLM-Prüfliste
 
 Funde aus der unabhängigen LLM-Lesung stehen in `daten/pruefung_llm.csv`
