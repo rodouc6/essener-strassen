@@ -144,7 +144,7 @@ maschinenlesbare Schema liegt zusätzlich in [`datapackage.json`](datapackage.js
 | `buchseite` | Beleg: Seite in Dickhoff 2015 | ganzzahlig, 23–362 (Einträge nur im Lexikonteil; das Buch umfasst die Scan-Seiten 2–388, Titelei/Einleitung/Register enthalten keine Einträge) |
 | `status` | Prüfstatus des Eintrags | `automatisch` (Parser ohne Prüfgrund) \| `unsicher` (Parser mit Prüfgrund, Wert übernommen und gekennzeichnet) \| `geprueft` (Eintrag vollständig gegen den Scan geprüft, Korrekturen über `daten/korrekturen.csv` angewandt — höchste Stufe) |
 
-### `daten/namen.csv` (5.480 Zeilen)
+### `daten/namen.csv` (5.495 Zeilen)
 
 | Feld | Beschreibung | Wertebereich |
 |---|---|---|
@@ -166,7 +166,7 @@ Primärschlüssel: (`schl_nr`, `stadium`). Beispiel (Schl.-Nr. 01838, Buchseite 
 Damit lässt sich der Name der Straße zu jedem beliebigen Stichtag ableiten — nicht nur
 zum Erhebungsstand 1936.
 
-### `daten/konkordanz_1936.csv` (442 Zeilen)
+### `daten/konkordanz_1936.csv` (444 Zeilen)
 
 Abgeleitet aus `namen.csv`: für jede Straße mit `status=automatisch` das Namensstadium,
 das zum Erhebungsstand des Adressbuchs Essen 1936 galt (Arbeitsstichtag **1936-06-30**,
@@ -181,7 +181,7 @@ heutigen Namen.
 | `schl_nr` | amtliche Schlüsselnummer | siehe oben |
 | `datum_praezision` | Genauigkeit der zugrunde liegenden Datierung | wie in `namen.csv` |
 | `quelle` | Herkunft der Angabe | wörtlich „Dickhoff 2015" |
-| `zusatz` | abgetrennter Klammerzusatz aus der Quelle | z. B. „(tlw.)", „(Verl.)"; leer wenn keiner vorlag (157 von 442 Zeilen gefüllt) |
+| `zusatz` | abgetrennter Klammerzusatz aus der Quelle | z. B. „(tlw.)", „(Verl.)"; leer wenn keiner vorlag (159 von 444 Zeilen gefüllt) |
 | `eindeutig` | ob `(stadtteil, ehemalig)` auf genau eine `schl_nr` trifft | `ja` (386) \| `nein` (39, Kollisionen) |
 
 Straßen mit `status=unsicher` gehen **nicht** in die Konkordanz ein, da ihr heutiger
@@ -201,7 +201,7 @@ abweicht.
 | Feld | Beschreibung | Wertebereich |
 |---|---|---|
 | `schl_nr` | Fremdschlüssel auf `strassen.csv` | siehe oben |
-| `feld` | geprüftes Feld | `lemma` \| `stadtteile` \| `strassenklasse` \| `namensgruppe` \| `verweis_auf` \| `stadium_N_datum` \| `stadium_N_name` \| `stadium_N_urspruenglich` \| `eintrag` (Bestätigung ohne Wertänderung) |
+| `feld` | geprüftes Feld | `lemma` \| `stadtteile` \| `strassenklasse` \| `namensgruppe` \| `verweis_auf` \| `buchseite` \| `schl_nr` (`wert_alt` = Lemma des Eintrags, `wert_neu` = neue Nummer) \| `stadium_N_datum` \| `stadium_N_name` \| `stadium_N_urspruenglich` \| `eintrag` (`wert_alt`/`wert_neu` leer: Bestätigung ohne Wertänderung; `wert_neu` = Lemma: Neuanlage eines vom Parser ausgelassenen Eintrags, gefüllt durch die weiteren Zeilen derselben Nummer). Ein Nachtrag mit `wert_neu = vorm.` im Datumsfeld legt ein undatiertes Stadium an (`datum_praezision=unbekannt`, `ist_urspruenglich=falsch`) |
 | `wert_alt` | Parser-Wert zum Prüfzeitpunkt, in Stichprobenform (z. B. `vor 1898`) | Text; leer = Stadium an Position N wird nachgetragen; weicht der Wert beim Anwenden vom aktuellen Parser-Ergebnis ab, bricht der Lauf ab — die Stelle muss neu geprüft werden |
 | `wert_neu` | korrigierter Wert | Text; bei Daten der **gedruckte** Text (z. B. `29.08.1927`), nicht die ISO-Form; leer bei beiden Feldern eines Stadiums (`stadium_N_datum` und `stadium_N_name`) = Stadium wird gestrichen |
 | `beleg` | gedruckter Wortlaut der geprüften Stelle | Text, ≤ 200 Zeichen |
@@ -216,20 +216,20 @@ korrigierten Werte selbst, nicht über eine Änderung an `pruefung.csv`.
 ## Bezifferte Qualität
 
 - **388** OCR-Buchseiten → **3.354** vom Parser segmentierte Einträge.
-- `daten/strassen.csv`: **3.349** Zeilen, davon **168** mit `status=unsicher`
-  (**2.980** `automatisch`, **201** `geprueft`).
-- `daten/namen.csv`: **5.480** Namensstadien (Datierungsgenauigkeit: **4.754** `tag`,
-  **325** `unbekannt`, **211** `jahr`, **182** `vor`, **8** `jahrhundert`).
-- `daten/konkordanz_1936.csv`: **442** Zeilen (**397** `eindeutig=ja`, 45 `eindeutig=nein`;
-  **157** mit Klammerzusatz).
+- `daten/strassen.csv`: **3.354** Zeilen (3.349 vom Parser, 5 per Overlay nachgetragen), davon
+  **166** mit `status=unsicher` (**2.980** `automatisch`, **208** `geprueft`).
+- `daten/namen.csv`: **5.495** Namensstadien (Datierungsgenauigkeit: **4.767** `tag`,
+  **327** `unbekannt`, **211** `jahr`, **182** `vor`, **8** `jahrhundert`).
+- `daten/konkordanz_1936.csv`: **444** Zeilen (**399** `eindeutig=ja`, 45 `eindeutig=nein`;
+  **159** mit Klammerzusatz).
 
 ### Drei unabhängige Selbstprüfungen
 
 | Prüfung | Ergebnis |
 |---|---|
 | Schlüsselnummern (amtlich, 1–3771 erwartet) | 3.349 erfasst, 425 Lücken, **3 Dubletten** |
-| alphabetische Ordnung der Lemmata | **37** aus der Sortierung fallende Lemmata (12 bereits als `unsicher` markiert, 25 neu auffällig) |
-| Abgleich mit dem amtlichen Straßenverzeichnis (`strassen_aktuell.csv`) | **3.319** bestätigt, 30 nicht im Verzeichnis (erwartbar bei aufgehobenen Straßen) |
+| alphabetische Ordnung der Lemmata | **39** aus der Sortierung fallende Lemmata (12 bereits als `unsicher` markiert, 27 neu auffällig) |
+| Abgleich mit dem amtlichen Straßenverzeichnis (`strassen_aktuell.csv`) | **3.324** bestätigt, 30 nicht im Verzeichnis (erwartbar bei aufgehobenen Straßen) |
 
 Details, Methodik und Interpretation: [`docs/qualitaet.md`](docs/qualitaet.md); die
 konkreten Treffer (Lemma, Schlüsselnummer, Grund): `daten/pruefung_validierung.csv`.
@@ -247,7 +247,7 @@ Volllauf vom 2026-09-12/13, Prompt-Stand `530d5c9e77b5`:
   [`docs/goldstandard/ergebnis_llm.md`](docs/goldstandard/ergebnis_llm.md). Die Modelle
   lesen also deutlich fehlerhafter als der Datensatz selbst; sie taugen als Hinweisgeber,
   nicht als Korrekturinstanz.
-- Prüfliste `daten/pruefung_llm.csv`: **3.355** Zeilen — **57** mit `einig=beide` (beide
+- Prüfliste `daten/pruefung_llm.csv`: **3.351** Zeilen — **53** mit `einig=beide` (beide
   Modelle lesen dasselbe, aber anders als der Datensatz), **3.227** mit `einig=eines`,
   **71** mit `einig=unlesbar` (ein Modell hat die Seite nicht gelesen). Modellwerte über
   120 Zeichen sind Fließtext der Vorlage und werden verworfen (nur Länge vermerkt).
@@ -257,14 +257,15 @@ Volllauf vom 2026-09-12/13, Prompt-Stand `530d5c9e77b5`:
   weil dessen Namenskette auf der Folgeseite weiterlaufen kann und die Modelle sie dort
   nicht sehen. Ausgelassene Ketten: **340** (`mistral`) bzw. **334** (`qwen`),
   in [`docs/llm_lesung.md`](docs/llm_lesung.md) als `seitenende_ausgelassen` beziffert.
-- Daraus menschlich geprüft und angewandt: **201** Einträge mit `status=geprueft` —
+- Daraus menschlich geprüft und angewandt: **208** Einträge mit `status=geprueft` —
   200 aus der Sichtung aller 288 `einig=beide`-Zeilen am 2026-09-13 (jede Zeile am
   Scan-Ausschnitt geprüft; 245 Zeilen als Korrektur, 7 Einträge als Bestätigung des
-  Parser-Werts), 1 aus der Goldstandard-Stichprobe. Das Overlay `daten/korrekturen.csv`
-  hat **252** Zeilen. Nach der Sichtung verbleiben 57 `einig=beide`-Zeilen, davon 16 bei
-  bereits geprüften Einträgen (die Modelle lesen dort falsch), 6 vom Parser ausgelassene
-  Einträge (nicht per Overlay behebbar, s. `docs/vorgehen.md`) und 35 mit korrektem
-  Parser-Wert.
+  Parser-Werts), 1 aus der Goldstandard-Stichprobe, dazu 5 vom Parser ausgelassene und
+  per Overlay nachgetragene Einträge sowie 2 Einträge einer aufgelösten
+  Schlüsselnummern-Dublette (OCR-Fehler). Das Overlay `daten/korrekturen.csv`
+  hat **320** Zeilen. Nach Sichtung und Overlay-Erweiterung verbleiben 53 `einig=beide`-Zeilen, davon
+  19 bei bereits geprüften Einträgen (die Modelle lesen dort falsch) und 34 mit korrektem
+  Parser-Wert; keine davon braucht eine Korrektur.
 
 Die Modelle verändern den Status nicht; alle `geprueft`-Einträge gehen auf manuelle
 Prüfung zurück. Übereinstimmungsquoten je Feldtyp und Modell:
@@ -298,16 +299,16 @@ Regeln der Reparatur sind in
 [`docs/specs/2026-09-11-parser-reparatur-design.md`](docs/specs/2026-09-11-parser-reparatur-design.md)
 beschrieben, der Nachweis jeder Änderung in
 [`docs/regression/2026-09-parser-reparatur.md`](docs/regression/2026-09-parser-reparatur.md).
-Dass der Endstand mehr unsichere Einträge zählt als der Prototyp der Spec (256 nach Parser-Runde 2 statt 202; nach der manuellen Sichtung 168),
+Dass der Endstand mehr unsichere Einträge zählt als der Prototyp der Spec (256 nach Parser-Runde 2 statt 202; nach der manuellen Sichtung 166),
 ist gewollt und keine Regression: leere Kopffelder, Toleranz-Hinweise und unvollständig
 gelesene Namensketten sind seither eigene Prüfgründe — der Prototyp las diese Fälle still.
 
 ### Erhebungsstand des Adressbuchs Essen 1936
 
 Der Namensstand, den das Adressbuch tatsächlich abbildet, wurde nicht angenommen,
-sondern an den 369 tagesgenau datierten Namensstadien-Übergängen im Zeitraum 1935–1937
+sondern an den 368 tagesgenau datierten Namensstadien-Übergängen im Zeitraum 1935–1937
 gemessen, von denen sich 248 anhand des Adressbuchtexts eindeutig einer Namensform
-zuordnen lassen (220 „alt", 28 „neu" — die übrigen 121 bleiben unentschieden, weil im
+zuordnen lassen (220 „alt", 28 „neu" — die übrigen 120 bleiben unentschieden, weil im
 Adressbuch entweder beide oder keine der beiden Namensformen auftauchen): Ab Namensänderungen ab Februar
 1936 reflektiert das Adressbuch keine einzige mehr. Das grenzt den tatsächlichen
 Erhebungsschluss auf etwa **Ende 1935 bis Januar
@@ -337,7 +338,7 @@ nur Stufe 1+2 (`strassen/erschliessen.py`) ausführen; `daten/strassen.csv` und
 Ehrlichkeit über die Grenzen dieses Datensatzes ist Teil seines Qualitätsanspruchs —
 nichts hier ist verschwiegen, um sauberer zu wirken:
 
-- **168 unsichere Einträge** (`status=unsicher` in `strassen.csv`) sind vom Parser nicht
+- **166 unsichere Einträge** (`status=unsicher` in `strassen.csv`) sind vom Parser nicht
   sicher erschlossen; ihre Felder (insbesondere `strassenklasse`) können OCR-Rauschen
   enthalten. Sie gehen bewusst nicht in die Konkordanz ein.
 - **33 Konkordanz-Prüffälle** (`daten/pruefung_konkordanz.csv`, nicht Teil des

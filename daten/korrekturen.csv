@@ -251,3 +251,71 @@ schl_nr,feld,wert_alt,wert_neu,beleg,quelle,datum
 01439,eintrag,,,stadium_2_name = Am Kreuz (tlw.) im Prüfbild bestätigt,llm-lauf,2026-09-13
 00720,stadium_1_datum,,28.05.1919,"28. Mai 1919: Horststraße (tlw.), etwa 1922: Eberhardstraße (OCR-Rest zwischen Tag und Jahr)",llm-lauf,2026-09-13
 00720,stadium_1_name,,Horststraße (tlw.),28. Mai 1919: Horststraße (tlw.),llm-lauf,2026-09-13
+00085,buchseite,35,36,Am Handelshof: Schl.-Nr.: 00085 steht oben auf Buchseite 36; Parser ordnete den Eintrag wegen eines Seitenendrests der Vorseite zu,llm-lauf,2026-09-13
+00207,buchseite,56,57,Auf dem Sutan: Schl.-Nr.: 00207 steht oben auf Buchseite 57; Parser ordnete den Eintrag wegen eines Seitenendrests der Vorseite zu,llm-lauf,2026-09-13
+00331,buchseite,66,67,Bergheimer Steig: Schl.-Nr.: 00331 steht oben auf Buchseite 67; Parser ordnete den Eintrag wegen eines Seitenendrests der Vorseite zu,llm-lauf,2026-09-13
+00366,buchseite,70,71,Birkmannsweg: Schl.-Nr.: 00366 steht oben auf Buchseite 71; Parser ordnete den Eintrag wegen eines Seitenendrests der Vorseite zu,llm-lauf,2026-09-13
+00573,buchseite,88,89,Centrumstraße: Schl.-Nr.: 00573 steht oben auf Buchseite 89; Parser ordnete den Eintrag wegen eines Seitenendrests der Vorseite zu,llm-lauf,2026-09-13
+00692,buchseite,98,99,Dreiringplatz: Schl.-Nr.: 00692 steht oben auf Buchseite 99; Parser ordnete den Eintrag wegen eines Seitenendrests der Vorseite zu,llm-lauf,2026-09-13
+02023,buchseite,227,228,Luziusstraße: Schl.-Nr.: 02023 steht oben auf Buchseite 228; Parser ordnete den Eintrag wegen eines Seitenendrests der Vorseite zu,llm-lauf,2026-09-13
+03240,buchseite,335,336,Von-der-Tann-Straße: Schl.-Nr.: 03240 steht oben auf Buchseite 336; Parser ordnete den Eintrag wegen eines Seitenendrests der Vorseite zu,llm-lauf,2026-09-13
+02568,schl_nr,Rebenranke,02566,"Rebenranke: Schl.-Nr.: 02566, Stadtteil Fischlaken (Buchseite 270; OCR las 02568)",llm-lauf,2026-09-13
+02568,stadium_1_datum,1936-08-05,,"Stadium gehört zu Rebenranke (02566), nicht zu Reckhammerweg; Reckhammerweg-Kette am Scan geprüft: 17. Januar 1868: Hammerstraße, 17. Januar 1868: Parallelstraße, 09. Juli 1915: Hammerstraße (Verl.), 20. November 1937: Reckhammerweg, 18. Dezember 1973: Reckhammerweg (Verl.)",llm-lauf,2026-09-13
+02568,stadium_1_name,Rebenranke,,s. o.,llm-lauf,2026-09-13
+02566,stadium_1_datum,,05.08.1936,05. August 1936: Rebenranke,llm-lauf,2026-09-13
+02566,stadium_1_name,,Rebenranke,05. August 1936: Rebenranke,llm-lauf,2026-09-13
+001321,eintrag,,Am Stadtgarten,"Am Stadtgarten: Schl.-Nr.: 001321, Stadtteil Steele, Str.-Kl.: Gemeindestraße, Str.-Gr.: Botanik (Nummer im Druck sechsstellig; Parser-Auslassung, da der Anker fünf Ziffern erwartet)",llm-lauf,2026-09-13
+001321,buchseite,,43,Buchseite 43,llm-lauf,2026-09-13
+001321,stadtteile,,Steele,"Am Stadtgarten: Schl.-Nr.: 001321, Stadtteil Steele, Str.-Kl.: Gemeindestraße, Str.-Gr.: Botanik (Nummer im Druck sechsstellig; Parser-Auslassung, da der Anker fünf Ziffern erwartet)",llm-lauf,2026-09-13
+001321,strassenklasse,,Gemeindestraße,"Am Stadtgarten: Schl.-Nr.: 001321, Stadtteil Steele, Str.-Kl.: Gemeindestraße, Str.-Gr.: Botanik (Nummer im Druck sechsstellig; Parser-Auslassung, da der Anker fünf Ziffern erwartet)",llm-lauf,2026-09-13
+001321,namensgruppe,,Botanik,"Am Stadtgarten: Schl.-Nr.: 001321, Stadtteil Steele, Str.-Kl.: Gemeindestraße, Str.-Gr.: Botanik (Nummer im Druck sechsstellig; Parser-Auslassung, da der Anker fünf Ziffern erwartet)",llm-lauf,2026-09-13
+001321,stadium_1_datum,,26.03.1909,26.03.1909: Am Stadtgarten,llm-lauf,2026-09-13
+001321,stadium_1_name,,Am Stadtgarten,26.03.1909: Am Stadtgarten,llm-lauf,2026-09-13
+001321,stadium_2_datum,,26.03.1909,26.03.1909: Stadtgartenstraße,llm-lauf,2026-09-13
+001321,stadium_2_name,,Stadtgartenstraße,26.03.1909: Stadtgartenstraße,llm-lauf,2026-09-13
+001321,stadium_3_datum,,01.06.1926,01.06.1926: Frillendorfer Straße (tlw.),llm-lauf,2026-09-13
+001321,stadium_3_name,,Frillendorfer Straße (tlw.),01.06.1926: Frillendorfer Straße (tlw.),llm-lauf,2026-09-13
+001321,stadium_4_datum,,01.06.1926,01.06.1926: Rosestraße,llm-lauf,2026-09-13
+001321,stadium_4_name,,Rosestraße,01.06.1926: Rosestraße,llm-lauf,2026-09-13
+001321,stadium_5_datum,,28.02.1928,28.02.1928: Am Stadtgarten (Verl.),llm-lauf,2026-09-13
+001321,stadium_5_name,,Am Stadtgarten (Verl.),28.02.1928: Am Stadtgarten (Verl.),llm-lauf,2026-09-13
+01603,eintrag,,Luxemburger Straße,"Luxemburger Straße: Schl.-Nr.: 01603, Stadtteil Rüttenscheid, Str.-Kl.: Gemeindestraße, Str.-Gr.: Stadt und Ort (Parser-Auslassung: OCR stellte den Anker vor das Lemma)",llm-lauf,2026-09-13
+01603,buchseite,,227,Buchseite 227,llm-lauf,2026-09-13
+01603,stadtteile,,Rüttenscheid,"Luxemburger Straße: Schl.-Nr.: 01603, Stadtteil Rüttenscheid, Str.-Kl.: Gemeindestraße, Str.-Gr.: Stadt und Ort (Parser-Auslassung: OCR stellte den Anker vor das Lemma)",llm-lauf,2026-09-13
+01603,strassenklasse,,Gemeindestraße,"Luxemburger Straße: Schl.-Nr.: 01603, Stadtteil Rüttenscheid, Str.-Kl.: Gemeindestraße, Str.-Gr.: Stadt und Ort (Parser-Auslassung: OCR stellte den Anker vor das Lemma)",llm-lauf,2026-09-13
+01603,namensgruppe,,Stadt und Ort,"Luxemburger Straße: Schl.-Nr.: 01603, Stadtteil Rüttenscheid, Str.-Kl.: Gemeindestraße, Str.-Gr.: Stadt und Ort (Parser-Auslassung: OCR stellte den Anker vor das Lemma)",llm-lauf,2026-09-13
+01603,stadium_1_datum,,08.05.2001,08.05.2001: Luxemburger Straße,llm-lauf,2026-09-13
+01603,stadium_1_name,,Luxemburger Straße,08.05.2001: Luxemburger Straße,llm-lauf,2026-09-13
+01655,eintrag,,Kappertsiepen,"Kappertsiepen: Schl.-Nr.: 01655, Stadtteile Kray und Schonnebeck, Str.-Kl.: Gemeindestraße, Str.-Gr.: Hofname (Eintrag über Seitenumbruch 189/190 und Bild geteilt; Parser-Auslassung, OCR ohne Nummer)",llm-lauf,2026-09-13
+01655,buchseite,,189,Buchseite 189,llm-lauf,2026-09-13
+01655,stadtteile,,Kray; Schonnebeck,"Kappertsiepen: Schl.-Nr.: 01655, Stadtteile Kray und Schonnebeck, Str.-Kl.: Gemeindestraße, Str.-Gr.: Hofname (Eintrag über Seitenumbruch 189/190 und Bild geteilt; Parser-Auslassung, OCR ohne Nummer)",llm-lauf,2026-09-13
+01655,strassenklasse,,Gemeindestraße,"Kappertsiepen: Schl.-Nr.: 01655, Stadtteile Kray und Schonnebeck, Str.-Kl.: Gemeindestraße, Str.-Gr.: Hofname (Eintrag über Seitenumbruch 189/190 und Bild geteilt; Parser-Auslassung, OCR ohne Nummer)",llm-lauf,2026-09-13
+01655,namensgruppe,,Hofname,"Kappertsiepen: Schl.-Nr.: 01655, Stadtteile Kray und Schonnebeck, Str.-Kl.: Gemeindestraße, Str.-Gr.: Hofname (Eintrag über Seitenumbruch 189/190 und Bild geteilt; Parser-Auslassung, OCR ohne Nummer)",llm-lauf,2026-09-13
+01655,stadium_1_datum,,14.12.1948,14.12.1948: Kappertsiepen,llm-lauf,2026-09-13
+01655,stadium_1_name,,Kappertsiepen,14.12.1948: Kappertsiepen,llm-lauf,2026-09-13
+02655,eintrag,,Rüttenscheider Platz,"Rüttenscheider Platz: Schl.-Nr.: 02655, Stadtteil Rüttenscheid, Str.-Kl.: Gemeindestraße, Str.-Gr.: Bauerschaft, Platz (Eintrag über Seitenumbruch 280/281 und Bild geteilt; OCR-Zeilenfolge vertauscht)",llm-lauf,2026-09-13
+02655,buchseite,,280,Buchseite 280,llm-lauf,2026-09-13
+02655,stadtteile,,Rüttenscheid,"Rüttenscheider Platz: Schl.-Nr.: 02655, Stadtteil Rüttenscheid, Str.-Kl.: Gemeindestraße, Str.-Gr.: Bauerschaft, Platz (Eintrag über Seitenumbruch 280/281 und Bild geteilt; OCR-Zeilenfolge vertauscht)",llm-lauf,2026-09-13
+02655,strassenklasse,,Gemeindestraße,"Rüttenscheider Platz: Schl.-Nr.: 02655, Stadtteil Rüttenscheid, Str.-Kl.: Gemeindestraße, Str.-Gr.: Bauerschaft, Platz (Eintrag über Seitenumbruch 280/281 und Bild geteilt; OCR-Zeilenfolge vertauscht)",llm-lauf,2026-09-13
+02655,namensgruppe,,"Bauerschaft, Platz","Rüttenscheider Platz: Schl.-Nr.: 02655, Stadtteil Rüttenscheid, Str.-Kl.: Gemeindestraße, Str.-Gr.: Bauerschaft, Platz (Eintrag über Seitenumbruch 280/281 und Bild geteilt; OCR-Zeilenfolge vertauscht)",llm-lauf,2026-09-13
+02655,stadium_1_datum,,15.11.1907,15.11.1907: Rüttenscheider Platz,llm-lauf,2026-09-13
+02655,stadium_1_name,,Rüttenscheider Platz,15.11.1907: Rüttenscheider Platz,llm-lauf,2026-09-13
+02655,stadium_2_datum,,08.05.1933,08.05.1933: Horst-Wessel-Platz (Umb.),llm-lauf,2026-09-13
+02655,stadium_2_name,,Horst-Wessel-Platz (Umb.),08.05.1933: Horst-Wessel-Platz (Umb.),llm-lauf,2026-09-13
+02655,stadium_3_datum,,18.06.1945,18.06.1945: Rüttenscheider Platz (Umb.),llm-lauf,2026-09-13
+02655,stadium_3_name,,Rüttenscheider Platz (Umb.),18.06.1945: Rüttenscheider Platz (Umb.),llm-lauf,2026-09-13
+02906,eintrag,,Spichernstraße,"Spichernstraße: Schl.-Nr.: 02906, Stadtteile Huttrop und Südostviertel, Str.-Kl.: Gemeindestraße, Str.-Gr.: Stadt und Ort, Kriegserinnerung (OCR las 029086)",llm-lauf,2026-09-13
+02906,buchseite,,306,Buchseite 306,llm-lauf,2026-09-13
+02906,stadtteile,,Huttrop; Südostviertel,"Spichernstraße: Schl.-Nr.: 02906, Stadtteile Huttrop und Südostviertel, Str.-Kl.: Gemeindestraße, Str.-Gr.: Stadt und Ort, Kriegserinnerung (OCR las 029086)",llm-lauf,2026-09-13
+02906,strassenklasse,,Gemeindestraße,"Spichernstraße: Schl.-Nr.: 02906, Stadtteile Huttrop und Südostviertel, Str.-Kl.: Gemeindestraße, Str.-Gr.: Stadt und Ort, Kriegserinnerung (OCR las 029086)",llm-lauf,2026-09-13
+02906,namensgruppe,,"Stadt und Ort, Kriegserinnerung","Spichernstraße: Schl.-Nr.: 02906, Stadtteile Huttrop und Südostviertel, Str.-Kl.: Gemeindestraße, Str.-Gr.: Stadt und Ort, Kriegserinnerung (OCR las 029086)",llm-lauf,2026-09-13
+02906,stadium_1_datum,,03.03.1897,03.03.1897: Spichernstraße,llm-lauf,2026-09-13
+02906,stadium_1_name,,Spichernstraße,03.03.1897: Spichernstraße,llm-lauf,2026-09-13
+02906,stadium_2_datum,,28.10.1904,28.10.1904: Diedenhofer Straße (Umb.),llm-lauf,2026-09-13
+02906,stadium_2_name,,Diedenhofer Straße (Umb.),28.10.1904: Diedenhofer Straße (Umb.),llm-lauf,2026-09-13
+02906,stadium_3_datum,,09.07.1915,09.07.1915: Spichernstraße (Verl.),llm-lauf,2026-09-13
+02906,stadium_3_name,,Spichernstraße (Verl.),09.07.1915: Spichernstraße (Verl.),llm-lauf,2026-09-13
+02512,stadium_1_datum,,vorm.,"Str.-Gr.: Zoologie, vorm.: Bolsterbaum (tlw.), 23. August 1988: Imkerweg",llm-lauf,2026-09-13
+02512,stadium_1_name,,Bolsterbaum (tlw.),vorm.: Bolsterbaum (tlw.),llm-lauf,2026-09-13
+02513,stadium_1_datum,,vorm.,"Str.-Gr.: Geologie, Berg, vorm.: Bonifaciusstraße (tlw.), 13. September 1988: Am Mechtenberg",llm-lauf,2026-09-13
+02513,stadium_1_name,,Bonifaciusstraße (tlw.),vorm.: Bonifaciusstraße (tlw.),llm-lauf,2026-09-13

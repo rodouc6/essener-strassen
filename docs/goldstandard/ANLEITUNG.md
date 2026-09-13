@@ -134,6 +134,27 @@ Normalisierung übernimmt das Overlay selbst (`strassen.datum.lese_text`).
   `feld=eintrag` und leeren `wert_alt`/`wert_neu` eintragen. Bewirkt nur den
   Statuswechsel auf `geprueft`.
 
+### Seitenzahl, Schlüsselnummer, Neuanlage, undatiertes Stadium
+
+Seit 2026-09-13 kann das Overlay auch das reparieren, was der Parser strukturell falsch
+liest (Parser-Runde 3 wurde zugunsten dieser Erweiterung nicht durchgeführt, Begründung in
+`docs/vorgehen.md`):
+
+- `feld=buchseite`: `wert_alt` = bisherige Seite, `wert_neu` = richtige Seite. Nötig, wenn ein
+  Eintrag wegen eines Seitenendrests der Vorseite zugeordnet wurde.
+- `feld=schl_nr`: die Zeile steht unter der **alten** Nummer, `wert_alt` = **Lemma** des
+  Eintrags (so ist auch eine Dublette eindeutig adressiert), `wert_neu` = neue Nummer. Wird vor
+  allen anderen Zeilen angewandt; weitere Zeilen zum Eintrag stehen unter der neuen Nummer.
+  Bei einer Dublette bleiben die Stadien unter der alten Nummer (welche zu welchem Eintrag
+  gehören, ist nicht entscheidbar) und werden per Streichen/Nachtrag zugeordnet.
+- **Neuanlage** eines vom Parser ausgelassenen Eintrags: `feld=eintrag`, `wert_alt` leer,
+  `wert_neu` = Lemma; dazu unter derselben Nummer `buchseite` (Pflicht), Kopffelder (jeweils
+  `wert_alt` leer) und die Stadien als Nachträge. Der Beleg der `eintrag`-Zeile enthält den
+  gedruckten Kopf. Eine sechsstellige Nummer im Druck (001321) wird so übernommen, wie sie
+  gedruckt ist — nicht auf fünf Stellen geraten.
+- **Undatiertes Stadium** („vorm.: Name" in der Vorlage): Nachtrag mit `wert_neu = vorm.` im
+  Datumsfeld ergibt `datum_praezision=unbekannt`, `gueltig_ab` leer, `ist_urspruenglich=falsch`.
+
 ### Anwenden
 
 ```bash

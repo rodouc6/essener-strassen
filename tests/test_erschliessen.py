@@ -578,3 +578,15 @@ def test_lemma_randzeichen_wird_bereinigt_und_gekennzeichnet(tmp_path):
     treffer = [z for z in pruefung if z["grund"] == "Randzeichen entfernt"]
     assert len(treffer) == 1
     assert treffer[0]["lemma_roh"] == ") Am Richtenberg"
+
+
+def test_ordne_nach_buchseite_rueckt_neuanlage_und_korrigierte_seite_ein():
+    from strassen.erschliessen import ordne_nach_buchseite
+    strassen = [{"schl_nr": "00001", "buchseite": 23}, {"schl_nr": "00002", "buchseite": 25},
+                {"schl_nr": "00003", "buchseite": 26}, {"schl_nr": "00099", "buchseite": 24}]
+    namen = [{"schl_nr": "00002", "stadium": 1}, {"schl_nr": "00001", "stadium": 2}, {"schl_nr": "00001", "stadium": 1},
+             {"schl_nr": "00003", "stadium": 1}, {"schl_nr": "00099", "stadium": 1}]
+    ordne_nach_buchseite(strassen, namen)
+    assert [z["schl_nr"] for z in strassen] == ["00001", "00099", "00002", "00003"]
+    assert [(z["schl_nr"], z["stadium"]) for z in namen] == [
+        ("00001", 1), ("00001", 2), ("00099", 1), ("00002", 1), ("00003", 1)]

@@ -199,6 +199,17 @@ def _namensgruppe_auffaellig(text: str) -> bool:
     return bool(_ZIFFERNFOLGE_GRUPPE.search(text))
 
 
+def ordne_nach_buchseite(strassen: list, namen: list) -> None:
+    """Bringt die Ausgabe nach dem Overlay wieder in Buchreihenfolge: strassen stabil nach
+    buchseite (Neuanlagen und korrigierte Seitenzahlen rücken an ihren Platz), namen in der
+    Reihenfolge der Straßeneinträge (je Straße nach stadium)."""
+    strassen.sort(key=lambda z: int(z["buchseite"]))
+    rang = {}
+    for i, z in enumerate(strassen):
+        rang.setdefault(z["schl_nr"], i)
+    namen.sort(key=lambda z: (rang.get(z["schl_nr"], len(strassen)), int(z["stadium"])))
+
+
 def main(ocr_dir="ocr/seiten", ausgabe_dir="daten", korrekturen_pfad=""):
     ziel = Path(ausgabe_dir)
     ziel.mkdir(parents=True, exist_ok=True)
@@ -311,6 +322,7 @@ def main(ocr_dir="ocr/seiten", ausgabe_dir="daten", korrekturen_pfad=""):
     # Leerer Pfad -> keine Korrekturen (Standard für Tests und Regressionsmessung des
     # reinen Parsers); der Skriptaufruf unten übergibt die Standarddatei.
     protokoll = wende_an(strassen, namen, lade_korrekturen(korrekturen_pfad) if korrekturen_pfad else [])
+    ordne_nach_buchseite(strassen, namen)
 
     schreibe_strassen(strassen, ziel / "strassen.csv")
     schreibe_namen(namen, ziel / "namen.csv")

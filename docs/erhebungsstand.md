@@ -33,12 +33,12 @@ Für jede Umbenennung (Übergang von einem Namensstadium zum nächsten in `daten
 | 1901 | 1 | 2 |
 | 1902 | 3 | 10 |
 | 1903 | 4 | 5 |
-| 1904 | 0 | 3 |
+| 1904 | 1 | 3 |
 | 1905 | 1 | 0 |
 | 1906 | 8 | 5 |
 | 1907 | 1 | 5 |
 | 1908 | 7 | 3 |
-| 1909 | 3 | 5 |
+| 1909 | 4 | 5 |
 | 1910 | 11 | 22 |
 | 1911 | 2 | 5 |
 | 1912 | 0 | 2 |
@@ -52,9 +52,9 @@ Für jede Umbenennung (Übergang von einem Namensstadium zum nächsten in `daten
 | 1923 | 0 | 2 |
 | 1924 | 1 | 2 |
 | 1925 | 1 | 1 |
-| 1926 | 2 | 7 |
+| 1926 | 2 | 8 |
 | 1927 | 2 | 5 |
-| 1928 | 2 | 2 |
+| 1928 | 3 | 2 |
 | 1929 | 6 | 8 |
 | 1930 | 3 | 9 |
 | 1931 | 8 | 8 |
@@ -137,12 +137,12 @@ Ab Umbenennungen ab Februar 1936 reflektiert das Adressbuch keine einzige mehr �
 
 Die Konkordanz wird **nur aus Straßen mit `status=automatisch` oder `geprueft`** gebaut; unsichere Lemmata (`status=unsicher`) gehören nicht in die produktive Konkordanz, da ihr heutiger Name selbst nicht belastbar ist. Einträge, deren Namenskette intern widersprüchlich ist (letztes Stadium ≠ Lemma nach Zusatz-Abtrennung, mechanisches Konsistenz-Netz), landen nicht in der Konkordanz, sondern als Prüffall in `daten/pruefung_konkordanz.csv`.
 
-- Straßen gesamt: 3349
-- davon `status=automatisch` oder `geprueft` (Basis der Konkordanz): 3181
-- davon `status=unsicher` (ausgeschlossen): 168
-- Konkordanzeinträge: **442**
-  - davon `eindeutig=ja`: 397 / `eindeutig=nein` (Kollisionen): 45
-  - davon mit Klammerzusatz (z. B. „(tlw.)", „(Verl.)"): 157
+- Straßen gesamt: 3354
+- davon `status=automatisch` oder `geprueft` (Basis der Konkordanz): 3188
+- davon `status=unsicher` (ausgeschlossen): 166
+- Konkordanzeinträge: **444**
+  - davon `eindeutig=ja`: 399 / `eindeutig=nein` (Kollisionen): 45
+  - davon mit Klammerzusatz (z. B. „(tlw.)", „(Verl.)"): 159
 - Prüffälle (`daten/pruefung_konkordanz.csv`): **33**
 
 Methodische Begründung der Konkordanz-Ableitung (Klammerzusätze abtrennen, Kollisionen markieren, mechanisches Konsistenz-Netz gegen unvollständige Namensketten, „(tlw.)"-Teilangaben als informationstragend behalten): siehe die Docstrings in `strassen/stichtag.py` (`_trenne_zusatz`, `_ist_teil_zusatz`, `_kandidat_oder_pruefung`, `baue_konkordanz`).
