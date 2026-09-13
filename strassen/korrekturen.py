@@ -31,6 +31,9 @@ KOPFFELDER = ("lemma", "stadtteile", "strassenklasse", "namensgruppe", "verweis_
 # Nachtrag eines undatierten Stadiums ("vorm.: Name" in der Vorlage): wert_neu im
 # Datumsfeld = DATUM_VORMALS -> datum_praezision=unbekannt, gueltig_ab leer.
 DATUM_VORMALS = "vorm."
+# Dito für "urspr. Name" ohne Datum: wie DATUM_VORMALS, aber ist_urspruenglich=wahr.
+DATUM_URSPRUENGLICH = "urspr."
+DATUM_UNDATIERT = (DATUM_VORMALS, DATUM_URSPRUENGLICH)
 _STADIUM = re.compile(r"^stadium_(\d+)_(datum|name|urspruenglich)$")
 
 
@@ -214,8 +217,8 @@ def wende_an(strassen: list, namen: list, korrekturen: list) -> dict:
             if alt == "" and art in ("datum", "name"):
                 nachtrag[n][art] = neu
                 continue
-            if art == "datum" and neu == DATUM_VORMALS:
-                raise KorrekturFehler(f"{schl} {feld}: {DATUM_VORMALS!r} nur beim Nachtragen eines "
+            if art == "datum" and neu in DATUM_UNDATIERT:
+                raise KorrekturFehler(f"{schl} {feld}: {neu!r} nur beim Nachtragen eines "
                                       f"undatierten Stadiums zulässig (wert_alt leer)")
             if n > len(st):
                 raise KorrekturFehler(f"{schl} {feld}: Stadium {n} existiert nicht ({len(st)} vorhanden)")
@@ -243,7 +246,9 @@ def wende_an(strassen: list, namen: list, korrekturen: list) -> dict:
                     f"({len(st)} Stadien vorhanden, davon ggf. bereits nachgetragen)")
             z = {"schl_nr": schl, "stadium": n, "gueltig_ab": "", "datum_praezision": "unbekannt",
                  "name": "", "ist_urspruenglich": "falsch"}
-            if nachtrag[n]["datum"] != DATUM_VORMALS:
+            if nachtrag[n]["datum"] == DATUM_URSPRUENGLICH:
+                z["ist_urspruenglich"] = "wahr"
+            elif nachtrag[n]["datum"] != DATUM_VORMALS:
                 _setze(z, "datum", nachtrag[n]["datum"], schl, f"stadium_{n}_datum")
             _setze(z, "name", nachtrag[n]["name"], schl, f"stadium_{n}_name")
             st.insert(min(n - 1, len(st)), z)

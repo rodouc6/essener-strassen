@@ -310,3 +310,13 @@ def test_dublette_nach_umbenennung_wird_korrigierbar():
                        _k("00003", "stadium_1_name", "", "Rebenranke")])
     assert [(z["schl_nr"], z["stadium"], z["name"]) for z in n if z["schl_nr"] in ("00002", "00003")] == [
         ("00002", 1, "Abteistraße"), ("00003", 1, "Rebenranke")]
+
+
+def test_urspr_stadium_ohne_datum_nachtragen():
+    s, n = _daten()
+    ko.wende_an(s, n, [_k("00002", "stadium_1_datum", "", "urspr."),
+                       _k("00002", "stadium_1_name", "", "Velberter Sträßchen")])
+    st = [z for z in n if z["schl_nr"] == "00002"]
+    assert (st[0]["gueltig_ab"], st[0]["datum_praezision"], st[0]["name"], st[0]["ist_urspruenglich"]) == (
+        "", "unbekannt", "Velberter Sträßchen", "wahr")
+    assert st[1]["name"] == "Abteistraße" and st[1]["stadium"] == 2

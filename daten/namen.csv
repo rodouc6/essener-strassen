@@ -4112,7 +4112,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02597,2,1935-11-14,tag,Riddershofstraße,falsch
 02676,1,1960-09-07,tag,Ridderweg,falsch
 02534,1,1993-01-21,tag,Riedheim,falsch
-02681,1,1951-12-05,tag,!,falsch
+02681,1,1951-12-05,tag,I. Siedlerweg,falsch
 02681,2,1966-07-20,tag,Riedingerstraße,falsch
 02599,1,1952-07-31,tag,Riegelweg,falsch
 02599,2,1952-07-31,tag,Kaldekirche (tlw.),falsch
@@ -4584,7 +4584,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02881,1,1936-08-05,tag,Siepmanns Kamp,falsch
 02882,1,1903-03-12,tag,Leonorenstraße,falsch
 02882,2,1937-11-20,tag,Sigambrerweg,falsch
-02874,1,1951-12-05,tag,Il,falsch
+02874,1,1951-12-05,tag,III. Siedlerweg,falsch
 02874,2,1966-07-20,tag,Sigsfeldstraße,falsch
 02883,1,1910-09-16,tag,Silberbankstraße,falsch
 02884,1,1889-07-05,tag,Silberstraße,falsch
@@ -5010,6 +5010,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03202,2,1902-05-16,tag,Veitstraße,falsch
 03204,1,,unbekannt,Ruhrstraße (tlw.),wahr
 03204,2,1898-05-10,tag,Velberter Straße,falsch
+03203,1,,unbekannt,Velberter Sträßchen,wahr
 03257,1,1966-06-08,tag,Veldeckestraße,falsch
 03205,1,1975-01-15,tag,Veledastraße,falsch
 03206,1,1937-11-20,tag,Velthover Winkel,falsch

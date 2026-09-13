@@ -138,8 +138,8 @@ Ab Umbenennungen ab Februar 1936 reflektiert das Adressbuch keine einzige mehr �
 Die Konkordanz wird **nur aus Straßen mit `status=automatisch` oder `geprueft`** gebaut; unsichere Lemmata (`status=unsicher`) gehören nicht in die produktive Konkordanz, da ihr heutiger Name selbst nicht belastbar ist. Einträge, deren Namenskette intern widersprüchlich ist (letztes Stadium ≠ Lemma nach Zusatz-Abtrennung, mechanisches Konsistenz-Netz), landen nicht in der Konkordanz, sondern als Prüffall in `daten/pruefung_konkordanz.csv`.
 
 - Straßen gesamt: 3354
-- davon `status=automatisch` oder `geprueft` (Basis der Konkordanz): 3188
-- davon `status=unsicher` (ausgeschlossen): 166
+- davon `status=automatisch` oder `geprueft` (Basis der Konkordanz): 3190
+- davon `status=unsicher` (ausgeschlossen): 164
 - Konkordanzeinträge: **444**
   - davon `eindeutig=ja`: 399 / `eindeutig=nein` (Kollisionen): 45
   - davon mit Klammerzusatz (z. B. „(tlw.)", „(Verl.)"): 159

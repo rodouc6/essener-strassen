@@ -154,6 +154,8 @@ liest (Parser-Runde 3 wurde zugunsten dieser Erweiterung nicht durchgeführt, Be
   gedruckt ist — nicht auf fünf Stellen geraten.
 - **Undatiertes Stadium** („vorm.: Name" in der Vorlage): Nachtrag mit `wert_neu = vorm.` im
   Datumsfeld ergibt `datum_praezision=unbekannt`, `gueltig_ab` leer, `ist_urspruenglich=falsch`.
+  Analog `wert_neu = urspr.` für „urspr. Name" ohne Datum (`ist_urspruenglich=wahr`), etwa
+  wenn der Parser die Kette wegen eines fehlenden Doppelpunkts nicht erkannt hat (03203).
 
 ### Anwenden
 

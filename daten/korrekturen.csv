@@ -319,3 +319,7 @@ schl_nr,feld,wert_alt,wert_neu,beleg,quelle,datum
 02512,stadium_1_name,,Bolsterbaum (tlw.),vorm.: Bolsterbaum (tlw.),llm-lauf,2026-09-13
 02513,stadium_1_datum,,vorm.,"Str.-Gr.: Geologie, Berg, vorm.: Bonifaciusstraße (tlw.), 13. September 1988: Am Mechtenberg",llm-lauf,2026-09-13
 02513,stadium_1_name,,Bonifaciusstraße (tlw.),vorm.: Bonifaciusstraße (tlw.),llm-lauf,2026-09-13
+02874,stadium_1_name,Il,III. Siedlerweg,"05. Dezember 1951: III. Siedlerweg, 20. Juli 1966: Sigsfeldstraße (Scan S. 304; OCR las 'Il', Modelle 'III.')",llm-lauf,2026-09-13
+02681,stadium_1_name,!,I. Siedlerweg,"05. Dezember 1951: I. Siedlerweg, 20. Juli 1966: Riedingerstraße (Scan S. 274; OCR las '!')",llm-lauf,2026-09-13
+03203,stadium_1_datum,,urspr.,"Str.-Gr.: Stadt und Ort, urspr. Velberter Sträßchen (Scan S. 330; 'urspr.' ohne Doppelpunkt, kein Datum)",llm-lauf,2026-09-13
+03203,stadium_1_name,,Velberter Sträßchen,urspr. Velberter Sträßchen,llm-lauf,2026-09-13

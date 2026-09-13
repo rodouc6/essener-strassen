@@ -70,7 +70,7 @@
       "schema": {
         "fields": [
           {"name": "schl_nr", "type": "string", "description": "Fremdschlüssel auf strassen.csv"},
-          {"name": "feld", "type": "string", "description": "lemma | stadtteile | strassenklasse | namensgruppe | verweis_auf | buchseite | schl_nr (wert_alt = Lemma des Eintrags, wert_neu = neue Nummer) | stadium_N_datum | stadium_N_name | stadium_N_urspruenglich | eintrag (wert_alt und wert_neu leer: Bestätigung ohne Wertänderung; wert_neu = Lemma: Neuanlage eines vom Parser ausgelassenen Eintrags, gefüllt durch die weiteren Zeilen derselben Nummer)"},
+          {"name": "feld", "type": "string", "description": "lemma | stadtteile | strassenklasse | namensgruppe | verweis_auf | buchseite | schl_nr (wert_alt = Lemma des Eintrags, wert_neu = neue Nummer) | stadium_N_datum | stadium_N_name | stadium_N_urspruenglich | eintrag (wert_alt und wert_neu leer: Bestätigung ohne Wertänderung; wert_neu = Lemma: Neuanlage eines vom Parser ausgelassenen Eintrags, gefüllt durch die weiteren Zeilen derselben Nummer). Nachtrag mit wert_neu 'vorm.' bzw. 'urspr.' im Datumsfeld = undatiertes Stadium"},
           {"name": "wert_alt", "type": "string", "description": "Parser-Wert zum Prüfzeitpunkt (Datum in Stichprobenform, z. B. 'vor 1898'); leer = Stadium nachtragen. Weicht er beim Anwenden ab, bricht der Lauf ab."},
           {"name": "wert_neu", "type": "string", "description": "korrigierter Wert; bei Daten der gedruckte Text ('29.08.1927'); leer bei beiden Feldern eines Stadiums = streichen"},
           {"name": "beleg", "type": "string", "description": "gedruckter Wortlaut der Stelle, ≤ 200 Zeichen"},

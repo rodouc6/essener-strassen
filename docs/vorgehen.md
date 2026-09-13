@@ -121,6 +121,15 @@ Overlay wieder in Buchreihenfolge gebracht. Alle 16 Fälle sind mit Beleg einget
 (Overlay 252 → 320 Zeilen). Ergebnis: Straßen 3.349 → **3.354**, `geprueft` 201 → **208**,
 `unsicher` 168 → **166**, Stadien 5.480 → 5.495, Konkordanz 442 → **444**, amtlich bestätigt
 3.319 → 3.324. Die Schlüsselnummern-Dubletten 02402 und 03448 stehen so im Buch und bleiben.
+Nachtrag am selben Tag: zwei Hinweise aus der Sichtung waren nicht ins Overlay gelangt
+(02681 Stadium „!" → „I. Siedlerweg"; 02874 stand bereits auf `geprueft` mit Stadium „Il" →
+„III. Siedlerweg", Scan S. 304), dazu 03203 Velberter Sträßchen mit undatiertem
+`urspr.`-Stadium (neues Schlüsselwort `urspr.` im Overlay). Stand danach: `geprueft` **210**,
+`unsicher` **164**, Overlay 324 Zeilen. Von den 164 unsicheren Einträgen waren nur 5 Teil der
+Sichtung; die übrigen 159 hat noch niemand gegen den Scan gesehen — sie sind der eigentliche
+verbleibende Prüfbestand (Prüfgründe: auffälliges Lemma, Namenskette unvollständig, Datum
+ohne Doppelpunkt, Straßenklasse fehlt), zusätzlich 33 Konkordanz-Prüffälle und 69
+Validierungshinweise (überschneiden sich weitgehend).
 
 ## Was als Nächstes offen ist
 

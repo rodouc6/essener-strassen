@@ -2530,7 +2530,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02597,Riddershofstraße,Kray,Gemeindestraße,Hofname,,273,automatisch
 02676,Ridderweg,Kray,Gemeindestraße,"Hofname, Familienname",Riddershofstraße,273,automatisch
 02534,Riedheim,Schonnebeck,Gemeindestraße,Botanik,,273,automatisch
-02681,Riedingerstraße,Nordviertel,Gemeindestraße,"Person, Mann, Deutscher, Unternehmer, Ballonfahrer",,273,unsicher
+02681,Riedingerstraße,Nordviertel,Gemeindestraße,"Person, Mann, Deutscher, Unternehmer, Ballonfahrer",,273,geprueft
 02599,Riegelweg,Schonnebeck,Gemeindestraße,Lagebezeichnung,,274,unsicher
 02600,Riehlstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Journalist, Novellist, Kulturhistoriker",,274,unsicher
 02601,Riekenbank,Schönebeck,Gemeindestraße,Bergbau,,274,automatisch
@@ -3065,7 +3065,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03259,Veddershang,Huttrop,Gemeindestraße,Kotten,,330,automatisch
 03202,Veitstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Maler, Malerviertel-Holsterhausen",,330,automatisch
 03204,Velberter Straße,Werden; Heidhausen; Fischlaken,Bundesstraße,Stadt und Ort,,330,unsicher
-03203,Velberter Sträßchen,Werden,Gemeindestraße,Stadt und Ort,,330,unsicher
+03203,Velberter Sträßchen,Werden,Gemeindestraße,Stadt und Ort,,330,geprueft
 03257,Veldeckestraße,Freisenbruch,Gemeindestraße,"Person, Mann, Deutscher, Dichter, Minnesänger",,330,automatisch
 03205,Veledastraße,Borbeck-Mitte,Gemeindestraße,Volkstum,,331,automatisch
 03206,Velthover Winkel,Bedingrade,Gemeindestraße,Hofname,,331,automatisch
