@@ -9,13 +9,13 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00008,Ackerstraße,Bedingrade; Gerschede,Gemeindestraße,Lagebezeichnung,,24,automatisch
 00009,Adelgundenweg,Bergerhausen,Gemeindestraße,"Bergbau, Weiblicher Vorname",,24,automatisch
 00010,Adelkampstraße,Frohnhausen,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Kotten",,24,unsicher
-03566,Adlerstraße,Leithe,Gemeindestraße,Bergbau,,24,automatisch
+03566,Adlerstraße,Leithe,Gemeindestraße,Bergbau,,24,geprueft
 00012,Admiral-Scheer-Straße,Südviertel,Gemeindestraße,"Person, Mann, Deutscher, Admiral",,24,automatisch
 03556,Adolf-Hopmann-Straße,Werden,Gemeindestraße,"Person, Mann, Deutscher, Tuchfabrikant, Beigeordneter",,24,automatisch
 00013,Adolf-Rath-Straße,Margarethenhöhe,Gemeindestraße,"Person, Mann, Deutscher, Beigeordneter",,24,automatisch
 00014,Adolf-Schmidt-Straße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Kruppscher Beamter, Siedlung",,24,automatisch
 00015,Adolfstraße,Rüttenscheid,Gemeindestraße,Männlicher Vorname,,24,automatisch
-00016,Äbtissinsteig,Kray; Steele,Gemeindestraße,"Person, Frau, Deutsche, Äbtissin",,25,automatisch
+00016,Äbtissinsteig,Kray; Steele,Gemeindestraße,"Person, Frau, Deutsche, Äbtissin",,25,geprueft
 00017,Ägidiusstraße,Stadtwald; Bredeney,Gemeindestraße,"Person, Mann, Grieche, Kaufmann, Abt",An der Kluse,25,automatisch
 00018,Ägirstraße,Altenessen-Nord,Gemeindestraße,Bergbau,,25,automatisch
 00019,Agnesstraße,Rüttenscheid,Gemeindestraße,"Person, Frau, Italienerin, Heilige, Weiblicher Vorname",,25,automatisch
@@ -26,7 +26,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00024,Ahrfeldstraße,Bergerhausen,Gemeindestraße,Flurname,,25,automatisch
 00029,Aisthang,Freisenbruch,Gemeindestraße,"Person, Mann, Österreicher, Minnesänger",,25,automatisch
 03652,Ahnewinkelstraße - Hof Ahnewinkel Akademiestraße,Kettwig,Gemeindestraße,Lagebezeichnung,,25,unsicher
-00025,Akazienallee,Stadtkern,Gemeindestraße,Essener Geschichte und Örtlichkeit,,26,automatisch
+00025,Akazienallee,Stadtkern,Gemeindestraße,Essener Geschichte und Örtlichkeit,,26,geprueft
 00026,Akstraße,Westviertel,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Bergbau",,26,automatisch
 00027,Aktienstraße,Bedingrade; Schönebeck,Landstraße,Bergbau,,26,automatisch
 00028,Albermannstraße,Werden,Gemeindestraße,"Person, Mann, Deutscher, Bildhauer",,27,automatisch
@@ -42,7 +42,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00034,Alfredistraße,Stadtkern; Ostviertel,Kreisstraße,"Person, Mann, Deutscher, Bischof, Essener Geschichte und Örtlichkeit",,28,automatisch
 03269,Ehemaliger Alfrediplatz mit Alfredibrunnen Alfred-Neuse-Weg,Haarzopf,Gemeindestraße,"Person, Mann, Deutscher, Pfarrer",,28,unsicher
 00035,Alfred-Pott-Weg,Bredeney,Gemeindestraße,"Person, Mann, Deutscher, Chemiker, Ingenieur",,28,automatisch
-00036,Alfredstraße,Rüttenscheid; Bredeney,Bundesstraße,"Person, Mann, Deutscher, Familie Krupp, Industrielter, Männlicher Vorname",,28,automatisch
+00036,Alfredstraße,Rüttenscheid; Bredeney,Bundesstraße,"Person, Mann, Deutscher, Familie Krupp, Industrieller, Männlicher Vorname",,28,geprueft
 00530,Alfried-Krupp-Straße,Rüttenscheid,Gemeindestraße,"Person, Mann, Deutscher, Familie Krupp, Industrieller",,28,automatisch
 00037,Alinenhöhe,Fischlaken,Gemeindestraße,Bergbau,,29,automatisch
 00038,Allbauweg,Huttrop,Gemeindestraße,Industrie und Wirtschaft,,29,automatisch
@@ -54,7 +54,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00569,Alte Bottroper Straße,Bergeborbeck,Kreisstraße; Hauptstraße,"Lagebezeichnung, zuvor: Blechstraße, zuvor: Auf dem Bleek",,29,unsicher
 00044,Alte Eichen,Rellinghausen,Gemeindestraße,Botanik,,29,automatisch
 00253,Alte Hatzper Straße,Haarzopf; Schuir,Gemeindestraße,Lagebezeichnung,Hatzper Straße,29,automatisch
-01428,Alte Hauptstraße,Burgaltendorf,Landstraße,Lage-bezeichnung,,29,automatisch
+01428,Alte Hauptstraße,Burgaltendorf,Landstraße,Lagebezeichnung,,29,geprueft
 00045,Alte Kirchstraße,Katernberg,Gemeindestraße,Kirche und Kloster,,29,automatisch
 00046,Alte Landstraße,Karnap,Gemeindestraße,Lagebezeichnung,,30,automatisch
 00252,Alte Raadter Straße,Haarzopf,Gemeindestraße,Lagebezeichnung,Raadter Straße,30,automatisch
@@ -62,7 +62,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00047,Altenau,Margarethenhöhe,Gemeindestraße,Flurname,,30,automatisch
 00048,Altenbergmühle,Nordviertel,Gemeindestraße,Mühle,,30,automatisch
 00049,Altenbergstraße,Nordviertel,Gemeindestraße,Lehngut,,30,automatisch
-00050,Altendorfer Straße,Altendorf; Bochold; Schönebeck; Westviertel,Bundesstraße; Landstraße,Lagebezeichnung,,30,unsicher
+00050,Altendorfer Straße,Altendorf; Bochold; Schönebeck; Westviertel,Bundesstraße; Landstraße,Lagebezeichnung,,30,geprueft
 00051,Altendorfplatz,Frohnhausen,Gemeindestraße,"Lagebezeichnung, Platz",,30,automatisch
 00052,Altenessener Markt,Altenessen-Süd,Gemeindestraße,Lagebezeichnung,,31,automatisch
 00053,Altenessener Straße,Altenessen-Nord; Altenessen-Süd; Nordviertel; Stadtkern,Landstraße; Gemeindestraße,Lagebezeichnung,,31,automatisch
@@ -112,9 +112,9 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00082,Am Glockenspiel,Stadtkern,Gemeindestraße,Lagebezeichnung,,35,automatisch
 00963,Am Grugapark,Rüttenscheid,Gemeindestraße,Lagebezeichnung,,35,automatisch
 00083,Am Gutshof,Schuir,Gemeindestraße,Lagebezeichnung,,35,automatisch
-00084,Am Hagenbusch,Heisingen,Gemeindestraße,"Hurname, Hofname",,35,automatisch
+00084,Am Hagenbusch,Heisingen,Gemeindestraße,"Flurname, Hofname",,35,geprueft
 03603,Am Hammershöfchen,Kettwig,Gemeindestraße,Kotten,,35,automatisch
-00085,Am Handelshof - Handelshof 1913 KEN U E Weein Am Handelshof,Stadtkern,Gemeindestraße,Essener Geschichte und Örtlichkeit,,35,unsicher
+00085,Am Handelshof,Stadtkern,Gemeindestraße,Essener Geschichte und Örtlichkeit,,35,geprueft
 02537,Am Handwerkerpark,Katernberg,Gemeindestraße,Industrie und Wirtschaft,,36,automatisch
 00086,Am Hang,Burgaltendorf,Gemeindestraße,Lagebezeichnung,,36,automatisch
 00087,Am Hauptbahnhof,Stadtkern,Hauptstraße,Essener Geschichte und Örtlichkeit,,36,automatisch
@@ -154,12 +154,12 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00108,Am Lünink,Fischlaken,Gemeindestraße,"Flurname, Kotten",,39,automatisch
 00241,Am Luftschacht,Kray,Gemeindestraße,Bergbau,,40,automatisch
 00109,Am Markuskreuz,Bredeney,Gemeindestraße,Lagebezeichnung,,40,automatisch
-02513,Am Mechtenberg,Kray,Gemeindestraße,"Geologie, Berg, vorm.: Bonifaciusstraße (tlw.)",,40,unsicher
+02513,Am Mechtenberg,Kray,Gemeindestraße,"Geologie, Berg",,40,geprueft
 03607,Am Möhlenkamp,Kettwig,Gemeindestraße,Flurname,,40,automatisch
 00110,Am Mörgeken,Kray,Gemeindestraße,Flurname,,40,automatisch
 00111,Am Mühlenbach,Frohnhausen; Holsterhausen,Gemeindestraße,Gewässer,,40,automatisch
-03608,KERNE Met SENT BET pe rn ia Am Mühlengraben,Kettwig,Gemeindestraße,Lagebezeichnung,,40,unsicher
-03609,PERRRFEERE PETER Am Muhrenberg,Kettwig,Gemeindestraße,Flurname,,40,automatisch
+03608,Am Mühlengraben,Kettwig,Gemeindestraße,Lagebezeichnung,,40,geprueft
+03609,Am Muhrenberg,Kettwig,Gemeindestraße,Flurname,,40,geprueft
 00113,Am Nachtigallental,Margarethenhöhe,Gemeindestraße,"Botanik, Park",,40,automatisch
 00209,Am Ostpark,Südostviertel,Gemeindestraße,"Botanik, Park",,41,automatisch
 00114,Am Parkfriedhof,Huttrop,Gemeindestraße,Lagebezeichnung,,41,automatisch
@@ -171,18 +171,18 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00238,Am Richtenberg,Frohnhausen,Gemeindestraße,Lagebezeichnung,,41,unsicher
 00574,Am Riehlpark,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Journalist, Novellist, Kulturhistoriker",,41,automatisch
 00117,Am Ringofen,Bergeborbeck,Gemeindestraße,Lagebezeichnung,,41,unsicher
-00246,Am Roten Haus,Bedingrade,Gemeindestraße,Flurname,,42,automatisch
+00246,Am Roten Haus,Bedingrade,Gemeindestraße,Flurname,,42,geprueft
 00248,Am Rüttenscheider Stern,Rüttenscheid,Gemeindestraße,Lagebezeichnung,Rüttenscheider Stern,42,automatisch
 00118,Am Ruhmbach,Haarzopf,Gemeindestraße,Lagebezeichnung,,42,automatisch
 00119,Am Ruhrstein,Bredeney,Gemeindestraße,Lagebezeichnung,,42,automatisch
 00120,Am Ruhrufer,Steele,Gemeindestraße,Lagebezeichnung,,42,automatisch
 00121,Am Rundblick,Kray,Gemeindestraße,Lagebezeichnung,,42,automatisch
-03270,Am Schacht Hubert,Friltendorf,Gemeindestraße,Bergbau,,42,automatisch
+03270,Am Schacht Hubert,Frillendorf,Gemeindestraße,Bergbau,,42,geprueft
 00123,Am Scheidtbusch,Fulerum,Gemeindestraße,Hofname,,42,automatisch
 00124,Am Schlagbaum,Altenessen-Süd,Gemeindestraße,Flurname,,42,automatisch
 00125,Am Schlangenberg,Bergerhausen,Gemeindestraße,"Flurname, Hofname",,42,automatisch
 00710,Am Schloss Schellenberg,Rellinghausen,Gemeindestraße,Lagebezeichnung,,42,automatisch
-00126,Am Schmalscheid,Fischlaken,Gemeindestraße,Fiurname,,43,automatisch
+00126,Am Schmalscheid,Fischlaken,Gemeindestraße,Flurname,,43,geprueft
 00127,Am Schroer,Byfang,Gemeindestraße,"Flurname, Familienname",,43,automatisch
 01138,Am Schroerkotten,Stoppenberg,Gemeindestraße,Familienname,,43,automatisch
 00128,Am Schultenhof,Stoppenberg,Gemeindestraße,Hofname,,43,automatisch
@@ -204,7 +204,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01149,Am Technologiepark,Kray,Gemeindestraße,"Industrie und Wirtschaft, vorm.: Franz-Fischer-Weg_ (tiw.), vorm.: Schönscheidtstraße (tiw)",,44,unsicher
 00135,Am Teichstück,Schonnebeck,Gemeindestraße,Flurname,,44,automatisch
 00217,Am Thyssenhaus,Südviertel,Gemeindestraße,Lagebezeichnung,,44,unsicher
-00136,Am Treppehen,Schuir,Gemeindestraße,Lagebezeichnung,,45,automatisch
+00136,Am Treppchen,Schuir,Gemeindestraße,Lagebezeichnung,,45,geprueft
 00137,Am Turm,Heidhausen,Gemeindestraße,Lagebezeichnung,,45,unsicher
 00138,Am U-Bogen,Katernberg,Gemeindestraße,Lagebezeichnung,,45,automatisch
 00255,Am Uhlenkrug,Stadtwald,Gemeindestraße,Lagebezeichnung,,45,automatisch
@@ -214,7 +214,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00140,Am Volkswald,Heidhausen,Gemeindestraße,Lagebezeichnung,,45,automatisch
 00240,Am Wäldchen,Horst,Gemeindestraße,Lagebezeichnung,,45,automatisch
 00141,Am Waldthausenpark,Stadtkern,Gemeindestraße,Essener Geschichte und Örtlichkeit,,45,automatisch
-00268,AmWasserturm,Burgaltendorf,Gemeindestraße,Lagebezeichnung,,46,automatisch
+00268,Am Wasserturm,Burgaltendorf,Gemeindestraße,Lagebezeichnung,,46,geprueft
 00143,Am Werthschemm,Karnap,Gemeindestraße,Flurname,,46,automatisch
 00144,Am Westbahnhof,Frohnhausen,Gemeindestraße,Lagebezeichnung,,46,automatisch
 03615,Am Wetzelsberg,Kettwig,Gemeindestraße,"Flurname, Kotten",,46,automatisch
@@ -237,10 +237,10 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00254,An den Quellen,Borbeck-Mitte,Gemeindestraße,Gewässer,,48,unsicher
 00151,An der Altenburg,Heidhausen,Gemeindestraße,"Flurname, Kotten",,48,automatisch
 00152,An der Apostelkirche,Frohnhausen,Gemeindestraße,Kirche und Kloster,,48,automatisch
-00153,Ander Bergbrücke,Vogelheim,Gemeindestraße,Flurname,,48,automatisch
+00153,An der Bergbrücke,Vogelheim,Gemeindestraße,Flurname,,48,geprueft
 03558,An der Bergkuhle,Bedingrade,Gemeindestraße,Lagebezeichnung,,48,automatisch
 00154,An der Bläufabrik,Heidhausen,Gemeindestraße,Industrie und Wirtschaft,,48,automatisch
-01552,An der Blumenwiese,Stoppenberg,Gemeindestra Be,"Lagebezeichnung, PER B BEN: * ai",,48,unsicher
+01552,An der Blumenwiese,Stoppenberg,Gemeindestraße,Lagebezeichnung,,48,geprueft
 00155,An der Braut,Heidhausen,Gemeindestraße,Bergbau,,49,unsicher
 03564,An der Düsterbeck,Borbeck-Mitte,Gemeindestraße,Flurname,,49,automatisch
 00156,An der Fliehburg,Heidhausen,Gemeindestraße,Lagebezeichnung,,49,automatisch
@@ -255,11 +255,11 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00242,An der Schlaghecke,Bedingrade,Gemeindestraße,Lagebezeichnung,,50,automatisch
 03560,An der Schlucht,Schönebeck,Gemeindestraße,Lagebezeichnung,,50,unsicher
 01559,An der Seilbahn,Schönebeck,Gemeindestraße,Bergbau,,51,automatisch
-03625,An der Seilerei,Kettwig,Gemeindestraße,Lagebezeichnung,,51,unsicher
+03625,An der Seilerei,Kettwig,Gemeindestraße,Lagebezeichnung,,51,geprueft
 02605,An der Stadtmauer,Werden,Gemeindestraße,Lagebezeichnung,,51,automatisch
 00163,An der Walkmühle,Altenessen-Nord; Vogelheim,Gemeindestraße,"Lagebezeichnung, Industrie und Wirtschaft, Mühle",Walkmühlenstraße,51,automatisch
 00256,An der Wickenburg,Frohnhausen,Gemeindestraße,Lagebezeichnung,Wickenburgstraße,51,automatisch
-00269,An der Windmühle,Burgaltendorf,,Lagebezeichnung,,51,unsicher
+00269,An der Windmühle,Burgaltendorf,Gemeindestraße,Lagebezeichnung,,51,geprueft
 03563,An der Zeche Heinrich,Überruhr-Holthausen,Gemeindestraße,Bergbau,,51,automatisch
 00165,An der Ziegelei,Schuir,Gemeindestraße,"Lagebezeichnung, Siedlung",,52,automatisch
 00167,An Lindemanns Kreuz,Schonnebeck,Gemeindestraße,Lagebezeichnung,,52,automatisch
@@ -312,7 +312,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00205,Auf dem Kolfen,Kray,Gemeindestraße,Flurname,,56,automatisch
 03550,Auf dem Loh,Burgaltendorf,Gemeindestraße,Flurname,,56,unsicher
 00206,Auf dem Stapel,Schonnebeck,Gemeindestraße,Bergbau,,56,automatisch
-00207,I. ia Auf dem Sutan,Werden,Gemeindestraße,Botanik,,56,unsicher
+00207,Auf dem Sutan,Werden,Gemeindestraße,Botanik,,56,geprueft
 00210,Auf der Bredde,Frillendorf,Gemeindestraße,Flurname,,57,unsicher
 00211,Auf der Bucht,Heisingen,Gemeindestraße,Lagebezeichnung,,57,automatisch
 00212,Auf der Burg,Schönebeck,Gemeindestraße,Lagebezeichnung,,57,automatisch
@@ -344,7 +344,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00233,Auf'm Rolland,Borbeck-Mitte,Gemeindestraße,Flurname,,58,automatisch
 00234,Auf'm Steinacker,Werden,Gemeindestraße,Flurname,,58,automatisch
 03553,Auf'm Stöcken,Kupferdreh,Gemeindestraße,Flurname,,59,automatisch
-00235,Aufm Uhlenbroich,Frillendorf,Gemeindestraße,Flurname,,59,automatisch
+00235,Auf'm Uhlenbroich,Frillendorf,Gemeindestraße,Flurname,,59,geprueft
 00236,Augenerstraße,Steele,Gemeindestraße,"Person, Mann, Deutscher, Pfarrer",,59,automatisch
 00237,Augustaweg,Fischlaken,Gemeindestraße,Bergbau,,59,automatisch
 01249,August-Schmidt-Straße,Katernberg,Gemeindestraße,"Person, Mann, Deutscher, Bergmann, Gewerkschafter",,59,automatisch
@@ -357,16 +357,16 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00275,Bärendelle,Frohnhausen,Gemeindestraße,Flurname,,60,automatisch
 00276,Bäuminghausstraße,Altenessen-Süd,Gemeindestraße,Lagebezeichnung,,60,automatisch
 00277,Bahnhofstraße,Heisingen,Gemeindestraße,Lagebezeichnung,,60,automatisch
-00278,43 ff Bahnstraße,Kupferdreh,Gemeindestraße,Lagebezeichnung,,60,unsicher
+00278,Bahnstraße,Kupferdreh,Gemeindestraße,Lagebezeichnung,,60,geprueft
 00279,Bahrenbergring,Heisingen,Gemeindestraße,Hofname,,60,automatisch
 00280,Baldeney,Bredeney,Gemeindestraße,"Nummerierungsbezirk, Rittersitz",,61,automatisch
 00514,Baltrumweg,Margarethenhöhe,Gemeindestraße,Insel,,61,automatisch
-00281,Bamlerstraße,Altenessen-Süd,Gemeindestraße,"Person, Mann, Deutscher, Meteorologe, Ballonfahrer",,61,unsicher
+00281,Bamlerstraße,Altenessen-Süd,Gemeindestraße,"Person, Mann, Deutscher, Meteorologe, Ballonfahrer",,61,geprueft
 00282,Bandelstraße,Huttrop,Gemeindestraße,"Person, Mann, Deutscher, Architekt, Bildhauer, Maler",,61,automatisch
 00283,Bandstraße,Bedingrade; Schönebeck,Gemeindestraße,Lagebezeichnung,,61,automatisch
 00284,Barbarakirchgang,Ostviertel,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Kirche und Kloster",,61,automatisch
 00285,Barbarastraße,Kray,Gemeindestraße,Kirche und Kloster,,61,automatisch
-00286,Barbarossaplatz,Stoppenberg,Gemeindestraße,"Person, Mann, Kaiser,Platz",,61,unsicher
+00286,Barbarossaplatz,Stoppenberg,Gemeindestraße,"Person, Mann, Kaiser,Platz",,61,geprueft
 00512,Barchemhöhe,Bedingrade,Gemeindestraße,Bauerschaft,,61,automatisch
 00287,Bardelebenstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Professor, Mediziner, Chirurg",,61,automatisch
 00967,Bargmannstraße,Westviertel,Gemeindestraße,"Person, Mann, Deutscher, Politiker, Beigeordneter",,62,automatisch
@@ -380,7 +380,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00294,Basunestraße,Altenessen-Nord,Gemeindestraße,Hofname,,63,automatisch
 00295,Batenbrocker Straße,Karnap,Gemeindestraße,Bauerschaft,,63,automatisch
 02046,Bauer-Knühl-Weg,Horst,Gemeindestraße,"Person, Mann, Deutscher, Landwirt",,63,automatisch
-03629,EBERLE u Bauerschaft,Kettwig,Gemeindestraße,Nummerierungsbezirk,,63,automatisch
+03629,Bauerschaft,Kettwig,Gemeindestraße,Nummerierungsbezirk,,63,geprueft
 00296,Baumblüte,Bredeney,Gemeindestraße,Botanik,,63,automatisch
 00521,Baumertweg,Horst,Gemeindestraße,"Person, Mann, Deutscher, Schlosser, Widerstandskämpfer",,63,automatisch
 00300,Baumstraße,Südviertel,Gemeindestraße,Botanik,Dreilindenstraße,63,automatisch
@@ -420,11 +420,11 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00330,Bergerhauser Straße,Huttrop; Bergerhausen,Gemeindestraße,Bauerschaft,,66,automatisch
 00471,Berghausbusch,Haarzopf,Gemeindestraße,Familienname,,66,unsicher
 00458,Berghausweg,Haarzopf,Gemeindestraße,Familienname,Berghausbusch,66,automatisch
-00331,"[sie > °"" sr $ Bergheimer Steig",Dellwig,Gemeindestraße,Bauerschaft,Bergheimer Straße,66,unsicher
+00331,Bergheimer Steig,Dellwig,Gemeindestraße,Bauerschaft,Bergheimer Straße,66,geprueft
 00509,Bergheimer Straße,Bedingrade; Gerschede,Gemeindestraße,Bauerschaft,,67,automatisch
 00332,Bergische Landstraße,Heidhausen,Bundesstraße,Stadt und Ort,,67,automatisch
 00333,Bergkamp,Schönebeck,Gemeindestraße,Flurname,,67,automatisch
-00334,Bergknappenweg,Steele,Gemeindestraße,Bergbau,,67,unsicher
+00334,Bergknappenweg,Steele,Gemeindestraße,Bergbau,,67,geprueft
 00335,Bergmannsglück,Katernberg,Gemeindestraße,"Bergbau, Lebensgefühl",,67,automatisch
 00336,Bergmühle,Bochold,Gemeindestraße,Mühle,,67,automatisch
 00337,Bergmühlenwehr,Bochold,Gemeindestraße,Mühle,Bergmühle,67,automatisch
@@ -439,7 +439,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00316,Bersonstraße,Nordviertel,Gemeindestraße,"Person, Mann, Deutscher, Meteorologe, Ballonfahrer",,68,automatisch
 00345,Berswortschanze,Karnap,Gemeindestraße,"Person, Mann, Deutscher, Richter",,68,automatisch
 02766,Bert-Brecht-Straße,Südviertel; Westviertel,Gemeindestraße,"Person, Mann, Deutscher, Dramatiker, Lyriker",,68,automatisch
-00828,Berthold-Beitz-Boulevard,Nordviertel; Westviertel; Altenessen-Süd,Kreisstraße,"Person, Mann, Deutscher, Industrielle",,68,automatisch
+00828,Berthold-Beitz-Boulevard,Nordviertel; Westviertel; Altenessen-Süd,Kreisstraße,"Person, Mann, Deutscher, Industrieller",,68,geprueft
 00346,Bertoldstraße,Rüttenscheid,Gemeindestraße,Männlicher Vorname,,68,automatisch
 00347,Bertramstraße,Karnap,Gemeindestraße,Männlicher Vorname,,69,automatisch
 00348,Berzeliusstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Schwede, Mediziner, Chemiker",,69,automatisch
@@ -448,19 +448,19 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00352,Beulenhof,Horst,Gemeindestraße,Hofname,,69,automatisch
 00353,Beulestraße,Horst,Gemeindestraße,Bauerschaft,,69,automatisch
 00354,Beuststraße,Ostviertel,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Bergbau",,69,automatisch
-00355,Bewerungestraße,Steele,Gemeindestraße,"Person, Mann, Deutscher, Waisenhausdirektor",,70,automatisch
+00355,Bewerungestraße,Steele,Gemeindestraße,"Person, Mann, Deutscher, Waisenhausdirektor",,70,geprueft
 00356,Beyweg,Huttrop,Gemeindestraße,"Person, Mann, Deutscher, Landwirt",,70,automatisch
 00357,Bieberweg,Bedingrade; Geschede,,"Gemeindestraße, Stadt und Ort, Siedlung",,70,unsicher
 00358,Biegonstraße,Schonnebeck,Gemeindestraße,"Person, Mann, Deutscher, Bürgermeister",,70,automatisch
 00359,Bielenhöhe,Frillendorf,Gemeindestraße,Flurname,,70,automatisch
-00360,Bienenweg,Überruhr-Hinset; Überruhr-Holthausen,Gemeindestraße,"Person, Mann, Deutscher, Pfarrer",,70,automatisch
+00360,Bienenweg,Überruhr-Hinsel; Überruhr-Holthausen,Gemeindestraße,"Person, Mann, Deutscher, Pfarrer",,70,geprueft
 03639,Biesgenweg,Kettwig,Gemeindestraße,Familienname,,70,automatisch
 00361,Billebrinkhöhe,Bergerhausen,Gemeindestraße,Essener Geschichte und Örtlichkeit,,70,automatisch
 00362,Billrothstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Mediziner",,70,automatisch
 00363,Billsteinweg,Altenessen-Nord,Gemeindestraße,Bergbau,,70,automatisch
 00365,Birkenstraße,Rüttenscheid; Stadtwald,Gemeindestraße,Botanik,,70,automatisch
-00366,Ben RN RAN) gs das Birkmannsweg - Hof Birkmann Birkmannsweg,Haarzopf,Gemeindestraße,Hofname,,70,unsicher
-01647,Bischof-Franz-Wolf-Straße,Gerschede,Gemeindestraße,"Person, Mann, Deutscher, Missionar, Bischof",,71,automatisch
+00366,Birkmannsweg,Haarzopf,Gemeindestraße,Hofname,,70,geprueft
+01647,Bischof-Franz-Wolf-Straße,Gerschede,Gemeindestraße,"Person, Mann, Deutscher, Missionar, Bischof",,71,geprueft
 00367,Bischoffstraße,Altenessen-Nord; Süd,Gemeindestraße,Hofname,,71,automatisch
 00368,Bismarckplatz,Südviertel,Kreisstraße,"Person, Mann, Deutscher, Fürst, Ehrenbürger, Platz",,71,automatisch
 00369,Bismarckstraße,Südviertel,Bundesstraße; Kreisstraße,"Person, Mann, Deutscher, Fürst, Ehrenbürger",Bismarckplatz,71,automatisch
@@ -469,7 +469,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00371,Bleckerkamp,Huttrop,Gemeindestraße,Flurname,,71,automatisch
 00372,Blittersdorfweg,Kray,Gemeindestraße,Familienname,,71,automatisch
 00373,Blitzstraße,Dellwig,Gemeindestraße,Lagebezeichnung,,71,automatisch
-00374,Blockstraße,Kupferdreh,Gemeindestraße,"Lagebezeichnung, Siedlung",,71,automatisch
+00374,Blockstraße,Kupferdreh,Gemeindestraße,"Lagebezeichnung, Siedlung",,71,geprueft
 00375,Blücherstraße,Nordviertel,Gemeindestraße,"Person, Mann, Deutscher, Fürst, Generalfeldmarschall, Kriegserinnerung",,71,automatisch
 00376,Blumenfeldstraße,Nordviertel,Gemeindestraße,"Person, Mann, Deutscher, Lehrer, Essener Geschichte und Örtlichkeit",,71,automatisch
 00377,Blumenkamp,Bredeney,Gemeindestraße,Botanik,,72,automatisch
@@ -500,15 +500,15 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02515,Bonsiepen,Bergerhausen,Gemeindestraße,Hofname,,74,unsicher
 00399,Borbecker Platz,Borbeck-Mitte,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Hofname, Platz",,74,automatisch
 00400,Borbecker Straße,Borbeck-Mitte; Bochold,Hauptstraße; Gemeindestraße,"Essener Geschichte und Örtlichkeit, Hofname",Borbecker Platz,74,unsicher
-00401,Borgemeisterstraße,Katernberg,Gemeindestraße,Kotten,,74,automatisch
+00401,Borgemeisterstraße,Katernberg,Gemeindestraße,Kotten,,74,geprueft
 00513,Borkumstraße,Margarethenhöhe,Gemeindestraße,Insel,,75,automatisch
 00402,Bornickswiese,Frillendorf,Gemeindestraße,Flurname,,75,automatisch
 00403,Bornstraße,Ostviertel,Gemeindestraße,"Person, Mann, Deutscher, Kaufmann, Gewerke, Bankier, Essener Geschichte und Örtlichkeit",,75,automatisch
-00404,Borsigstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher Maschinenbauer, Unternehmer, ur- spr.: Parkstraße",,75,unsicher
+00404,Borsigstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Maschinenbauer, Unternehmer",,75,geprueft
 00405,Boshamerweg,Karnap,Gemeindestraße,"Person, Mann, Deutscher, Pfarrer",,75,automatisch
 00406,Bosselberg,Stadtwald,Gemeindestraße,Bergbau,,75,automatisch
 00407,Bottlenberg,Stadtwald; Bredeney,Gemeindestraße,Familienname,,75,automatisch
-00408,Bottroper Straße,Nordviertel; Bochold; Altenessen-Süd; Bergeborbeck; Dellwig; Gerschede,Landstraße,Stadt und Ort,,76,unsicher
+00408,Bottroper Straße,Nordviertel; Bochold; Altenessen-Süd; Bergeborbeck; Dellwig; Gerschede,Landstraße,Stadt und Ort,,76,geprueft
 00409,Bovermanns Kamp,Kupferdreh,Gemeindestraße,Hofname,,76,automatisch
 00410,Bovermanns Weg,Kupferdreh,Gemeindestraße,Hofname,,76,automatisch
 00411,Boyer Straße,Karnap,Hauptstraße,Stadt und Ort,,76,automatisch
@@ -549,11 +549,11 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00441,Bremerstraße,Heidhausen,Gemeindestraße,Hofname,,79,automatisch
 00442,Brenscheidtstraße,Heidhausen,Gemeindestraße,Flurname,,80,automatisch
 00443,Breslauer Straße,Frohnhausen,Gemeindestraße,Stadt und Ort,,80,automatisch
-00444,Breukeifeld,Frintrop,Gemeindestraße,Flurname,,80,automatisch
+00444,Breukelfeld,Frintrop,Gemeindestraße,Flurname,,80,geprueft
 00364,Breukelmannhang,Frintrop,Gemeindestraße,Hofname,Breukelmannhof,80,automatisch
 00445,Breukelmannhof,Frintrop,Gemeindestraße,Hofname,,80,automatisch
 00446,Briefzeile,Horst,Gemeindestraße,Lagebezeichnung,,80,automatisch
-00447,Brinkerplatz - Hof auf'm Brink um 1850 Brigittastraße,Rüttenscheid,Gemeindestraße,Weiblicher Vorname,,80,unsicher
+00447,Brigittastraße,Rüttenscheid,Gemeindestraße,Weiblicher Vorname,,80,geprueft
 00448,Brinkerplatz,Steele,Gemeindestraße,"Flurname, Hofname, Platz",,80,automatisch
 02524,Brinkmannsbusch,Burgaltendorf,Gemeindestraße,Flurname,,80,automatisch
 00449,Brinkmannstraße,Bedingrade,Gemeindestraße,Hofname,,80,automatisch
@@ -575,7 +575,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00460,Bruktererhang,Überruhr-Hinsel,Gemeindestraße,Lagebezeichnung,,82,automatisch
 00465,Brunhildenstraße,Kray,Gemeindestraße,"Sage, Weiblicher Vorname",,82,automatisch
 00466,Brunnenstraße,Südviertel,Gemeindestraße,Essener Geschichte und Örtlichkeit,,82,automatisch
-00467,Brunnsiepen,Heisingen,,Lagebezeichnung,,82,unsicher
+00467,Brunnsiepen,Heisingen,Gemeindestraße,Lagebezeichnung,,82,geprueft
 00468,Brunostraße,Holsterhausen; Rüttenscheid,Gemeindestraße,Männlicher Vorname,,83,automatisch
 00469,Bruststraße,Heidhausen,Gemeindestraße,"Person, Mann, Deutscher, Bergmann, Gewerkschaftsführer, Landtagsabgeordneter",,83,automatisch
 00470,Buchenkamp,Stoppenberg,Gemeindestraße,Flurname,,83,automatisch
@@ -589,30 +589,30 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00479,Bülowstraße,Nordviertel,Gemeindestraße,"Person, Mann, Deutscher, Graf, General, Kriegserinnerung",,84,automatisch
 00480,Bülsebeckstraße,Altendorf,Gemeindestraße,Flurname,,84,automatisch
 00534,Bürgermeister-Fiedler-Platz,Kettwig,Gemeindestraße,"Person, Mann, Deutscher, Schlossermeister, Ratsherr, Bürgermeister, Platz",,84,automatisch
-00481,Bürgerstraße,Altenessen-Nord,Gemeindestraße,"Person, Mann, Deutscher, Klemptnermeister",,84,automatisch
+00481,Bürgerstraße,Altenessen-Nord,Gemeindestraße,"Person, Mann, Deutscher, Klemptnermeister",,84,geprueft
 00482,Büringweg,Frillendorf,Gemeindestraße,Flurname,,84,automatisch
 00483,Bürkenweg,Kray,Gemeindestraße,Kotten,,84,automatisch
 00485,Büschenweg,Heidhausen,Gemeindestraße,Flurname,,84,automatisch
 00484,Büscherstraße,Rüttenscheid,Gemeindestraße,"Person, Mann, Deutscher, Landgerichtspräsident",,84,automatisch
 00486,Büssemstraße,Steele,Gemeindestraße,"Person, Mann, Deutscher, Pfarrer",,84,automatisch
-00487,Büttnerstraße,Stadtwald,Gemeindestraße,"Person, Mann, Deutscher, Prokurist, Kruppscher Beamter, Siedlung",,84,automatisch
+00487,Büttnerstraße,Stadtwald,Gemeindestraße,"Person, Mann, Deutscher, Prokurist, Kruppscher Beamter, Siedlung",,84,geprueft
 00488,Bützgenweg,Heidhausen,Gemeindestraße,Hofname,,84,automatisch
 00489,Bulkersteig,Überruhr-Holthausen,Gemeindestraße,Kotten,,84,automatisch
 00490,Bullmannaue,Katernberg; Stoppenberg,Gemeindestraße,Kotten,,85,automatisch
 00491,Bungertstraße,Werden,Gemeindestraße,Lagebezeichnung,,85,automatisch
 00492,Bunsenstraße,Frohnhausen; Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Chemiker",,85,automatisch
-00493,Burekhardtstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Schweizer, Kunsthistoriker",,85,automatisch
+00493,Burckhardtstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Schweizer, Kunsthistoriker",,85,geprueft
 00494,Burgfeldstraße,Westviertel,Gemeindestraße,Essener Geschichte und Örtlichkeit,,85,automatisch
-00495,Burgplotz - 1864 Burggrafenstraße,Ostviertel; Südostviertel,Landstraße,Lagebezeichnung,Hohenzollernstraße,85,automatisch
+00495,Burggrafenstraße,Ostviertel; Südostviertel,Landstraße,Lagebezeichnung,Hohenzollernstraße,85,geprueft
 00496,Burgplatz,Stadtkern,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Platz",,85,automatisch
 00519,Burgstraße,Burgaltendorf,Kreisstraße,Burg,,85,automatisch
 00497,Burgundenweg,Kray,Gemeindestraße,Siedlung,,86,automatisch
 00498,Burhofer Brauk,Karnap,Gemeindestraße,Flurname,,86,automatisch
 00499,Buschfeldweg,Stadtwald,Gemeindestraße,"Person, Mann, Deutscher, Direktor, Kruppscher Beamter",,86,automatisch
-00500,Kruppsche Buschhauser Straße,Altendorf,Gemeindestraße,"Stadt und Ort, O",,86,automatisch
+00500,Buschhauser Straße,Altendorf,Gemeindestraße,Stadt und Ort,,86,geprueft
 00501,Buschkampstraße,Heisingen,Gemeindestraße,Kotten,,86,automatisch
 00502,I. Buschlandweg,Frillendorf,Gemeindestraße,Flurname,,86,automatisch
-00503,Buschlandweg,Frillendorf,Gemeindestraße,Flurname,,86,unsicher
+00503,II. Buschlandweg,Frillendorf,Gemeindestraße,Flurname,,86,geprueft
 00504,Buschstraße,Steele,Gemeindestraße,"Person, Mann, Deutscher, Offizier, Direktor",,86,automatisch
 00505,Busehofstraße,Frohnhausen,Gemeindestraße,Hofname,,87,automatisch
 00522,Bussardweg,Stadtwald,Gemeindestraße,Zoologie,,87,automatisch
@@ -631,7 +631,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00707,Carnaperhof,Karnap,Gemeindestraße,"Lehnhof, Siedlung",,88,automatisch
 00545,Carolus-Magnus-Straße,Bochold; Bergeborbeck,Gemeindestraße,Bergbau,,88,automatisch
 00558,Cathostraße,Bergeborbeck,Gemeindestraße,"Person, Frau, Deutsche, Weiblicher Vorname, Bergbau",,88,automatisch
-00573,olus-Magnus-Straße - Zeche Carolus Magnus 1926 Centrumstraße,Leithe,Gemeindestraße,Bergbau,,88,unsicher
+00573,Centrumstraße,Leithe,Gemeindestraße,Bergbau,,88,geprueft
 00559,Charlottenberg,Burgaltendorf,Gemeindestraße,"Bergbau, Weiblicher Vorname",,89,automatisch
 00561,Charlottenhöhe,Burgaltendorf,Gemeindestraße,"Bergbau, Weiblicher Vorname",Charlottenberg,89,automatisch
 03640,Charlottenhofstraße,Kettwig,Kreisstraße,"Lagebezeichnung, Weiblicher Vorname",,89,automatisch
@@ -642,7 +642,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00549,Clausiusstraße,Altendorf,Gemeindestraße,"Person, Mann, Deutscher, Physiker",,89,automatisch
 00550,Clausthaler Straße,Frohnhausen,Gemeindestraße,Stadt und Ort,,89,automatisch
 03281,Clemens-Schmeck-Straße,Dellwig,Gemeindestraße,"Person, Mann, Deutscher, Mediziner",,89,automatisch
-00551,Colsmanstraße,Kupferdreh,Gemeindestraße,Industrie und Wirtschaft,,89,automatisch
+00551,Colsmannstraße,Kupferdreh,Gemeindestraße,Industrie und Wirtschaft,,89,geprueft
 01596,Conrad-Engels-Weg,Stoppenberg,Gemeindestraße,"Person, Mann, Deutscher, Kaufmann, Bergbau, Siedlung",,90,automatisch
 00552,Corlißstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Amerikaner, Maschinenbauer, Ingenieur",,90,automatisch
 00553,Corneliastraße,Rüttenscheid,Gemeindestraße,Weibliche Vornamen,,90,automatisch
@@ -655,7 +655,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00591,Dachstraße,Borbeck-Mitte,Gemeindestraße,Lagebezeichnung,,90,automatisch
 00592,Dagobertstraße,Rüttenscheid,Gemeindestraße,Männliche Vornamen,,90,automatisch
 00593,Daheim,Margarethenhöhe,Gemeindestraße,Lebensgefühl,,90,automatisch
-00594,min \] 71 Dahler Höhe,Werden,Gemeindestraße,Hofname,,91,unsicher
+00594,Dahler Höhe,Werden,Gemeindestraße,Hofname,,91,geprueft
 00595,Dahlhauser Straße,Horst,Kreisstraße; Gemeindestraße,Stadt und Ort,,91,unsicher
 00596,Dahlienhof,Bredeney,Gemeindestraße,Botanik,,91,automatisch
 00665,Dahlmannstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Historiker, Staatsmann",,91,automatisch
@@ -679,21 +679,21 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00691,Deipenbecke,Byfang; Burgaltendorf,Gemeindestraße,Gewässer,,93,automatisch
 00611,Deipenbecktal,Byfang; Überruhr-Holthausen; Burgaltendorf,Gemeindestraße,Lagebezeichnung,,93,automatisch
 00612,Dellberg,Schuir,Gemeindestraße,Flurname,,93,automatisch
-00613,Dellbrügge,Stadtkern,Gemeindestraße,Lagebezeichnung,,93,automatisch
-00614,Dellbrügge,Stadtkern,Gemeindestraße,Lagebezeichnung,,93,unsicher
+00613,I. Dellbrügge,Stadtkern,Gemeindestraße,Lagebezeichnung,,93,geprueft
+00614,II. Dellbrügge,Stadtkern,Gemeindestraße,Lagebezeichnung,I. Dellbrügge,93,geprueft
 00615,Dellmannsfeld,Überruhr-Holthausen,Gemeindestraße,Hofname,,93,automatisch
 00616,Dellmannsweg,Überruhr-Holthausen; Burgaltendorf,Gemeindestraße,Hofname,,93,automatisch
 00617,Dellwiger Straße,Dellwig; Frintrop,Landstraße,Bauerschaft,,94,automatisch
 00618,Demrathkamp,Holsterhausen; Rüttenscheid,Gemeindestraße,"Flurname, Familienname",,94,automatisch
 00620,Devensstraße,Altendorf,Gemeindestraße,"Person, Mann, Deutscher, Landrat",,94,automatisch
-00621,De-Wolff-Straße,Altenessen-Süd,,"Gemeindestraße, Str.-Gr.: Person, Mann, Deutscher, Bürgermeister",,94,unsicher
+00621,De-Wolff-Straße,Altenessen-Süd,Gemeindestraße,"Person, Mann, Deutscher, Bürgermeister",,94,geprueft
 00622,Dickebank,Heisingen,Gemeindestraße,Bergbau,,94,automatisch
 00623,Dickmannstraße,Altendorf; Westviertel,Gemeindestraße,Hofname,,94,unsicher
 00624,Dickstraße,Kray,Gemeindestraße,"Person, Mann, Deutscher, Ingenieur, Bergbau, Siedlung",,94,automatisch
 00625,Diechmannplatz,Borbeck-Mitte,Gemeindestraße,"Person, Mann, Deutscher, Kruppscher Beamter, Siedlung, Platz",,94,automatisch
 02523,Diekmannsbusch,Burgaltendorf,Gemeindestraße,Flurname,,94,automatisch
 00627,Diemelstraße,Bergerhausen,Gemeindestraße,Gewässer,,95,automatisch
-00628,Diergardtstraße,Holsterhausen; Frohnhausen,Gemeindestraße,Person,,95,unsicher
+00628,Diergardtstraße,Holsterhausen; Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Industrieller, Seidenfabrikant",,95,geprueft
 02505,Diestweg,Bochold,Gemeindestraße,Stadt und Ort,,95,automatisch
 00689,Dietherichweg,Schonnebeck,Gemeindestraße,Männlicher Vorname,,95,automatisch
 00976,Diether-Krebs-Platz,Südostviertel,Gemeindestraße,"Person, Mann, Deutscher, Schauspieler, Kabarettist, Komiker, Platz",,95,automatisch
@@ -731,7 +731,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00657,Drehscheibe,Überruhr-Hinsel,Gemeindestraße,Eisenbahnwesen,,98,automatisch
 00658,Dreigarbenfeld,Schönebeck,Gemeindestraße,Lagebezeichnung,,98,automatisch
 00659,Dreilindenstraße,Südviertel,Gemeindestraße,Essener Geschichte und Örtlichkeit,,98,automatisch
-00692,Pass Dreilindenstraße - Das Lindengut Dreiringplatz,Steele,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Platz",,98,unsicher
+00692,Dreiringplatz,Steele,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Platz",,98,geprueft
 00661,Dreiringstraße,Steele,Gemeindestraße,Essener Geschichte und Örtlichkeit,Dreiringplatz,99,automatisch
 00662,Dresdener Straße,Frohnhausen,Gemeindestraße,Stadt und Ort,,99,automatisch
 00687,Drimbornweg,Byfang,Gemeindestraße,"Person, Mann, Deutscher, Erbkämmerer",,99,automatisch
@@ -743,11 +743,11 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03645,Droste-Hülshoff-Weg,Kettwig,Gemeindestraße,"Person, Frau, Deutsche, Dichterin, Schriftstellerin, Komponistin",,99,automatisch
 00669,Drostenbusch,Schonnebeck,Gemeindestraße,Hofname,,99,automatisch
 00688,Drostenhof,Schonnebeck,Gemeindestraße,Hofname,,99,automatisch
-00670,Droysenstraße,Froehnhausen,Gemeindestraße,"Person, Mann, Deutscher, Historiker",,100,automatisch
+00670,Droysenstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Historiker",,100,geprueft
 00671,Drügeshofstraße,Altendorf,Gemeindestraße,Hofname,,100,automatisch
 00672,Drumannstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Historiker",,100,automatisch
 00673,Druschelpfad,Stadtwald,Gemeindestraße,"Person, Mann, Deutscher, Kruppscher Beamter, Siedlung",,100,automatisch
-00674,BDudenstraße,Werden,Gemeindestraße,"Person, Mann, Deutscher, Abt, Historiker",,100,automatisch
+00674,Dudenstraße,Werden,Gemeindestraße,"Person, Mann, Deutscher, Abt, Historiker",,100,geprueft
 00685,Dudweilerstraße,Leithe,Gemeindestraße,Stadt und Ort,Merziger Aue,100,unsicher
 00675,Dückerstraße,Werden,Gemeindestraße,"Person, Mann, Deutscher, Abt",,100,automatisch
 00676,Dümptener Straße,Bedingrade,Gemeindestraße,Bauernschaft,,100,automatisch
@@ -761,7 +761,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00694,Dumberger Straße,Burgaltendorf,Landstraße,Stadt und Ort,,101,automatisch
 00684,Dutzendriege,Kray,Gemeindestraße,Lagebezeichnung,,101,automatisch
 00579,Duvenkamp,Heisingen,Gemeindestraße,"Flurname, Kotten",,101,automatisch
-00720,Eberhardstraße,Horst,Gemeindestraße,"Person, Mann, Deutscher, Bergmann, Männlicher Vorname",,101,unsicher
+00720,Eberhardstraße,Horst,Gemeindestraße,"Person, Mann, Deutscher, Bergmann, Männlicher Vorname",,101,geprueft
 00818,Echstenkämperweg,Überruhr-Holthausen,Gemeindestraße,Kotten,,101,automatisch
 00721,Eckbertstraße,Bredeney,Gemeindestraße,"Person, Mann, Deutscher, Familie Krupp, Offizier, Männlicher Vorname",,101,automatisch
 00722,Eckenbergstraße,Kray,Gemeindestraße,"Person, Mann, Deutscher, Industrieller",,101,automatisch
@@ -845,7 +845,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00783,Eppinghofer Straße,Altendorf,Gemeindestraße,Stadt und Ort,,109,automatisch
 00812,Erasmusstraße,Freisenbruch,Gemeindestraße,"Person, Mann, Niederländer, Theologe, Philosoph, Philologe",,109,automatisch
 00785,Erbenbank,Altenessen-Nord,Gemeindestraße,Bergbau,,109,automatisch
-00786,Erbslöhstraße,Altenessen-Süd,Gemeindestraße,"Person, Mann, Deutscher, Ballonfahrer",,109,automatisch
+00786,Erbslöhstraße,Altenessen-Süd,Gemeindestraße,"Person, Mann, Deutscher, Ballonfahrer",,109,geprueft
 00813,Erdpohlweg,Stoppenberg,Gemeindestraße,Kotten,,109,automatisch
 00787,Erdwegstraße,Bochold,Gemeindestraße,"Person, Mann, Deutscher, Pfarrer, Essener Geschichte und Örtlichkeit",,109,automatisch
 03648,Erftstraße,Kettwig,Gemeindestraße,Gewässer,,109,automatisch
@@ -877,7 +877,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00808,Euskirchenstraße,Altendorf,Gemeindestraße,"Person, Mann, Deutscher, Pfarrer, Essener Geschichte und Örtlichkeit",,112,automatisch
 01139,Eva-Hollands-Weg,Kettwig,Gemeindestraße,"Person, Frau, Deutsche, Politikerin",,112,automatisch
 02525,Ewald-Dutschke-Straße,Gerschede,Gemeindestraße,"Person, Mann, Deutscher, Politiker",,112,automatisch
-00841,Fährenkotten - um 1935 Fährenkotten,Heisingen,Gemeindestraße,Kotten,,112,unsicher
+00841,Fährenkotten,Heisingen,Gemeindestraße,Kotten,,112,geprueft
 00844,Fängershofstraße,Haarzopf,Gemeindestraße,Hofname,,112,automatisch
 00845,Färberweg,Horst,Gemeindestraße,Mühle,,112,automatisch
 00840,Fahrenberg,Byfang,Gemeindestraße,"Nummerierungsbezirk, Flurname, Kotten",,112,automatisch
@@ -910,7 +910,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00863,Fischweiher,Kray,Gemeindestraße,Gewässer,,114,automatisch
 00864,Flachsmarkt,Stadtkern,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Platz",Markt,114,automatisch
 00865,Flakerfeld,Überruhr-Holthausen,Gemeindestraße,Hofname,Flakering,114,automatisch
-00866,Flakering - Ehemaliger Hof Flake 1970 Flakering,Überruhr-Holthausen,Gemeindestraße,Hofname,,115,unsicher
+00866,Flakering,Überruhr-Holthausen,Gemeindestraße,Hofname,,115,geprueft
 03287,Flandernstraße,Bochold; Bergeborbeck,Gemeindestraße,Stadt und Ort,,115,automatisch
 00867,Flashoffstraße,Ostviertel,Gemeindestraße,"Person, Mann, Deutscher, Apotheker, Munizipalrat, Stadtrat",,115,automatisch
 00902,Fleherweg,Horst,Gemeindestraße,"Person, Mann, Deutscher, Rektor",,115,automatisch
@@ -919,7 +919,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00870,Fliederbusch,Bredeney,Gemeindestraße,Botanik,,115,automatisch
 00871,Fliegenbuschweg,Schönebeck,Gemeindestraße,Flur-name,,115,automatisch
 00872,I. Fließstraße,Bochold,Gemeindestraße,Geologie,,115,automatisch
-00873,FlieBstraße,Bochold,Gemeindestraße,Geologie,,115,unsicher
+00873,II. Fließstraße,Bochold,Gemeindestraße,Geologie,,115,geprueft
 00874,Flörken,Heisingen,Gemeindestraße,Bergbau,,116,automatisch
 01597,Flöz Zollverein,Stoppenberg,Gemeindestraße,"Bergbau, Siedlung",,116,automatisch
 00875,Flözstraße,Bochold,Gemeindestraße,Bergbau,,116,automatisch
@@ -935,7 +935,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00885,Forsthausstraße,Stadtwald,Gemeindestraße,Lagebezeichnung,,117,automatisch
 00886,Forstmannstraße,Werden,Gemeindestraße,Familienname,,117,automatisch
 00887,Forststraße,Vogelheim,Gemeindestraße,Lagebezeichnung,,117,automatisch
-00888,Franzenshöhe Frankenstraße,Bredeney; Stadtwald; Rellinghausen,Landstraße,Stadt und Ort,,117,automatisch
+00888,Frankenstraße,Bredeney; Stadtwald; Rellinghausen,Landstraße,Stadt und Ort,,117,geprueft
 00889,Frankfurter Straße,Frohnhausen,Gemeindestraße,Stadt und Ort,,117,automatisch
 00947,Franz-Arens-Straße,Südostviertel,Gemeindestraße,"Person, Mann, Deutscher, Politiker, Historiker",,117,automatisch
 00890,Franzenshöhe,Werden,Gemeindestraße,Lagebezeichnung,,117,automatisch
@@ -955,7 +955,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00901,Freiherr-vom-Stein-Straße,Bredeney; Heisingen,Gemeindestraße,"Person, Mann, Deutscher, Adelstand",,119,automatisch
 03654,Freihofstraße,Kettwig,Gemeindestraße,Lagebezeichnung,Montebruchstraße,119,automatisch
 03655,Freiligrathplatz,Kettwig,Gemeindestraße,"Person, Mann, Deutscher, Lyriker, Dichter, Übersetzer, Platz",,119,automatisch
-03656,Freiligrathstraße,Kettwig,Gemeindestraße,"Person, Mann, Deutscher, Lyriker, Dichter, Übersetzer",Freiligrathplatz,119,unsicher
+03656,Freiligrathstraße,Kettwig,Gemeindestraße,"Person, Mann, Deutscher, Lyriker, Dichter, Übersetzer",Freiligrathplatz,119,geprueft
 00905,Freisenbruchstraße,Freisenbruch; Steele,Gemeindestraße,Hofname,,119,unsicher
 00906,Freistattstraße,Nordviertel,Gemeindestraße,Flurname,,119,automatisch
 00907,Freseniusstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Chemiker",,119,automatisch
@@ -978,7 +978,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00922,Friesenaue,Bochold,Gemeindestraße,"Person, Mann, Deutscher, Pädagoge, Freiheitskämpfer, Turner",,121,automatisch
 00923,Frillendorfer Höhe,Frillendorf,Gemeindestraße,Lagebezeichnung,Frillendorfer Straße,121,automatisch
 00924,Frillendorfer Platz,Frillendorf,Gemeindestraße,"Lagebezeichnung, Platz",Frillendorfer Straße,121,automatisch
-00925,Frillendorfer Straße,Ostviertelund Frillendorf,Landstraße; Hauptstraße,Lagebezeichnung,,121,automatisch
+00925,Frillendorfer Straße,Ostviertel; Frillendorf,Landstraße; Hauptstraße,Lagebezeichnung,,121,geprueft
 00951,Frintroper Höhe,Frintrop,Gemeindestraße,Lagebezeichnung,,121,automatisch
 00926,Frintroper Knappen,Frintrop,Gemeindestraße,Flurname,,121,automatisch
 00952,Frintroper Markt,Frintrop,Gemeindestraße,"Lagebezeichnung, Platz",,121,automatisch
@@ -1033,7 +1033,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01005,Gemarkenplatz,Holsterhausen,Kreisstraße,"Lagebezeichnung, Platz",Gemarkenstraße,125,automatisch
 01006,Gemarkenstraße,Holsterhausen,Gemeindestraße,Lagebezeichnung,,125,automatisch
 01007,Gemperwiese,Karnap,Gemeindestraße,Flurname,,125,automatisch
-01008,Genossenschaftsplatz,Frohnhausen,Gemeindestraße; _,"Industrie und Wirtschaft, Platz",,125,automatisch
+01008,Genossenschaftsplatz,Frohnhausen,Gemeindestraße,"Industrie und Wirtschaft, Platz",,125,geprueft
 03289,Gentweg,Bochold,Gemeindestraße,Stadt und Ort,,125,automatisch
 01009,Georg-Baur-Ring,Bredeney,Gemeindestraße,"Person, Mann, Deutscher, Bauingenieur, Kruppscher Beamter",,125,automatisch
 01010,Georgkirchstraße,Heisingen,Gemeindestraße,Kirche und Kloster,,125,automatisch
@@ -1044,7 +1044,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03660,Gerhart-Hauptmann-Straße,Kettwig,Gemeindestraße,"Person, Mann, Deutscher, Dramatiker, Schriftsteller",,126,automatisch
 01013,Gerichtsstraße,Borbeck-Mitte,Gemeindestraße,Essener Geschichte und Örtlichkeit,,126,unsicher
 01014,Gerlachfeld,Freisenbruch,Gemeindestraße,Hofname,,126,automatisch
-01015,Gerlingplatz,Ostviertel,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Platz, (nicht amtlich): Gerlingswiese",,127,unsicher
+01015,Gerlingplatz,Ostviertel,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Platz",,127,geprueft
 01016,Gerlingstraße,Ostviertel,Landstraße,Essener Geschichte und Örtlichkeit,Gerlingplatz,127,automatisch
 01017,Germaniaplatz,Borbeck-Mitte,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Platz",,127,automatisch
 01018,Germaniastraße,Bochold; Borbeck-Mitte,Kreisstraße; Gemeindestraße,Essener Geschichte und Örtlichkeit,Germaniaplatz,127,automatisch
@@ -1054,7 +1054,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01021,Gerstekamp,Katernberg,Gemeindestraße,Flurname,,127,automatisch
 01022,Gerswidastraße,Stadtkern,Gemeindestraße,"Person, Frau, Deutsche, Äbtissin, Essener Geschichte und Örtlichkeit",,127,automatisch
 01023,Gertrudisstraße,Nordviertel,Gemeindestraße,"Person, Frau, Deutsche, Äbtissin, Essener Geschichte und Örtlichkeit",,127,automatisch
-00961,Gervinusplatz,Frohhausen,Gemeindestraße,"Person, Mann, Deutscher, Historiker, Politiker, Platz",Gervinusstraße,128,automatisch
+00961,Gervinusplatz,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Historiker, Politiker, Platz",Gervinusstraße,128,geprueft
 01024,Gervinusstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Historiker, Politiker",,128,automatisch
 01123,Geschwister-Scholl-Straße,Horst,Gemeindestraße,"Person, Mann, Deutscher, Widerstandskämpfer",,128,automatisch
 00575,Gewalterberg,Überruhr-Hinsel,Gemeindestraße,Bergbau,,128,automatisch
@@ -1080,7 +1080,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01044,Glückstraße,Ostviertel,Gemeindestraße,Lebensgefühl,,130,automatisch
 01045,Glühstraße,Borbeck-Mitte,Gemeindestraße,Industrie und Wirtschaft,,130,automatisch
 01046,Gneisenaustraße,Altenessen-Süd; Nordviertel,Gemeindestraße,"Person, Mann, Deutscher, General, Kriegserinnerung",,130,automatisch
-01047,Gockelweg,Haarzopf,Gemeindestraße,Zoologie,Reineke-Fuchs-Straße,130,automatisch
+01047,Gockelweg,Haarzopf,Gemeindestraße,Zoologie,Reineke-Fuchs-Straße,130,geprueft
 01048,Godertwende,Katernberg,Gemeindestraße,Männlicher Vorname,,130,automatisch
 01049,Goebenstraße,Südostviertel,Gemeindestraße,"Person, Mann, Deutscher, General, Kriegserinnerung",,130,automatisch
 01050,Gönterstraße,Bergerhausen,Gemeindestraße,Gemeinheit,,131,automatisch
@@ -1097,7 +1097,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01061,Grabenstraße,Stoppenberg,Gemeindestraße,Gewässer,,132,automatisch
 01062,Graefestraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Mediziner",,132,automatisch
 00980,Grävenweg,Bochold,Gemeindestraße,Kotten,,132,automatisch
-01063,DEEP BE \ Kr Be [m Graffweg - um 1935 Graf-Bernadotte-Straße,Bredeney,Gemeindestraße,"Person, Mann, Schwede, Politiker",,132,unsicher
+01063,Graf-Bernadotte-Straße,Bredeney,Gemeindestraße,"Person, Mann, Schwede, Politiker",,132,geprueft
 00713,Graf-Beust-Allee,Nordviertel,Gemeindestraße,Bergbau,,132,automatisch
 01064,Grafenstraße,Werden,Gemeindestraße,Essener Geschichte und Örtlichkeit,,133,automatisch
 01065,Graffweg,Steele,Gemeindestraße,Lagebezeichnung,,133,automatisch
@@ -1121,11 +1121,11 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00567,Grenoblestraße,Steele,Landstraße,Partnerstadt,,134,automatisch
 01080,Grenzgraben,Altenessen-Nord,Gemeindestraße,Lagebezeichnung,,134,automatisch
 01081,Grevelstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Apotheker, Historiker, Stadtverordneter",,134,automatisch
-01082,Grevendieck,Stadtwald,Gemeindestraße,Hofname,,134,automatisch
-01083,Dezember 1830 Grieperstraße,Altendorf | behandigt,,,,134,unsicher
+01082,Grevendieck,Stadtwald,Gemeindestraße,Hofname,,134,geprueft
+01083,Grieperstraße,Altendorf; Bochold,Gemeindestraße,Hofname,,134,geprueft
 01084,Grillostraße,Nordviertel,Bundesstraße; Hauptstraße,"Person, Mann, Deutscher, Industrieller",,134,automatisch
 01085,Grimbartweg,Haarzopf,Gemeindestraße,Lagebezeichnung,Reineke-Fuchs-Straße,135,automatisch
-01086,Grimbergstraße,Kray; Leithe,Gemeindestraße,Lehngut,,135,unsicher
+01086,Grimbergstraße,Kray; Leithe,Gemeindestraße,Lehngut,,135,geprueft
 00704,Groote-Ring,Freisenbruch,Gemeindestraße,"Person, Mann, Deutscher, Landwirt",,135,automatisch
 01087,Große Kehre,Katernberg,Gemeindestraße,Lagebezeichnung,,135,automatisch
 01088,Große Leining,Stoppenberg,Gemeindestraße,Flurname,,135,automatisch
@@ -1133,7 +1133,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01089,Großenbruchstraße,Altenessen-Süd,Gemeindestraße,Essener Geschichte und ÖOrtlichkeit,,135,automatisch
 01090,Großer Schirnkamp,Freisenbruch,Gemeindestraße,Flurname,,135,automatisch
 01092,Großfeldweg,Karnap,Gemeindestraße,Hofname,,135,automatisch
-01120,Großstraße,Frohrhausen,Gemeindestraße,"Person, Mann, Deutscher, Kruppscher Beamter",,135,automatisch
+01120,Großstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Kruppscher Beamter",,135,geprueft
 01124,Großwesterkamp,Stoppenberg,Gemeindestraße,Flurname,,135,automatisch
 01121,Grotehang,Kupferdreh,Gemeindestraße,Lagebezeichnung,Grotestraße,136,automatisch
 01093,Grotestraße,Kupferdreh,Gemeindestraße,Hofname,,136,automatisch
@@ -1147,14 +1147,14 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01101,Grüteringhof,Karnap,Gemeindestraße,Kotten,,136,automatisch
 01102,Grüters Gasse,Heidhausen,Gemeindestraße,Hofname,,136,automatisch
 01103,Grugaplatz,Rüttenscheid,Gemeindestraße,Platz,,136,automatisch
-01104,Grundstraße,Katernberg,Gemeindestraße,Lagebezeichnung,,136,unsicher
+01104,Grundstraße,Katernberg,Gemeindestraße,Lagebezeichnung,,136,geprueft
 01105,Grunertstraße,Altendorf,Gemeindestraße,"Person, Mann, Deutscher, Mathematiker, Physiker",,137,automatisch
 01617,Grunsbeckhof,Kupferdreh,Gemeindestraße,Hofname,,137,automatisch
 01106,Grusonstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Erfinder, Chemiker, Unternehmer",,137,automatisch
 01107,Gudulastraße,Rüttenscheid,Gemeindestraße,Weiblicher Vorname,,137,automatisch
 01108,Gülterberg,Fischlaken,Gemeindestraße,Flurname,,137,automatisch
 03665,Güterstraße,Kettwig,Gemeindestraße,Lagebezeichnung,,137,automatisch
-01109,telle führenden Straße den Namen „Güterstraße“ Gummertstraße,Rüttenscheid,Gemeindestraße,"Person, Mann, Deutscher, Mediziner, Stadtverordneter",,137,unsicher
+01109,Gummertstraße,Rüttenscheid,Gemeindestraße,"Person, Mann, Deutscher, Mediziner, Stadtverordneter",,137,geprueft
 01110,Guntherweg,Kray,Gemeindestraße,"Sage, Siedlung, Männlicher Vorname",,137,automatisch
 01111,Gußmannplatz,Rüttenscheid,Gemeindestraße,"Person, Mann, Deutscher, Kruppscher Beamter, Platz, Siedlung",,137,automatisch
 00584,Gustav-Heinemann-Brücke,Werden,Bundesstraße,"Person, Mann, Deutscher, Rechtsanwalt, Bergwerksdirektor, Politiker",,137,automatisch
@@ -1165,26 +1165,26 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01114,Gutenbergstraße,Südviertel,Gemeindestraße,"Person, Mann, Deutscher, Erfinder",,138,automatisch
 01115,Guts-Muths-Weg,Bergerhausen,Gemeindestraße,"Person, Mann, Deutscher, Pädagoge",,138,automatisch
 01116,Gyrenkampstraße,Werden,Gemeindestraße,Flurname,,138,automatisch
-01150,Haardtstraße,Bochotgd,Gemeindestraße,"Person, Mann, Deutscher, Pfarrer",,138,unsicher
+01150,Haardtstraße,Bochold,Gemeindestraße,"Person, Mann, Deutscher, Pfarrer",,138,geprueft
 01151,Habichtstraße,Stadtwald,Gemeindestraße,Zoologie,,138,automatisch
 01152,Hachestraße,Stadtkern; Westviertel,Gemeindestraße,"Person, Mann, Deutscher, Oberbürgermeister",,138,unsicher
 01153,Hackenberghang,Schuir,Gemeindestraße,"Flurname, Kotten",,138,automatisch
 01154,Hackland,Heisingen,Gemeindestraße,Flurname,,139,automatisch
 01155,Haedenkampstraße,Altendorf; Westviertel,Gemeindestraße,"Person, Mann, Deutscher, Prokurist, Kruppscher Beamter",,139,automatisch
-03277,Hängebank,Kray,Gemeindestraße,"Lagebezeichnung, (",,139,unsicher
-01157,Hafenstraße,Bochold; Vogelheim,Landstraße; Hauptstraße,Lagebezeichnung,,139,unsicher
+03277,Hängebank,Kray,Gemeindestraße,Lagebezeichnung,,139,geprueft
+01157,Hafenstraße,Bochold; Vogelheim,Landstraße; Hauptstraße,Lagebezeichnung,,139,geprueft
 03669,Hafkesdell,Kettwig,Gemeindestraße,Hofname,,139,automatisch
 01159,Hagedornstraße,Bedingrade; Gerschede,Gemeindestraße,Kotten,,139,automatisch
 01160,Hagelkreuz,Stadtwald,Gemeindestraße,Lagebezeichnung,,140,automatisch
 01161,I. Hagen,Stadtkern,Gemeindestraße,Essener Geschichte und Örtlichkeit,,140,automatisch
-01162,Hagen,Stadtkern,Gemeindestraße,Essener Geschichte und Örtlichkeit,,140,unsicher
-01163,Hagen,,Gemeindestraße,Essener Geschichte und Örtlichkeit,,140,unsicher
+01162,II. Hagen,Stadtkern,Gemeindestraße,Essener Geschichte und Örtlichkeit,,140,geprueft
+01163,III. Hagen,Stadtkern,Gemeindestraße,Essener Geschichte und Örtlichkeit,,140,geprueft
 01164,Hagenaustraße,Südostviertel,Gemeindestraße,"Kriegserinnerung, Stadt und Ort",,140,automatisch
 01165,Hagenbecker Bahn,Altendorf; Bochold,Gemeindestraße,Eisenbahnwesen,,140,automatisch
 01166,Hagenbeckstraße,Altendorf,Gemeindestraße,Bergbau,,140,automatisch
 01168,Hagmanngarten,Heisingen,Gemeindestraße,"Person, Mann, Deutscher, Bürgermeister",,141,unsicher
 01169,Halbachstraße,Altenessen-Süd,Gemeindestraße,"Person, Mann, Deutscher, Prokurist, Kruppscher Beamter, Siedlung",,141,automatisch
-01170,Halbe Höhe,Ho!sterhausen,Gemeindestraße,Lagebezeichnung,,141,automatisch
+01170,Halbe Höhe,Holsterhausen,Gemeindestraße,Lagebezeichnung,,141,geprueft
 01171,Haldenstraße,Stoppenberg; Katernberg,Gemeindestraße,Bergbau,,141,automatisch
 01199,Halferstein,Überruhr-Hinsel,Gemeindestraße,Flurname,,141,automatisch
 01172,Halfmannwiese,Borbeck-Mitte,Gemeindestraße,Lagebezeichnung,,141,automatisch
@@ -1201,7 +1201,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01184,Hangwimpel,Horst,Gemeindestraße,Lagebezeichnung,,142,automatisch
 01185,Hanielstraße,Katernberg,Gemeindestraße,"Person, Mann, Deutscher, Unternehmer, Bergbau",,142,automatisch
 01623,Hannah-Arendt-Straße,Frohnhausen,Gemeindestraße,"Person, Frau, Deutsche, Publizistin",,142,automatisch
-00834,Hanns-Joachim-Maßner-Weg,Heidhausen,Gemeindestraße,"Person, Mann, Deutscher, Theologe",,142,automatisch
+00834,Hanns-Joachim-Maßner-Weg,Heidhausen,Gemeindestraße,"Person, Mann, Deutscher, Theologe",,142,geprueft
 01186,Hansastraße,Steele,Gemeindestraße,Industrie und Wirtschaft,,142,unsicher
 01187,Hans-Böckler-Straße,Nordviertel; Westviertel,Bundesstraße,"Person, Mann, Deutscher, Politiker, Gewerkschafter",,142,automatisch
 01188,Hansemannstraße,Gerschede,Gemeindestraße,"Person, Mann, Deutscher, Unternehmer, Bankier",,142,automatisch
@@ -1211,7 +1211,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01200,Hans-Sachs-Straße,Leithe,Gemeindestraße,"Person, Mann, Deutscher, Schuhmacher, Spruchdichter, Meistersinger, Dramatiker",,143,automatisch
 00554,Hans-Thoma-Straße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Maler, Graphiker, Malerviertel-Holsterhausen",,143,automatisch
 01126,Hans-Toussaint-Platz,Stadtkern,Gemeindestraße,"Person, Mann, Deutscher, Kaufmann, Politiker, Oberbürgermeister, Bundestagsabgeordneter, Platz",,143,automatisch
-01191,Haraldstraße,Bredeney,Gemeindestraße,"Person, Mann, Deutscher, Familie Krupp, Industrielle",,143,automatisch
+01191,Haraldstraße,Bredeney,Gemeindestraße,"Person, Mann, Deutscher, Familie Krupp, Industrieller",,143,geprueft
 01192,Hardenbergufer,Werden; Fischlaken; Kupferdreh,Gemeindestraße,"Person, Mann, Deutscher, Staatsmann, Adelstand",,143,automatisch
 01193,Harkortstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Unternehmer, Politiker",,143,automatisch
 01194,Harnscheidts Höfe,Fischlaken,Gemeindestraße,Hofname,,143,automatisch
@@ -1234,11 +1234,11 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01210,Haumannplatz,Rüttenscheid,Landstraße,"Hofname, Platz",,146,automatisch
 01211,Haunerlandweg,Frohnhausen,Gemeindestraße,Kotten,,146,unsicher
 03670,Hauptstraße,Kettwig,Gemeindestraße,Lagebezeichnung,,146,unsicher
-01216,Haus Fuhr,Werden,Gemeindestraße,Lehngut,,146,automatisch
-01217,Haus Heisingen,Heisingen,Gemeindestraße,Lehngut,,146,automatisch
+01216,Haus Fuhr,Werden,Gemeindestraße,Lehngut,,146,geprueft
+01217,Haus Heisingen,Heisingen,Gemeindestraße,Lehngut,,146,geprueft
 01219,Haus Horst,Horst,Gemeindestraße,Rittersitz,,146,automatisch
 01213,Hausackerstraße,Frohnhausen; Holsterhausen,Landstraße,"Essen Geschichte und Örtlichkeit, Lage-bezeichnung",,147,automatisch
-01214,Haus-Berge-Straße,Altendorf; Bochold,,"Rittersitz, Lehngut",,147,unsicher
+01214,Haus-Berge-Straße,Altendorf; Bochold,Kreisstraße,"Rittersitz, Lehngut",,147,geprueft
 01215,Hausdykerfeld,Schonnebeck,Gemeindestraße,Flurname,,147,automatisch
 01218,Haus-Horl-Straße,Dellwig; Gerschede,Gemeindestraße,Lehngut,,147,unsicher
 01220,Hausmannweg,Kray,Gemeindestraße,Hofname,,147,automatisch
@@ -1272,7 +1272,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01242,Heidmannsbusch,Bredeney,Gemeindestraße,Flurname,,150,automatisch
 01243,Heierbusch,Brenedey,Gemeindestraße,Lagebezeichnung,,150,automatisch
 01384,Heilermannstraße,Südostviertel,Autobahn,"Person, Mann, Deutscher, Gymnasialdirektor, Regierungsrat",,150,automatisch
-03672,Helmholtz-Heiligenhauser Straße,Kettwig,Landstraße,Stadt und Ort,,150,automatisch
+03672,Heiligenhauser Straße,Kettwig,Landstraße,Stadt und Ort,,150,geprueft
 01245,Heilstraße,Frintrop,Gemeindestraße,Lagebezeichnung,,150,automatisch
 01246,Heimatdank,Fulerum,Gemeindestraße,Industrie und Wirtschaft,,150,automatisch
 00965,Heimbachweg,Borbeck-Mitte,Gemeindestraße,Familienname,,150,automatisch
@@ -1284,7 +1284,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02592,Heinrich-Brauns-Straße,Borbeck-Mitte,Gemeindestraße,"Person, Mann, Deutscher, Theologe, Politiker",,151,automatisch
 03674,Heinrich-Heine-Straße,Kettwig,Gemeindestraße,"Person, Mann, Deutscher, Dichter, Schriftsteller, Journalist",,151,automatisch
 02514,Heinrich-Held-Straße,Rüttenscheid,Gemeindestraße,"Person, Mann, Deutscher, Theologe",,151,automatisch
-00978,Heinrich-Imig-Straße,Stoppenberg,Gemeindestraße,"Person, Mann, Deutscher, Gewerkschaften, Bundestagsabgeordneter",,151,automatisch
+00978,Heinrich-Imig-Straße,Stoppenberg,Gemeindestraße,"Person, Mann, Deutscher, Gewerkschafter, Bundestagsabgeordneter",,151,geprueft
 01429,Heinrich-Kämpchen-Straße,Burgaltendorf,Gemeindestraße,"Person, Mann, Deutscher, Bergmann, Dichter",,151,automatisch
 00903,Heinrich-Lersch-Platz,Katernberg,Gemeindestraße,"Person, Mann, Deutscher, Kesselschmied, Dichter, Platz",,151,automatisch
 00904,Heinrich-Lersch-Straße,Katernberg,Gemeindestraße,"Person, Mann, Deutscher, Kesselschmied, Dichter",Heinrich-Lersch-Platz,151,automatisch
@@ -1304,8 +1304,8 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01260,Helbingstraße,Südviertel,Kreisstraße,"Person, Mann, Deutscher, Ingenieur",,153,automatisch
 02045,Helene-Müller-Weg,Horst,Gemeindestraße,"Person, Frau, Deutsche, Malerin, Kunstsammlerin",,153,automatisch
 01443,Helenendamm,Altenessen-Süd,Gemeindestraße,"Eisenbahnwesen, Volksmund",,153,automatisch
-01261,Helenenstraße,Nordviertel; Altendorf; Bochold,"Hauptstraße; Gemeinde- ’ ; N; IyO8} ""7 Pe “ n..r ne ee > Br a er 13 I Weiant ZI LARG: WE EEE Pr ED: WERDE EEE EWREN) -: EIER WR Helenenstroße - Zeche ver",Essener Geschichte und Örtlichkeit,,153,unsicher
-01439,Helen-Keller-Straße,Nordviertel,Gemeindestraße,"Person, Frau, Amerikanerin, Schriftstellerin",,154,automatisch
+01261,Helenenstraße,Nordviertel; Altendorf; Bochold,Hauptstraße; Gemeindestraße,Essener Geschichte und Örtlichkeit,,153,geprueft
+01439,Helen-Keller-Straße,Nordviertel,Gemeindestraße,"Person, Frau, Amerikanerin, Schriftstellerin",,154,geprueft
 01262,Helfenbergweg,Stoppenberg,Gemeindestraße,Flurname,,154,automatisch
 00826,Helgaweg,Rüttenscheid,Gemeindestraße,Weiblicher Vorname,,154,automatisch
 01418,Helgolandring,Margarethenhöhe,Gemeindestraße,Insel,,154,automatisch
@@ -1323,10 +1323,10 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00580,Hemsingskotten,Heisingen,Gemeindestraße,Kotten,,155,automatisch
 01271,Henckelstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Mediziner",,155,automatisch
 01272,Hendrik-Witte-Straße,Südviertel,Gemeindestraße,"Person, Mann, Niederländer, Komponist, Musikdirektor",,155,automatisch
-01273,Henglerplatz,Steele,Gemeindestraße,"Person, Mann, Deutscher, Stadtverordneter, Platz",,155,unsicher
+01273,Henglerplatz,Steele,Gemeindestraße,"Person, Mann, Deutscher, Stadtverordneter, Platz",,155,geprueft
 01274,Henglerstraße,Steele,Landstraße,"Person, Mann, Deutscher, Stadtverordneter",Henglerplatz,155,automatisch
 01275,Henningweg,Haarzopf,Gemeindestraße,Sage,Reineke-Fuchs-Straße,155,automatisch
-01276,Henricistraße,Berger-hausen; Huttrop,Gemeindestraße,"Person, Mann, Deutscher, Architekt, Stadtplaner, Hochschullehrer, Regierungsrat",,155,automatisch
+01276,Henricistraße,Bergerhausen; Huttrop,Gemeindestraße,"Person, Mann, Deutscher, Architekt, Stadtplaner, Hochschullehrer, Regierungsrat",,155,geprueft
 01426,Henri-Dunant-Straße,Rüttenscheid,Gemeindestraße,"Person, Mann, Schweizer, Geschäftsmann, Humanist",,155,automatisch
 01277,Henriettenstraße,Stadtkern,Gemeindestraße,"Person, Frau, Deutsche, Essener Geschichte und Örtlichkeit",,155,automatisch
 01278,Herbertshof,Stoppenberg,Gemeindestraße,Hofname,,155,automatisch
@@ -1340,9 +1340,9 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02528,Hermann-Köster-Weg,Kray,Gemeindestraße,"Person, Mann, Deutscher, Gewerkschafter, Stadtverordneter",,157,automatisch
 01441,Hermann-Rotthäuser-Straße,Horst,Gemeindestraße,"Person, Mann, Deutscher, Bauarbeiter, Widerstandskämpfer",,157,automatisch
 02047,Hermann-Sprenger-Weg,Horst,Gemeindestraße,"Person, Mann, Deutscher, Bauunternehmer",,157,automatisch
-01282,25ff Hermannstraße,Katernberg,Gemeindestraße,"Person, Mann, Deutscher, Essener Geschichte und Örtlichkeit",,157,unsicher
+01282,Hermannstraße,Katernberg,Gemeindestraße,"Person, Mann, Deutscher, Essener Geschichte und Örtlichkeit",,157,geprueft
 01283,Herrenbank,Altenessen-Nord,Gemeindestraße,Bergbau,,157,automatisch
-01284,Herskamp,Deltwig,Gemeindestraße,Hofname,,158,automatisch
+01284,Herskamp,Dellwig,Gemeindestraße,Hofname,,158,geprueft
 01285,Herthastraße,Rüttenscheid,Gemeindestraße,Weiblicher Vorname,,158,automatisch
 01286,Hertigerstraße,Steele,Gemeindestraße,"Person, Mann, Deutscher, Vikar",,158,automatisch
 01287,Hertzlerstraße,Stoppenberg,Gemeindestraße,"Person, Mann, Deutscher, Lehrer",,158,automatisch
@@ -1365,7 +1365,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01304,Hilgenbornstraße,Huttrop,Gemeindestraße,Flurname,,160,automatisch
 01305,Hilgerstraße,Nordviertel,Gemeindestraße,"Person, Mann, Deutscher, Industrieller",,160,automatisch
 01306,Hiltrops Kamp,Steele,Gemeindestraße,Flurname,,160,automatisch
-01307,Himmelpforten,Frintrop,Gemeindestraße,Kirche und Kioster,,160,automatisch
+01307,Himmelpforten,Frintrop,Gemeindestraße,Kirche und Kloster,,160,geprueft
 01308,Hindenburgstraße,Stadtkern,Kreisstraße,"Person, Mann, Deutscher, Generalfeldmarschall, Reichspräsident",,160,unsicher
 01309,Hinderfeldsberg,Überruhr-Holthausen,Gemeindestraße,Hofname,,160,automatisch
 01310,Hinsbecker Berg,Kupferdreh,Gemeindestraße,Honnschaft,,160,unsicher
@@ -1397,7 +1397,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01333,Höntroper Straße,Horst,Gemeindestraße,Stadt und Ort,,163,unsicher
 03679,Höseler Weg,Kettwig,Gemeindestraße,Stadt und Ort,,163,automatisch
 01427,Höttering,Heisingen,Gemeindestraße,Flurname,,163,automatisch
-01334,Auf'm Höltering) Hövelstraße,Altenessen-Süd; Bochold,Landstraße,"Person, Mann, Deutscher, Politiker, Regierungspräsident",,163,automatisch
+01334,Hövelstraße,Altenessen-Süd; Bochold,Landstraße,"Person, Mann, Deutscher, Politiker, Regierungspräsident",,163,geprueft
 01335,Hövenerwiese,Margarethenhöhe,Gemeindestraße,Volksmund,,163,automatisch
 01336,Hofackerstraße,Heisingen,Gemeindestraße,Flurname,,163,automatisch
 01337,Hoffnungstraße,Westviertel,Gemeindestraße,Essener Geschichte und Örtlichkeit,,163,automatisch
@@ -1465,7 +1465,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01388,Hüskenbörde,Bergerhausen,Gemeindestraße,Kotten,,170,automatisch
 01378,Huestraße,Schonnebeck; Katernberg,Landstraße; Kreisstraße,"Person, Mann, Deutscher, Gewerkschafter, Politiker",,170,automatisch
 01391,Hüttmannstraße,Altendorf,Gemeindestraße,"Hofname, Essener Geschichte und Örtlichkeit",,170,automatisch
-01392,Hufeisen,Frillendorf,Gemeindestraße,Lagebezeichnung,,170,unsicher
+01392,Hufeisen,Frillendorf,Gemeindestraße,Lagebezeichnung,,170,geprueft
 01393,Hufelandstraße,Holsterhausen,Landstraße,"Person, Mann, Deutscher, Mediziner",,171,automatisch
 01394,Hufergasse,Werden,Gemeindestraße,Lagebezeichnung,,171,automatisch
 01395,Huffmannstraße,Werden,Gemeindestraße,Familienname,,171,automatisch
@@ -1478,7 +1478,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01401,Hundebrinkstraße,Altenessen-Süd,,Essener Geschichte und Örtlichkeit,,171,unsicher
 01402,Hundsnockenstraße,Rellinghausen,Gemeindestraße,Bergbau,,172,automatisch
 01403,Hunsiepen,Heisingen,Gemeindestraße,"Flurname, Kotten",,172,automatisch
-01415,auch - entstellt - Hundsiepen (1826) Hunsrückstraße,Bredeney,Gemeindestraße,Stadt und Ort,Westerwaldstraße,172,unsicher
+01415,Hunsrückstraße,Bredeney,Gemeindestraße,Stadt und Ort,Westerwaldstraße,172,geprueft
 01404,Hurterstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Schweizer, Historiker",,172,automatisch
 01405,Husemannweg,Katernberg,Gemeindestraße,"Person, Mann, Deutscher, Bergarbeiterführer, Politiker",,172,automatisch
 01406,Huskamp,Katernberg,Gemeindestraße,Volksmund,,172,automatisch
@@ -1526,7 +1526,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01478,Im Kirchspiel,Steele,Gemeindestraße,Lagebezeichnung,,176,automatisch
 01480,Im Knick,Schonnebeck,Gemeindestraße,Lagebezeichnung,,176,automatisch
 01482,Im Langenbusch,Katernberg,Gemeindestraße,Flurname,,176,automatisch
-01483,PEREHERRANEEE Im Natt - Kotten im Natt 1970 Im Lindenstück,Schonnebeck,Gemeindestraße,Flurname,,176,unsicher
+01483,Im Lindenstück,Schonnebeck,Gemeindestraße,Flurname,,176,geprueft
 01484,Im Löwental,Werden,Gemeindestraße,Flurname,,176,automatisch
 01485,Im Looscheid,Stoppenberg,Gemeindestraße,Flurname,,176,automatisch
 01488,Im Mühlenbruch,Stoppenberg,Landstraße,Flurname,,176,automatisch
@@ -1559,7 +1559,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01461,Imbuschweg,Katernberg,Gemeindestraße,"Person, Mann, Deutscher, Gewerkschafter",,178,automatisch
 01538,Imhoffweg,Kray,Gemeindestraße; Person,"Person, Mann, Deutscher, Bauingenieur",,178,automatisch
 01477,Imkerei,Fischlaken,Gemeindestraße,Zoologie,,179,automatisch
-02512,Imkerweg,Altenessen-Nord,Gemeindestraße,"Zoologie, vorm.: Bolsterbaum (tiw.)",,179,unsicher
+02512,Imkerweg,Altenessen-Nord,Gemeindestraße,Zoologie,,179,geprueft
 01486,Immelmannstraße,Schonnebeck,Gemeindestraße,"Person, Mann, Deutscher, Oberleutnant",,179,automatisch
 01528,Immengarten,Freisenbruch,Gemeindestraße,Zoologie,,179,unsicher
 01487,Immestraße,Ostviertel; Stadtkern,Gemeindestraße,"Person, Mann, Deutscher, Oberlehrer, Volkskundler",,179,automatisch
@@ -1588,13 +1588,13 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01525,Isinger Tor,Steele,Gemeindestraße,Lagebezeichnung,,181,automatisch
 02049,Isingplatz,Leithe,Gemeindestraße,"Lagebezeichnung, Platz",,181,automatisch
 01526,Ittenbachstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Maler, Malerviertel-Holsterhausen",,181,automatisch
-00192,Jacob-Grimm-Straße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Literaturwissenschaftlen",,181,automatisch
+00192,Jacob-Grimm-Straße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Literaturwissenschaftler",,181,geprueft
 01560,Jacobsallee,Heidhausen,Gemeindestraße,"Person, Mann, Deutscher, Pfarrer",,181,automatisch
 01566,Jacob-Weber-Straße,Kray,Gemeindestraße,"Person, Mann, Deutscher, Kaufmann, Bürgermeister",,181,automatisch
 01561,Jägerstraße,Westviertel,Gemeindestraße,Essener Geschichte und Örtlichkeit,,181,automatisch
 01562,Jagdstraße,Frintrop,Gemeindestraße,Kotten,,181,automatisch
 00539,Jagstweg,Kettwig,Gemeindestraße,Gewässer,,182,automatisch
-01563,Jahnplatz,Altendorf,Gemeindestraße,"Person, Mann, Deutscher, Turner, Platz",,182,automatisch
+01563,Jahnplatz,Altendorf,Gemeindestraße,"Person, Mann, Deutscher, Turner, Platz",,182,geprueft
 01564,Jahnstraße,Bochold,Landstraße; Gemeindestraße,"Person, Mann, Deutscher, Turner",Jahnplatz,182,automatisch
 01565,Jakobstraße,Nordviertel,Gemeindestraße,"Person, Mann, Apostel, Männlicher Vorname",,182,automatisch
 01567,Janssenstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Maler, Malerviertel-Holsterhausen",,182,automatisch
@@ -1604,7 +1604,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01568,Jennerstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Engländer, Mediziner",,182,automatisch
 01569,Jheringstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Hochschullehrer, Jurist",,182,automatisch
 01570,Joachimberg,Schonnebeck,Gemeindestraße,Bergbau,Joachimstraße,182,automatisch
-01571,Joachimstraße,Kray; Schonnebeck,Gemeindestraße,Bergbau,,182,automatisch
+01571,Joachimstraße,Kray; Schonnebeck,Gemeindestraße,Bergbau,,182,geprueft
 01572,Johannastraße,Rüttenscheid,Gemeindestraße,Weibliche Vornamen,,182,automatisch
 01582,Johannes-Brokamp-Straße,Bergeborbeck; Bochold,Gemeindestraße,"Person, Mann, Deutscher, Pfarrer",,183,automatisch
 01594,Johannes-Klein-Straße,Horst,Gemeindestraße,"Person, Mann, Deutscher, Widerstandskämpfer",,183,automatisch
@@ -1619,7 +1619,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01577,Joseph-Boismard-Weg,Steele,Gemeindestraße,"Person, Mann, Deutscher, Kaufmann",,184,automatisch
 01590,Joseph-Breuer-Straße,Werden,Gemeindestraße,"Person, Mann, Deutscher, Bürgermeister",,184,automatisch
 01578,Josephinenstraße,Rüttenscheid,Gemeindestraße,Weibliche Vornamen,,184,automatisch
-01579,Joseph-Lenne-Straße,Rüttenscheid,Gemeindestraße,"Person, Mann, Deutscher, Architekt",,184,automatisch
+01579,Joseph-Lenné-Straße,Rüttenscheid,Gemeindestraße,"Person, Mann, Deutscher, Architekt",,184,geprueft
 01580,Joseph-Oertgen-Weg,Katernberg,Gemeindestraße,"Person, Mann, Deutscher, Direktor, Bergbau",,184,automatisch
 01581,Joseph-Schüller-Platz,Katernberg,Gemeindestraße,"Person, Mann, Deutscher, Rektor, Platz",,184,automatisch
 01585,Jüngstallee,Stadtwald,Gemeindestraße,"Person, Mann, Deutscher, Kruppscher Beamter, Siedlung",,184,automatisch
@@ -1648,7 +1648,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01627,Kaldekirche,Schonnebeck,Gemeindestraße,"Hofname, Flurname",,187,automatisch
 01599,Kaldemorgenweg,Steele,Gemeindestraße,Hofname,,187,automatisch
 01628,Kaldenhof,Schönebeck,Gemeindestraße,Hofname,,187,automatisch
-01629,Kaldenhofs Kamp,Schönebeck,Gemeindestraße,Flur-name,,187,automatisch
+01629,Kaldenhofs Kamp,Schönebeck,Gemeindestraße,Flurname,,187,geprueft
 01630,Kaldenhoverbaum,Schönebeck,Gemeindestraße,Flurname,,187,automatisch
 01631,Kalkstraße,Schönebeck,Gemeindestraße,Familienname,,187,automatisch
 01632,Kallenbergstraße,Nordviertel,Gemeindestraße,Familienname,Koopmanns Hude,187,unsicher
@@ -1659,7 +1659,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01637,Kamisheide,Schuir,Gemeindestraße,Flurname,,188,automatisch
 01640,Kamperfeld,Schuir,Gemeindestraße,Flurname,,188,automatisch
 01641,Kampmannbrücke,Heisingen; Kupferdreh,Kreisstraße,Familienname,,188,automatisch
-01642,Kampstraße,Bochotd,Gemeindestraße,Lagebezeichnung,,188,automatisch
+01642,Kampstraße,Bochold,Gemeindestraße,Lagebezeichnung,,188,geprueft
 01643,Kanarienberg,Freisenbruch,Gemeindestraße,Volksmund,,188,automatisch
 01644,Kaninenberghöhe,Bergerhausen,Gemeindestraße,Lagebezeichnung,,189,automatisch
 01646,Kanonenberg,Bredeney; Werden,Gemeindestraße,Kotten,,189,automatisch
@@ -1677,7 +1677,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00572,Karl-Legien-Straße,Vogelheim,Gemeindestraße,"Person, Mann, Deutscher, Gewerkschafter",,190,automatisch
 01659,Karl-Meyer-Platz,Schonnebeck,Gemeindestraße,"Person, Mann, Deutscher, Bürgermeister, Platz",,191,automatisch
 01660,Karl-Meyer-Straße,Katernberg; Schonnebeck,Kreisstraße; Gemeindestraße,"Person, Mann, Deutscher, Bürgermeister",Karl-Meyer-Platz,191,automatisch
-03699,Karlsbader Weg,Kettwig,Gemeindestraße,Stadt und Ort,,191,automatisch
+03699,Karlsbader Weg,Kettwig,Gemeindestraße,Stadt und Ort,,191,geprueft
 01662,Karlsplatz,Altenessen-Nord,Gemeindestraße,"Bergbau, Platz",Karlstraße,191,automatisch
 01663,Karlstraße,Altenessen-Nord,Gemeindestraße,Bergbau,,191,automatisch
 01709,Karmelitenweg,Kray,Gemeindestraße,Kirche und Kloster,,191,automatisch
@@ -1688,10 +1688,10 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03701,Karrenbergsfeld,Kettwig,Gemeindestraße,Lagebezeichnung,,191,automatisch
 01668,Kasseler Straße,Frohnhausen,Gemeindestraße,Stadt und Ort,,191,automatisch
 01669,Kassiepenstraße,Bergerhausen,Gemeindestraße,Hofname,,191,automatisch
-01670,60 ff Kastanienallee,Stadtkern,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Botanik",,192,unsicher
+01670,Kastanienallee,Stadtkern,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Botanik",,192,geprueft
 01671,Kasteienstraße,Stadtkern,Gemeindestraße,Essener Geschichte und Örtlichkeit,,192,automatisch
-01672,Kastellgraben,,Gemeindestraße,,,192,unsicher
-01673,Siehe Kastellplatz,Werden,Bundesstraße,"Essener Geschichte und Örtlichkeit, Platz",,192,automatisch
+01672,Kastellgraben,Werden,Gemeindestraße,Essener Geschichte und Örtlichkeit,Kastellplatz,192,geprueft
+01673,Kastellplatz,Werden,Bundesstraße,"Essener Geschichte und Örtlichkeit, Platz",,192,geprueft
 01674,Katernberger Markt,Katernberg,Gemeindestraße,"Bauerschaft, Platz",Katernberger Straße,192,automatisch
 01675,Katernberger Straße,Katernberg,Landstraße; Kreisstraße,Bauerschaft,,192,automatisch
 01676,Kathagen,Heidhausen,Gemeindestraße,Flurname,,192,automatisch
@@ -1702,7 +1702,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01681,Kaulbachstraße,Holsterhausen,Landstraße,"Person, Mann, Deutscher, Maler, Malerviertel-Holsterhausen",,193,automatisch
 01682,Kaupenstraße,Südviertel; Holsterhausen,Gemeindestraße,Gewässer,,193,automatisch
 01683,Kellermanns Busch,Stadtwald,Gemeindestraße,Hofname,,193,automatisch
-01684,Kellersohnweg,Altenessen-Süd,Gemeindestraße,Kotten,,193,automatisch
+01684,Kellersohnweg,Altenessen-Süd,Gemeindestraße,Kotten,,193,geprueft
 01685,Kellerstraße,Werden; Heidhausen,Gemeindestraße,"Person, Mann, Deutscher, Rentmeister",,193,automatisch
 01686,Kellinghausstraße,Kray,Gemeindestraße,Hofname,,193,automatisch
 01687,Kelserweg,Überruhr-Hinsel,Gemeindestraße,"Person, Mann, Deutscher, Richter",,193,unsicher
@@ -1821,7 +1821,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01779,Koloniestraße,Steele,Gemeindestraße,Siedlung,,205,automatisch
 01781,Kolpingstraße,Altenessen-Nord,Gemeindestraße,"Person, Mann, Deutscher, Geistlicher",,205,automatisch
 00582,Konrad-Adenauer-Brücke,Rellinghausen; Überruhr-Hinsel,Landstraße,"Person, Mann, Deutscher, Politiker, Bundeskanzler",,205,automatisch
-01783,Koopmanns Hude,Altenessen-Süd,Gemeindestraße,Essener Geschichte und Örtlichkeit,,205,unsicher
+01783,Koopmanns Hude,Altenessen-Süd,Gemeindestraße,Essener Geschichte und Örtlichkeit,,205,geprueft
 01784,Kopernikusstraße,Altendorf,Gemeindestraße,"Person, Mann, Preuße, Astronom, Jurist, Mathematiker",,205,automatisch
 01785,Kopfstraße,Bochold,Gemeindestraße,Lagebezeichnung,,205,automatisch
 01884,Koppestraße,Altendorf; Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Professor, Geodät",,205,automatisch
@@ -1852,7 +1852,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01812,Krekelerweg,Steele,Gemeindestraße,"Person, Mann, Deutscher, Vorstandsmitglied",,208,automatisch
 01813,Krekelingheide,Heisingen,Gemeindestraße,"Flurname, Kotten",,208,automatisch
 01814,Krekenberg,Stoppenberg,Gemeindestraße,Flurname,,208,automatisch
-01554,Kreuzeskirchstraße - Kreuzeskirche Kreulichweg,Kray,Gemeindestraße,Familienname,,209,unsicher
+01554,Kreulichweg,Kray,Gemeindestraße,Familienname,,209,geprueft
 01866,Kreuzeskirchstraße,Stadtkern,Gemeindestraße,Essener Gesichte und Örtlichkeit,,209,automatisch
 01815,Kreuzstraße,Heisingen,Gemeindestraße,Kirche und Kloster,,209,automatisch
 01816,Kriemhildenstraße,Kray,Gemeindestraße,Sage,,209,automatisch
@@ -1892,13 +1892,13 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01846,Kunzestraße,Stadtkern,Gemeindestraße,Essener Geschichte und Örtlichkeit,,213,automatisch
 01847,Kupferdreher Markt,Kupferdreh,Gemeindestraße,"Honnschaft, Platz",,213,automatisch
 01848,Kupferdreher Straße,Kupferdreh,Landstraße,Honnschaft,,213,automatisch
-01849,Kurfürstenplatz,Südostviertel,Gemeindestraße,"Lagebezeichnung, Platz",,213,automatisch
+01849,Kurfürstenplatz,Südostviertel,Gemeindestraße,"Lagebezeichnung, Platz",,213,geprueft
 01850,Kurfürstenstraße,Südostviertel,Landstraße,Lagebezeichnung,Hohenzollernstraße,213,automatisch
 01143,Kurt-Jooss-Straße,Westviertel,Gemeindestraße,"Person, Mann, Deutscher, Professor , Choreograph, Tanzpädagoge",,213,automatisch
 00581,Kurt-Schumacher-Brücke,Steele; Überruhr-Hinsel,Landstraße,"Person, Mann, Deutscher, Politiker",,213,automatisch
 01852,Kurze Straße,Schonnebeck,Gemeindestraße,Lagebezeichnung,,213,automatisch
 01853,Kutschenweg,Heidhausen,Gemeindestraße,Lagebezeichnung,,213,automatisch
-01854,Kyffhäuserstaße,Stoppenberg,Gemeindestraße,Stadt und Ort,,213,automatisch
+01854,Kyffhäuserstraße,Stoppenberg,Gemeindestraße,Stadt und Ort,,213,geprueft
 02036,Laaksweg,Frintrop,Gemeindestraße,Familienname,,214,automatisch
 01890,Laarmannstraße,Bedingrade; Borbeck-Mitte,Gemeindestraße,"Person, Mann, Deutscher, Jurist, Stadtverordneter",,214,automatisch
 02026,Labberg,Bedingrade,Gemeindestraße,Flurname,,214,automatisch
@@ -1926,7 +1926,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01907,Langensalzastraße,Huttrop,Gemeindestraße,"Kriegserinnerung, Stadt und Ort",,216,automatisch
 02032,Langeoogweg,Margarethenhöhe,Gemeindestraße,Insel,,216,automatisch
 01909,Langfuhrer Straße,Frohnhausen,Gemeindestraße,Stadt und Ort,,216,automatisch
-01910,Langhölterweg,Deilwig,Gemeindestraße,Flurname,,216,automatisch
+01910,Langhölterweg,Dellwig,Gemeindestraße,Flurname,,216,geprueft
 01911,Langmannskamp,Steele,Gemeindestraße,Flurname,,216,automatisch
 01912,Lanterstraße,Huttrop; Bergerhausen,Gemeindestraße,Flurname,,216,automatisch
 01913,Lattenkamp,Katernberg,Gemeindestraße,Hofname,,216,automatisch
@@ -1935,7 +1935,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01918,Laubrockweg,Überruhr-Holthausen,Gemeindestraße,Familienname,,217,automatisch
 01919,Lauenbüschken,Stoppenberg,Gemeindestraße,Flurname,,217,automatisch
 01920,Lauensteinstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Maler, Malerviertel-Holsterhausen",,217,automatisch
-03711,Te Laupendahler Höhe,Kettwig,Gemeindestraße,Stadt und Ort,Laupendahler Landstraße,217,automatisch
+03711,Laupendahler Höhe,Kettwig,Gemeindestraße,Stadt und Ort,Laupendahler Landstraße,217,geprueft
 01921,Laupendahler Landstraße,Kettwig; Heidhausen; Werden,Landstraße,Stadt und Ort,,217,automatisch
 02037,Lauraberg,Burgaltendorf,Gemeindestraße,Bergbau,Laurastraße,217,automatisch
 02031,Laurahöhe,Burgaltendorf,Gemeindestraße,Bergbau,Laurastraße,217,automatisch
@@ -1944,7 +1944,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01924,Laurentiusweg,Huttrop; Steele,Gemeindestraße,Kirche und Kloster,,217,automatisch
 03716,Lauterweg,Kettwig,Gemeindestraße,Gewässer,,218,automatisch
 01925,Lautstraße,Schönebeck,Gemeindestraße,Lagebezeichnung,,218,automatisch
-01926,Pa Lazarettstraße,Westviertel,Gemeindestraße,Essener Geschichte und Örtlichkeit,,218,automatisch
+01926,Lazarettstraße,Westviertel,Gemeindestraße,Essener Geschichte und Örtlichkeit,,218,geprueft
 01927,Leanderbank,Fischlaken,Gemeindestraße,Bergbau,,218,automatisch
 02040,Leggewiestraße,Schönebeck,Gemeindestraße,Kotten,,218,automatisch
 01928,Legrandallee,Bochold,Gemeindestraße,"Person, Mann, Deutscher, Pfarrer",,218,automatisch
@@ -1967,7 +1967,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01952,Lenaustraße,Südviertel,Gemeindestraße,"Person, Mann, Österreicher, Schriftsteller, Dichter",,220,automatisch
 01942,Lenbachstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Maler, Malerviertel-Holsterhausen",,220,automatisch
 01943,Lennestraße,Bergerhausen,Gemeindestraße,Gewässer,,220,automatisch
-01944,Lentorfstraße,Leithe,Gemeindestraße,Hofname,,220,unsicher
+01944,Lentorfstraße,Leithe,Gemeindestraße,Hofname,,220,geprueft
 01945,Leonhardstraße,Stoppenberg,Gemeindestraße,"Person, Mann, Deutscher, Mediziner, Siedlung",,220,automatisch
 01946,Leoplatz,Frintrop,Gemeindestraße,"Lagebezeichnung, Platz",,220,automatisch
 00960,Leopold-Simon-Straße,Werden,Gemeindestraße,"Person, Mann, Deutscher, Unternehmer, Stadtverordneter",,220,automatisch
@@ -1980,7 +1980,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01953,Leth,Kupferdreh,Gemeindestraße,"Flurname, Kotten",,221,automatisch
 02043,Leuschnerweg,Horst,Gemeindestraße,"Person, Mann, Deutscher, Widerstandskämpfer",,221,automatisch
 01954,Leveringstraße,Stadtwald,Gemeindestraße,Hofname,,221,automatisch
-01955,Levinstraße,Borbeck-Mitte; Deliwig; Gerschede,Gemeindestraße,Bergbau,,221,automatisch
+01955,Levinstraße,Borbeck-Mitte; Dellwig; Gerschede,Gemeindestraße,Bergbau,,221,geprueft
 01956,Lewafeld,Bedingrade,Gemeindestraße,Industrie und Wirtschaft,,222,automatisch
 01957,Liafburgastraße,Rellinghausen,Gemeindestraße,"Bergbau, Weiblicher Vorname",,222,automatisch
 01958,Liboristraße,Katernberg,Gemeindestraße,"Person, Mann, Franzose, Bischof, Heiliger",,222,automatisch
@@ -2058,7 +2058,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02027,Luppostraße,Überruhr-Hinsel,Gemeindestraße,"Person, Mann, Deutscher",,227,automatisch
 02021,Luthestraße,Dellwig,Gemeindestraße,Hofname,,227,automatisch
 02022,Lutterbecks Busch,Schuir,Gemeindestraße,Flurname,,227,automatisch
-02023,ch - Hof Lutterbeck Luziusstroße - Luciuskirche Luziusstraße,Werden,Gemeindestraße,Kirche und Kloster,,227,unsicher
+02023,Luziusstraße,Werden,Gemeindestraße,Kirche und Kloster,,227,geprueft
 02024,Lydiastraße,Rüttenscheid,Gemeindestraße,Weiblicher Vorname,,228,automatisch
 01995,Lysegang,Ostviertel,Gemeindestraße,Hofname,,228,automatisch
 02060,Maasstraße,Fischlaken,Gemeindestraße,Hofname,,228,automatisch
@@ -2087,7 +2087,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02192,Marienberghang,Kupferdreh,Gemeindestraße,Nummerierungsbezirk,Marienbergstraße,230,automatisch
 02078,Marienbergstraße,Kupferdreh,Gemeindestraße,Nummerierungsbezirk,,230,automatisch
 02079,Mariengarten,Karnap,Gemeindestraße,Kirche und Kloster,,230,automatisch
-02080,Markt - Markt mit altem Rathaus Marienstraße,Kray,Gemeindestraße,"Person, Frau, Deutsche",,231,unsicher
+02080,Marienstraße,Kray,Gemeindestraße,"Person, Frau, Deutsche",,231,geprueft
 02082,Markgrafenstraße,Südostviertel,Autobahn; Gemeindestraße,Adelstand,Hohenzollernstraße,231,automatisch
 02083,Markscheide,Altendorf,Gemeindestraße,Essener Geschichte und Örtlichkeit,,231,automatisch
 02084,Markt,Stadtkern,Gemeindestraße,Essener Geschichte und Örtlichkeit,,231,automatisch
@@ -2100,7 +2100,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03718,Martin-Luther-Platz,Kettwig,Gemeindestraße,"Person, Mann, Deutscher, Reformator, Platz",,232,automatisch
 02088,Martin-Luther-Straße,Frohnhausen; Holsterhausen,Hauptstraße,"Person, Mann, Deutscher, Reformator",,232,automatisch
 02089,Martinstraße,Rüttenscheid,Landstraße,Männlicher Vorname,,232,automatisch
-03286,Martin-Vollmar-Straße,Altendorf,Gemeindestraße,"Person, Mann, Deutscher, Pfarrer, (",,232,unsicher
+03286,Martin-Vollmar-Straße,Altendorf,Gemeindestraße,"Person, Mann, Deutscher, Pfarrer",,232,geprueft
 02091,Maßmannweg,Bergerhausen,Gemeindestraße,"Person, Mann, Deutscher, Hochschullehrer, Kulturwissenschaftler",,232,automatisch
 02531,Mathiashof,Stoppenberg,Gemeindestraße,Männlicher Vorname,,232,automatisch
 02133,Mathilde-Kaiser-Straße,Huttrop,Gemeindestraße,"Person, Frau, Deutsche, Politikerin",,232,automatisch
@@ -2136,7 +2136,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03719,Meistersweg,Kettwig,Gemeindestraße,Lagebezeichnung,,235,automatisch
 02116,Melanchthonstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Philologe, Philosoph, Humanist, Theologe, Reformator",,235,automatisch
 02117,Mellinghofer Straße,Altendorf,Gemeindestraße,Stadt und Ort,,235,automatisch
-02118,Mellisaue,Delllwig,Gemeindestraße,Hofname,,235,automatisch
+02118,Mellisaue,Dellwig,Gemeindestraße,Hofname,,235,geprueft
 02119,Memelstraße,Heisingen,Gemeindestraße,Stadt und Ort,Elsaßstraße,235,automatisch
 02186,Memmertweg,Margarethenhöhe,Gemeindestraße,Insel,,236,automatisch
 03724,Mendener Straße,Kettwig,Landstraße,Stadt und Ort,,236,unsicher
@@ -2174,11 +2174,11 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02145,Möllenberg,Werden,Gemeindestraße,"Flurname, Mühle",,238,automatisch
 02195,Mölleneystraße,Burgaltendorf,Landstraße,"Person, Mann, Deutscher, Mediziner",,239,automatisch
 02188,Möllershus,Byfang,Gemeindestraße,Kotten,,239,automatisch
-02146,Möllhoven,Bedingrade; Borbeck-Mitte,Gemeindestraße,Bauerschaft,,239,automatisch
+02146,Möllhoven,Bedingrade; Borbeck-Mitte,Gemeindestraße,Bauerschaft,,239,geprueft
 02147,Möllhover Winkel,Bedingrade,Gemeindestraße,Bauerschaft,,239,automatisch
 02148,Möllneyer Ufer,Kupferdreh,Gemeindestraße,"Flurname, Familienname",,239,automatisch
 02149,Möllneys Nocken,Kupferdreh,Gemeindestraße,Flurname,,239,unsicher
-02182,Mönkhoffs Busch,Überruhr-Holthausen,,Flurname,,239,unsicher
+02182,Mönkhoffs Busch,Überruhr-Holthausen,Gemeindestraße,Flurname,,239,geprueft
 02150,Mönkhoffstraße,Überruhr-Holthausen,Gemeindestraße,Hofname,,239,automatisch
 02151,Mörgekenweg,Kray,Gemeindestraße,Flurname,,240,automatisch
 02152,Mörikestraße,Südviertel; Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Lyriker, Erzähler, Übersetzer",,240,automatisch
@@ -2246,8 +2246,8 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02242,Neuland,Steele,Gemeindestraße,Industrie und Wirtschaft,,245,automatisch
 02243,Neulengrund,Haarzopf,Gemeindestraße,Hofname,,245,automatisch
 02244,Neustraße,Borbeck-Mitte; Bergeborbeck,Gemeindestraße,Lagebezeichnung,,245,automatisch
-02245,Neulengrund - Neulenhof Neuweselstraße,Borbeck-Mitte,Gemeindestraße,Bergbau,,245,automatisch
-02246,Neuwiedweg,Gerschede,Gemeindestraße,"Stadt und Ort, Siediung",Biebergweg,245,automatisch
+02245,Neuweselstraße,Borbeck-Mitte,Gemeindestraße,Bergbau,,245,geprueft
+02246,Neuwiedweg,Gerschede,Gemeindestraße,"Stadt und Ort, Siedlung",Biebergweg,245,geprueft
 02247,Nibelungenplatz,Kray,Gemeindestraße,"Sage, Platz",,245,automatisch
 02248,Nibelungenweg,Kray,Gemeindestraße,Sage,Nibelungenplatz,246,automatisch
 02249,Nieberdingstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Jurist, Politiker",,246,automatisch
@@ -2270,7 +2270,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02270,Nietzscheweg,Freisenbruch,Gemeindestraße,"Person, Mann, Staatenloser, Philosoph",,247,automatisch
 02288,Nikolaus-Groß-Straße,Horst,Gemeindestraße,"Person, Mann, Deutscher, Gewerkschafter, Widerstandskämpfer",,247,automatisch
 02261,Nikolausstraße,Stoppenberg,Gemeindestraße,Lagebezeichnung,,247,automatisch
-02262,Nobermanns Hude,Altenessen-Süd,Gemeindestraße,Hofname,,247,unsicher
+02262,Nobermanns Hude,Altenessen-Süd,Gemeindestraße,Hofname,,247,geprueft
 02263,Nockwinkel,Überruhr-Hinsel,Gemeindestraße,Flurname,,247,automatisch
 02264,Nöckersberg,Byfang,Gemeindestraße,Kotten,,247,automatisch
 02265,Nöckersleite,Byfang,Gemeindestraße,Kotten,,248,automatisch
@@ -2278,7 +2278,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02267,Nöttelhof,Bergerhausen,Gemeindestraße,Hofname,,248,automatisch
 02268,Nootstraße,Altenessen-Süd,Gemeindestraße,"Person, Mann, Deutscher, Bürgermeister",,248,automatisch
 02269,Norbertstraße,Bredeney; Rüttenscheid,Landstraße; Hauptstraße,Männlicher Vorname,,248,unsicher
-02283,deutet also so viel wie „das Licht des Nordens“ Norderneyweg,Margarethenhöhe,Gemeindestraße,Insel,,248,unsicher
+02283,Norderneyweg,Margarethenhöhe,Gemeindestraße,Insel,,248,geprueft
 02271,Nordhofstraße,Westviertel,Gemeindestraße,Essener Geschichte und Örtlichkeit,,248,automatisch
 02272,Nordlandaue,Gerschede,Gemeindestraße,Siedlung,,248,automatisch
 02285,Nordlandring,Gerschede,Gemeindestraße,Siedlung,Nordlandaue,248,automatisch
@@ -2301,8 +2301,8 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02315,Oberhofstraße,Rellinghausen,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Hofname",,250,automatisch
 02316,Oberholzweg,Altenessen-Süd,Gemeindestraße,Kotten,,250,automatisch
 03733,Oberlehberg,Kettwig,Gemeindestraße,Kotten,,250,automatisch
-02317,Obernitzstraße,Südostviertel; Huttrop,Gemeindestraße; Str.- Sa E,,,250,unsicher
-02318,e sowie Generaladjutant Kaiser Wilhelms I. Oberscheidtstraße,Fulerum,Gemeindestraße,Hofname,,251,unsicher
+02317,Obernitzstraße,Südostviertel; Huttrop,Gemeindestraße,,,250,geprueft
+02318,Oberscheidtstraße,Fulerum,Gemeindestraße,Hofname,,251,geprueft
 02319,Oberschlesienstraße,Huttrop,Landstraße,Stadt und Ort,,251,automatisch
 02320,Oberstraße,Rellinghausen; Stadtwald,Gemeindestraße,Lagebezeichnung,,251,unsicher
 02321,Obringer Voerde,Karnap,Gemeindestraße,Flurname,,251,automatisch
@@ -2317,7 +2317,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02329,Olgastraße,Rüttenscheid,Gemeindestraße,Weiblicher Vorname,,252,automatisch
 02330,Onckenstraße,Altendorf; Frohnhausen,Landstraße,"Person, Mann, Deutscher, Historiker",,252,automatisch
 02353,Op de Heie,Schönebeck,Gemeindestraße,Lagebezeichnung,,252,automatisch
-01136,Opernptatz,Südviertel,Gemeindestraße,"Lagebezeichnung, Platz",,252,automatisch
+01136,Opernplatz,Südviertel,Gemeindestraße,"Lagebezeichnung, Platz",,252,geprueft
 02331,Ophoffsfeld,Schonnebeck,Gemeindestraße,Flurname,,252,automatisch
 02332,Ophoffstraße,Schonnebeck,Gemeindestraße,Hofname,,252,automatisch
 02354,Ortelweg,Leithe,Gemeindestraße,"Personenfigur, Meistersinger",,253,automatisch
@@ -2361,7 +2361,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02391,Pastorsacker,Werden,Gemeindestraße,Lagebezeichnung,,256,automatisch
 00975,Pater-Christoph-Höttges-Platz,Südostviertel,Gemeindestraße,"Person, Mann, Deutscher, Geistlicher, Platz",,256,automatisch
 02392,Pattbergstraße,Werden,Gemeindestraße,Flurname,,256,automatisch
-02393,Paul-Brandi-Straße,Margarethenhöhe,Gemeindestraße,"Kosu Pauline - Zeche Pauline Person, Mann, Deutscher, Bankdirektor, Beigeordneter",,256,automatisch
+02393,Paul-Brandi-Straße,Margarethenhöhe,Gemeindestraße,"Person, Mann, Deutscher, Bankdirektor, Beigeordneter",,256,geprueft
 02474,Paul-Goerens-Straße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Metallograph, Ingenieur",,257,unsicher
 02394,Pauline,Heidhausen,Gemeindestraße,Bergbau,,257,automatisch
 02395,Paulinenstraße,Rüttenscheid,Gemeindestraße,Weiblicher Vorname,,257,automatisch
@@ -2391,7 +2391,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02414,Pferdemarkt,Stadtkern,Gemeindestraße,Essener Geschichte und Örtlichkeit,,259,automatisch
 02415,Pfingstborn,Katernberg,Gemeindestraße,Kirche und Kloster,,259,automatisch
 02416,Pfingstfeldwende,Frohnhausen,Gemeindestraße,Flurname,,259,automatisch
-02417,Phoenixhütte Pflanzstraße,Bedingrade,Gemeindestraße,Kirche und Kloster,,260,automatisch
+02417,Pflanzstraße,Bedingrade,Gemeindestraße,Kirche und Kloster,,260,geprueft
 02418,Philippinenstraße,Rüttenscheid,Gemeindestraße,Weiblicher Vorname,,260,automatisch
 02419,Philippstraße,Altenessen-Süd; Stoppenberg,Gemeindestraße,"Person, Mann, Deutscher, Bürger",,260,automatisch
 02421,Philosophenweg,Freisenbruch,Gemeindestraße,Lagebezeichnung,,260,automatisch
@@ -2401,7 +2401,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02423,Pieperstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Prokurist, Kruppscher Beamter, Siedlung",,260,automatisch
 03734,Pierburger Saum,Kettwig; Werden,Gemeindestraße,Lagebezeichnung,,260,automatisch
 02424,Pilgrimsteig,Rellinghausen; Stadtwald,Gemeindestraße,Essener Geschichte und Örtlichkeit,,260,automatisch
-02425,Pilotystraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Hochschullehrer, Maler, Malerviertel- Holsterhausen",,260,automatisch
+02425,Pilotystraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Hochschullehrer, Maler, Malerviertel-Holsterhausen",,260,geprueft
 02473,Pinxtenweg,Steele,Gemeindestraße,Hofname,,261,automatisch
 02426,Pirolstraße,Stadtwald,Gemeindestraße,Zoologie,,261,automatisch
 02427,Plänkerweg,Katernberg,Gemeindestraße,"Person, Mann, Deutscher, Ackersmann, Familienname",,261,automatisch
@@ -2439,7 +2439,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02455,Pramenweg,Kray,Gemeindestraße,Lagebezeichnung,,265,automatisch
 02456,Pregelstraße,Bergerhausen,Gemeindestraße,Gewässer,,265,automatisch
 02457,Preisstraße,Bochold,Gemeindestraße,Lagebezeichnung,,265,automatisch
-02458,Preutenborbeckstraße,Heidhausen,Gemeindestraße; _,Hofname,,265,automatisch
+02458,Preutenborbeckstraße,Heidhausen,Gemeindestraße,Hofname,,265,geprueft
 02459,Priehlbachtal,Kupferdreh,Gemeindestraße,Gewässer,,265,automatisch
 02460,Priembergweg,Kupferdreh,Gemeindestraße,Hofname,,265,automatisch
 02461,Priemhauser Weg,Kupferdreh,Gemeindestraße,Flurname,,265,automatisch
@@ -2456,7 +2456,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02469,Pützstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Pädagoge, Historiker",,267,automatisch
 02470,Pustenbergstiege,Werden,Gemeindestraße,Lagebezeichnung,,267,automatisch
 00829,Quartiersbogen,Westviertel,Gemeindestraße,Lagebezeichnung,,267,automatisch
-02500,Quellenbliek,Bredeney,Gemeindestraße,Gewässer,,267,automatisch
+02500,Quellenblick,Bredeney,Gemeindestraße,Gewässer,,267,geprueft
 02501,Quellstraße,Dellwig,Gemeindestraße,Gewässer,,267,automatisch
 02502,Querschlagstraße,Altenessen-Nord,Gemeindestraße,Bergbau,,267,automatisch
 02503,Querstraße,Katernberg,Gemeindestraße,Lagebezeichnung,,267,automatisch
@@ -2475,7 +2475,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02552,Raiffeisenweg,Gerschede,Gemeindestraße,"Person, Mann, Deutscher, Kommunalbeamter, Siedlung",,268,automatisch
 02553,Ramachersfeld,Katernberg,Gemeindestraße,Kotten,,268,automatisch
 02554,Ramers Kamp,Altenessen-Süd; Stoppenberg,Gemeindestraße,Flurname,,268,automatisch
-02555,Rankestraße,Froehnhausen,Gemeindestraße,"Person, Mann, Deutscher, Historiker",,268,automatisch
+02555,Rankestraße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Historiker",,268,geprueft
 02683,Rappenweg,Bedingrade,Gemeindestraße,Zoologie,,269,automatisch
 02556,Rathenaustraße,Stadtkern,Gemeindestraße,"Person, Mann, Deutscher, Schriftsteller, Industrieller, Politiker",,269,automatisch
 02557,Rathgeberhof,Kupferdreh,Gemeindestraße,Hofname,,269,automatisch
@@ -2497,7 +2497,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02680,Regenbogenweg,Fulerum,Gemeindestraße,Bergbau,,270,automatisch
 02572,Regenweg,Dellwig,Gemeindestraße,Lagebezeichnung,,270,automatisch
 02573,Reginenstraße,Rüttenscheid,Gemeindestraße,Weiblicher Vorname,,270,automatisch
-03737,Rehfußhang,Kettwig,Gemeindestraße,,,270,automatisch
+03737,Rehfußhang,Kettwig,Gemeindestraße,Hofname,,270,geprueft
 02574,Rehmanns Hof,Kupferdreh,Gemeindestraße,,,271,automatisch
 02575,Rehstraße,Heisingen,Gemeindestraße,Zoologie,,271,automatisch
 02576,Reibenkamp,Freisenbruch,Gemeindestraße,Flurname,,271,automatisch
@@ -2561,16 +2561,16 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02627,Rolandstraße,Südviertel,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Flurname",,277,automatisch
 00820,Rolf-Dieter-Koch-Weg,Stoppenberg,Gemeindestraße,"Person, Mann, Deutscher, Ausschußvorsitzender",,277,automatisch
 02628,Rollstraße,Dellwig,Gemeindestraße,Eisenbahnwesen,,277,automatisch
-03742,Rombecker Weg,Kettwig,Gemeindestraße,,,277,automatisch
+03742,Rombecker Weg,Kettwig,Gemeindestraße,Hofname,,277,geprueft
 02629,Rombergweg,Huttrop,Gemeindestraße,Flurname,,277,automatisch
 02630,Rondell,Werden,Gemeindestraße,Lagebezeichnung,,278,automatisch
 02631,Roonstraße,Stoppenberg,Gemeindestraße,"Person, Mann, Deutscher, Graf, Generalfeldmarschall",,278,automatisch
-02632,Rosastraße,Rüttenscheid,Gemeindestraße,Weiblicher Vorname,,278,unsicher
-02633,Xh KIT gi ? f Er Roßkothen - Roßkothenhof um 1939 Rosestraße,Steele,Gemeindestraße,Familienname,,278,unsicher
-02661,Rosiepeweg,Freisenbruch,Gemeindestraße,"Hofname, Familien-name",,278,automatisch
+02632,Rosastraße,Rüttenscheid,Gemeindestraße,Weiblicher Vorname,,278,geprueft
+02633,Rosestraße,Steele,Gemeindestraße,Familienname,,278,geprueft
+02661,Rosiepeweg,Freisenbruch,Gemeindestraße,"Hofname, Familienname",,278,geprueft
 02688,Rossenrayweg,Bochold,Gemeindestraße,Industrie und Wirtschaft,,278,automatisch
 02634,Roßkothenweg,Haarzopf,Gemeindestraße,Lehngut,,278,automatisch
-02635,Roßstraße,Bedingrade,Gemeindestraße,Zoologie,,279,automatisch
+02635,Roßstraße,Bedingrade,Gemeindestraße,Zoologie,,279,geprueft
 00831,Roswithastraße,Rüttenscheid,Gemeindestraße,Weiblicher Vorname,,279,automatisch
 02636,Rotemühle,Heisingen,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Mühle, Volksmund",,279,automatisch
 02638,Rottekamp,Altenessen-Nord,Gemeindestraße,Flurname,,279,automatisch
@@ -2588,12 +2588,12 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02647,Rüggenkamp,Stoppenberg,Gemeindestraße,Flurname,,280,automatisch
 02648,Rühlestraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Mediziner",,280,automatisch
 02649,Rüpingsweg,Überruhr-Hinsel; Überruhr-Holthausen,Gemeindestraße,Kotten,,280,automatisch
-02650,Rürupstraße,Schonnebeck,Gemeindestraße,"Person, Mann, Deutscher, Bergmann, Syndikatsdirektor, Landtagsabgeordneter, Stadtverordneter, Gewerk-schafter",,280,automatisch
+02650,Rürupstraße,Schonnebeck,Gemeindestraße,"Person, Mann, Deutscher, Bergmann, Syndikatsdirektor, Landtagsabgeordneter, Stadtverordneter, Gewerkschafter",,280,geprueft
 02651,Rüscherie,Holsterhausen,Gemeindestraße,Kotten,,280,automatisch
 02652,Rüselstraße,Altendorf,Gemeindestraße,Hofname,,280,automatisch
 02653,Rüstermark,Stadtwald,Gemeindestraße,Gemeinheit,,280,automatisch
 02654,Rüttelskamp,Bredeney,Gemeindestraße,Flurname,,280,automatisch
-02675,Rüttenscheider Stern,Rüttenscheid,Gemeindestraße,"Bauer-schaft, Lagebezeichnung, Platz",,281,automatisch
+02675,Rüttenscheider Stern,Rüttenscheid,Gemeindestraße,"Bauerschaft, Lagebezeichnung, Platz",,281,geprueft
 02656,Rüttenscheider Straße,Rüttenscheid; Südviertel,Gemeindestraße,Bauerschaft,,281,unsicher
 02657,Ruhlandplatz,Borbeck-Mitte,Gemeindestraße,"Person, Mann, Deutscher, Betriebsführer, Kruppscher Beamter, Siedlung, Platz",,281,automatisch
 02658,Ruhrallee,Südostviertel; Bergerhausen; Huttrop,Bundesstraße; Hauptstraße,Gewässer,,281,automatisch
@@ -2607,14 +2607,14 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01616,Ruhrwinkel,Kupferdreh,Gemeindestraße,Siedlung,,282,automatisch
 02666,Rullichstraße,Altendorf,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Hofname",,282,automatisch
 02667,Rumpstraße,Heisingen,Gemeindestraße,Bergbau,,282,automatisch
-02668,Ruschenfeld,Schuir,Gemeindestraße,Hofname,,283,automatisch
-02669,Ruschenfeld,Schuir,Gemeindestraße,Hofname,,283,unsicher
-02670,Ill. Ruschenfeld,Schuir,Gemeindestraße,Hofname,,283,automatisch
+02668,I. Ruschenfeld,Schuir,Gemeindestraße,Hofname,,283,geprueft
+02669,II. Ruschenfeld,Schuir,Gemeindestraße,Hofname,,283,geprueft
+02670,III. Ruschenfeld,Schuir,Gemeindestraße,Hofname,,283,geprueft
 02671,Ruschenstraße,Bredeney,Gemeindestraße,"Person, Mann, Deutscher, Landwirt, Beigeordneter",,283,automatisch
 02672,Ruthertal,Schuir; Werden,Gemeindestraße,Flurname,,283,automatisch
 02673,Rutherweg,Schuir; Werden,Gemeindestraße,Flurname,,283,automatisch
 02674,Ruthstraße,Rüttenscheid,Gemeindestraße,Weiblicher Vorname,,283,automatisch
-02710,N) Saal,Werden,Gemeindestraße,Hofname,,283,automatisch
+02710,Saal,Werden,Gemeindestraße,Hofname,,283,geprueft
 02711,Saalestraße,Bergerhausen,Gemeindestraße,Gewässer,,283,automatisch
 02712,Saarbrücker Straße,Südostviertel; Huttrop,Gemeindestraße,"Stadt und Ort, Kriegserinnerung",,283,automatisch
 02713,Saarplatz,Bergerhausen,Gemeindestraße,"Gewässer, Platz",,283,automatisch
@@ -2643,9 +2643,9 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02736,Schadowstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Maler, Malerviertel-Holsterhausen",,286,automatisch
 02737,Schäferstraße,Südviertel,Gemeindestraße,"Person, Mann, Deutscher, Bauunternehmer, Essener Geschichte und Örtlichkeit",,286,automatisch
 02738,Schäpenkamp,Steele,Gemeindestraße,Flurname,,286,automatisch
-02739,Schaffelhofer Weg,UÜberruhr-Holthausen,Gemeindestraße,Kotten,,286,automatisch
+02739,Schaffelhofer Weg,Überruhr-Holthausen,Gemeindestraße,Kotten,,286,geprueft
 02740,Schafskanzel,Kupferdreh,Gemeindestraße,Lagebezeichnung,,286,automatisch
-02741,Schalker Straße,Katernberg,Kreisstraße,Stadt und Ort,,286,automatisch
+02741,Schalker Straße,Katernberg,Kreisstraße,Stadt und Ort,,286,geprueft
 02742,Schangstraße,Heisingen,Gemeindestraße,"Person, Mann, Deutscher, Lehrer",,286,automatisch
 02743,Schaphausstraße,Heidhausen,Gemeindestraße,"Person, Mann, Deutscher, Bürgermeister",,286,automatisch
 02744,Scharnhorststraße,Nordviertel,Gemeindestraße,"Person, Mann, Deutscher, General, Kriegserinnerung",,286,automatisch
@@ -2666,8 +2666,8 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02757,Scheppener Weg,Fischlaken,Gemeindestraße,Hofname,,288,automatisch
 02758,Scheppmannskamp,Dellwig,Gemeindestraße,Flurname,,289,automatisch
 02759,Schetters Busch,Schonnebeck,Gemeindestraße,Hofname,,289,automatisch
-02760,Schichtstraße,Altenessen-Nord,Gemeindestraße,Bergbau,,289,automatisch
-02761,Schichtstraße,Altenessen-Nord,Gemeindestraße,Bergbau,,289,automatisch
+02760,I. Schichtstraße,Altenessen-Nord,Gemeindestraße,Bergbau,,289,geprueft
+02761,II. Schichtstraße,Altenessen-Nord,Gemeindestraße,Bergbau,,289,geprueft
 02762,Schiefenberg,Heidhausen,Gemeindestraße,Flurname,,289,automatisch
 02763,Schienenspur,Dellwig,Gemeindestraße,Eisenbahnwesen,,289,automatisch
 02764,Schildberg,Dellwig; Frintrop,Gemeindestraße,Flurname,,289,automatisch
@@ -2685,7 +2685,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02774,Schlenterstraße,Frintrop,Gemeindestraße,"Person, Mann, Deutscher, Pfarrer",,291,automatisch
 02775,Schlettweg,Überruhr-Hinsel,Gemeindestraße,"Person, Mann, Deutscher, Prediger",,291,automatisch
 02776,Schleuse,Werden,Gemeindestraße,Gewässer,,291,automatisch
-03035,ne eh Schloßstraße - Wasserschloss Borbeck Schliemannstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Kaufmann, Altertumsforscher",,291,unsicher
+03035,Schliemannstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Kaufmann, Altertumsforscher",,291,geprueft
 02777,Schliepersberg,Kupferdreh,Gemeindestraße,Lagebezeichnung,,291,automatisch
 02735,Schliepershang,Kupferdreh,Gemeindestraße,Lagebezeichnung,Schliepersberg,291,automatisch
 02778,Schliepmühle,Margarethenhöhe,Gemeindestraße,Mühle,Schleifkottenweg,291,automatisch
@@ -2702,25 +2702,25 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02788,Schmale Straße,Borbeck-Mitte,Gemeindestraße,Lagebezeichnung,,292,automatisch
 03266,Schmelze,Horst,Gemeindestraße,Lagebezeichnung,,292,automatisch
 02790,Schmemannstraße,Altenessen-Süd,Gemeindestraße,Industrie und Wirtschaft,,292,automatisch
-02791,a ı Schmettaustraße,Südostviertel,Gemeindestraße,"Person, Mann, Deutscher, Graf, Oberst, Kriegserinnerung",,293,unsicher
+02791,Schmettaustraße,Südostviertel,Gemeindestraße,"Person, Mann, Deutscher, Graf, Oberst, Kriegserinnerung",,293,geprueft
 03008,Schmetterlingweg,Horst,Gemeindestraße,Zoologie,,293,automatisch
 03028,Schmetzweg,Altenessen-Süd,Gemeindestraße,"Person, Mann, Deutscher, Bauunternehmer, Beigeordneter",,293,automatisch
 02792,Schmiedekottenweg,Heisingen,Gemeindestraße,Kotten,,293,automatisch
-02793,Schmiedestaße,Westviertel,Gemeindestraße,Essener Geschichte und Örtlichkeit,,293,automatisch
+02793,Schmiedestraße,Westviertel,Gemeindestraße,Essener Geschichte und Örtlichkeit,,293,geprueft
 03009,Schmielfeld,Frillendorf,Gemeindestraße,Flurname,,293,automatisch
 02794,Schmitzstraße,Altendorf,Gemeindestraße,"Person, Mann, Deutscher, Pfarrer",,293,automatisch
 03026,Schnabelstraße,Rellinghausen,Gemeindestraße,Industrie und Wirtschaft,,293,automatisch
 02795,Schniedtkamp,Katernberg,Gemeindestraße,Flurname,,293,automatisch
 02841,Schnieringshof,Altenessen-Nord,Gemeindestraße,Kotten,,293,automatisch
-02796,Schnieringstraße,Altenessen-Nord,Gemeindestraße,Kotten,Schnieringshof,293,automatisch
-02797,I. Schnieringstraße,Altenessen-Nord,Gemeindestraße,Kotten,Schnieringshof,293,unsicher
+02796,I. Schnieringstraße,Altenessen-Nord,Gemeindestraße,Kotten,Schnieringshof,293,geprueft
+02797,II. Schnieringstraße,Altenessen-Nord,Gemeindestraße,Kotten,Schnieringshof,293,geprueft
 02798,Schnitterweg,Frintrop; Bedingrade,Gemeindestraße,Lagebezeichnung,,293,automatisch
 02799,Schnorrstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Maler, Malerviertel-Holsterhausen",,294,automatisch
 02800,Schnütgenstraße,Steele,Gemeindestraße,"Person, Mann, Deutscher, Theologe, Priester, Kunstsammler",,294,automatisch
 02801,Schnurstraße,Bergeborbeck,Gemeindestraße,Essener Geschichte und Örtlichkeit,,294,automatisch
 02802,Schnutenhausstraße,Huttrop,Gemeindestraße,Hofname,,294,automatisch
-02803,Schockenhecke,Karnap,Gemeindestraße,Flurname,,294,automatisch
-02804,Schockenhecke,Karnap,Gemeindestraße,Flurname,,294,automatisch
+02803,I. Schockenhecke,Karnap,Gemeindestraße,Flurname,,294,geprueft
+02804,II. Schockenhecke,Karnap,Gemeindestraße,Flurname,I. Schockenhecke,294,geprueft
 02805,Schölerpad,Altendorf; Bochold,Gemeindestraße,Essener Geschichte und Örtlichkeit,,294,automatisch
 02807,Schöllerskampstraße,Kray,Gemeindestraße,Flurname,,295,automatisch
 02808,Schönaichstraße,Altendorf,Gemeindestraße,"Person, Mann, Deutscher, Adelstand, Oberbergamtsdirektor",,295,automatisch
@@ -2735,7 +2735,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02815,Schongauerstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Maler, Kupferstecher, Malerviertel-Holsterhausen",,296,automatisch
 02816,Schonnebeckhöfe,Katernberg; Schonnebeck,Kreisstraße; Hauptstraße; Gemeindestraße,Hofname,,296,automatisch
 02817,Schonnefeldstraße,Altenessen-Süd,Gemeindestraße,Hofname,,296,automatisch
-02872,19874 (Große Schopenhauerweg,Freisenbruch,Gemeindestraße,"Person, Mann, Deutscher, Philosoph, Autor, Hochschullehrer",,296,unsicher
+02872,Schopenhauerweg,Freisenbruch,Gemeindestraße,"Person, Mann, Deutscher, Philosoph, Autor, Hochschullehrer",,296,geprueft
 02818,Schornstraße,Südviertel,Gemeindestraße,Familienname,,296,automatisch
 02820,Schrägbauweg,Kray,Gemeindestraße,Bergbau,,296,automatisch
 02821,Schraeplerstraße,Bergeborbeck,Gemeindestraße,"Person, Mann, Deutscher, Prokurist, Kruppscher Beamter",,296,unsicher
@@ -2765,23 +2765,23 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02844,Schwanhildenhöhe,Stoppenberg,Gemeindestraße,"Person, Frau, Äbtissin",,299,automatisch
 02845,Schwanhildenstraße,Stoppenberg,Gemeindestraße,"Person, Frau, Äbtissin",Schwanhildenhöhe,299,unsicher
 02846,Schwarzbachstraße,Kray,Gemeindestraße,Gewässer,,300,automatisch
-02847,Schwarze Horn,Stadtkern,Gemeindestraße,Lagebezeichnung,,300,unsicher
+02847,Schwarze Horn,Stadtkern,Gemeindestraße,Lagebezeichnung,,300,geprueft
 02849,Schwarze Meer,Stadtkern,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Flurname",,300,automatisch
 02850,Schwarze Straße,Altenessen-Süd,Gemeindestraße,Volksmund,,300,automatisch
 02848,Schwarze-Lenen-Weg,Stadtwald,Gemeindestraße,"Person, Frau, Deutsche, Wirtin",,300,automatisch
-03029,Schwarzensteinweg,Burgaltendorf,Gemeindestraße,Familienname,,300,automatisch
+03029,Schwarzensteinweg,Burgaltendorf,Gemeindestraße,Familienname,,300,geprueft
 02851,Schwelmhöfe,Kray,Gemeindestraße,Familienname,,300,automatisch
-02852,Schweriner Straße,Frohnhausen,Gemeindestraße,Stadt und Ort,,300,automatisch
+02852,Schweriner Straße,Frohnhausen,Gemeindestraße,Stadt und Ort,,300,geprueft
 02853,Schwermannstraße,Kupferdreh,Gemeindestraße,"Person, Mann, Deutscher, Geistlicher",,300,automatisch
 02854,Sedanstraße,Südostviertel,Gemeindestraße,Kriegserinnerung,,300,automatisch
 02855,Seestraße,Frintrop,Gemeindestraße,Gewässer,,300,automatisch
 02856,Segerothstraße,Nordviertel; Westviertel,Landstraße,"Flurname, Essener Geschichte und Örtlichkeit",,300,automatisch
 02857,Seibertzstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Jurist, Historiker",,301,automatisch
-02858,SeidIstraße,Huttrop,Gemeindestraße,"Person, Mann, Deutscher, Architekt",,301,automatisch
+02858,Seidlstraße,Huttrop,Gemeindestraße,"Person, Mann, Deutscher, Architekt",,301,geprueft
 02859,Seippelweg,Bredeney,Gemeindestraße,"Person, Mann, Deutscher, Beigeordneter",,301,automatisch
 03005,Selbachstraße,Überruhr-Hinsel,Gemeindestraße,"Person, Mann, Deutscher, Beigeordneter",,301,automatisch
 02860,Sellscheidt,Fischlaken,Gemeindestraße,Kotten,,302,automatisch
-02861,Selmastraße,Stadtkern,Gemeindestraße,"Person, Frau, Deutsche, Essener Geschichte und ÖOrtlichkeit",,302,automatisch
+02861,Selmastraße,Stadtkern,Gemeindestraße,"Person, Frau, Deutsche, Essener Geschichte und Örtlichkeit",,302,geprueft
 02862,Seminarstraße,Huttrop,Gemeindestraße,Lagebezeichnung,,302,automatisch
 02863,Semperstraße,Huttrop; Südostviertel,Gemeindestraße,"Person, Mann, Deutscher, Architekt, Kunsthistoriker",,302,automatisch
 03749,Sengelmannsweg,Kettwig,Gemeindestraße,Lehngut,,302,automatisch
@@ -2802,7 +2802,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02880,Siepenstraße,Huttrop; Bergerhausen,Gemeindestraße,Botanik,,303,automatisch
 02881,Siepmanns Kamp,Frohnhausen,Gemeindestraße,Kotten,,304,automatisch
 02882,Sigambrerweg,Karnap,Gemeindestraße,Volksstamm,,304,automatisch
-02874,In der Nähe der Arminiusgarten! Sigsfeldstraße,Nordviertel,Gemeindestraße,"Person, Mann, Deutscher, Erfinder, Ballonfahrer",,304,unsicher
+02874,Sigsfeldstraße,Nordviertel,Gemeindestraße,"Person, Mann, Deutscher, Erfinder, Ballonfahrer",,304,geprueft
 02883,Silberbankstraße,Rellinghausen,Gemeindestraße,Bergbau,,304,automatisch
 02884,Silberstraße,Ostviertel,Gemeindestraße,Essener Geschichte und Örtlichkeit,,304,automatisch
 02885,Simonaue,Werden,Gemeindestraße,"Person, Frau, Deutsche, Sozialhelferin",,304,automatisch
@@ -2852,13 +2852,13 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02919,Stadtfeld,Altenessen-Süd,Gemeindestraße,Flurname,,309,automatisch
 02921,Stadtwaldplatz,Stadtwald,Landstraße,"Lagebezeichnung, Platz",,309,automatisch
 02922,Stadtwaldwende,Stadtwald,Gemeindestraße,Lagebezeichnung,,309,automatisch
-02923,Staelsfeld,Heisingen,Gemeindestraße,Flurmame,,310,automatisch
+02923,Staelsfeld,Heisingen,Gemeindestraße,Flurname,,310,geprueft
 02924,Stahlstraße,Westviertel,Gemeindestraße,Essener Geschichte und Örtlichkeit,,310,automatisch
 02925,Stakenholt,Altenessen-Nord,Gemeindestraße,Flurname,,310,automatisch
 02926,Stankeitstraße,Altenessen-Süd,Gemeindestraße,"Person, Mann, Deutscher, Bürgermeisten",,310,automatisch
 02927,Stapenhorststraße,Altenessen-Nord,Gemeindestraße,"Person, Mann, Deutscher, Direktor",,310,automatisch
 02928,Stattropstraße,Huttrop,Gemeindestraße,Behandigungsgut,,310,automatisch
-03014,Stauderstraße,Katernberg; Altenessen-Süd,Landstraße,Stauderstraße - Stauderbrauerei vor dem Ersten Weltkrieg Familiename,,310,automatisch
+03014,Stauderstraße,Katernberg; Altenessen-Süd,Landstraße,Familienname,,310,geprueft
 02929,Stauseebogen,Heisingen,Gemeindestraße,Lagebezeichnung,,311,automatisch
 02930,Steegstraße,Bochold,Gemeindestraße,Lagebezeichnung,,311,automatisch
 00338,Steeler Bergstraße,Steele,Gemeindestraße,Lagebezeichnung,,311,automatisch
@@ -2866,9 +2866,9 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02933,Steeler Platz,Steele,Gemeindestraße,"Lagebezeichnung, Platz",Steeler Straße,311,automatisch
 02934,Steeler Straße,Stadtkern; Ostviertel; Südostviertel; Huttrop; Steele,Landstraße; Gemeindestraße,Stadt und Ort,,311,unsicher
 02935,Steigerstraße,Altenessen-Nord,Gemeindestraße,Bergbau,,311,automatisch
-02937,Steille Straße,Margarethenhöhe,Gemeindestraße,Lagebezeichnung,,312,automatisch
+02937,Steile Straße,Margarethenhöhe,Gemeindestraße,Lagebezeichnung,,312,geprueft
 02936,Steiler Garten,Schonnebeck,Gemeindestraße,Lagebezeichnung,,312,automatisch
-02938,Steinbeck,Heidhausen; Werden,Gemeindestraße,Familiename,,312,automatisch
+02938,Steinbeck,Heidhausen; Werden,Gemeindestraße,Familienname,,312,geprueft
 02939,Steinberg,Bredeney,Gemeindestraße,Flurname,,312,automatisch
 02940,Steinbrink,Bochold,Gemeindestraße,Flurname,,312,automatisch
 02941,Steinerweg,Altenessen-Nord,Gemeindestraße,Kotten,,312,automatisch
@@ -2879,7 +2879,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02945,Steinkuhle,Bergerhausen,Gemeindestraße,Lagebezeichnung,,312,automatisch
 02946,Steinland,Kray,Gemeindestraße,Flurname,,312,automatisch
 02947,Steinmannshofstraße,Schonnebeck,Gemeindestraße,Hofname,,312,automatisch
-02948,& Steinmetzstraße,Südostviertel,Gemeindestraße,"Person, Mann, Deutscher, Generalfeldmarschall",,313,unsicher
+02948,Steinmetzstraße,Südostviertel,Gemeindestraße,"Person, Mann, Deutscher, Generalfeldmarschall",,313,geprueft
 03006,Steinpfad,Gerschede,Gemeindestraße,Volksmund,,313,automatisch
 03285,Steinplatz,Südviertel,Gemeindestraße,"Industrie und Wirtschaft, Platz",,313,automatisch
 02950,Steins Feld,Haarzopf,Gemeindestraße,Flurname,,313,automatisch
@@ -2898,9 +2898,9 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03017,Stettiner Straße,Frohnhausen,Gemeindestraße,Stadt und Ort,,314,automatisch
 02958,Steubenstraße,Südostviertel,Gemeindestraße,"Person, Mann, Deutscher, Offizier",,314,automatisch
 02959,Stevens Kamp,Huttrop,Gemeindestraße,Familienname,,315,automatisch
-02960,I. Stiege,Schonnebeck,Gemeindestraße,Lagebezeichnung,,315,automatisch
-02961,Stiege,Schonnebeck,Gemeindestraße,Lagebezeichnung,,315,unsicher
-02962,Ill. Stiege,Schonnebeck,Gemeindestraße,Lagebezeichnung,,315,unsicher
+02960,I. Stiege,Schonnebeck,Gemeindestraße,Lagebezeichnung,,315,geprueft
+02961,II. Stiege,Schonnebeck,Gemeindestraße,Lagebezeichnung,,315,geprueft
+02962,III. Stiege,Schonnebeck,Gemeindestraße,Lagebezeichnung,,315,geprueft
 02963,Stiftbusch,Stadtwald,Gemeindestraße,Botanik,,315,automatisch
 02964,Stiftmühlenbrink,Stadtwald,Gemeindestraße,Mühle,,315,automatisch
 02965,Stiftplatz,Rellinghausen,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Platz",,315,automatisch
@@ -2916,7 +2916,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02971,Stolbergstraße,Borbeck-Mitte; Bergeborbeck,Kreisstraße; Gemeindestraße,"Person, Mann, Deutscher, Graf, Dichter",,316,automatisch
 03019,Stolzingweg,Leithe,Gemeindestraße,"Person, Mann, Deutscher, Meistersinger",,316,automatisch
 02973,Stoppenberger Platz,Stoppenberg,Gemeindestraße,"Bauerschaft, Platz",,316,automatisch
-02974,Stoppenberger Straße,Nordviertel; Ostvierte!; Stoppenberg,Landstraße,Bauerschaft,Stoppenberger Platz,316,unsicher
+02974,Stoppenberger Straße,Nordviertel; Ostviertel; Stoppenberg,Landstraße,Bauerschaft,Stoppenberger Platz,316,geprueft
 02975,Stornefranzstraße,Heisingen,Gemeindestraße,Bergbau,,316,automatisch
 00709,Storpplatz,Südostviertel,Gemeindestraße,"Kotten, Platz",,316,automatisch
 02976,Storpstraße,Südostviertel,Gemeindestraße,Kotten,,316,automatisch
@@ -2924,7 +2924,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03677,Strängerstraße,Kettwig,Gemeindestraße,"Person, Mann, Deutscher, Schornsteinfeger",,317,automatisch
 01602,Straßburger Straße,Rüttenscheid,Gemeindestraße,Stadt und Ort,,317,automatisch
 02978,Stratmanns Hang,Gerschede,Gemeindestraße,Hofname,,317,automatisch
-02979,Streckweg,Frintrop,Gemeindestraße,Eiienbahnwesen,,317,automatisch
+02979,Streckweg,Frintrop,Gemeindestraße,Eisenbahnwesen,,317,geprueft
 02980,Strickerstraße,Vogelheim,Gemeindestraße,Industrie und Wirtschaft,,317,automatisch
 02981,Strouxpfad,Stadtwald,Gemeindestraße,"Person, Mann, Deutscher, Konstrukteur, Kruppscher Beamter, Siedlung",,317,automatisch
 02983,Strünksweg,Altenessen-Nord,Gemeindestraße,Kotten,,317,automatisch
@@ -2969,8 +2969,8 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03056,Termiedenhof,Bochold,Gemeindestraße,Hofname,,321,automatisch
 03057,Tersteegenweg,Haarzopf,Gemeindestraße,"Person, Mann, Deutscher, Geistlicher, Schriftsteller",,321,automatisch
 03105,I. Terwestenweg,Katernberg,Gemeindestraße,Hofname,,321,automatisch
-03106,Terwestenweg,Katernberg,Gemeindestraße,Hofname,,321,unsicher
-03107,Ill. Terwestenweg,Katernberg,Gemeindestraße,Hofname,,321,unsicher
+03106,II. Terwestenweg,Katernberg,Gemeindestraße,Hofname,I. Terwestenweg,321,geprueft
+03107,III. Terwestenweg,Katernberg,Gemeindestraße,Hofname,I. Terwestenweg,321,geprueft
 03058,Teutoburger Weg,Kray,Gemeindestraße,Bergbau,,321,automatisch
 01142,Thea-Leymann-Straße,Westviertel,Gemeindestraße,"Person, Frau, Deutsche, Dozentin",,321,automatisch
 03059,Theaterplatz,Stadtkern,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Platz",,322,automatisch
@@ -3011,7 +3011,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03088,Trautes Heim,Margarethenhöhe,Gemeindestraße,Lebensgefühl,,325,automatisch
 03089,Treibweg,Überruhr-Hinsel,Gemeindestraße,Lagebezeichnung,,325,automatisch
 03091,Trentelgasse,Stadtkern,Gemeindestraße,Essener Geschichte und Örtlichkeit,,325,automatisch
-02051,Treidelplatz,Werden,Gemeindestraße,Essener Geschichte und Örtlichkeit,,325,automatisch
+02051,Treidelplatz,Werden,Gemeindestraße,Essener Geschichte und Örtlichkeit,,325,geprueft
 03092,Trierer Straße,Frohnhausen,Gemeindestraße,Stadt und Ort,,325,automatisch
 03093,Triftstraße,Bedingrade; Gerschede,Gemeindestraße,Lagebezeichnung,,325,automatisch
 03094,Troststraße,Bochold,Gemeindestraße,Lebensgefühl,,325,automatisch
@@ -3068,7 +3068,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03208,Vereinstraße,Stadtkern,Gemeindestraße,Essener Geschichte und Örtlichkeit,,331,automatisch
 03209,Veronikastraße,Rüttenscheid,Gemeindestraße,Weiblicher Vorname,,331,automatisch
 03210,Verreshöhe,Stadtwald,Gemeindestraße,"Person, Mann, Deutscher, Konstrukteur, Kruppscher Beamter, Siedlung",,331,automatisch
-02530,riahain - Ehemalige Zeche Victoria Mathias 1920 Victoriahain,Stoppenberg,Gemeindestraße,Bergbau,,332,unsicher
+02530,Victoriahain,Stoppenberg,Gemeindestraße,Bergbau,,332,geprueft
 03229,Viefhaushof,Schonnebeck,Gemeindestraße,Hofname,,332,automatisch
 03213,Viehauser Berg,Fischlaken; Werden,Gemeindestraße,Hofname,,332,automatisch
 03214,Viehofer Platz,Stadtkern,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Hofname, Platz",,332,automatisch
@@ -3079,7 +3079,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03219,Vieselmanns Ried,Dellwig,Gemeindestraße,Hofname,,333,automatisch
 03220,Vietingstraße,Freisenbruch,Gemeindestraße,Hofname,,333,automatisch
 03221,Viktoriastraße,Katernberg,Gemeindestraße,"Bergbau, Weiblicher Vorname",,333,automatisch
-03222,Villenweg,Steele,Gemeindestraße,Volksmund,,333,automatisch
+03222,Villenweg,Steele,Gemeindestraße,Volksmund,,333,geprueft
 03223,Vinckestraße,Borbeck-Mitte,Gemeindestraße,"Person, Mann, Deutscher, Staatsbeamter",,333,automatisch
 03224,Vinzenzstraße,Stoppenberg,Gemeindestraße,"Lagebezeichnung, Männlicher Vorname",,333,automatisch
 03225,Virchowstraße,Holsterhausen; Rüttenscheid,Gemeindestraße,"Person, Mann, Deutscher, Mediziner, Archäologe, Politiker",,333,automatisch
@@ -3087,7 +3087,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03227,Vittinghoffstraße,Stadtwald,Gemeindestraße,Familienname,,334,automatisch
 03260,Vöcklinger Hang,Rüttenscheid,Gemeindestraße,Flurname,,334,automatisch
 03228,Vöcklinghauser Straße,Rüttenscheid,Gemeindestraße,Hofname,,334,automatisch
-03230,Vogelheimer Straße,Vogelheim; Altenessen-Nord; Altenessen-Sügd,Landstraße,Bauerschaft,,334,automatisch
+03230,Vogelheimer Straße,Vogelheim; Altenessen-Nord; Altenessen-Süd,Landstraße,Bauerschaft,,334,geprueft
 03231,Vogelsangsberg,Kray,Gemeindestraße,Flurname,Brandhoffs Delle,334,automatisch
 03232,Vogenbeck,Frohnhausen,Gemeindestraße,Flurname,,334,automatisch
 03233,Vogtei,Werden; Fischlaken,Gemeindestraße,Essener Geschichte und Örtlichkeit,,334,automatisch
@@ -3100,7 +3100,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03237,Von-Bergmann-Straße,Stoppenberg,Gemeindestraße,"Person, Mann, Deutscher, Mediziner",,335,automatisch
 03238,Von-Bodenhausen-Weg,Stadtwald,Gemeindestraße,"Person, Mann, Deutscher, Jurist, Kunsthistoriker, Unternehmer, Manager, Kruppscher Beamter, Siedlung",,335,automatisch
 03239,Vondernstraße,Dellwig,Gemeindestraße,Lehngut,,335,automatisch
-03240,i & KEN wre Vondernstraße - Haus Vondern Von-der-Tann-Straße,Südostviertel,Gemeindestraße,"Person, Mann, Deutscher, General",,335,unsicher
+03240,Von-der-Tann-Straße,Südostviertel,Gemeindestraße,"Person, Mann, Deutscher, General",,335,geprueft
 03256,Von-der-Vogelweide-Straße,Freisenbruch,Gemeindestraße,"Person, Mann, Deutscher, Lyriker, Minnesänger",,336,automatisch
 03241,Von-Einem-Straße,Rüttenscheid,Gemeindestraße,"Person, Mann, Deutscher, Generaloberst",,336,unsicher
 03242,Vonnemanns Wiese,Dellwig,Gemeindestraße,Hofname,,336,automatisch
@@ -3135,7 +3135,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03304,Waldtrautstraße,Bredeney,Gemeindestraße,"Person, Frau, Deutsche, Familie Krupp",Arnoldstraße,338,automatisch
 03305,Waldweg,Freisenbruch,Gemeindestraße,Botanik,,338,automatisch
 03306,Walkmühlenstraße,Vogelheim,Gemeindestraße,"Industrie und Wirtschaft, Mühle",,338,automatisch
-03307,Walkürenweg,Kray,Walkmühle —— 2 | 20. November 1937: Walkürenweg,,,338,unsicher
+03307,Walkürenweg,Kray,Gemeindestraße,Sage,,338,geprueft
 00525,Wallmannaue,Stoppenberg,Gemeindestraße,Hofname,,339,automatisch
 03316,Wallneyer Straße,Schuir,Gemeindestraße,Hofname,,339,automatisch
 03308,Wallotstraße,Huttrop,Gemeindestraße,"Person, Mann, Deutscher, Architekt",,339,automatisch
@@ -3154,7 +3154,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03320,Waterloostraße,Nordviertel,Gemeindestraße,Stadt und Ort,,341,automatisch
 03321,Wattenbachstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Historiker",,341,automatisch
 03322,Wattenscheider Straße,Kray; Leithe,Kreisstraße,Stadt und Ort,,341,automatisch
-03323,1975 wurde Wattenscheid nach Bochum eingemeindet Weberplatz,Stadtkern,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Platz",,341,unsicher
+03323,Weberplatz,Stadtkern,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Platz",,341,geprueft
 03324,I. Weberstraße,Stadtkern,Gemeindestraße,Essener Geschichte und Örtlichkeit,,341,automatisch
 03326,Wechselpfad,Heisingen,Gemeindestraße,Lagebezeichnung,,341,automatisch
 03447,Weckenkamp,Katernberg,Gemeindestraße,Flurname,,341,automatisch
@@ -3187,7 +3187,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03351,Wengestraße,Schonnebeck,Gemeindestraße,"Person, Mann, Deutscher, Geistlicher",,344,automatisch
 03352,Werdener Markt,Werden,Bundesstraße,Essener Geschichte und Örtlichkeit,,344,automatisch
 03766,Werdener Straße,Kettwig,Landstraße,Lagebezeichnung,,344,automatisch
-03353,Werdener Markt PP’ a Werderstraße,Südostviertel,Gemeindestraße,"Person, Mann, Deutscher, Graf, General",,344,unsicher
+03353,Werderstraße,Südostviertel,Gemeindestraße,"Person, Mann, Deutscher, Graf, General",,344,geprueft
 03460,Werkhausenstraße,Frintrop,Gemeindestraße,Familienname,,344,automatisch
 03354,Werneraue,Horst,Gemeindestraße,Familienname,,344,automatisch
 03355,Werner-Viebig-Weg,Kray,Gemeindestraße,"Person, Mann, Deutscher, Betriebsdirektor, Siedlung",,344,automatisch
@@ -3225,7 +3225,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03386,Wieprechtstraße,Katernberg,Gemeindestraße,"Person, Mann, Deutscher, Schriftsteller, Dichter",,347,automatisch
 03387,Wiesbadener Straße,Frohnhausen,Gemeindestraße,Stadt und Ort,,347,automatisch
 03448,Wieselweg,Altenessen-Süd; Vogelheim,Gemeindestraße,"Person, Mann, Deutscher, Jäger",,347,unsicher
-03388,WiesenbergstraßBe,Frohnhausen,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Flurname",,348,automatisch
+03388,Wiesenbergstraße,Frohnhausen,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Flurname",,348,geprueft
 03389,Wiesengrund,Dellwig,Gemeindestraße,Lagebezeichnung,,348,automatisch
 03390,Wiesenstraße,Südviertel,Gemeindestraße,Essener Geschichte und Örtlichkeit,,348,automatisch
 03391,Wiesmannbrink,Freisenbruch,Gemeindestraße,Hofname,,348,automatisch
@@ -3237,22 +3237,22 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03456,Wilhelm-Beckmann-Straße,Kray,Gemeindestraße,"Person, Mann, Deutscher, Gutsbesitzer, Ehrenbürger",,348,automatisch
 03396,Wilhelm-Bernsau-Weg,Bredeney; Werden,Gemeindestraße,"Person, Mann, Deutscher, Beigeordneter",,348,automatisch
 00837,Wilhelm-Döllken-Straße,Werden,Gemeindestraße,"Person, Mann, Deutscher, Industrieller",,348,automatisch
-00835,ücke bis Heidhausen zurück zum Bahnhof” Wilhelm-Gefeller-Weg,Stoppenberg,Gemeindestraße,"Person, Mann, Deutscher, Politiker",,349,unsicher
+00835,Wilhelm-Gefeller-Weg,Stoppenberg,Gemeindestraße,"Person, Mann, Deutscher, Politiker",,349,geprueft
 03397,Wilhelminenstraße,Altenessen-Nord,Gemeindestraße,"Bergbau, Weiblicher Vorname",,349,automatisch
 03399,Wilhelm-Meinrich-Weg,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Ingenieur, Kruppscher Beamter, Siedlung",,349,automatisch
 03455,Wilhelm-Melchert-Straße,Werden,Gemeindestraße,"Person, Mann, Deutscher, Ratsherr",,349,automatisch
-02518,Wilhelm-Nieswandt-Allee,Altenessen-Nord; Altenessen-Süd,Landstraße,"Person, Mann, Deutscher, Unternehmer, Politiker, Oberbürgermeister",,349,unsicher
+02518,Wilhelm-Nieswandt-Allee,Altenessen-Nord; Altenessen-Süd,Landstraße,"Person, Mann, Deutscher, Unternehmer, Politiker, Oberbürgermeister",,349,geprueft
 03459,Wilhelm-Segerath-Straße,Frintrop,Gemeindestraße,"Person, Mann, Deutscher, Geistlicher",,349,unsicher
 03400,Wilhelmshavener Straße,Karnap,Gemeindestraße,Stadt und Ort,,349,automatisch
 03768,Wilhelmstraße,Kettwig,Gemeindestraße,Männlicher Vorname,,349,automatisch
 02048,Wilhelm-Vogelsang-Weg,Horst,Gemeindestraße,"Person, Mann, Deutscher, Unternehmer",,349,automatisch
 03402,Wilkenstraße,Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Hochschullehrer, Bibliothekar, Historiker",,350,automatisch
 03404,Willekestraße,Steele,Gemeindestraße,"Person, Mann, Deutscher, Geistlicher",,350,automatisch
-02538,Willy-Brandt-Platz,Stadtkern,Gemeindestraße,"Person, Mann, Deutscher, Politiker, Bundeskanzler, Platz, (vorm.) Am Hauptbahnhof (tIw.)",,350,automatisch
+02538,Willy-Brandt-Platz,Stadtkern,Gemeindestraße,"Person, Mann, Deutscher, Politiker, Bundeskanzler, Platz, (vorm.) Am Hauptbahnhof (tlw.)",,350,geprueft
 03405,Wilmsweg,Bedingrade; Gerschede,Gemeindestraße,Lagebezeichnung,Stratmanns Hang,350,automatisch
 03406,Wimberstraße,Heidhausen,Gemeindestraße,"Person, Mann, Deutscher, Lehrer",,350,automatisch
 03407,Windhukweg,Gerschede,Gemeindestraße,Stadt und Ort,,350,automatisch
-03408,Windmühlenstaße,Holsterhausen; _,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Mühle",,350,automatisch
+03408,Windmühlenstraße,Holsterhausen,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Mühle",,350,geprueft
 03409,Windscheidstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Jurist",,350,automatisch
 03410,Windweier,Katernberg,Gemeindestraße,Kotten,,350,automatisch
 03457,Winkelskämpchen,Stoppenberg,Gemeindestraße,Flurname,,350,automatisch
@@ -3267,10 +3267,10 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03418,Wittekindstraße,Rüttenscheid; Stadtwald,Gemeindestraße,Kriegserinnerung,,352,automatisch
 03420,Wittenbergstraße,Rüttenscheid; Stadtwald,Kreisstraße,Hofname,,352,automatisch
 03421,Witteringstraße,Südviertel; Rüttenscheid,Kreisstraße,Hofname,,352,automatisch
-03422,Wittgenbusch,Überruhr-Holthausen,Gemeindestraße,"Person, Mann, Deutscher, Geistliche",,352,automatisch
-03423,Wittgenpfad,Überruhr-Holthausen,Gemeindestraße,"Person, Mann, Deutscher, Geistliche",Wittgenbusch,352,automatisch
+03422,Wittgenbusch,Überruhr-Holthausen,Gemeindestraße,"Person, Mann, Deutscher, Geistlicher",,352,geprueft
+03423,Wittgenpfad,Überruhr-Holthausen,Gemeindestraße,"Person, Mann, Deutscher, Geistlicher",Wittgenbusch,352,geprueft
 03424,Wöhlerstraße,Holsterhausen,Gemeindestraße,"Person, Mann, Deutscher, Chemiker",,352,automatisch
-03425,Woermannstraße,Karnap,Gemeindestraße,Industrie und Wirtschaft,,352,unsicher
+03425,Woermannstraße,Karnap,Gemeindestraße,Industrie und Wirtschaft,,352,geprueft
 03426,Wörthstraße,Südostviertel; Huttrop,Gemeindestraße,"Kriegserinnerung, Stadt und Ort",,353,automatisch
 03427,Wohlgemuthweg,Kupferdreh,Gemeindestraße,Bergbau,,353,automatisch
 03428,Wohlverwahrtstraße,Horst,Gemeindestraße,Industrie und Wirtschaft,,353,automatisch
@@ -3299,11 +3299,11 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03493,208 ff Zeche Ernestine,Stoppenberg,Gemeindestraße,Bergbau,,356,unsicher
 03537,Zeche Katharina,Kray,Gemeindestraße,Bergbau,,356,automatisch
 03495,Zechenstraße,Bochold; Bergeborbeck,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Bergbau",Carolus-Magnus-Straße,356,automatisch
-03496,BET un 2 Zehntfeld,Frillendorf,,Lagebezeichnung,,357,unsicher
+03496,Zehntfeld,Frillendorf,Gemeindestraße,Lagebezeichnung,,357,geprueft
 03497,Zeisigstraße,Stadtwald,Gemeindestraße,Zoologie,,357,automatisch
 03498,Zeißbogen,Bredeney,Gemeindestraße,"Person, Mann, Deutscher, Feinmechaniker, Unternehmer",,357,automatisch
 03499,Zementstraße,Kupferdreh,Gemeindestraße,Industrie und Wirtschaft,,357,unsicher
-03500,Zielstraße - Lyzeum Borbeck 1913 Zerresbuschweg,Kupferdreh,Gemeindestraße,Kotten,,357,unsicher
+03500,Zerresbuschweg,Kupferdreh,Gemeindestraße,Kotten,,357,geprueft
 03501,Zeunerstraße,Bredeney,Bundesstraße,"Person, Mann, Deutscher, Hochschullehrer, Physiker",,357,automatisch
 03535,Ziegelbäckerweg,Bochold,Gemeindestraße,Industrie und Wirtschaft,,357,automatisch
 03502,Ziegelstraße,Ostviertel,Gemeindestraße,Essener Geschichte und Örtlichkeit,,357,automatisch
@@ -3342,7 +3342,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03526,Zur Wöllenbök,Heidhausen,Gemeindestraße,Hofname,,361,automatisch
 03523,Zur-Linde-Weg,Huttrop,Gemeindestraße,"Person, Mann, Deutscher, Dichter, Philosoph, Schriftsteller",,361,automatisch
 03527,Zweibachegge,Freisenbruch,Gemeindestraße,Gewässer,,361,automatisch
-03528,Zweigertstraße,Rütten-scheid,Hauptstraße; Gemeindestraße,"Person, Mann, Deutscher, Oberbürgermeister, Ehrenbürger",,362,unsicher
+03528,Zweigertstraße,Rüttenscheid,Hauptstraße; Gemeindestraße,"Person, Mann, Deutscher, Oberbürgermeister, Ehrenbürger",,362,geprueft
 03529,Zweigstraße,Borbeck-Mitte,Gemeindestraße,Lagebezeichnung,,362,automatisch
 03530,Zweihonnschaftenwald,Bredeney,Gemeindestraße,Botanik,,362,automatisch
 03531,Zwergstraße,Bedingrade,Gemeindestraße,Lagebezeichnung,,362,automatisch

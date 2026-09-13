@@ -75,18 +75,61 @@ normalisierte Klammerzusätze hinzu. Eine erste Regeneration hatte den Hinweis
 zwölf Rückstufungen ist einzeln geprüft im Differenzbericht
 [`docs/regression/2026-09-13-parser-runde-2.md`](regression/2026-09-13-parser-runde-2.md).
 
+## 6. 2026-09-13 — Manuelle Sichtung der Prüfliste
+
+Alle 288 Prüflisten-Zeilen mit `einig=beide` (234 Einträge) wurden am Scan-Ausschnitt
+(`strassen/pruefbilder.py`) gegen den Druck geprüft. Für Einträge, deren Text erst auf der
+Folgeseite beginnt oder dort weiterläuft, wurde zusätzlich die Folgeseite gerendert.
+Ergebnis: 245 Korrekturzeilen und 7 Bestätigungen des Parser-Werts, per
+`llm_vergleich uebernehmen` in `daten/korrekturen.csv` übertragen (`quelle=llm-lauf`,
+insgesamt 252 Zeilen), angewandt durch `erschliessen`. **201 Einträge** tragen jetzt
+`status=geprueft`, `unsicher` sinkt von 256 auf **168**. Die Konkordanz wächst von 421 auf
+**442** Paare, der Abgleich mit dem amtlichen Straßenverzeichnis von 3.237 auf **3.319**
+Treffer (nicht im Verzeichnis: 112 → 30), die Alphabetprüfung meldet 37 statt 70 Auffällige.
+Die Prüfliste wurde danach neu erzeugt: 3.355 Zeilen, `einig=beide` 288 → **57**.
+
+Bei der Übernahme wurden mechanisch vereinheitlicht: ISO-Datumsangaben in der
+`korrektur`-Spalte in die Overlay-Form `TT.MM.JJJJ`, Nachträge ganzer Stadien in die Form
+`DATUM | NAME`; Zeilen mit `korrektur = wert_parser` wurden als Bestätigung (`feld=eintrag`)
+übernommen; ein `[sic!]` aus dem Wert in den Beleg verschoben. Drei Fälle brauchten Zeilen
+direkt im Overlay: 00720 (Stadium 1 nachgetragen, das vorhandene rückt auf 2) und 01104
+(Datum über Seitenumbruch geteilt, Name aus der Folgeseite ergänzt). Die Sichtungsfassung
+der Prüfliste liegt unter `llm/pruefung_llm_sichtung_2026-09-13.csv` (nicht veröffentlicht).
+
+Mit der Sichtung sind zwei Verunreinigungen im Druck selbst dokumentiert (Belege im
+Overlay): 00621 De-Wolff-Straße („Str.-Gr." zweimal statt „Str.-Kl."), 02938/03014
+„Familiename". Schlüsselnummern-Dubletten im Buch: 02402 (Peenestraße/Porscheplatz, nur
+OCR-geprüft) und 03448 (Wangeroogeweg/Wieselweg, am Scan geprüft); 02568 ist dagegen ein
+OCR-Fehler (Rebenranke ist gedruckt 02566) und wartet auf ein Overlay-Feld `schl_nr`.
+
 ## Was als Nächstes offen ist
 
-Aus der Parser-Runde 2 bleiben Einzelfälle übrig, die kein automatisches Regelmuster
-tragen und einzeln gegen den Scan geprüft werden müssen (Sichtung über die Prüfbilder,
-Übernahme via Korrektur-Overlay). Langfristig geplant ist die Veröffentlichung des
-Datensatzes auf Zenodo mit DOI, sobald der Datenstand als hinreichend stabil gilt.
+Langfristig geplant ist die Veröffentlichung des Datensatzes auf Zenodo mit DOI, sobald
+der Datenstand als hinreichend stabil gilt. Aus der Sichtung ergeben sich Kandidaten für
+eine **Parser-Runde 3** (Testfälle jeweils mit Schlüsselnummer):
 
-- Drei neue Lemmata mit mehr als vier Wörtern kommen zu den bereits vorher bestehenden
-  37 hinzu (37 + 3 = 40): die beiden, die einen vorausgehenden Satz mitgerissen haben
-  (00601 Dandermannsteg, 02318 Oberscheidtstraße), sowie 00207 („I. ia Auf dem Sutan",
-  R4-Rest) — alle drei `unsicher`. Allesamt Kandidaten für das Korrektur-Overlay nach
-  Sichtung am Scan. Diese Sichtung ist nicht Teil dieser Runde; es werden hier keine
-  `korrekturen`-Zeilen ergänzt.
-- R4 deckt bislang nur 11 der 24 römischen Präfixe ab (u. a. OCR-Varianten wie `Il.`,
-  `ll.` statt `II.`).
+- **Seitenendrest klebt am Lemma der Folgeseite**, Seitenzahl um eins zu niedrig:
+  Bildunterschriften und OCR-Müll am Fuß einer Seite werden dem nächsten Eintrag
+  vorangestellt (00085, 00207, 00331, 00366, 00573, 00692, 02023, 03240). Die Lemmata sind
+  per Overlay korrigiert, die `buchseite` bleibt falsch, weil sie kein Overlay-Feld ist.
+- **Bildunterschrift innerhalb eines Eintrags** (am Seitenanfang): im Kopffeld (02393,
+  03014), im Datum (01392, 03425, 01104 — Datum über den Umbruch geteilt) oder mitten auf
+  der Seite (00720 „Tas", 02681). Der Parser verliert dann ein Stadium oder zieht die
+  Bildunterschrift in die Namensgruppe.
+- **Umbruch mit Seitenkopf**: R1 (Trennstrich vor Großbuchstabe) greift nicht über den
+  Seitenwechsel, weil „Essener Straßen" und die Seitenzahl dazwischenstehen (02425
+  „Malerviertel- Holsterhausen"). Seitenkopf und -zahl vor dem Zusammenfügen entfernen.
+- **R7 auf Kopffelder ausdehnen**: beim letzten Eintrag einer Seite ist eine
+  Modellabweichung in Kopffeldern fast immer ein Umbruch-Artefakt (00303, 02611, 02681).
+- **R4-Rest**: OCR liest römische Präfixe als `!`, `Il`, `IH`, `IN`, `1.` (02681, 02874,
+  00334, 00503, 00613/00614, 01162/01163, 01783, 02262, 02669/02670, 02760/02761,
+  02796/02797, 02803/02804, 02960–02962, 03106/03107); per Overlay korrigiert.
+- **Parser-Auslassungen** (Eintrag fehlt ganz, nicht per Overlay behebbar): 01603
+  (OCR-Zeilenfolge vertauscht: Anker vor Lemma), 01655, 02566 (Folge der
+  Schlüsselnummer-Dublette 02568), 02655, 02906; 001321 ist eine Fehllesung der Modelle.
+- **`vorm.:`-Stadien** ohne Datum gehen verloren (02512 Bolsterbaum, 02513 Bonifaciusstraße,
+  4 Vorkommen im Korpus); die Namensgruppe ist bereinigt, das Stadium fehlt.
+- **Anführungszeichen/Satzreste vor dem Lemma** (03448 „Wendin“ Wangeroogeweg").
+- **Overlay-Feld `schl_nr`** für OCR-Fehler in Schlüsselnummern (02568 → 02566).
+- Die 37 Prosa-Lemmata (Lemmata mit mehr als vier Wörtern) sind großteils durch die
+  Sichtung korrigiert; der Rest steht in `daten/pruefung_validierung.csv` (grund=Alphabet).

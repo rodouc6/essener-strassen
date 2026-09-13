@@ -2,3 +2,252 @@ schl_nr,feld,wert_alt,wert_neu,beleg,quelle,datum
 02949,namensgruppe,"Person, Mann, Deutschen, Minnesängerr","Person, Mann, Deutscher, Minnesänger","Person, Mann, Deutscher, Minnesänger",goldstandard,2026-09-13
 02949,stadium_1_datum,,27.09.1962,1962-09-27,goldstandard,2026-09-13
 02949,stadium_1_name,,Spervogelweg,Spervogelweg,goldstandard,2026-09-13
+00016,stadium_4_name,Moitkestraße (tlw.),Moltkestraße (tlw.),,llm-lauf,2026-09-13
+00025,stadium_1_name,Akazienaltee,Akazienallee,,llm-lauf,2026-09-13
+00036,namensgruppe,"Person, Mann, Deutscher, Familie Krupp, Industrielter, Männlicher Vorname","Person, Mann, Deutscher, Familie Krupp, Industrieller, Männlicher Vorname",,llm-lauf,2026-09-13
+00050,stadium_3_name,Thomaestraße (tlw.),Thomaestraße (tlw. Umb.),,llm-lauf,2026-09-13
+00050,stadium_4_name,Altendorfer Straße (tlw.),Altendorfer Straße (tlw. Umb.),,llm-lauf,2026-09-13
+00084,namensgruppe,"Hurname, Hofname","Flurname, Hofname",,llm-lauf,2026-09-13
+00085,lemma,Am Handelshof - Handelshof 1913 KEN U E Weein Am Handelshof,Am Handelshof,,llm-lauf,2026-09-13
+00126,namensgruppe,Fiurname,Flurname,,llm-lauf,2026-09-13
+00136,lemma,Am Treppehen,Am Treppchen,,llm-lauf,2026-09-13
+00153,lemma,Ander Bergbrücke,An der Bergbrücke,,llm-lauf,2026-09-13
+00192,namensgruppe,"Person, Mann, Deutscher, Literaturwissenschaftlen","Person, Mann, Deutscher, Literaturwissenschaftler",,llm-lauf,2026-09-13
+00207,lemma,I. ia Auf dem Sutan,Auf dem Sutan,,llm-lauf,2026-09-13
+00235,lemma,Aufm Uhlenbroich,Auf'm Uhlenbroich,,llm-lauf,2026-09-13
+00246,stadium_2_name,Am Roten Haus (Verl) Name einer Flur,Am Roten Haus (Verl.),,llm-lauf,2026-09-13
+00268,lemma,AmWasserturm,Am Wasserturm,,llm-lauf,2026-09-13
+00269,strassenklasse,,Gemeindestraße,,llm-lauf,2026-09-13
+00278,lemma,43 ff Bahnstraße,Bahnstraße,,llm-lauf,2026-09-13
+00281,stadium_3_name,Berthold-Beitz-Boulevard (tlw.),Berthold-Beitz-Boulevard (tlw. Umb.),,llm-lauf,2026-09-13
+00286,stadium_2_datum,,14.11.1935,,llm-lauf,2026-09-13
+00286,stadium_2_name,,Barbarossaplatz,,llm-lauf,2026-09-13
+00331,lemma,"[sie > °"" sr $ Bergheimer Steig",Bergheimer Steig,,llm-lauf,2026-09-13
+00334,stadium_1_name,Ill,III. Rottstraße,,llm-lauf,2026-09-13
+00360,stadtteile,Überruhr-Hinset; Überruhr-Holthausen,Überruhr-Hinsel; Überruhr-Holthausen,,llm-lauf,2026-09-13
+00366,lemma,Ben RN RAN) gs das Birkmannsweg - Hof Birkmann Birkmannsweg,Birkmannsweg,,llm-lauf,2026-09-13
+00374,stadium_2_datum,1953-02-02,02.02.1959,,llm-lauf,2026-09-13
+00404,namensgruppe,"Person, Mann, Deutscher Maschinenbauer, Unternehmer, ur- spr.: Parkstraße","Person, Mann, Deutscher, Maschinenbauer, Unternehmer",,llm-lauf,2026-09-13
+00408,stadium_8_name,Im Hesselbruch am 29. August 1927 zusammengefasst unter der gemeinsamen Bezeichn,Im Hesselbruch,,llm-lauf,2026-09-13
+00444,lemma,Breukeifeld,Breukelfeld,,llm-lauf,2026-09-13
+00447,lemma,Brinkerplatz - Hof auf'm Brink um 1850 Brigittastraße,Brigittastraße,,llm-lauf,2026-09-13
+00467,strassenklasse,,Gemeindestraße,,llm-lauf,2026-09-13
+00481,namensgruppe,"Person, Mann, Deutscher, Klemptnermeister","Person, Mann, Deutscher, Klemptnermeister",Klemptnermeister [sic!],llm-lauf,2026-09-13
+00487,stadium_2_name,Altenhof Il (tlw.),Altenhof II (tlw.),,llm-lauf,2026-09-13
+00493,lemma,Burekhardtstraße,Burckhardtstraße,,llm-lauf,2026-09-13
+00495,lemma,Burgplotz - 1864 Burggrafenstraße,Burggrafenstraße,,llm-lauf,2026-09-13
+00500,lemma,Kruppsche Buschhauser Straße,Buschhauser Straße,,llm-lauf,2026-09-13
+00500,namensgruppe,"Stadt und Ort, O",Stadt und Ort,,llm-lauf,2026-09-13
+00503,lemma,Buschlandweg,II. Buschlandweg,,llm-lauf,2026-09-13
+00503,stadium_1_name,Il,II. Buschlandweg,,llm-lauf,2026-09-13
+00551,lemma,Colsmanstraße,Colsmannstraße,Colsmanstraße[sic!],llm-lauf,2026-09-13
+00573,lemma,olus-Magnus-Straße - Zeche Carolus Magnus 1926 Centrumstraße,Centrumstraße,,llm-lauf,2026-09-13
+00594,lemma,min \] 71 Dahler Höhe,Dahler Höhe,,llm-lauf,2026-09-13
+00613,lemma,Dellbrügge,I. Dellbrügge,,llm-lauf,2026-09-13
+00613,stadium_1_name,1. Dellbrügge,I. Dellbrügge,,llm-lauf,2026-09-13
+00614,lemma,Dellbrügge,II. Dellbrügge,,llm-lauf,2026-09-13
+00614,stadium_1_name,Il,II. Dellbrügge,,llm-lauf,2026-09-13
+00614,verweis_auf,,I. Dellbrügge,,llm-lauf,2026-09-13
+00621,namensgruppe,"Gemeindestraße, Str.-Gr.: Person, Mann, Deutscher, Bürgermeister","Person, Mann, Deutscher, Bürgermeister",,llm-lauf,2026-09-13
+00621,strassenklasse,,Gemeindestraße,,llm-lauf,2026-09-13
+00628,namensgruppe,Person,"Person, Mann, Deutscher, Industrieller, Seidenfabrikant",,llm-lauf,2026-09-13
+00670,stadtteile,Froehnhausen,Frohnhausen,,llm-lauf,2026-09-13
+00674,lemma,BDudenstraße,Dudenstraße,,llm-lauf,2026-09-13
+00692,lemma,Pass Dreilindenstraße - Das Lindengut Dreiringplatz,Dreiringplatz,,llm-lauf,2026-09-13
+00786,stadium_1_name,Erbstöhstraße,Erbslöhstraße,,llm-lauf,2026-09-13
+00828,namensgruppe,"Person, Mann, Deutscher, Industrielle","Person, Mann, Deutscher, Industrieller",,llm-lauf,2026-09-13
+00834,stadium_1_name,Hannıs-Joachim-Maßner-Weg,Hanns-Joachim-Maßner-Weg,,llm-lauf,2026-09-13
+00835,lemma,ücke bis Heidhausen zurück zum Bahnhof” Wilhelm-Gefeller-Weg,Wilhelm-Gefeller-Weg,,llm-lauf,2026-09-13
+00841,lemma,Fährenkotten - um 1935 Fährenkotten,Fährenkotten,,llm-lauf,2026-09-13
+00866,lemma,Flakering - Ehemaliger Hof Flake 1970 Flakering,Flakering,,llm-lauf,2026-09-13
+00873,lemma,FlieBstraße,II. Fließstraße,,llm-lauf,2026-09-13
+00888,lemma,Franzenshöhe Frankenstraße,Frankenstraße,,llm-lauf,2026-09-13
+00925,stadtteile,Ostviertelund Frillendorf,Ostviertel; Frillendorf,Ostviertelund [sic!] Frillendorf,llm-lauf,2026-09-13
+00961,stadtteile,Frohhausen,Frohnhausen,Frohhausen [sic!],llm-lauf,2026-09-13
+00978,namensgruppe,"Person, Mann, Deutscher, Gewerkschaften, Bundestagsabgeordneter","Person, Mann, Deutscher, Gewerkschafter, Bundestagsabgeordneter",,llm-lauf,2026-09-13
+01008,strassenklasse,Gemeindestraße; _,Gemeindestraße,,llm-lauf,2026-09-13
+01015,namensgruppe,"Essener Geschichte und Örtlichkeit, Platz, (nicht amtlich): Gerlingswiese","Essener Geschichte und Örtlichkeit, Platz",,llm-lauf,2026-09-13
+01015,stadium_4_name,Gertingplatz,Gerlingplatz,,llm-lauf,2026-09-13
+01047,stadium_2_name,Gockelweg (Vert.),Gockelweg (Verl.),,llm-lauf,2026-09-13
+01063,lemma,DEEP BE \ Kr Be [m Graffweg - um 1935 Graf-Bernadotte-Straße,Graf-Bernadotte-Straße,,llm-lauf,2026-09-13
+01082,stadium_1_datum,1336-08-05,05.08.1936,,llm-lauf,2026-09-13
+01083,lemma,Dezember 1830 Grieperstraße,Grieperstraße,,llm-lauf,2026-09-13
+01083,namensgruppe,,Hofname,,llm-lauf,2026-09-13
+01083,stadtteile,Altendorf | behandigt,Altendorf; Bochold,,llm-lauf,2026-09-13
+01083,strassenklasse,,Gemeindestraße,,llm-lauf,2026-09-13
+01086,stadium_2_name,Grimbergstraße (Verl) Nach dem ehemaligen fürstlich-essendischen Lehngut Grimber,Grimbergstraße (Verl.),,llm-lauf,2026-09-13
+01104,stadium_1_datum,,29.03.1892,29. März 1892: Grundstraße (Datum über Seitenumbruch 136/137 geteilt),llm-lauf,2026-09-13
+01104,stadium_1_name,,Grundstraße,29. März 1892: Grundstraße,llm-lauf,2026-09-13
+01109,lemma,telle führenden Straße den Namen „Güterstraße“ Gummertstraße,Gummertstraße,,llm-lauf,2026-09-13
+01120,stadtteile,Frohrhausen,Frohnhausen,,llm-lauf,2026-09-13
+01136,lemma,Opernptatz,Opernplatz,,llm-lauf,2026-09-13
+01150,stadtteile,Bochotgd,Bochold,,llm-lauf,2026-09-13
+01157,stadium_4_datum,1915,09.07.1915,,llm-lauf,2026-09-13
+01162,lemma,Hagen,II. Hagen,,llm-lauf,2026-09-13
+01162,stadium_1_name,Il,II. Hagenstraße,,llm-lauf,2026-09-13
+01163,lemma,Hagen,III. Hagen,,llm-lauf,2026-09-13
+01163,stadium_1_name,Ill. Hagenstraße,III. Hagenstraße,,llm-lauf,2026-09-13
+01163,stadium_2_name,II. Hagen,III. Hagen,,llm-lauf,2026-09-13
+01163,stadtteile,,Stadtkern,,llm-lauf,2026-09-13
+01170,stadtteile,Ho!sterhausen,Holsterhausen,,llm-lauf,2026-09-13
+01191,namensgruppe,"Person, Mann, Deutscher, Familie Krupp, Industrielle","Person, Mann, Deutscher, Familie Krupp, Industrieller",,llm-lauf,2026-09-13
+01214,strassenklasse,,Kreisstraße,,llm-lauf,2026-09-13
+01261,strassenklasse,"Hauptstraße; Gemeinde- ’ ; N; IyO8} ""7 Pe “ n..r ne ee > Br a er 13 I Weiant ZI LARG: WE EEE Pr ED: WERDE EEE EWREN) -: EIER WR Helenenstroße - Zeche ver",Hauptstraße; Gemeindestraße,,llm-lauf,2026-09-13
+01276,stadtteile,Berger-hausen; Huttrop,Bergerhausen; Huttrop,,llm-lauf,2026-09-13
+01282,lemma,25ff Hermannstraße,Hermannstraße,,llm-lauf,2026-09-13
+01284,stadtteile,Deltwig,Dellwig,,llm-lauf,2026-09-13
+01307,namensgruppe,Kirche und Kioster,Kirche und Kloster,,llm-lauf,2026-09-13
+01334,lemma,Auf'm Höltering) Hövelstraße,Hövelstraße,,llm-lauf,2026-09-13
+01392,stadium_1_datum,,14.05.1941,,llm-lauf,2026-09-13
+01392,stadium_1_name,,Hufeisen,,llm-lauf,2026-09-13
+01415,lemma,auch - entstellt - Hundsiepen (1826) Hunsrückstraße,Hunsrückstraße,,llm-lauf,2026-09-13
+01428,namensgruppe,Lage-bezeichnung,Lagebezeichnung,Lage-bezeichnung,llm-lauf,2026-09-13
+01483,lemma,PEREHERRANEEE Im Natt - Kotten im Natt 1970 Im Lindenstück,Im Lindenstück,,llm-lauf,2026-09-13
+01552,namensgruppe,"Lagebezeichnung, PER B BEN: * ai",Lagebezeichnung,,llm-lauf,2026-09-13
+01552,strassenklasse,Gemeindestra Be,Gemeindestraße,,llm-lauf,2026-09-13
+01554,lemma,Kreuzeskirchstraße - Kreuzeskirche Kreulichweg,Kreulichweg,,llm-lauf,2026-09-13
+01563,stadium_1_name,Jahnptatz,Jahnplatz,,llm-lauf,2026-09-13
+01571,stadium_2_name,Schul-straße (tlw.),Schulstraße (tlw.),Schul-straße (tlw.),llm-lauf,2026-09-13
+01579,lemma,Joseph-Lenne-Straße,Joseph-Lenné-Straße,,llm-lauf,2026-09-13
+01579,stadium_3_name,Joseph-Lenne&-Straße,Joseph-Lenné-Straße,,llm-lauf,2026-09-13
+01629,namensgruppe,Flur-name,Flurname,Flur-name,llm-lauf,2026-09-13
+01642,stadtteile,Bochotd,Bochold,,llm-lauf,2026-09-13
+01647,stadium_1_datum,1933-05-29,29.05.1939,,llm-lauf,2026-09-13
+01670,lemma,60 ff Kastanienallee,Kastanienallee,,llm-lauf,2026-09-13
+01672,namensgruppe,,Essener Geschichte und Örtlichkeit,,llm-lauf,2026-09-13
+01672,stadtteile,,Werden,,llm-lauf,2026-09-13
+01672,verweis_auf,,Kastellplatz,,llm-lauf,2026-09-13
+01673,lemma,Siehe Kastellplatz,Kastellplatz,,llm-lauf,2026-09-13
+01684,stadium_1_name,Kellersonnweg,Kellersohnweg,,llm-lauf,2026-09-13
+01783,stadium_1_name,Il,II. Ziegelstraße,,llm-lauf,2026-09-13
+01783,stadium_2_name,Il,II. Levenhove,,llm-lauf,2026-09-13
+01849,stadium_1_name,Kur-fürstenplatz,Kurfürstenplatz,Kur-fürstenplatz,llm-lauf,2026-09-13
+01854,lemma,Kyffhäuserstaße,Kyffhäuserstraße,Kyffhäuserstaße [sic!],llm-lauf,2026-09-13
+01910,stadtteile,Deilwig,Dellwig,,llm-lauf,2026-09-13
+01926,lemma,Pa Lazarettstraße,Lazarettstraße,,llm-lauf,2026-09-13
+01944,stadium_1_name,_.- - - -- Tg RS - .,Lentorfstraße,,llm-lauf,2026-09-13
+01955,stadtteile,Borbeck-Mitte; Deliwig; Gerschede,Borbeck-Mitte; Dellwig; Gerschede,,llm-lauf,2026-09-13
+02023,lemma,ch - Hof Lutterbeck Luziusstroße - Luciuskirche Luziusstraße,Luziusstraße,,llm-lauf,2026-09-13
+02051,stadium_1_name,Treidiplatz,Treidelplatz,,llm-lauf,2026-09-13
+02080,lemma,Markt - Markt mit altem Rathaus Marienstraße,Marienstraße,,llm-lauf,2026-09-13
+02118,stadtteile,Delllwig,Dellwig,,llm-lauf,2026-09-13
+02146,stadium_2_name,Mölihoven,Möllhoven,,llm-lauf,2026-09-13
+02182,strassenklasse,,Gemeindestraße,,llm-lauf,2026-09-13
+02245,lemma,Neulengrund - Neulenhof Neuweselstraße,Neuweselstraße,,llm-lauf,2026-09-13
+02246,namensgruppe,"Stadt und Ort, Siediung","Stadt und Ort, Siedlung",,llm-lauf,2026-09-13
+02262,stadium_2_name,Il,III. Levenhove,,llm-lauf,2026-09-13
+02283,lemma,deutet also so viel wie „das Licht des Nordens“ Norderneyweg,Norderneyweg,,llm-lauf,2026-09-13
+02317,strassenklasse,Gemeindestraße; Str.- Sa E,Gemeindestraße,,llm-lauf,2026-09-13
+02318,lemma,e sowie Generaladjutant Kaiser Wilhelms I. Oberscheidtstraße,Oberscheidtstraße,,llm-lauf,2026-09-13
+02393,namensgruppe,"Kosu Pauline - Zeche Pauline Person, Mann, Deutscher, Bankdirektor, Beigeordneter","Person, Mann, Deutscher, Bankdirektor, Beigeordneter",,llm-lauf,2026-09-13
+02417,lemma,Phoenixhütte Pflanzstraße,Pflanzstraße,,llm-lauf,2026-09-13
+02425,namensgruppe,"Person, Mann, Deutscher, Hochschullehrer, Maler, Malerviertel- Holsterhausen","Person, Mann, Deutscher, Hochschullehrer, Maler, Malerviertel-Holsterhausen",,llm-lauf,2026-09-13
+02458,strassenklasse,Gemeindestraße; _,Gemeindestraße,,llm-lauf,2026-09-13
+02500,lemma,Quellenbliek,Quellenblick,,llm-lauf,2026-09-13
+02512,namensgruppe,"Zoologie, vorm.: Bolsterbaum (tiw.)",Zoologie,,llm-lauf,2026-09-13
+02513,namensgruppe,"Geologie, Berg, vorm.: Bonifaciusstraße (tlw.)","Geologie, Berg",,llm-lauf,2026-09-13
+02518,stadium_1_name,"Wilhelm- ""lieswandt-Allee",Wilhelm-Nieswandt-Allee,,llm-lauf,2026-09-13
+02530,lemma,riahain - Ehemalige Zeche Victoria Mathias 1920 Victoriahain,Victoriahain,,llm-lauf,2026-09-13
+02538,namensgruppe,"Person, Mann, Deutscher, Politiker, Bundeskanzler, Platz, (vorm.) Am Hauptbahnhof (tIw.)","Person, Mann, Deutscher, Politiker, Bundeskanzler, Platz, (vorm.) Am Hauptbahnhof (tlw.)",,llm-lauf,2026-09-13
+02555,stadtteile,Froehnhausen,Frohnhausen,,llm-lauf,2026-09-13
+02632,stadium_2_name,Rosastraße (Verl.),Rosastraße (Verl. Bis Rüttenscheider Straße),,llm-lauf,2026-09-13
+02633,lemma,Xh KIT gi ? f Er Roßkothen - Roßkothenhof um 1939 Rosestraße,Rosestraße,,llm-lauf,2026-09-13
+02635,stadium_1_name,Roßstaße,Roßstraße,Roßstaße,llm-lauf,2026-09-13
+02650,namensgruppe,"Person, Mann, Deutscher, Bergmann, Syndikatsdirektor, Landtagsabgeordneter, Stadtverordneter, Gewerk-schafter","Person, Mann, Deutscher, Bergmann, Syndikatsdirektor, Landtagsabgeordneter, Stadtverordneter, Gewerkschafter",,llm-lauf,2026-09-13
+02661,namensgruppe,"Hofname, Familien-name","Hofname, Familienname",,llm-lauf,2026-09-13
+02668,lemma,Ruschenfeld,I. Ruschenfeld,,llm-lauf,2026-09-13
+02669,lemma,Ruschenfeld,II. Ruschenfeld,,llm-lauf,2026-09-13
+02669,stadium_1_name,Il,II. Ruschenfeld,,llm-lauf,2026-09-13
+02670,lemma,Ill. Ruschenfeld,III. Ruschenfeld,,llm-lauf,2026-09-13
+02670,stadium_1_name,Ill. Ruschenfeld,III. Ruschenfeld,,llm-lauf,2026-09-13
+02675,namensgruppe,"Bauer-schaft, Lagebezeichnung, Platz","Bauerschaft, Lagebezeichnung, Platz",,llm-lauf,2026-09-13
+02710,lemma,N) Saal,Saal,,llm-lauf,2026-09-13
+02739,stadtteile,UÜberruhr-Holthausen,Überruhr-Holthausen,,llm-lauf,2026-09-13
+02741,stadium_1_name,HeBlerstraße (tlw.),Heßlerstraße (tlw.),,llm-lauf,2026-09-13
+02760,lemma,Schichtstraße,I. Schichtstraße,,llm-lauf,2026-09-13
+02760,stadium_2_name,1. Schichtstraße,I. Schichtstraße,,llm-lauf,2026-09-13
+02761,lemma,Schichtstraße,II. Schichtstraße,,llm-lauf,2026-09-13
+02761,stadium_2_name,I. Schichtstraße,II. Schichtstraße,,llm-lauf,2026-09-13
+02791,lemma,a ı Schmettaustraße,Schmettaustraße,,llm-lauf,2026-09-13
+02793,lemma,Schmiedestaße,Schmiedestraße,Schmiedestaße,llm-lauf,2026-09-13
+02796,lemma,Schnieringstraße,I. Schnieringstraße,,llm-lauf,2026-09-13
+02797,lemma,I. Schnieringstraße,II. Schnieringstraße,,llm-lauf,2026-09-13
+02803,lemma,Schockenhecke,I. Schockenhecke,,llm-lauf,2026-09-13
+02803,stadium_2_name,1. Schockenhecke,I. Schockenhecke,,llm-lauf,2026-09-13
+02804,lemma,Schockenhecke,II. Schockenhecke,,llm-lauf,2026-09-13
+02804,stadium_2_name,1. Schockenhecke,II. Schockenhecke,,llm-lauf,2026-09-13
+02804,verweis_auf,,I. Schockenhecke,,llm-lauf,2026-09-13
+02847,stadium_2_name,|,I. Hagenstraße,,llm-lauf,2026-09-13
+02847,stadium_3_name,II. Hagen (tlw.),II. Hagen (tlw. Umb.),,llm-lauf,2026-09-13
+02852,stadium_2_name,Am Mühlenbach (tiv),Am Mühlenbach (tlw.),,llm-lauf,2026-09-13
+02858,lemma,SeidIstraße,Seidlstraße,,llm-lauf,2026-09-13
+02858,stadium_1_name,SeidIstraße,Seidlstraße,,llm-lauf,2026-09-13
+02861,namensgruppe,"Person, Frau, Deutsche, Essener Geschichte und ÖOrtlichkeit","Person, Frau, Deutsche, Essener Geschichte und Örtlichkeit",,llm-lauf,2026-09-13
+02872,lemma,19874 (Große Schopenhauerweg,Schopenhauerweg,,llm-lauf,2026-09-13
+02874,lemma,In der Nähe der Arminiusgarten! Sigsfeldstraße,Sigsfeldstraße,,llm-lauf,2026-09-13
+02923,namensgruppe,Flurmame,Flurname,,llm-lauf,2026-09-13
+02937,lemma,Steille Straße,Steile Straße,,llm-lauf,2026-09-13
+02938,namensgruppe,Familiename,Familienname,Familiename,llm-lauf,2026-09-13
+02948,lemma,& Steinmetzstraße,Steinmetzstraße,,llm-lauf,2026-09-13
+02960,stadium_1_name,1. Stiege,I. Stiege,,llm-lauf,2026-09-13
+02961,lemma,Stiege,II. Stiege,,llm-lauf,2026-09-13
+02962,lemma,Ill. Stiege,III. Stiege,,llm-lauf,2026-09-13
+02962,stadium_1_name,IH,III. Stiege,,llm-lauf,2026-09-13
+02974,stadium_2_name,Lützowstraße (tlw.),Lützowstraße (tlw. Umb.),,llm-lauf,2026-09-13
+02974,stadtteile,Nordviertel; Ostvierte!; Stoppenberg,Nordviertel; Ostviertel; Stoppenberg,,llm-lauf,2026-09-13
+02979,namensgruppe,Eiienbahnwesen,Eisenbahnwesen,,llm-lauf,2026-09-13
+03014,namensgruppe,Stauderstraße - Stauderbrauerei vor dem Ersten Weltkrieg Familiename,Familienname,,llm-lauf,2026-09-13
+03029,stadium_2_name,Im Bungert ftiw.),Im Bungert (tlw.),,llm-lauf,2026-09-13
+03035,lemma,ne eh Schloßstraße - Wasserschloss Borbeck Schliemannstraße,Schliemannstraße,,llm-lauf,2026-09-13
+03106,lemma,Terwestenweg,II. Terwestenweg,,llm-lauf,2026-09-13
+03106,stadium_1_name,Il,II. Terwestenweg,,llm-lauf,2026-09-13
+03106,verweis_auf,,I. Terwestenweg,,llm-lauf,2026-09-13
+03107,lemma,Ill. Terwestenweg,III. Terwestenweg,,llm-lauf,2026-09-13
+03107,stadium_1_name,IN,III. Terwestenweg,,llm-lauf,2026-09-13
+03107,verweis_auf,,I. Terwestenweg,,llm-lauf,2026-09-13
+03222,stadium_1_name,Viltenweg,Villenweg,,llm-lauf,2026-09-13
+03230,stadtteile,Vogelheim; Altenessen-Nord; Altenessen-Sügd,Vogelheim; Altenessen-Nord; Altenessen-Süd,,llm-lauf,2026-09-13
+03240,lemma,i & KEN wre Vondernstraße - Haus Vondern Von-der-Tann-Straße,Von-der-Tann-Straße,,llm-lauf,2026-09-13
+03270,stadtteile,Friltendorf,Frillendorf,,llm-lauf,2026-09-13
+03277,namensgruppe,"Lagebezeichnung, (",Lagebezeichnung,,llm-lauf,2026-09-13
+03277,stadium_1_name,) Ernststraße (tlw.),Ernststraße (tlw.),,llm-lauf,2026-09-13
+03286,namensgruppe,"Person, Mann, Deutscher, Pfarrer, (","Person, Mann, Deutscher, Pfarrer",,llm-lauf,2026-09-13
+03307,namensgruppe,,Sage,,llm-lauf,2026-09-13
+03307,strassenklasse,Walkmühle —— 2 | 20. November 1937: Walkürenweg,Gemeindestraße,,llm-lauf,2026-09-13
+03323,lemma,1975 wurde Wattenscheid nach Bochum eingemeindet Weberplatz,Weberplatz,,llm-lauf,2026-09-13
+03353,lemma,Werdener Markt PP’ a Werderstraße,Werderstraße,,llm-lauf,2026-09-13
+03388,lemma,WiesenbergstraßBe,Wiesenbergstraße,,llm-lauf,2026-09-13
+03408,lemma,Windmühlenstaße,Windmühlenstraße,Windmühlenstaße,llm-lauf,2026-09-13
+03408,stadtteile,Holsterhausen; _,Holsterhausen,,llm-lauf,2026-09-13
+03422,namensgruppe,"Person, Mann, Deutscher, Geistliche","Person, Mann, Deutscher, Geistlicher",,llm-lauf,2026-09-13
+03423,namensgruppe,"Person, Mann, Deutscher, Geistliche","Person, Mann, Deutscher, Geistlicher",,llm-lauf,2026-09-13
+03425,stadium_2_datum,,20.11.1937,,llm-lauf,2026-09-13
+03425,stadium_2_name,,Woermannstraße,,llm-lauf,2026-09-13
+03496,lemma,BET un 2 Zehntfeld,Zehntfeld,,llm-lauf,2026-09-13
+03496,strassenklasse,,Gemeindestraße,,llm-lauf,2026-09-13
+03500,lemma,Zielstraße - Lyzeum Borbeck 1913 Zerresbuschweg,Zerresbuschweg,,llm-lauf,2026-09-13
+03528,stadtteile,Rütten-scheid,Rüttenscheid,Rütten-scheid,llm-lauf,2026-09-13
+03566,stadium_2_name,Adierstraße,Adlerstraße,,llm-lauf,2026-09-13
+03608,lemma,KERNE Met SENT BET pe rn ia Am Mühlengraben,Am Mühlengraben,,llm-lauf,2026-09-13
+03609,lemma,PERRRFEERE PETER Am Muhrenberg,Am Muhrenberg,,llm-lauf,2026-09-13
+03625,stadium_1_name,Kaiser-Wilhelm-Platz und 21. Dezember 1899: Thalstraße,Kaiser-Wilhelm-Platz,,llm-lauf,2026-09-13
+03625,stadium_2_datum,,21.12.1899,,llm-lauf,2026-09-13
+03625,stadium_2_name,,Thalstraße,,llm-lauf,2026-09-13
+03625,stadium_3_datum,,07.04.1978,,llm-lauf,2026-09-13
+03625,stadium_3_name,,An der Seilerei,,llm-lauf,2026-09-13
+03629,lemma,EBERLE u Bauerschaft,Bauerschaft,,llm-lauf,2026-09-13
+03656,stadium_1_name,Freiligrathstaße,Freiligrathstraße,Freiligrathstaße,llm-lauf,2026-09-13
+03656,stadium_2_name,Karlstraße (tlw.),Karlstraße (tlw. Umb.),,llm-lauf,2026-09-13
+03672,lemma,Helmholtz-Heiligenhauser Straße,Heiligenhauser Straße,,llm-lauf,2026-09-13
+03699,stadium_1_datum,1952-09-08,05.09.1952,,llm-lauf,2026-09-13
+03711,lemma,Te Laupendahler Höhe,Laupendahler Höhe,,llm-lauf,2026-09-13
+03737,namensgruppe,,Hofname,,llm-lauf,2026-09-13
+03742,namensgruppe,,Hofname,,llm-lauf,2026-09-13
+00355,eintrag,,,lemma = Bewerungestraße im Prüfbild bestätigt,llm-lauf,2026-09-13
+00401,eintrag,,,stadium_1_datum = 1953-03-03 im Prüfbild bestätigt,llm-lauf,2026-09-13
+01216,eintrag,,,namensgruppe = Lehngut im Prüfbild bestätigt,llm-lauf,2026-09-13
+01217,eintrag,,,namensgruppe = Lehngut im Prüfbild bestätigt,llm-lauf,2026-09-13
+01273,eintrag,,,"stadium_1_datum = etwa 1910/11 im Prüfbild bestätigt (Doppeljahr, Parser-Präzision jahr)",llm-lauf,2026-09-13
+01439,eintrag,,,stadium_2_name = Am Kreuz (tlw.) im Prüfbild bestätigt,llm-lauf,2026-09-13
+00720,stadium_1_datum,,28.05.1919,"28. Mai 1919: Horststraße (tlw.), etwa 1922: Eberhardstraße (OCR-Rest zwischen Tag und Jahr)",llm-lauf,2026-09-13
+00720,stadium_1_name,,Horststraße (tlw.),28. Mai 1919: Horststraße (tlw.),llm-lauf,2026-09-13

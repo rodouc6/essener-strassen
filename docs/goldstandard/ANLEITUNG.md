@@ -183,6 +183,30 @@ ausführen — das überträgt die geprüften Funde nach `daten/korrekturen.csv`
 (`quelle=llm-lauf`). Anschließend wie oben `python3 -m strassen.erschliessen` neu
 laufen lassen, damit die Korrekturen wirksam werden.
 
+Erfahrungen aus der Sichtung vom 2026-09-13, die `uebernehmen` und das Overlay voraussetzen:
+
+- **Datum** in `korrektur` wie gedruckt oder als `TT.MM.JJJJ` eintragen — nicht als ISO-Datum
+  (`JJJJ-MM-TT` wird vom Overlay nicht gelesen). Ein Datum, das der Parser selbst nur
+  eingeschränkt lesen kann (z. B. Doppeljahr „etwa 1910/11"), lässt sich nicht als
+  Korrektur eintragen; der Parser-Wert bleibt.
+- **Ganzes Stadium nachtragen** (`feld=stadium_N`, `wert_parser` leer): `DATUM | NAME` mit
+  senkrechtem Strich. Fehlt in der Prüfliste die Namenszeile, weil die Modelle nur das
+  Datum sahen (Umbruch), die Zeile `stadium_N_datum` auf `stadium_N` umbenennen und beide
+  Werte eintragen. Ein Stadium **vor** einem vorhandenen einfügen (Position 1 belegt) geht
+  nur direkt in `daten/korrekturen.csv` mit leerem `wert_alt`; das vorhandene rückt auf.
+- Zeilen `stadium_N` **mit** Parser-Wert sind nur Anzeige (Stadium als Ganzes weicht ab);
+  die Korrektur gehört in die Teilfeld-Zeile `stadium_N_name` bzw. `_datum`.
+- **`korrektur = wert_parser`** heißt: Parser hat recht, Eintrag am Scan geprüft. Solche
+  Zeilen werden nicht als Korrektur, sondern als Bestätigung (`feld=eintrag`, `wert_alt`
+  und `wert_neu` leer) ins Overlay geschrieben und heben den Eintrag ebenfalls auf
+  `geprueft`.
+- **`[sic!]`** gehört in den Beleg, nie in den Wert. Ein leerer Beleg bedeutet: Wortlaut
+  identisch mit `korrektur`, am Prüfbild gesichtet.
+- **Eintrag nicht auf dem Prüfbild?** Dann beginnt er oben auf der Folgeseite
+  (Seitenendrest am Lemma, Parser-Seitenzahl um eins zu niedrig). Folgeseite rendern:
+  `rendere_ausschnitt(*buchseite_zu_scan(N+1), QUELLE_PFAD, ziel, dpi=150)` aus
+  `strassen.goldstandard`.
+
 ## Hinweis zur Stichprobe selbst
 
 Die Ziehung ist geschichtet (40 automatisch, 10 unsicher) und deterministisch

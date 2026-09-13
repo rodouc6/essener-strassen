@@ -15,30 +15,30 @@ Beim Modell fehlende Einträge zählen in `eintraege_fehlend`, nicht in der
 
 | Status (Parser) | Feldtyp | verglichen | gleich | Übereinstimmung |
 |---|---|--:|--:|--:|
-| automatisch | lemma | 2774 | 2514 | 90.6 % |
-| automatisch | namensgruppe | 2774 | 2401 | 86.6 % |
-| automatisch | stadium_datum | 3972 | 3529 | 88.8 % |
-| automatisch | stadium_name | 3972 | 3246 | 81.7 % |
-| automatisch | stadium_urspruenglich | 3972 | 3635 | 91.5 % |
-| automatisch | stadtteile | 2774 | 2603 | 93.8 % |
-| automatisch | strassenklasse | 2774 | 2749 | 99.1 % |
-| automatisch | verweis_auf | 2774 | 2646 | 95.4 % |
-| geprueft | lemma | 1 | 1 | 100.0 % |
-| geprueft | namensgruppe | 1 | 1 | 100.0 % |
-| geprueft | stadium_datum | 1 | 1 | 100.0 % |
-| geprueft | stadium_name | 1 | 1 | 100.0 % |
-| geprueft | stadium_urspruenglich | 1 | 1 | 100.0 % |
-| geprueft | stadtteile | 1 | 1 | 100.0 % |
-| geprueft | strassenklasse | 1 | 1 | 100.0 % |
-| geprueft | verweis_auf | 1 | 1 | 100.0 % |
-| unsicher | lemma | 222 | 151 | 68.0 % |
-| unsicher | namensgruppe | 222 | 162 | 73.0 % |
-| unsicher | stadium_datum | 397 | 315 | 79.3 % |
-| unsicher | stadium_name | 397 | 260 | 65.5 % |
-| unsicher | stadium_urspruenglich | 397 | 330 | 83.1 % |
-| unsicher | stadtteile | 222 | 198 | 89.2 % |
-| unsicher | strassenklasse | 222 | 203 | 91.4 % |
-| unsicher | verweis_auf | 222 | 205 | 92.3 % |
+| automatisch | lemma | 2663 | 2447 | 91.9 % |
+| automatisch | namensgruppe | 2663 | 2332 | 87.6 % |
+| automatisch | stadium_datum | 3797 | 3374 | 88.9 % |
+| automatisch | stadium_name | 3797 | 3121 | 82.2 % |
+| automatisch | stadium_urspruenglich | 3797 | 3472 | 91.4 % |
+| automatisch | stadtteile | 2663 | 2515 | 94.4 % |
+| automatisch | strassenklasse | 2663 | 2640 | 99.1 % |
+| automatisch | verweis_auf | 2663 | 2539 | 95.3 % |
+| geprueft | lemma | 200 | 193 | 96.5 % |
+| geprueft | namensgruppe | 200 | 172 | 86.0 % |
+| geprueft | stadium_datum | 323 | 293 | 90.7 % |
+| geprueft | stadium_name | 323 | 281 | 87.0 % |
+| geprueft | stadium_urspruenglich | 323 | 301 | 93.2 % |
+| geprueft | stadtteile | 200 | 190 | 95.0 % |
+| geprueft | strassenklasse | 200 | 200 | 100.0 % |
+| geprueft | verweis_auf | 200 | 192 | 96.0 % |
+| unsicher | lemma | 134 | 112 | 83.6 % |
+| unsicher | namensgruppe | 134 | 96 | 71.6 % |
+| unsicher | stadium_datum | 254 | 188 | 74.0 % |
+| unsicher | stadium_name | 254 | 165 | 65.0 % |
+| unsicher | stadium_urspruenglich | 254 | 197 | 77.6 % |
+| unsicher | stadtteile | 134 | 120 | 89.6 % |
+| unsicher | strassenklasse | 134 | 126 | 94.0 % |
+| unsicher | verweis_auf | 134 | 126 | 94.0 % |
 
 ## Modell `qwen`
 
@@ -49,28 +49,28 @@ Beim Modell fehlende Einträge zählen in `eintraege_fehlend`, nicht in der
 
 | Status (Parser) | Feldtyp | verglichen | gleich | Übereinstimmung |
 |---|---|--:|--:|--:|
-| automatisch | lemma | 3029 | 2864 | 94.6 % |
-| automatisch | namensgruppe | 3029 | 2951 | 97.4 % |
-| automatisch | stadium_datum | 4290 | 4281 | 99.8 % |
-| automatisch | stadium_name | 4290 | 4080 | 95.1 % |
-| automatisch | stadium_urspruenglich | 4290 | 4289 | 100.0 % |
-| automatisch | stadtteile | 3029 | 2882 | 95.1 % |
-| automatisch | strassenklasse | 3029 | 3026 | 99.9 % |
-| automatisch | verweis_auf | 3029 | 3013 | 99.5 % |
-| geprueft | lemma | 1 | 1 | 100.0 % |
-| geprueft | namensgruppe | 1 | 1 | 100.0 % |
-| geprueft | stadium_datum | 1 | 1 | 100.0 % |
-| geprueft | stadium_name | 1 | 1 | 100.0 % |
-| geprueft | stadium_urspruenglich | 1 | 1 | 100.0 % |
-| geprueft | stadtteile | 1 | 1 | 100.0 % |
-| geprueft | strassenklasse | 1 | 1 | 100.0 % |
-| geprueft | verweis_auf | 1 | 1 | 100.0 % |
-| unsicher | lemma | 243 | 175 | 72.0 % |
-| unsicher | namensgruppe | 243 | 223 | 91.8 % |
-| unsicher | stadium_datum | 408 | 386 | 94.6 % |
-| unsicher | stadium_name | 408 | 340 | 83.3 % |
-| unsicher | stadium_urspruenglich | 408 | 394 | 96.6 % |
-| unsicher | stadtteile | 243 | 229 | 94.2 % |
-| unsicher | strassenklasse | 243 | 229 | 94.2 % |
-| unsicher | verweis_auf | 243 | 230 | 94.7 % |
+| automatisch | lemma | 2917 | 2793 | 95.7 % |
+| automatisch | namensgruppe | 2917 | 2869 | 98.4 % |
+| automatisch | stadium_datum | 4117 | 4112 | 99.9 % |
+| automatisch | stadium_name | 4117 | 3942 | 95.7 % |
+| automatisch | stadium_urspruenglich | 4117 | 4116 | 100.0 % |
+| automatisch | stadtteile | 2917 | 2790 | 95.6 % |
+| automatisch | strassenklasse | 2917 | 2916 | 100.0 % |
+| automatisch | verweis_auf | 2917 | 2905 | 99.6 % |
+| geprueft | lemma | 201 | 198 | 98.5 % |
+| geprueft | namensgruppe | 201 | 195 | 97.0 % |
+| geprueft | stadium_datum | 321 | 316 | 98.4 % |
+| geprueft | stadium_name | 321 | 306 | 95.3 % |
+| geprueft | stadium_urspruenglich | 321 | 317 | 98.8 % |
+| geprueft | stadtteile | 201 | 195 | 97.0 % |
+| geprueft | strassenklasse | 201 | 201 | 100.0 % |
+| geprueft | verweis_auf | 201 | 192 | 95.5 % |
+| unsicher | lemma | 155 | 135 | 87.1 % |
+| unsicher | namensgruppe | 155 | 147 | 94.8 % |
+| unsicher | stadium_datum | 265 | 251 | 94.7 % |
+| unsicher | stadium_name | 265 | 234 | 88.3 % |
+| unsicher | stadium_urspruenglich | 265 | 255 | 96.2 % |
+| unsicher | stadtteile | 155 | 150 | 96.8 % |
+| unsicher | strassenklasse | 155 | 152 | 98.1 % |
+| unsicher | verweis_auf | 155 | 152 | 98.1 % |
 

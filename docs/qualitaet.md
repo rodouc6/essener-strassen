@@ -11,15 +11,15 @@ Drei unabhängige Selbstprüfungen des erschlossenen Datensatzes. Die konkreten 
 
 ## 2. Alphabetische Ordnung
 
-- aus der Sortierung fallende Lemmata: 70
-  - davon bereits als „unsicher" gekennzeichnet: 38
-  - davon neu auffällig (bisher „automatisch"): 32
+- aus der Sortierung fallende Lemmata: 37
+  - davon bereits als „unsicher" gekennzeichnet: 12
+  - davon neu auffällig (bisher „automatisch"): 25
   (bekannte Grenze: die Prüfung vergleicht nur direkte Nachbarn — zwei aufeinanderfolgende, gleichsinnig falsch sortierte Lemmata bleiben unentdeckt; Fälle in daten/pruefung_validierung.csv, grund=Alphabet)
 
 ## 3. Abgleich mit dem amtlichen Straßenverzeichnis
 
-- bestätigt: 3237
-- nicht im Verzeichnis: 112
+- bestätigt: 3319
+- nicht im Verzeichnis: 30
   (erwartbar bei aufgehobenen Straßen — nicht automatisch ein Fehler; Fälle in daten/pruefung_validierung.csv, grund=„nicht im amtlichen Verzeichnis")
 
 ## 4. Unabhängige LLM-Lesung
