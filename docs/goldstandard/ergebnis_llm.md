@@ -135,20 +135,20 @@ Gesamt: 478 Felder, 371 korrekt, Fehlerquote 22.4 %. Vom Parser ausgelassene Fel
 
 ## Modell `qwen`
 
-Gesamt: 478 Felder, 430 korrekt, Fehlerquote 10.0 %. Vom Parser ausgelassene Felder: 8 von 10 vom Modell gefunden.
+Gesamt: 478 Felder, 449 korrekt, Fehlerquote 6.1 %. Vom Parser ausgelassene Felder: 8 von 10 vom Modell gefunden.
 
 | Schicht/Feldtyp | geprüft | korrekt | Fehlerquote |
 |---|--:|--:|--:|
-| automatisch | 388 | 354 | 8.8 % |
+| automatisch | 388 | 373 | 3.9 % |
 | unsicher | 90 | 76 | 15.6 % |
-| lemma | 50 | 47 | 6.0 % |
-| namensgruppe | 50 | 45 | 10.0 % |
-| schl_nr | 50 | 48 | 4.0 % |
-| stadium_datum | 89 | 80 | 10.1 % |
-| stadium_name | 89 | 69 | 22.5 % |
-| stadtteile | 50 | 45 | 10.0 % |
-| strassenklasse | 50 | 48 | 4.0 % |
-| verweis_auf | 50 | 48 | 4.0 % |
+| lemma | 50 | 49 | 2.0 % |
+| namensgruppe | 50 | 47 | 6.0 % |
+| schl_nr | 50 | 50 | 0.0 % |
+| stadium_datum | 89 | 84 | 5.6 % |
+| stadium_name | 89 | 72 | 19.1 % |
+| stadtteile | 50 | 47 | 6.0 % |
+| strassenklasse | 50 | 50 | 0.0 % |
+| verweis_auf | 50 | 50 | 0.0 % |
 
 ### Abweichungen
 
@@ -163,16 +163,6 @@ Gesamt: 478 Felder, 430 korrekt, Fehlerquote 10.0 %. Vom Parser ausgelassene Fel
 | 00507 | Byfanger Straße | stadium_4_name | Byfanger Straße (Verl) | Byfanger Straße (Verl.) |
 | 00595 | Dahlhauser Straße | stadium_3_datum | 1905-04-13 | (urspr., kein Datum) |
 | 00891 | Franziskanerhöhe | stadium_2_name | Kapitän-Lehmann-Höhe (Umb)) | Kapitän-Lehmann-Höhe (Umb.) |
-| 00916 | Friedrich-Küch-Straße | schl_nr | 00916 | — |
-| 00916 | Friedrich-Küch-Straße | lemma | Friedrich-Küch-Straße | — |
-| 00916 | Friedrich-Küch-Straße | stadtteile | Huttrop | — |
-| 00916 | Friedrich-Küch-Straße | strassenklasse | Gemeindestraße | — |
-| 00916 | Friedrich-Küch-Straße | namensgruppe | Person, Mann, Deutscher | — |
-| 00916 | Friedrich-Küch-Straße | verweis_auf |  | — |
-| 00916 | Friedrich-Küch-Straße | stadium_1_datum | 1914-10-09 | — |
-| 00916 | Friedrich-Küch-Straße | stadium_1_name | Begasstraße | — |
-| 00916 | Friedrich-Küch-Straße | stadium_2_datum | 1935-11-14 | — |
-| 00916 | Friedrich-Küch-Straße | stadium_2_name | Friedrich-Küch-Straße | — |
 | 01151 | Habichtstraße | stadium_3_name | Habichtstraße (Verl) | Habichtstraße (Verl.) |
 | 01410 | Huyssenallee | namensgruppe | Familienname, Essener Geschichte und ÖOrtlichkeit | Familienname, Essener Geschichte und Örtlichkeit |
 | 01837 | Küppersheide | stadtteile | Bredeney | Bredenei |
@@ -189,28 +179,21 @@ Gesamt: 478 Felder, 430 korrekt, Fehlerquote 10.0 %. Vom Parser ausgelassene Fel
 | 02727 | Annental | stadium_2_name | Walpurgisstraße (tiw.) | Walpurgisstraße (tlw.) |
 | 02727 | Annental | stadium_3_name | St. Annental | St. Annetal |
 | 03114 | Ten-Hövel-Weg | stadium_1_name | Ten- Hövel-Weg | Ten-Hövel-Weg |
-| 03355 | Werner-Viebig-Weg | schl_nr | 03355 | — |
-| 03355 | Werner-Viebig-Weg | lemma | Werner-Viebig-Weg | — |
-| 03355 | Werner-Viebig-Weg | stadtteile | Kray | — |
-| 03355 | Werner-Viebig-Weg | strassenklasse | Gemeindestraße | — |
-| 03355 | Werner-Viebig-Weg | namensgruppe | Person, Mann, Deutscher, Betriebsdirektor, Siedlung | — |
-| 03355 | Werner-Viebig-Weg | verweis_auf |  | — |
-| 03355 | Werner-Viebig-Weg | stadium_1_datum | (urspr., kein Datum) | — |
-| 03355 | Werner-Viebig-Weg | stadium_1_name | Franziskastraße | — |
-| 03355 | Werner-Viebig-Weg | stadium_2_datum | 1937-11-20 | — |
-| 03355 | Werner-Viebig-Weg | stadium_2_name | Werner-Viebig- Weg | — |
+| 03355 | Werner-Viebig-Weg | stadium_2_name | Werner-Viebig- Weg | Werner-Viebig-Weg |
 | 03432 | Wolfsbankstraße | stadium_5_name | Carl-Funke- Straße | Carl-Funke-Straße |
 | 03432 | Wolfsbankstraße | stadium_7_name | Wolfsbankstraße (Verl) | Wolfsbankstraße (Verl.) |
 | 03748 | Schulstraße | stadium_2_name | Langemarckstraße (Umb | Langemarckstraße (Umb.) |
-
 
 ---
 
 ## Messgrundlage
 
-- Gemessen am 2026-09-12/13 über die 47 Buchseiten der Goldstandard-Stichprobe; beide
-  Modelle mit demselben Prompt-Stand `530d5c9e77b5` (Endstand, seit dieser Messung
-  unverändert).
+- Gemessen am 2026-09-13 über die 47 Buchseiten der Goldstandard-Stichprobe; beide Modelle
+  mit demselben Prompt-Stand `530d5c9e77b5` (Endstand, seit der Messung unverändert).
+- Grundlage sind die Antworten des Volllaufs einschließlich des einmaligen Nachfassens
+  unlesbarer Seiten (`--neu`); für qwen waren bei der ersten Messung zwei
+  Stichprobenseiten (120, 344) unlesbar, sie wurden nachgeholt (Fehlerquote dadurch
+  10,0 % → 6,1 %).
 - Die Normalisierung in `strassen/llm_vergleich.py` wurde für diese Messung **nicht**
   angepasst: alle Datumsangaben der Stichprobenseiten waren in der vorhandenen Form
   normalisierbar.

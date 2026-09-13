@@ -3829,6 +3829,10 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02401,1,1901-07-19,tag,Elisabethstraße,falsch
 02401,2,1915-07-09,tag,Peanstraße,falsch
 02402,1,1956-07-03,tag,Peenestraße,falsch
+02402,1,1500-01-01,tag,Königstraße (tiw.),falsch
+02402,2,1825-12-31,tag,Schwarze Poth (tw),falsch
+02402,3,1860-01-01,tag,Postallee (tiw.),falsch
+02402,4,1951-07-04,tag,Porscheplatz,falsch
 02403,1,1908-05-01,tag,Pelmanstraße,falsch
 02404,1,1938-10-21,tag,Pelzstraße,falsch
 02405,1,1953-03-03,tag,Pestalozziweg,falsch
@@ -3901,10 +3905,6 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02440,2,1935-11-14,tag,Pookweg,falsch
 02441,1,1825-12-31,tag,Schwarze Poth {tiw.),falsch
 02441,2,1957-10-31,tag,Porschekanzel,falsch
-02402,1,1500-01-01,tag,Königstraße (tiw.),falsch
-02402,2,1825-12-31,tag,Schwarze Poth (tw),falsch
-02402,3,1860-01-01,tag,Postallee (tiw.),falsch
-02402,4,1951-07-04,tag,Porscheplatz,falsch
 02443,1,1894-08-07,tag,Portendieckstraße,falsch
 02444,1,1883-11-17,tag,Porthofplatz,falsch
 02445,1,1883-11-17,tag,Porthofstraße,falsch
@@ -4020,13 +4020,13 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02565,1,1907-08-06,tag,Haeselerstraße,falsch
 02565,2,1915-07-09,tag,Rebenlaube,falsch
 02568,1,1936-08-05,tag,Rebenranke,falsch
-02679,1,1966-06-13,tag,Rebstock,falsch
-02567,1,1896-08-14,tag,Rechtsstraße,falsch
 02568,1,1868-01-17,tag,Hammerstraße,falsch
 02568,2,1868-01-17,tag,Parallelstraße,falsch
 02568,3,1915-07-09,tag,Hammerstraße (Verl.),falsch
 02568,4,1937-11-20,tag,Reckhammerweg,falsch
 02568,5,1973-12-18,tag,Reckhammerweg (Verl.),falsch
+02679,1,1966-06-13,tag,Rebstock,falsch
+02567,1,1896-08-14,tag,Rechtsstraße,falsch
 02569,1,1914-05-10,tag,Meckenstocker Weg (tiw.),falsch
 02569,2,1954-07-15,tag,Reckmannshof,falsch
 02570,1,1896-08-14,tag,Reckstraße,falsch
@@ -5124,6 +5124,8 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03312,3,1929-07-06,tag,Walter- Sachsse-Weg,falsch
 03313,1,1897-09-06,tag,Wandastraße,falsch
 03448,1,1962-11-12,tag,Wangeroogeweg,falsch
+03448,1,1898-03-11,tag,Hülsenbruchstraße (tlw.),falsch
+03448,2,1965-09-06,tag,Wieselweg,falsch
 03314,1,1922,jahr,Uhlandstraße,falsch
 03314,2,1935-11-14,tag,Wandtleite,falsch
 03315,1,1956-07-03,tag,Warthestraße,falsch
@@ -5255,8 +5257,6 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03387,1,,unbekannt,Spanische Beck,wahr
 03387,2,1902-05-16,tag,Wiesbadener Straße,falsch
 03387,3,1906-03-10,tag,Wiesbadener Straße (Verl.),falsch
-03448,1,1898-03-11,tag,Hülsenbruchstraße (tlw.),falsch
-03448,2,1965-09-06,tag,Wieselweg,falsch
 03388,1,1902-05-16,tag,Wiesenbergstraße,falsch
 03389,1,1954-07-15,tag,Wiesengrund,falsch
 03390,1,1868-01-17,tag,Wiesenstraße,falsch
@@ -5455,3 +5455,4 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03532,1,1860,jahr,Bergstraße,falsch
 03532,2,1934-06-05,tag,Zwölfling,falsch
 03532,3,1951-07-04,tag,Zwölfling (Verl),falsch
+02949,1,1962-09-27,tag,Spervogelweg,falsch

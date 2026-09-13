@@ -22,3 +22,7 @@ Drei unabhängige Selbstprüfungen des erschlossenen Datensatzes. Die konkreten 
 - nicht im Verzeichnis: 126
   (erwartbar bei aufgehobenen Straßen — nicht automatisch ein Fehler; Fälle in daten/pruefung_validierung.csv, grund=„nicht im amtlichen Verzeichnis")
 
+## 4. Unabhängige LLM-Lesung
+
+Zwei bildfähige Modelle haben die Seitenbilder unabhängig vom Parser gelesen; Kennzahlen in [`llm_lesung.md`](llm_lesung.md), die eigene Fehlerquote der Modelle gegen die Goldstandard-Stichprobe in [`goldstandard/ergebnis_llm.md`](goldstandard/ergebnis_llm.md).
+

@@ -142,7 +142,7 @@ maschinenlesbare Schema liegt zusätzlich in [`datapackage.json`](datapackage.js
 | `buchseite` | Beleg: Seite in Dickhoff 2015 | ganzzahlig, 23–362 (Einträge nur im Lexikonteil; das Buch umfasst die Scan-Seiten 2–388, Titelei/Einleitung/Register enthalten keine Einträge) |
 | `status` | Prüfstatus des Eintrags | `automatisch` (Parser ohne Prüfgrund) \| `unsicher` (Parser mit Prüfgrund, Wert übernommen und gekennzeichnet) \| `geprueft` (Eintrag vollständig gegen den Scan geprüft, Korrekturen über `daten/korrekturen.csv` angewandt — höchste Stufe) |
 
-### `daten/namen.csv` (5.456 Zeilen)
+### `daten/namen.csv` (5.457 Zeilen)
 
 | Feld | Beschreibung | Wertebereich |
 |---|---|---|
@@ -214,9 +214,9 @@ korrigierten Werte selbst, nicht über eine Änderung an `pruefung.csv`.
 ## Bezifferte Qualität
 
 - **388** OCR-Buchseiten → **3.343** vom Parser segmentierte Einträge.
-- `daten/strassen.csv`: **3.338** Zeilen, davon **272** mit `status=unsicher`
-  (**3.066** `automatisch`).
-- `daten/namen.csv`: **5.456** Namensstadien (Datierungsgenauigkeit: **4.731** `tag`,
+- `daten/strassen.csv`: **3.338** Zeilen, davon **271** mit `status=unsicher`
+  (**3.066** `automatisch`, **1** `geprueft`).
+- `daten/namen.csv`: **5.457** Namensstadien (Datierungsgenauigkeit: **4.732** `tag`,
   **324** `unbekannt`, **212** `jahr`, **181** `vor`, **8** `jahrhundert`).
 - `daten/konkordanz_1936.csv`: **426** Zeilen (**387** `eindeutig=ja`, 39 `eindeutig=nein`;
   **134** mit Klammerzusatz).
@@ -234,16 +234,27 @@ konkreten Treffer (Lemma, Schlüsselnummer, Grund): `daten/pruefung_validierung.
 
 ### Unabhängige LLM-Lesung
 
-> **Platzhalter bis zum Volllauf.** Dieser Abschnitt beschreibt das Verfahren; die
-> bezifferten Ergebnisse werden erst nach dem vollständigen LLM-Lesungslauf eingetragen.
-> Zahlen: siehe verlinkte Dateien.
-
 Zwei Sprachmodelle lesen die ganzseitigen Seitenbilder unabhängig voneinander und ohne
 Kenntnis des OCR-Texts (s. [Methode, Stufe 5](#stufe-5--unabhängige-llm-lesung-und-korrektur-overlay)).
-Ablauf und Kennzahlen dieses Laufs (Trefferzahlen je Modell, Übereinstimmung mit dem
-Datensatz, Anteil übernommener Korrekturen): [`docs/llm_lesung.md`](docs/llm_lesung.md).
-Die eigene Fehlerquote der Modelle, gemessen gegen die menschlich geprüfte
-Goldstandard-Stichprobe: [`docs/goldstandard/ergebnis_llm.md`](docs/goldstandard/ergebnis_llm.md).
+Volllauf vom 2026-09-12/13, Prompt-Stand `530d5c9e77b5`:
+
+- Gelesene Buchseiten: **387** bei `mistral` (0 unlesbar) und **381** bei `qwen`; dort sind
+  nach einmaligem Nachfassen **6** Seiten unlesbar geblieben (122, 171, 199, 206, 225, 355).
+- Eigene Fehlerquote gegen die menschlich geprüfte Goldstandard-Stichprobe (478 Prüffelder):
+  **6,1 %** (`qwen`, 449 korrekt) und **22,4 %** (`mistral`, 371 korrekt) —
+  [`docs/goldstandard/ergebnis_llm.md`](docs/goldstandard/ergebnis_llm.md). Die Modelle
+  lesen also deutlich fehlerhafter als der Datensatz selbst; sie taugen als Hinweisgeber,
+  nicht als Korrekturinstanz.
+- Prüfliste `daten/pruefung_llm.csv`: **4.317** Zeilen — **712** mit `einig=beide` (beide
+  Modelle lesen dasselbe, aber anders als der Datensatz), **3.508** mit `einig=eines`,
+  **97** mit `einig=unlesbar` (ein Modell hat die Seite nicht gelesen). Modellwerte über
+  120 Zeichen sind Fließtext der Vorlage und werden verworfen (nur Länge vermerkt).
+- Daraus bisher menschlich bestätigt und angewandt: **1** Eintrag mit `status=geprueft`
+  (aus der Goldstandard-Stichprobe, nicht aus der Modell-Lesung).
+
+Die Modelle verändern den Status nicht; alle `geprueft`-Einträge gehen auf manuelle
+Prüfung zurück. Übereinstimmungsquoten je Feldtyp und Modell:
+[`docs/llm_lesung.md`](docs/llm_lesung.md).
 
 ### Goldstandard-Stichprobe (Entwicklungs-Stichprobe, Stand 2026-09-11)
 
@@ -264,12 +275,16 @@ Abschnittsbuchstabe im Lemma). Sie werden im Parser behoben; da die Fehler am se
 Sample gefunden und behoben werden, ist diese Ziehung als **Entwicklungs-Stichprobe**
 zu lesen, nicht als unabhängige Fehlerquote des Endstands. Vollständige Fehlerliste mit
 Korrekturen: [`docs/goldstandard/ergebnis.md`](docs/goldstandard/ergebnis.md);
-Prüfverfahren: [`docs/goldstandard/ANLEITUNG.md`](docs/goldstandard/ANLEITUNG.md). Die 21
+Prüfverfahren: [`docs/goldstandard/ANLEITUNG.md`](docs/goldstandard/ANLEITUNG.md). Die
+drei Befunde, die die Parser-Reparatur nicht auflösen konnte (Eintrag 02949
+Spervogelweg: Namensgruppe und ein ganz fehlendes Namensstadium), stehen seit dem
+2026-09-13 als Korrekturzeilen in `daten/korrekturen.csv` (`quelle=goldstandard`); der
+Eintrag trägt dadurch `status=geprueft`. Die 21
 Regeln der Reparatur sind in
 [`docs/specs/2026-09-11-parser-reparatur-design.md`](docs/specs/2026-09-11-parser-reparatur-design.md)
 beschrieben, der Nachweis jeder Änderung in
 [`docs/regression/2026-09-parser-reparatur.md`](docs/regression/2026-09-parser-reparatur.md).
-Dass der Endstand mehr unsichere Einträge zählt als der Prototyp der Spec (272 statt 202),
+Dass der Endstand mehr unsichere Einträge zählt als der Prototyp der Spec (271 statt 202),
 ist gewollt und keine Regression: leere Kopffelder, Toleranz-Hinweise und unvollständig
 gelesene Namensketten sind seither eigene Prüfgründe — der Prototyp las diese Fälle still.
 
@@ -305,7 +320,7 @@ nur Stufe 1+2 (`strassen/erschliessen.py`) ausführen; `daten/strassen.csv` und
 Ehrlichkeit über die Grenzen dieses Datensatzes ist Teil seines Qualitätsanspruchs —
 nichts hier ist verschwiegen, um sauberer zu wirken:
 
-- **272 unsichere Einträge** (`status=unsicher` in `strassen.csv`) sind vom Parser nicht
+- **271 unsichere Einträge** (`status=unsicher` in `strassen.csv`) sind vom Parser nicht
   sicher erschlossen; ihre Felder (insbesondere `strassenklasse`) können OCR-Rauschen
   enthalten. Sie gehen bewusst nicht in die Konkordanz ein.
 - **65 Konkordanz-Prüffälle** (`daten/pruefung_konkordanz.csv`, nicht Teil des
