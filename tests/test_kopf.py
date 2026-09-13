@@ -469,6 +469,21 @@ def test_bereinige_rand_laesst_saubere_werte(wert):
     assert bereinige_rand(wert) == (wert, "")
 
 
+def test_bereinige_rand_kleingeschriebenes_wortpraefix():
+    """Bekanntes Verhalten: 'am ' vor einem Kopfwert wird wie ein Randzeichen behandelt,
+    obwohl es ein echtes (kleingeschriebenes) Wort ist. Das wird akzeptiert, weil
+    Kopfwerte im Buch großgeschrieben beginnen — ein kleingeschriebenes Präfix ist damit
+    ohnehin ein Befund, und das Ergebnis wird korrekt auf `unsicher` gestuft."""
+    assert bereinige_rand("am Zehnthof") == ("Zehnthof", HINWEIS_RANDZEICHEN)
+
+
+@pytest.mark.parametrize("wert", ["I. Buschlandweg", "Ill. Ruschenfeld"])
+def test_bereinige_rand_laesst_r4_lemmata_unangetastet(wert):
+    """R4-Lemmata mit römischem Ordnungspunkt (auch die OCR-Variante 'Ill.') dürfen von
+    bereinige_rand nicht als Randzeichen-Rauschen behandelt werden."""
+    assert bereinige_rand(wert) == (wert, "")
+
+
 def test_feldrest_semikolon_unterstrich_entfernt():
     k = parse_kopf("01008, Stadtteil Holsterhausen; _, Str.-Kl.: Gemeindestraße; _, Str.-Gr.: Flurname, 1900: Test.")
     assert k.stadtteile == ["Holsterhausen"] and k.strassenklassen == ["Gemeindestraße"]

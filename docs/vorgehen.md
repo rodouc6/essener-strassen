@@ -66,8 +66,10 @@ Ergebnis der Regeneration: **+11 Straßeneinträge** (3.338 → 3.349) und **+16
 Prüflisten-Zeilen mit `einig=beide` sinken von **712 auf 288** (Prüfliste insgesamt 4.317 →
 3.585), weil R7 zusätzlich den letzten Eintrag jeder Buchseite nur im Kopf vergleicht
 (`seitenende_ausgelassen`: 340 bei `mistral`, 334 bei `qwen`). Die Zahl gekennzeichneter
-Einträge sinkt dabei (`unsicher` 271 → 256) und die Konkordanz wächst von 426 auf 421
-belastbare Paare mit deutlich saubereren Namen. Eine erste Regeneration hatte den Hinweis
+Einträge sinkt dabei (`unsicher` 271 → 256) und die Konkordanz geht von 426 auf 421 Paare
+zurück: 15 der weggefallenen Paare waren keine Umbenennungen, sondern Trennstrich-Artefakte
+(R1), 6 Einträge sind neu `unsicher` (Klammerzusatz ergänzt), 16 Paare kommen durch
+normalisierte Klammerzusätze hinzu. Eine erste Regeneration hatte den Hinweis
 `Anker OCR-korrigiert` zu weit gefasst und 102 inhaltlich unveränderte Einträge auf
 `unsicher` gestuft; das wurde vor der Veröffentlichung korrigiert. Jede der verbliebenen
 zwölf Rückstufungen ist einzeln geprüft im Differenzbericht
@@ -79,3 +81,11 @@ Aus der Parser-Runde 2 bleiben Einzelfälle übrig, die kein automatisches Regel
 tragen und einzeln gegen den Scan geprüft werden müssen (Sichtung über die Prüfbilder,
 Übernahme via Korrektur-Overlay). Langfristig geplant ist die Veröffentlichung des
 Datensatzes auf Zenodo mit DOI, sobald der Datenstand als hinreichend stabil gilt.
+
+- Die beiden Lemmata, die einen vorausgehenden Satz mitgerissen haben (00601
+  Dandermannsteg, 02318 Oberscheidtstraße, beide `unsicher`), kommen zu den bereits
+  vorher bestehenden ~38 Lemmata mit mehr als vier Wörtern hinzu — allesamt Kandidaten
+  für das Korrektur-Overlay nach Sichtung am Scan. Diese Sichtung ist nicht Teil dieser
+  Runde; es werden hier keine `korrekturen`-Zeilen ergänzt.
+- R4 deckt bislang nur 11 der 24 römischen Präfixe ab (u. a. OCR-Varianten wie `Il.`,
+  `ll.` statt `II.`).

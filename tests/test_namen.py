@@ -1,4 +1,6 @@
-from strassen.namen import parse_namenskette
+import pytest
+
+from strassen.namen import HINWEIS_ZUSATZ_ERGAENZT, normalisiere_zusatz, parse_namenskette
 
 
 def test_dreistufige_kette_mit_tagesdatum():
@@ -189,11 +191,6 @@ def test_unverarbeiteter_rest_ist_leer_bei_vollstaendig_gelesener_kette():
     rest = ("18. November 1904: Kirchstraße, 01. Juni 1926: Klosterstraße, "
             "20. November 1937: Kütings Garten.")
     assert unverarbeiteter_rest(rest) == ""
-
-
-import pytest
-
-from strassen.namen import normalisiere_zusatz, HINWEIS_ZUSATZ_ERGAENZT
 
 
 @pytest.mark.parametrize("roh,soll", [

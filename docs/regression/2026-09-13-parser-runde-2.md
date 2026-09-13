@@ -50,13 +50,19 @@ von R2 eindeutig normalisiert), 12 kommen hinzu, und 8 der 11 neu gefundenen Ein
 den neuen Hinweis `Anker OCR-korrigiert` — 271 − 35 + 12 + 8 = 256. Die Konkordanz speist
 sich aus den belastbaren Einträgen und geht von 426 auf 421 Paare zurück: 26 Paare fallen weg,
 21 kommen hinzu. Von den 26 waren 15 gar keine Umbenennungen, sondern R1-Trennstrichfehler
-(`Adolf- Rath-Straße` → `Adolf-Rath-Straße` ist keine Namensänderung), 4 abgeschnittene
-Klammerzusätze (`Thomaestraße (tiw` → `(tlw.)`) und 5 Paare, deren „ehemaliger" Name einen
-Trennstrichfehler trug und die deshalb in korrigierter Schreibung unter den 21 neuen wieder
-auftauchen (`Robert- Ley-Platz` → `Robert-Ley-Platz`). Nur 2 Paare (02137 Middeldorper Weg,
-02974 Stoppenberger Straße) fallen weg, weil ihr Eintrag jetzt `unsicher` ist — beide wegen
-einer R2-Zusatz-Ergänzung, beide unten einzeln geprüft. Die übrigen neuen Paare stammen aus
-den 35 aufgestuften Einträgen.
+(`Adolf- Rath-Straße` → `Adolf-Rath-Straße` ist keine Namensänderung) und 5 Paare, deren
+„ehemaliger" Name einen Trennstrichfehler trug und die deshalb in korrigierter Schreibung
+unter den 21 neuen wieder auftauchen (`Robert- Ley-Platz` → `Robert-Ley-Platz`). Die
+restlichen 6 fallen weg, weil ihr Eintrag durch eine R2-Zusatz-Ergänzung (`Klammerzusatz
+ergänzt`) jetzt `unsicher` ist: 00050 Altendorfer Straße, 02137 Middeldorper Weg, 02621
+Röntgenstraße, 02656 Rüttenscheider Straße, 02974 Stoppenberger Straße und 03359
+Weserstraße (alle unten einzeln geprüft). Vier davon (00050, 02621, 02656, 03359) trugen
+aber bereits vor Runde 2 einen abgeschnittenen Klammerzusatz im „ehemaligen" Namen
+(`Thomaestraße (tiw`, `Marschallstraße (tlw`, `Hermann-Göring-Straße (Umb`,
+`Joseph-Hommer-Weg (Umb`) — der Wegfall ist bei diesen vier kein echter Verlust eines
+belastbaren Paares, sondern nur die konsequente Kennzeichnung eines vorher schon defekten
+Eintrags. Real verloren gehen damit nur die zwei intakten Paare 02137 und 02974. Die
+übrigen neuen Paare stammen aus den 35 aufgestuften Einträgen.
 
 **Zur Prüfliste:** `einig=beide` (beide Modelle widersprechen dem Parser) fällt von 712 auf
 288, die Prüfliste insgesamt von 4.317 auf 3.585 Zeilen. Der Spec-Sollwert „unter 250" ist

@@ -299,9 +299,12 @@ gelesene Namensketten sind seither eigene Prüfgründe — der Prototyp las dies
 ### Erhebungsstand des Adressbuchs Essen 1936
 
 Der Namensstand, den das Adressbuch tatsächlich abbildet, wurde nicht angenommen,
-sondern an den 363 tagesgenau datierten Umbenennungs-Übergängen im Zeitraum 1935–1937
-gemessen: Ab Namensänderungen ab Februar 1936 reflektiert das Adressbuch keine einzige
-mehr. Das grenzt den tatsächlichen Erhebungsschluss auf etwa **Ende 1935 bis Januar
+sondern an den 412 tagesgenau datierten Namensstadien-Übergängen im Zeitraum 1935–1937
+gemessen, von denen sich 244 anhand des Adressbuchtexts eindeutig einer Namensform
+zuordnen lassen (216 „alt", 28 „neu" — die übrigen 168 bleiben unentschieden, weil im
+Adressbuch entweder beide oder keine der beiden Namensformen auftauchen): Ab Namensänderungen ab Februar
+1936 reflektiert das Adressbuch keine einzige mehr. Das grenzt den tatsächlichen
+Erhebungsschluss auf etwa **Ende 1935 bis Januar
 1936** ein. Als Arbeitswert für die Konkordanz dient der Stichtag **1936-06-30** — er
 liegt komfortabel im gesamten Zeitfenster (Februar 1936 bis Januar 1937), in dem keine
 weitere Umbenennung mehr auf den Datensatz einwirkt, eine engere Festlegung wäre durch
