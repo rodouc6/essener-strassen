@@ -185,3 +185,128 @@ def test_datum_ohne_doppelpunkt_bleibt_zulaessig():
     ko.wende_an(s, n, [_k("00001", "stadium_2_datum", "1902-05-16", "29.08.1927:")])
     ko.wende_an(*_daten(), [_k("00001", "stadium_2_datum", "1902-05-16", "29.08.1927")])
     assert (n[1]["gueltig_ab"], n[1]["datum_praezision"]) == ("1927-08-29", "tag")
+
+
+# --- Overlay-Erweiterung 2026-09-13: buchseite, schl_nr, Neuanlage, vorm.-Stadium ---
+
+def test_buchseite_korrigieren():
+    s, n = _daten()
+    ko.wende_an(s, n, [_k("00001", "buchseite", "23", "24")])
+    assert s[0]["buchseite"] == 24 and s[0]["status"] == "geprueft"
+
+
+def test_buchseite_wert_alt_muss_passen():
+    s, n = _daten()
+    with pytest.raises(ko.KorrekturFehler, match="00001 buchseite"):
+        ko.wende_an(s, n, [_k("00001", "buchseite", "22", "24")])
+
+
+def _daten_mit_dublette():
+    s, n = _daten()
+    s.append({"schl_nr": "00002", "lemma": "Rebenranke", "stadtteile": "Fischlaken", "strassenklasse": "Gemeindestraße",
+              "namensgruppe": "Botanik", "verweis_auf": "", "buchseite": 270, "status": "unsicher"})
+    n.append({"schl_nr": "00002", "stadium": 1, "gueltig_ab": "1936-08-05", "datum_praezision": "tag",
+              "name": "Rebenranke", "ist_urspruenglich": "falsch"})
+    return s, n
+
+
+def test_schl_nr_umbenennen_adressiert_dublette_ueber_lemma():
+    s, n = _daten_mit_dublette()
+    prot = ko.wende_an(s, n, [_k("00002", "schl_nr", "Rebenranke", "00003"),
+                              _k("00003", "stadtteile", "Fischlaken", "Fischlaken; Werden")])
+    reben = [z for z in s if z["lemma"] == "Rebenranke"][0]
+    assert reben["schl_nr"] == "00003" and reben["status"] == "geprueft"
+    assert reben["stadtteile"] == "Fischlaken; Werden"
+    # Bei einer Dublette ist nicht entscheidbar, welche Stadien zu welchem Eintrag gehören:
+    # sie bleiben unter der alten Nummer und werden per Streichen/Nachtrag zugeordnet.
+    assert [z["schl_nr"] for z in n if z["name"] == "Rebenranke"] == ["00002"]
+    abtei = [z for z in s if z["lemma"] == "Abteistraße"][0]
+    assert abtei["schl_nr"] == "00002" and abtei["status"] == "automatisch"
+    assert prot["eintraege"] == 1
+
+
+def test_schl_nr_wert_alt_muss_lemma_eines_eintrags_sein():
+    s, n = _daten_mit_dublette()
+    with pytest.raises(ko.KorrekturFehler, match="00002 schl_nr"):
+        ko.wende_an(s, n, [_k("00002", "schl_nr", "Gibtsnicht", "00003")])
+
+
+def test_schl_nr_neu_darf_nicht_vergeben_sein():
+    s, n = _daten_mit_dublette()
+    with pytest.raises(ko.KorrekturFehler, match="00001"):
+        ko.wende_an(s, n, [_k("00002", "schl_nr", "Rebenranke", "00001")])
+
+
+def test_eintrag_neu_anlegen():
+    s, n = _daten()
+    prot = ko.wende_an(s, n, [
+        _k("00099", "eintrag", "", "Neue Straße"),
+        _k("00099", "buchseite", "", "57"),
+        _k("00099", "stadtteile", "", "Werden"),
+        _k("00099", "strassenklasse", "", "Gemeindestraße"),
+        _k("00099", "namensgruppe", "", "Flurname"),
+        _k("00099", "stadium_1_datum", "", "07.04.1978"),
+        _k("00099", "stadium_1_name", "", "Neue Straße"),
+    ])
+    neu = [z for z in s if z["schl_nr"] == "00099"]
+    assert len(neu) == 1 and neu[0] == {
+        "schl_nr": "00099", "lemma": "Neue Straße", "stadtteile": "Werden", "strassenklasse": "Gemeindestraße",
+        "namensgruppe": "Flurname", "verweis_auf": "", "buchseite": 57, "status": "geprueft"}
+    st = [z for z in n if z["schl_nr"] == "00099"]
+    assert [(z["stadium"], z["gueltig_ab"], z["name"]) for z in st] == [(1, "1978-04-07", "Neue Straße")]
+    assert prot["eintraege"] == 1
+
+
+def test_eintrag_neu_braucht_buchseite():
+    s, n = _daten()
+    with pytest.raises(ko.KorrekturFehler, match="00099.*buchseite"):
+        ko.wende_an(s, n, [_k("00099", "eintrag", "", "Neue Straße"),
+                           _k("00099", "stadium_1_datum", "", "07.04.1978"),
+                           _k("00099", "stadium_1_name", "", "Neue Straße")])
+
+
+def test_eintrag_neu_bei_vorhandener_schl_nr_ist_fehler():
+    s, n = _daten()
+    with pytest.raises(ko.KorrekturFehler, match="00001.*eintrag"):
+        ko.wende_an(s, n, [_k("00001", "eintrag", "", "Aachener Straße")])
+
+
+def test_unbekannte_schl_nr_ohne_neuanlage_bricht_weiter_ab():
+    s, n = _daten()
+    with pytest.raises(ko.KorrekturFehler, match="00099"):
+        ko.wende_an(s, n, [_k("00099", "buchseite", "", "57")])
+
+
+def test_vorm_stadium_ohne_datum_nachtragen():
+    s, n = _daten()
+    ko.wende_an(s, n, [_k("00001", "stadium_1_datum", "", "vorm."),
+                       _k("00001", "stadium_1_name", "", "Bolsterbaum (tlw.)")])
+    st = [z for z in n if z["schl_nr"] == "00001"]
+    assert (st[0]["stadium"], st[0]["gueltig_ab"], st[0]["datum_praezision"], st[0]["name"],
+            st[0]["ist_urspruenglich"]) == (1, "", "unbekannt", "Bolsterbaum (tlw.)", "falsch")
+    assert [z["stadium"] for z in st] == [1, 2, 3] and st[1]["name"] == "Victoriastraße (tlw.)"
+
+
+def test_vorm_nur_als_nachtrag_erlaubt():
+    s, n = _daten()
+    with pytest.raises(ko.KorrekturFehler, match="00001 stadium_2_datum"):
+        ko.wende_an(s, n, [_k("00001", "stadium_2_datum", "1902-05-16", "vorm.")])
+
+
+def test_schl_nr_umbenennen_eindeutig_nimmt_stadien_mit():
+    s, n = _daten()
+    ko.wende_an(s, n, [_k("00001", "schl_nr", "Aachener Straße", "00009")])
+    assert s[0]["schl_nr"] == "00009" and s[0]["status"] == "geprueft"
+    assert [z["schl_nr"] for z in n if z["name"] == "Aachener Straße"] == ["00009"]
+    assert not [z for z in n if z["schl_nr"] == "00001"]
+
+
+def test_dublette_nach_umbenennung_wird_korrigierbar():
+    s, n = _daten_mit_dublette()
+    ko.wende_an(s, n, [_k("00002", "schl_nr", "Rebenranke", "00003"),
+                       _k("00002", "stadium_2_datum", "1936-08-05", ""),
+                       _k("00002", "stadium_2_name", "Rebenranke", ""),
+                       _k("00003", "stadium_1_datum", "", "05.08.1936"),
+                       _k("00003", "stadium_1_name", "", "Rebenranke")])
+    assert [(z["schl_nr"], z["stadium"], z["name"]) for z in n if z["schl_nr"] in ("00002", "00003")] == [
+        ("00002", 1, "Abteistraße"), ("00003", 1, "Rebenranke")]

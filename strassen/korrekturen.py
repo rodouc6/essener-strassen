@@ -28,6 +28,9 @@ KORREKTUREN_PFAD = WURZEL / "daten" / "korrekturen.csv"
 FELDER_KORREKTUREN = ["schl_nr", "feld", "wert_alt", "wert_neu", "beleg", "quelle", "datum"]
 STATUS_GEPRUEFT = "geprueft"
 KOPFFELDER = ("lemma", "stadtteile", "strassenklasse", "namensgruppe", "verweis_auf")
+# Nachtrag eines undatierten Stadiums ("vorm.: Name" in der Vorlage): wert_neu im
+# Datumsfeld = DATUM_VORMALS -> datum_praezision=unbekannt, gueltig_ab leer.
+DATUM_VORMALS = "vorm."
 _STADIUM = re.compile(r"^stadium_(\d+)_(datum|name|urspruenglich)$")
 
 
@@ -82,6 +85,57 @@ def _pruefe_alt(schl, feld, ist, soll_alt):
                               f"Parser liest die Stelle inzwischen anders, Korrektur neu prüfen")
 
 
+def _benenne_schl_nr_um(strassen, namen, index, korrekturen, korrigiert):
+    """feld=schl_nr: wert_alt = LEMMA des Eintrags (adressiert auch eine Dublette eindeutig),
+    wert_neu = neue Schlüsselnummer. Läuft vor allen anderen Korrekturen, damit weitere
+    Zeilen unter der NEUEN Nummer stehen können."""
+    for k in korrekturen:
+        if k["feld"] != "schl_nr":
+            continue
+        schl, lemma, neu = k["schl_nr"], k.get("wert_alt", ""), k.get("wert_neu", "")
+        treffer = [z for z in index.get(schl, []) if z["lemma"] == lemma]
+        if len(treffer) != 1:
+            raise KorrekturFehler(f"{schl} schl_nr: wert_alt {lemma!r} muss das Lemma genau eines "
+                                  f"Eintrags mit dieser Nummer sein ({len(treffer)} Treffer)")
+        if not re.fullmatch(r"\d+", neu or ""):
+            raise KorrekturFehler(f"{schl} schl_nr: wert_neu {neu!r} ist keine Schlüsselnummer")
+        if neu in index:
+            raise KorrekturFehler(f"{schl} schl_nr: {neu} ist bereits vergeben ({index[neu][0]['lemma']})")
+        z = treffer[0]
+        alte_stadien = [s for s in namen if s["schl_nr"] == schl]
+        # Bei einer Dublette gehören die Stadien beider Einträge zur selben Nummer; die
+        # Zuordnung zum umbenannten Eintrag ist dann nicht sicher — nur bei eindeutiger
+        # Nummer werden die Stadien mitgenommen, sonst bleibt die Kette leer und ist
+        # per Nachtrag zu ergänzen.
+        if len(index[schl]) == 1:
+            for s in alte_stadien:
+                s["schl_nr"] = neu
+        z["schl_nr"] = neu
+        z["status"] = STATUS_GEPRUEFT
+        index[schl].remove(z)
+        if not index[schl]:
+            del index[schl]
+        index[neu] = [z]
+        korrigiert.add(id(z))
+
+
+def _lege_eintrag_an(strassen, index, stadien, k, korrigiert):
+    """feld=eintrag mit leerem wert_alt und gefülltem wert_neu (= Lemma): Neuanlage eines
+    Eintrags, den der Parser ganz ausgelassen hat. Die übrigen Zeilen derselben Nummer
+    (Kopffelder und buchseite mit leerem wert_alt, Stadien als Nachträge) füllen ihn."""
+    schl, lemma = k["schl_nr"], k["wert_neu"]
+    if schl in index:
+        raise KorrekturFehler(f"{schl} eintrag: Schlüsselnummer vorhanden — Neuanlage nicht möglich "
+                              f"(Bestätigung braucht leere wert_alt/wert_neu)")
+    z = {"schl_nr": schl, "lemma": lemma, "stadtteile": "", "strassenklasse": "", "namensgruppe": "",
+         "verweis_auf": "", "buchseite": None, "status": STATUS_GEPRUEFT}
+    strassen.append(z)
+    index[schl] = [z]
+    stadien.setdefault(schl, [])
+    korrigiert.add(id(z))
+    return z
+
+
 def wende_an(strassen: list, namen: list, korrekturen: list) -> dict:
     """Wendet alle Korrekturen an (strassen-Zeilen werden mutiert, namen in place ersetzt).
 
@@ -90,6 +144,9 @@ def wende_an(strassen: list, namen: list, korrekturen: list) -> dict:
     in namen.csv steht. Nachträge (wert_alt leer) adressieren dagegen die gedruckte
     ZIEL-Position — die Nummer, die das Stadium im Ergebnis NACH Streichen/Einfügen
     tragen soll.
+
+    Reihenfolge: zuerst schl_nr-Umbenennungen, dann Neuanlagen (feld=eintrag mit
+    wert_neu), dann je Eintrag Kopffelder, buchseite und Stadien.
 
     Bricht eine Korrektur mit KorrekturFehler ab, können frühere Einträge dieses oder
     vorheriger Durchläufe bereits mutiert sein (kein Rollback) — Aufrufer werten das
@@ -101,6 +158,8 @@ def wende_an(strassen: list, namen: list, korrekturen: list) -> dict:
     index = defaultdict(list)
     for z in strassen:
         index[z["schl_nr"]].append(z)
+    korrigiert = set()
+    _benenne_schl_nr_um(strassen, namen, index, korrekturen, korrigiert)
     stadien = defaultdict(list)
     for z in namen:
         stadien[z["schl_nr"]].append(z)
@@ -109,22 +168,38 @@ def wende_an(strassen: list, namen: list, korrekturen: list) -> dict:
 
     je_schl = defaultdict(list)
     for k in korrekturen:
-        je_schl[k["schl_nr"]].append(k)
+        if k["feld"] != "schl_nr":
+            je_schl[k["schl_nr"]].append(k)
 
     for schl, liste in je_schl.items():
+        neu_angelegt = False
+        for k in liste:
+            if k["feld"] == "eintrag" and not k.get("wert_alt") and k.get("wert_neu"):
+                _lege_eintrag_an(strassen, index, stadien, k, korrigiert)
+                neu_angelegt = True
         if schl not in index:
             raise KorrekturFehler(f"{schl}: Schlüsselnummer nicht im Datensatz")
         if len(index[schl]) > 1:
             raise KorrekturFehler(f"{schl}: Schlüsselnummer mehrdeutig (Dublette) — nicht korrigierbar")
         strasse = index[schl][0]
+        korrigiert.add(id(strasse))
         st = stadien[schl]
         nachtrag = defaultdict(dict)       # N -> {"datum": ..., "name": ...}
         streichen = defaultdict(set)       # N -> {"datum", "name"}
         for k in liste:
             feld, alt, neu = k["feld"], k.get("wert_alt", ""), k.get("wert_neu", "")
             if feld == "eintrag":
+                if neu_angelegt and not alt and neu:
+                    continue
                 if alt or neu:
                     raise KorrekturFehler(f"{schl} eintrag: Bestätigung braucht leere wert_alt/wert_neu")
+                continue
+            if feld == "buchseite":
+                ist = strasse.get("buchseite")
+                _pruefe_alt(schl, feld, "" if ist is None else str(ist), alt)
+                if not re.fullmatch(r"\d+", neu or ""):
+                    raise KorrekturFehler(f"{schl} buchseite: wert_neu {neu!r} ist keine Seitenzahl")
+                strasse["buchseite"] = int(neu)
                 continue
             if feld in KOPFFELDER:
                 _pruefe_alt(schl, feld, strasse.get(feld, ""), alt)
@@ -139,6 +214,9 @@ def wende_an(strassen: list, namen: list, korrekturen: list) -> dict:
             if alt == "" and art in ("datum", "name"):
                 nachtrag[n][art] = neu
                 continue
+            if art == "datum" and neu == DATUM_VORMALS:
+                raise KorrekturFehler(f"{schl} {feld}: {DATUM_VORMALS!r} nur beim Nachtragen eines "
+                                      f"undatierten Stadiums zulässig (wert_alt leer)")
             if n > len(st):
                 raise KorrekturFehler(f"{schl} {feld}: Stadium {n} existiert nicht ({len(st)} vorhanden)")
             z = st[n - 1]
@@ -147,6 +225,8 @@ def wende_an(strassen: list, namen: list, korrekturen: list) -> dict:
                 streichen[n].add(art)
                 continue
             _setze(z, art, neu, schl, feld)
+        if neu_angelegt and strasse["buchseite"] is None:
+            raise KorrekturFehler(f"{schl} eintrag: Neuanlage braucht eine buchseite-Zeile")
         for n, arten in streichen.items():
             if arten != {"datum", "name"}:
                 raise KorrekturFehler(f"{schl} stadium_{n}: Streichen braucht datum UND name mit leerem wert_neu")
@@ -163,7 +243,8 @@ def wende_an(strassen: list, namen: list, korrekturen: list) -> dict:
                     f"({len(st)} Stadien vorhanden, davon ggf. bereits nachgetragen)")
             z = {"schl_nr": schl, "stadium": n, "gueltig_ab": "", "datum_praezision": "unbekannt",
                  "name": "", "ist_urspruenglich": "falsch"}
-            _setze(z, "datum", nachtrag[n]["datum"], schl, f"stadium_{n}_datum")
+            if nachtrag[n]["datum"] != DATUM_VORMALS:
+                _setze(z, "datum", nachtrag[n]["datum"], schl, f"stadium_{n}_datum")
             _setze(z, "name", nachtrag[n]["name"], schl, f"stadium_{n}_name")
             st.insert(min(n - 1, len(st)), z)
         for i, z in enumerate(st, 1):
@@ -180,4 +261,4 @@ def wende_an(strassen: list, namen: list, korrekturen: list) -> dict:
         if schl not in gesehen:
             gesehen.add(schl); reihenfolge.append(schl)
     namen[:] = [z for schl in reihenfolge for z in stadien[schl]]
-    return {"eintraege": len(je_schl), "korrekturen": len(korrekturen)}
+    return {"eintraege": len(korrigiert), "korrekturen": len(korrekturen)}
