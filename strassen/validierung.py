@@ -91,5 +91,10 @@ def schreibe_bericht(ergebnisse: dict, pfad):
          f"- nicht im Verzeichnis: {len(ergebnisse['amtlich']['unbekannt'])}",
          "  (erwartbar bei aufgehobenen Straßen — nicht automatisch ein Fehler; "
          "Fälle in daten/pruefung_validierung.csv, "
-         "grund=„nicht im amtlichen Verzeichnis\")\n"]
+         "grund=„nicht im amtlichen Verzeichnis\")\n",
+         "## 4. Unabhängige LLM-Lesung\n",
+         "Zwei bildfähige Modelle haben die Seitenbilder unabhängig vom Parser gelesen; "
+         "Kennzahlen in [`llm_lesung.md`](llm_lesung.md), die eigene Fehlerquote der "
+         "Modelle gegen die Goldstandard-Stichprobe in "
+         "[`goldstandard/ergebnis_llm.md`](goldstandard/ergebnis_llm.md).\n"]
     Path(pfad).write_text("\n".join(z) + "\n", encoding="utf-8")

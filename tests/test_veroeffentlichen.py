@@ -93,6 +93,9 @@ def test_erzeugt_alle_vier_artefakte(tmp_path):
     kennzahlen = main(daten_dir=str(daten), docs_dir=str(docs), adressbuch=str(adressbuch),
                        amtliches_verzeichnis=str(amtlich), stichtag="1936-06-30")
     assert (docs / "qualitaet.md").exists()
+    # Spec 2026-09-12, Abschnitt 3.3: der Qualitätsbericht verweist auf die LLM-Lesung.
+    qualitaet = (docs / "qualitaet.md").read_text(encoding="utf-8")
+    assert "llm_lesung.md" in qualitaet and "goldstandard/ergebnis_llm.md" in qualitaet
     assert (daten / "konkordanz_1936.csv").exists()
     assert (daten / "pruefung_konkordanz.csv").exists()
     assert (docs / "erhebungsstand.md").exists()

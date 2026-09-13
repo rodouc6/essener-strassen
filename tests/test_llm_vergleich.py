@@ -407,3 +407,54 @@ def test_normalisiere_meldet_urspr_mit_unlesbarem_zusatz_weiterhin():
         "stadien": [{"datum": "urspr.: Hofstraße", "name": "Hofstraße", "urspruenglich": True}]}]}
     _, _, probleme = lv.normalisiere_antwort(antwort)
     assert [p["grund"] for p in probleme] == [lv.GRUND_DATUM]
+
+
+def test_kappe_wert_laesst_kurze_werte_unveraendert():
+    assert lv.kappe_wert("Aachener Straße") == "Aachener Straße"
+    assert lv.kappe_wert("") == ""
+    grenze = "x" * lv.MAX_WERTLAENGE
+    assert lv.kappe_wert(grenze) == grenze
+
+
+def test_kappe_wert_verwirft_fliesstext():
+    lang = "y" * (lv.MAX_WERTLAENGE + 1)
+    assert lv.kappe_wert(lang) == f"(Fließtext, {len(lang)} Zeichen, verworfen)"
+
+
+def test_pruefliste_verwirft_fliesstext_des_modells():
+    # Beobachtete Antwortform (Volllauf 2026-09-12/13, mistral): das Modell schreibt
+    # den Erläuterungstext der Vorlage in ein Feld. Solche Fließtexte sind urheberrechtlich
+    # geschützte Vorlage und dürfen nicht in daten/pruefung_llm.csv landen (Spec Abschnitt 6).
+    lang = "Diese Straße wurde benannt nach " + "x" * 300
+    qwen = _modell_antwort(**{"00001": {"lemma": lang}})
+    zeilen, _ = lv.baue_pruefliste(_parser(), {"qwen": {"antworten": {23: qwen}},
+                                                "mistral": {"antworten": {23: _antwort()}}})
+    z = next(x for x in zeilen if x["schl_nr"] == "00001" and x["feld"] == "lemma")
+    assert z["wert_qwen"] == f"(Fließtext, {len(lang)} Zeichen, verworfen)"
+    assert z["wert_parser"] == "Aachener Straße"
+
+
+def test_pruefliste_verwirft_fliesstext_einer_problemzeile():
+    lang = "am 1. Mai 1927, wobei die Benennung " + "z" * 300
+    qwen = _modell_antwort(**{"00001": {"stadien": [
+        {"datum": "vor 1898", "name": "Victoriastraße (tlw.)", "urspruenglich": False},
+        {"datum": lang, "name": "Aachener Straße", "urspruenglich": False}]}})
+    _, _, probleme = lv.normalisiere_antwort(qwen)
+    assert [p["text"] for p in probleme if p["schl_nr"] == "00001"] == [
+        f"(Fließtext, {len(lang)} Zeichen, verworfen)"]
+    zeilen, _ = lv.baue_pruefliste(_parser(), {"qwen": {"antworten": {23: qwen}},
+                                                "mistral": {"antworten": {23: _antwort()}}})
+    z = next(x for x in zeilen if x["schl_nr"] == "00001" and x["feld"] == "stadium_2_datum")
+    assert "x" * 30 not in z["wert_qwen"] and "z" * 30 not in z["wert_qwen"]
+    assert len(z["wert_qwen"]) <= lv.MAX_WERTLAENGE
+
+
+def test_messe_goldstandard_verwirft_fliesstext_im_ist_wert():
+    lang = "Q" * 400
+    antwort = {"buchseite": 23, "eintraege": [
+        {"schl_nr": "00001", "lemma": lang, "stadien": []}]}
+    modell = lv.als_struktur(*lv.normalisiere_antwort(antwort)[:2])
+    stichprobe = [{"schl_nr": "00001", "lemma": "Aachener Straße", "feld": "lemma",
+                   "wert": "Aachener Straße", "korrekt": "ja", "korrektur": "", "status": "automatisch"}]
+    st = lv.messe_goldstandard(stichprobe, modell)
+    assert st["fehler"][0]["ist"] == f"(Fließtext, {len(lang)} Zeichen, verworfen)"

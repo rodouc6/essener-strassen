@@ -35,6 +35,18 @@ GRUND_DATUM_EINGESCHRAENKT = "Datum nur eingeschränkt lesbar"
 GRUND_STADIEN = "Stadien nicht als Liste"
 
 _UNVOLLSTAENDIG = "_unvollstaendig"   # interne Markierung, wird nicht geschrieben
+MAX_WERTLAENGE = 120                  # längere Modellwerte sind Fließtext, kein Feldwert
+
+
+def kappe_wert(text: str) -> str:
+    """Modellwerte über MAX_WERTLAENGE Zeichen verwerfen.
+
+    Die Modelle schreiben gelegentlich den Erläuterungstext der Vorlage in ein Feld
+    (beobachtet im Volllauf 2026-09-12/13, bis 1144 Zeichen). Solcher Fließtext ist
+    urheberrechtlich geschützte Vorlage und darf nicht in die veröffentlichte Prüfliste
+    gelangen (Spec 2026-09-12, Abschnitt 6); die Länge bleibt als Hinweis sichtbar.
+    Parserwerte stammen aus dem veröffentlichten Datensatz und werden nie gekappt."""
+    return text if len(text) <= MAX_WERTLAENGE else f"(Fließtext, {len(text)} Zeichen, verworfen)"
 
 
 def kurzname(modell: str) -> str:
@@ -90,12 +102,12 @@ def normalisiere_antwort(antwort: dict):
         stadien = e.get("stadien") or []
         if not isinstance(stadien, list):
             probleme.append({"schl_nr": schl, "buchseite": buchseite, "feld": "stadien",
-                             "text": str(stadien)[:200], "grund": GRUND_STADIEN})
+                             "text": kappe_wert(str(stadien)), "grund": GRUND_STADIEN})
             continue
         for i, s in enumerate(stadien, 1):
             if not isinstance(s, dict):
                 probleme.append({"schl_nr": schl, "buchseite": buchseite, "feld": f"stadium_{i}",
-                                 "text": str(s)[:200], "grund": GRUND_STADIEN})
+                                 "text": kappe_wert(str(s)), "grund": GRUND_STADIEN})
                 continue
             text = _text(s.get("datum"))
             if _NUR_URSPR.match(text):
@@ -103,7 +115,7 @@ def normalisiere_antwort(antwort: dict):
             d = lese_text(text)
             if d is None:
                 probleme.append({"schl_nr": schl, "buchseite": buchseite, "feld": f"stadium_{i}_datum",
-                                 "text": text, "grund": GRUND_DATUM})
+                                 "text": kappe_wert(text), "grund": GRUND_DATUM})
                 gueltig_ab, praezision = "", "unbekannt"
             else:
                 gueltig_ab, praezision = d.gueltig_ab, d.praezision
@@ -113,7 +125,7 @@ def normalisiere_antwort(antwort: dict):
                 # als Abweichung 'Jahr statt Tagesdatum' zu verbuchen.
                 if [h for h in d.hinweis.split("; ") if h and h != HINWEIS_OHNE_DOPPELPUNKT]:
                     probleme.append({"schl_nr": schl, "buchseite": buchseite,
-                                     "feld": f"stadium_{i}_datum", "text": text,
+                                     "feld": f"stadium_{i}_datum", "text": kappe_wert(text),
                                      "grund": GRUND_DATUM_EINGESCHRAENKT})
             namen.append({"schl_nr": schl, "stadium": i, "gueltig_ab": gueltig_ab,
                           "datum_praezision": praezision, "name": _text(s.get("name")),
@@ -288,7 +300,9 @@ def _zeile(schl, feld, p_s, p_n, seite_je_schl, daten, gelesen, problem_werte) -
         else:
             ersatz = problem_werte.get(kurz, {}).get((schl, feld))
             werte[kurz] = ersatz if ersatz is not None else (feldwert(*daten[kurz], schl, feld) or "")
-        zeile[f"wert_{kurz}"] = werte[kurz]
+        # gekappt wird erst die Ausgabe: die einig-Einstufung vergleicht die vollen Werte,
+        # sonst fielen zwei verschiedene Fließtexte gleicher Länge fälschlich zusammen.
+        zeile[f"wert_{kurz}"] = kappe_wert(werte[kurz])
     if not lesbar:
         zeile["einig"] = "unlesbar"
     elif len(set(werte.values())) == 1 and werte[KURZNAMEN[0]] != zeile["wert_parser"]:
@@ -400,7 +414,8 @@ def messe_goldstandard(stichprobe: list, modell) -> dict:
             d["korrekt"] += treffer
         if not treffer:
             fehler.append({"schl_nr": z["schl_nr"], "lemma": z["lemma"], "status": z.get("status", ""),
-                           "feld": z["feld"], "soll": soll, "ist": ist})
+                           "feld": z["feld"], "soll": soll,
+                           "ist": None if ist is None else kappe_wert(ist)})
 
     def _q(d):
         return {**d, "fehlerquote": (d["geprueft"] - d["korrekt"]) / d["geprueft"] * 100 if d["geprueft"] else 0.0}
