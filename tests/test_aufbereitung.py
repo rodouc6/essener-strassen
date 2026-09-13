@@ -35,10 +35,11 @@ def test_ocr_fehler_stra_be_wird_zu_strasse():
 
 
 def test_komposita_essen_bredeney_bleiben_erhalten():
-    """Andere -\nB-Fälle sind legitime Komposita und bleiben unangetastet."""
+    """Andere -\nB-Fälle sind legitime Komposita — der Bindestrich vor dem
+    Großbuchstaben bleibt erhalten, ohne Leerzeichen (R1)."""
     roh = "Fundstelle bei Essen-\nBredeney liegt hier"
     result = verbinde_zeilen(roh)
-    assert "Essen- Bredeney" in result
+    assert "Essen-Bredeney" in result
     assert "Essenßredeney" not in result
 
 
