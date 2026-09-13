@@ -189,6 +189,29 @@ def test_pruefliste_unvollstaendiger_eintrag_vergleicht_nur_kopf():
     assert stadium_zeilen[0]["wert_qwen"] == "16. Jh. (nicht normalisierbar)"
 
 
+def test_letzte_eintraege_je_seite():
+    s = [{"schl_nr": "1", "buchseite": 23}, {"schl_nr": "2", "buchseite": 23}, {"schl_nr": "3", "buchseite": 24}]
+    assert lv.letzte_eintraege_je_seite(s) == {"2", "3"}
+
+
+def test_pruefliste_letzter_eintrag_je_seite_nur_kopf():
+    # Arendahls Wiese 00189, S. 54: Kette läuft auf S. 55 weiter, Modelle sehen nur S. 54.
+    strassen, namen = _parser()
+    strassen.append({"schl_nr": "00189", "lemma": "Arendahls Wiese", "stadtteile": "Stoppenberg", "strassenklasse": "Gemeindestraße",
+                     "namensgruppe": "Flurname", "verweis_auf": "", "buchseite": 23, "status": "automatisch"})
+    namen += [{"schl_nr": "00189", "stadium": 1, "gueltig_ab": "1892-03-29", "datum_praezision": "tag", "name": "Lohstraße (tlw.)", "ist_urspruenglich": "falsch"},
+              {"schl_nr": "00189", "stadium": 2, "gueltig_ab": "1937-11-20", "datum_praezision": "tag", "name": "Arendahls Wiese", "ist_urspruenglich": "falsch"},
+              {"schl_nr": "00189", "stadium": 3, "gueltig_ab": "1963-12-17", "datum_praezision": "tag", "name": "Arendahls Wiese (Verl.)", "ist_urspruenglich": "falsch"}]
+    antwort = _antwort()
+    antwort["eintraege"].append({"schl_nr": "00189", "lemma": "Arendahls Wiese", "stadtteile": ["Stoppenberg"], "strassenklasse": ["Gemeindestraße"],
+                                 "namensgruppe": "Flurname", "verweis_auf": "", "unvollstaendig": False,
+                                 "stadien": [{"datum": "29.03.1892", "name": "Lohstraße (tlw.)", "urspruenglich": False}]})
+    zeilen, kz = lv.baue_pruefliste((strassen, namen), {"qwen": {"antworten": {23: antwort}}, "mistral": {"antworten": {23: antwort}}})
+    assert not [z for z in zeilen if z["schl_nr"] == "00189" and z["feld"].startswith("stadium")]
+    assert kz["qwen"]["seitenende_ausgelassen"] == 1
+    assert "Seitenende" in lv.formatiere_kennzahlen_md(kz)
+
+
 def test_pruefliste_verlorenes_stadium_zaehlt_datum_und_name_als_abweichung():
     # Parser hat 2 Stadien zu 00001, das Modell nur das erste (identische Signatur) —
     # das verlorene 2. Stadium muss Datum UND Name als Abweichung zählen, nicht als 'gleich'.

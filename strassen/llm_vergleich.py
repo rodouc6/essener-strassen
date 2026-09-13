@@ -84,6 +84,20 @@ def ist_unvollstaendig(strasse: dict) -> bool:
     return bool(strasse.get(_UNVOLLSTAENDIG))
 
 
+def letzte_eintraege_je_seite(strassen) -> set:
+    """schl_nr des jeweils letzten Eintrags je Buchseite (Reihenfolge der Quelle).
+
+    Das Adressbuch endet einen Straßeneintrag am Seitenende nicht notwendig: die
+    Namenskette kann auf der Folgeseite weiterlaufen. Die Modelle sehen aber nur die
+    aktuelle Seite — ihr 'letzter Eintrag' ist also ein potenzielles Seitenumbruch-
+    Phantom (R7) und wird wie ein unvollständiger Eintrag behandelt: Ketten beidseitig
+    ausgeblendet, Kopf weiter verglichen."""
+    letzter = {}
+    for s in strassen:
+        letzter[int(s["buchseite"])] = s["schl_nr"]
+    return set(letzter.values())
+
+
 def normalisiere_antwort(antwort: dict):
     """Eine Antwortdatei -> (strassen, namen, probleme) in Datensatzform."""
     eintraege = antwort.get("eintraege")
@@ -265,7 +279,7 @@ def _modell_aufbereiten(m: dict):
     return m_s, m_n, gelesen, unlesbar, probleme
 
 
-def _kennzahlen(p_s_teil, p_n_teil, m_s, unvollst, abw, gelesen, unlesbar, probleme) -> dict:
+def _kennzahlen(p_s_teil, p_n_teil, m_s, unvollst, abw, gelesen, unlesbar, probleme, letzte) -> dict:
     ueber = defaultdict(lambda: defaultdict(lambda: {"verglichen": 0, "gleich": 0}))
     for schl, z in p_s_teil.items():
         if schl not in m_s:
@@ -281,6 +295,7 @@ def _kennzahlen(p_s_teil, p_n_teil, m_s, unvollst, abw, gelesen, unlesbar, probl
         "eintraege_fehlend": sum(1 for schl in p_s_teil if schl not in m_s),
         "eintraege_nur_modell": sum(1 for schl in m_s if schl not in p_s_teil),
         "datum_nicht_normalisierbar": len(probleme),
+        "seitenende_ausgelassen": len(letzte & set(p_s_teil)),
         "uebereinstimmung": {st: dict(f) for st, f in ueber.items()},
     }
 
@@ -316,7 +331,16 @@ def baue_pruefliste(parser, modelle: dict):
     """parser = (strassen, namen) des Parsers; modelle = Kurzname -> {"antworten": {buchseite: antwort}}.
     Liefert (zeilen, kennzahlen). Verglichen werden nur Buchseiten, die das jeweilige Modell
     gelesen hat; unlesbare Seiten zählen als nicht gelesen. Nicht normalisierbare Modelldaten
-    (Datum, Stadien-Struktur) erscheinen unabhängig von 'unvollstaendig' als eigene Zeile."""
+    (Datum, Stadien-Struktur) erscheinen unabhängig von 'unvollstaendig' als eigene Zeile.
+    Der jeweils letzte Eintrag je Buchseite (R7, Seitenumbruch-Phantom: die Namenskette kann
+    auf der Folgeseite weiterlaufen, die Modelle sehen nur die aktuelle Seite) wird wie ein
+    unvollständiger Eintrag behandelt — nur der Kopf wird verglichen."""
+    # letzte_eintraege_je_seite braucht die Zeilenreihenfolge der Rohliste — vor
+    # als_struktur berechnen, das nach schl_nr indexiert und die Reihenfolge verliert.
+    # parser[0] kann (Tests) bereits ein Dict sein; dann zählt dessen Einfügereihenfolge.
+    strassen_roh = parser[0]
+    letzte = letzte_eintraege_je_seite(
+        strassen_roh.values() if isinstance(strassen_roh, dict) else strassen_roh)
     # als_struktur indexiert nach schl_nr: die drei bekannten schl_nr-Dubletten in
     # strassen.csv fallen hier zusammen (die letzte Zeile gewinnt). Unschädlich, weil
     # korrekturen.wende_an mehrdeutige schl_nr ablehnt und daten_fuer_goldstandard sie
@@ -331,7 +355,9 @@ def baue_pruefliste(parser, modelle: dict):
         # Parser-Ausschnitt: nur gelesene Seiten; Modellketten unvollständiger Einträge ausblenden
         p_s_teil = {schl: z for schl, z in p_s.items() if seite_je_schl[schl] in gelesen[kurz]}
         p_n_teil = {schl: p_n.get(schl, []) for schl in p_s_teil}
-        unvollst = {schl for schl, z in m_s.items() if ist_unvollstaendig(z)}
+        # Seitenende-Einträge (letzte: R7) beidseitig wie unvollständige Einträge behandeln —
+        # Ketten ausgeblendet, Kopf bleibt vergleichbar.
+        unvollst = {schl for schl, z in m_s.items() if ist_unvollstaendig(z)} | letzte
         m_n_vgl = {schl: ([] if schl in unvollst else st) for schl, st in m_n.items()}
         p_n_vgl = {schl: ([] if schl in unvollst else st) for schl, st in p_n_teil.items()}
         abweichungen[kurz] = _abweichungen(p_s_teil, p_n_vgl, m_s, m_n_vgl)
@@ -346,7 +372,7 @@ def baue_pruefliste(parser, modelle: dict):
             problem_werte[kurz][schluessel] = anzeige
 
         kennzahlen[kurz] = _kennzahlen(p_s_teil, p_n_teil, m_s, unvollst, abweichungen[kurz],
-                                       gelesen[kurz], unlesbar, probleme)
+                                       gelesen[kurz], unlesbar, probleme, letzte)
 
     alle = set().union(*abweichungen.values()) if abweichungen else set()
     zeilen = [_zeile(schl, feld, p_s, p_n, seite_je_schl, daten, gelesen, problem_werte)
@@ -375,7 +401,9 @@ def formatiere_kennzahlen_md(kennzahlen: dict) -> str:
               f"- Seiten gelesen: {k['seiten_gelesen']}, unlesbar: {k['seiten_unlesbar']}",
               f"- Einträge beim Modell: {k['eintraege_modell']}, beim Parser fehlend im Modell: "
               f"{k['eintraege_fehlend']}, nur beim Modell: {k['eintraege_nur_modell']}",
-              f"- Daten nicht normalisierbar: {k['datum_nicht_normalisierbar']}\n",
+              f"- Daten nicht normalisierbar: {k['datum_nicht_normalisierbar']}",
+              f"- Einträge am Seitenende (Kette kann auf der Folgeseite weiterlaufen, nur Kopf "
+              f"verglichen): {k['seitenende_ausgelassen']}\n",
               "| Status (Parser) | Feldtyp | verglichen | gleich | Übereinstimmung |", "|---|---|--:|--:|--:|"]
         for status, felder in sorted(k["uebereinstimmung"].items()):
             for typ, e in sorted(felder.items()):
