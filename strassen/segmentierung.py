@@ -23,7 +23,13 @@ from typing import NamedTuple
 # ('Schl,-Nr.:', 11 Fälle im Material, z. B. Herkendell S. 156) fehlte in der ersten
 # Fassung — der Eintrag wurde dadurch komplett verpasst und sein Text blutete in den
 # rest des Vorgängers.
-ANKER = re.compile(r"-?\s*Sch[a-zA-Z!|}\)]{0,3}[.,]?\s*-?\s*N(?:r)?\.?\s*[:;]")
+# Ein einzelner Großbuchstabe plus Leerraum vor 'Sch...' wird toleriert (S. 298,
+# 02834 Schulte-Hinsel-Straße: 'Schulte-Hinsel-Straße:  S Schl.-Nr.:' — nach
+# verbinde_zeilen ein verirrtes OCR-'S' zwischen Trenner und Anker; ohne diese
+# Toleranz schlug die Lemma-Suche fehl und der Eintrag landete als "Anker ohne
+# Lemma"). Der Kanonisch-Vergleich unten erkennt das eingeschobene 'S' ohnehin
+# als Abweichung und meldet HINWEIS_ANKER_KORRIGIERT.
+ANKER = re.compile(r"(?:[A-Z]\s+)?-?\s*Sch[a-zA-Z!|}\)]{0,3}[.,]?\s*-?\s*N(?:r)?\.?\s*[:;]")
 _ANKER_KANONISCH = re.compile(r"^Schl\.-Nr\.:$")
 HINWEIS_ANKER_KORRIGIERT = "Anker OCR-korrigiert"
 # Lemma: das Stichwort unmittelbar vor dem Anker, abgetrennt durch einen Doppelpunkt
@@ -37,15 +43,20 @@ HINWEIS_ANKER_KORRIGIERT = "Anker OCR-korrigiert"
 # Satzende-Punkt (gefolgt von Leerzeichen, nicht Bindestrich/Buchstabe) bricht wie
 # bisher ab — ohne den Ausschluss würde die Lemma-Suche über das Komma bzw. den
 # Satzpunkt hinweg rückwärts weiterlaufen und Reste des vorigen Rumpfs ins Lemma
-# ziehen. Ein Punkt nach 'St', 'I', 'II', 'III' oder 'IV' ('St. Annental',
+# ziehen. Ein Punkt nach 'St', 'I', 'II', 'III', 'IV' oder 'Ill' ('St. Annental',
 # 'I. Buschlandweg') ist ebenfalls Abkürzungs-/Ordnungspunkt und beendet die
-# Rückwärtssuche nicht (Goldstandard 02727; R4, Prüfliste S. 86). Die Trenner-Gruppe
-# fordert mindestens ein Zeichen (':' oder ';') statt eines wiederholten
-# [:;]+ am Ende — sonst würde bei 'Am Schloss Schellenberg:;' das reguläre-Ausdrucks-
-# Backtracking den Rückwärtslauf am ';' beenden können, statt beide Trennzeichen als
-# ein Ende zu fressen.
+# Rückwärtssuche nicht (Goldstandard 02727; R4, Prüfliste S. 86). 'Ill' ist die
+# OCR-Lesart von 'III' (S. 283 Ill. Ruschenfeld, S. 315 Ill. Stiege, S. 321 Ill.
+# Terwestenweg, Fix Runde 1) — absichtlich NICHT über datum._KEIN_ABKUERZUNGSPUNKT
+# importiert, weil dessen (?<!\d)-Ausschluss einen echten Satzende-Punkt nach einer
+# Jahreszahl ('…gegründet 1913. Lemma') fälschlich am Abbrechen hindern würde; die
+# beiden Module lösen unterschiedliche Probleme und teilen sich die Regel bewusst
+# nicht. Die Trenner-Gruppe fordert mindestens ein Zeichen (':' oder ';') statt
+# eines wiederholten [:;]+ am Ende — sonst würde bei 'Am Schloss Schellenberg:;'
+# das reguläre-Ausdrucks-Backtracking den Rückwärtslauf am ';' beenden können,
+# statt beide Trennzeichen als ein Ende zu fressen.
 _LEMMA = re.compile(
-    r"((?:(?!,|;|:|(?<!\bSt)(?<!\bI)(?<!\bII)(?<!\bIII)(?<!\bIV)\.(?!-|[A-Za-zÄÖÜäöüß]))[^\n]){2,60}?)"
+    r"((?:(?!,|;|:|(?<!\bSt)(?<!\bI)(?<!\bII)(?<!\bIII)(?<!\bIV)(?<!\bIll)\.(?!-|[A-Za-zÄÖÜäöüß]))[^\n]){2,60}?)"
     r"\s*(?::;?|;)\s*$"
 )
 

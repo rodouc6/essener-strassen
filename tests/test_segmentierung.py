@@ -161,3 +161,27 @@ def test_anker_und_trenner_varianten(text, lemma, hinweis):
     e = _eintraege(text)
     assert len(e) == 1 and e[0].lemma_roh == lemma
     assert e[0].hinweise == hinweis
+
+
+def test_ill_als_ocr_form_von_iii_bricht_rueckwaertssuche_nicht():
+    """OCR liest 'III.' oft als 'Ill.' (S. 283 Ill. Ruschenfeld, S. 315 Ill.
+    Stiege, S. 321 Ill. Terwestenweg) — der Punkt danach ist Ordnungspunkt,
+    kein Satzende, und darf die Rückwärtssuche nicht abbrechen (Fix Runde 1,
+    Ergänzung zu R4)."""
+    e = _eintraege("Reg. Nr. 1. Ill. Ruschenfeld: Schl.-Nr.: 02700, Stadtteil")
+    assert e[0].lemma_roh == "Ill. Ruschenfeld"
+
+
+def test_versprengter_grossbuchstabe_vor_anker_wird_toleriert():
+    """02834 Schulte-Hinsel-Straße, S. 298: OCR setzt zwischen Trenner und
+    Anker ein verirrtes 'S' ('Schulte-Hinsel-Straße:\\n\\nS Schl.-Nr.:' — nach
+    verbinde_zeilen sind die Zeilenumbrüche Leerzeichen). Bislang schlug hier
+    die Lemma-Suche fehl und der Eintrag landete als 'Anker ohne Lemma'. Ein
+    einzelner Großbuchstabe plus Leerraum vor dem Anker wird toleriert; die
+    Abweichung von der kanonischen Form macht ihn zugleich zu 'Anker
+    OCR-korrigiert'."""
+    e = _eintraege("unter-gebracht. Schulte-Hinsel-Straße: S Schl.-Nr.: 02834, Stadtteil")
+    assert len(e) == 1
+    assert e[0].lemma_roh == "Schulte-Hinsel-Straße"
+    assert not e[0].lemma_roh.endswith("S")
+    assert e[0].hinweise == (HINWEIS_ANKER_KORRIGIERT,)
