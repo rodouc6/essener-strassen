@@ -9,14 +9,16 @@ def _eintraege(text, seite=1):
 
 def test_verstuemmelter_anker_wird_erkannt():
     """'Sch!.-Nr.:' kam im echten OCR vor (Kütings Garten, S. 211).
-    122 der 3340 Einträge tragen einen entstellten Anker. Jede Abweichung von
-    der kanonischen Form 'Schl.-Nr.:' erzeugt zusätzlich den Hinweis
-    HINWEIS_ANKER_KORRIGIERT (R6) — nur die kanonische Form selbst nicht."""
+    122 der 3340 Einträge tragen einen entstellten Anker. Diese Varianten sind
+    die ALTE, längst bekannte Toleranz (schon vor R6 als 'automatisch' mit
+    korrektem Kopf/Kette bestätigt) — sie lösen KEINEN Hinweis aus (Fix Runde 2:
+    ein erster Anlauf verglich gegen die einzige kanonische Form 'Schl.-Nr.:'
+    und markierte dadurch 102 bekannt-gute Einträge grundlos als unsicher)."""
     for variante in ["Sch!.-Nr.:", "Scht.-Nr.:", "Schi.-Nr.:",
                      "Schl-Nr.:", "Schl.-Nr:", "Sch.-Nr.:", "Schtl.-Nr.:"]:
         assert ANKER.search(f"Beispielstraße: {variante} 01234"), variante
         e = _eintraege(f"Vorlauf. Beispielstraße: {variante} 01234, Stadtteil X")
-        assert e[0].hinweise == (HINWEIS_ANKER_KORRIGIERT,), variante
+        assert e[0].hinweise == (), variante
     assert ANKER.search("Beispielstraße: Schl.-Nr.: 01234")
     e = _eintraege("Vorlauf. Beispielstraße: Schl.-Nr.: 01234, Stadtteil X")
     assert e[0].hinweise == ()
@@ -26,10 +28,32 @@ def test_komma_statt_punkt_nach_schl_wird_erkannt():
     """'Schl,-Nr.:' (Komma statt Punkt) kam im echten OCR 11-mal vor
     (u. a. Herkendell S. 156, Kalthofweg S. 188, Im Dreieck S. 175) und
     wurde vom Anker verpasst, wodurch der Eintrag komplett fehlte und sein
-    Text in den rest des Vorgängers blutete. Als Abweichung von der
-    kanonischen Form trägt der Eintrag zusätzlich HINWEIS_ANKER_KORRIGIERT."""
+    Text in den rest des Vorgängers blutete. Auch das ist die alte, bekannte
+    Toleranz — kein Hinweis (Fix Runde 2)."""
     assert ANKER.search("Herkendell: Schl,-Nr.: 03676, Stadtteil Kettwig")
     e = _eintraege("Vorlauf. Herkendell: Schl,-Nr.: 03676, Stadtteil Kettwig")
+    assert e[0].hinweise == ()
+
+
+def test_alte_toleranz_ohne_hinweis_neue_toleranz_mit_hinweis():
+    """R6 (2026-09-13) ergänzte NEUE Toleranzen gegenüber der alten Fassung:
+    '}'/')' nach 'Sch', 'N.' statt 'Nr.', führender Bindestrich, ';' statt ':',
+    versprengter Großbuchstabe vor dem Anker. Nur diese lösen
+    HINWEIS_ANKER_KORRIGIERT aus — die alte Toleranz ('Schl,-Nr.:', 'Schl.-Nr:')
+    bleibt hinweisfrei (Konkordanz-Regression Fix Runde 2: 426 → 406 durch einen
+    zu groben Vergleich gegen die einzige kanonische Form)."""
+    alte_toleranz = ["Schl,-Nr.:", "Schl.-Nr:"]
+    neue_toleranz = ["Sch}.-Nr.:", "Sch).-Nr.:", "Schl.-N.:", "-Schl.-Nr.:",
+                     "Schl.-Nr.;"]
+    for variante in alte_toleranz:
+        e = _eintraege(f"Vorlauf. Beispielstraße: {variante} 01234, Stadtteil X")
+        assert e[0].hinweise == (), variante
+    for variante in neue_toleranz:
+        e = _eintraege(f"Vorlauf. Beispielstraße: {variante} 01234, Stadtteil X")
+        assert e[0].hinweise == (HINWEIS_ANKER_KORRIGIERT,), variante
+    # Versprengter Großbuchstabe vor dem Anker (S. 298) — eigener Testfall, weil
+    # das Muster zusätzlich Leerraum zwischen Buchstabe und 'Sch' verlangt.
+    e = _eintraege("Vorlauf. Beispielstraße: S Schl.-Nr.: 01234, Stadtteil X")
     assert e[0].hinweise == (HINWEIS_ANKER_KORRIGIERT,)
 
 

@@ -18,19 +18,31 @@ import re
 from typing import NamedTuple
 
 # Anker: kanonisch 'Schl.-Nr.:'. Toleriert: OCR-Buchstaben nach 'Sch' (auch '}' ')'),
-# 'N.' statt 'Nr.', führender Bindestrich, ';' statt ':' (Spec 2026-09-13, R6). Jede
-# Abweichung von der kanonischen Form wird als Hinweis gemeldet. Komma statt Punkt
-# ('Schl,-Nr.:', 11 Fälle im Material, z. B. Herkendell S. 156) fehlte in der ersten
-# Fassung — der Eintrag wurde dadurch komplett verpasst und sein Text blutete in den
-# rest des Vorgängers.
+# 'N.' statt 'Nr.', führender Bindestrich, ';' statt ':' (Spec 2026-09-13, R6). Komma
+# statt Punkt ('Schl,-Nr.:', 11 Fälle im Material, z. B. Herkendell S. 156) fehlte in
+# der ersten Fassung — der Eintrag wurde dadurch komplett verpasst und sein Text
+# blutete in den rest des Vorgängers.
 # Ein einzelner Großbuchstabe plus Leerraum vor 'Sch...' wird toleriert (S. 298,
 # 02834 Schulte-Hinsel-Straße: 'Schulte-Hinsel-Straße:  S Schl.-Nr.:' — nach
 # verbinde_zeilen ein verirrtes OCR-'S' zwischen Trenner und Anker; ohne diese
 # Toleranz schlug die Lemma-Suche fehl und der Eintrag landete als "Anker ohne
-# Lemma"). Der Kanonisch-Vergleich unten erkennt das eingeschobene 'S' ohnehin
-# als Abweichung und meldet HINWEIS_ANKER_KORRIGIERT.
+# Lemma"). Der Bekannt-Vergleich unten erkennt das eingeschobene 'S' als Abweichung
+# und meldet HINWEIS_ANKER_KORRIGIERT.
 ANKER = re.compile(r"(?:[A-Z]\s+)?-?\s*Sch[a-zA-Z!|}\)]{0,3}[.,]?\s*-?\s*N(?:r)?\.?\s*[:;]")
-_ANKER_KANONISCH = re.compile(r"^Schl\.-Nr\.:$")
+# Bekannt-gute Formen: die ALTE Toleranz (OCR-Buchstaben nach 'Sch', optional
+# Punkt/Komma/Bindestrich, optionaler Punkt nach 'Nr') aus der ersten Fassung dieses
+# Moduls — 122 der 3340 Einträge im Material, unauffällig und schon vor R6 als
+# 'automatisch' mit korrektem Kopf/Kette bestätigt. Hinweis nur für die am
+# 2026-09-13 (R6) NEU ergänzten Toleranzen: '}'/')' nach 'Sch', 'N.' statt 'Nr.',
+# führender Bindestrich, ';' statt ':', versprengter Großbuchstabe vor dem Anker.
+# (Fix Runde 2: der erste Anlauf verglich gegen die einzige kanonische Form
+# 'Schl.-Nr.:' und markierte dadurch auch die alten, längst bekannt-guten Varianten
+# als Hinweis — 102 Einträge wurden dadurch ohne Präzisionsgewinn von 'automatisch'
+# auf 'unsicher' verschoben, reiner Konkordanz-Verlust 426 → 406.) Whitespace ist
+# vor dem Vergleich bereits entfernt, führender Bindestrich bzw. ein versprengter
+# Großbuchstabe werden bewusst NICHT vorher abgeschnitten — sie sollen weiterhin als
+# Abweichung erkannt werden.
+_ANKER_BEKANNT = re.compile(r"^Sch[a-zA-Z!|]{0,3}[.,]?-?Nr\.?:$")
 HINWEIS_ANKER_KORRIGIERT = "Anker OCR-korrigiert"
 # Lemma: das Stichwort unmittelbar vor dem Anker, abgetrennt durch einen Doppelpunkt
 # oder Semikolon (auch ':;', R6), der als letztes Nicht-Leerzeichen vor der
@@ -105,15 +117,14 @@ def segmentiere(seiten, verworfene=None) -> list:
             # Lemma-Buchstabe, nicht das Leerzeichen davor.
             versatz = len(roh) - len(roh.lstrip())
             lemma_start = fenster_start + lemma_treffer.start(1) + versatz
-            # Anker-Text ohne Whitespace gegen die kanonische Form 'Schl.-Nr.:'
-            # geprüft (R6) — jede Abweichung (OCR-verunstaltete Buchstaben, 'N.'
-            # statt 'Nr.', führender Bindestrich, ';' statt ':') wird als Hinweis am
-            # Eintrag sichtbar gemacht statt stillschweigend akzeptiert. Ein
-            # führender Bindestrich zählt bewusst als Abweichung mit — ihn vor dem
-            # Vergleich abzuschneiden (wie zunächst erwogen) hätte genau diesen
-            # Fall unsichtbar gemacht (S. 231, Marreweg: '-Schl.-Nr.:').
+            # Anker-Text ohne Whitespace gegen die bekannt-guten (alten) Formen
+            # geprüft — nur die am 2026-09-13 (R6) neu ergänzten Toleranzen
+            # (verunstaltete Klammer-Buchstaben, 'N.' statt 'Nr.', führender
+            # Bindestrich, ';' statt ':', versprengter Großbuchstabe) lösen den
+            # Hinweis aus, die alte, längst bekannte Toleranz nicht (Fix Runde 2,
+            # s. Kommentar bei _ANKER_BEKANNT).
             anker_text = re.sub(r"\s+", "", volltext[m.start():m.end()])
-            hinweise = () if _ANKER_KANONISCH.match(anker_text) else (HINWEIS_ANKER_KORRIGIERT,)
+            hinweise = () if _ANKER_BEKANNT.match(anker_text) else (HINWEIS_ANKER_KORRIGIERT,)
             kandidaten.append((lemma, lemma_start, m.end(), hinweise))
         elif verworfene is not None:
             # Kein auffindbares Lemma vor diesem Anker: der Eintrag geht sonst
