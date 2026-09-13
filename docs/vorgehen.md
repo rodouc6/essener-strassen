@@ -59,9 +59,14 @@ Daraus entstanden sieben weitere Parser-Regeln sowie ein Werkzeug für Prüfbild
 (`strassen/pruefbilder.py`), das die verbleibenden Einzelfälle für die manuelle Sichtung
 aufbereitet. Spec:
 [`docs/specs/2026-09-13-parser-runde-2-design.md`](specs/2026-09-13-parser-runde-2-design.md).
-Ergebnis: siehe Differenzbericht
-[`docs/regression/2026-09-13-parser-runde-2.md`](regression/2026-09-13-parser-runde-2.md)
-(folgt).
+Ergebnis der Regeneration: **+11 Straßeneinträge** (3.338 → 3.349) und **+16 Namensstadien**
+(5.457 → 5.473), 379 korrigierte Namensschreibungen und 294 korrigierte Kopfwerte; die
+Prüflisten-Zeilen mit `einig=beide` sinken von **712 auf 288** (Prüfliste insgesamt 4.317 →
+3.585), weil R7 zusätzlich den letzten Eintrag jeder Buchseite nur im Kopf vergleicht
+(`seitenende_ausgelassen`: 340 bei `mistral`, 334 bei `qwen`). Der Preis ist eine höhere
+Zahl gekennzeichneter Einträge (`unsicher` 271 → 375): die bisher stille Anker-Toleranz
+wird jetzt sichtbar gemacht. Jede Rückstufung ist einzeln geprüft im Differenzbericht
+[`docs/regression/2026-09-13-parser-runde-2.md`](regression/2026-09-13-parser-runde-2.md).
 
 ## Was als Nächstes offen ist
 

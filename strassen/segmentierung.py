@@ -51,10 +51,10 @@ HINWEIS_ANKER_KORRIGIERT = "Anker OCR-korrigiert"
 # importiert, weil dessen (?<!\d)-Ausschluss einen echten Satzende-Punkt nach einer
 # Jahreszahl ('…gegründet 1913. Lemma') fälschlich am Abbrechen hindern würde; die
 # beiden Module lösen unterschiedliche Probleme und teilen sich die Regel bewusst
-# nicht. Die Trenner-Gruppe fordert mindestens ein Zeichen (':' oder ';') statt
-# eines wiederholten [:;]+ am Ende — sonst würde bei 'Am Schloss Schellenberg:;'
-# das reguläre-Ausdrucks-Backtracking den Rückwärtslauf am ';' beenden können,
-# statt beide Trennzeichen als ein Ende zu fressen.
+# nicht. Die Trenner-Gruppe (?::;?|;) zählt genau die drei in der Spec
+# vorgesehenen Trenner auf — ':', ';' und ':;' — und ist damit enger als ein
+# offenes [:;]+, das auch Ketten wie '::;;' oder ';;;' schlucken würde
+# (precision-first: nur belegte Formen tolerieren, nichts darüber hinaus).
 _LEMMA = re.compile(
     r"((?:(?!,|;|:|(?<!\bSt)(?<!\bI)(?<!\bII)(?<!\bIII)(?<!\bIV)(?<!\bIll)\.(?!-|[A-Za-zÄÖÜäöüß]))[^\n]){2,60}?)"
     r"\s*(?::;?|;)\s*$"

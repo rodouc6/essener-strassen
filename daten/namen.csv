@@ -14,7 +14,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00007,1,1955-01-19,tag,Achtmorgenfeld,falsch
 00008,1,1895-11-28,tag,Ackerstraße,falsch
 00008,2,1897-01-22,tag,Bornstraße,falsch
-00008,3,1915-07-09,tag,Ackerstraße (Verl),falsch
+00008,3,1915-07-09,tag,Ackerstraße (Verl.),falsch
 00009,1,1903-02-04,tag,Ludwigstraße,falsch
 00009,2,1937-11-20,tag,Adelgundenweg,falsch
 00009,3,1959-09-08,tag,Adelgundenweg (Verl.),falsch
@@ -24,10 +24,10 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00012,1,1889-07-05,tag,Am Stadtgarten,falsch
 00012,2,1933-05-08,tag,Admiral-Scheer-Straße,falsch
 03556,1,1971-09-22,tag,Adolf-Hopmann-Straße,falsch
-00013,1,1929-01-10,tag,Adolf- Rath-Straße,falsch
+00013,1,1929-01-10,tag,Adolf-Rath-Straße,falsch
 00014,1,1914-10-09,tag,Adolf-Schmidt-Straße,falsch
 00015,1,1897-09-06,tag,Adolfstraße,falsch
-00016,1,1890-11-18,tag,Knottenberg (tIw),falsch
+00016,1,1890-11-18,tag,Knottenberg (tlw.),falsch
 00016,2,1890-11-18,tag,Eickenscheider Weg (tlw.),falsch
 00016,3,1894-05-09,tag,Knottenbergstraße,falsch
 00016,4,1905,jahr,Moitkestraße (tlw.),falsch
@@ -35,15 +35,15 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00016,6,1929-12-12,tag,Am Knottenberg (tlw.),falsch
 00016,7,1937-11-20,tag,Äbtissinsteig,falsch
 00017,1,1904-02-04,tag,Ägidiusstraße,falsch
-00018,1,1957-12-12,tag,Agirstraße,falsch
+00018,1,1957-12-12,tag,Ägirstraße,falsch
 00019,1,1909-11-26,tag,Agnesstraße,falsch
 00020,1,1890-11-18,tag,Aastraße,falsch
 00020,2,1937-11-20,tag,Ahestraße,falsch
 00021,1,1903,vor,Heinrichstraße,falsch
 00021,2,1903-03-12,tag,Ahnewinkelstraße,falsch
-00021,3,1903-03-12,tag,Ahnewinkelstraße (Verl),falsch
+00021,3,1903-03-12,tag,Ahnewinkelstraße (Verl.),falsch
 00021,4,1922,vor,Friedhofsweg (Umb.),falsch
-00021,5,1934-01-12,tag,Ahnewinkelstraße (Verl),falsch
+00021,5,1934-01-12,tag,Ahnewinkelstraße (Verl.),falsch
 00022,1,1904-02-04,tag,Bergisch-Märkische Straße,falsch
 00022,2,1910-09-16,tag,Ahornstraße,falsch
 00023,1,1935-06-03,tag,Ahornzweig,falsch
@@ -56,7 +56,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00027,1,1896-08-14,tag,Aktienstraße,falsch
 00028,1,1915-07-06,tag,Albermannstraße,falsch
 02536,1,1993-11-09,tag,Albertine-Badenberg-Weg,falsch
-01129,1,1995-11-28,tag,Albert-Schmidt- Weg,falsch
+01129,1,1995-11-28,tag,Albert-Schmidt-Weg,falsch
 00058,1,1966-12-14,tag,Albert-Schweitzer-Straße,falsch
 00030,1,1897-09-06,tag,Albrechtstraße,falsch
 00031,1,,unbekannt,Schachtstraße,wahr
@@ -64,12 +64,12 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00243,1,1965-01-21,tag,Aldenhofweg,falsch
 00032,1,1897-09-06,tag,Alexanderstraße,falsch
 01125,1,1965-02-17,tag,Waldthausenbrücke,falsch
-01125,2,1994-08-17,tag,Alfred- Herrhausen-Brücke,falsch
-00033,1,1868-01-17,tag,Alfredistraße (tiw.),falsch
+01125,2,1994-08-17,tag,Alfred-Herrhausen-Brücke,falsch
+00033,1,1868-01-17,tag,Alfredistraße (tlw.),falsch
 00033,2,1940-06-10,tag,Alfrediquelle,falsch
 00034,1,1868-01-17,tag,Alfredistraße,falsch
 03269,1,1984-06-22,tag,Alfred-Neuse-Weg,falsch
-00035,1,1958-07-02,tag,Alfred- Pott-Weg,falsch
+00035,1,1958-07-02,tag,Alfred-Pott-Weg,falsch
 00036,1,1897-09-06,tag,Alfredstraße,falsch
 00530,1,1978-12-21,tag,Alfried-Krupp-Straße,falsch
 00037,1,1922-06-02,tag,Hermannstraße,falsch
@@ -87,7 +87,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00569,2,1980-08-20,tag,Alte Bottroper Straße,falsch
 00044,1,1936-01-15,tag,Alte Eichen,falsch
 00253,1,1911-11-21,tag,Haarzopfer Straße,falsch
-00253,2,1915-07-09,tag,Hatzper Straße (tIw.),falsch
+00253,2,1915-07-09,tag,Hatzper Straße (tlw.),falsch
 00253,3,1968-09-18,tag,Alte Hatzper Straße,falsch
 01428,1,1911-06-16,tag,Hauptstraße,falsch
 01428,2,1978-11-23,tag,Alte Hauptstraße,falsch
@@ -96,7 +96,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00045,3,1955-01-19,tag,Alte Kirchstraße (Verl.),falsch
 00045,4,1995-09-20,tag,Alte Kirchstraße (Verl.),falsch
 00046,1,1903-03-12,tag,Alte Landstraße,falsch
-00252,1,1911-11-21,tag,Raadter Straße (tiw.),falsch
+00252,1,1911-11-21,tag,Raadter Straße (tlw.),falsch
 00252,2,1968-11-21,tag,Alte Raadter Straße,falsch
 00054,1,1890-11-18,tag,Königstraße,falsch
 00054,2,1908-02-27,tag,Königstraße (Verl.),falsch
@@ -108,17 +108,17 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00049,3,1931-12-11,tag,Altenbergstraße (Verl.),falsch
 00050,1,1883,jahr,Limbecker Chaussee,falsch
 00050,2,1901-12-04,tag,Altendorfer Straße,falsch
-00050,3,1933-05-08,tag,Thomaestraße (tiw,falsch
-00050,4,1945-05-15,tag,Altendorfer Straße (tw,falsch
+00050,3,1933-05-08,tag,Thomaestraße (tlw.),falsch
+00050,4,1945-05-15,tag,Altendorfer Straße (tlw.),falsch
 00050,5,1946-03-27,tag,Ernst-Thälmann-Straße (Umb.),falsch
-00050,6,1950-10-19,tag,Altendorfer Straße (Verl),falsch
+00050,6,1950-10-19,tag,Altendorfer Straße (Verl.),falsch
 00051,1,1898,vor,Rathausplatz,falsch
 00051,2,1902-05-16,tag,Altendorfplatz,falsch
 00052,1,1922-09-13,tag,Langenhorster Platz,falsch
 00052,2,1936-01-15,tag,Altenessener Markt,falsch
 00053,1,,unbekannt,Viehofer Chausee,wahr
 00053,2,1908-08-07,tag,Altenessener Straße,falsch
-00053,3,,unbekannt,Essen-Horster- Straße,wahr
+00053,3,,unbekannt,Essen-Horster-Straße,wahr
 00053,4,1915-07-09,tag,Altenessener Straße (Verl.),falsch
 00055,1,1954-02-23,tag,Altmeyerstraße,falsch
 00056,1,1896-08-14,tag,Altstraße,falsch
@@ -135,7 +135,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01550,1,1999-08-03,tag,Am Bienenstock,falsch
 03601,1,1924,jahr,Am Bilstein,falsch
 03601,2,1897-11-04,tag,Lehmdreh,falsch
-03601,3,1925-06-16,tag,Hochstraße (tiw.),falsch
+03601,3,1925-06-16,tag,Hochstraße (tlw.),falsch
 03601,4,1978-04-07,tag,Am Bilstein (Verl.),falsch
 03601,5,1950-12-11,tag,Waldsaum,falsch
 03601,6,1978-04-07,tag,Am Bilstein (Verl.),falsch
@@ -186,17 +186,17 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00081,3,1903-02-04,tag,Steinstraße,falsch
 00081,4,1903-02-04,tag,Stiftsstraße,falsch
 00081,5,1910-09-16,tag,Am Glockenberg,falsch
-00081,6,1928-02-27,tag,Am Glockenberg (Verl),falsch
+00081,6,1928-02-27,tag,Am Glockenberg (Verl.),falsch
 00082,1,1955-03-31,tag,Am Glockenspiel,falsch
 00963,1,2009-12-01,tag,Am Grugapark,falsch
 00083,1,1954-02-23,tag,Am Gutshof,falsch
 00084,1,1927-06-30,tag,Am Hagenbusch,falsch
 03603,1,1937,jahr,Dietrich-Eckart-Siedlung,falsch
-03603,2,1945-03-03,tag,Icktener Siedlung (t!w.),falsch
+03603,2,1945-03-03,tag,Icktener Siedlung (tlw.),falsch
 03603,3,1952-09-05,tag,Am Hammershöfchen,falsch
 00085,1,1868-01-17,tag,Bachstraße,falsch
 00085,2,1913-05-30,tag,Am Handelshof,falsch
-00085,3,1978-04-07,tag,Am Handelshof (Verl),falsch
+00085,3,1978-04-07,tag,Am Handelshof (Verl.),falsch
 02537,1,1993-11-18,tag,Am Handwerkerpark,falsch
 00086,1,1964-02-25,tag,Am Hang,falsch
 00087,1,1913-05-30,tag,Am Hauptbahnhof,falsch
@@ -204,7 +204,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03604,1,1952-10-21,tag,Am Hausberg,falsch
 00089,1,1958-07-02,tag,Am Heimbusch,falsch
 00090,1,1950-03-15,tag,Am Heissiwald,falsch
-00091,1,1912,jahr,Sonnenstraße {tlw.),falsch
+00091,1,1912,jahr,Sonnenstraße (tlw.),falsch
 00091,2,1939-05-26,tag,Am Herrenbusch,falsch
 00092,1,1914-05-10,tag,Am Hinsberg,falsch
 03605,1,1936,jahr,Am Hofacker,falsch
@@ -230,12 +230,12 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00264,1,1911-06-16,tag,Am Krählinge,falsch
 00102,1,,unbekannt,Josefstraße,wahr
 00102,2,1903-02-04,tag,Hovescheidtstraße ftlw.),falsch
-00102,3,1910-09-16,tag,Am krausen Bäumchen (Verl),falsch
+00102,3,1910-09-16,tag,Am krausen Bäumchen (Verl.),falsch
 00102,4,1957-07-15,tag,Am Krausen Bäumchen,falsch
 00103,1,1896-02-13,tag,Georgstraße,falsch
 00103,2,1915-07-09,tag,Am Kreuz,falsch
 00208,1,1896-10-08,tag,Rohrstraße,falsch
-00208,2,1915-07-09,tag,Bedingrader Straße (tiw.),falsch
+00208,2,1915-07-09,tag,Bedingrader Straße (tlw.),falsch
 00208,3,1967-05-03,tag,Am Kreyenkrop,falsch
 00104,1,1956-02-22,tag,Am Kringel,falsch
 00105,1,,unbekannt,Baumstraße,wahr
@@ -260,7 +260,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03608,2,1971-10-19,tag,Am Mühlengraben,falsch
 03609,1,1930-01-28,tag,Am Muhrenberg,falsch
 00113,1,1940-01-12,tag,Am Nachtigallental,falsch
-00209,1,1898-03-11,tag,Metzer Straße (tiw.),falsch
+00209,1,1898-03-11,tag,Metzer Straße (tlw.),falsch
 00209,2,1967-06-29,tag,Am Ostpark,falsch
 00114,1,1897-11-29,tag,Luegstraße (tlw.),falsch
 00114,2,1936-01-15,tag,Am Parkfriedhof,falsch
@@ -269,10 +269,10 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00698,1,2003-07-08,tag,Am Pumpwerk,falsch
 02510,1,1988-06-24,tag,Am Reiterhof,falsch
 00116,1,1922-06-02,tag,Am Richrath,falsch
-00238,1,1901-12-13,tag,Frohnhauser Straße (tIw.),falsch
+00238,1,1901-12-13,tag,Frohnhauser Straße (tlw.),falsch
 00238,2,1963-09-04,tag,Am Richtenberg,falsch
 00574,1,,unbekannt,Schultepäskenstraße,wahr
-00574,2,1902-05-16,tag,Riehlstraße (tlw),falsch
+00574,2,1902-05-16,tag,Riehlstraße (tlw.),falsch
 00574,3,1981-07-10,tag,Am Riehlpark,falsch
 00117,1,1959-09-08,tag,Am Ringofen,falsch
 00246,1,1964-05-20,tag,Am Roten Haus,falsch
@@ -288,6 +288,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00124,1,1896-02-13,tag,Bogenstraße,falsch
 00124,2,1915-07-09,tag,Am Schlagbaum,falsch
 00125,1,1957-01-23,tag,Am Schlangenberg,falsch
+00710,1,2005-05-18,tag,Am Schloss Schellenberg,falsch
 00126,1,1922-06-02,tag,Am Schmalscheid,falsch
 00127,1,1955-03-31,tag,Am Schroer,falsch
 01138,1,1997-09-16,tag,Am Schroerkotten,falsch
@@ -310,7 +311,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01615,1,2002-12-31,tag,Am Stoppenberger Bach,falsch
 00259,1,1974-09-18,tag,Am Streifen,falsch
 00133,1,1922-06-02,tag,Am Strötgen,falsch
-00134,1,1927-12-01,tag,Eckbertstraße (tiw.),falsch
+00134,1,1927-12-01,tag,Eckbertstraße (tlw.),falsch
 00134,2,1950-07-05,tag,Am Tann,falsch
 00134,3,1950-07-05,tag,Am Hochbassin,falsch
 00134,4,1951-03-05,tag,Am Tann (Verl.),falsch
@@ -320,7 +321,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00136,1,1953-10-13,tag,Am Treppchen,falsch
 00137,1,1922-06-02,tag,Am Turm,falsch
 00138,1,1953-03-03,tag,Am U-Bogen,falsch
-00255,1,1910-09-16,tag,Wittekindstraße (tiw.),falsch
+00255,1,1910-09-16,tag,Wittekindstraße (tlw.),falsch
 00255,2,1969-04-15,tag,Am Uhlenkrug,falsch
 00261,1,1951-11-13,tag,Dinnendahlweg,falsch
 00261,2,1970-12-16,tag,Am Vattersberg,falsch
@@ -351,7 +352,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00149,1,1897-11-29,tag,Wisthoffstraße,falsch
 00149,2,1933-05-08,tag,Am Zehnthof,falsch
 00149,3,,unbekannt,Eickenscheidterstraße,wahr
-00149,4,1937-11-20,tag,Am Zehnthof (Verl),falsch
+00149,4,1937-11-20,tag,Am Zehnthof (Verl.),falsch
 03272,1,1985-02-26,tag,Am Ziegelteich,falsch
 00094,1,1896,jahr,Amixstraße,falsch
 00130,1,1903-02-04,tag,Kuhstraße,falsch
@@ -367,7 +368,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00154,1,1922-06-02,tag,An der Bläufabrik,falsch
 01552,1,1999-12-14,tag,An der Blumenwiese,falsch
 00155,1,1929-07-29,tag,An der Braut,falsch
-03564,1,1953-07-31,tag,Aufm Rolland {tlw.),falsch
+03564,1,1953-07-31,tag,Aufm Rolland (tlw.),falsch
 03564,2,1976-09-15,tag,An der Düsterbeck,falsch
 00156,1,1950-07-05,tag,An der Fliehburg,falsch
 00250,1,1966-12-14,tag,An der Hütung,falsch
@@ -382,7 +383,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00161,1,1887-06-10,tag,Neustraße,falsch
 00161,2,1915-07-09,tag,An der Reichsbank,falsch
 00242,1,1962-04-25,tag,An der Schlaghecke,falsch
-03560,1,1916-02-18,tag,Schacht-Kronprinz-Straße (tiw.),falsch
+03560,1,1916-02-18,tag,Schacht-Kronprinz-Straße (tlw.),falsch
 01559,1,2000-10-17,tag,An der Seilbahn,falsch
 03625,1,1904,vor,Kaiser-Wilhelm-Platz und 21. Dezember 1899: Thalstraße,falsch
 02605,1,1898-05-10,tag,Ringstraße,falsch
@@ -424,13 +425,13 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00185,2,1915-07-09,tag,Ardelhütte,falsch
 00186,1,1903-02-04,tag,Marktplatz,falsch
 00186,2,1910-09-16,tag,Ardeyplatz,falsch
-00187,1,1903-02-04,tag,Schellenbergstraße (tiw.),falsch
+00187,1,1903-02-04,tag,Schellenbergstraße (tlw.),falsch
 00187,2,1910-09-16,tag,Unterstraße,falsch
 00187,3,1915-07-09,tag,Ardeystraße,falsch
 00188,1,1903,vor,Bottroper Straße,falsch
 00188,2,1934-01-12,tag,Arenbergstraße,falsch
 03555,1,1971-04-21,tag,Arendahls Hang,falsch
-00189,1,1892-03-29,tag,Lohstraße (tiw.),falsch
+00189,1,1892-03-29,tag,Lohstraße (tlw.),falsch
 00189,2,1937-11-20,tag,Arendahls Wiese,falsch
 00189,3,1937-09-20,tag,Katern-berger Straße,falsch
 00189,4,1963-12-17,tag,Arendahls Wiese (Verl.),falsch
@@ -511,7 +512,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01249,1,1922-02-09,tag,Heinestraße,falsch
 01249,2,1934-06-05,tag,Schladebach,falsch
 01249,3,1945-05-15,tag,Heinestraße,falsch
-01249,4,1978-04-27,tag,August-Schmidt- Straße,falsch
+01249,4,1978-04-27,tag,August-Schmidt-Straße,falsch
 03624,1,,unbekannt,Mintarder Straße,wahr
 03624,2,1922-05-16,tag,August-Thyssen-Straße,falsch
 00270,1,1897-01-22,tag,Baasstraße,falsch
@@ -533,7 +534,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00514,1,1962-11-12,tag,Baltrumweg,falsch
 00281,1,1898-05-18,tag,Kleine Hammerstraße,falsch
 00281,2,1927-08-28,tag,Bamlerstraße,falsch
-00281,3,2013-04-16,tag,Berthold-Beitz-Boulevard (tlw,falsch
+00281,3,2013-04-16,tag,Berthold-Beitz-Boulevard (tlw.),falsch
 00282,1,1914-10-09,tag,Bandelstraße,falsch
 00283,1,1896-10-08,tag,Bandstraße,falsch
 00283,2,1959-02-02,tag,Bandstraße (Verl.),falsch
@@ -545,20 +546,20 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00287,1,1910-09-16,tag,Bardelebenstraße,falsch
 00967,1,2011-11-01,tag,Bargmannstraße,falsch
 00289,1,1934-06-05,tag,Barkhorstrücken,falsch
-00289,2,1951-07-04,tag,Barkhorstrücken (Verl),falsch
+00289,2,1951-07-04,tag,Barkhorstrücken (Verl.),falsch
 00290,1,1922-06-02,tag,Barkhofenallee,falsch
 00290,2,1934-06-28,tag,Barkhovenallee,falsch
 00524,1,1975-04-16,tag,Barkhovenhöhe,falsch
 00288,1,1960-06-08,tag,Barnscheidstraße,falsch
 00291,1,,unbekannt,Augustinusstraße,wahr
-00291,2,1902-05-16,tag,Barthel-Bruyn- Straße,falsch
+00291,2,1902-05-16,tag,Barthel-Bruyn-Straße,falsch
 00292,1,1901-01-02,tag,Bartlingstraße,falsch
 00293,1,,unbekannt,Am Hochbassin,wahr
 00293,2,1868-01-17,tag,Bassinstraße,falsch
 00294,1,1953-03-03,tag,Basunestraße,falsch
 00295,1,1903-03-12,tag,Gerhardstraße,falsch
 00295,2,1937-11-20,tag,Batenbrocker Straße,falsch
-02046,1,2013-12-17,tag,Bauer-Knühl- Weg,falsch
+02046,1,2013-12-17,tag,Bauer-Knühl-Weg,falsch
 03629,1,1875,vor,Bauerschaft (Nummerierungsbezirk),falsch
 03629,2,1950-12-11,tag,Bauerschaft (Straßenname),falsch
 00296,1,1907-08-06,tag,Schubertstraße,falsch
@@ -592,13 +593,13 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00314,2,1910-09-16,tag,Beekmannstraße,falsch
 00315,1,,unbekannt,Gottfriedstraße,wahr
 00315,2,1900-05-04,tag,Beethovenstraße,falsch
-00315,3,1915-07-09,tag,Beethovenstraße (Verl),falsch
+00315,3,1915-07-09,tag,Beethovenstraße (Verl.),falsch
 03631,1,1880,vor,Beetstraße,falsch
 00298,1,1965-06-03,tag,Behaimring,falsch
 00523,1,1974-12-11,tag,Beisemannshang,falsch
 00318,1,1892-03-29,tag,Beisenstraße (tlw.),falsch
-00318,2,1937-11-20,tag,Alfred- Schröer-Straße,falsch
-00318,3,1945-05-15,tag,Beisenstraße (Verl),falsch
+00318,2,1937-11-20,tag,Alfred-Schröer-Straße,falsch
+00318,3,1945-05-15,tag,Beisenstraße (Verl.),falsch
 00319,1,1868-01-17,tag,Beiseweg,falsch
 00320,1,1891-07-01,tag,Beisingstraße,falsch
 00321,1,1901-03-01,tag,Belfortstraße,falsch
@@ -608,13 +609,13 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00323,3,1945-05-15,tag,Bendemannstraße,falsch
 00324,1,1900-11-13,tag,Mittelstraße,falsch
 00324,2,1935-11-14,tag,Benderstraße,falsch
-00515,1,1902-05-16,tag,Kruppstraße (tiw.),falsch
+00515,1,1902-05-16,tag,Kruppstraße (tlw.),falsch
 00515,2,1969-03-19,tag,Benno-Strauß-Straße,falsch
 00325,1,1906-03-10,tag,Bentheimer Straße,falsch
 00326,1,1929-07-24,tag,Rausenbergerstraße (tlw.),falsch
 00326,2,1939-05-26,tag,Benzstraße,falsch
 03632,1,1955-03-25,tag,Berchemer Weg,falsch
-00327,1,1909-01-07,tag,An der Kluse (tiw.),falsch
+00327,1,1909-01-07,tag,An der Kluse (tlw.),falsch
 00327,2,1915-07-09,tag,Markenweg,falsch
 00327,3,1936-01-15,tag,Berenberger Mark,falsch
 00328,1,1892-03-29,tag,Rosenstraße,falsch
@@ -630,12 +631,12 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00330,4,1935-11-14,tag,Bergerhauser Straße,falsch
 00471,1,1974-12-11,tag,Berghausbusch,falsch
 00458,1,1974-09-18,tag,Berghausweg,falsch
-00331,1,1896-08-14,tag,Fallstraße (tiw.),falsch
+00331,1,1896-08-14,tag,Fallstraße (tlw.),falsch
 00331,2,1937-11-20,tag,Bergheimer Steig,falsch
 00509,1,1895-11-28,tag,Dornstraße,falsch
 00509,2,1896-10-08,tag,Grafenweg,falsch
 00509,3,1915-07-09,tag,Graffweg,falsch
-00509,4,1937-11-20,tag,Ripshorster Straße (Verl),falsch
+00509,4,1937-11-20,tag,Ripshorster Straße (Verl.),falsch
 00509,5,1970-06-24,tag,Bergheimer Straße,falsch
 00332,1,1922-06-02,tag,Bergische Landstraße,falsch
 00333,1,1896-10-08,tag,Südstraße,falsch
@@ -657,7 +658,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00532,2,1937-02-25,tag,Berkenkampmühle,falsch
 00532,3,1979-07-06,tag,Berkenkampmühle (parallel verlaufende neue Straßenführung),falsch
 00299,1,1964-03-18,tag,Berliner Platz,falsch
-00342,1,1898,vor,Falkensteinstraße (tiw.),falsch
+00342,1,1898,vor,Falkensteinstraße (tlw.),falsch
 00342,2,1902-05-16,tag,Berliner Straße,falsch
 00343,1,1866-04-06,tag,Bernestraße,falsch
 00344,1,1922-06-02,tag,Bernhardstraße,falsch
@@ -665,7 +666,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00345,1,1903-03-12,tag,Wörthstraße,falsch
 00345,2,1934-06-05,tag,Berswortschanze,falsch
 02766,1,1868-01-17,tag,Schillerstraße,falsch
-02766,2,1978-04-07,tag,Bert-Brecht- Straße,falsch
+02766,2,1978-04-07,tag,Bert-Brecht-Straße,falsch
 00828,1,2007-05-15,tag,Berthold-Beitz-Boulevard,falsch
 00828,2,2013-04-16,tag,Berthold-Beitz-Boulevard (Verl.),falsch
 00346,1,1897-09-06,tag,Bertoldstraße,falsch
@@ -674,7 +675,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00348,2,1961-02-22,tag,Berzeliusstraße,falsch
 00349,1,,unbekannt,Martinstraße,wahr
 00349,2,1906-12-07,tag,Besselstraße,falsch
-00350,1,1929-01-10,tag,Schraeplerstraße (tiw.),falsch
+00350,1,1929-01-10,tag,Schraeplerstraße (tlw.),falsch
 00350,2,1957-07-15,tag,Bessemerstraße,falsch
 00352,1,1900,vor,Hofstraße,falsch
 00352,2,1937-02-25,tag,Beulenhof,falsch
@@ -697,7 +698,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00365,1,1904-02-04,tag,Bachstraße,falsch
 00365,2,1910-09-16,tag,Birkenstraße,falsch
 00366,1,1914-05-10,tag,Birkmannsweg,falsch
-01647,1,1933-05-29,tag,Karl- Peters-Straße,falsch
+01647,1,1933-05-29,tag,Karl-Peters-Straße,falsch
 01647,2,2003-06-14,tag,Bischof-Franz-Wolf-Straße,falsch
 00367,1,1899-02-10,tag,Ackerstraße,falsch
 00367,2,1900,vor,Bahnstraße,falsch
@@ -714,7 +715,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00373,1,1896-10-08,tag,Moorstraße,falsch
 00373,2,1915-07-09,tag,Blitzstraße,falsch
 00374,1,1922,jahr,Blockstraße,falsch
-00374,2,1953-02-02,tag,Blockstraße (verl.),falsch
+00374,2,1953-02-02,tag,Blockstraße (Verl.),falsch
 00375,1,1906-05-11,tag,Nürnberger Straße,falsch
 00375,2,1916-02-18,tag,Blücherstraße,falsch
 00376,1,1895-11-15,tag,Körnerstraße,falsch
@@ -729,7 +730,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00379,3,1915-07-09,tag,Bocholder Straße,falsch
 00565,1,1890,jahr,Chausseestraße,falsch
 00565,2,1909,jahr,Bahnhofstraße,falsch
-00565,3,1926-05-19,tag,Bochumer Straße {tlw.),falsch
+00565,3,1926-05-19,tag,Bochumer Straße (tlw.),falsch
 00380,1,1875,vor,Berliner Straße,falsch
 00380,2,1890-11-18,tag,Chausseestraße,falsch
 00380,3,1909-03-26,tag,Bahnhofstraße,falsch
@@ -768,8 +769,8 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00435,3,1966-12-14,tag,Bonnekamphöhe,falsch
 00395,1,1892-03-29,tag,Katernberger Straße,falsch
 00395,2,1924-04-02,tag,Bonnekampstraße,falsch
-00395,3,1892-03-29,tag,Beisenstraße (tiw.),falsch
-00395,4,1937-11-20,tag,Bonnekampstraße (Verl),falsch
+00395,3,1892-03-29,tag,Beisenstraße (tlw.),falsch
+00395,4,1937-11-20,tag,Bonnekampstraße (Verl.),falsch
 00396,1,1891-04-30,tag,Mülheimer Straße,falsch
 00396,2,1915-07-09,tag,Bonnemannstraße,falsch
 00397,1,1903,jahr,Bonnenbergstraße,falsch
@@ -797,7 +798,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00408,4,1895-11-28,tag,Bruchstraße,falsch
 00408,5,1896-10-08,tag,Franzstraße,falsch
 00408,6,1915-07-09,tag,Auf dem Bleek,falsch
-00408,7,1915-07-09,tag,Haus-Horl- Straße,falsch
+00408,7,1915-07-09,tag,Haus-Horl-Straße,falsch
 00408,8,1915-07-09,tag,Im Hesselbruch am 29. August 1927 zusammengefasst unter der gemeinsamen Bezeichn,falsch
 00409,1,1900-11-13,tag,Lindenstraße,falsch
 00409,2,1937-11-20,tag,Bovermanns Kamp,falsch
@@ -825,7 +826,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00418,1,1953-03-03,tag,Brandhoffs Delle,falsch
 00420,1,,unbekannt,Brandstorgasse,wahr
 00420,2,,unbekannt,Josephsgasse,wahr
-00420,3,1937-11-20,tag,Brandstorgasse (Verl),falsch
+00420,3,1937-11-20,tag,Brandstorgasse (Verl.),falsch
 00421,1,1937-11-20,tag,Brandstorstraße,falsch
 00422,1,,unbekannt,(16. Jh.): opme Brand,wahr
 00422,2,1860,jahr,Brandstraße,falsch
@@ -845,7 +846,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00431,1,1937-11-20,tag,Breddemannweg,falsch
 00432,1,1962-03-11,tag,Breddestraße,falsch
 00516,1,1907-08-06,tag,Rellinghauser Straße,falsch
-00516,2,1915-07-09,tag,Frankenstraße (tiw.),falsch
+00516,2,1915-07-09,tag,Frankenstraße (tlw.),falsch
 00516,3,1969-03-19,tag,Bredeneyer Kreuz,falsch
 00433,1,1907-08-06,tag,Werdener Straße,falsch
 00433,2,1907-08-06,tag,Essener Straße,falsch
@@ -858,7 +859,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03635,1,1936,jahr,Brederscheid,falsch
 00434,1,1900-05-04,tag,Bredowstraße,falsch
 00436,1,1894,jahr,Altenhof,falsch
-00436,2,1910-09-16,tag,Altenhof Il (tiw.),falsch
+00436,2,1910-09-16,tag,Altenhof Il (tlw.),falsch
 00436,3,1935-10-14,tag,Breidbachweg,falsch
 00437,1,1902-05-16,tag,Breilsort,falsch
 00438,1,1916-10-16,tag,Breilsrand,falsch
@@ -900,11 +901,12 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00463,2,1903-05-11,tag,Brüningstraße,falsch
 00463,3,1920-09-19,tag,Alfredstraße,falsch
 00463,4,1936-01-15,tag,Brüninghofer Weg,falsch
-00463,5,1936-01-15,tag,Brüninghofer Weg (Verl),falsch
+00463,5,1936-01-15,tag,Brüninghofer Weg (Verl.),falsch
 00464,1,1892-07-08,tag,Brüningstraße,falsch
 00836,1,2001-05-08,tag,Brüsseler Straße,falsch
 00836,2,2008-08-26,tag,Brüsseler Platz,falsch
 00460,1,1966-12-14,tag,Bruktererhang,falsch
+00465,1,1906-01-26,tag,Brunhildenstraße,falsch
 00466,1,1891-07-01,tag,Brunnenstraße,falsch
 00466,2,1933-05-08,tag,Mackensenstraße,falsch
 00466,3,1945-06-18,tag,Brunnenstraße,falsch
@@ -940,7 +942,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00484,2,1913-04-04,tag,Büscherstraße,falsch
 00486,1,1926-05-19,tag,Büssemstraße,falsch
 00487,1,1894,jahr,Altenhof,falsch
-00487,2,1910-09-16,tag,Altenhof Il (tiw.),falsch
+00487,2,1910-09-16,tag,Altenhof Il (tlw.),falsch
 00487,3,1935-10-14,tag,Büttnerstraße,falsch
 00488,1,,unbekannt,Bützgenweg,wahr
 00489,1,,unbekannt,Mühlenstraße,wahr
@@ -976,17 +978,17 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00506,2,1912,vor,Lindenstraße,falsch
 00506,3,1937-02-25,tag,Butenbergs Kamp,falsch
 00517,1,1972-09-20,tag,Butzweg,falsch
-00507,1,1901-01-30,tag,Oststraße (tiw.),falsch
+00507,1,1901-01-30,tag,Oststraße (tlw.),falsch
 00507,2,1911,jahr,Wiesenstraße,falsch
 00507,3,1933-11-27,tag,Byfanger Straße,falsch
-00507,4,1933-11-27,tag,Byfanger Straße (Verl),falsch
+00507,4,1933-11-27,tag,Byfanger Straße (Verl.),falsch
 00540,1,1897-09-06,tag,Cäcilienstraße,falsch
 00546,1,1899-01-09,tag,Cäsarstraße,falsch
 00541,1,1909-11-26,tag,Moltkeplatz,falsch
-00541,2,1910-09-16,tag,Camillo- Sitte-Platz,falsch
+00541,2,1910-09-16,tag,Camillo-Sitte-Platz,falsch
 00542,1,1906-12-07,tag,Camphausenstraße,falsch
 00543,1,1901-03-16,tag,Kart-Funke-Straße,falsch
-00543,2,1957-07-15,tag,Carl-Funke- Straße,falsch
+00543,2,1957-07-15,tag,Carl-Funke-Straße,falsch
 00588,1,1896,jahr,Edelstraße,falsch
 00588,2,1915-07-09,tag,Bergmühle (tlw.),falsch
 00588,3,1983-03-09,tag,Carl-Kruft-Straße,falsch
@@ -998,12 +1000,12 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00707,2,2010-07-06,tag,Carnaperhof (Verl.),falsch
 00545,1,1891-04-30,tag,Karlstraße,falsch
 00545,2,1915-07-09,tag,Carolus-Magnus-Straße,falsch
-00545,3,1979-03-16,tag,Carolus- Magnus-Straße (Verl.),falsch
+00545,3,1979-03-16,tag,Carolus-Magnus-Straße (Verl.),falsch
 00558,1,1966-06-13,tag,Cathostraße,falsch
 00573,1,1980-11-07,tag,Schacht Centrum,falsch
 00573,2,1981-07-10,tag,Centrumstraße,falsch
 00559,1,1911-06-16,tag,Charlottenberg,falsch
-00561,1,1911-06-16,tag,Holteyerberg (tiw.),falsch
+00561,1,1911-06-16,tag,Holteyerberg (tlw.),falsch
 00561,2,1970-12-16,tag,Charlottenhöhe,falsch
 03640,1,1934-10-02,tag,Charlottenhofstraße,falsch
 00560,1,1911-06-16,tag,Charlottenstraße,falsch
@@ -1015,7 +1017,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00549,1,,unbekannt,Münhlenstraße (tlw.),wahr
 00549,2,1902-05-16,tag,Clausiusstraße,falsch
 00550,1,1906-03-10,tag,Clausthaler Straße,falsch
-03281,1,1986-09-17,tag,Clemens- Schmeck-Straße,falsch
+03281,1,1986-09-17,tag,Clemens-Schmeck-Straße,falsch
 00551,1,1900-11-06,tag,Kanalstraße,falsch
 00551,2,1937-11-20,tag,Colsmannstraße,falsch
 01596,1,2000-11-07,tag,Conrad-Engels-Weg,falsch
@@ -1043,7 +1045,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00595,2,1874,vor,Steeler Straße,falsch
 00595,3,1925-04-16,tag,Dahlhauser Straße,falsch
 00596,1,1957-01-13,tag,Dahlienhof,falsch
-00665,1,1902-05-16,tag,Breilsort (tIw.),falsch
+00665,1,1902-05-16,tag,Breilsort (tlw.),falsch
 00665,2,1963-09-04,tag,Dahlmannstraße,falsch
 00597,1,,unbekannt,Wedelstraße,wahr
 00597,2,1902-05-16,tag,Dahnstraße,falsch
@@ -1052,7 +1054,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00599,2,1934-06-05,tag,Dammannstraße,falsch
 00600,1,1896-02-13,tag,Dammstraße,falsch
 00601,1,1924-09-17,tag,Dandermannsteg,falsch
-00571,1,1981-04-03,tag,Daniel- Eckhardt-Straße,falsch
+00571,1,1981-04-03,tag,Daniel-Eckhardt-Straße,falsch
 00571,2,1990-06-08,tag,Daniel-Eckhardt-Straße (Verl.),falsch
 00602,1,1898,vor,Ludwigstraße,falsch
 00602,2,1902-05-16,tag,Danziger Straße,falsch
@@ -1094,7 +1096,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00623,2,1902-05-16,tag,Dickmannstraße,falsch
 00623,3,1902,jahr,Barkhofstraße,falsch
 00623,4,1937-11-20,tag,Vesterstraße,falsch
-00623,5,1970-12-16,tag,Dickmannstraße (Verl),falsch
+00623,5,1970-12-16,tag,Dickmannstraße (Verl.),falsch
 00624,1,1909-06-08,tag,Dickstraße,falsch
 00625,1,1938-10-21,tag,Diechmannplatz,falsch
 02523,1,1990-08-07,tag,Diekmannsbusch,falsch
@@ -1120,7 +1122,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00635,1,1929-02-05,tag,Ernst-Toller-Straße,falsch
 00635,2,1930-05-31,tag,Dirschaustraße,falsch
 00636,1,1952-03-25,tag,Dischstraße,falsch
-00637,1,1892-03-29,tag,Emscherstraße {tlw.),falsch
+00637,1,1892-03-29,tag,Emscherstraße (tlw.),falsch
 00637,2,1922-02-09,tag,Goethestraße,falsch
 00637,3,1934-01-12,tag,Distelbeckhof,falsch
 00638,1,1906-07-20,tag,Distelkamp,falsch
@@ -1146,7 +1148,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00651,1,1927-08-09,tag,Dornemannplatz,falsch
 00652,1,1897-09-06,tag,Dorotheenstraße,falsch
 00653,1,1909-11-26,tag,Dorstener Straße,falsch
-00686,1,1931-02-10,tag,Dortmunder Straße (tiw.),falsch
+00686,1,1931-02-10,tag,Dortmunder Straße (tlw.),falsch
 00686,2,1953-06-25,tag,Dorstfelder Straße,falsch
 00654,1,1891,jahr,Borgmannstraße,falsch
 00654,2,1934-06-05,tag,Dortmannhof,falsch
@@ -1182,7 +1184,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00671,2,1936-08-05,tag,Drügeshofstraße,falsch
 00672,1,1909-09-26,tag,Drumannstraße,falsch
 00673,1,1894,jahr,Altenhof,falsch
-00673,2,1910-09-16,tag,Altenhof II (tiw.),falsch
+00673,2,1910-09-16,tag,Altenhof II (tlw.),falsch
 00673,3,1935-10-14,tag,Druschelpfad,falsch
 00674,1,1501,jahrhundert,Schützenbahn,falsch
 00674,2,1937-11-20,tag,Dudenstraße,falsch
@@ -1202,14 +1204,14 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00683,1,1905-03-10,tag,Duisburger Straße,falsch
 00694,1,1911-06-16,tag,Dumberger Straße,falsch
 00694,2,1911-06-16,tag,Burgstraße,falsch
-00694,3,1970-12-16,tag,Dumberger Straße (Verl),falsch
+00694,3,1970-12-16,tag,Dumberger Straße (Verl.),falsch
 00684,1,1901-05-23,tag,Eisenstraße,falsch
 00684,2,1937-11-20,tag,Dutzendriege,falsch
 00579,1,1982-01-20,tag,Duvenkamp,falsch
 00720,1,1922,jahr,Eberhardstraße,falsch
 00818,1,1973-12-18,tag,Echstenkämperweg,falsch
 00721,1,1927-12-01,tag,Eckbertstraße,falsch
-00722,1,,unbekannt,Friedrichstraße (tiw.),wahr
+00722,1,,unbekannt,Friedrichstraße (tlw.),wahr
 00722,2,1937-02-25,tag,Eckenbergstraße,falsch
 00723,1,1896-10-08,tag,Eckstraße,falsch
 01146,1,1999-02-24,tag,Econova-Allee. „econova” ist der Name für das über 152 ha große Industrie- und G,falsch
@@ -1285,7 +1287,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00765,2,1927-02-27,tag,Vedderstraße,falsch
 00765,3,1933-05-08,tag,Elsa-Brändström-Platz,falsch
 00766,1,1927-02-27,tag,Engelsbecke (tlw.),falsch
-00766,2,1946-05-22,tag,Elsa- Brändströmstraße,falsch
+00766,2,1946-05-22,tag,Elsa-Brändströmstraße,falsch
 00767,1,1928,jahr,Waldstraße,falsch
 00767,2,1933-06-17,tag,Elsaßstraße,falsch
 00768,1,1903-05-11,tag,Elsterbuschstraße,falsch
@@ -1348,7 +1350,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00819,1,1976-02-18,tag,Ernst-Barlach-Straße,falsch
 00962,1,2010-12-28,tag,Ernst-Schmidt-Platz,falsch
 00794,1,1897-09-06,tag,Ernststraße,falsch
-00810,1,1960-06-08,tag,Ernst- Tengelmann-Ring,falsch
+00810,1,1960-06-08,tag,Ernst-Tengelmann-Ring,falsch
 00795,1,1939-05-26,tag,Erntedankweg,falsch
 03265,1,1983-02-08,tag,Erzstraße,falsch
 00797,1,1957-12-12,tag,Eschenburg,falsch
@@ -1373,11 +1375,11 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00808,1,,unbekannt,Marienstraße,wahr
 00808,2,1927-12-01,tag,Euskirchenstraße,falsch
 01139,1,1998-02-03,tag,Eva-Hollands-Weg,falsch
-02525,1,1990-09-12,tag,Ewald- Dutschke-Straße,falsch
+02525,1,1990-09-12,tag,Ewald-Dutschke-Straße,falsch
 00841,1,1912,vor,Ludgeristraße,falsch
 00841,2,1934-06-05,tag,Fährenkotten,falsch
 00844,1,1932,jahr,Fängershofstraße,falsch
-00845,1,1919-05-28,tag,Horststraße (tiw.),falsch
+00845,1,1919-05-28,tag,Horststraße (tlw.),falsch
 00845,2,1937-11-20,tag,Färberweg,falsch
 00840,1,1910,jahr,Fahrenberg,falsch
 00842,1,1896-02-13,tag,Hofstraße,falsch
@@ -1407,25 +1409,25 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00858,1,1909-06-08,tag,Fichtelstraße,falsch
 00859,1,1910-09-16,tag,Finefraustraße,falsch
 00860,1,1928-02-27,tag,Finkenhof,falsch
-03653,1,1937,jahr,Dietrich- Eckart-Siedlung,falsch
-03653,2,1945-03-03,tag,Icktener Siedlung (tiw.),falsch
+03653,1,1937,jahr,Dietrich-Eckart-Siedlung,falsch
+03653,2,1945-03-03,tag,Icktener Siedlung (tlw.),falsch
 03653,3,1952-09-05,tag,Am Jommershönschen,falsch
 03653,4,1961-10-27,tag,Finkenweg,falsch
 00861,1,1895-01-04,tag,Fischerstraße,falsch
 00957,1,1922-06-02,tag,In den Höfen,falsch
 00957,2,1970-12-16,tag,Fischlaker Höfe,falsch
 00862,1,1922-06-02,tag,Fischlaker Straße,falsch
-00863,1,1904,vor,Heinrichstraße (tiw.),falsch
+00863,1,1904,vor,Heinrichstraße (tlw.),falsch
 00863,2,1937-02-25,tag,Fischweiher,falsch
 00864,1,1501,jahrhundert,Flachsmarkt,falsch
 00865,1,1949-08-31,tag,Flakerfeld,falsch
 00866,1,1959-09-02,tag,Flakering,falsch
-03287,1,1891-04-30,tag,Zinkstraße (tiw.),falsch
+03287,1,1891-04-30,tag,Zinkstraße (tlw.),falsch
 03287,2,1987-12-09,tag,Flandernstraße,falsch
 00867,1,1900,jahr,Funkestraße,falsch
 00867,2,1913-05-30,tag,Flashoffstraße,falsch
 00902,1,1967-11-29,tag,Fleherweg,falsch
-00868,1,1897-09-06,tag,Marthastraße (tw),falsch
+00868,1,1897-09-06,tag,Marthastraße (tlw.),falsch
 00868,2,1935-09-30,tag,Flemingweg,falsch
 00869,1,1923-09-24,tag,Fleuenbruch,falsch
 00870,1,1907-08-06,tag,Schlägelgasse,falsch
@@ -1459,17 +1461,17 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00884,3,1946-05-22,tag,Forschepoeterweg,falsch
 00885,1,1903-02-04,tag,Forsthausstraße,falsch
 00886,1,1899,vor,Karl-Forstmannstraße,falsch
-00886,2,1899,vor,Hochstraße (tiw.),falsch
+00886,2,1899,vor,Hochstraße (tlw.),falsch
 00886,3,1937-11-20,tag,Forstmannstraße,falsch
 00887,1,1939-05-26,tag,Forststraße,falsch
-00888,1,1903-02-04,tag,Steeler Straße (tiw.),falsch
+00888,1,1903-02-04,tag,Steeler Straße (tlw.),falsch
 00888,2,1907-08-06,tag,Rellinghauser Straße,falsch
 00888,3,1910-09-16,tag,Frankenstraße,falsch
 00888,4,1915-07-09,tag,Frankenstraße (Verl.),falsch
 00889,1,1883,vor,Oberdorfstraße (tlw.),falsch
 00889,2,1902-05-16,tag,Frankfurter Straße,falsch
 00947,1,1868-01-17,tag,Ruhrstraße (tlw.),falsch
-00947,2,1934-06-05,tag,Damannstraße (t!w.),falsch
+00947,2,1934-06-05,tag,Damannstraße (tlw.),falsch
 00947,3,1967-06-29,tag,Franz-Arens-Straße,falsch
 00890,1,,unbekannt,Rosenstraße,wahr
 00890,2,1937-11-20,tag,Franzenshöhe,falsch
@@ -1477,23 +1479,23 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00921,2,1933-05-08,tag,Frillendorfer Straße (Verl.),falsch
 00921,3,1977-09-21,tag,Franz-Fischer-Weg,falsch
 00891,1,1922-03-08,tag,Franziskanerhöhe,falsch
-00891,2,1937-11-20,tag,Kapitän-Lehmann-Höhe (Umb)),falsch
+00891,2,1937-11-20,tag,Kapitän-Lehmann-Höhe (Umb.),falsch
 00891,3,1945-06-18,tag,Franziskanerhöhe (Umb.),falsch
 00892,1,1905-06-16,tag,Franziskanerstraße,falsch
 00892,2,1937-11-20,tag,Kapitän-Lehmann-Straße (Umb.),falsch
 00892,3,1945-06-18,tag,Franziskanerstraße (Umb.),falsch
 00892,4,1980-05-23,tag,Franziskanerstraße (Vert.),falsch
 00893,1,1897-09-06,tag,Franziskastraße,falsch
-00893,2,1933-05-08,tag,Franz-Seldte-Straße {Umb.),falsch
+00893,2,1933-05-08,tag,Franz-Seldte-Straße (Umb.),falsch
 00893,3,1945-06-18,tag,Franziskastraße (Umb.),falsch
 00894,1,1909-11-26,tag,Franziusstraße,falsch
-00958,1,1971-03-17,tag,Franz-Voutta- Straße,falsch
+00958,1,1971-03-17,tag,Franz-Voutta-Straße,falsch
 00895,1,1954-07-15,tag,Torweg,falsch
 00895,2,1955-03-31,tag,Franz-Xaver-Weg,falsch
 00896,1,1889-07-05,tag,Berthastraße,falsch
 00896,2,1906-01-26,tag,Frau-Berta-Krupp-Straße,falsch
 00896,3,1892-09-23,tag,Alexstraße,falsch
-00896,4,1915-07-09,tag,Frau-Berta-Krupp-Straße (Verl),falsch
+00896,4,1915-07-09,tag,Frau-Berta-Krupp-Straße (Verl.),falsch
 00896,5,1957-12-12,tag,Frau-Bertha-Krupp-Straße,falsch
 00897,1,1920-03-06,tag,Frauenfelderstraße,falsch
 00950,1,1965-06-03,tag,Frauenlobstraße,falsch
@@ -1507,7 +1509,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03654,1,1930,jahr,Freihofstraße,falsch
 03655,1,1925-10-12,tag,Freiligrathplatz,falsch
 03656,1,1925-10-12,tag,Freiligrathstaße,falsch
-03656,2,1950-12-11,tag,Karlstraße (tIw,falsch
+03656,2,1950-12-11,tag,Karlstraße (tlw.),falsch
 03656,3,1978-04-07,tag,Freiligrathstraße (Verl.),falsch
 00905,1,1919-04-01,tag,Freisenbruchstraße,falsch
 00905,2,1977-01-11,tag,Freisenbruchstraße (Verl.),falsch
@@ -1520,7 +1522,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00949,1,1960-06-08,tag,Fridolinstraße,falsch
 00910,1,1897-09-06,tag,Hubertusstraße,falsch
 00910,2,1906-01-26,tag,Herbertstraße,falsch
-00910,3,1931-02-12,tag,Fridtjof-Nansen- Straße,falsch
+00910,3,1931-02-12,tag,Fridtjof-Nansen-Straße,falsch
 00911,1,1902-05-16,tag,Friedbergstraße,falsch
 00912,1,1910-06-27,tag,Friedenstraße,falsch
 00913,1,1897-09-06,tag,Friederikenstraße,falsch
@@ -1529,14 +1531,14 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00915,2,1927-10-02,tag,Friedrich-Ebert-Straße,falsch
 00915,3,1933-05-08,tag,Schlageterstraße (Umb.),falsch
 00915,4,1945-05-15,tag,Ebertstraße (Umb.),falsch
-00915,5,1946-10-09,tag,Friedrich-Ebert- Straße (Umb.),falsch
+00915,5,1946-10-09,tag,Friedrich-Ebert-Straße (Umb.),falsch
 00916,1,1914-10-09,tag,Begasstraße,falsch
 00916,2,1935-11-14,tag,Friedrich-Küch-Straße,falsch
 00576,1,1981-11-27,tag,Friedrich-Küpper-Weg,falsch
 00917,1,1891-04-30,tag,Hochstraße (tlw.),falsch
 00917,2,1907-02-26,tag,Friedrich-Lange-Straße,falsch
 00918,1,1894-05-18,tag,Viktoriastraße,falsch
-00918,2,1934-06-05,tag,Friedrich- List-Straße,falsch
+00918,2,1934-06-05,tag,Friedrich-List-Straße,falsch
 00919,1,1874-01-30,tag,Friedrichstraße,falsch
 00920,1,1921,jahr,Friedrichswall,falsch
 00945,1,1968-09-18,tag,Frielingsdorfweg,falsch
@@ -1546,19 +1548,19 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00923,3,1947-04-01,tag,Frillendorfer Höhe,falsch
 00924,1,1936-01-15,tag,Frillendorfer Platz,falsch
 00925,1,1868-01-17,tag,Frillendorfer Straße,falsch
-00925,2,1897-11-29,tag,Schimmelstraße (Umb)),falsch
+00925,2,1897-11-29,tag,Schimmelstraße (Umb.),falsch
 00925,3,1897-11-29,tag,Wisthoffstraße (Umb.),falsch
 00925,4,1909-08-12,tag,Zeppelinstraße (Umb.),falsch
-00925,5,1933-05-08,tag,Frillendorfer Straße (Verl),falsch
+00925,5,1933-05-08,tag,Frillendorfer Straße (Verl.),falsch
 00951,1,1966-12-14,tag,Frintropper Höhe,falsch
 00926,1,1959-12-11,tag,Frintroper Knappen,falsch
 00952,1,1897-01-22,tag,Helmstraße (tlw.),falsch
 00952,2,1967-05-03,tag,Frintroper Markt,falsch
 00927,1,1891-04-30,tag,Essener Straße,falsch
 00927,2,1915-07-09,tag,Frintroper Straße,falsch
-01879,1,2013-05-22,tag,Fritz- Niermann-Platz,falsch
+01879,1,2013-05-22,tag,Fritz-Niermann-Platz,falsch
 01144,1,1998-10-20,tag,Fritz-Schaub-Weg,falsch
-00708,1,2004-11-09,tag,Fritz-Schupp- Allee,falsch
+00708,1,2004-11-09,tag,Fritz-Schupp-Allee,falsch
 00928,1,1896-02-13,tag,Fritzstraße,falsch
 03610,1,1950-10-03,tag,Am Schiefenberg,falsch
 03610,2,1978-04-07,tag,Fröbelweg,falsch
@@ -1577,13 +1579,13 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00934,1,1904-11-18,tag,Ringstraße,falsch
 00934,2,1937-11-20,tag,Füllenkamp,falsch
 00935,1,1926-09-18,tag,Fünffußbank,falsch
-00935,2,1953-03-03,tag,Fünffußbank (Verl),falsch
+00935,2,1953-03-03,tag,Fünffußbank (Verl.),falsch
 00936,1,1904,vor,Heinrichstraße (tlw.),falsch
 00936,2,1937-02-25,tag,Fünfhandbank,falsch
 00937,1,1896-02-13,tag,Fünfhöfestraße,falsch
 00938,1,,unbekannt,Ruhrhöhenweg (nicht amtlich),wahr
 00938,2,1936-08-05,tag,Fünfkirchenblick,falsch
-00939,1,1896-10-08,tag,Rheinstraße (tiw.),falsch
+00939,1,1896-10-08,tag,Rheinstraße (tlw.),falsch
 00939,2,1910-01-19,tag,Fürstäbtissinstraße,falsch
 00940,1,1907-11-28,tag,Maxstraße,falsch
 00940,2,1915-07-09,tag,Fürstenbergstraße,falsch
@@ -1591,7 +1593,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00942,1,1911-04-21,tag,Fuldastraße,falsch
 00943,1,1902,vor,Bülowstraße,falsch
 00943,2,1920-10-01,tag,Fulerumer Straße,falsch
-00943,3,2006-09-12,tag,Fulerumer Straße (Verl),falsch
+00943,3,2006-09-12,tag,Fulerumer Straße (Verl.),falsch
 00944,1,,unbekannt,Oststraße,wahr
 00944,2,1904-02-03,tag,Fundlandstraße,falsch
 00981,1,1926,vor,Gänsemarkt,falsch
@@ -1613,7 +1615,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00988,1,1952-07-31,tag,Gartenstiege,falsch
 03659,1,1897,vor,Gartenstraße,falsch
 00990,1,1901-01-30,tag,Gasstraße,falsch
-00990,2,1975-12-16,tag,Gasstraße (Verl),falsch
+00990,2,1975-12-16,tag,Gasstraße (Verl.),falsch
 00991,1,,unbekannt,Wilhelmstraße,wahr
 00991,2,1937-11-20,tag,Gathergang,falsch
 00992,1,1956-05-22,tag,Gattfeld,falsch
@@ -1622,13 +1624,13 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00996,1,1912-03-15,tag,Johannesstraße,falsch
 00996,2,1937-11-20,tag,Thyssenweg,falsch
 00996,3,1946-10-09,tag,Gedingeweg,falsch
-00996,4,1953-03-03,tag,Gedingeweg (Verl),falsch
+00996,4,1953-03-03,tag,Gedingeweg (Verl.),falsch
 00997,1,1933-08-14,tag,Gehrberg,falsch
 00998,1,1898-03-11,tag,Geibelstraße,falsch
 00999,1,1922-06-02,tag,Geilinghausweg,falsch
 01000,1,1898-03-11,tag,Geisbergstraße,falsch
 01118,1,,unbekannt,Kampstraße,wahr
-01118,2,1934-06-05,tag,Zölestinstraße (tIw.),falsch
+01118,2,1934-06-05,tag,Zölestinstraße (tlw.),falsch
 01118,3,1965-12-02,tag,Geismarweg,falsch
 01001,1,,unbekannt,Klemensstraße,wahr
 01001,2,1902-05-16,tag,Geißlerstraße,falsch
@@ -1652,10 +1654,10 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01010,1,1915,vor,Georgstraße,falsch
 01010,2,1937-11-20,tag,Georgkirchstraße,falsch
 01011,1,1910-12-20,tag,Küchenstraße,falsch
-01011,2,1911-02-20,tag,Gerhard-Küchen- Straße,falsch
+01011,2,1911-02-20,tag,Gerhard-Küchen-Straße,falsch
 01880,1,2013-05-22,tag,Gerhard-Marquardt-Platz,falsch
 00566,1,1860,jahr,Eickenscheidter Fuhr,falsch
-00566,2,1980-05-23,tag,Gerhard-Stötzel- Straße,falsch
+00566,2,1980-05-23,tag,Gerhard-Stötzel-Straße,falsch
 01012,1,1914-03-26,tag,Gerhardstraße,falsch
 03660,1,1965-01-26,tag,Gerhart-Hauptmann-Straße,falsch
 01013,1,1891-04-30,tag,Gerichtsstraße,falsch
@@ -1672,9 +1674,9 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01019,1,1891-04-30,tag,Gerscheder Straße,falsch
 01019,2,1891-04-30,tag,Steinstraße,falsch
 01019,3,1915-07-09,tag,Düppenberg (Umb.tiw.),falsch
-01019,4,1933-05-08,tag,Gerscheder Straße (Verl),falsch
+01019,4,1933-05-08,tag,Gerscheder Straße (Verl.),falsch
 01038,1,1891-04-30,tag,Wiesenstraße,falsch
-01038,2,1915-07-09,tag,Weidenstraße (tw),falsch
+01038,2,1915-07-09,tag,Weidenstraße (tlw.),falsch
 01038,3,1965-12-02,tag,Gerscheder Weiden,falsch
 01020,1,1938-10-21,tag,Gerschermannweg,falsch
 01021,1,1892-03-29,tag,Kurze Straße,falsch
@@ -1691,7 +1693,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01026,1,1957-01-23,tag,Gewerbehofstraße,falsch
 01027,1,1901-07-19,tag,Weststraße,falsch
 01027,2,1915-07-09,tag,Gewerkenstraße,falsch
-01027,3,1939-05-26,tag,Gewerkenstraße (Verl),falsch
+01027,3,1939-05-26,tag,Gewerkenstraße (Verl.),falsch
 01611,1,2002-01-29,tag,Giebelplatz,falsch
 01028,1,,unbekannt,Buschstraße,wahr
 01028,2,,unbekannt,Waitzstraße,wahr
@@ -1715,7 +1717,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01037,5,1915-07-09,tag,Feldmannstraße,falsch
 01037,6,1927-08-09,tag,Gladbecker Straße,falsch
 01039,1,1868-01-17,tag,Glashüttenstraße,falsch
-01040,1,1897-09-30,tag,Schlägelstraße (tiw.),falsch
+01040,1,1897-09-30,tag,Schlägelstraße (tlw.),falsch
 01040,2,1933-11-27,tag,Gleisdreieck,falsch
 01041,1,1896-08-14,tag,Gleisstraße,falsch
 01042,1,1897-01-22,tag,Glückstraße,falsch
@@ -1725,8 +1727,8 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01043,2,1915-07-09,tag,Glückaufstraße,falsch
 01044,1,1874,jahr,Glückstraße,falsch
 01045,1,1897-01-22,tag,Glühstraße,falsch
-01045,2,1953-03-03,tag,Glühstraße (Verl),falsch
-01046,1,1899-02-24,tag,Parkstraße (tiw.),falsch
+01045,2,1953-03-03,tag,Glühstraße (Verl.),falsch
+01046,1,1899-02-24,tag,Parkstraße (tlw.),falsch
 01046,2,1906-09-28,tag,Gneisenaustraße,falsch
 01047,1,1954-07-15,tag,Gockelweg,falsch
 01047,2,1976-11-26,tag,Gockelweg (Vert.),falsch
@@ -1743,7 +1745,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01055,1,1906-03-10,tag,Göttinger Straße,falsch
 01056,1,1936-08-05,tag,Goldammerweg,falsch
 01057,1,1903-01-04,tag,Goldfinkstraße,falsch
-01058,1,1895-11-15,tag,Söllingstraße (tlw),falsch
+01058,1,1895-11-15,tag,Söllingstraße (tlw.),falsch
 01058,2,1966-02-14,tag,Goldschmidtstraße,falsch
 01059,1,1938-10-21,tag,Goosestraße,falsch
 03662,1,1961-10-27,tag,Gottfried-Herder-Straße,falsch
@@ -1754,7 +1756,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00980,1,1974-05-22,tag,Grävenweg,falsch
 01063,1,1907-08-06,tag,Wusthoffstraße,falsch
 01063,2,1915-07-09,tag,Tirpitzstraße,falsch
-01063,3,1949-03-30,tag,Graf-Bernadotte- Straße,falsch
+01063,3,1949-03-30,tag,Graf-Bernadotte-Straße,falsch
 00713,1,2008-09-20,tag,Graf-Beust-Allee,falsch
 01064,1,,unbekannt,Grafenstraße,wahr
 01064,2,,unbekannt,Gravenstraße,wahr
@@ -1766,11 +1768,13 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01117,1,1968-03-20,tag,Graf-Luckner-Höhe,falsch
 01066,1,1907-08-06,tag,Brunnenweg,falsch
 01066,2,1907-08-06,tag,Schulstaße,falsch
-01066,3,1915-07-09,tag,Graf-Spee- Straße,falsch
+01066,3,1915-07-09,tag,Graf-Spee-Straße,falsch
 03663,1,1889-10-16,tag,Essener Straße (tlw.),falsch
 03663,2,1909-09-14,tag,Zeppelinstraße,falsch
-03663,3,1929-12-12,tag,Graf-Zeppelin- Straße,falsch
+03663,3,1929-12-12,tag,Graf-Zeppelin-Straße,falsch
 03663,4,1977-11-29,tag,Graf-Zeppelin-Straße (Verl.),falsch
+01067,1,1906-05-11,tag,Lessingstraße,falsch
+01067,2,1915-07-09,tag,Graitengraben,falsch
 01068,1,1928-10-30,tag,Graitenweg,falsch
 01122,1,1970-06-24,tag,Grandhöhe,falsch
 01069,1,1896-10-08,tag,Grandstraße,falsch
@@ -1806,13 +1810,13 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01090,1,1934-06-05,tag,Großer Schirnkamp,falsch
 01092,1,1903-03-12,tag,Gartenstraße,falsch
 01092,2,1937-02-25,tag,Großfeldweg,falsch
-01120,1,1902-05-16,tag,Kruppstraße (tiw.),falsch
+01120,1,1902-05-16,tag,Kruppstraße (tlw.),falsch
 01120,2,1914-10-09,tag,Großstraße,falsch
 01120,3,1957-01-23,tag,Großstraße (Aufgeh.),falsch
 01120,4,1969-03-19,tag,Großstraße,falsch
 01124,1,1892-03-29,tag,Nordstraße,falsch
 01124,2,1934-11-27,tag,Bruchweiher,falsch
-01124,3,1971-09-22,tag,Josef-Hoeren-Straße (tiw.),falsch
+01124,3,1971-09-22,tag,Josef-Hoeren-Straße (tlw.),falsch
 01124,4,1975-12-16,tag,Großwesterkamp,falsch
 01121,1,1961-12-13,tag,Grotehang,falsch
 01093,1,1928,jahr,Grotestraße,falsch
@@ -1829,7 +1833,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01101,2,1934-01-12,tag,Grüteringhof,falsch
 01102,1,1922-06-02,tag,Grüters Gasse,falsch
 01103,1,1954-07-15,tag,Grugaplatz,falsch
-01103,2,1991-04-17,tag,Rudolf-von-Bennigsen- Foerder-Platz (Umb.),falsch
+01103,2,1991-04-17,tag,Rudolf-von-Bennigsen-Foerder-Platz (Umb.),falsch
 01103,3,1999-05-18,tag,Grugaplatz (Umb.),falsch
 01105,1,1902-05-16,tag,Grunertstraße,falsch
 01617,1,2002-12-31,tag,Grunsbeckhof,falsch
@@ -1847,21 +1851,21 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01111,3,1935-10-14,tag,Gußmannplatz,falsch
 00584,1,1982-02-17,tag,Gustav-Heinemann-Brücke,falsch
 01113,1,1868-01-13,tag,Gustavstraße,falsch
-01113,2,1977-03-08,tag,Gustav-Hicking- Straße,falsch
-01112,1,1939-05-26,tag,Gustav- Nachtigal-Straße,falsch
+01113,2,1977-03-08,tag,Gustav-Hicking-Straße,falsch
+01112,1,1939-05-26,tag,Gustav-Nachtigal-Straße,falsch
 03666,1,1897-11-04,tag,Gustavstraße,falsch
-01128,1,1995-04-27,tag,Gustav- Streich-Straße,falsch
+01128,1,1995-04-27,tag,Gustav-Streich-Straße,falsch
 01114,1,1868-01-17,tag,Hofstraße,falsch
 01114,2,1901-03-01,tag,Gutenbergstraße,falsch
-01114,3,1915-07-09,tag,Gutenbergstraße (Verl),falsch
-01115,1,1938-10-21,tag,Guts- Muths-Weg,falsch
+01114,3,1915-07-09,tag,Gutenbergstraße (Verl.),falsch
+01115,1,1938-10-21,tag,Guts-Muths-Weg,falsch
 01116,1,1883-12-22,tag,Gyrenkampstraße,falsch
 01150,1,1895-11-28,tag,Streitweg,falsch
 01150,2,1896-01-02,tag,Scheidweg,falsch
 01150,3,1915-07-09,tag,Haardtstraße,falsch
 01151,1,1904-02-04,tag,Friedrichstraße,falsch
 01151,2,1910-09-16,tag,Habichtstraße,falsch
-01151,3,1974-04-24,tag,Habichtstraße (Verl),falsch
+01151,3,1974-04-24,tag,Habichtstraße (Verl.),falsch
 01152,1,1864-05-06,tag,Am Bahnhof,falsch
 01152,2,1868-01-17,tag,Märkische Straße,falsch
 01153,1,1954-03-23,tag,Hackenberghang,falsch
@@ -1869,9 +1873,9 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01154,2,1934-06-05,tag,Hackland,falsch
 01155,1,,unbekannt,U-Straße,wahr
 01155,2,1902-05-16,tag,Krämerstraße,falsch
-01155,3,1902-05-16,tag,Margaretenstraße (tiw.),falsch
+01155,3,1902-05-16,tag,Margaretenstraße (tlw.),falsch
 01155,4,1915-07-09,tag,Haedenkampstraße,falsch
-01155,5,1968-03-20,tag,Haedenkampstraße (Verl),falsch
+01155,5,1968-03-20,tag,Haedenkampstraße (Verl.),falsch
 03277,1,,unbekannt,) Ernststraße (tlw.),wahr
 03277,2,1986-05-13,tag,Hängebank,falsch
 01157,1,1891-04-30,tag,Bahnstraße,falsch
@@ -1913,14 +1917,14 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01174,3,1937-11-20,tag,Hallostraße (Verl.),falsch
 01176,1,1933-11-27,tag,Halterner Straße,falsch
 01177,1,1909-11-26,tag,Hamborner Straße,falsch
-01178,1,,unbekannt,Mühlenstraße (tiw.),wahr
+01178,1,,unbekannt,Mühlenstraße (tlw.),wahr
 01178,2,1902-05-16,tag,Hamburger Straße,falsch
 01179,1,1899-02-24,tag,Hammacherstraße,falsch
 01180,1,1922-06-02,tag,Hammer Mark,falsch
 01181,1,1868-01-17,tag,Hammer Straße,falsch
 01181,2,1908-04-13,tag,Werdener Straße (Umb.),falsch
 01181,3,1922-06-02,tag,Hespertaler Landstraße (Umb.),falsch
-01181,4,1922-06-02,tag,Am Schwarzen (Umb. tiw.),falsch
+01181,4,1922-06-02,tag,Am Schwarzen (Umb. tlw.),falsch
 01181,5,1937-11-20,tag,Hammer Straße (Verl.),falsch
 01182,1,1892-03-29,tag,Südstraße,falsch
 01182,2,1937-11-20,tag,Hangetal,falsch
@@ -1933,25 +1937,25 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01185,2,1937-11-20,tag,Hanielstraße,falsch
 01623,1,,unbekannt,Yorckstraße,wahr
 01623,2,1913-05-30,tag,Treitschkestraße,falsch
-01623,3,2003-03-08,tag,Hannah-Arendt- Straße,falsch
-00834,1,2008-07-08,tag,Hannıs- Joachim-Maßner-Weg,falsch
+01623,3,2003-03-08,tag,Hannah-Arendt-Straße,falsch
+00834,1,2008-07-08,tag,Hannıs-Joachim-Maßner-Weg,falsch
 01186,1,1890-11-18,tag,Chausseestraße,falsch
-01186,2,1890-11-18,tag,Markt (tiw.),falsch
+01186,2,1890-11-18,tag,Markt (tlw.),falsch
 01186,3,1926-06-01,tag,Hansastraße,falsch
-01186,4,1926-06-01,tag,Hansastraße (Verl),falsch
+01186,4,1926-06-01,tag,Hansastraße (Verl.),falsch
 01187,1,1951-07-04,tag,Hans-Böckler-Straße,falsch
 01188,1,1939-05-26,tag,Hansemannstraße,falsch
 01148,1,1999-02-24,tag,Hans-Fehr-Allee,falsch
 01189,1,1907-05-03,tag,Zweigertstraße (tlw.),falsch
 01189,2,1932,jahr,Hans-Luther-Straße,falsch
-01189,3,1966-06-13,tag,Hans- Luther-Allee,falsch
+01189,3,1966-06-13,tag,Hans-Luther-Allee,falsch
 01190,1,1930-05-31,tag,Hans-Niemeyer-Straße,falsch
 01200,1,1965-06-03,tag,Hans-Sachs-Straße,falsch
 00554,1,1902-05-16,tag,Corneliusstraße,falsch
 00554,2,1977-02-25,tag,Hans-Thoma-Straße,falsch
 01126,1,1994-08-17,tag,Hans-Toussaint-Platz,falsch
 01191,1,1927-12-01,tag,Haraldstraße,falsch
-01192,1,,unbekannt,Hafenstraße {tlw.),wahr
+01192,1,,unbekannt,Hafenstraße (tlw.),wahr
 01192,2,,unbekannt,Dodelle (tlw.),wahr
 01192,3,,unbekannt,Scheppener Weg,wahr
 01192,4,1933-05-08,tag,Hardenbergufer,falsch
@@ -1960,7 +1964,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01194,1,1922-06-02,tag,Harnscheidts Höfe,falsch
 01195,1,1914-05-10,tag,Harscheidweg,falsch
 01196,1,1914-10-09,tag,Hartmannplatz,falsch
-01198,1,1914-05-10,tag,Rommesweg (tiw.),falsch
+01198,1,1914-05-10,tag,Rommesweg (tlw.),falsch
 01198,2,1934-06-05,tag,Hartzbeeker Mark,falsch
 00973,1,2012-03-13,tag,Hasebrinks Garten,falsch
 01201,1,1941-02-01,tag,Hasebrinkstraße,falsch
@@ -1978,9 +1982,9 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01206,1,1949-12-22,tag,Hattingswiese,falsch
 01207,1,1903-03-12,tag,Hattramstraße,falsch
 01207,2,1903-03-12,tag,Gustavstraße,falsch
-01207,3,1936-01-15,tag,Hattramstraße (Verl),falsch
+01207,3,1936-01-15,tag,Hattramstraße (Verl.),falsch
 01212,1,1911-11-21,tag,Haarzopfer Straße,falsch
-01212,2,1915-07-09,tag,Hatzper Straße (tiw.),falsch
+01212,2,1915-07-09,tag,Hatzper Straße (tlw.),falsch
 01212,3,1949-08-31,tag,Auf der Bracke,falsch
 01212,4,1967-05-03,tag,Hatzper Bogen,falsch
 01212,5,1967-05-03,tag,Hatzper Bogen (Verl.),falsch
@@ -1992,16 +1996,16 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01211,1,1938-10-21,tag,Haunerlandweg,falsch
 03670,1,1821,vor,Hauptstraße,falsch
 03670,2,1871,jahr,Bismarckstraße (Umb.),falsch
-03670,3,1876-12-04,tag,Bahnhofstraße {tiw,falsch
+03670,3,1876-12-04,tag,Bahnhofstraße (tlw.),falsch
 03670,4,1934-10-02,tag,Adolf-Hitler-Straße (Umb.),falsch
 03670,5,1945-04-26,tag,Hauptstraße (Umb.),falsch
 03670,6,1946-04-04,tag,Mozartstraße,falsch
 03670,7,1948-06-15,tag,Bismarckstraße,falsch
-03670,8,1970-11-20,tag,Hauptstraße (Verl),falsch
-03670,9,1977-11-29,tag,Hauptstraße (Verl),falsch
+03670,8,1970-11-20,tag,Hauptstraße (Verl.),falsch
+03670,9,1977-11-29,tag,Hauptstraße (Verl.),falsch
 01216,1,1899,vor,Schulstraße,falsch
 01216,2,1937-11-02,tag,Haus Fuhr,falsch
-01217,1,1903-02-04,tag,Steinstraße (tiw.),falsch
+01217,1,1903-02-04,tag,Steinstraße (tlw.),falsch
 01217,2,1934-06-05,tag,Haus Heisingen,falsch
 01219,1,,unbekannt,Haus Horst,wahr
 01213,1,1902-05-16,tag,Hausackerstraße,falsch
@@ -2029,7 +2033,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01228,2,1907-02-01,tag,Hedwigstraße (Verl.),falsch
 01228,3,1908-05-01,tag,Hedwigstraße (Verl.),falsch
 01229,1,1895-11-28,tag,Heegstraße,falsch
-01229,2,1896-10-08,tag,Teilstraße(Umb.),falsch
+01229,2,1896-10-08,tag,Teilstraße (Umb.),falsch
 01229,3,1915-07-09,tag,Heegstraße (Verl.),falsch
 01417,1,1965-12-02,tag,Heeme,falsch
 01230,1,,unbekannt,Roonstraße,wahr
@@ -2061,7 +2065,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01242,1,1956-04-09,tag,Heidmannsbusch,falsch
 01243,1,,unbekannt,Krummer Weg,wahr
 01243,2,1916-02-18,tag,Heierbusch,falsch
-01384,1,1891-07-01,tag,Wächtlerstraße (tiw.),falsch
+01384,1,1891-07-01,tag,Wächtlerstraße (tlw.),falsch
 01384,2,1967-11-29,tag,Heilermannstraße,falsch
 03672,1,1930,vor,Heiligenhauser Straße,falsch
 01245,1,1896-08-14,tag,Heilstraße,falsch
@@ -2077,23 +2081,23 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01251,1,1902-05-16,tag,Heinitzstraße,falsch
 03673,1,1965-01-26,tag,Heinrich-Berns-Straße,falsch
 02592,1,1896-10-08,tag,Rheinstraße,falsch
-02592,2,1977-09-14,tag,Heinrich- Brauns-Straße,falsch
+02592,2,1977-09-14,tag,Heinrich-Brauns-Straße,falsch
 03674,1,1937,jahr,Ludendorffstraße,falsch
 03674,2,1946-04-04,tag,Heinrich-Heine-Straße,falsch
-02514,1,1989-04-27,tag,Heinrich- Held-Straße,falsch
+02514,1,1989-04-27,tag,Heinrich-Held-Straße,falsch
 00978,1,2012-02-15,tag,Heinrich-Imig-Straße,falsch
 01429,1,1951-11-13,tag,Heinrich-Kämpchen-Straße,falsch
 00903,1,1926-11-27,tag,Freiligrathplatz,falsch
-00903,2,1934-06-05,tag,Robert- Ley-Platz,falsch
+00903,2,1934-06-05,tag,Robert-Ley-Platz,falsch
 00903,3,1945-05-15,tag,Freiligrathplatz,falsch
 00903,4,1977-03-24,tag,Heinrich-Lersch-Platz,falsch
 00904,1,1911-12-16,tag,Theobaldstraße (tlw.),falsch
 00904,2,1926-11-27,tag,Freiligrathstraße,falsch
 00904,3,1934-06-05,tag,Robert-Ley-Straße,falsch
 00904,4,1945-05-15,tag,Freiligrathstraße,falsch
-00904,5,1977-03-24,tag,Heinrich- Lersch-Straße,falsch
+00904,5,1977-03-24,tag,Heinrich-Lersch-Straße,falsch
 00968,1,2010-09-21,tag,Heinrich-Reisner-Platz,falsch
-01252,1,1900,jahr,Karlstraße {tlw.),falsch
+01252,1,1900,jahr,Karlstraße (tlw.),falsch
 01252,2,1937-11-20,tag,Heinrich-Sense-Weg,falsch
 01254,1,1885-07-31,tag,Heinrichstraße,falsch
 01253,1,,unbekannt,Kaiserstraße,wahr
@@ -2101,8 +2105,8 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01253,3,1956-07-03,tag,Heinrich-Strunk-Straße,falsch
 01255,1,,unbekannt,Heinrichstraße,wahr
 01255,2,1902-05-16,tag,Heintzmannstraße,falsch
-02517,1,1989-08-09,tag,Heinz-Bäcker- Straße,falsch
-00697,1,2003-07-01,tag,Heinz-Renner- Platz,falsch
+02517,1,1989-08-09,tag,Heinz-Bäcker-Straße,falsch
+00697,1,2003-07-01,tag,Heinz-Renner-Platz,falsch
 01256,1,1913,jahr,Bredeneyer Straße,falsch
 01256,2,1928-02-27,tag,Heisinger Straße,falsch
 01257,1,1891-04-30,tag,Heißener Straße,falsch
@@ -2112,19 +2116,19 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01258,1,1903-03-12,tag,Ahnewinkelstraße,falsch
 01258,2,1903-03-12,tag,Katharinenstraße,falsch
 01258,3,1934-01-12,tag,Heisterholz,falsch
-01258,4,1934-01-12,tag,Heisterholz (Verl),falsch
+01258,4,1934-01-12,tag,Heisterholz (Verl.),falsch
 03675,1,1950-12-11,tag,Heistershecken,falsch
 01259,1,1905,vor,Hermannstraße,falsch
 01259,2,1906-01-26,tag,Hektorstraße,falsch
 01260,1,1887-06-10,tag,Huttropstraße,falsch
 01260,2,1933-11-27,tag,Helbingstraße,falsch
-02045,1,2013-12-17,tag,Helene- Müller-Weg,falsch
+02045,1,2013-12-17,tag,Helene-Müller-Weg,falsch
 01443,1,1976-02-18,tag,Helenendamm,falsch
 01261,1,1874,vor,Helenenstraße,falsch
 01261,2,1883,vor,Segerothstraße (Umb.),falsch
-01261,3,1902-05-16,tag,Helenenstraße (Verl),falsch
+01261,3,1902-05-16,tag,Helenenstraße (Verl.),falsch
 01439,1,1896-02-13,tag,Georgstraße,falsch
-01439,2,1915-07-09,tag,Am Kreuz (tw.),falsch
+01439,2,1915-07-09,tag,Am Kreuz (tlw.),falsch
 01439,3,1972-05-17,tag,Helen-Keller-Straße,falsch
 01262,1,1802-03-29,tag,Salkenbergsweg (tlw.),falsch
 01262,2,1934-01-12,tag,Helfenbergweg,falsch
@@ -2136,7 +2140,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01265,1,1907-08-06,tag,Helmesberg,falsch
 01266,1,,unbekannt,Kaiserstraße,wahr
 01266,2,1902-05-16,tag,Helmholtzstraße (tlw.),falsch
-01266,3,1902-05-16,tag,Heinitzstraße (tiw.),falsch
+01266,3,1902-05-16,tag,Heinitzstraße (tlw.),falsch
 01266,4,1938-10-21,tag,Helmholtzplatz,falsch
 03278,1,1902-05-16,tag,Helmholtzstraße,falsch
 01267,1,1897-01-22,tag,Helmstraße,falsch
@@ -2149,11 +2153,11 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00580,1,1982-01-20,tag,Hemsingskotten,falsch
 01271,1,1910-09-16,tag,Henckelstraße,falsch
 01272,1,1894-05-18,tag,Gärtnerstraße (tlw.),falsch
-01272,2,1930-03-20,tag,Hendrik-Witte- Straße,falsch
+01272,2,1930-03-20,tag,Hendrik-Witte-Straße,falsch
 01273,1,1910,jahr,Henglerplatz,falsch
 01274,1,1890-11-18,tag,Henglerstraße,falsch
 01274,2,1979-08-22,tag,Henglerstraße (Verl.),falsch
-01275,1,1915-07-09,tag,Im Siepken [tiw.),falsch
+01275,1,1915-07-09,tag,Im Siepken (tlw.),falsch
 01275,2,1953-10-13,tag,Henningweg,falsch
 01275,3,1957-01-23,tag,Henningweg (Verl.),falsch
 01276,1,1903-05-08,tag,Roßbachstraße,falsch
@@ -2185,12 +2189,12 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01285,1,1897-09-06,tag,Herthastraße,falsch
 01286,1,,unbekannt,Christinenstraße,wahr
 01286,2,1932-06-13,tag,Hertigerstraße,falsch
-01287,1,1914-05-06,tag,Nikolausstraße (tiw.),falsch
+01287,1,1914-05-06,tag,Nikolausstraße (tlw.),falsch
 01287,2,1937-11-20,tag,Hertzlerstraße,falsch
 01288,1,1897-11-29,tag,Grenzstraße,falsch
 01288,2,1900-05-04,tag,Oststraße,falsch
 01288,3,1908-06-05,tag,Herwarthstraße,falsch
-01288,4,1908-06-05,tag,Herwarthstraße {Verl.),falsch
+01288,4,1908-06-05,tag,Herwarthstraße (Verl.),falsch
 01289,1,1900-05-04,tag,Herzogstraße,falsch
 01289,2,1981-03-10,tag,Herzogstraße (Verl.),falsch
 01290,1,1898-05-10,tag,Nordstraße,falsch
@@ -2219,7 +2223,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01304,1,1897-11-29,tag,Schmiedestraße,falsch
 01304,2,1908-06-05,tag,Hilgenbornstraße,falsch
 01305,1,1953-03-03,tag,Hilgerstraße,falsch
-01305,2,1967-05-03,tag,Hilgerstraße (Verl),falsch
+01305,2,1967-05-03,tag,Hilgerstraße (Verl.),falsch
 01306,1,,unbekannt,Karlstraße,wahr
 01306,2,1926-06-01,tag,Hiltrops Kamp,falsch
 01307,1,1891-04-30,tag,Hermannstraße,falsch
@@ -2231,7 +2235,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01310,1,1900-11-06,tag,Bergstraße,falsch
 01310,2,1934-01-12,tag,Hinsbecker Berg,falsch
 00577,1,1982-01-20,tag,Hinsbecker Hang,falsch
-01311,1,1900-11-13,tag,Löhstraße (tiw.),falsch
+01311,1,1900-11-13,tag,Löhstraße (tlw.),falsch
 01311,2,1900-11-13,tag,Talstraße,falsch
 01311,3,1936-01-15,tag,Hinsbecker Löh,falsch
 01311,4,1976-11-02,tag,Hinsbecker Löh (Verl.),falsch
@@ -2280,8 +2284,8 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01340,1,1900-11-13,tag,Hofstraße,falsch
 01341,1,1868-01-17,tag,Hofterbergstraße,falsch
 01342,1,1922-03-08,tag,Hohe Buchen,falsch
-01342,2,1922-03-08,tag,Markuspfad (tiw.),falsch
-01342,3,1925-12-03,tag,Hohe Buchen (Verl),falsch
+01342,2,1922-03-08,tag,Markuspfad (tlw.),falsch
+01342,3,1925-12-03,tag,Hohe Buchen (Verl.),falsch
 01344,1,,unbekannt,Charlottenberg,wahr
 01344,2,1932-10-03,tag,Hohe Haar,falsch
 01345,1,1932-10-03,tag,Hohe Kuppe,falsch
@@ -2316,7 +2320,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01360,4,,unbekannt,Mühlenstraße (tlw.),wahr
 01361,1,1909-11-26,tag,Holtener Straße,falsch
 01361,2,1980-01-25,tag,Holtener Straße (Verl.),falsch
-01431,1,1911-06-16,tag,Holteyerberg {tiw.),falsch
+01431,1,1911-06-16,tag,Holteyerberg (tlw.),falsch
 01431,2,1970-12-16,tag,Holteyer Hang,falsch
 01873,1,2012-07-17,tag,Holteyer Höhe,falsch
 01432,1,1911-06-16,tag,Bahnhofstraße,falsch
@@ -2335,7 +2339,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01366,1,1887-06-10,tag,Holzstraße,falsch
 01422,1,1931-02-10,tag,Dortmunder Straße,falsch
 01422,2,1963-12-17,tag,Hombrucher Straße,falsch
-01411,1,1948-12-14,tag,Parkweg (tiw.),falsch
+01411,1,1948-12-14,tag,Parkweg (tlw.),falsch
 01411,2,1968-03-20,tag,Homburger Weg,falsch
 01367,1,1906-10-02,tag,Glückaufstraße,falsch
 01367,2,1906-12-18,tag,Stinnesstraße,falsch
@@ -2345,7 +2349,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01369,2,1937-11-20,tag,Honnschaftenstraße,falsch
 01370,1,1901-06-25,tag,Heerstraße,falsch
 01370,2,1915-07-09,tag,Hopfenstraße,falsch
-03680,1,1927-10-25,tag,Bürgermeister- Hopmannn-Platz,falsch
+03680,1,1927-10-25,tag,Bürgermeister-Hopmannn-Platz,falsch
 03680,2,1934-10-02,tag,Horst-Wessel-Platz,falsch
 03680,3,1945-04-26,tag,Hopmannplatz,falsch
 01371,1,1919-04-01,tag,Altendorfer Straße,falsch
@@ -2356,13 +2360,13 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01423,2,1963-12-17,tag,Hossemsgarten,falsch
 01374,1,1897-11-29,tag,Hovescheidtstraße,falsch
 01424,1,1963-06-25,tag,Hovestatthang,falsch
-00821,1,2006-06-13,tag,Hubert-Bollig- Straße,falsch
+00821,1,2006-06-13,tag,Hubert-Bollig-Straße,falsch
 01375,1,1894-05-09,tag,Essener Straße,falsch
 01375,2,1901-03-01,tag,Hubertstraße,falsch
 01375,3,1936-01-15,tag,Hubertstraße (Verl.),falsch
-01376,1,1894-05-09,tag,Essener Straße {tlw.),falsch
+01376,1,1894-05-09,tag,Essener Straße (tlw.),falsch
 01376,2,1936-01-15,tag,Hubertweiche,falsch
-01425,1,1931-02-10,tag,Dortmunder Straße (tIw.),falsch
+01425,1,1931-02-10,tag,Dortmunder Straße (tlw.),falsch
 01425,2,1963-12-17,tag,Huckarder Straße,falsch
 01377,1,1921,jahr,Huckshorst,falsch
 01413,1,1960-09-07,tag,Hüchterbrockstraße,falsch
@@ -2382,7 +2386,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01387,2,1937-11-20,tag,Hüsertreppe,falsch
 01388,1,1937-11-20,tag,Hüskenbörde,falsch
 01378,1,1894-08-07,tag,Mittelstraße,falsch
-01378,2,1922-07-14,tag,Otto-Hue- Straße,falsch
+01378,2,1922-07-14,tag,Otto-Hue-Straße,falsch
 01378,3,1933-05-08,tag,Richthofenstraße,falsch
 01378,4,1945-05-15,tag,Huestraße,falsch
 01391,1,1902-05-16,tag,Hüttmannstraße,falsch
@@ -2396,7 +2400,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01396,2,1937-11-20,tag,Hugenkamp,falsch
 02532,1,1991-11-13,tag,Hugo-Knippen-Straße,falsch
 01398,1,,unbekannt,Rosestraße,wahr
-01398,2,1895-10-24,tag,Karl- Humann-Straße,falsch
+01398,2,1895-10-24,tag,Karl-Humann-Straße,falsch
 01398,3,1899-02-24,tag,Humannstraße,falsch
 01399,1,1911-11-21,tag,Humboldtstraße,falsch
 03681,1,1930-01-28,tag,Hummelshagen,falsch
@@ -2410,7 +2414,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01403,3,1934-06-05,tag,Hunsiepen,falsch
 01415,1,1961-12-13,tag,Hunsrückstraße,falsch
 01404,1,1909-11-26,tag,Hurterstraße,falsch
-01405,1,1892-03-29,tag,Kirchstraße {tlw.),falsch
+01405,1,1892-03-29,tag,Kirchstraße (tlw.),falsch
 01405,2,1904-03-21,tag,Alte Kirchstraße (tlw.),falsch
 01405,3,1956-02-22,tag,Husemannweg,falsch
 01406,1,1904,vor,Blumenstraße,falsch
@@ -2421,7 +2425,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01409,1,1897-11-29,tag,Rellinghauser Straße,falsch
 01409,2,1897-11-29,tag,Grenzstraße,falsch
 01409,3,1899-12-07,tag,Berghauser Straße,falsch
-01409,4,1908-06-05,tag,Herwarthstraße (tIw.),falsch
+01409,4,1908-06-05,tag,Herwarthstraße (tlw.),falsch
 01409,5,1935-11-14,tag,Huttropstraße,falsch
 01409,6,1964-05-20,tag,Huttropstraße (Verl.),falsch
 01410,1,,unbekannt,Kettwiger Chaussee,wahr
@@ -2517,15 +2521,15 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00531,2,1979-03-16,tag,Im Walpurgistal,falsch
 00977,1,2011-11-16,tag,Im Welterbe,falsch
 01501,1,1928,vor,Im Westerbruch,falsch
-01501,2,1948-12-14,tag,Im Westerbruch (Verl,falsch
+01501,2,1948-12-14,tag,Im Westerbruch (Verl.),falsch
 03691,1,1952-09-05,tag,Im Winkel,falsch
 03691,2,1956-10-11,tag,Im Winkel (Verl.),falsch
 01503,1,1896-10-08,tag,Wolfstraße,falsch
 01503,2,1915-07-09,tag,Im Wulve,falsch
 01539,1,1999-08-03,tag,Im Zauberwald,falsch
 01453,1,1919-05-28,tag,Imandtstraße,falsch
-01461,1,1892-03-29,tag,Kirchstraße {tlw.),falsch
-01461,2,1904-03-21,tag,Alte Kirchstraße (tiw.),falsch
+01461,1,1892-03-29,tag,Kirchstraße (tlw.),falsch
+01461,2,1904-03-21,tag,Alte Kirchstraße (tlw.),falsch
 01461,3,1955-01-19,tag,Imbuschweg,falsch
 01538,1,1973-11-20,tag,Imhoffweg,falsch
 01477,1,1938-10-21,tag,Imkerei,falsch
@@ -2557,7 +2561,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01515,4,1962-11-12,tag,In der Vogelwiesche (Verl.),falsch
 01517,1,1906-03-10,tag,Ingelheimer Straße,falsch
 01518,1,1896-02-13,tag,Inselstraße,falsch
-01520,1,1953-03-03,tag,An Lindemanns Kreuz {tlw.),falsch
+01520,1,1953-03-03,tag,An Lindemanns Kreuz (tlw.),falsch
 01520,2,1954-07-15,tag,Irispfad,falsch
 01521,1,1884,vor,Wiesenstraße,falsch
 01521,2,1919-05-28,tag,Irmastraße,falsch
@@ -2574,7 +2578,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02049,1,2014-10-01,tag,Isingplatz,falsch
 01526,1,1912-01-26,tag,Ittenbachstraße,falsch
 00192,1,1907-09-27,tag,Arndtstraße,falsch
-00192,2,1977-02-25,tag,Jacob-Grimm- Straße,falsch
+00192,2,1977-02-25,tag,Jacob-Grimm-Straße,falsch
 01560,1,1922-06-02,tag,Jacobsallee,falsch
 01566,1,1954-07-15,tag,Jacob-Weber-Straße,falsch
 01561,1,1868-01-17,tag,Jägerstraße,falsch
@@ -2591,7 +2595,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01589,1,1965-12-17,tag,Janstweg,falsch
 01224,1,1966-12-14,tag,Hegelweg,falsch
 01224,2,1977-03-08,tag,Jaspersweg,falsch
-01591,1,1914-10-09,tag,Kruppstraße (tiw.),falsch
+01591,1,1914-10-09,tag,Kruppstraße (tlw.),falsch
 01591,2,1969-03-19,tag,Jenckestraße,falsch
 01568,1,,unbekannt,Felderweg,wahr
 01568,2,1902-05-16,tag,Jennerstraße,falsch
@@ -2601,10 +2605,10 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01570,2,1935-01-14,tag,Joachimberg,falsch
 01571,1,1897-11-06,tag,Joachimstraße,falsch
 01571,2,1897-06-23,tag,Schul-straße (tlw.),falsch
-01571,3,1937-11-20,tag,Joachimstraße (Verl),falsch
+01571,3,1937-11-20,tag,Joachimstraße (Verl.),falsch
 01572,1,1897-09-06,tag,Johannastraße,falsch
 01582,1,1891-04-30,tag,Wilhelmstraße,falsch
-01582,2,1915-07-09,tag,Borbecker Straße (tiw.),falsch
+01582,2,1915-07-09,tag,Borbecker Straße (tlw.),falsch
 01582,3,1977-05-11,tag,Johannes-Brokamp-Straße,falsch
 01594,1,1973-11-20,tag,Johannes-Klein-Straße,falsch
 01593,1,1971-09-22,tag,Johannes-Trimborn-Straße,falsch
@@ -2612,7 +2616,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01574,1,1875-07-20,tag,Kirchstraße,falsch
 01574,2,1915-07-09,tag,Johanneskirchstraße,falsch
 01575,1,1868-01-17,tag,Johannisstraße,falsch
-01576,1,1920-03-06,tag,Johann-Kruse- Straße,falsch
+01576,1,1920-03-06,tag,Johann-Kruse-Straße,falsch
 01882,1,2013-08-30,tag,Johann-Wilhelm-Scheidt-Straße,falsch
 00712,1,2005-09-13,tag,John-Lennon-Straße,falsch
 01592,1,1892-03-29,tag,Nordstraße,falsch
@@ -2623,23 +2627,23 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01590,1,1860-02-17,tag,Neugasse,falsch
 01590,2,1860-02-17,tag,Neustraße,falsch
 01590,3,1937-11-20,tag,Brehmstraße,falsch
-01590,4,1967-11-29,tag,Joseph-Breuer- Straße,falsch
+01590,4,1967-11-29,tag,Joseph-Breuer-Straße,falsch
 01578,1,1907-02-01,tag,Josephinenstraße,falsch
 01579,1,1897-09-06,tag,Juliusstraße,falsch
 01579,2,1906-01-26,tag,Justusstraße,falsch
 01579,3,1937-11-20,tag,Joseph-Lenne&-Straße,falsch
 01580,1,1892-03-29,tag,Hochstraße,falsch
-01580,2,1937-11-20,tag,Joseph-Oertgen- Weg,falsch
+01580,2,1937-11-20,tag,Joseph-Oertgen-Weg,falsch
 01581,1,1892-03-29,tag,Schüllerstraße,falsch
 01581,2,1937-11-20,tag,Joseph-Schüller-Platz,falsch
-01585,1,1910-09-16,tag,Altenhof II (tiw.),falsch
+01585,1,1910-09-16,tag,Altenhof II (tlw.),falsch
 01585,2,1935-10-14,tag,Jüngstallee,falsch
 01586,1,1934-06-05,tag,Jürgengang,falsch
 01588,1,1962-11-12,tag,Juistweg,falsch
 01583,1,1897-09-06,tag,Julienstraße,falsch
 01583,2,1906-05-25,tag,Julienstraße (Verl.),falsch
-01583,3,1908-05-01,tag,Julienstraße (verl.),falsch
-01612,1,2002-05-07,tag,Julius- Hecker-Platz,falsch
+01583,3,1908-05-01,tag,Julienstraße (Verl.),falsch
+01612,1,2002-05-07,tag,Julius-Hecker-Platz,falsch
 01595,1,1973-11-20,tag,Julius-Leber-Weg,falsch
 01584,1,1874-01-30,tag,Juliusstraße,falsch
 03693,1,1958-10-21,tag,Jungbornweg,falsch
@@ -2651,7 +2655,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01639,1,1902-05-16,tag,Kämpenstraße,falsch
 01870,1,,unbekannt,Klarastraße,wahr
 01870,2,1946-05-22,tag,Neuholland,falsch
-01870,3,1976-02-18,tag,Käthe-Kollwitz- Straße,falsch
+01870,3,1976-02-18,tag,Käthe-Kollwitz-Straße,falsch
 00972,1,2011-11-01,tag,Käthe-Larsch-Straße,falsch
 01620,1,,unbekannt,Kargate,wahr
 01620,2,1902-05-16,tag,Kahrstraße,falsch
@@ -2663,7 +2667,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01621,4,1934-06-05,tag,Isinger Markt,falsch
 01621,5,1938-05-14,tag,Kaiser-Otto-Platz,falsch
 01622,1,1898,jahr,Kaiserhofstraße,falsch
-01622,2,1902-10-13,tag,Kaiserhofstraße (Verl),falsch
+01622,2,1902-10-13,tag,Kaiserhofstraße (Verl.),falsch
 01622,3,1933-05-08,tag,Felgendreherstraße (Umb.),falsch
 01622,4,1945-05-15,tag,Kaiserhofstraße (Umb.),falsch
 03696,1,1821,vor,Kaisersgasse,falsch
@@ -2672,7 +2676,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03696,4,1930-10-07,tag,Kaiserstraße (Umb.),falsch
 01624,1,1903-03-12,tag,Mathiasstraße,falsch
 01624,2,1936-08-05,tag,Kaiserswerthstraße,falsch
-01625,1,1936-08-05,tag,Kaiser- Wilhelm-Platz,falsch
+01625,1,1936-08-05,tag,Kaiser-Wilhelm-Platz,falsch
 01626,1,,unbekannt,Wilhelmstraße,wahr
 01626,2,1875-04-28,tag,Kaiserstraße,falsch
 01626,3,1934-06-05,tag,Kaiser-Wilhelm-Straße,falsch
@@ -2691,7 +2695,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01632,3,1967-05-03,tag,Kallenbergstraße,falsch
 01633,1,1954-02-23,tag,Kalthofweg,falsch
 01634,1,,unbekannt,Josephinenstraße,wahr
-01634,2,,unbekannt,Osterfeld (tIw.),wahr
+01634,2,,unbekannt,Osterfeld (tlw.),wahr
 01634,3,1937-11-20,tag,Kamblickweg,falsch
 01634,4,1960-09-07,tag,Kamblickweg (Verl.),falsch
 01635,1,1939-05-26,tag,Kamerunstraße,falsch
@@ -2704,7 +2708,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01642,1,1895-11-28,tag,Kampstraße,falsch
 01643,1,1919-04-01,tag,Kanarienberg,falsch
 01644,1,1910-09-16,tag,Schürmannstraße,falsch
-01644,2,1910-09-16,tag,Ahrfeldstraße (tIw.),falsch
+01644,2,1910-09-16,tag,Ahrfeldstraße (tlw.),falsch
 01644,3,1927-12-01,tag,Kaninenberghöhe,falsch
 01646,1,1907-08-06,tag,Kanonenberg,falsch
 01648,1,1934-11-12,tag,Kantorie,falsch
@@ -2717,18 +2721,18 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01653,1,1909-12-24,tag,Albertstraße,falsch
 01653,2,1909-12-24,tag,Wiesenstraße,falsch
 01653,3,1934-01-12,tag,Kapitelwiese,falsch
-01653,4,1953-03-03,tag,Kapitelwiese (Verl),falsch
+01653,4,1953-03-03,tag,Kapitelwiese (Verl.),falsch
 01654,1,1916-02-18,tag,Kappenbergstraße,falsch
 01656,1,1860,jahr,Kapuzinergasse,falsch
 02539,1,1930-05-31,tag,Kurienplatz,falsch
 02539,2,1994-05-18,tag,Kardinal-Hengsbach-Platz,falsch
 01658,1,1931-02-10,tag,Karl-Denkhaus-Straße,falsch
 01606,1,2001-07-10,tag,Karl-Juch-Straße,falsch
-00572,1,1981-04-03,tag,Karl-Legien- Straße,falsch
-01659,1,1916-03-28,tag,Karl- Meyer-Platz,falsch
+00572,1,1981-04-03,tag,Karl-Legien-Straße,falsch
+01659,1,1916-03-28,tag,Karl-Meyer-Platz,falsch
 01660,1,1892-03-29,tag,Schonnebecker Straße,falsch
 01660,2,1905-02-27,tag,Schillerstraße,falsch
-01660,3,1936-01-15,tag,Karl- Meyer-Straße,falsch
+01660,3,1936-01-15,tag,Karl-Meyer-Straße,falsch
 03699,1,1952-09-08,tag,Karlsbader Weg,falsch
 01662,1,1903-11-27,tag,Karlsplatz,falsch
 01663,1,1875-07-20,tag,Karlstraße,falsch
@@ -2736,17 +2740,17 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01664,1,,unbekannt,Am Markt,wahr
 01664,2,1903-03-12,tag,Kampstraße,falsch
 01664,3,1935-01-14,tag,Karnaper Markt,falsch
-01665,1,,unbekannt,Essen- Horster-Straße,wahr
+01665,1,,unbekannt,Essen-Horster-Straße,wahr
 01665,2,1899-02-24,tag,Karnaper Straße,falsch
 01665,3,1905-12-14,tag,Königstraße,falsch
 01665,4,1933-11-27,tag,Karnaper Straße,falsch
 01666,1,1897-09-06,tag,Karolinenstraße,falsch
 01666,2,1937-11-20,tag,Vöcklinghausen,falsch
-01666,3,1939-05-26,tag,Vom- Rath-Straße,falsch
-01666,4,1945-05-15,tag,Vöcklinghauser Straße (tiw.),falsch
+01666,3,1939-05-26,tag,Vom-Rath-Straße,falsch
+01666,4,1945-05-15,tag,Vöcklinghauser Straße (tlw.),falsch
 01666,5,1946-05-22,tag,Karolinenstraße,falsch
-01667,1,1868-01-17,tag,Horster Straße (tiw.),falsch
-01667,2,1896-02-13,tag,Hundebrinkstraße (tiw.),falsch
+01667,1,1868-01-17,tag,Horster Straße (tlw.),falsch
+01667,2,1896-02-13,tag,Hundebrinkstraße (tlw.),falsch
 01667,3,1937-11-20,tag,Karolingerstraße,falsch
 03701,1,1955,jahr,Karrenbergsfeld,falsch
 01668,1,,unbekannt,Rückertstraße,wahr
@@ -2762,8 +2766,8 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01674,4,1935-11-14,tag,Katernberger Markt,falsch
 01675,1,1892-03-29,tag,Mittelstraße,falsch
 01675,2,1896-02-13,tag,Katernberger Straße,falsch
-01675,3,1902-10-04,tag,Nienhausener Straße (tiw.),falsch
-01675,4,1937-11-20,tag,Katernberger Straße (Verl),falsch
+01675,3,1902-10-04,tag,Nienhausener Straße (tlw.),falsch
+01675,4,1937-11-20,tag,Katernberger Straße (Verl.),falsch
 01676,1,,unbekannt,Kölner Straße,wahr
 01676,2,1937-11-20,tag,Kathagen,falsch
 01677,1,1897-09-06,tag,Katharinenstraße,falsch
@@ -2775,7 +2779,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01682,1,1868-01-17,tag,Kaupenstraße,falsch
 01683,1,1929-07-06,tag,Kellermanns Busch,falsch
 01684,1,1931-12-11,tag,Kellersonnweg,falsch
-01684,2,1959-02-02,tag,Kellersohnweg (Verl),falsch
+01684,2,1959-02-02,tag,Kellersohnweg (Verl.),falsch
 01685,1,1830,vor,Kellerstraße,falsch
 01685,2,1913-11-04,tag,Kölner Straße (tlw.),falsch
 01685,3,1937-11-20,tag,Kellerstraße,falsch
@@ -2812,7 +2816,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01868,1,1975-01-15,tag,Keusenkothen,falsch
 01856,1,1968-11-21,tag,Kevelohbusch,falsch
 01699,1,1921-03-31,tag,Kevelohstraße,falsch
-01699,2,1951-07-04,tag,Kevelohstraße (Verl),falsch
+01699,2,1951-07-04,tag,Kevelohstraße (Verl.),falsch
 01700,1,,unbekannt,Kibbe,wahr
 01700,2,1826,vor,Kibbelstraße,falsch
 01701,1,1909-01-07,tag,Glückaufstraße,falsch
@@ -2843,7 +2847,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01717,1,1891,vor,Klapperstraße,falsch
 00711,1,2005-04-05,tag,Klara-Kopp-Weg,falsch
 01718,1,1897-09-06,tag,Klarastraße,falsch
-01718,2,1933-05-08,tag,Horst- Wessel-Straße (Umb.),falsch
+01718,2,1933-05-08,tag,Horst-Wessel-Straße (Umb.),falsch
 01718,3,1945-06-18,tag,Klarastraße (Umb.),falsch
 01719,1,1896-10-08,tag,Steigstraße,falsch
 01719,2,1915-07-09,tag,Klaumberg,falsch
@@ -2854,15 +2858,17 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01722,1,1896-10-08,tag,Kleestraße,falsch
 01723,1,1938-10-21,tag,Kleinborgs Hang,falsch
 01724,1,,unbekannt,! Heißener Straße,wahr
-01724,2,1895-11-28,tag,Buschstraße (tiw.),falsch
+01724,2,1895-11-28,tag,Buschstraße (tlw.),falsch
 01724,3,1915-07-09,tag,Kleine Buschstraße,falsch
 01724,4,1927-12-01,tag,Winkhauser Straße (Umb.),falsch
 01724,5,1931-12-11,tag,Kleine Buschstraße (Verl.),falsch
 01725,1,1909-11-26,tag,Kleine Eulerstraße,falsch
-01726,1,1875-07-20,tag,Hammerstraße (tiw.),falsch
+01726,1,1875-07-20,tag,Hammerstraße (tlw.),falsch
 01726,2,1927-08-28,tag,Kleine Hammerstraße,falsch
 01727,1,1954-07-15,tag,Kleine Kehre,falsch
 01728,1,1908-02-07,tag,Kleine Kronenstraße,falsch
+01729,1,1907-09-27,tag,Pilotystraße (tlw.),falsch
+01729,2,1927-12-01,tag,Kleine Lenbachstraße,falsch
 01557,1,2003-07-01,tag,Kleine Lierfeldstraße,falsch
 01869,1,1896-02-13,tag,Rahmstraße (tlw.),falsch
 01869,2,1975-12-16,tag,Kleine Rahmstraße,falsch
@@ -2874,7 +2880,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01735,1,1955-03-31,tag,Kleine Schönscheidtstraße,falsch
 01736,1,1920-10-01,tag,Kleine Steinstraße,falsch
 01786,1,1895-11-15,tag,Friedensstraße,falsch
-01786,2,1931-02-12,tag,Steubenstraße {tlw.),falsch
+01786,2,1931-02-12,tag,Steubenstraße (tlw.),falsch
 01786,3,1967-06-29,tag,Kleine Steubenstraße,falsch
 03274,1,1985-06-25,tag,Kleine Stoppenberger Straße,falsch
 01731,1,1894-08-07,tag,Kleinebruchstraße,falsch
@@ -2901,7 +2907,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01747,1,1901-06-25,tag,Goethestraße,falsch
 01747,2,1915-07-09,tag,Klopstockstraße,falsch
 01748,1,1889-07-05,tag,Klosterstraße,falsch
-01748,2,1895-04-23,tag,Helenenstraße (Umb.},falsch
+01748,2,1895-04-23,tag,Helenenstraße (Umb.),falsch
 01748,3,1902-05-16,tag,Klosterstraße (Verl.),falsch
 01750,1,1953-03-03,tag,Klüvershang,falsch
 01751,1,,unbekannt,Baumstraße,wahr
@@ -2929,7 +2935,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01765,2,1931,jahr,Königsiepen,falsch
 01766,1,1906-03-10,tag,Königsteiner Straße,falsch
 00564,1,1966-12-14,tag,Körholzstraße,falsch
-00564,2,1980-03-05,tag,Körholzstraße [neue Führung),falsch
+00564,2,1980-03-05,tag,Körholzstraße (neue Führung),falsch
 01768,1,,unbekannt,Johannisstraße (tlw.),wahr
 01768,2,,unbekannt,Kleinstraße (tlw.),wahr
 01768,3,1891-08-20,tag,Körnerplatz,falsch
@@ -2939,7 +2945,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01771,1,1922-06-02,tag,Kötterei,falsch
 01772,1,1902-05-16,tag,Kötterstraße,falsch
 01861,1,1912,vor,Lerchenstraße,falsch
-01861,2,1934-06-28,tag,Hunsiepen (tiw.),falsch
+01861,2,1934-06-28,tag,Hunsiepen (tlw.),falsch
 01861,3,1962-04-25,tag,Kofeldhöhe,falsch
 01773,1,1896-02-13,tag,Kopfstraße,falsch
 01773,2,1915-07-09,tag,Kohlbergstraße,falsch
@@ -2969,7 +2975,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01792,2,1937-11-20,tag,Korthover Weg,falsch
 01793,1,1906,jahr,Kortumstraße,falsch
 01791,1,1897-11-03,tag,Korthstraße,falsch
-01791,2,1937-11-20,tag,Korthover Weg (tiw.),falsch
+01791,2,1937-11-20,tag,Korthover Weg (tlw.),falsch
 01791,3,1962-09-27,tag,Kortwiese,falsch
 01794,1,1903-05-11,tag,Kirchstraße,falsch
 01794,2,1920-09-19,tag,Mathiasstraße,falsch
@@ -2988,7 +2994,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01804,1,1912,vor,Hofstraße,falsch
 01804,2,1937-11-20,tag,Krapenbrink,falsch
 01805,1,,unbekannt,Katernberger Straße (tlw.),wahr
-01805,2,1904,vor,Grundstraße (tiw.),falsch
+01805,2,1904,vor,Grundstraße (tlw.),falsch
 01805,3,1924-04-02,tag,Kraspothstraße,falsch
 01805,4,1937-11-20,tag,Kraspothstraße (Verl.),falsch
 01806,1,1907-09-27,tag,Krausstraße,falsch
@@ -3107,9 +3113,9 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01903,4,1933-05-08,tag,Langenberger Straße,falsch
 01903,5,1937-11-20,tag,Langenberger Straße (Verl.),falsch
 00528,1,1897-09-06,tag,Natalienstraße,falsch
-00528,2,1906-01-26,tag,Ursulastraße (tIw.),falsch
+00528,2,1906-01-26,tag,Ursulastraße (tlw.),falsch
 00528,3,1937-11-20,tag,Langenbrahmstraße,falsch
-00528,4,1979-03-16,tag,Langenbrahmstraße Umb. {tiw),falsch
+00528,4,1979-03-16,tag,Langenbrahmstraße Umb. (tlw.),falsch
 01905,1,1922-06-02,tag,Papenberg,falsch
 01905,2,1937-11-20,tag,Langenhorster Wald,falsch
 01906,1,1937-02-25,tag,Langenkämperweg,falsch
@@ -3134,7 +3140,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01921,2,,unbekannt,Provinzialstraße,wahr
 01921,3,,unbekannt,Oefte (tlw.),wahr
 01921,4,1898-05-10,tag,Laupendahler Landstraße,falsch
-01921,5,1922-06-02,tag,Laupendahler Landstraße (Verl),falsch
+01921,5,1922-06-02,tag,Laupendahler Landstraße (Verl.),falsch
 01921,6,1931-02-10,tag,Laupendahler Landstraße (Verl.),falsch
 02037,1,1911-06-16,tag,Lauraberg,falsch
 02031,1,1970-09-23,tag,Laurahöhe,falsch
@@ -3146,7 +3152,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03716,1,1976-11-30,tag,Lauterweg,falsch
 01925,1,1896-08-14,tag,Lautstraße,falsch
 01926,1,1887-06-10,tag,Lazarettstraße,falsch
-01926,2,1948-12-14,tag,Lazarettstraße (Verl),falsch
+01926,2,1948-12-14,tag,Lazarettstraße (Verl.),falsch
 01927,1,1922-06-02,tag,Ottostraße,falsch
 01927,2,1937-11-20,tag,Leanderbank,falsch
 02040,1,1970-02-24,tag,Leggewiestraße,falsch
@@ -3182,7 +3188,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01941,2,1934-06-05,tag,Lelei,falsch
 01952,1,1898-02-11,tag,Lessingstraße,falsch
 01952,2,1898-02-11,tag,Hachestraße,falsch
-01952,3,1934-06-05,tag,Lessingstraße (Verl),falsch
+01952,3,1934-06-05,tag,Lessingstraße (Verl.),falsch
 01952,4,1977-03-08,tag,Lenaustraße,falsch
 01942,1,,unbekannt,Howarenstraße,wahr
 01942,2,1902-05-16,tag,Lenbachstraße,falsch
@@ -3198,7 +3204,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01949,1,1921-10-18,tag,Lepsiusweg,falsch
 01950,1,1903-02-04,tag,Hügelstraße,falsch
 01950,2,1910-09-16,tag,Lerchenstraße,falsch
-01950,3,1937-11-20,tag,General-Ludendorff- Straße (Umb.),falsch
+01950,3,1937-11-20,tag,General-Ludendorff-Straße (Umb.),falsch
 01950,4,1945-06-18,tag,Lerchenstraße (Umb.),falsch
 01951,1,1892-03-29,tag,Schulstraße,falsch
 01951,2,1937-02-25,tag,Leseband,falsch
@@ -3206,7 +3212,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01953,1,1938-10-21,tag,Leth,falsch
 02043,1,1973-11-20,tag,Leuschnerweg,falsch
 01954,1,1903-02-04,tag,Leveringstraße,falsch
-01955,1,1891-04-30,tag,Prosperstraße (tIw.),falsch
+01955,1,1891-04-30,tag,Prosperstraße (tlw.),falsch
 01955,2,1915-07-09,tag,Levinstraße,falsch
 01955,3,1934-11-12,tag,Weithönerstraße (Umb.),falsch
 01955,4,1946-05-22,tag,Levinstraße (Verl.),falsch
@@ -3231,14 +3237,14 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01968,1,1907-08-06,tag,Alleestraße,falsch
 01968,2,1915-07-09,tag,Lilienstraße,falsch
 01968,3,1933-05-08,tag,Hugenbergstraße (Umb.),falsch
-01968,4,1945-05-15,tag,Lilienstraße {Umb.),falsch
+01968,4,1945-05-15,tag,Lilienstraße (Umb.),falsch
 01969,1,,unbekannt,Werdener Weg,wahr
 01969,2,1932-06-13,tag,Lilienthalstraße,falsch
 01970,1,1865,jahr,Limbecker Platz,falsch
 01970,2,1933-05-08,tag,Thomaeplatz (Umb.),falsch
 01970,3,1945-05-15,tag,Limbecker Platz (Umb.),falsch
 01971,1,1501,jahrhundert,Lyndenbeker Straße,falsch
-01971,2,1826,vor,Limbecker Straße {Verl.),falsch
+01971,2,1826,vor,Limbecker Straße (Verl.),falsch
 02038,1,1970-09-23,tag,Lindauhöhe,falsch
 02039,1,1970-09-23,tag,Lindauweg,falsch
 01972,1,1921-02-22,tag,Lindemannshofstraße,falsch
@@ -3288,7 +3294,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01994,6,1936-01-15,tag,Lohmühlental,falsch
 01996,1,1895-11-28,tag,Lohstraße,falsch
 01997,1,,unbekannt,Gelsenkirchener Straße,wahr
-01997,2,1935-11-14,tag,Ludwig- Knickmann-Straße,falsch
+01997,2,1935-11-14,tag,Ludwig-Knickmann-Straße,falsch
 01997,3,1945-05-15,tag,Lohwiese,falsch
 01998,1,1954-07-15,tag,Lommenweg,falsch
 01999,1,1938-10-21,tag,Lorsbachstraße,falsch
@@ -3352,10 +3358,12 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02067,1,1902-05-16,tag,Mainzer Straße,falsch
 02068,1,1931-02-10,tag,Mallinckrodtplatz,falsch
 02069,1,1931-02-10,tag,Mallinckrodtstraße,falsch
+02070,1,1915,vor,Friedhofstraße,falsch
+02070,2,1933-05-08,tag,Malmedystraße,falsch
 02071,1,1936-08-05,tag,Malvenhang,falsch
 03283,1,1987-05-13,tag,Malzweg,falsch
 02191,1,1969-01-15,tag,Manderscheidtstraße,falsch
-02191,2,1974-09-18,tag,Manderscheidtstraße (Verl),falsch
+02191,2,1974-09-18,tag,Manderscheidtstraße (Verl.),falsch
 02072,1,,unbekannt,Metastraße,wahr
 02072,2,1910-09-16,tag,Manfredstraße,falsch
 02073,1,1905,jahr,Mannesstraße,falsch
@@ -3363,9 +3371,9 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02075,1,,unbekannt,Grünstraße (tlw.),wahr
 02075,2,1902-05-16,tag,Margaretenstraße,falsch
 02076,1,1922-06-02,tag,Margrefstraße,falsch
-03280,1,1986-07-22,tag,Maria- Berns-Straße,falsch
+03280,1,1986-07-22,tag,Maria-Berns-Straße,falsch
 02044,1,2013-12-17,tag,Mariannenbahn,falsch
-00959,1,2009-05-05,tag,Maria-Weber- Weg,falsch
+00959,1,2009-05-05,tag,Maria-Weber-Weg,falsch
 00578,1,1982-01-20,tag,Marie-Juchacz-Straße,falsch
 02192,1,1969-04-15,tag,Marienberghang,falsch
 02078,1,1908-04-13,tag,Marienberg,falsch
@@ -3373,7 +3381,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02079,1,1903-03-12,tag,Marienstraße,falsch
 02079,2,1923-03-26,tag,Am Kirchplatz,falsch
 02079,3,1935-11-14,tag,Mariengarten,falsch
-02079,4,1935-11-14,tag,Mariengarten (Verl),falsch
+02079,4,1935-11-14,tag,Mariengarten (Verl.),falsch
 02080,1,1900,jahr,Marienstraße,falsch
 02080,2,1900,jahr,Karlstraße (tlw.),falsch
 02080,3,1937-11-20,tag,Marienstraße (Verl.),falsch
@@ -3386,9 +3394,11 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02090,3,1891-04-30,tag,Wilhelmstraße,falsch
 02090,4,1977-06-22,tag,Marktstraße,falsch
 02085,1,1922-03-08,tag,Markuspfad,falsch
+02086,1,1896-10-08,tag,Wallstraße (tlw.),falsch
+02086,2,1931-02-12,tag,Marreweg,falsch
 02185,1,1962-11-12,tag,Marsweg,falsch
 02087,1,1897-09-06,tag,Marthastraße,falsch
-00719,1,2006-08-15,tag,Martin- Kremmer-Straße,falsch
+00719,1,2006-08-15,tag,Martin-Kremmer-Straße,falsch
 03718,1,1875,vor,Kirchplatz,falsch
 03718,2,1933-11-07,tag,Martin-Luther-Platz,falsch
 02088,1,1892,jahr,Hobeisenstraße (tlw.),falsch
@@ -3397,11 +3407,11 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02088,4,1933-11-14,tag,Martin-Luther-Straße,falsch
 02089,1,,unbekannt,Damianstraße,wahr
 02089,2,1906-05-25,tag,Martinstraße,falsch
-03286,1,,unbekannt,) Graßmannstraße (tiw.),wahr
+03286,1,,unbekannt,) Graßmannstraße (tlw.),wahr
 03286,2,1988-01-15,tag,Martin-Vollmar-Straße,falsch
 02091,1,1938-10-21,tag,Maßmannweg,falsch
 02531,1,1991-09-26,tag,Mathiashof,falsch
-02133,1,1961-02-22,tag,Mathilde- Kaiser-Straße,falsch
+02133,1,1961-02-22,tag,Mathilde-Kaiser-Straße,falsch
 02092,1,1897-09-06,tag,Mathildenstraße,falsch
 02093,1,1926-09-18,tag,Mathäuskirchstraße,falsch
 02094,1,1934-11-12,tag,Mattheyweg,falsch
@@ -3409,27 +3419,27 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02095,2,1922-07-14,tag,Erzbergerstraße,falsch
 02095,3,1933-05-08,tag,Von-Epp-Straße,falsch
 02095,4,1945-05-15,tag,Erzbergerstraße,falsch
-02095,5,1946-10-09,tag,Matthias- Erzberger-Straße,falsch
-03282,1,1987-03-25,tag,Matthias- Lambertz-Weg,falsch
+02095,5,1946-10-09,tag,Matthias-Erzberger-Straße,falsch
+03282,1,1987-03-25,tag,Matthias-Lambertz-Weg,falsch
 02098,1,1910-09-16,tag,Mausegattstraße,falsch
 02099,1,1938-10-21,tag,Max-Dreger-Weg,falsch
 02100,1,1901-03-01,tag,Gutenbergstraße (tlw.),falsch
-02100,2,1930-03-20,tag,Max-Fiedler- Straße,falsch
+02100,2,1930-03-20,tag,Max-Fiedler-Straße,falsch
 01645,1,1903-02-04,tag,Kaninenbergstraße,falsch
-01645,2,1978-12-21,tag,Max-Keith- Straße,falsch
+01645,2,1978-12-21,tag,Max-Keith-Straße,falsch
 02101,1,1899-02-24,tag,Elisabethstraße,falsch
 02101,2,1927-10-02,tag,Max-Reger-Straße,falsch
 02102,1,1868-01-17,tag,Maxstraße,falsch
-02103,1,1921-10-18,tag,Am Zweihonnschaftenwald {tlw.),falsch
+02103,1,1921-10-18,tag,Am Zweihonnschaftenwald (tlw.),falsch
 02103,2,1930-05-31,tag,Maybachstraße,falsch
 02104,1,1939-05-26,tag,Mayskamp,falsch
 02105,1,1903-05-11,tag,Mechtenbergstraße,falsch
 02105,2,1909-06-08,tag,Simonstraße (Umb.),falsch
-02105,3,1937-11-20,tag,Mechentenbergstraße (Verl),falsch
+02105,3,1937-11-20,tag,Mechentenbergstraße (Verl.),falsch
 02106,1,,unbekannt,Im Ort,wahr
 02106,2,1892-05-13,tag,Bungertstraße,falsch
 02106,3,1892-07-08,tag,Mechtildisstraße,falsch
-02180,1,1914-05-10,tag,Meckenstocker Weg (tiw.),falsch
+02180,1,1914-05-10,tag,Meckenstocker Weg (tlw.),falsch
 02180,2,1961-12-13,tag,Meckenstocker Höfe,falsch
 02107,1,1914-05-10,tag,Meckenstocker Weg,falsch
 02107,2,1979-05-25,tag,Meckenstocker Weg (Verl.),falsch
@@ -3466,7 +3476,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02122,1,1897,vor,Steinbrinkstraße,falsch
 02122,2,1936-01-15,tag,Mentingsbank,falsch
 02123,1,1910-09-16,tag,Mentorstraße,falsch
-02124,1,1892-07-08,tag,Hobeisenstraße (tiw.),falsch
+02124,1,1892-07-08,tag,Hobeisenstraße (tlw.),falsch
 02124,2,1902-05-06,tag,Menzelstraße,falsch
 02125,1,1906-03-10,tag,Meppener Straße,falsch
 01933,1,1931-12-11,tag,Leibnizstraße,falsch
@@ -3481,7 +3491,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02128,3,1945-05-15,tag,Messelstraße (Umb.),falsch
 02129,1,1937-02-25,tag,Messings Garten,falsch
 02130,1,1890,vor,Mettenstraße,falsch
-02131,1,1911-04-21,tag,Hohlweg {tiw.),falsch
+02131,1,1911-04-21,tag,Hohlweg (tlw.),falsch
 02131,2,1934-11-12,tag,Metzendorfstraße,falsch
 02132,1,1898-03-11,tag,Metzer Straße,falsch
 02134,1,1896-02-13,tag,Hospitalstraße (tlw.),falsch
@@ -3493,7 +3503,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02137,1,1892-03-29,tag,Heinrichstraße,falsch
 02137,2,1905-07-19,tag,Middeldorfstraße,falsch
 02137,3,1937-11-20,tag,Middeldorper Weg,falsch
-02137,4,1937-11-20,tag,Middeldorper Weg (Verl..,falsch
+02137,4,1937-11-20,tag,Middeldorper Weg (Verl.),falsch
 02198,1,1970-02-24,tag,Mielesheide,falsch
 02200,1,1973-11-20,tag,Mierendorffweg,falsch
 02139,1,1924-09-17,tag,Milendonkweg,falsch
@@ -3512,8 +3522,8 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02195,1,1911-06-16,tag,Schulstraße,falsch
 02195,2,1955-10-17,tag,Neustraße,falsch
 02195,3,1965,jahr,Mölleneystraße,falsch
-02195,4,1970-12-16,tag,Mölleneystraße (Verl),falsch
-02188,1,1900-11-13,tag,Dattenberg (tiw.),falsch
+02195,4,1970-12-16,tag,Mölleneystraße (Verl.),falsch
+02188,1,1900-11-13,tag,Dattenberg (tlw.),falsch
 02188,2,1967-06-29,tag,Möltershus,falsch
 02146,1,1891-04-30,tag,Mühlenstraße,falsch
 02146,2,1915-07-09,tag,Mölihoven,falsch
@@ -3575,7 +3585,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02177,1,1921-10-18,tag,Muldeweg,falsch
 02178,1,1903-05-11,tag,Munscheidstraße,falsch
 02178,2,1911,jahr,Mozartstraße,falsch
-02178,3,1937-11-20,tag,Munscheidstraße (Verl),falsch
+02178,3,1937-11-20,tag,Munscheidstraße (Verl.),falsch
 02179,1,1896-02-13,tag,Bachstraße,falsch
 02179,2,1915-07-09,tag,Musebrink,falsch
 00966,1,2009-12-29,tag,Museumsplatz,falsch
@@ -3587,7 +3597,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02223,1,1900-11-13,tag,Feldstraße,falsch
 02223,2,1935-11-14,tag,Narjesstraße,falsch
 02287,1,1889-07-05,tag,Taubenstraße,falsch
-02287,2,1925-09-19,tag,Taubenstraße (Verl),falsch
+02287,2,1925-09-19,tag,Taubenstraße (Verl.),falsch
 02287,3,1971-03-17,tag,Natorpstraße,falsch
 02225,1,1910-09-16,tag,Nebenbankstraße,falsch
 02225,2,1959-02-02,tag,Nebenbankstraße (Verl.),falsch
@@ -3603,7 +3613,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02233,2,1937-11-20,tag,Nettelnbusch,falsch
 02281,1,1960-09-07,tag,Netzestraße,falsch
 02234,1,1951-01-17,tag,Neue Heimat,falsch
-02234,2,1955-03-31,tag,Neue Heimat (Verl),falsch
+02234,2,1955-03-31,tag,Neue Heimat (Verl.),falsch
 02235,1,1952-03-25,tag,Neue Liebe,falsch
 02236,1,1896-02-13,tag,Neuessener Straße,falsch
 02237,1,1955-01-19,tag,Neuhof,falsch
@@ -3612,7 +3622,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02238,3,1912,jahr,Turmstraße,falsch
 02238,4,1935-11-14,tag,Neuholland,falsch
 02238,5,1946-05-22,tag,Neuholland (Verl.),falsch
-02239,1,1883-01-17,tag,Hafenstraße (tiw.),falsch
+02239,1,1883-01-17,tag,Hafenstraße (tlw.),falsch
 02239,2,1935-01-14,tag,Neukircher Mühle,falsch
 02240,1,1883-11-17,tag,Neukircher Straße,falsch
 02241,1,1897-01-22,tag,Schlägelstraße,falsch
@@ -3629,7 +3639,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02249,1,,unbekannt,Aloysstraße,wahr
 02249,2,1902-05-16,tag,Nieberdingstraße,falsch
 02290,1,,unbekannt,Gneisenaustraße,wahr
-02290,2,1902-12-17,tag,Curtiusstraße (t!w.),falsch
+02290,2,1902-12-17,tag,Curtiusstraße (tlw.),falsch
 02290,3,1976-10-29,tag,Niebuhrstraße,falsch
 02250,1,,unbekannt,Frintroper Straße,wahr
 02250,2,1902-05-16,tag,Niederfeldstraße,falsch
@@ -3646,7 +3656,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01886,1,2014-04-09,tag,Niekämperweg,falsch
 02255,1,,unbekannt,Jakobstraße,wahr
 02255,2,1915-07-09,tag,Nienhausenstraße,falsch
-02256,1,1892-03-29,tag,Wallstraße (tiw.),falsch
+02256,1,1892-03-29,tag,Wallstraße (tlw.),falsch
 02256,2,1937-11-20,tag,Nienhuser Busch,falsch
 02257,1,1903-11-27,tag,Bismarckstraße,falsch
 02257,2,1915-07-09,tag,Nienkampstraße,falsch
@@ -3654,7 +3664,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02258,2,1907-11-27,tag,Nierenhofer Straße,falsch
 02258,3,1977-12-06,tag,Nierenhofer Straße (Verl.),falsch
 02258,4,1973-11-20,tag,Kupferdreher Straße (tlw.Umb.),falsch
-02258,5,1978-02-15,tag,Nierenhofer Straße (Verl),falsch
+02258,5,1978-02-15,tag,Nierenhofer Straße (Verl.),falsch
 02259,1,1922-06-02,tag,Niermanns Weg,falsch
 03441,1,1927-12-01,tag,Wupperstraße,falsch
 03441,2,1977-02-24,tag,Niersstraße,falsch
@@ -3670,11 +3680,11 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02263,2,1935-11-14,tag,Nockwinkel,falsch
 02264,1,,unbekannt,Nöckersberg,wahr
 02264,2,,unbekannt,Deipenbeckstalweg,wahr
-02264,3,1937-11-20,tag,Nöckersberg (Verl),falsch
+02264,3,1937-11-20,tag,Nöckersberg (Verl.),falsch
 02265,1,1955-09-21,tag,Nöckersleite,falsch
 02266,1,,unbekannt,Frohnhauser Straße,wahr
 02266,2,1911-04-21,tag,Nöggerathstraße,falsch
-02266,3,1915-07-09,tag,Gartenkamp (tiw.),falsch
+02266,3,1915-07-09,tag,Gartenkamp (tlw.),falsch
 02266,4,1937-11-20,tag,Nöggerathstraße (Verl.),falsch
 02267,1,1954-10-18,tag,Nöttelhof,falsch
 02268,1,1901-07-19,tag,Louisenstraße,falsch
@@ -3704,25 +3714,25 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02310,1,1891,jahr,Oberdorfstraße,falsch
 02310,2,1902-05-16,tag,Koppestraße,falsch
 02310,3,1963-06-25,tag,Oberdorfstraße (Umb.),falsch
-02335,1,,unbekannt,Schacht Jacob (tIw.),wahr
+02335,1,,unbekannt,Schacht Jacob (tlw.),wahr
 02335,2,1964-05-20,tag,Obere Aue. ze 5 Oberer Schloßhang- Schloss Borbeck ll,falsch
 02311,1,1933-11-27,tag,Obere Fuhr,falsch
 02312,1,1899,vor,Bergstraße,falsch
-02312,2,1935-11-14,tag,Pustenberg (tiw.),falsch
+02312,2,1935-11-14,tag,Pustenberg (tlw.),falsch
 02312,3,1955-09-21,tag,Oberer Pustenberg,falsch
 02313,1,1929-07-24,tag,Oberer Schloßhang,falsch
 02314,1,1891-04-30,tag,Kahrstraße,falsch
 02314,2,1915-07-09,tag,Oberhauser Straße,falsch
 02315,1,1903-02-04,tag,Oberhofstraße,falsch
 02316,1,1958-07-02,tag,Oberholzweg,falsch
-03733,1,1934,jahr,Alte Straße {tiw.),falsch
+03733,1,1934,jahr,Alte Straße (tlw.),falsch
 03733,2,1977-01-29,tag,Oberlehberg,falsch
 02318,1,1907,vor,Bülowstraße,falsch
 02318,2,1910-09-16,tag,Oberscheidtstraße,falsch
 02319,1,1932-06-13,tag,Oberschlesienstraße,falsch
 02320,1,1903-01-04,tag,Oberstraße,falsch
 02320,2,1903-01-04,tag,Ludgerusstraße,falsch
-02320,3,1910-09-16,tag,Oberstraße (Verl),falsch
+02320,3,1910-09-16,tag,Oberstraße (Verl.),falsch
 02321,1,1903-03-12,tag,Metzer Straße,falsch
 02321,2,1935-11-14,tag,Obringer Voerde,falsch
 02322,1,1937-11-20,tag,Ocklenburgs Ried,falsch
@@ -3748,10 +3758,10 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01280,2,1915-07-09,tag,Herderstraße,falsch
 01280,3,1977-06-08,tag,Oskar-Pannen-Straße,falsch
 02326,1,1908-09-29,tag,Othmarstraße,falsch
-02326,2,1920-03-06,tag,Otmarstraße (tiw.),falsch
+02326,2,1920-03-06,tag,Otmarstraße (tlw.),falsch
 02326,3,1977-05-26,tag,Oskarstraße,falsch
-02333,1,1901-01-30,tag,Hüttenstraße (tiw.),falsch
-02333,2,1908-04-13,tag,Phönixberg {tiw.),falsch
+02333,1,1901-01-30,tag,Hüttenstraße (tlw.),falsch
+02333,2,1908-04-13,tag,Phönixberg (tlw.),falsch
 02333,3,1934-06-05,tag,Ostenderstraße,falsch
 02334,1,1906-03-10,tag,Osnabrücker Straße,falsch
 02506,1,1987-12-09,tag,Ostendeweg,falsch
@@ -3766,7 +3776,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02341,2,1908,jahr,Weststraße,falsch
 02341,3,1910-09-16,tag,Oststraße (Verl.),falsch
 02355,1,1966-12-14,tag,Ostuferstraße,falsch
-02355,2,1975-04-16,tag,Ostuferstraße (Verl),falsch
+02355,2,1975-04-16,tag,Ostuferstraße (Verl.),falsch
 02342,1,1908-09-29,tag,Othmarstraße,falsch
 02342,2,1920-03-06,tag,Otmarstraße,falsch
 02343,1,1893,vor,Kastanienstraße,falsch
@@ -3800,7 +3810,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02387,1,1953-03-03,tag,Pasbachstraße,falsch
 02388,1,1890-11-18,tag,Paßstraße,falsch
 02388,2,1890-11-18,tag,Graffweg (tlw.),falsch
-02388,3,1934-06-05,tag,Paßstraße (Verl),falsch
+02388,3,1934-06-05,tag,Paßstraße (Verl.),falsch
 02389,1,1922-06-02,tag,Pastoratsberg,falsch
 02390,1,1903-03-12,tag,Hugostraße,falsch
 02390,2,1936-08-05,tag,Pastor-Fliedner-Weg,falsch
@@ -3810,15 +3820,15 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02392,1,1899,vor,Ottostraße,falsch
 02392,2,1937-11-20,tag,Pattbergstraße,falsch
 02393,1,1929-01-10,tag,Schleifkottenweg,falsch
-02393,2,1931-02-12,tag,Paul- Brandi-Straße,falsch
+02393,2,1931-02-12,tag,Paul-Brandi-Straße,falsch
 02474,1,1902-05-16,tag,Kruppstraße (tlw.),falsch
-02474,2,1969-03-19,tag,Paul-Goerens- Straße,falsch
+02474,2,1969-03-19,tag,Paul-Goerens-Straße,falsch
 02394,1,1922-06-02,tag,Pauline,falsch
 02395,1,1897-09-06,tag,Paulinenstraße,falsch
 02395,2,1933-05-08,tag,Helfferichstraße (Umb.),falsch
 02395,3,1945-06-18,tag,Paulinenstraße (Umb.),falsch
 01140,1,1998-02-03,tag,Paul-Klinger-Straße,falsch
-01551,1,1999-10-05,tag,Paul-Reichardt- Straße,falsch
+01551,1,1999-10-05,tag,Paul-Reichardt-Straße,falsch
 02396,1,1868-01-17,tag,Paulstraße,falsch
 02397,1,1921-10-18,tag,Pausmühlenhegge,falsch
 02398,1,1922-09-23,tag,Pausmühlenkamp,falsch
@@ -3829,9 +3839,9 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02401,1,1901-07-19,tag,Elisabethstraße,falsch
 02401,2,1915-07-09,tag,Peanstraße,falsch
 02402,1,1956-07-03,tag,Peenestraße,falsch
-02402,1,1500-01-01,tag,Königstraße (tiw.),falsch
-02402,2,1825-12-31,tag,Schwarze Poth (tw),falsch
-02402,3,1860-01-01,tag,Postallee (tiw.),falsch
+02402,1,1500-01-01,tag,Königstraße (tlw.),falsch
+02402,2,1825-12-31,tag,Schwarze Poth (tlw.),falsch
+02402,3,1860-01-01,tag,Postallee (tlw.),falsch
 02402,4,1951-07-04,tag,Porscheplatz,falsch
 02403,1,1908-05-01,tag,Pelmanstraße,falsch
 02404,1,1938-10-21,tag,Pelzstraße,falsch
@@ -3881,7 +3891,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02430,2,1908-02-10,tag,Plantenbergstraße,falsch
 02431,1,1921-09-26,tag,Plaßholsbankstraße,falsch
 02475,1,1904-02-04,tag,Markenstraße,falsch
-02475,2,1910-09-16,tag,Eschenstraße (tiw.),falsch
+02475,2,1910-09-16,tag,Eschenstraße (tlw.),falsch
 02475,3,1970-02-25,tag,Platanenweg,falsch
 02432,1,1933-05-08,tag,Plattenweiler,falsch
 01549,1,1999-10-05,tag,Platz Werdener Feintuchwerke,falsch
@@ -3894,16 +3904,16 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02436,1,,unbekannt,Hövelstraße,wahr
 02436,2,1922-06-02,tag,Pörtingsiepenstraße,falsch
 02436,3,1937-11-20,tag,Pöringsiepen,falsch
-02436,4,1937-11-20,tag,Pötingsiepen (Verl),falsch
+02436,4,1937-11-20,tag,Pötingsiepen (Verl.),falsch
 02437,1,1891-04-30,tag,Frohnhauser Straße,falsch
-02437,2,1915-07-09,tag,Gartenkamp (tiw.),falsch
+02437,2,1915-07-09,tag,Gartenkamp (tlw.),falsch
 02437,3,1937-11-20,tag,Pollerbecks Brink,falsch
 02437,4,1971-09-22,tag,Pollerbecks Brink (Verl.),falsch
 02438,1,1906-03-10,tag,Pollerbergstraße,falsch
 02439,1,1896-10-08,tag,Pollstraße,falsch
 02440,1,1896-10-18,tag,Knappenstraße,falsch
 02440,2,1935-11-14,tag,Pookweg,falsch
-02441,1,1825-12-31,tag,Schwarze Poth {tiw.),falsch
+02441,1,1825-12-31,tag,Schwarze Poth (tlw.),falsch
 02441,2,1957-10-31,tag,Porschekanzel,falsch
 02443,1,1894-08-07,tag,Portendieckstraße,falsch
 02444,1,1883-11-17,tag,Porthofplatz,falsch
@@ -3924,7 +3934,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02454,2,1910-09-16,tag,Potthofstraße,falsch
 02454,3,1937-11-20,tag,Potthofs Börde,falsch
 03736,1,1897-11-04,tag,Lehmdreh,falsch
-03736,2,1925-06-16,tag,Hochstraße (tiw.),falsch
+03736,2,1925-06-16,tag,Hochstraße (tlw.),falsch
 03736,3,1977-11-29,tag,Prälatenweg,falsch
 01601,1,2001-05-08,tag,Prager Straße,falsch
 02455,1,1905,vor,Friedrichstraße (tlw.),falsch
@@ -3934,16 +3944,16 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02458,1,1922-06-02,tag,Preutenborbeckstraße,falsch
 02459,1,1936-08-05,tag,Priehlbachtal,falsch
 02460,1,1937-11-20,tag,Priembergweg,falsch
-02461,1,,unbekannt,Deilmannsweg {nicht amtl.),wahr
+02461,1,,unbekannt,Deilmannsweg (nicht amtl.),wahr
 02461,2,1937-11-20,tag,Priemhauser Weg,falsch
 02462,1,1907-08-06,tag,Friedrichsallee,falsch
-02462,2,1915-07-01,tag,Prinz-Adolf- Straße,falsch
+02462,2,1915-07-01,tag,Prinz-Adolf-Straße,falsch
 02463,1,1896-10-08,tag,Prinzenstraße,falsch
 02463,2,1896-10-08,tag,Kurstraße,falsch
 02463,3,1915-07-09,tag,Prinzenstraße (Verl.),falsch
 00974,1,2011-06-28,tag,Prinz-Friedrich-Platz,falsch
 02464,1,,unbekannt,Am Hafen,wahr
-02464,2,1937-02-25,tag,Prinz-Friedrich- Straße,falsch
+02464,2,1937-02-25,tag,Prinz-Friedrich-Straße,falsch
 02465,1,1914,jahr,Dammstraße,falsch
 02465,2,1934-06-05,tag,Prinz-Wilhelm-Damm,falsch
 03735,1,1904,vor,Promenadenweg,falsch
@@ -3951,7 +3961,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02466,2,1937-11-20,tag,Propsteistraße,falsch
 02467,1,1891-04-30,tag,Prosperstraße,falsch
 02467,2,1891-04-30,tag,Bergstraße (tlw.),falsch
-02467,3,1915-07-09,tag,Prosperstraße (Verl),falsch
+02467,3,1915-07-09,tag,Prosperstraße (Verl.),falsch
 02468,1,1900-11-13,tag,Hochstraße,falsch
 02468,2,1937-11-20,tag,Provesthöhe,falsch
 02476,1,1973-11-20,tag,Püttmannweg,falsch
@@ -3988,7 +3998,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02550,1,1949-08-31,tag,Rahmheide,falsch
 02551,1,1896-02-13,tag,Oststraße,falsch
 02551,2,1896-02-13,tag,Rahmstraße,falsch
-02551,3,1908-05-05,tag,Brauerstraße (tiw),falsch
+02551,3,1908-05-05,tag,Brauerstraße (tlw.),falsch
 02551,4,1915-07-09,tag,Rahmstraße (Verl.),falsch
 02552,1,1938-10-21,tag,Raiffeisenweg,falsch
 02553,1,1953-03-03,tag,Ramachersfeld,falsch
@@ -4005,7 +4015,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02557,1,1937-11-20,tag,Rathgeberhof,falsch
 02558,1,1937-02-25,tag,Ratsherrnweg,falsch
 02559,1,1891-04-30,tag,Prosperstraße (tlw.),falsch
-02559,2,1915-07-09,tag,Levinstraße (tiw.),falsch
+02559,2,1915-07-09,tag,Levinstraße (tlw.),falsch
 02559,3,1927-02-27,tag,Rauchstraße,falsch
 02560,1,1910-09-16,tag,Rauensiepenstraße,falsch
 02561,1,1937-11-20,tag,Rauhhölterberg,falsch
@@ -4027,7 +4037,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02568,5,1973-12-18,tag,Reckhammerweg (Verl.),falsch
 02679,1,1966-06-13,tag,Rebstock,falsch
 02567,1,1896-08-14,tag,Rechtsstraße,falsch
-02569,1,1914-05-10,tag,Meckenstocker Weg (tiw.),falsch
+02569,1,1914-05-10,tag,Meckenstocker Weg (tlw.),falsch
 02569,2,1954-07-15,tag,Reckmannshof,falsch
 02570,1,1896-08-14,tag,Reckstraße,falsch
 02571,1,1929-01-10,tag,Redtenbacherstraße,falsch
@@ -4073,7 +4083,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02589,2,1937-11-20,tag,Rheinelbeweg,falsch
 02591,1,1866-07-06,tag,Rheinische Straße,falsch
 02590,1,1922-03-18,tag,Rheinischer Platz,falsch
-03738,1,1934,jahr,Alte Straße (tiw.),falsch
+03738,1,1934,jahr,Alte Straße (tlw.),falsch
 03738,2,1970-10-06,tag,Rheinstraße,falsch
 03738,3,1977-11-29,tag,Rheinstraße (Verl.),falsch
 02593,1,1868-01-17,tag,Schützenstraße,falsch
@@ -4089,6 +4099,8 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02534,1,1993-01-21,tag,Riedheim,falsch
 02681,1,1951-12-05,tag,!,falsch
 02681,2,1966-07-20,tag,Riedingerstraße,falsch
+02599,1,1952-07-31,tag,Riegelweg,falsch
+02599,2,1952-07-31,tag,Kaldekirche (tlw.),falsch
 02600,1,,unbekannt,Schultepäskenstraße,wahr
 02600,2,1902-05-16,tag,Riehlstraße,falsch
 02601,1,1921-10-18,tag,Riekenbank,falsch
@@ -4097,14 +4109,14 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02604,1,1903-02-04,tag,Riesweg,falsch
 03739,1,,unbekannt,Schulstraße,wahr
 03739,2,1930-10-07,tag,Rinderbachstraße,falsch
-00587,1,1934-01-01,tag,Höseler Weg (tiw.),falsch
+00587,1,1934-01-01,tag,Höseler Weg (tlw.),falsch
 00587,2,1982-06-29,tag,Rindersberger Mühle,falsch
 03740,1,1876-12-04,tag,Ringstraße,falsch
 03740,2,,unbekannt,Ruhrstraße,wahr
-03740,3,1934,jahr,Johann- Wilhelm-Scheidt-Straße,falsch
+03740,3,1934,jahr,Johann-Wilhelm-Scheidt-Straße,falsch
 03740,4,1934-10-02,tag,Laupendahler Straße (tlw.),falsch
 03740,5,1946-04-04,tag,Ringstraße,falsch
-03740,6,1978-03-14,tag,Ringstraße (Verl),falsch
+03740,6,1978-03-14,tag,Ringstraße (Verl.),falsch
 02606,1,1937-02-25,tag,Riprechtborn,falsch
 02607,1,1891-04-30,tag,Nordstraße,falsch
 02607,2,1891-04-30,tag,Osterfeldstraße,falsch
@@ -4118,7 +4130,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02610,1,1909-11-26,tag,Wallotstraße (tlw.),falsch
 02610,2,1930-03-20,tag,Robert-Schmidt-Straße,falsch
 02611,1,1927-08-09,tag,Robert-Schmohl-Platz,falsch
-02613,1,1907-06-06,tag,Velberter Straße (tiw.),falsch
+02613,1,1907-06-06,tag,Velberter Straße (tlw.),falsch
 02613,2,1937-11-20,tag,Radberger Straße,falsch
 02614,1,1953-03-03,tag,Rodemannskamp,falsch
 02615,1,1903-11-27,tag,Marienstraße,falsch
@@ -4135,7 +4147,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02620,2,1902-05-16,tag,Röntgenplatz,falsch
 02621,1,,unbekannt,Geibelstraße,wahr
 02621,2,1902-05-16,tag,Röntgenstraße,falsch
-02621,3,1933-08-14,tag,Marschallstraße (tlw,falsch
+02621,3,1933-08-14,tag,Marschallstraße (tlw.),falsch
 02621,4,1946-10-09,tag,Röntgenstraße (Umb.),falsch
 02623,1,1920-10-01,tag,Rötterhoven,falsch
 02624,1,1920-10-01,tag,Rötterhoverbaum,falsch
@@ -4151,7 +4163,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02630,1,1898-05-10,tag,Rondell,falsch
 02631,1,1907-07-12,tag,Roonstraße,falsch
 02632,1,1897-09-06,tag,Rosastraße,falsch
-02632,2,1907-02-01,tag,Rosastraße (Verl,falsch
+02632,2,1907-02-01,tag,Rosastraße (Verl.),falsch
 02632,3,1927-08-29,tag,Kirdorfstraße (Umb.),falsch
 02632,4,1945-06-18,tag,Rosastraße (Umb.),falsch
 02633,1,,unbekannt,Turmstraße,wahr
@@ -4159,14 +4171,14 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02633,3,1926-06-01,tag,Am Stadtgarten,falsch
 02633,4,1928-02-28,tag,Rosestraße,falsch
 02661,1,1976-12-14,tag,Rosiepeweg,falsch
-02688,1,1970-06-24,tag,Wolfsbankring (tiw.),falsch
+02688,1,1970-06-24,tag,Wolfsbankring (tlw.),falsch
 02688,2,1975-12-16,tag,Rossenrayweg,falsch
 02634,1,,unbekannt,Roßkothen,wahr
 02634,2,1975-04-16,tag,Roßkothenweg,falsch
 02635,1,1896-08-14,tag,Roßstaße,falsch
 00831,1,2007-11-20,tag,Roswithastraße,falsch
 02636,1,,unbekannt,Schleusenstraße,wahr
-02636,2,1903-02-04,tag,Rotemühle (tiw.),falsch
+02636,2,1903-02-04,tag,Rotemühle (tlw.),falsch
 02636,3,1934-06-05,tag,Glaserschleuse,falsch
 02636,4,1961-12-13,tag,Rotemühle (Umb.),falsch
 02638,1,1954-02-23,tag,Rottekamp,falsch
@@ -4177,7 +4189,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02640,1,1826,vor,Rottstraße,falsch
 02640,2,1935-05-08,tag,Lichtschlagstraße (Umb.),falsch
 02640,3,1945-05-15,tag,Rottstraße (Umb.),falsch
-02641,1,,unbekannt,Herwartstraße (tiw.),wahr
+02641,1,,unbekannt,Herwartstraße (tlw.),wahr
 02641,2,1902-05-16,tag,Rubensstraße,falsch
 02686,1,1973-11-20,tag,Rudolf-Heinrich-Straße,falsch
 02642,1,1903-05-11,tag,Schulstraße,falsch
@@ -4198,7 +4210,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02651,2,1935-11-14,tag,Rüscherie,falsch
 02652,1,1902-05-15,tag,Rüselstraße,falsch
 02653,1,1904-02-04,tag,Hochstraße,falsch
-02653,2,1910-09-16,tag,Drosselstraße (tiw.),falsch
+02653,2,1910-09-16,tag,Drosselstraße (tlw.),falsch
 02653,3,1934-11-12,tag,Rüstermark,falsch
 02654,1,1907-08-06,tag,Rüttelskamp,falsch
 02675,1,1962-03-01,tag,Rüttenscheider Stern,falsch
@@ -4206,23 +4218,23 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02656,2,,unbekannt,Kettwiger Chaussee (Rüttenscheid),wahr
 02656,3,1897-09-06,tag,Essener Straße,falsch
 02656,4,1906-01-26,tag,Rüttenscheider Straße,falsch
-02656,5,1933-07-13,tag,Hermann-Göring-Straße (Umb,falsch
+02656,5,1933-07-13,tag,Hermann-Göring-Straße (Umb.),falsch
 02656,6,1945-06-18,tag,Rüttenscheider Straße (Umb.),falsch
 02657,1,1938-10-21,tag,Ruhlandplatz,falsch
 02658,1,1903-05-08,tag,Alleestraße,falsch
 02658,2,1904-02-04,tag,Ruhrallee,falsch
-02658,3,1908-06-05,tag,Ruhrallee (Verl),falsch
+02658,3,1908-06-05,tag,Ruhrallee (Verl.),falsch
 02658,4,1909-01-26,tag,Ruhrallee (Verl.),falsch
 02659,1,1890-11-18,tag,Ruhrau,falsch
 02660,1,1974-09-18,tag,Ruhrbruchshof,falsch
 02662,1,1903-03-12,tag,Pettenstraße,falsch
-02662,2,1935-11-14,tag,Gemperwiese (tlw.},falsch
+02662,2,1935-11-14,tag,Gemperwiese (tlw.),falsch
 02662,3,1951-07-04,tag,Ruhrglasstraße,falsch
 02662,4,2010-09-21,tag,Ruhrglasstraße (Verl.),falsch
 02663,1,1948-12-14,tag,Ruhrland,falsch
 01546,1,2000-05-09,tag,Ruhrlandbogen,falsch
 03743,1,1821,vor,Ruhrstraße,falsch
-03743,2,1889-10-16,tag,Essener Straße [tiw.),falsch
+03743,2,1889-10-16,tag,Essener Straße (tlw.),falsch
 03743,3,1977-11-29,tag,Ruhrstraße (Verl.),falsch
 02665,1,,unbekannt,Ruhrtalstraße,wahr
 02665,2,,unbekannt,Werdener Straße,wahr
@@ -4251,7 +4263,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02716,2,1910-09-16,tag,Töpferstraße (tlw.),falsch
 02716,3,1964-10-08,tag,Sabinastraße,falsch
 02717,1,1905-03-14,tag,Kurzestraße,falsch
-02717,2,1919-04-01,tag,Beckmannstraße (tiw.),falsch
+02717,2,1919-04-01,tag,Beckmannstraße (tlw.),falsch
 02717,3,1919-04-01,tag,Mecklenbecksweg,falsch
 02717,4,1919-04-01,tag,Renzelstraße,falsch
 02717,5,1927-06-15,tag,Sachsenring,falsch
@@ -4264,7 +4276,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02720,1,1936-08-05,tag,Sagenberg,falsch
 02725,1,1967-05-03,tag,Salierweg,falsch
 02722,1,1954-10-18,tag,Salzmarkt,falsch
-02723,1,1899,jahr,H-Straße (tiw.),falsch
+02723,1,1899,jahr,H-Straße (tlw.),falsch
 02723,2,1937-11-20,tag,Sammelband,falsch
 02724,1,1939-05-26,tag,ee > Ternir! Salzmarkt Samoastraße,falsch
 01541,1,1999-08-03,tag,Sandmannweg,falsch
@@ -4289,7 +4301,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02739,1,,unbekannt,Rahmannsweg,wahr
 02739,2,1937-11-20,tag,Schaffelhofer Weg,falsch
 02740,1,1950-07-05,tag,Schafskanzel,falsch
-02741,1,1892-03-29,tag,HeBlerstraße (tIw.),falsch
+02741,1,1892-03-29,tag,HeBlerstraße (tlw.),falsch
 02741,2,1973-11-20,tag,Schalker Straße,falsch
 02742,1,1903,jahr,Marktstraße,falsch
 02742,2,1903,jahr,Schulstraße,falsch
@@ -4299,7 +4311,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02744,1,1895-11-15,tag,Scharnhorststraße,falsch
 02745,1,1934-11-12,tag,Scharpenhang,falsch
 02745,2,1977-09-06,tag,Scharpenhang (Verl.),falsch
-02745,3,1978-12-05,tag,Scharpenhang (Verl),falsch
+02745,3,1978-12-05,tag,Scharpenhang (Verl.),falsch
 02746,1,1915,vor,Falkestraße,falsch
 02746,2,1934-06-05,tag,Scharweg,falsch
 02747,1,1910-09-16,tag,Schatzreichstraße,falsch
@@ -4324,7 +4336,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02756,3,1916-02-18,tag,Schemmannsfeld,falsch
 02757,1,1922-06-02,tag,Scheppener Weg,falsch
 02757,2,1922-06-02,tag,Paulstraße,falsch
-02757,3,1937-02-25,tag,Scheppener Weg (Verl),falsch
+02757,3,1937-02-25,tag,Scheppener Weg (Verl.),falsch
 02758,1,1895-11-28,tag,Burgstraße,falsch
 02758,2,1915-07-09,tag,Scheppmannskamp,falsch
 02759,1,1921-02-22,tag,Schettershofstraße,falsch
@@ -4353,7 +4365,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02774,1,1927-08-29,tag,Schlenterstraße,falsch
 02775,1,1959-02-02,tag,Schlettweg,falsch
 02776,1,1954-02-23,tag,Schleuse,falsch
-03035,1,1894-08-29,tag,Kerckhoffstraße {tlw.),falsch
+03035,1,1894-08-29,tag,Kerckhoffstraße (tlw.),falsch
 03035,2,1929-07-24,tag,Leisers Feld (tlw.),falsch
 03035,3,1973-06-13,tag,Schliemannstraße,falsch
 02777,1,,unbekannt,Am Heidberg,wahr
@@ -4365,16 +4377,16 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02782,1,1936-08-05,tag,Schloßgarten,falsch
 02783,1,1891-04-30,tag,Schloßstraße,falsch
 02783,2,1891-04-30,tag,Oberstraße,falsch
-02783,3,1915-07-09,tag,Schloßstraße (Verl),falsch
+02783,3,1915-07-09,tag,Schloßstraße (Verl.),falsch
 02784,1,1936-08-05,tag,Schloßwiese,falsch
 02785,1,1896-08-14,tag,Schluchtstraße,falsch
 03030,1,1955-10-17,tag,Schlütersbusch,falsch
 02786,1,1910-09-16,tag,Schlüterstraße,falsch
 02787,1,1952-07-31,tag,Schlusenkamp,falsch
 03747,1,1904,vor,Schmachtenbergstraße,falsch
-03747,2,1934,jahr,Hindenburgstraße {Umb.),falsch
-03747,3,1946-04-04,tag,Schmachtenberstraße (Umb),falsch
-03747,4,1950-10-03,tag,Schmachtenbergstraße (Verl),falsch
+03747,2,1934,jahr,Hindenburgstraße (Umb.),falsch
+03747,3,1946-04-04,tag,Schmachtenberstraße (Umb.),falsch
+03747,4,1950-10-03,tag,Schmachtenbergstraße (Verl.),falsch
 02788,1,1895-11-28,tag,Kurze Straße,falsch
 02788,2,1915-07-09,tag,Schmale Straße,falsch
 03266,1,1983-02-08,tag,Schmelze,falsch
@@ -4415,7 +4427,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02805,4,1915-07-09,tag,Schölerpad (Verl.),falsch
 02807,1,,unbekannt,Schöllerskampstraße,wahr
 02807,2,,unbekannt,Hochstraße (tlw.),wahr
-02807,3,1929-07-12,tag,Schöllerskampstraße (Verl),falsch
+02807,3,1929-07-12,tag,Schöllerskampstraße (Verl.),falsch
 02808,1,,unbekannt,Rullichstraße,wahr
 02808,2,1902-05-16,tag,Schönaichstraße,falsch
 02972,1,1966-12-12,tag,Margarethenweg,falsch
@@ -4445,6 +4457,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02818,1,1911-04-21,tag,Schornstraße,falsch
 02820,1,1899,jahr,G-Straße,falsch
 02820,2,1937-11-20,tag,Schrägbauweg,falsch
+02821,1,1929-01-10,tag,Schraeplerstraße,falsch
 02822,1,1935-06-03,tag,Schreibzeile,falsch
 02823,1,1935-06-03,tag,Schroertal,falsch
 02824,1,1904-05-27,tag,Schubertstraße,falsch
@@ -4463,12 +4476,13 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02831,2,1933-05-08,tag,Schuirweg,falsch
 02833,1,1959-02-18,tag,Schulkirchweg,falsch
 03748,1,1872,vor,Schulstraße,falsch
-03748,2,1939-03-14,tag,Langemarckstraße (Umb,falsch
+03748,2,1939-03-14,tag,Langemarckstraße (Umb.),falsch
 03748,3,1946-04-04,tag,Schulstraße (Umb.),falsch
+02834,1,,unbekannt,Schulte-Hinsel-Straße,wahr
 02835,1,,unbekannt,Schultenkamp,wahr
 02836,1,1919-05-28,tag,Schultenweg,falsch
 02837,1,1897-11-29,tag,Siepenstraße (tlw.),falsch
-02837,2,1957-01-23,tag,Schulte-Pelkum- Straße,falsch
+02837,2,1957-01-23,tag,Schulte-Pelkum-Straße,falsch
 02838,1,1897-11-29,tag,Schulzstraße,falsch
 03630,1,1937-09-26,tag,Mackensenstraße,falsch
 03630,2,1946-04-04,tag,Beethovenstraße,falsch
@@ -4478,20 +4492,20 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02842,1,1897-11-29,tag,Frillendorfer Straße,falsch
 02842,2,1908-06-05,tag,Schwanenbuschstraße,falsch
 02843,1,1868,jahr,Schwanenkampstraße,falsch
-02844,1,1892-03-29,tag,Kirchberg (tiw.),falsch
+02844,1,1892-03-29,tag,Kirchberg (tlw.),falsch
 02844,2,1928-10-30,tag,Am alten Friedhof,falsch
 02844,3,1937-11-20,tag,Schwanhildenhöhe,falsch
 02845,1,1899-10-04,tag,Schwanhildenstraße,falsch
 02846,1,1921-09-26,tag,Schwarzbachstraße,falsch
 02847,1,1826,vor,Schwarze Horn,falsch
 02847,2,1860,jahr,|,falsch
-02847,3,1915-07-09,tag,II. Hagen (tlw,falsch
+02847,3,1915-07-09,tag,II. Hagen (tlw.),falsch
 02847,4,1957-12-12,tag,Schwarze Horn (Verl.),falsch
 02849,1,1826,vor,Schwarze Meer,falsch
 02850,1,1896-02-13,tag,Schwarze Straße,falsch
-02848,1,1903,jahr,Schwarze-Lenen- Straße,falsch
+02848,1,1903,jahr,Schwarze-Lenen-Straße,falsch
 02848,2,1959-02-18,tag,Schwarze-Lenen-Weg,falsch
-03029,1,1911-06-16,tag,In den Höfen (tiw.),falsch
+03029,1,1911-06-16,tag,In den Höfen (tlw.),falsch
 03029,2,1968-09-12,tag,Im Bungert ftiw.),falsch
 03029,3,1972-05-17,tag,Schwarzensteinweg,falsch
 03029,4,1973-06-13,tag,Schwarzensteinweg (Verl.),falsch
@@ -4501,13 +4515,13 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02852,2,1902-05-16,tag,Am Mühlenbach (tiv),falsch
 02852,3,1930-05-31,tag,Potthälterpad,falsch
 02852,4,1936-08-05,tag,Schweriner Straße,falsch
-02852,5,1966-07-20,tag,Schweriner Straße (Verl),falsch
+02852,5,1966-07-20,tag,Schweriner Straße (Verl.),falsch
 02853,1,1901-01-30,tag,Kirchstraße,falsch
 02853,2,1934-06-05,tag,Schwermannstraße,falsch
 02854,1,1901-03-01,tag,Sedanstraße,falsch
 02855,1,1907-01-21,tag,Seestraße,falsch
 02856,1,1866-07-06,tag,Segerothstraße,falsch
-02856,2,1939-06-17,tag,Heinrich-Unger-Straße (Umb)),falsch
+02856,2,1939-06-17,tag,Heinrich-Unger-Straße (Umb.),falsch
 02856,3,1945-05-15,tag,Segerothstraße (Umb.),falsch
 02857,1,1909-11-20,tag,Seibertzstraße,falsch
 02858,1,1914-10-09,tag,SeidIstraße,falsch
@@ -4528,7 +4542,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02867,2,1896-02-13,tag,Stoppenberger Straße,falsch
 02867,3,1915-07-09,tag,Seumannstraße,falsch
 02867,4,1933-05-08,tag,Seumannstraße (Verl.),falsch
-02868,1,,unbekannt,Kampstraße (tiw.),wahr
+02868,1,,unbekannt,Kampstraße (tlw.),wahr
 02868,2,1915-07-09,tag,Sevenarstraße,falsch
 02869,1,1894-05-18,tag,Severinstraße,falsch
 02870,1,1902,vor,Bergstraße,falsch
@@ -4544,7 +4558,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02066,3,1977-02-24,tag,Siegstraße,falsch
 02878,1,,unbekannt,Johannisstraße,wahr
 02878,2,1902-05-16,tag,Siemensstraße,falsch
-02879,1,1937-02-25,tag,Thingstraße (tiw.),falsch
+02879,1,1937-02-25,tag,Thingstraße (tlw.),falsch
 02879,2,1956-04-09,tag,Siepenblick,falsch
 02880,1,1897-11-29,tag,Siepenstraße,falsch
 02880,2,1897-11-29,tag,Lanterstraße,falsch
@@ -4620,7 +4634,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02917,3,1937-11-20,tag,Springmannstraße (Verl.),falsch
 02918,1,1903-11-27,tag,Spritzenstraße,falsch
 02727,1,1904-02-04,tag,Kapellenstraße,falsch
-02727,2,1910-09-16,tag,Walpurgisstraße (tiw.),falsch
+02727,2,1910-09-16,tag,Walpurgisstraße (tlw.),falsch
 02727,3,1926-09-18,tag,St. Annental,falsch
 02728,1,1921,jahr,Nelkenstraße,falsch
 02728,2,1935-11-14,tag,St.-Ingbert-Höhe,falsch
@@ -4635,7 +4649,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02924,1,,unbekannt,Heilige-Geist-Straße,wahr
 02924,2,1903-06-29,tag,Kurzestraße,falsch
 02924,3,1928-02-27,tag,Stahlstraße,falsch
-02924,4,1961-12-13,tag,Stahlstraße (Verl),falsch
+02924,4,1961-12-13,tag,Stahlstraße (Verl.),falsch
 02925,1,1930-05-31,tag,Stakenholt,falsch
 02926,1,1903-11-27,tag,Moltkestraße,falsch
 02926,2,1908,jahr,Parkstraße,falsch
@@ -4664,7 +4678,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02938,1,1898-05-10,tag,Steinbeck,falsch
 02938,2,1915-07-06,tag,Steinbeck (Verl.),falsch
 02939,1,1951-07-04,tag,Steinberg,falsch
-02940,1,1915-07-09,tag,Wolfsbankstraße (tiw.),falsch
+02940,1,1915-07-09,tag,Wolfsbankstraße (tlw.),falsch
 02940,2,1955-09-21,tag,Steinbrink,falsch
 02941,1,1954-02-23,tag,Steinerweg,falsch
 03032,1,1970-12-16,tag,Steingatt,falsch
@@ -4686,15 +4700,15 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03754,1,1821,vor,Steinweg,falsch
 02952,1,1910,vor,Stemmeringstraße,falsch
 02952,2,1933-11-27,tag,Stemmering,falsch
-03015,1,1915-07-09,tag,Hagedornstraße (tiw.),falsch
+03015,1,1915-07-09,tag,Hagedornstraße (tlw.),falsch
 03015,2,1966-06-13,tag,Stienkamps Busch,falsch
 03015,3,1966-12-14,tag,Stenkamps Busch,falsch
-03016,1,1896-10-18,tag,Moosstraße (tiw.),falsch
+03016,1,1896-10-18,tag,Moosstraße (tlw.),falsch
 03016,2,1966-06-13,tag,Stensbeckhof,falsch
 02953,1,1911-04-21,tag,Stensstraße,falsch
 02954,1,,unbekannt,Herbertstraße,wahr
 02954,2,1902-05-06,tag,Stenzelstraße,falsch
-01613,1,2002-05-07,tag,Stephan- Tembories-Ring,falsch
+01613,1,2002-05-07,tag,Stephan-Tembories-Ring,falsch
 02955,1,1906-03-10,tag,Stephensonstraße,falsch
 02956,1,1902-05-16,tag,Dellwiger Straße,falsch
 02956,2,1915-07-09,tag,Sterkrader Straße,falsch
@@ -4731,7 +4745,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02973,1,1892-03-29,tag,Rathausplatz,falsch
 02973,2,1935-11-14,tag,Stoppenberger Platz,falsch
 02974,1,1860,jahr,Stoppenberger Straße,falsch
-02974,2,1900-05-04,tag,Lützowstraße (tiw,falsch
+02974,2,1900-05-04,tag,Lützowstraße (tlw.),falsch
 02974,3,1933,jahr,Karpinskistraße (Umb.),falsch
 02974,4,1937,vor,Provinzialstraße (tlw.Umb.),falsch
 02974,5,1945-05-15,tag,Stoppenberger Straße (Umb.),falsch
@@ -4783,19 +4797,19 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 02995,2,1935-11-14,tag,Sulterkamp,falsch
 02995,3,1970-02-24,tag,Sulterkamp (Verl.),falsch
 02996,1,1901-02-21,tag,Heinrichstraße,falsch
-02996,2,1903-05-11,tag,Lahnbeckestraße (tiw.),falsch
+02996,2,1903-05-11,tag,Lahnbeckestraße (tlw.),falsch
 02996,3,1920-09-19,tag,Georgstraße,falsch
 02996,4,1935-11-14,tag,Sulzbachtal,falsch
 02996,5,1976-12-14,tag,Sulzbachtal (Verl.),falsch
 03020,1,1961-02-22,tag,Sunderlandstraße,falsch
-02997,1,1903-02-04,tag,Riesweg {tlw.),falsch
+02997,1,1903-02-04,tag,Riesweg (tlw.),falsch
 02997,2,1929-07-06,tag,Sunderholz,falsch
 02997,3,1931-12-11,tag,Sunderholz (Verl.),falsch
 02998,1,1902-05-16,tag,Sursstraße,falsch
 02999,1,1909-11-26,tag,Susannastraße,falsch
 03000,1,,unbekannt,Blumenthalstraße,wahr
 03000,2,1902-05-16,tag,Sybelstraße,falsch
-03021,1,1897-09-06,tag,Rosastraße (tiw.),falsch
+03021,1,1897-09-06,tag,Rosastraße (tlw.),falsch
 03021,2,1962-09-27,tag,Sylviastraße,falsch
 03041,1,1907-08-06,tag,Langenbachstraße,falsch
 03041,2,1915-07-09,tag,Talbogen,falsch
@@ -4809,7 +4823,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03046,1,1966-12-12,tag,Taubenstraße,falsch
 03047,1,1956-07-03,tag,Taunusbogen,falsch
 03048,1,1896-08-14,tag,Rahmstraße,falsch
-03048,2,1915-07-09,tag,Rahmannstraße (tIw.),falsch
+03048,2,1915-07-09,tag,Rahmannstraße (tlw.),falsch
 03048,3,1956-07-03,tag,Tauweg,falsch
 03049,1,1868-01-17,tag,Teichstraße,falsch
 03050,1,1896-02-13,tag,Lazarettstraße,falsch
@@ -4817,11 +4831,11 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03051,1,1907-01-21,tag,Teisselstraße,falsch
 03051,2,1915-07-09,tag,Teisselsberg,falsch
 03052,1,1921-10-18,tag,Teisselstraße,falsch
-03052,2,1963-09-04,tag,Teisselstraße (Verl),falsch
+03052,2,1963-09-04,tag,Teisselstraße (Verl.),falsch
 03053,1,1897-06-22,tag,Kappertstraße,falsch
 03053,2,1937-11-20,tag,Tempelhof,falsch
 01131,1,1996-10-29,tag,Tenderweg,falsch
-03114,1,1975-12-16,tag,Ten- Hövel-Weg,falsch
+03114,1,1975-12-16,tag,Ten-Hövel-Weg,falsch
 03054,1,1908,jahr,Terbeckstraße,falsch
 03055,1,1892,vor,Bruchstraße,falsch
 03055,2,1937-11-20,tag,Termeerhöfe,falsch
@@ -4833,15 +4847,15 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03107,1,1960-06-08,tag,IN,falsch
 03058,1,1899,jahr,D-Straße,falsch
 03058,2,1937-11-20,tag,Teutoburger Weg,falsch
-01142,1,1998-02-03,tag,Thea- Leymann-Straße,falsch
+01142,1,1998-02-03,tag,Thea-Leymann-Straße,falsch
 03059,1,1903-09-25,tag,Theaterplatz,falsch
 03060,1,1897-09-06,tag,Sofienstraße (tlw.),falsch
 03060,2,1903-12-14,tag,Theklastraße,falsch
 03061,1,1911-12-16,tag,Theobaldstraße,falsch
 03108,1,1907-08-06,tag,Adelskamp,falsch
-03108,2,1915-07-09,tag,Beckmannsbusch (tw),falsch
+03108,2,1915-07-09,tag,Beckmannsbusch (tlw.),falsch
 03108,3,1967-11-29,tag,Theodor-Althoff-Straße,falsch
-03757,1,1968-10-17,tag,Theodor- Fontane-Weg,falsch
+03757,1,1968-10-17,tag,Theodor-Fontane-Weg,falsch
 03109,1,1891-04-30,tag,Wilhelmstraße,falsch
 03109,2,1915-07-09,tag,Borbecker Straße (tlw.),falsch
 03109,3,1947-01-15,tag,Hartzstraße,falsch
@@ -4863,9 +4877,9 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 01547,1,2000-05-09,tag,Tholshof,falsch
 03069,1,1902-05-16,tag,Tholstraße,falsch
 03070,1,1920-10-06,tag,Am Goetheplatz (tlw.),falsch
-03070,2,1937-11-20,tag,Thusneldaplatz (tiw.),falsch
+03070,2,1937-11-20,tag,Thusneldaplatz (tlw.),falsch
 03070,3,1937-11-20,tag,Thusneldaplatz,falsch
-03071,1,1920-10-06,tag,Am Goetheplatz (tiw.),falsch
+03071,1,1920-10-06,tag,Am Goetheplatz (tlw.),falsch
 03071,2,1920-10-06,tag,Schillerallee,falsch
 03071,3,1920-10-06,tag,Kantstraße,falsch
 03071,4,1937-11-20,tag,Thusneldastraße,falsch
@@ -4883,7 +4897,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03078,1,1903-03-12,tag,Timpestraße,falsch
 03080,1,1897-11-29,tag,Töpferstraße,falsch
 03080,2,1903-02-04,tag,Wilhelminenstraße,falsch
-03080,3,1910-09-16,tag,Töpferstraße (Verl),falsch
+03080,3,1910-09-16,tag,Töpferstraße (Verl.),falsch
 03082,1,1914-05-10,tag,Tommesweg,falsch
 03083,1,1896-10-08,tag,Tonstraße,falsch
 03084,1,1919-05-28,tag,Rademachers Weg,falsch
@@ -4920,14 +4934,14 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03103,2,1892-03-29,tag,Lohstraße (tlw.),falsch
 03103,3,1903-11-27,tag,Helenenstraße,falsch
 03103,4,1915-07-09,tag,Twentmannstraße,falsch
-03103,5,1937-11-20,tag,Twentmannstraße (Verl),falsch
+03103,5,1937-11-20,tag,Twentmannstraße (Verl.),falsch
 03104,1,1923-09-24,tag,Twingenbergplatz,falsch
 03140,1,1908,vor,Altendorfer Weg,falsch
 03140,2,1911-06-16,tag,Überruhrer Straße,falsch
 03140,3,1933-05-08,tag,Überruhrstraße,falsch
-03140,4,1970-12-16,tag,Überruhrstraße (Verl),falsch
+03140,4,1970-12-16,tag,Überruhrstraße (Verl.),falsch
 03142,1,1892-03-29,tag,Rotthausener Straße,falsch
-03142,2,1935-11-14,tag,Uckendorfer Straße,falsch
+03142,2,1935-11-14,tag,Ückendorfer Straße,falsch
 01883,1,2013-05-22,tag,Uferpromenade,falsch
 03143,1,1909-11-26,tag,Uhdestraße,falsch
 03760,1,1955-03-25,tag,Uhlandstraße,falsch
@@ -4936,9 +4950,9 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03147,1,1938-10-21,tag,Uhlenhautstraße,falsch
 03148,1,1922-09-13,tag,Uhlenkruggarten,falsch
 03149,1,,unbekannt,Uhlenstraße,wahr
-03141,1,1912-01-26,tag,Ulmenhof (tIw.),falsch
+03141,1,1912-01-26,tag,Ulmenhof (tlw.),falsch
 03141,2,1971-09-22,tag,Ulmengarten,falsch
-03164,1,1912-01-26,tag,Ulmenhof (tiw.),falsch
+03164,1,1912-01-26,tag,Ulmenhof (tlw.),falsch
 03164,2,1971-09-22,tag,Ulmenhang,falsch
 03151,1,1912-01-26,tag,Ulmenhof,falsch
 03152,1,1903-02-04,tag,Grünewaldstraße,falsch
@@ -4981,7 +4995,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03208,1,1861-04-26,tag,Vereinstraße,falsch
 03209,1,1897-09-06,tag,Veronikastraße,falsch
 03210,1,1894,jahr,Altenhof,falsch
-03210,2,1910-09-16,tag,Altenhof II (tiw.),falsch
+03210,2,1910-09-16,tag,Altenhof II (tlw.),falsch
 03210,3,1935-10-14,tag,Verreshöhe,falsch
 02530,1,1991-09-26,tag,Victoriahain,falsch
 03229,1,1966-07-20,tag,Viefhaushof,falsch
@@ -5013,10 +5027,11 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03223,2,1915-07-09,tag,Vinckestraße,falsch
 03224,1,1902-02-04,tag,Vinzenzstraße,falsch
 03225,1,1902-05-16,tag,Virchowstraße,falsch
+03226,1,1911-04-21,tag,Virgiliastraße,falsch
 03227,1,1904-02-04,tag,Burgstraße,falsch
 03227,2,1910-09-16,tag,Vittinghoffstraße,falsch
 03260,1,1960-09-07,tag,Vöcklinger Hang,falsch
-03228,1,1897-09-06,tag,Karolinenstraße (tiw.),falsch
+03228,1,1897-09-06,tag,Karolinenstraße (tlw.),falsch
 03228,2,1937-11-20,tag,Vöcklinghausen,falsch
 03228,3,1939-05-26,tag,Vom-Rath-Straße,falsch
 03228,4,1945-05-15,tag,Vöcklinghauser Straße,falsch
@@ -5036,7 +5051,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03263,3,1956-07-03,tag,Volkeningstraße (Aufgeh.),falsch
 03263,4,1973-06-13,tag,Volkeningstraße,falsch
 03234,1,1911-06-16,tag,Goethestraße,falsch
-03234,2,1920-08-04,tag,Rosenstraße (tiw.),falsch
+03234,2,1920-08-04,tag,Rosenstraße (tlw.),falsch
 03234,3,1935-11-14,tag,Röchlingstraße,falsch
 03234,4,1946-05-22,tag,Volksgartenweg,falsch
 03235,1,1949-12-22,tag,Vollbergwinkel,falsch
@@ -5044,15 +5059,15 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03236,1,1897-11-29,tag,Teichstraße,falsch
 03236,2,1908-06-05,tag,Vollmerstraße,falsch
 03236,3,1937-11-20,tag,Vollmerstraße (Verl.),falsch
-03237,1,1892-03-29,tag,Grabenstraße (tiw.),falsch
+03237,1,1892-03-29,tag,Grabenstraße (tlw.),falsch
 03237,2,1925-01-29,tag,Kleine Grabenstraße,falsch
 03237,3,1937-11-20,tag,Von-Bergmann-Straße,falsch
 03238,1,1894,jahr,Altenhof,falsch
-03238,2,1910-09-16,tag,Altenhof II (tiw.),falsch
+03238,2,1910-09-16,tag,Altenhof II (tlw.),falsch
 03238,3,1935-10-14,tag,Von-Bodenhausen-Weg,falsch
 03239,1,1895-11-29,tag,Bachstraße,falsch
 03239,2,1915-07-09,tag,Vondernstraße,falsch
-03240,1,1898-03-11,tag,Von-der-Tann- Straße,falsch
+03240,1,1898-03-11,tag,Von-der-Tann-Straße,falsch
 03256,1,1966-06-08,tag,Von-der-Vogelweide-Straße,falsch
 03241,1,1887-09-06,tag,Ottilienstraße,falsch
 03241,2,1906-01-26,tag,Ortrudstraße,falsch
@@ -5062,11 +5077,11 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03264,1,1973-11-20,tag,Von-Ossietzky-Ring,falsch
 03244,1,,unbekannt,Sedanstraße,wahr
 03244,2,1937-11-20,tag,Von-Schirp-Straße,falsch
-03245,1,1957-07-15,tag,Von- Schmoller-Straße,falsch
+03245,1,1957-07-15,tag,Von-Schmoller-Straße,falsch
 03246,1,1897-09-06,tag,Henriettenstraße,falsch
 03246,2,1906-01-26,tag,Irmgardstraße,falsch
 03246,3,1937-11-20,tag,Von-Seeckt-Straße,falsch
-03247,1,1887-06-10,tag,Eiserne Hand (tiw.),falsch
+03247,1,1887-06-10,tag,Eiserne Hand (tlw.),falsch
 03247,2,1904-02-19,tag,Phönixstraße,falsch
 03247,3,1915-07-09,tag,Steingröverstraße,falsch
 03247,4,1935-11-14,tag,Vorrathstraße,falsch
@@ -5079,7 +5094,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03250,1,1953-03-03,tag,Voßhegge,falsch
 03251,1,1910-09-16,tag,Voßkühlerstraße,falsch
 03252,1,1959-02-02,tag,Voßnacker Weg,falsch
-03254,1,1919-05-28,tag,Horststraße (tiw.),falsch
+03254,1,1919-05-28,tag,Horststraße (tlw.),falsch
 03254,2,1937-11-20,tag,Vryburg,falsch
 01598,1,2000-11-14,tag,Wacholder Hecken,falsch
 03290,1,1896-10-08,tag,Wachtstraße,falsch
@@ -5092,6 +5107,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03295,1,1909-03-26,tag,Piekenbrockstraße,falsch
 03295,2,1937-11-20,tag,Waisenhausbrink,falsch
 03296,1,1896-02-13,tag,Waisenstraße,falsch
+03297,1,1920-10-01,tag,Waldblick,falsch
 03298,1,1907-08-06,tag,Waldeck,falsch
 03299,1,1903-03-12,tag,Sedanstraße,falsch
 03299,2,1934-06-28,tag,Waldemey,falsch
@@ -5109,7 +5125,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03316,2,1967-06-29,tag,Wallneyer Straße,falsch
 03308,1,1909-11-26,tag,Wallotstraße,falsch
 03309,1,1900,jahr,Wallstraße,falsch
-03309,2,1977-01-12,tag,Wallstraße (Verl),falsch
+03309,2,1977-01-12,tag,Wallstraße (Verl.),falsch
 03310,1,1936-08-05,tag,Walmanger,falsch
 03310,2,1953-03-03,tag,Walmanger (Verl.),falsch
 03311,1,1897-09-06,tag,Wilhelminenstraße,falsch
@@ -5118,10 +5134,10 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03311,4,1910-09-16,tag,Walburgisstraße (Verl.),falsch
 03311,5,1920-03-06,tag,Walpurgisstraße (Verl.),falsch
 03444,1,1868-01-17,tag,Kaupenstraße (tlw.),falsch
-03444,2,1968-03-20,tag,Walter- Hohmann-Straße,falsch
+03444,2,1968-03-20,tag,Walter-Hohmann-Straße,falsch
 03312,1,1900,vor,Ruhrsteinstraße,falsch
 03312,2,1915-07-09,tag,Am Ruhrstein (tlw.),falsch
-03312,3,1929-07-06,tag,Walter- Sachsse-Weg,falsch
+03312,3,1929-07-06,tag,Walter-Sachsse-Weg,falsch
 03313,1,1897-09-06,tag,Wandastraße,falsch
 03448,1,1962-11-12,tag,Wangeroogeweg,falsch
 03448,1,1898-03-11,tag,Hülsenbruchstraße (tlw.),falsch
@@ -5155,7 +5171,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03332,1,1897-09-06,tag,Ernststraße,falsch
 03332,2,1937-11-20,tag,Wehmenkamp,falsch
 03333,1,1894,jahr,Altenhof,falsch
-03333,2,1910-09-16,tag,Altenhof II (tiw.),falsch
+03333,2,1910-09-16,tag,Altenhof II (tlw.),falsch
 03333,3,1935-10-14,tag,Wehnertweg,falsch
 03334,1,1903-02-04,tag,Wehrstraße,falsch
 03335,1,1903-02-04,tag,Grüner Weg,falsch
@@ -5166,7 +5182,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03337,2,1915-07-09,tag,Weidenstraße,falsch
 03338,1,1953-03-03,tag,Weidepfad,falsch
 03339,1,1891-04-30,tag,Hesselstraße,falsch
-03339,2,1891-04-30,tag,Niederstraße (tIw.),falsch
+03339,2,1891-04-30,tag,Niederstraße (tlw.),falsch
 03339,3,1915-07-09,tag,Weidkamp,falsch
 03403,1,1896-02-13,tag,Parallelstraße,falsch
 03403,2,1915-07-09,tag,Freiladestraße,falsch
@@ -5198,14 +5214,14 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03354,1,,unbekannt,Wernerstraße,wahr
 03354,2,1936-01-15,tag,Werneraue,falsch
 03355,1,,unbekannt,Franziskastraße,wahr
-03355,2,1937-11-20,tag,Werner-Viebig- Weg,falsch
+03355,2,1937-11-20,tag,Werner-Viebig-Weg,falsch
 03356,1,1903-02-04,tag,Huttroper Straße,falsch
 03356,2,1910-09-16,tag,Werrastraße,falsch
 03357,1,1956-04-09,tag,Wersbaum,falsch
 03358,1,1896-08-14,tag,Wertstraße,falsch
 03359,1,1903-02-04,tag,Alfredusstraße,falsch
 03359,2,1910-09-16,tag,Weserstraße,falsch
-03359,3,1936-01-15,tag,Joseph-Hommer-Weg (Umb,falsch
+03359,3,1936-01-15,tag,Joseph-Hommer-Weg (Umb.),falsch
 03359,4,1945-06-13,tag,Weserstraße (Umb.),falsch
 03360,1,1954-07-15,tag,Wesselbaumweg,falsch
 03361,1,1878-06-07,tag,Bismarckstraße,falsch
@@ -5223,20 +5239,20 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03367,1,1901-07-19,tag,Josephstraße,falsch
 03367,2,1915-07-09,tag,Westerdorfstraße,falsch
 03368,1,1951-07-04,tag,Westernfeld,falsch
-03369,1,1914-05-10,tag,Meckenstocker Weg {tiw.),falsch
+03369,1,1914-05-10,tag,Meckenstocker Weg (tlw.),falsch
 03369,2,1935-01-14,tag,Westerwaldstraße,falsch
-03369,3,1954-07-15,tag,Westerwaldstraße (Verl),falsch
+03369,3,1954-07-15,tag,Westerwaldstraße (Verl.),falsch
 03370,1,1890-11-18,tag,Bredeneyer Straße,falsch
 03370,2,1903-02-04,tag,Steeler Straße,falsch
 03370,3,1910-09-16,tag,Westfalenstraße,falsch
-03370,4,1936-02-15,tag,Westfalenstraße (Verl),falsch
+03370,4,1936-02-15,tag,Westfalenstraße (Verl.),falsch
 03371,1,1915,vor,Heidestraße,falsch
 03371,2,1933-05-08,tag,Westpreußenstraße,falsch
 03452,1,1966-12-14,tag,Westuferstraße,falsch
 03372,1,1949-08-31,tag,Weubelshof,falsch
 03373,1,1902-05-16,tag,Weuenstraße,falsch
 03374,1,1914-10-09,tag,Weyerstraße,falsch
-03375,1,1911,vor,Charlottenweg (tiw.),falsch
+03375,1,1911,vor,Charlottenweg (tlw.),falsch
 03375,2,1936-01-15,tag,Wichteltal,falsch
 03376,1,1902-05-16,tag,Wickenburgstraße,falsch
 03377,1,1900-08-23,tag,Kalkstraße,falsch
@@ -5272,22 +5288,22 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03456,1,1974-04-24,tag,Wilhelm-Beckmann-Straße,falsch
 03396,1,,unbekannt,Steinhäuser Weg,wahr
 03396,2,1935-06-03,tag,Wilhelm-Bernsau-Weg,falsch
-00837,1,2009-03-21,tag,Wilhelm- Döllken-Straße,falsch
-00835,1,2008-08-26,tag,Wilhelm- Gefeller-Weg,falsch
+00837,1,2009-03-21,tag,Wilhelm-Döllken-Straße,falsch
+00835,1,2008-08-26,tag,Wilhelm-Gefeller-Weg,falsch
 03397,1,1892-03-29,tag,Wilhelminenstraße,falsch
 03399,1,1938-10-21,tag,Wilhelm-Meinrich-Weg,falsch
-03455,1,1971-09-22,tag,Wilhelm- Melchert-Straße,falsch
+03455,1,1971-09-22,tag,Wilhelm-Melchert-Straße,falsch
 02518,1,1990-11-22,tag,"Wilhelm- ""lieswandt-Allee",falsch
-03459,1,1976-12-08,tag,Wilhelm- Segerath-Straße,falsch
+03459,1,1976-12-08,tag,Wilhelm-Segerath-Straße,falsch
 03400,1,1920-10-06,tag,Freiligrathstraße,falsch
 03400,2,1936-01-15,tag,Wilhelmshavener Straße,falsch
 03768,1,1871,jahr,Wilhelmstraße,falsch
 03768,2,1934-10-20,tag,Straße der SA (Umb.),falsch
 03768,3,1945-04-26,tag,Wilhelmstraße (Umb.),falsch
-02048,1,2013-12-17,tag,Wilhelm- Vogelsang-Weg,falsch
+02048,1,2013-12-17,tag,Wilhelm-Vogelsang-Weg,falsch
 03402,1,1909-11-26,tag,Wilkenstraße,falsch
 03404,1,1957-12-12,tag,Willekestraße,falsch
-02538,1,1994-05-18,tag,Willy-Brandt- Platz,falsch
+02538,1,1994-05-18,tag,Willy-Brandt-Platz,falsch
 03405,1,1939-05-26,tag,Wilmsweg,falsch
 03406,1,1922-06-02,tag,Wimberstraße,falsch
 03407,1,1939-05-26,tag,Windhukweg,falsch
@@ -5310,16 +5326,16 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03417,2,1933-06-17,tag,Wisthoffweg,falsch
 03418,1,1910-09-16,tag,Wittekindstraße,falsch
 03420,1,1897-09-06,tag,Ottilienstraße,falsch
-03420,2,1897-09-06,tag,Veronikastraße (tiw.),falsch
+03420,2,1897-09-06,tag,Veronikastraße (tlw.),falsch
 03420,3,1903-02-04,tag,Gerbranderstraße,falsch
-03420,4,1906-01-26,tag,Ortrudstraße (tiw.),falsch
+03420,4,1906-01-26,tag,Ortrudstraße (tlw.),falsch
 03420,5,1937-02-25,tag,Wittenbergstraße,falsch
 03420,6,1910-09-16,tag,Wittekindstraße,falsch
 03420,7,1968-03-20,tag,Wittenbergstraße (Verl.),falsch
 03421,1,1860,jahr,Witteringstraße,falsch
 03422,1,1933-08-14,tag,Wittgenbusch,falsch
 03423,1,1933-08-14,tag,Wittgenpfad,falsch
-03424,1,1892,jahr,Hobeisenstraße (tw),falsch
+03424,1,1892,jahr,Hobeisenstraße (tlw.),falsch
 03424,2,1902-05-16,tag,Wöhlerstraße,falsch
 03425,1,1922,vor,Herderstraße,falsch
 03426,1,1896-05-29,tag,Wörthstraße,falsch
@@ -5340,9 +5356,9 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03432,2,1897-01-22,tag,Frankstraße,falsch
 03432,3,1896-10-08,tag,Viktoriastraße,falsch
 03432,4,1906-06-20,tag,Funkestraße,falsch
-03432,5,1907-03-01,tag,Carl-Funke- Straße,falsch
+03432,5,1907-03-01,tag,Carl-Funke-Straße,falsch
 03432,6,1915-07-09,tag,Wolfsbankstraße,falsch
-03432,7,1972-09-20,tag,Wolfsbankstraße (Verl),falsch
+03432,7,1972-09-20,tag,Wolfsbankstraße (Verl.),falsch
 03433,1,1956-02-23,tag,Wolfsdelle,falsch
 03434,1,,unbekannt,Wolfskuhle,wahr
 03445,1,1961-12-13,tag,Woltersberg,falsch
@@ -5359,22 +5375,22 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03439,3,1915-07-09,tag,Wüllnerskamp,falsch
 03440,1,,unbekannt,Styrumer Straße,wahr
 03440,2,1891,jahr,Kuhstraße (Teil von Borbecker bis Bocholder Straße),falsch
-03440,3,1895-11-28,tag,Buschstraße (tiw.),falsch
+03440,3,1895-11-28,tag,Buschstraße (tlw.),falsch
 03440,4,1933-11-27,tag,Wüstenhöferstraße,falsch
 03440,5,1934-01-12,tag,Wüstenhöferstraße (Verl.),falsch
 03769,1,1910-10-06,tag,Wupperstraße,falsch
 03442,1,1899,jahr,Hexentaufe,falsch
 03442,2,1903-02-04,tag,Heisinger Straße,falsch
 03442,3,1910,jahr,Ruhrtalstraße,falsch
-03442,4,1928-02-27,tag,Sartoriusstraße (tiw.),falsch
+03442,4,1928-02-27,tag,Sartoriusstraße (tlw.),falsch
 03442,5,1937-11-20,tag,Wuppertaler Straße,falsch
 03442,6,1937-11-20,tag,Wuppertaler Straße (Verl.),falsch
 03443,1,1911-04-21,tag,Wusthoffstraße,falsch
 03490,1,1936-08-05,tag,Zahnrad,falsch
 03491,1,1909-11-26,tag,Zangenstraße,falsch
-03492,1,1913-04-01,tag,Kirchpfad {tiw.),falsch
+03492,1,1913-04-01,tag,Kirchpfad (tlw.),falsch
 03492,2,1933-11-27,tag,Zeche Eiberg,falsch
-03493,1,1910-12-20,tag,Zechenstraße (tiw.),falsch
+03493,1,1910-12-20,tag,Zechenstraße (tlw.),falsch
 03493,2,1933-11-27,tag,Zeche Ernestine,falsch
 03537,1,1974-04-24,tag,Zeche Katharina,falsch
 03495,1,1891-04-30,tag,Zechenstraße,falsch
@@ -5393,9 +5409,9 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03503,1,1896-10-08,tag,Zielstraße,falsch
 03504,1,1922-06-02,tag,Zimmermannstraße,falsch
 03504,2,1922-06-02,tag,Hüsgenweg,falsch
-03504,3,1937-11-20,tag,Zimmermannstraße (Verl),falsch
+03504,3,1937-11-20,tag,Zimmermannstraße (Verl.),falsch
 03505,1,1868-01-17,tag,Zimmerstraße,falsch
-03533,1,1868-01-17,tag,Kaupenstraße (tiw.),falsch
+03533,1,1868-01-17,tag,Kaupenstraße (tlw.),falsch
 03533,2,1968-03-20,tag,Zindelstraße,falsch
 03506,1,1957-01-23,tag,Zingelpfad,falsch
 03507,1,1891-04-30,tag,Zinkstraße,falsch
@@ -5447,12 +5463,12 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03528,1,1906-01-26,tag,Felixstraße,falsch
 03528,2,1907-05-03,tag,Zweigertstraße,falsch
 03529,1,1896-08-14,tag,Zweigstraße,falsch
-03530,1,1921-10-18,tag,Am Zweihonnschaftenwald {tiw.),falsch
+03530,1,1921-10-18,tag,Am Zweihonnschaftenwald (tlw.),falsch
 03530,2,1930-05-31,tag,Zweihonnschaftenwald,falsch
 03531,1,1896-10-08,tag,Zwergstraße,falsch
 03536,1,1899-02-24,tag,Sternstraße,falsch
 03536,2,1970-12-16,tag,Zwinglistraße,falsch
 03532,1,1860,jahr,Bergstraße,falsch
 03532,2,1934-06-05,tag,Zwölfling,falsch
-03532,3,1951-07-04,tag,Zwölfling (Verl),falsch
+03532,3,1951-07-04,tag,Zwölfling (Verl.),falsch
 02949,1,1962-09-27,tag,Spervogelweg,falsch
