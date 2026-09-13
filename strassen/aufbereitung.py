@@ -2,7 +2,13 @@
 
 Reihenfolge ist wesentlich: Erst die über Zeilenumbrüche zerrissenen Feldmarker
 zusammenziehen, dann die echte Silbentrennung auflösen. Umgekehrt zerstörte die
-Silbentrennungsregel die Marker ('Str.-\nKl.:' würde zu 'Str.Kl.:').
+Silbentrennungsregel die Marker ('Str.-\nKl.:' würde zu 'Str.Kl.:'). Ein
+Trennstrich am Zeilenende vor Großbuchstabe ist Namensbestandteil (Adolf-
+\\nRath-Straße), nie eine aufzulösende Silbentrennung — er bleibt stehen, das
+Zeilenende verschwindet ohne Leerzeichen (R1, Spec 2026-09-13); das muss VOR
+dem Zeilenumbruch→Leerzeichen und vor der echten Silbentrennung laufen. Nach
+dem Zusammenkleben von 'und' liest die OCR Großumlaute am Wortanfang oft als
+O/A/U; ein Wörterbuch exakter Wortformen aus der Prüfliste korrigiert das (R3).
 """
 import re
 from pathlib import Path
@@ -41,6 +47,11 @@ _ABSCHNITTSKOPF = re.compile(
 # beginnt mit „e") wird korrigiert zu „straße…" (9 Fälle). Andere „-\nB"-Fälle
 # (Komposita wie „Essen-Bredeney") bleiben unangetastet.
 _OCR_FEHLER = re.compile(r"([Ss]tra)-\n\s*B(?=e)")
+# Trennstrich am Zeilenende VOR Großbuchstabe: Namensbestandteil ('Adolf-\nRath-Straße',
+# 'Überruhr-\nHinsel'), im Deutschen gibt es kein '- ' — der Strich bleibt, das
+# Zeilenende verschwindet ohne Leerzeichen. 562 Stellen im Korpus, 184 bestätigte
+# Prüflistenzeilen (Spec 2026-09-13, R1). Muss VOR dem Zeilenumbruch→Leerzeichen laufen.
+_TRENNUNG_GROSS = re.compile(r"-\n\s*(?=[A-ZÄÖÜ])")
 # Silbentrennung: Trennstrich am Zeilenende vor Kleinbuchstabe.
 # Vor Großbuchstabe ist der Strich Namensbestandteil (Franz-Arens-Straße).
 _TRENNUNG = re.compile(r"-\n(?=[a-zäöüß])")
@@ -62,6 +73,12 @@ _STADTTEIL_MARKER = re.compile(r"Stadt-?t{0,2}ei[l!t](?P<pl>e?)-?(?=[ \tA-ZÄÖ�
 # Manderscheidtstraße 02191 — Goldstandard). Nur Klein-und-Groß, nie innerhalb
 # eines Wortes wie 'Hundstraße'.
 _UND_KLEBT = re.compile(r"([a-zäöüß])und([A-ZÄÖÜ])")
+# OCR liest Großumlaute am Wortanfang als O/A/U (Spec 2026-09-13, R3). Nur exakte
+# Wortformen aus den Funden der Prüfliste; 'Ostviertel' ist korrekt und steht NICHT hier.
+# Umgekehrt wird das OCR-'Östviertel' (2 Fälle) zu 'Ostviertel'.
+GROSSUMLAUTE = {"Ortlichkeit": "Örtlichkeit", "Abtissin": "Äbtissin", "Agyptologe": "Ägyptologe",
+                "Agirstraße": "Ägirstraße", "Uckendorfer": "Ückendorfer", "Östviertel": "Ostviertel"}
+_GROSSUMLAUT_WORT = re.compile(r"\b(" + "|".join(map(re.escape, GROSSUMLAUTE)) + r")\b")
 
 
 def _entferne_randrauschen(text: str) -> str:
@@ -86,10 +103,12 @@ def verbinde_zeilen(text: str) -> str:
     for muster, ersatz in _MARKER:
         text = muster.sub(ersatz, text)
     text = _OCR_FEHLER.sub(r"\1ß", text)
+    text = _TRENNUNG_GROSS.sub("-", text)
     text = _TRENNUNG.sub("", text)
     text = text.replace("\n", " ")
     text = _STADTTEIL_MARKER.sub(lambda m: "Stadtteil" + m.group("pl") + " ", text)
     text = _UND_KLEBT.sub(r"\1 und \2", text)
+    text = _GROSSUMLAUT_WORT.sub(lambda m: GROSSUMLAUTE[m.group(1)], text)
     return re.sub(r"\s+", " ", text).strip()
 
 

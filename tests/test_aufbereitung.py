@@ -144,6 +144,33 @@ def test_und_zwischen_klein_und_gross_wird_getrennt():
     assert verbinde_zeilen("Hundstraße") == "Hundstraße"
 
 
+def test_trennstrich_vor_grossbuchstabe_bleibt_ohne_leerzeichen():
+    # S. 23, Adolf-Rath-Straße 00013 (Prüfliste: 184 Zeilen 'Adolf- Rath-Straße')
+    roh = "10. Januar 1929: Adolf-\nRath-Straße. Adolf Rath *28. August 1863"
+    assert "Adolf-Rath-Straße." in verbinde_zeilen(roh)
+    assert "Adolf- Rath" not in verbinde_zeilen(roh)
+
+
+def test_trennstrich_vor_grossbuchstabe_in_stadtteilen():
+    roh = "Stadtteile Überruhr-\nHinsel und Überruhr-Holthausen, Str.-Kl.: Gemeindestraße"
+    assert "Überruhr-Hinsel und" in verbinde_zeilen(roh)
+
+
+def test_trennstrich_vor_kleinbuchstabe_weiterhin_aufgeloest():
+    assert verbinde_zeilen("Katern-\nberger Straße") == "Katernberger Straße"
+
+
+def test_grossumlaut_woerterbuch_korrigiert_bekannte_woerter():
+    roh = "Str.-Gr.: Essener Geschichte und Ortlichkeit, Bergbau, 1906: Abtissin"
+    aus = verbinde_zeilen(roh)
+    assert "Örtlichkeit" in aus and "Äbtissin" in aus
+
+
+def test_grossumlaut_woerterbuch_nur_ganze_woerter():
+    assert "Ostviertel" in verbinde_zeilen("Stadtteile Stadtkern und Ostviertel")
+    assert "Östviertel" not in verbinde_zeilen("Stadtteile Stadtkern und Östviertel")   # OCR-Ö → O
+
+
 def test_kleinbuchstabe_nach_trennstrich_bleibt_erhalten():
     """Eine einzelne Kleinbuchstaben-Zeile, die Rest einer Silbentrennung ist
     ('Emm-\\na\\n…' → 'Emma'), darf nicht als Abschnittskopf verschwinden —
