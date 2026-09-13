@@ -32,7 +32,9 @@ Ziehung fand bewusst nicht statt. Ergebnis in
 Aus den 17 Goldstandard-Fehlern und einer Nachmessung auf dem Gesamtmaterial entstand
 ein Katalog von 21 Regeln (u. a. eine eigene Datumslogik, Behandlung leerer Kopffelder
 als Prüfgrund, Präzisionsstufe „jahrhundert"). Die Zahl der Straßen ohne erkannte
-Namenskette sank von 84 auf 10; jeder Verlust eines Stadiums, jede Umdatierung und
+Namenskette sank von 84 auf 10 (Endstand; der Differenzbericht
+`docs/regression/2026-09-parser-reparatur.md` dokumentiert den Zwischenstand 11); jeder
+Verlust eines Stadiums, jede Umdatierung und
 jede Statusrückstufung wurde einzeln am Drucktext geprüft und belegt. Differenzbericht:
 [`docs/regression/2026-09-parser-reparatur.md`](regression/2026-09-parser-reparatur.md).
 
@@ -63,9 +65,12 @@ Ergebnis der Regeneration: **+11 Straßeneinträge** (3.338 → 3.349) und **+16
 (5.457 → 5.473), 379 korrigierte Namensschreibungen und 294 korrigierte Kopfwerte; die
 Prüflisten-Zeilen mit `einig=beide` sinken von **712 auf 288** (Prüfliste insgesamt 4.317 →
 3.585), weil R7 zusätzlich den letzten Eintrag jeder Buchseite nur im Kopf vergleicht
-(`seitenende_ausgelassen`: 340 bei `mistral`, 334 bei `qwen`). Der Preis ist eine höhere
-Zahl gekennzeichneter Einträge (`unsicher` 271 → 375): die bisher stille Anker-Toleranz
-wird jetzt sichtbar gemacht. Jede Rückstufung ist einzeln geprüft im Differenzbericht
+(`seitenende_ausgelassen`: 340 bei `mistral`, 334 bei `qwen`). Die Zahl gekennzeichneter
+Einträge sinkt dabei (`unsicher` 271 → 256) und die Konkordanz wächst von 426 auf 421
+belastbare Paare mit deutlich saubereren Namen. Eine erste Regeneration hatte den Hinweis
+`Anker OCR-korrigiert` zu weit gefasst und 102 inhaltlich unveränderte Einträge auf
+`unsicher` gestuft; das wurde vor der Veröffentlichung korrigiert. Jede der verbliebenen
+zwölf Rückstufungen ist einzeln geprüft im Differenzbericht
 [`docs/regression/2026-09-13-parser-runde-2.md`](regression/2026-09-13-parser-runde-2.md).
 
 ## Was als Nächstes offen ist

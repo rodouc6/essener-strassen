@@ -14,40 +14,52 @@ haben sich allein die Parser-Regeln R1–R6 aus
 - **R4** Römischer Ordnungspunkt (`I.`, `II.`, `III.`, `Ill.`) beendet den Lemma-Rückwärtslauf
   nicht mehr — `I. Buschlandweg` bleibt vollständig.
 - **R5** Randzeichen vor Kopfwerten (`„ `, `) `, `” `, `nn `) und `; _`-Feldreste entfernen.
-- **R6** Anker- und Trenner-Varianten (`Sch}`, `N.`, `-Schl.-Nr.`, `;` statt `:`) tolerieren
-  und die Toleranz kennzeichnen (`Anker OCR-korrigiert`).
+- **R6** Anker- und Trenner-Varianten (`Sch}`, `Sch)`, `N.`, führender `-`, `;` statt `:`,
+  versprengter Großbuchstabe vor dem Anker) tolerieren. Gekennzeichnet
+  (`Anker OCR-korrigiert`) wird **nur** diese in Runde 2 neu hinzugekommene Toleranz.
+
+**Korrektur gegenüber der ersten Regeneration (Commit `d32c973`):** Dort meldete der Parser
+`Anker OCR-korrigiert` für *jede* vom kanonischen `Schl.-Nr.:` abweichende Ankerform — auch
+für die Varianten, die schon vor Runde 2 still toleriert wurden. Dadurch wurden **102
+Einträge auf `unsicher` gestuft, deren Kopffelder und Namenskette Zeichen für Zeichen
+unverändert geblieben waren**: eine Statusverschlechterung ohne neuen Befund. Das ist vor
+der Veröffentlichung korrigiert worden (Commit `1b2c98b`) — der Hinweis gilt jetzt nur noch
+für die neuen R6-Toleranzen. Dieser Bericht bildet den korrigierten Stand ab; die Zahlen
+unten sind daher nicht mit denen aus `d32c973` identisch.
 
 Annotiert sind — wie in `docs/regression/2026-09-parser-reparatur.md` — **jede** Zeile der
 Kategorien „Stadium verloren" (hier: keine) und „Status automatisch → unsicher"
-(130 Einzelbefunde) mit einer eingerückten `- Prüfung:`-Zeile, dazu die auffälligen
+(12 Einzelbefunde) mit einer eingerückten `- Prüfung:`-Zeile, dazu die auffälligen
 Einzelfälle in „Kopffeld verändert". Keine Zeile dieser Kategorien bleibt unkommentiert.
 
 **Sollwerte aus Spec Abschnitt 4.2 gegengerechnet:**
 
 | Sollwert | gemessen | Bewertung |
 |---|---|---|
-| Straßen +9 (R6, neun namentlich genannte Einträge) | **+11** (3.338 → 3.349) | erfüllt und übertroffen: die neun Einträge der Spec (00465, 00710, 01067, 02070, 02086, 02599, 02821, 02834, 03297) sind alle da; 02834 Schulte-Hinsel-Straße erst nach der Nachbesserung der Anker-Regel. Zusätzlich 01729 Kleine Lenbachstraße und 03226 Virgiliastraße, die die Spec nicht vorhergesehen hatte. Kein Eintrag ist entfallen. |
-| keine verlorenen Stadien in `automatisch`-Einträgen | **0 verlorene Stadien überhaupt** | erfüllt (Kategorie „Stadium verloren" ist leer, ebenso „Stadium gewonnen" und „Datum verändert" — Runde 2 rührt die Kettenlogik nicht an). |
-| Lemma-Dubletten in `pruefung_validierung.csv` −22 (über R4, 24 Lemmata `I./II./III. <Name>`) | **−37 Zeilen** (229 → 192: `nicht im amtlichen Verzeichnis` 160 → 122, `Alphabet` 69 → 70) — aber nur **11 der 24** römischen Lemmata zurückgewonnen | Zahlenwert erfüllt, Mechanismus nur zur Hälfte: der Rückgang von 37 Zeilen stammt überwiegend aus dem Abgleich mit dem amtlichen Verzeichnis (R1/R2 machen Lemmata wieder auffindbar), nicht allein aus R4. R4 greift nur bei `I`, `II`, `III`, `IV`, `Ill`; die OCR-Lesarten `Il.`, `ll.`, `l.`, `1.` bleiben offen — siehe „Offene Grenze von R4" unter „Kopffeld verändert". Nichts davon ist geraten, die Restfälle bleiben sichtbar. |
+| Straßen +9 (R6, neun namentlich genannte Einträge) | **+11** (3.338 → 3.349) | erfüllt und übertroffen: die neun Einträge der Spec (00465, 00710, 01067, 02070, 02086, 02599, 02821, 02834, 03297) sind vollzählig da; zusätzlich 01729 Kleine Lenbachstraße und 03226 Virgiliastraße, die die Spec nicht vorhergesehen hatte. Kein Eintrag ist entfallen. |
+| keine verlorenen Stadien in `automatisch`-Einträgen | **0 verlorene Stadien überhaupt** | erfüllt (die Kategorien „Stadium verloren", „Stadium gewonnen" und „Datum verändert" sind alle leer — Runde 2 rührt die Kettenlogik nicht an). |
+| Lemma-Dubletten in `pruefung_validierung.csv` −22 (über R4, 24 Lemmata `I./II./III. <Name>`) | **−37 Zeilen** (229 → 192: `nicht im amtlichen Verzeichnis` 160 → 122, `Alphabet` 69 → 70) — aber nur **11 der 24** römischen Lemmata zurückgewonnen | Zahlenwert erfüllt, Mechanismus nur zur Hälfte: der Rückgang stammt überwiegend aus dem Abgleich mit dem amtlichen Verzeichnis (R1/R2 machen Lemmata wieder auffindbar), nicht allein aus R4. Siehe „Offene Grenze von R4" unter „Kopffeld verändert". Nichts davon ist geraten, die Restfälle bleiben sichtbar. |
 | `einig=beide` in der Prüfliste unter 250 | **288** (von 712) | **nicht erreicht** — −60 %, aber 38 Zeilen über dem Sollwert; siehe unten. |
 
 **Wirkung auf die Veröffentlichung** (`python3 -m strassen.veroeffentlichen`):
-`strassen.csv` 3338 → 3349 Zeilen, `namen.csv` 5457 → 5473, `status`
-`automatisch` 3066 → 2973 / `unsicher` 271 → 375 / `geprueft` 1 → 1.
-Der Anstieg der `unsicher`-Zahl ist gewollt und keine Regression: 102 der 130
-Rückstufungen betreffen Einträge, deren Kopffelder und Namenskette **Zeichen für Zeichen
-unverändert** sind — der Parser hat sie schon vorher tolerant gelesen, nur eben still.
-Runde 2 macht diese Toleranz sichtbar (precision-first). Die Konkordanz speist sich aus
-den belastbaren Einträgen und schrumpft dadurch von 426 auf 406 Paare: 41 Paare fallen weg,
-21 kommen hinzu. Von den 41 waren 15 gar keine Umbenennungen, sondern R1-Trennstrichfehler
-(`Adolf- Rath-Straße` → `Adolf-Rath-Straße`), weitere 4 abgeschnittene Klammerzusätze
-(`Thomaestraße (tiw` → `(tlw.)`) — diese 19 sind ein reiner Gewinn an Genauigkeit. Die
-übrigen 22 gehören zu Einträgen, die jetzt `unsicher` sind und daher nicht mehr in die
-Konkordanz einfließen (precision-first: lieber weniger Paare als ungeprüfte). Die 21 neuen
-Paare stammen aus Einträgen, die von `unsicher` auf `automatisch` aufgestiegen sind.
+`strassen.csv` 3.338 → 3.349 Zeilen, `namen.csv` 5.457 → 5.473, `status`
+`automatisch` 3.066 → 3.092 / `unsicher` 271 → 256 / `geprueft` 1 → 1.
+Die Zahl der gekennzeichneten Einträge **sinkt** also, obwohl Runde 2 drei neue Prüfgründe
+einführt: 35 Einträge verlieren ihren einzigen Prüfgrund (verstümmelter Klammerzusatz, jetzt
+von R2 eindeutig normalisiert), 12 kommen hinzu, und 8 der 11 neu gefundenen Einträge tragen
+den neuen Hinweis `Anker OCR-korrigiert` — 271 − 35 + 12 + 8 = 256. Die Konkordanz speist
+sich aus den belastbaren Einträgen und geht von 426 auf 421 Paare zurück: 26 Paare fallen weg,
+21 kommen hinzu. Von den 26 waren 15 gar keine Umbenennungen, sondern R1-Trennstrichfehler
+(`Adolf- Rath-Straße` → `Adolf-Rath-Straße` ist keine Namensänderung), 4 abgeschnittene
+Klammerzusätze (`Thomaestraße (tiw` → `(tlw.)`) und 5 Paare, deren „ehemaliger" Name einen
+Trennstrichfehler trug und die deshalb in korrigierter Schreibung unter den 21 neuen wieder
+auftauchen (`Robert- Ley-Platz` → `Robert-Ley-Platz`). Nur 2 Paare (02137 Middeldorper Weg,
+02974 Stoppenberger Straße) fallen weg, weil ihr Eintrag jetzt `unsicher` ist — beide wegen
+einer R2-Zusatz-Ergänzung, beide unten einzeln geprüft. Die übrigen neuen Paare stammen aus
+den 35 aufgestuften Einträgen.
 
 **Zur Prüfliste:** `einig=beide` (beide Modelle widersprechen dem Parser) fällt von 712 auf
-288, die Prüfliste insgesamt von 4317 auf 3585 Zeilen. Der Spec-Sollwert „unter 250" ist
+288, die Prüfliste insgesamt von 4.317 auf 3.585 Zeilen. Der Spec-Sollwert „unter 250" ist
 damit **nicht erreicht**; er war eine Schätzung vor Kenntnis der Regelwirkung. Die
 verbleibenden 288 Zeilen sind kein bekannter Parser-Fehler, sondern die noch ungesichtete
 Restmenge (Namenswörterbuch-Fälle wie `Moitkestraße`, Layout-Zerfall S. 227/280) — sie ist
@@ -61,7 +73,8 @@ Klammer, dem Fließtext folgt, wird vollständig eingeklammert — kommt im rege
 Datenstand **nicht** vor: kein Eintrag in „Name verändert" gewinnt eine Klammer, die vorher
 gar nicht da war, und `namen.csv` enthält keinen Namen mit eingeklammertem Fließtext
 (längster Klammerinhalt: `Kuhstraße (Teil von Borbecker bis Bocholder Straße)`, schl_nr 03440
-— schon vor Runde 2 wortgleich so). Der Randfall bleibt als Risiko dokumentiert, hat aber keine Zeile.
+— schon vor Runde 2 wortgleich so). Der Randfall bleibt als Risiko dokumentiert, hat aber
+keine Zeile.
 
 | Kategorie | Anzahl |
 |---|--:|
@@ -72,16 +85,18 @@ gar nicht da war, und `namen.csv` enthält keinen Namen mit eingeklammertem Flie
 | Datum verändert | 0 |
 | Name verändert | 379 |
 | Kopffeld verändert | 294 |
-| Status automatisch → unsicher | 130 |
-| Status unsicher → automatisch | 34 |
+| Status automatisch → unsicher | 12 |
+| Status unsicher → automatisch | 35 |
 
 ## Eintrag neu
 
 Elf Einträge, die vor Runde 2 gar nicht erkannt wurden, weil ihr
 Schlüsselnummer-Anker OCR-verstümmelt war (R6). Neun davon nennt die Spec namentlich;
-01729 Kleine Lenbachstraße und 03226 Virgiliastraße kamen unvorhergesehen hinzu,
-02834 Schulte-Hinsel-Straße erst mit der Nachbesserung an der Anker-Regel. Alle elf tragen
-den Hinweis `Anker OCR-korrigiert` und damit Status `unsicher`. Entfallen ist kein Eintrag.
+01729 Kleine Lenbachstraße und 03226 Virgiliastraße kamen unvorhergesehen hinzu. Acht der
+elf tragen den Hinweis `Anker OCR-korrigiert` und damit `unsicher`; drei (00465
+Brunhildenstraße, 00710 Am Schloss Schellenberg, 03297 Waldblick) kamen über die erweiterte
+Lemma-Trenner-Regel (`;`, `:;`) herein, die keinen Hinweis erzeugt, und stehen auf
+`automatisch`. Entfallen ist kein Eintrag.
 
 - 00465 Brunhildenstraße
 - 00710 Am Schloss Schellenberg
@@ -102,8 +117,8 @@ Stelle der Kette — kein Stadium wechselt Datum oder Position. Aufschlüsselung
 277 Klammerzusätze (R2, `{tiw.)`/`(Verl`/`[tlw.)` → `(tlw.)`/`(Verl.)`), 100 Trennstriche am
 Zeilenumbruch (R1, `Adolf- Rath-Straße` → `Adolf-Rath-Straße`) und 2 Großumlaute (R3,
 `Agirstraße` → `Ägirstraße`, `Uckendorfer Straße` → `Ückendorfer Straße`). Jede Änderung
-verkürzt oder korrigiert eine bekannte OCR-Verstümmelung; keine erfindet Text. Ein Name,
-der eine vorher nicht vorhandene Klammer gewinnt, kommt nicht vor (s. oben, R2-Randfall).
+korrigiert eine bekannte OCR-Verstümmelung; keine erfindet Text. Ein Name, der eine vorher
+nicht vorhandene Klammer gewinnt, kommt nicht vor (s. oben, R2-Randfall).
 
 - 00008 Ackerstraße — stadium: 3; alt: Ackerstraße (Verl); neu: Ackerstraße (Verl.)
 - 00013 Adolf-Rath-Straße — stadium: 1; alt: Adolf- Rath-Straße; neu: Adolf-Rath-Straße
@@ -487,9 +502,9 @@ der eine vorher nicht vorhandene Klammer gewinnt, kommt nicht vor (s. oben, R2-R
 
 ## Kopffeld verändert
 
-294 Kopfwerte: 204 `stadtteile` und 60 `namensgruppe` sind
-Trennstrich-Reparaturen (R1, `Überruhr- Holthausen` → `Überruhr-Holthausen`), 4
-`verweis_auf` ebenso, 1 `strassenklasse` eine R5-Randzeichenentfernung
+294 Kopfwerte: 204 `stadtteile`, 60 `namensgruppe` und 4
+`verweis_auf` sind Trennstrich-Reparaturen (R1, `Überruhr- Holthausen` →
+`Überruhr-Holthausen`), 1 `strassenklasse` eine R5-Randzeichenentfernung
 (`„ Gemeindestraße`). Von den 25 Lemma-Änderungen sind 11 Randzeichenentfernungen (R5:
 `) Am Richtenberg`, `nn Hattenheimer Straße`, `” Emscherstraße` …), 11 wiedergewonnene
 römische Ordnungspunkte (R4: `Buschlandweg` → `I. Buschlandweg`, `Ruschenfeld` →
@@ -547,7 +562,7 @@ Dublette sichtbar — bewusst nicht geraten, sondern gekennzeichnet.
 - 00554 Hans-Thoma-Straße — feld: namensgruppe; alt: Person, Mann, Deutscher, Maler, Graphiker, Malerviertel- Holsterhausen; neu: Person, Mann, Deutscher, Maler, Graphiker, Malerviertel-Holsterhausen
 - 00575 Gewalterberg — feld: stadtteile; alt: Überruhr- Hinsel; neu: Überruhr-Hinsel
 - 00601 Dandermannsteg — feld: lemma; alt: Dandermannsteg; neu: Zur ehemaligen Zeche Eintracht II. Dandermannsteg
-  - Prüfung: Angenommene Nebenwirkung von R4 (S. 91). Weil der Ordnungspunkt in „Zeche Eintracht II." nicht mehr als Satzende zählt, läuft die Lemma-Rückwärtssuche über den Satz hinaus und nimmt „Zur ehemaligen Zeche Eintracht II." mit. `_lemma_auffaellig` erkennt die Überlänge, der Eintrag steht auf `unsicher` — gekennzeichnet statt still falsch. Namenskette (Dandermannsteg) und Kopffelder sind korrekt; der Preis dafür sind die zehn zurückgewonnenen `I./Ill. <Name>`-Lemmata.
+  - Prüfung: Angenommene Nebenwirkung von R4 (S. 91) — der Ordnungspunkt in „Zeche Eintracht II." zählt nicht mehr als Satzende, die Lemma-Rückwärtssuche läuft über den Satz hinaus. `_lemma_auffaellig` erkennt die Überlänge, der Eintrag steht auf `unsicher`: gekennzeichnet statt still falsch. Namenskette und Kopffelder sind korrekt; der Preis dafür sind die elf zurückgewonnenen `I./Ill. <Name>`-Lemmata.
 - 00610 Deinghaushöhe — feld: stadtteile; alt: Borbeck- Mitte; neu: Borbeck-Mitte
 - 00615 Dellmannsfeld — feld: stadtteile; alt: Überruhr- Holthausen; neu: Überruhr-Holthausen
 - 00616 Dellmannsweg — feld: stadtteile; alt: Überruhr- Holthausen; Burgaltendorf; neu: Überruhr-Holthausen; Burgaltendorf
@@ -701,7 +716,7 @@ Dublette sichtbar — bewusst nicht geraten, sondern gekennzeichnet.
 - 02311 et Obere Fuhr — feld: lemma; alt: et Obere Fuhr; neu: Obere Fuhr
 - 02316 Oberholzweg — feld: stadtteile; alt: Altenessen- Süd; neu: Altenessen-Süd
 - 02318 Oberscheidtstraße — feld: lemma; alt: Oberscheidtstraße; neu: e sowie Generaladjutant Kaiser Wilhelms I. Oberscheidtstraße
-  - Prüfung: Dieselbe R4-Nebenwirkung (S. 251): „Kaiser Wilhelms I." beendet den Satz nicht mehr, der Rest „e sowie Generaladjutant Kaiser Wilhelms I." landet im Lemma. Form und Länge sind auffällig, der Eintrag ist `unsicher` (zusätzlich `Anker OCR-korrigiert`). Namenskette Bülowstraße → Oberscheidtstraße unverändert und richtig. Beide Fälle sind Kandidaten für das Korrektur-Overlay `daten/korrekturen.csv`.
+  - Prüfung: Dieselbe R4-Nebenwirkung (S. 251): „Kaiser Wilhelms I." beendet den Satz nicht mehr, der Rest landet im Lemma. Form und Länge sind auffällig, der Eintrag ist `unsicher`. Namenskette Bülowstraße → Oberscheidtstraße unverändert und richtig. Beide Fälle sind Kandidaten für das Korrektur-Overlay `daten/korrekturen.csv`.
 - 02349 Overbeckstraße — feld: namensgruppe; alt: Person, Mann, Deutscher, Maler, Zeichner, Illustrator, Malerviertel- Holsterhausen; neu: Person, Mann, Deutscher, Maler, Zeichner, Illustrator, Malerviertel-Holsterhausen
 - 02381 Palmbuschweg — feld: stadtteile; alt: Altenessen- Süd; neu: Altenessen-Süd
 - 02387 Pasbachstraße — feld: stadtteile; alt: Altenessen- Nord; neu: Altenessen-Nord
@@ -804,286 +819,49 @@ Dublette sichtbar — bewusst nicht geraten, sondern gekennzeichnet.
 
 ## Status automatisch → unsicher
 
-130 Rückstufungen. Sie sind die beabsichtigte
-Hauptwirkung von Runde 2: 118 stammen aus dem neuen Hinweis `Anker OCR-korrigiert` (R6),
-10 aus `Klammerzusatz ergänzt` (R2), einer aus `Randzeichen entfernt` (R5), einer aus
-`Lemma auffällig` (R4-Nebenwirkung). Bei 102 der 130 sind Kopffelder und Namenskette
-identisch mit 54c5e2a — die Toleranz war schon vorher da, nur unsichtbar. Jede Zeile ist
-einzeln geprüft.
+Nur 12 Rückstufungen: 9 aus `Klammerzusatz ergänzt`
+(R2), 1 aus `Randzeichen entfernt` (R5), 2 aus `Lemma auffällig` (R4-Nebenwirkung). Jede ist
+unten einzeln geprüft und in jedem Fall ein *neuer* Befund — kein Eintrag wird
+zurückgestuft, ohne dass der Parser an ihm etwas angenommen oder verändert hätte. (In der
+ersten Regeneration `d32c973` waren es 130, davon 118 allein durch den zu weit gefassten
+Anker-Hinweis; das ist in `1b2c98b` behoben.)
 
-- 00005 Achternbergstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
 - 00010 Adelkampstraße
-  - Prüfung: R5: führendes Randzeichen `„ ` vor der Straßenklasse entfernt (`„ Gemeindestraße` → `Gemeindestraße`); der Hinweis `Randzeichen entfernt` stuft vorsichtshalber auf `unsicher`, weil der Rest der Zeile weiter verunreinigt sein kann. Der Wert selbst ist jetzt richtig.
+  - Prüfung: R5 (Randzeichen): das führende `„ ` vor der Straßenklasse ist ein Scan-Artefakt; entfernt wurde es nur, weil der Rest mit Großbuchstaben weitergeht (`„ Gemeindestraße` → `Gemeindestraße`). Der Wert ist jetzt korrekt; der Hinweis `Randzeichen entfernt` stuft vorsichtshalber auf `unsicher`, weil die Zeile weiter verunreinigt sein kann. Namenskette unverändert.
 - 00050 Altendorfer Straße
-  - Prüfung: R2: ein abgeschnittener Klammerzusatz wurde zu einer Vollform ergänzt und die Ergänzung gekennzeichnet. Inhaltlich geändert hat sich nur Name: „Thomaestraße (tiw" → „Thomaestraße (tlw.)"; Name: „Altendorfer Straße (tw" → „Altendorfer Straße (tlw.)"; Name: „Altendorfer Straße (Verl)" → „Altendorfer Straße (Verl.)" — jeweils eine Verbesserung (R1/R2/R5).
-- 00064 Am Brandenbusch
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00068 Am Brückenkopf
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00088 Am Haus Stein
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00100 Am Kornkamp
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00154 An der Bläufabrik
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00174 An St. Immakulata
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Inhaltlich geändert hat sich nur stadtteile: „Borbeck- Mitte" → „Borbeck-Mitte" — jeweils eine Verbesserung (R1/R2/R5).
-- 00248 Am Rüttenscheider Stern
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00249 Am Stadthafen
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00260 Am Fröhlinge
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
+  - Prüfung: R2 (Klammerzusatz ergänzt): drei abgeschnittene Zusätze derselben Kette wurden zu Vollformen ergänzt — `Thomaestraße (tiw` → `(tlw.)`, `Altendorfer Straße (tw` → `(tlw.)`, `Altendorfer Straße (Verl)` → `(Verl.)`. Die Ergänzung des schließenden Zeichens und des Punkts ist eine Annahme, deshalb der Hinweis und `unsicher`. Kopffelder unverändert; die Lesart ist am Muster der übrigen Ketten belegt, aber nicht am Scan geprüft.
 - 00281 Bamlerstraße
-  - Prüfung: R2: ein abgeschnittener Klammerzusatz wurde zu einer Vollform ergänzt und die Ergänzung gekennzeichnet. Inhaltlich geändert hat sich nur stadtteile: „Altenessen- Süd" → „Altenessen-Süd"; Name: „Berthold-Beitz-Boulevard (tlw" → „Berthold-Beitz-Boulevard (tlw.)" — jeweils eine Verbesserung (R1/R2/R5).
-- 00325 Bentheimer Straße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00480 Bülsebeckstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00515 Benno-Strauß-Straße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Inhaltlich geändert hat sich nur Name: „Kruppstraße (tiw.)" → „Kruppstraße (tlw.)" — jeweils eine Verbesserung (R1/R2/R5).
-- 00540 Cäcilienstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00560 Charlottenstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00591 Dachstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
+  - Prüfung: R2 (Klammerzusatz ergänzt): `Berthold-Beitz-Boulevard (tlw` → `(tlw.)`. Zusätzlich hat R1 den Stadtteil repariert (`Altenessen- Süd` → `Altenessen-Süd`) — eine reine Verbesserung. `unsicher` allein wegen der Zusatz-Ergänzung.
 - 00601 Dandermannsteg
-  - Prüfung: Nebenwirkung von R4 (bekannt und angenommen): der Ordnungspunkt in „Zeche Eintracht II." gilt nicht mehr als Satzende, deshalb zieht der Rückwärtslauf den Satzrest „Zur ehemaligen Zeche Eintracht II." ins Lemma. `_lemma_auffaellig` erkennt die Überlänge und stuft auf `unsicher` — der Fehler ist gekennzeichnet, nicht still (precision-first). Namenskette und Kopffelder sind korrekt; Nachzug über das Korrektur-Overlay möglich (S. 91).
-- 00615 Dellmannsfeld
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Inhaltlich geändert hat sich nur stadtteile: „Überruhr- Holthausen" → „Überruhr-Holthausen" — jeweils eine Verbesserung (R1/R2/R5).
-- 00648 Donnerstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00650 Dornbuschhegge
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00684 Dutzendriege
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00687 Drimbornweg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00697 Heinz-Renner-Platz
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Inhaltlich geändert hat sich nur Name: „Heinz-Renner- Platz" → „Heinz-Renner-Platz" — jeweils eine Verbesserung (R1/R2/R5).
-- 00751 Eiserne Hand
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00800 Esmarchstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00801 Essener Straße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00802 Essingweg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00808 Euskirchenstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00816 Eskensfeld
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Inhaltlich geändert hat sich nur stadtteile: „Überruhr- Holthausen" → „Überruhr-Holthausen" — jeweils eine Verbesserung (R1/R2/R5).
-- 00854 Fendelweg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00869 Fleuenbruch
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00880 Förderstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00972 Käthe-Larsch-Straße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 00980 Grävenweg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01012 Gerhardstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01039 Glashüttenstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01043 Glückaufstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01060 Gottfried-Wilhelm-Straße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01061 Grabenstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01183 Hangohrstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01227 Hedwig-Dransfeld-Platz
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01240 Heidhauser Platz
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01276 Henricistraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01296 Heuweg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01347 Hohendahlstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01377 Huckshorst
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01383 Hülsenbruchstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01455 Im Beckmannsfeld
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01462 Im Dreieck
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
+  - Prüfung: Angenommene Nebenwirkung von R4 (S. 91). Weil der Ordnungspunkt in „Zeche Eintracht II." nicht mehr als Satzende zählt, läuft die Lemma-Rückwärtssuche über den Satz hinaus und nimmt „Zur ehemaligen Zeche Eintracht II." mit. `_lemma_auffaellig` erkennt die Überlänge und stuft auf `unsicher` — der Fehler ist gekennzeichnet, nicht still (precision-first). Namenskette (Dandermannsteg) und Kopffelder sind korrekt; Nachzug über `daten/korrekturen.csv` möglich.
 - 01501 Im Westerbruch
-  - Prüfung: R2: ein abgeschnittener Klammerzusatz wurde zu einer Vollform ergänzt und die Ergänzung gekennzeichnet. Inhaltlich geändert hat sich nur Name: „Im Westerbruch (Verl" → „Im Westerbruch (Verl.)" — jeweils eine Verbesserung (R1/R2/R5).
-- 01517 Ingelheimer Straße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01518 Inselstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01596 Conrad-Engels-Weg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01602 Straßburger Straße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01607 Carl-Schmitz-Weg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01614 Am Bruchweiher
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01641 Kampmannbrücke
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01652 Kapitelberg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01671 Kasteienstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01710 Kirchhofsallee
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01734 Kleine Schäferstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01751 Klumbeckweg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01771 Kötterei
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01784 Kopernikusstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01838 Kütings Garten
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01856 Kevelohbusch
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Inhaltlich geändert hat sich nur stadtteile: „Überruhr- Hinsel" → „Überruhr-Hinsel" — jeweils eine Verbesserung (R1/R2/R5).
-- 01869 Kleine Rahmstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01887 Kirchgang
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01900 Langeheide
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 01960 Lichterweg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02032 Langeoogweg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02044 Mariannenbahn
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02061 Märkische Straße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02082 Markgrafenstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
+  - Prüfung: R2 (Klammerzusatz ergänzt): `Im Westerbruch (Verl` → `Im Westerbruch (Verl.)`. Kopffelder unverändert, Kette sonst identisch mit 54c5e2a.
 - 02137 Middeldorper Weg
-  - Prüfung: R2: ein abgeschnittener Klammerzusatz wurde zu einer Vollform ergänzt und die Ergänzung gekennzeichnet. Inhaltlich geändert hat sich nur Name: „Middeldorper Weg (Verl.." → „Middeldorper Weg (Verl.)" — jeweils eine Verbesserung (R1/R2/R5).
-- 02159 Moorenstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02164 Mosebachstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02236 Neuessener Straße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02247 Nibelungenplatz
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02248 Nibelungenweg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02267 Nöttelhof
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02273 Nordschleswigstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02312 Oberer Pustenberg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Inhaltlich geändert hat sich nur Name: „Pustenberg (tiw.)" → „Pustenberg (tlw.)" — jeweils eine Verbesserung (R1/R2/R5).
-- 02314 Oberhauser Straße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
+  - Prüfung: R2 (Klammerzusatz ergänzt): `Middeldorper Weg (Verl..` → `(Verl.)` — der doppelte Punkt ist eine OCR-Verdopplung, die Vollform damit eindeutig. Kennzeichnung trotzdem gesetzt, weil R2 jede Ergänzung meldet.
 - 02318 Oberscheidtstraße
-  - Prüfung: Dieselbe R4-Nebenwirkung wie 00601: „Kaiser Wilhelms I." endet nicht mehr den Satz, der Rest „e sowie Generaladjutant Kaiser Wilhelms I." landet im Lemma. Form und Länge sind auffällig, der Eintrag ist `unsicher`; zusätzlich trägt er den R6-Hinweis `Anker OCR-korrigiert`. Namenskette (Bülowstraße → Oberscheidtstraße) unverändert und richtig (S. 251).
-- 02462 Prinz-Adolf-Straße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Inhaltlich geändert hat sich nur Name: „Prinz-Adolf- Straße" → „Prinz-Adolf-Straße" — jeweils eine Verbesserung (R1/R2/R5).
-- 02506 Ostendeweg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02521 Ketteltasches Hof
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02550 Rahmheide
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02563 Rausenbergerstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02578 Reineke-Fuchs-Straße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02580 Rembrandtstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
+  - Prüfung: Dieselbe R4-Nebenwirkung wie 00601 (S. 251): „Kaiser Wilhelms I." beendet den Satz nicht mehr, der Rest „e sowie Generaladjutant Kaiser Wilhelms I." landet im Lemma. Form und Länge sind auffällig, der Eintrag steht auf `unsicher`. Namenskette Bülowstraße → Oberscheidtstraße unverändert und richtig.
 - 02621 Röntgenstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still; R2: ein abgeschnittener Klammerzusatz wurde zu einer Vollform ergänzt und die Ergänzung gekennzeichnet. Inhaltlich geändert hat sich nur Name: „Marschallstraße (tlw" → „Marschallstraße (tlw.)" — jeweils eine Verbesserung (R1/R2/R5).
-- 02628 Rollstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
+  - Prüfung: R2 (Klammerzusatz ergänzt): `Marschallstraße (tlw` → `(tlw.)`. Der Eintrag trug in der ersten Regeneration zusätzlich `Anker OCR-korrigiert`; nach der Korrektur der Hinweis-Regel bleibt allein die Zusatz-Ergänzung als Prüfgrund.
 - 02656 Rüttenscheider Straße
-  - Prüfung: R2: ein abgeschnittener Klammerzusatz wurde zu einer Vollform ergänzt und die Ergänzung gekennzeichnet. Inhaltlich geändert hat sich nur Name: „Hermann-Göring-Straße (Umb" → „Hermann-Göring-Straße (Umb.)" — jeweils eine Verbesserung (R1/R2/R5).
-- 02659 Ruhrau
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02680 Regenbogenweg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02749 Schederhofstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02752 Scheidtstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02775 Schlettweg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Inhaltlich geändert hat sich nur stadtteile: „Überruhr- Hinsel" → „Überruhr-Hinsel" — jeweils eine Verbesserung (R1/R2/R5).
-- 02837 Schulte-Pelkum-Straße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Inhaltlich geändert hat sich nur Name: „Schulte-Pelkum- Straße" → „Schulte-Pelkum-Straße" — jeweils eine Verbesserung (R1/R2/R5).
-- 02839 Schurenstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Inhaltlich geändert hat sich nur stadtteile: „Altenessen- Nord" → „Altenessen-Nord" — jeweils eine Verbesserung (R1/R2/R5).
-- 02870 Sevinghauser Weg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02886 Simsonstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02900 Sophienstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02917 Springmannstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02927 Stapenhorststraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 02953 Stensstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
+  - Prüfung: R2 (Klammerzusatz ergänzt): `Hermann-Göring-Straße (Umb` → `(Umb.)`. Die beiden „(Essen)"/„(Rüttenscheid)"-Zusätze der frühen Stadien sind unberührt — R2 rührt nur die bekannten Kürzel an.
 - 02974 Stoppenberger Straße
-  - Prüfung: R2: ein abgeschnittener Klammerzusatz wurde zu einer Vollform ergänzt und die Ergänzung gekennzeichnet. Inhaltlich geändert hat sich nur Name: „Lützowstraße (tiw" → „Lützowstraße (tlw.)" — jeweils eine Verbesserung (R1/R2/R5).
-- 03083 Tonstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 03093 Triftstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 03114 Ten-Hövel-Weg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Inhaltlich geändert hat sich nur Name: „Ten- Hövel-Weg" → „Ten-Hövel-Weg" — jeweils eine Verbesserung (R1/R2/R5).
-- 03257 Veldeckestraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 03345 Welkerhude
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Inhaltlich geändert hat sich nur stadtteile: „Altenessen- Nord" → „Altenessen-Nord" — jeweils eine Verbesserung (R1/R2/R5).
+  - Prüfung: R2 (Klammerzusatz ergänzt): `Lützowstraße (tiw` → `(tlw.)` in einer siebenstadigen Kette. Sieben Stadien, keines verloren oder umdatiert.
 - 03359 Weserstraße
-  - Prüfung: R2: ein abgeschnittener Klammerzusatz wurde zu einer Vollform ergänzt und die Ergänzung gekennzeichnet. Inhaltlich geändert hat sich nur Name: „Joseph-Hommer-Weg (Umb" → „Joseph-Hommer-Weg (Umb.)" — jeweils eine Verbesserung (R1/R2/R5).
-- 03360 Wesselbaumweg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 03387 Wiesbadener Straße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 03409 Windscheidstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 03429 Wolbeckstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Inhaltlich geändert hat sich nur stadtteile: „Altenessen- Nord" → „Altenessen-Nord" — jeweils eine Verbesserung (R1/R2/R5).
-- 03444 Walter-Hohmann-Straße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Inhaltlich geändert hat sich nur Name: „Walter- Hohmann-Straße" → „Walter-Hohmann-Straße" — jeweils eine Verbesserung (R1/R2/R5).
-- 03504 Zimmermannstraße
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Inhaltlich geändert hat sich nur Name: „Zimmermannstraße (Verl)" → „Zimmermannstraße (Verl.)" — jeweils eine Verbesserung (R1/R2/R5).
-- 03552 Am Wiedenfeld
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 03610 Fröbelweg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 03617 An der Pierburg
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 03676 Herkendell
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
-- 03731 Oefte
-  - Prüfung: R6: der Anker dieser Seite weicht von `Schl.-Nr.:` ab. Gelesen wurde der Eintrag schon vorher (die Anker-Toleranz ist älter), neu ist allein der Hinweis — bisher tolerierte der Parser still. Kopffelder und Namenskette sind Zeichen für Zeichen identisch mit 54c5e2a — es ändert sich nur die Kennzeichnung, kein Datenverlust.
+  - Prüfung: R2 (Klammerzusatz ergänzt): `Joseph-Hommer-Weg (Umb` → `(Umb.)`. Kopffelder unverändert.
 - 03748 Schulstraße
-  - Prüfung: R2: ein abgeschnittener Klammerzusatz wurde zu einer Vollform ergänzt und die Ergänzung gekennzeichnet. Inhaltlich geändert hat sich nur Name: „Langemarckstraße (Umb" → „Langemarckstraße (Umb.)" — jeweils eine Verbesserung (R1/R2/R5).
+  - Prüfung: R2 (Klammerzusatz ergänzt): `Langemarckstraße (Umb` → `(Umb.)`. Kopffelder unverändert.
 
 
 ## Status unsicher → automatisch
 
-34 Aufstufungen — Einträge, deren einziger Prüfgrund
-ein verstümmelter Klammerzusatz war. Nachgezählt: alle 34 tauchen in „Name verändert" mit
+35 Aufstufungen — Einträge, deren einziger Prüfgrund
+ein verstümmelter Klammerzusatz war. Nachgezählt: alle 35 tauchen in „Name verändert" mit
 genau einer solchen Korrektur auf (`Sonnenstraße {tlw.)`, `Hindenburgstraße {Umb.)`,
-`Helenenstraße (Umb.}`, `Curtiusstraße (t!w.)`).
-R2 normalisiert die Form jetzt eindeutig; eine bloße Schreibvariante `{` statt `(` ist
-belegt und wird deshalb nicht mehr gekennzeichnet (Spec R2: Korrekturen der Schreibung
-gelten als eindeutig, nur *Ergänzungen* erzeugen einen Hinweis). Alle 34 sind in
-„Name verändert" mit alter und neuer Form nachvollziehbar; kein Eintrag steigt auf, ohne
-dass sein Prüfgrund nachweislich behoben wäre.
+`Helenenstraße (Umb.}`, `Curtiusstraße (t!w.)`). R2 normalisiert die Form jetzt eindeutig;
+eine bloße Schreibvariante `{` statt `(` ist belegt und wird deshalb nicht mehr
+gekennzeichnet (Spec R2: Korrekturen der Schreibung gelten als eindeutig, nur *Ergänzungen*
+erzeugen einen Hinweis). Kein Eintrag steigt auf, ohne dass sein Prüfgrund nachweislich
+behoben wäre.
 
 - 00091 Am Herrenbusch
 - 00528 Langenbrahmstraße
@@ -1099,6 +877,7 @@ dass sein Prüfgrund nachweislich behoben wäre.
 - 01405 Husemannweg
 - 01431 Holteyer Hang
 - 01461 Imbuschweg
+- 01520 Irispfad
 - 01748 Klosterstraße
 - 01786 Kleine Steubenstraße
 - 01968 Lilienstraße

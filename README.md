@@ -166,7 +166,7 @@ Primärschlüssel: (`schl_nr`, `stadium`). Beispiel (Schl.-Nr. 01838, Buchseite 
 Damit lässt sich der Name der Straße zu jedem beliebigen Stichtag ableiten — nicht nur
 zum Erhebungsstand 1936.
 
-### `daten/konkordanz_1936.csv` (406 Zeilen)
+### `daten/konkordanz_1936.csv` (421 Zeilen)
 
 Abgeleitet aus `namen.csv`: für jede Straße mit `status=automatisch` das Namensstadium,
 das zum Erhebungsstand des Adressbuchs Essen 1936 galt (Arbeitsstichtag **1936-06-30**,
@@ -181,7 +181,7 @@ heutigen Namen.
 | `schl_nr` | amtliche Schlüsselnummer | siehe oben |
 | `datum_praezision` | Genauigkeit der zugrunde liegenden Datierung | wie in `namen.csv` |
 | `quelle` | Herkunft der Angabe | wörtlich „Dickhoff 2015" |
-| `zusatz` | abgetrennter Klammerzusatz aus der Quelle | z. B. „(tlw.)", „(Verl.)"; leer wenn keiner vorlag (143 von 406 Zeilen gefüllt) |
+| `zusatz` | abgetrennter Klammerzusatz aus der Quelle | z. B. „(tlw.)", „(Verl.)"; leer wenn keiner vorlag (149 von 421 Zeilen gefüllt) |
 | `eindeutig` | ob `(stadtteil, ehemalig)` auf genau eine `schl_nr` trifft | `ja` (386) \| `nein` (39, Kollisionen) |
 
 Straßen mit `status=unsicher` gehen **nicht** in die Konkordanz ein, da ihr heutiger
@@ -216,19 +216,19 @@ korrigierten Werte selbst, nicht über eine Änderung an `pruefung.csv`.
 ## Bezifferte Qualität
 
 - **388** OCR-Buchseiten → **3.354** vom Parser segmentierte Einträge.
-- `daten/strassen.csv`: **3.349** Zeilen, davon **375** mit `status=unsicher`
-  (**2.973** `automatisch`, **1** `geprueft`).
+- `daten/strassen.csv`: **3.349** Zeilen, davon **256** mit `status=unsicher`
+  (**3.092** `automatisch`, **1** `geprueft`).
 - `daten/namen.csv`: **5.473** Namensstadien (Datierungsgenauigkeit: **4.746** `tag`,
   **325** `unbekannt`, **212** `jahr`, **182** `vor`, **8** `jahrhundert`).
-- `daten/konkordanz_1936.csv`: **406** Zeilen (**365** `eindeutig=ja`, 41 `eindeutig=nein`;
-  **143** mit Klammerzusatz).
+- `daten/konkordanz_1936.csv`: **421** Zeilen (**378** `eindeutig=ja`, 43 `eindeutig=nein`;
+  **149** mit Klammerzusatz).
 
 ### Drei unabhängige Selbstprüfungen
 
 | Prüfung | Ergebnis |
 |---|---|
 | Schlüsselnummern (amtlich, 1–3771 erwartet) | 3.349 erfasst, 425 Lücken, **3 Dubletten** |
-| alphabetische Ordnung der Lemmata | **70** aus der Sortierung fallende Lemmata (40 bereits als `unsicher` markiert, 30 neu auffällig) |
+| alphabetische Ordnung der Lemmata | **70** aus der Sortierung fallende Lemmata (38 bereits als `unsicher` markiert, 32 neu auffällig) |
 | Abgleich mit dem amtlichen Straßenverzeichnis (`strassen_aktuell.csv`) | **3.237** bestätigt, 112 nicht im Verzeichnis (erwartbar bei aufgehobenen Straßen) |
 
 Details, Methodik und Interpretation: [`docs/qualitaet.md`](docs/qualitaet.md); die
@@ -292,7 +292,7 @@ Regeln der Reparatur sind in
 [`docs/specs/2026-09-11-parser-reparatur-design.md`](docs/specs/2026-09-11-parser-reparatur-design.md)
 beschrieben, der Nachweis jeder Änderung in
 [`docs/regression/2026-09-parser-reparatur.md`](docs/regression/2026-09-parser-reparatur.md).
-Dass der Endstand mehr unsichere Einträge zählt als der Prototyp der Spec (375 statt 202),
+Dass der Endstand mehr unsichere Einträge zählt als der Prototyp der Spec (256 statt 202),
 ist gewollt und keine Regression: leere Kopffelder, Toleranz-Hinweise und unvollständig
 gelesene Namensketten sind seither eigene Prüfgründe — der Prototyp las diese Fälle still.
 
@@ -328,7 +328,7 @@ nur Stufe 1+2 (`strassen/erschliessen.py`) ausführen; `daten/strassen.csv` und
 Ehrlichkeit über die Grenzen dieses Datensatzes ist Teil seines Qualitätsanspruchs —
 nichts hier ist verschwiegen, um sauberer zu wirken:
 
-- **375 unsichere Einträge** (`status=unsicher` in `strassen.csv`) sind vom Parser nicht
+- **256 unsichere Einträge** (`status=unsicher` in `strassen.csv`) sind vom Parser nicht
   sicher erschlossen; ihre Felder (insbesondere `strassenklasse`) können OCR-Rauschen
   enthalten. Sie gehen bewusst nicht in die Konkordanz ein.
 - **64 Konkordanz-Prüffälle** (`daten/pruefung_konkordanz.csv`, nicht Teil des
@@ -350,7 +350,7 @@ nichts hier ist verschwiegen, um sauberer zu wirken:
   bei unveränderten Namen verworfen, statt Information zu erfinden.
 - **Römische Ordnungspunkte im Lemma:** Doppelt vergebene Straßennamen trägt die Quelle
   als `I. <Name>` / `II. <Name>`. Der Parser hält den Punkt nach `I`, `II`, `III`, `IV`
-  und `Ill` fest und gewinnt so 11 dieser Lemmata zurück; die OCR schreibt `II.` aber
+  und `Ill` fest und gewinnt so **11 der 24** erwarteten Lemmata zurück; die OCR schreibt `II.` aber
   häufig als `Il.` oder `ll.` und `I.` als `l.` oder `1.` — diese Lesarten bleiben
   unbehandelt und die betroffenen Lemmata daher als Dublette in
   `daten/pruefung_validierung.csv` sichtbar (gekennzeichnet statt geraten). Als

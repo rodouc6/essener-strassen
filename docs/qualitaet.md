@@ -12,8 +12,8 @@ Drei unabhängige Selbstprüfungen des erschlossenen Datensatzes. Die konkreten 
 ## 2. Alphabetische Ordnung
 
 - aus der Sortierung fallende Lemmata: 70
-  - davon bereits als „unsicher" gekennzeichnet: 40
-  - davon neu auffällig (bisher „automatisch"): 30
+  - davon bereits als „unsicher" gekennzeichnet: 38
+  - davon neu auffällig (bisher „automatisch"): 32
   (bekannte Grenze: die Prüfung vergleicht nur direkte Nachbarn — zwei aufeinanderfolgende, gleichsinnig falsch sortierte Lemmata bleiben unentdeckt; Fälle in daten/pruefung_validierung.csv, grund=Alphabet)
 
 ## 3. Abgleich mit dem amtlichen Straßenverzeichnis

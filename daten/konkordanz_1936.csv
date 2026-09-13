@@ -1,4 +1,5 @@
 stadtteil,ehemalig,heutig,schl_nr,datum_praezision,quelle,zusatz,eindeutig
+Kray,Achtermbergstraße,Achternbergstraße,00005,tag,Dickhoff 2015,(Umb.),ja
 Bergerhausen,Ludwigstraße,Adelgundenweg,00009,tag,Dickhoff 2015,,ja
 Kray,Am Knottenberg,Äbtissinsteig,00016,tag,Dickhoff 2015,(tlw.),ja
 Steele,Aastraße,Ahestraße,00020,tag,Dickhoff 2015,,ja
@@ -22,6 +23,7 @@ Frohnhausen,Riehlstraße,Am Riehlpark,00574,tag,Dickhoff 2015,(tlw.),ja
 Bredeney,Eckbertstraße,Am Tann,00134,tag,Dickhoff 2015,(tlw.),ja
 Stadtwald,Wittekindstraße,Am Uhlenkrug,00255,tag,Dickhoff 2015,(tlw.),ja
 Stadtkern,Hochstraße,Am Waldthausenpark,00141,tag,Dickhoff 2015,,ja
+Stadtwald,Am Hang,Am Wiedenfeld,03552,tag,Dickhoff 2015,,ja
 Werden,Ringstraße,An der Stadtmauer,02605,tag,Dickhoff 2015,,ja
 Südviertel,Freiligrathstraße,An St. Ignatius,00173,tag,Dickhoff 2015,,ja
 Nordviertel,Niederstraße,An St. Marien,00175,tag,Dickhoff 2015,(tlw.),ja
@@ -37,6 +39,7 @@ Karnap,Gerhardstraße,Batenbrocker Straße,00295,tag,Dickhoff 2015,,ja
 Werden,Helmesberg,Beckhansweg,00305,tag,Dickhoff 2015,,nein
 Kray,E-Straße,Beekerwerth,00313,jahr,Dickhoff 2015,,ja
 Katernberg,Beisenstraße,Beisenstraße,00318,tag,Dickhoff 2015,(tlw.),ja
+Frohnhausen,Kruppstraße,Benno-Strauß-Straße,00515,tag,Dickhoff 2015,(tlw.),ja
 Bredeney,Rausenbergerstraße,Benzstraße,00326,tag,Dickhoff 2015,(tlw.),ja
 Bedingrade,Graffweg,Bergheimer Straße,00509,tag,Dickhoff 2015,,ja
 Kray,Zechenstraße,Berkenhölzken,00340,tag,Dickhoff 2015,,ja
@@ -90,6 +93,7 @@ Kupferdreh,Hügelstraße,Dixbäume,00640,tag,Dickhoff 2015,,ja
 Rüttenscheid,Charlottenstraße,Dohmanns Kamp,00644,tag,Dickhoff 2015,,ja
 Frohnhausen,Kerckhoffstraße,Dollendorfstraße,00645,tag,Dickhoff 2015,(tlw.),ja
 Heisingen,Mittelstraße,Dorflinde,00649,vor,Dickhoff 2015,,ja
+Schonnebeck,Schellbergstraße,Dornbuschhegge,00650,tag,Dickhoff 2015,,ja
 Kray,Dortmunder Straße,Dorstfelder Straße,00686,tag,Dickhoff 2015,(tlw.),ja
 Schönebeck,Gartenkamp,Dreigarbenfeld,00658,tag,Dickhoff 2015,(tlw.),nein
 Steele,Friedrichstraße,Dreiringstraße,00661,tag,Dickhoff 2015,,ja
@@ -98,6 +102,7 @@ Altendorf,Bungertstraße,Drügeshofstraße,00671,tag,Dickhoff 2015,,ja
 Werden,Friedrichstraße,Dückerstraße,00675,tag,Dickhoff 2015,,ja
 Byfang,Düschenweg,Düschenhofer Wald,00681,vor,Dickhoff 2015,,ja
 Burgaltendorf,Burgstraße,Dumberger Straße,00694,tag,Dickhoff 2015,,ja
+Kray,Eisenstraße,Dutzendriege,00684,tag,Dickhoff 2015,,ja
 Rüttenscheid,Wolfgangstraße,Eduard-Lucas-Straße,00725,tag,Dickhoff 2015,,ja
 Kettwig,Wiesenstraße,Eichendorffstraße,03767,tag,Dickhoff 2015,,ja
 Steele,Elisenstraße,Eickelkamp,00737,tag,Dickhoff 2015,,ja
@@ -216,6 +221,7 @@ Katernberg,Schüllerstraße,Joseph-Schüller-Platz,01581,tag,Dickhoff 2015,,ja
 Altenessen-Süd,I. Levenhove,Kämmereihude,01638,tag,Dickhoff 2015,,ja
 Karnap,Mathiasstraße,Kaiserswerthstraße,01624,tag,Dickhoff 2015,,ja
 Heidhausen,Klosterstraße,Kamillusweg,01636,tag,Dickhoff 2015,,ja
+Stoppenberg,Kirchberg,Kapitelberg,01652,tag,Dickhoff 2015,,ja
 Stadtkern,Kurienplatz,Kardinal-Hengsbach-Platz,02539,tag,Dickhoff 2015,,ja
 Nordviertel,Hundebrinkstraße,Karolingerstraße,01667,tag,Dickhoff 2015,(tlw.),ja
 Katernberg,Nienhausener Straße,Katernberger Straße,01675,tag,Dickhoff 2015,(tlw.),ja
@@ -223,6 +229,7 @@ Altenessen-Süd,Kellersonnweg,Kellersohnweg,01684,tag,Dickhoff 2015,,ja
 Werden,Kölner Straße,Kellerstraße,01685,tag,Dickhoff 2015,(tlw.),ja
 Stadtkern,Adolf-Hitler-Straße,Kettwiger Straße,01697,tag,Dickhoff 2015,(Umb.),nein
 Katernberg,Margarethenstraße,Kiepenkääls Weg,01705,vor,Dickhoff 2015,,ja
+Altenessen-Süd,Rahmstraße,Kleine Rahmstraße,01869,tag,Dickhoff 2015,(tlw.),ja
 Altendorf,Richterstraße,Kleine Richterstraße,01730,tag,Dickhoff 2015,(tlw.),ja
 Südostviertel,Steubenstraße,Kleine Steubenstraße,01786,tag,Dickhoff 2015,(tlw.),ja
 Südostviertel,Am Ostfriedhof,Klenzestraße,01743,tag,Dickhoff 2015,,ja
@@ -236,6 +243,7 @@ Rüttenscheid,Andreasstraße,Krawehlstraße,01807,tag,Dickhoff 2015,,ja
 Stoppenberg,Mathiasstraße,Krekenberg,01814,tag,Dickhoff 2015,,ja
 Stadtkern,Kirchstraße,Kreuzeskirchstraße,01866,tag,Dickhoff 2015,,ja
 Kettwig,Neustraße,Kringsgat,03729,vor,Dickhoff 2015,,ja
+Freisenbruch,Klosterstraße,Kütings Garten,01838,tag,Dickhoff 2015,,ja
 Borbeck-Mitte,Feldstraße,Kuhlmannsfeld,01865,tag,Dickhoff 2015,,ja
 Kupferdreh,Marktstraße,Kupferdreher Markt,01847,jahr,Dickhoff 2015,,ja
 Kupferdreh,Hauptstraße,Kupferdreher Straße,01848,tag,Dickhoff 2015,,ja
@@ -274,11 +282,13 @@ Gerschede,Donnerstraße,Münstermannstraße,02174,tag,Dickhoff 2015,(tlw.),ja
 Kray,Mozartstraße,Munscheidstraße,02178,jahr,Dickhoff 2015,,ja
 Schonnebeck,Querstraße,Nachbarnweg,02221,tag,Dickhoff 2015,,ja
 Ostviertel,Taubenstraße,Natorpstraße,02287,tag,Dickhoff 2015,(Verl.),ja
+Kray,Hagenstraße,Nibelungenweg,02248,jahr,Dickhoff 2015,,ja
 Frohnhausen,Curtiusstraße,Niebuhrstraße,02290,tag,Dickhoff 2015,(tlw.),ja
 Katernberg,Wallstraße,Nienhuser Busch,02256,tag,Dickhoff 2015,(tlw.),nein
 Bergerhausen,Wupperstraße,Niersstraße,03441,tag,Dickhoff 2015,,ja
 Altendorf,Gartenkamp,Nöggerathstraße,02266,tag,Dickhoff 2015,(tlw.),ja
 Altendorf,Koppestraße,Oberdorfstraße,02310,tag,Dickhoff 2015,,ja
+Heidhausen,Pustenberg,Oberer Pustenberg,02312,tag,Dickhoff 2015,(tlw.),ja
 Kettwig,Alte Straße,Oberlehberg,03733,jahr,Dickhoff 2015,(tlw.),nein
 Bergeborbeck,Herderstraße,Oskar-Pannen-Straße,01280,tag,Dickhoff 2015,,ja
 Rüttenscheid,Otmarstraße,Oskarstraße,02326,tag,Dickhoff 2015,(tlw.),ja
@@ -332,15 +342,18 @@ Katernberg,Roonstraße,Schniedtkamp,02795,tag,Dickhoff 2015,,ja
 Katernberg,Kirchstraße,Schonnebeckhöfe,02816,vor,Dickhoff 2015,,nein
 Kray,G-Straße,Schrägbauweg,02820,jahr,Dickhoff 2015,,ja
 Ostviertel,Bergmannstraße,Schürenbergstraße,02825,tag,Dickhoff 2015,,ja
+Huttrop,Siepenstraße,Schulte-Pelkum-Straße,02837,tag,Dickhoff 2015,(tlw.),ja
 Stoppenberg,Am alten Friedhof,Schwanhildenhöhe,02844,tag,Dickhoff 2015,,ja
 Stadtwald,Schwarze-Lenen-Straße,Schwarze-Lenen-Weg,02848,jahr,Dickhoff 2015,,ja
 Burgaltendorf,In den Höfen,Schwarzensteinweg,03029,tag,Dickhoff 2015,(tlw.),ja
 Frohnhausen,Potthälterpad,Schweriner Straße,02852,tag,Dickhoff 2015,,ja
+Freisenbruch,Wattenscheider Straße,Sevinghauser Weg,02870,tag,Dickhoff 2015,,ja
 Bergerhausen,Mainstraße,Siegstraße,02066,tag,Dickhoff 2015,,ja
 Karnap,Leonorenstraße,Sigambrerweg,02882,tag,Dickhoff 2015,,ja
 Dellwig,Einbleckstraße,Söllockweg,03024,tag,Dickhoff 2015,,ja
 Kray,Bahnhofstraße,Soester Straße,02893,tag,Dickhoff 2015,,ja
 Karnap,Robertstraße,Spakenbroich,02901,tag,Dickhoff 2015,,ja
+Stoppenberg,Beuststraße,Springmannstraße,02917,tag,Dickhoff 2015,,ja
 Katernberg,Bruckmannstraße,Stauderstraße,03014,vor,Dickhoff 2015,,ja
 Heisingen,Ringstraße,Stauseebogen,02929,vor,Dickhoff 2015,,ja
 Steele,Bergstraße,Steeler Bergstraße,00338,tag,Dickhoff 2015,,ja
@@ -383,6 +396,7 @@ Rüttenscheid,Irmgardstraße,Von-Seeckt-Straße,03246,tag,Dickhoff 2015,,ja
 Horst,Horststraße,Vryburg,03254,tag,Dickhoff 2015,(tlw.),nein
 Steele,Piekenbrockstraße,Waisenhausbrink,03295,tag,Dickhoff 2015,,ja
 Schuir,Eststraße,Wallneyer Straße,03316,tag,Dickhoff 2015,(tlw.),ja
+Südviertel,Kaupenstraße,Walter-Hohmann-Straße,03444,tag,Dickhoff 2015,(tlw.),nein
 Bredeney,Mückestraße,Weddigenstraße,03327,tag,Dickhoff 2015,,ja
 Freisenbruch,Jakobstraße,Weg am Berge,03328,tag,Dickhoff 2015,,ja
 Rüttenscheid,Ludgerusstraße,Wegenerstraße,03329,tag,Dickhoff 2015,,ja
@@ -400,7 +414,8 @@ Rüttenscheid,Wittekindstraße,Wittenbergstraße,03420,tag,Dickhoff 2015,,ja
 Schuir,Wolfsbachweg,Wolfsbachtal,03451,tag,Dickhoff 2015,(tlw.),ja
 Burgaltendorf,Am Bahnhof,Worringstraße,03454,tag,Dickhoff 2015,,ja
 Bergerhausen,Sartoriusstraße,Wuppertaler Straße,03442,tag,Dickhoff 2015,(tlw.),ja
-Südviertel,Kaupenstraße,Zindelstraße,03533,tag,Dickhoff 2015,(tlw.),ja
+Werden,Hüsgenweg,Zimmermannstraße,03504,tag,Dickhoff 2015,,ja
+Südviertel,Kaupenstraße,Zindelstraße,03533,tag,Dickhoff 2015,(tlw.),nein
 Kray,C-Straße,Zollernweg,03511,jahr,Dickhoff 2015,,ja
 Kettwig,Laupendahler Straße,Zur Alten Fähre,03770,tag,Dickhoff 2015,(tlw.),nein
 Freisenbruch,Schmiedestraße,Zweibachegge,03527,vor,Dickhoff 2015,,ja
