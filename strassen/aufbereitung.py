@@ -51,7 +51,11 @@ _OCR_FEHLER = re.compile(r"([Ss]tra)-\n\s*B(?=e)")
 # 'Überruhr-\nHinsel'), im Deutschen gibt es kein '- ' — der Strich bleibt, das
 # Zeilenende verschwindet ohne Leerzeichen. 562 Stellen im Korpus, 184 bestätigte
 # Prüflistenzeilen (Spec 2026-09-13, R1). Muss VOR dem Zeilenumbruch→Leerzeichen laufen.
-_TRENNUNG_GROSS = re.compile(r"-\n\s*(?=[A-ZÄÖÜ])")
+# Lookbehind (?<=\w) verlangt ein Wortzeichen direkt vor dem Bindestrich: ein
+# Gedankenstrich mit Leerzeichen davor ('... erste - inzwischen eingeebnete -\n
+# Borbecker ...', S. 32, 47, 60, 105, 131, 326, 335) ist kein Trennstrich und
+# bleibt mit Leerzeichen erhalten (Fix-Runde 1, Review-Finding).
+_TRENNUNG_GROSS = re.compile(r"(?<=\w)-\n\s*(?=[A-ZÄÖÜ])")
 # Silbentrennung: Trennstrich am Zeilenende vor Kleinbuchstabe.
 # Vor Großbuchstabe ist der Strich Namensbestandteil (Franz-Arens-Straße).
 _TRENNUNG = re.compile(r"-\n(?=[a-zäöüß])")

@@ -161,6 +161,16 @@ def test_trennstrich_vor_kleinbuchstabe_weiterhin_aufgeloest():
     assert verbinde_zeilen("Katern-\nberger Straße") == "Katernberger Straße"
 
 
+def test_gedankenstrich_mit_leerzeichen_vor_grossbuchstabe_bleibt_getrennt():
+    """S. 32: Gedankenstrich ('... erste - inzwischen eingeebnete -\nBorbecker
+    ...') ist kein Trennstrich — das Leerzeichen davor unterscheidet ihn vom
+    Namensbestandteil. Muss '- Borbecker' (mit Leerzeichen) bleiben."""
+    roh = "der erste - inzwischen eingeebnete -\nBorbecker Gemeindefriedhof."
+    result = verbinde_zeilen(roh)
+    assert "eingeebnete - Borbecker" in result
+    assert "-Borbecker" not in result
+
+
 def test_grossumlaut_woerterbuch_korrigiert_bekannte_woerter():
     roh = "Str.-Gr.: Essener Geschichte und Ortlichkeit, Bergbau, 1906: Abtissin"
     aus = verbinde_zeilen(roh)
