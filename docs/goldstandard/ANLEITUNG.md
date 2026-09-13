@@ -230,6 +230,32 @@ Erfahrungen aus der Sichtung vom 2026-09-13, die `uebernehmen` und das Overlay v
   `rendere_ausschnitt(*buchseite_zu_scan(N+1), QUELLE_PFAD, ziel, dpi=150)` aus
   `strassen.goldstandard`.
 
+### Sichtung der unsicheren Einträge
+
+Für alle Einträge mit `status=unsicher` erzeugt
+
+```bash
+python3 -m strassen.llm_vergleich unsicher            # -> daten/pruefung_unsicher.csv
+python3 -m strassen.pruefbilder --pruefliste daten/pruefung_unsicher.csv \
+        --ziel llm/pruefbilder_unsicher --einig beide --einig eines --einig keines --einig unlesbar
+```
+
+eine **vollständige** Prüfliste (alle Kopffelder und Stadien je Eintrag, nicht nur
+Abweichungen) im Format der LLM-Prüfliste, ergänzt um die Spalte `grund` mit den
+Prüfgründen des Parsers. `einig` kennt hier zusätzlich `keines` (beide Modelle lesen wie
+der Parser). Die Sichtung läuft wie oben: Prüfbild ansehen, bei Parser-Fehlern `korrektur`
+und `beleg` füllen; ist der ganze Eintrag korrekt, in **einer** Zeile des Eintrags
+`korrektur = wert_parser` eintragen — das wird bei der Übernahme zur Bestätigung
+(`feld=eintrag`) und hebt den Eintrag auf `geprueft`. Übernahme dann mit
+
+```bash
+python3 -m strassen.llm_vergleich uebernehmen --pruefliste daten/pruefung_unsicher.csv
+python3 -m strassen.erschliessen && python3 -m strassen.veroeffentlichen
+```
+
+Schlüsselnummern-Dubletten (02402, 03448) fallen in dieser Liste zusammen und sind über
+`schl_nr` nicht korrigierbar; sie bleiben `unsicher`, solange sie so im Buch stehen.
+
 ## Hinweis zur Stichprobe selbst
 
 Die Ziehung ist geschichtet (40 automatisch, 10 unsicher) und deterministisch

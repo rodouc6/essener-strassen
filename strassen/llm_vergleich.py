@@ -381,6 +381,78 @@ def baue_pruefliste(parser, modelle: dict):
     return zeilen, kennzahlen
 
 
+FELDER_PRUEFLISTE_VOLL = FELDER_PRUEFLISTE + ["grund"]
+
+
+def gruende_je_schl_nr(strassen, pruefung_pfad) -> dict:
+    """schl_nr -> Prüfgründe aus daten/pruefung.csv ('; '-getrennt). pruefung.csv trägt keine
+    schl_nr, sondern (buchseite, lemma_roh); der Abgleich läuft über das Lemma des Eintrags auf
+    derselben Buchseite — ein nicht zuordenbarer Grund fällt still weg (nur Anzeige)."""
+    if not Path(pruefung_pfad).is_file():
+        return {}
+    je_lemma = {}
+    for z in (strassen.values() if isinstance(strassen, dict) else strassen):
+        je_lemma.setdefault((int(z["buchseite"]), z["lemma"]), z["schl_nr"])
+    gruende = defaultdict(list)
+    with open(pruefung_pfad, encoding="utf-8", newline="") as f:
+        for z in csv.DictReader(f):
+            schl = je_lemma.get((int(z["buchseite"] or 0), z["lemma_roh"]))
+            if schl and z["grund"] not in gruende[schl]:
+                gruende[schl].append(z["grund"])
+    return {schl: "; ".join(g) for schl, g in gruende.items()}
+
+
+def baue_pruefliste_vollstaendig(parser, modelle: dict, schl_nrs, gruende: dict = None) -> list:
+    """Alle Felder der angegebenen Einträge (Kopffelder, Stadien) mit Parser- und Modellwerten —
+    unabhängig davon, ob sie abweichen. Für die Sichtung gekennzeichneter Einträge, bei der der
+    ganze Eintrag gegen den Scan geprüft wird. einig: 'beide'/'eines' wie in der Prüfliste,
+    zusätzlich 'keines' (beide Modelle lesen wie der Parser) und 'unlesbar'. Die Spalte 'grund'
+    trägt die Prüfgründe des Parsers. Nicht normalisierbare Modelldaten erscheinen wie in
+    der Prüfliste als '(nicht normalisierbar)'/'(eingeschränkt lesbar)'."""
+    p_s, p_n = als_struktur(*parser)
+    seite_je_schl = {schl: int(z["buchseite"]) for schl, z in p_s.items()}
+    daten, gelesen, problem_werte = {}, {}, {}
+    for kurz, m in modelle.items():
+        m_s, m_n, gelesen[kurz], _, probleme = _modell_aufbereiten(m)
+        daten[kurz] = (m_s, m_n)
+        problem_werte[kurz] = {}
+        for pr in probleme:
+            marker = {GRUND_DATUM: "nicht normalisierbar",
+                      GRUND_DATUM_EINGESCHRAENKT: "eingeschränkt lesbar"}.get(pr["grund"], "nicht als Liste")
+            problem_werte[kurz][(pr["schl_nr"], pr["feld"])] = f"{pr['text']} ({marker})"
+    gruende = gruende or {}
+    zeilen = []
+    for schl in schl_nrs:
+        if schl not in p_s:
+            continue
+        for feld in _felder_des_eintrags(p_s, p_n, schl):
+            z = _zeile(schl, feld, p_s, p_n, seite_je_schl, daten, gelesen, problem_werte)
+            if feld.endswith("_urspruenglich") and z["wert_parser"] == "falsch" and z["einig"] != "beide" \
+                    and all(z[f"wert_{k}"] in ("", "falsch") for k in KURZNAMEN if f"wert_{k}" in z):
+                continue        # Standardwert ohne Widerspruch — reine Anzeigelast
+            if z["einig"] == "eines" and all(z[f"wert_{k}"] == z["wert_parser"] for k in KURZNAMEN if f"wert_{k}" in z):
+                z["einig"] = "keines"
+            z["grund"] = gruende.get(schl, "")
+            zeilen.append(z)
+    zeilen.sort(key=lambda z: (int(z["buchseite"] or 0), z["schl_nr"], _feldrang(z["feld"])))
+    return zeilen
+
+
+def _feldrang(feld: str):
+    if feld in KOPFFELDER:
+        return (0, KOPFFELDER.index(feld), 0)
+    m = _STADIUMFELD.match(feld)
+    return (1, int(m.group(1)), ("datum", "name", "urspruenglich").index(m.group(2) or "datum"))
+
+
+def schreibe_pruefliste_vollstaendig(zeilen, pfad):
+    Path(pfad).parent.mkdir(parents=True, exist_ok=True)
+    with open(pfad, "w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=FELDER_PRUEFLISTE_VOLL, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(zeilen)
+
+
 def schreibe_pruefliste(zeilen, pfad=PRUEFLISTE_PFAD):
     Path(pfad).parent.mkdir(parents=True, exist_ok=True)
     with open(pfad, "w", encoding="utf-8", newline="") as f:
@@ -600,8 +672,24 @@ def _cli():
     p2.add_argument("--ausgabe", default=str(WURZEL / "docs" / "goldstandard" / "ergebnis_llm.md"))
     p3 = sub.add_parser("uebernehmen"); p3.add_argument("--daten", default=str(DATEN_DIR))
     p3.add_argument("--datum", default=date.today().isoformat())
+    p3.add_argument("--pruefliste", default="", help="andere Prüfliste als daten/pruefung_llm.csv (z. B. pruefung_unsicher.csv)")
+    p4 = sub.add_parser("unsicher", help="vollständige Prüfliste aller Einträge mit status=unsicher")
+    p4.add_argument("--antworten-dir", default=str(ANTWORTEN_DIR)); p4.add_argument("--daten", default=str(DATEN_DIR))
+    p4.add_argument("--ausgabe", default=str(DATEN_DIR / "pruefung_unsicher.csv"))
     a = p.parse_args()
 
+    if a.befehl == "unsicher":
+        if pruefliste_hat_offene_korrekturen(a.ausgabe):
+            print(f"Fehler: {a.ausgabe} enthält nicht übernommene Korrekturen — erst `uebernehmen "
+                  f"--pruefliste {a.ausgabe}` ausführen oder die Datei sichern", file=sys.stderr)
+            sys.exit(1)
+        parser = _lade_parser(a.daten)
+        unsicher = [z["schl_nr"] for z in parser[0] if z["status"] == "unsicher"]
+        gruende = gruende_je_schl_nr(parser[0], Path(a.daten) / "pruefung.csv")
+        zeilen = baue_pruefliste_vollstaendig(parser, _modelle(a.antworten_dir), unsicher, gruende)
+        schreibe_pruefliste_vollstaendig(zeilen, a.ausgabe)
+        print(f"{len(zeilen)} Prüfzeilen für {len(set(unsicher))} unsichere Einträge -> {a.ausgabe}")
+        return
     if a.befehl == "pruefliste":
         ziel = Path(a.daten) / "pruefung_llm.csv"
         if pruefliste_hat_offene_korrekturen(ziel):
@@ -638,7 +726,7 @@ def _cli():
     else:
         from strassen.korrekturen import lade_korrekturen
         korrekturen_pfad = Path(a.daten) / "korrekturen.csv"   # --daten gilt auch hier
-        with open(Path(a.daten) / "pruefung_llm.csv", encoding="utf-8", newline="") as f:
+        with open(a.pruefliste or Path(a.daten) / "pruefung_llm.csv", encoding="utf-8", newline="") as f:
             pruefliste = list(csv.DictReader(f))
         vorhanden = lade_korrekturen(korrekturen_pfad)
         neu = uebernehmen(pruefliste, vorhanden, a.datum)

@@ -481,3 +481,45 @@ def test_messe_goldstandard_verwirft_fliesstext_im_ist_wert():
                    "wert": "Aachener Straße", "korrekt": "ja", "korrektur": "", "status": "automatisch"}]
     st = lv.messe_goldstandard(stichprobe, modell)
     assert st["fehler"][0]["ist"] == f"(Fließtext, {len(lang)} Zeichen, verworfen)"
+
+
+# --- Vollständige Prüfliste für ausgewählte Einträge (Sichtung der unsicheren, 2026-09-13) ---
+
+def test_pruefliste_vollstaendig_listet_alle_felder_der_gewaehlten_eintraege():
+    modelle = {"qwen": {"antworten": {23: _modell_antwort(**{"00002": {"stadtteile": "Werden-Mitte"}})}},
+               "mistral": {"antworten": {23: _antwort()}}}
+    zeilen = lv.baue_pruefliste_vollstaendig(_parser(), modelle, ["00002", "00004"],
+                                             gruende={"00002": "Datum ohne Doppelpunkt"})
+    je = {(z["schl_nr"], z["feld"]): z for z in zeilen}
+    # Kopffelder + Stadien des Eintrags, in Feldreihenfolge; 00004 hat keine Stadien
+    assert [z["feld"] for z in zeilen if z["schl_nr"] == "00002"] == [
+        "lemma", "stadtteile", "strassenklasse", "namensgruppe", "verweis_auf",
+        "stadium_1_datum", "stadium_1_name", "stadium_1_urspruenglich"]
+    assert [z["feld"] for z in zeilen if z["schl_nr"] == "00004"] == list(lv.KOPFFELDER)
+    assert {z["schl_nr"] for z in zeilen} == {"00002", "00004"}
+    z = je[("00002", "stadtteile")]
+    assert (z["wert_parser"], z["wert_qwen"], z["wert_mistral"], z["einig"]) == ("Werden", "Werden-Mitte", "Werden", "eines")
+    assert je[("00002", "lemma")]["einig"] == "keines"          # beide Modelle = Parser
+    assert je[("00002", "stadium_1_datum")]["wert_qwen"] == "16. Jh. (nicht normalisierbar)"
+    assert je[("00002", "lemma")]["grund"] == "Datum ohne Doppelpunkt" and je[("00004", "lemma")]["grund"] == ""
+    assert je[("00004", "lemma")]["einig"] == "beide" and je[("00004", "lemma")]["wert_qwen"] == ""
+    assert all(z["status_parser"] == "unsicher" and z["korrektur"] == "" for z in zeilen)
+
+
+def test_pruefliste_vollstaendig_unlesbare_seite():
+    modelle = {"qwen": {"antworten": {23: {"fehler": "unlesbar", "buchseite": 23}}},
+               "mistral": {"antworten": {23: _antwort()}}}
+    zeilen = lv.baue_pruefliste_vollstaendig(_parser(), modelle, ["00002"])
+    assert zeilen and all(z["einig"] == "unlesbar" for z in zeilen)
+
+
+def test_gruende_aus_pruefung_csv_je_schl_nr(tmp_path):
+    import csv
+    p = tmp_path / "pruefung.csv"
+    with open(p, "w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=["buchseite", "lemma_roh", "grund", "rohtext"]); w.writeheader()
+        w.writerows([{"buchseite": 23, "lemma_roh": "Abteistraße", "grund": "Datum ohne Doppelpunkt", "rohtext": ""},
+                     {"buchseite": 23, "lemma_roh": "Abteistraße", "grund": "Lemma auffällig (Form)", "rohtext": ""},
+                     {"buchseite": 40, "lemma_roh": "Abteistraße", "grund": "anders", "rohtext": ""}])
+    g = lv.gruende_je_schl_nr(_parser()[0], p)
+    assert g == {"00002": "Datum ohne Doppelpunkt; Lemma auffällig (Form)"}

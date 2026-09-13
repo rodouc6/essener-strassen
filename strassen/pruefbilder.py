@@ -21,7 +21,7 @@ WURZEL = Path(__file__).resolve().parent.parent
 ZIEL_DIR = WURZEL / "llm" / "pruefbilder"
 PRUEFLISTE_PFAD = WURZEL / "daten" / "pruefung_llm.csv"
 
-_EINIG_RANG = {"beide": 0, "eines": 1, "unlesbar": 2}
+_EINIG_RANG = {"beide": 0, "eines": 1, "unlesbar": 2, "keines": 3}
 
 bilddateiname = scan_dateiname
 
@@ -29,7 +29,7 @@ bilddateiname = scan_dateiname
 def eintraege_aus_pruefliste(zeilen, einig=("beide",)) -> list:
     """Fasst die Prüflisten-Zeilen je (schl_nr, buchseite) zusammen; nur Zeilen,
     deren `einig`-Wert in `einig` liegt. Felder je Eintrag sortiert, dedupliziert.
-    Reihenfolge: Rang von `einig` (beide < eines < unlesbar), dann schl_nr."""
+    Reihenfolge: Rang von `einig` (beide < eines < unlesbar < keines), dann schl_nr."""
     je_schluessel = {}
     for z in zeilen:
         if z["einig"] not in einig:
@@ -92,9 +92,11 @@ def _cli():
                    help="einig-Wert(e) einschließen (Standard: beide), mehrfach angebbar")
     p.add_argument("--quelle", default=QUELLE_PFAD, help="Verzeichnis mit den beiden Dickhoff-PDFs")
     p.add_argument("--ziel", default=str(ZIEL_DIR))
+    p.add_argument("--pruefliste", default=str(PRUEFLISTE_PFAD),
+                   help="andere Prüfliste (z. B. daten/pruefung_unsicher.csv)")
     a = p.parse_args()
     einig = tuple(a.einig) if a.einig else ("beide",)
-    neu = erzeuge(PRUEFLISTE_PFAD, a.ziel, a.quelle, einig)
+    neu = erzeuge(a.pruefliste, a.ziel, a.quelle, einig)
     print(f"{neu} Prüfbilder neu gerendert nach {a.ziel}")
 
 

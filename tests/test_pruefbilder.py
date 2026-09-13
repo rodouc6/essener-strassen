@@ -34,3 +34,10 @@ def test_erzeuge_rendert_je_eintrag_einmal(tmp_path):
     assert n == 2 and sorted(aufrufe) == ["schlnr_00013_s023.png", "schlnr_00021_s023.png"]
     assert (tmp_path / "bilder" / "index.md").exists()
     assert pb.erzeuge(pfad, tmp_path / "bilder", "/quelle", ("beide",), render) == 0   # idempotent
+
+
+def test_eintraege_aus_pruefliste_kennt_keines():
+    zeilen = [{"schl_nr": "00031", "buchseite": 24, "feld": "lemma", "einig": "keines"},
+              {"schl_nr": "00031", "buchseite": 24, "feld": "stadtteile", "einig": "eines"}]
+    e = pb.eintraege_aus_pruefliste(zeilen, einig=("beide", "eines", "keines", "unlesbar"))
+    assert e == [{"schl_nr": "00031", "buchseite": 24, "felder": ["lemma", "stadtteile"], "einig": "eines"}]
