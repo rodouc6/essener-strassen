@@ -82,10 +82,11 @@ tragen und einzeln gegen den Scan geprüft werden müssen (Sichtung über die Pr
 Übernahme via Korrektur-Overlay). Langfristig geplant ist die Veröffentlichung des
 Datensatzes auf Zenodo mit DOI, sobald der Datenstand als hinreichend stabil gilt.
 
-- Die beiden Lemmata, die einen vorausgehenden Satz mitgerissen haben (00601
-  Dandermannsteg, 02318 Oberscheidtstraße, beide `unsicher`), kommen zu den bereits
-  vorher bestehenden ~38 Lemmata mit mehr als vier Wörtern hinzu — allesamt Kandidaten
-  für das Korrektur-Overlay nach Sichtung am Scan. Diese Sichtung ist nicht Teil dieser
-  Runde; es werden hier keine `korrekturen`-Zeilen ergänzt.
+- Drei neue Lemmata mit mehr als vier Wörtern kommen zu den bereits vorher bestehenden
+  37 hinzu (37 + 3 = 40): die beiden, die einen vorausgehenden Satz mitgerissen haben
+  (00601 Dandermannsteg, 02318 Oberscheidtstraße), sowie 00207 („I. ia Auf dem Sutan",
+  R4-Rest) — alle drei `unsicher`. Allesamt Kandidaten für das Korrektur-Overlay nach
+  Sichtung am Scan. Diese Sichtung ist nicht Teil dieser Runde; es werden hier keine
+  `korrekturen`-Zeilen ergänzt.
 - R4 deckt bislang nur 11 der 24 römischen Präfixe ab (u. a. OCR-Varianten wie `Il.`,
   `ll.` statt `II.`).
