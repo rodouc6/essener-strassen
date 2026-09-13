@@ -73,7 +73,7 @@ def test_naechstes_stadium_ohne_komma_wird_nicht_ins_namensende_gezogen():
     rest = ("05. Juli 1889: Taubenstraße, 19. September 1925: Taubenstraße "
             "(Verl). 17. März 1971: Natorpstraße.")
     s = parse_namenskette(rest)
-    assert [x.name for x in s] == ["Taubenstraße", "Taubenstraße (Verl)", "Natorpstraße"]
+    assert [x.name for x in s] == ["Taubenstraße", "Taubenstraße (Verl.)", "Natorpstraße"]
     assert [x.gueltig_ab for x in s] == ["1889-07-05", "1925-09-19", "1971-03-17"]
     assert [x.datum_praezision for x in s] == ["tag", "tag", "tag"]
 
@@ -83,7 +83,7 @@ def test_st_abkuerzung_bleibt_im_namen():
     rest = ("04. Februar 1904: Kapellenstraße, 16. September 1910: Walpurgisstraße (tiw.), "
             "18. September 1926: St. Annental.")
     s = parse_namenskette(rest)
-    assert [x.name for x in s] == ["Kapellenstraße", "Walpurgisstraße (tiw.)", "St. Annental"]
+    assert [x.name for x in s] == ["Kapellenstraße", "Walpurgisstraße (tlw.)", "St. Annental"]
 
 
 def test_roemische_zahl_bleibt_im_namen():
@@ -189,3 +189,49 @@ def test_unverarbeiteter_rest_ist_leer_bei_vollstaendig_gelesener_kette():
     rest = ("18. November 1904: Kirchstraße, 01. Juni 1926: Klosterstraße, "
             "20. November 1937: Kütings Garten.")
     assert unverarbeiteter_rest(rest) == ""
+
+
+import pytest
+
+from strassen.namen import normalisiere_zusatz, HINWEIS_ZUSATZ_ERGAENZT
+
+
+@pytest.mark.parametrize("roh,soll", [
+    ("Moltkestraße (tiw.)", "Moltkestraße (tlw.)"),
+    ("Frohnhauser Straße (tIw.)", "Frohnhauser Straße (tlw.)"),
+    ("Damannstraße (t!w.)", "Damannstraße (tlw.)"),
+    ("Ahnewinkelstraße (Verl)", "Ahnewinkelstraße (Verl.)"),
+    ("Kapitän-Lehmann-Höhe (Umb))", "Kapitän-Lehmann-Höhe (Umb.)"),
+    ("Sonnenstraße {tlw.)", "Sonnenstraße (tlw.)"),
+    ("Körholzstraße [neue Führung)", "Körholzstraße (neue Führung)"),
+    ("Blockstraße (verl.)", "Blockstraße (Verl.)"),
+    ("Altendorfer Straße (tlw. Umb.)", "Altendorfer Straße (tlw. Umb.)"),
+])
+def test_normalisiere_zusatz_bekannte_varianten_ohne_hinweis(roh, soll):
+    assert normalisiere_zusatz(roh) == (soll, "")
+
+
+def test_normalisiere_zusatz_ortsklammer_bleibt():
+    assert normalisiere_zusatz("Bahnstraße (Essen)") == ("Bahnstraße (Essen)", "")
+
+
+def test_normalisiere_zusatz_abgeschnitten_wird_ergaenzt_und_gekennzeichnet():
+    assert normalisiere_zusatz("Thomaestraße (tiw") == ("Thomaestraße (tlw.)", HINWEIS_ZUSATZ_ERGAENZT)
+    assert normalisiere_zusatz("Im Westerbruch (Verl") == ("Im Westerbruch (Verl.)", HINWEIS_ZUSATZ_ERGAENZT)
+
+
+def test_normalisiere_zusatz_ohne_klammer_unveraendert():
+    assert normalisiere_zusatz("Aachener Straße") == ("Aachener Straße", "")
+
+
+def test_parse_namenskette_normalisiert_zusaetze():
+    # Ahnewinkelstraße 00021, S. 23 (Prüfliste)
+    st = parse_namenskette("vor 1898: Ahnewinkelstraße (Verl), 16. Mai 1902: Ahnewinkelstraße (tiw.)")
+    assert [s.name for s in st] == ["Ahnewinkelstraße (Verl.)", "Ahnewinkelstraße (tlw.)"]
+    assert all(s.hinweis == "" for s in st)
+
+
+def test_parse_namenskette_abgeschnittener_zusatz_am_kettenende():
+    st = parse_namenskette("29. März 1892: Thomaestraße (tiw")
+    assert st[-1].name == "Thomaestraße (tlw.)"
+    assert HINWEIS_ZUSATZ_ERGAENZT in st[-1].hinweis

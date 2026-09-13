@@ -334,7 +334,7 @@ def test_kette_ueber_semikolon_hinweg_frau_bertha_krupp():
     s = parse_namenskette(k.rest)
     assert [x.name for x in s] == [
         "Berthastraße", "Frau-Berta-Krupp-Straße", "Alexstraße",
-        "Frau-Berta-Krupp-Straße (Verl)", "Frau-Bertha-Krupp-Straße",
+        "Frau-Berta-Krupp-Straße (Verl.)", "Frau-Bertha-Krupp-Straße",
     ]
 
 
@@ -381,7 +381,7 @@ def test_starker_stempel_nach_satzpunkt_setzt_kette_fort_natorpstrasse():
              "Gustav Natorp war Lehrer.")
     k = parse_kopf(rumpf)
     s = parse_namenskette(k.rest)
-    assert [x.name for x in s] == ["Taubenstraße", "Taubenstraße (Verl)", "Natorpstraße"]
+    assert [x.name for x in s] == ["Taubenstraße", "Taubenstraße (Verl.)", "Natorpstraße"]
 
 
 def test_starker_stempel_nach_prosa_setzt_kette_fort_frohnhauser_strasse():

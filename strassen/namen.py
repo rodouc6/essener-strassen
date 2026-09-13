@@ -24,7 +24,8 @@ from typing import NamedTuple
 from strassen.datum import (DATUMSSTEMPEL_MUSTER, SATZENDE, MONATE, ist_schwach,
                             lese_datum, position_erlaubt)
 
-__all__ = ["MONATE", "Stadium", "parse_namenskette", "unverarbeiteter_rest"]
+__all__ = ["MONATE", "Stadium", "parse_namenskette", "unverarbeiteter_rest",
+           "normalisiere_zusatz", "HINWEIS_ZUSATZ_ERGAENZT", "ZUSATZWOERTER"]
 
 _NAME = r"(?:(?!,|;|" + SATZENDE + r")[^\n]){1,80}"
 
@@ -32,6 +33,38 @@ _URSPR = re.compile(r"urspr\.(?P<trenner>:?)\s*(?P<name>" + _NAME + r")")
 _STADIUM = re.compile(DATUMSSTEMPEL_MUSTER + r"\s*(?P<name>" + _NAME + r")")
 
 HINWEIS_URSPR_OHNE_DOPPELPUNKT = "urspr. ohne Doppelpunkt"
+
+HINWEIS_ZUSATZ_ERGAENZT = "Klammerzusatz ergänzt"
+# Dickhoffs drei Vermerke am Namensende und ihre OCR-Varianten (Spec 2026-09-13, R2):
+# 'tlw.' (teilweise), 'Verl.' (Verlängerung), 'Umb.' (Umbenennung). Wortweise, exakt.
+ZUSATZWOERTER = {"tlw": "tlw.", "tiw": "tlw.", "tIw": "tlw.", "t!w": "tlw.", "tw": "tlw.", "tl": "tlw.",
+                 "tlw.": "tlw.", "Verl": "Verl.", "verl": "Verl.", "Verl.": "Verl.", "verl.": "Verl.",
+                 "Ver1": "Verl.", "Umb": "Umb.", "Umb.": "Umb."}
+_ZUSATZ = re.compile(r"^(?P<kern>.*?)\s*(?P<auf>[\(\{\[])(?P<inhalt>[^\(\)\{\}\[\]]*?)(?P<zu>[\)\}\]]*)\s*$")
+
+
+def normalisiere_zusatz(name: str) -> tuple:
+    """Klammerzusatz am Namensende auf die drei Vermerke normalisieren.
+    -> (name, hinweis). Unbekannte Wörter (Ortsklammern) bleiben; fehlt die schließende
+    Klammer, wird sie ergänzt und der Hinweis gesetzt (Rest des Zusatzes kann fehlen)."""
+    m = _ZUSATZ.match(name)
+    if not m or not m.group("inhalt").strip():
+        return name, ""
+
+    def _wort(w):
+        # Wort ggf. mit eigenem Abkürzungspunkt (z. B. 'tiw.', 'verl.') — Punkt vor
+        # dem Wörterbuch-Nachschlagen abstreifen, damit z. B. 'tiw' und 'tiw.'
+        # gleichermaßen auf 'tlw.' normalisiert werden (ZUSATZWOERTER bleibt
+        # unverändert, vgl. Brief).
+        if w in ZUSATZWOERTER:
+            return ZUSATZWOERTER[w]
+        if w.endswith(".") and w[:-1] in ZUSATZWOERTER:
+            return ZUSATZWOERTER[w[:-1]]
+        return w
+
+    woerter = [_wort(w) for w in m.group("inhalt").split()]
+    hinweis = "" if m.group("zu") else HINWEIS_ZUSATZ_ERGAENZT
+    return f"{m.group('kern')} ({' '.join(woerter)})".strip(), hinweis
 
 
 class Stadium(NamedTuple):
@@ -51,8 +84,9 @@ def _akzeptierte_treffer(rest: str) -> list:
 
     for mu in _URSPR.finditer(rest):
         hinweis = "" if mu.group("trenner") == ":" else HINWEIS_URSPR_OHNE_DOPPELPUNKT
-        roh.append((mu.start(), mu.end(), "", "unbekannt", mu.group("name").strip(),
-                    True, hinweis))
+        name, hz = normalisiere_zusatz(mu.group("name").strip())
+        hinweis = "; ".join(filter(None, [hinweis, hz]))
+        roh.append((mu.start(), mu.end(), "", "unbekannt", name, True, hinweis))
 
     for m in _STADIUM.finditer(rest):
         name = m.group("name").strip()
@@ -64,7 +98,9 @@ def _akzeptierte_treffer(rest: str) -> list:
         if ist_schwach(m):
             if not position_erlaubt(rest, m.start()) or not name[:1].isupper():
                 continue
-        roh.append((m.start(), m.end(), d.gueltig_ab, d.praezision, name, False, d.hinweis))
+        name, hz = normalisiere_zusatz(name)
+        hinweis = "; ".join(filter(None, [d.hinweis, hz]))
+        roh.append((m.start(), m.end(), d.gueltig_ab, d.praezision, name, False, hinweis))
 
     roh.sort(key=lambda x: x[0])
     return roh
