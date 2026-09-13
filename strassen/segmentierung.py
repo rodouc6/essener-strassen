@@ -17,26 +17,36 @@ mit dem optionalen Parameter verworfene (eine übergebene Liste) wird er als
 import re
 from typing import NamedTuple
 
-# Sch + bis zu drei fehlgelesene Zeichen + optionaler Punkt/Komma/Bindestrich
-# + Nr + Doppelpunkt. Komma statt Punkt ('Schl,-Nr.:', 11 Fälle im Material,
-# z. B. Herkendell S. 156) fehlte in der ersten Fassung — der Eintrag wurde
-# dadurch komplett verpasst und sein Text blutete in den rest des Vorgängers.
-ANKER = re.compile(r"Sch[a-zA-Z!|]{0,3}[.,]?\s*-?\s*Nr\.?\s*:")
-# Lemma: das Stichwort unmittelbar vor dem Anker, abgetrennt durch einen Doppelpunkt,
-# der als letztes Nicht-Leerzeichen vor der Suchfenstergrenze steht. Komma,
-# Semikolon und Doppelpunkt beenden die Rückwärtssuche immer. Ein Punkt tut
-# das nur, wenn er NICHT Teil einer Abkürzung ist (Bindestrich oder Buchstabe
-# folgt direkt, z. B. 'St.-Ingbert-Höhe') — sonst schnitt die alte, jeden
-# Punkt ausschließende Fassung Lemmata mit Abkürzungspunkt auf den Teil nach
-# dem Punkt zusammen (>=21 betroffene Zeilen im Material, z. B.
-# '-Ingbert-Höhe' statt 'St.-Ingbert-Höhe'). Ein echter Satzende-Punkt
-# (gefolgt von Leerzeichen, nicht Bindestrich/Buchstabe) bricht wie bisher ab
-# — ohne den Ausschluss würde die Lemma-Suche über das Komma bzw. den
-# Satzpunkt hinweg rückwärts weiterlaufen und Reste des vorigen Rumpfs ins
-# Lemma ziehen. Ein Punkt nach 'St' ('St. Annental', 15 Lemmata im Material) ist ebenfalls
-# Abkürzungspunkt und beendet die Rückwärtssuche nicht (Goldstandard 02727).
+# Anker: kanonisch 'Schl.-Nr.:'. Toleriert: OCR-Buchstaben nach 'Sch' (auch '}' ')'),
+# 'N.' statt 'Nr.', führender Bindestrich, ';' statt ':' (Spec 2026-09-13, R6). Jede
+# Abweichung von der kanonischen Form wird als Hinweis gemeldet. Komma statt Punkt
+# ('Schl,-Nr.:', 11 Fälle im Material, z. B. Herkendell S. 156) fehlte in der ersten
+# Fassung — der Eintrag wurde dadurch komplett verpasst und sein Text blutete in den
+# rest des Vorgängers.
+ANKER = re.compile(r"-?\s*Sch[a-zA-Z!|}\)]{0,3}[.,]?\s*-?\s*N(?:r)?\.?\s*[:;]")
+_ANKER_KANONISCH = re.compile(r"^Schl\.-Nr\.:$")
+HINWEIS_ANKER_KORRIGIERT = "Anker OCR-korrigiert"
+# Lemma: das Stichwort unmittelbar vor dem Anker, abgetrennt durch einen Doppelpunkt
+# oder Semikolon (auch ':;', R6), der als letztes Nicht-Leerzeichen vor der
+# Suchfenstergrenze steht. Komma, Semikolon und Doppelpunkt beenden die
+# Rückwärtssuche innerhalb des Lemmas immer. Ein Punkt tut das nur, wenn er NICHT
+# Teil einer Abkürzung ist (Bindestrich oder Buchstabe folgt direkt, z. B.
+# 'St.-Ingbert-Höhe') — sonst schnitt die alte, jeden Punkt ausschließende Fassung
+# Lemmata mit Abkürzungspunkt auf den Teil nach dem Punkt zusammen (>=21 betroffene
+# Zeilen im Material, z. B. '-Ingbert-Höhe' statt 'St.-Ingbert-Höhe'). Ein echter
+# Satzende-Punkt (gefolgt von Leerzeichen, nicht Bindestrich/Buchstabe) bricht wie
+# bisher ab — ohne den Ausschluss würde die Lemma-Suche über das Komma bzw. den
+# Satzpunkt hinweg rückwärts weiterlaufen und Reste des vorigen Rumpfs ins Lemma
+# ziehen. Ein Punkt nach 'St', 'I', 'II', 'III' oder 'IV' ('St. Annental',
+# 'I. Buschlandweg') ist ebenfalls Abkürzungs-/Ordnungspunkt und beendet die
+# Rückwärtssuche nicht (Goldstandard 02727; R4, Prüfliste S. 86). Die Trenner-Gruppe
+# fordert mindestens ein Zeichen (':' oder ';') statt eines wiederholten
+# [:;]+ am Ende — sonst würde bei 'Am Schloss Schellenberg:;' das reguläre-Ausdrucks-
+# Backtracking den Rückwärtslauf am ';' beenden können, statt beide Trennzeichen als
+# ein Ende zu fressen.
 _LEMMA = re.compile(
-    r"((?:(?!,|;|:|(?<!\bSt)\.(?!-|[A-Za-zÄÖÜäöüß]))[^\n]){2,60}?)\s*:\s*$"
+    r"((?:(?!,|;|:|(?<!\bSt)(?<!\bI)(?<!\bII)(?<!\bIII)(?<!\bIV)\.(?!-|[A-Za-zÄÖÜäöüß]))[^\n]){2,60}?)"
+    r"\s*(?::;?|;)\s*$"
 )
 
 
@@ -44,6 +54,7 @@ class Eintrag(NamedTuple):
     lemma_roh: str
     rumpf: str
     buchseite: int
+    hinweise: tuple = ()
 
 
 def segmentiere(seiten, verworfene=None) -> list:
@@ -69,7 +80,7 @@ def segmentiere(seiten, verworfene=None) -> list:
     # so wird nie über einen anderen Anker hinweg gesucht, aber auch keine
     # willkürliche Zeichengrenze gezogen.
     treffer = list(ANKER.finditer(volltext))
-    kandidaten = []  # (lemma, lemma_start, anker_ende)
+    kandidaten = []  # (lemma, lemma_start, anker_ende, hinweise)
     fenster_start = 0
     for m in treffer:
         vorlauf = volltext[fenster_start:m.start()]
@@ -83,7 +94,16 @@ def segmentiere(seiten, verworfene=None) -> list:
             # Lemma-Buchstabe, nicht das Leerzeichen davor.
             versatz = len(roh) - len(roh.lstrip())
             lemma_start = fenster_start + lemma_treffer.start(1) + versatz
-            kandidaten.append((lemma, lemma_start, m.end()))
+            # Anker-Text ohne Whitespace gegen die kanonische Form 'Schl.-Nr.:'
+            # geprüft (R6) — jede Abweichung (OCR-verunstaltete Buchstaben, 'N.'
+            # statt 'Nr.', führender Bindestrich, ';' statt ':') wird als Hinweis am
+            # Eintrag sichtbar gemacht statt stillschweigend akzeptiert. Ein
+            # führender Bindestrich zählt bewusst als Abweichung mit — ihn vor dem
+            # Vergleich abzuschneiden (wie zunächst erwogen) hätte genau diesen
+            # Fall unsichtbar gemacht (S. 231, Marreweg: '-Schl.-Nr.:').
+            anker_text = re.sub(r"\s+", "", volltext[m.start():m.end()])
+            hinweise = () if _ANKER_KANONISCH.match(anker_text) else (HINWEIS_ANKER_KORRIGIERT,)
+            kandidaten.append((lemma, lemma_start, m.end(), hinweise))
         elif verworfene is not None:
             # Kein auffindbares Lemma vor diesem Anker: der Eintrag geht sonst
             # stillschweigend verloren. Statt ihn zu verwerfen, wird er sichtbar
@@ -94,9 +114,10 @@ def segmentiere(seiten, verworfene=None) -> list:
         fenster_start = m.end()
 
     eintraege = []
-    for i, (lemma, lemma_start, anker_ende) in enumerate(kandidaten):
+    for i, (lemma, lemma_start, anker_ende, hinweise) in enumerate(kandidaten):
         ende = kandidaten[i + 1][1] if i + 1 < len(kandidaten) else len(volltext)
         rumpf = volltext[anker_ende:ende].strip()
         eintraege.append(Eintrag(lemma_roh=lemma, rumpf=rumpf,
-                                  buchseite=buchseite_von(lemma_start)))
+                                  buchseite=buchseite_von(lemma_start),
+                                  hinweise=hinweise))
     return eintraege

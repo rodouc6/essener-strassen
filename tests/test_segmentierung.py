@@ -1,20 +1,36 @@
-from strassen.segmentierung import segmentiere, ANKER
+import pytest
+
+from strassen.segmentierung import segmentiere, ANKER, HINWEIS_ANKER_KORRIGIERT
+
+
+def _eintraege(text, seite=1):
+    return segmentiere([(seite, text)])
 
 
 def test_verstuemmelter_anker_wird_erkannt():
     """'Sch!.-Nr.:' kam im echten OCR vor (Kütings Garten, S. 211).
-    122 der 3340 Einträge tragen einen entstellten Anker."""
-    for variante in ["Schl.-Nr.:", "Sch!.-Nr.:", "Scht.-Nr.:", "Schi.-Nr.:",
+    122 der 3340 Einträge tragen einen entstellten Anker. Jede Abweichung von
+    der kanonischen Form 'Schl.-Nr.:' erzeugt zusätzlich den Hinweis
+    HINWEIS_ANKER_KORRIGIERT (R6) — nur die kanonische Form selbst nicht."""
+    for variante in ["Sch!.-Nr.:", "Scht.-Nr.:", "Schi.-Nr.:",
                      "Schl-Nr.:", "Schl.-Nr:", "Sch.-Nr.:", "Schtl.-Nr.:"]:
         assert ANKER.search(f"Beispielstraße: {variante} 01234"), variante
+        e = _eintraege(f"Vorlauf. Beispielstraße: {variante} 01234, Stadtteil X")
+        assert e[0].hinweise == (HINWEIS_ANKER_KORRIGIERT,), variante
+    assert ANKER.search("Beispielstraße: Schl.-Nr.: 01234")
+    e = _eintraege("Vorlauf. Beispielstraße: Schl.-Nr.: 01234, Stadtteil X")
+    assert e[0].hinweise == ()
 
 
 def test_komma_statt_punkt_nach_schl_wird_erkannt():
     """'Schl,-Nr.:' (Komma statt Punkt) kam im echten OCR 11-mal vor
     (u. a. Herkendell S. 156, Kalthofweg S. 188, Im Dreieck S. 175) und
     wurde vom Anker verpasst, wodurch der Eintrag komplett fehlte und sein
-    Text in den rest des Vorgängers blutete."""
+    Text in den rest des Vorgängers blutete. Als Abweichung von der
+    kanonischen Form trägt der Eintrag zusätzlich HINWEIS_ANKER_KORRIGIERT."""
     assert ANKER.search("Herkendell: Schl,-Nr.: 03676, Stadtteil Kettwig")
+    e = _eintraege("Vorlauf. Herkendell: Schl,-Nr.: 03676, Stadtteil Kettwig")
+    assert e[0].hinweise == (HINWEIS_ANKER_KORRIGIERT,)
 
 
 def test_eintrag_traegt_lemma_und_buchseite():
@@ -117,3 +133,31 @@ def test_lemma_mit_st_bindestrich_bleibt():
 def test_lemma_endet_weiterhin_am_satzpunkt():
     seiten = [(211, "Erläuterung endet hier. Kruselbeek: Schl.-Nr.: 01827, Stadtteil Fischlaken.")]
     assert segmentiere(seiten)[0].lemma_roh == "Kruselbeek"
+
+
+def test_roemischer_praefix_bleibt_im_lemma():
+    # S. 86, 00502/00503 (Prüfliste: 24 Lemmata ohne I./II./III.)
+    e = _eintraege("Akten: STAD Best. Reg. Düsseldorf Nr. 19164. I. Buschlandweg: Schl.-Nr.: 00502, Stadtteil Frillendorf, "
+                   "Str.-Kl.: Gemeindestraße. II. Buschlandweg: Schl.-Nr.: 00503, Stadtteil Frillendorf")
+    assert [x.lemma_roh for x in e] == ["I. Buschlandweg", "II. Buschlandweg"]
+
+
+def test_satzpunkt_vor_lemma_bricht_weiterhin_ab():
+    e = _eintraege("gehört zur Flur. Aachener Straße: Schl.-Nr.: 00001, Stadtteil Frohnhausen")
+    assert e[0].lemma_roh == "Aachener Straße"
+
+
+@pytest.mark.parametrize("text,lemma,hinweis", [
+    ("Bd. 85/1970; 5. 5 ff. Brunhildenstraße; Schl.-Nr.: 00465, Stadtteil Kray", "Brunhildenstraße", ()),           # S. 82
+    ("Rep. 113 Nr. 565. Waldblick; Schl.-Nr.: 03297, Stadtteil Stadtwald", "Waldblick", ()),                         # S. 338
+    ("an Rutger von Bergerhausen. Am Schloss Schellenberg:; Schl.-Nr.: 00710, Stadtteil", "Am Schloss Schellenberg", ()),  # S. 42
+    ("zur Kenntnis gegeben. Graitengraben: Sch}.-Nr.: 01067, Stadtteil", "Graitengraben", ("Anker OCR-korrigiert",)),  # S. 133
+    ("eine Ballonfabrik. Riegelweg: Sch).-Nr.: 02599, Stadtteil", "Riegelweg", ("Anker OCR-korrigiert",)),           # S. 274
+    ("Bedeutung gewonnen. Schraeplerstraße:  Schl.-N.: 02821, Stadtteil", "Schraeplerstraße", ("Anker OCR-korrigiert",)),  # S. 296
+    ("auch Markesfeld. Marreweg: -Schl.-Nr.: 02086, Stadtteil", "Marreweg", ("Anker OCR-korrigiert",)),              # S. 231
+    ("Siehe Mallinckrodtplatz. Malmedystraße: Schl.-Nr.; 02070, Stadtteil", "Malmedystraße", ("Anker OCR-korrigiert",)),  # S. 229
+])
+def test_anker_und_trenner_varianten(text, lemma, hinweis):
+    e = _eintraege(text)
+    assert len(e) == 1 and e[0].lemma_roh == lemma
+    assert e[0].hinweise == hinweis

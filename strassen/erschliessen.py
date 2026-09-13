@@ -7,6 +7,10 @@ status="unsicher" statt "automatisch" — Kennzeichnung, kein Ausschluss: er
 bleibt in strassen.csv/namen.csv erhalten. Gründe:
   - "Anker ohne Lemma": die Segmentierung fand eine Schlüsselnummer-Angabe,
     aber kein davorstehendes Lemma (segmentierung.segmentiere(verworfene=...)).
+  - "Anker OCR-korrigiert": der Anker weicht von der kanonischen Form
+    'Schl.-Nr.:' ab (OCR-verunstaltete Buchstaben, 'N.' statt 'Nr.', führender
+    Bindestrich, ';' statt ':') — tolerant erkannt und markiert (R6,
+    segmentierung.Eintrag.hinweise).
   - "keine Schlüsselnummer lesbar": parse_kopf() fand keinen Kopf im Rumpf
     (der Eintrag entfällt komplett, kein schl_nr zum Verknüpfen vorhanden).
   - "Lemma auffällig (Länge)": das Lemma ist ungewöhnlich lang (>4 Wörter oder
@@ -226,6 +230,9 @@ def main(ocr_dir="ocr/seiten", ausgabe_dir="daten", korrekturen_pfad=""):
         # Eintrag kann mehrere Gründe gleichzeitig haben (z. B. auffälliges
         # Lemma UND auffälliges Namensstadium).
         gruende = []
+        for hinweis in e.hinweise:
+            if hinweis not in gruende:
+                gruende.append(hinweis)
         if _lemma_auffaellig(e.lemma_roh):
             gruende.append("Lemma auffällig (Länge)")
         if _lemma_form_auffaellig(e.lemma_roh):

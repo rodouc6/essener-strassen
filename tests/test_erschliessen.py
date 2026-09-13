@@ -546,3 +546,18 @@ def test_main_wendet_korrekturen_an_und_zaehlt(tmp_path):
     treffer2 = [z for z in strassen_unveraendert if z["schl_nr"] == schl_nr][0]
     assert treffer2["status"] != "geprueft"
     assert kennzahlen_ohne["korrigiert"] == 0
+
+
+# --- Task 3 (Runde 2): Anker-/Trenner-Toleranz (R6) als Prüfgrund ---
+
+
+def test_anker_hinweis_wird_pruefgrund_und_unsicher(tmp_path):
+    """S. 133, Graitengraben: entstellter Anker 'Sch}.-Nr.:' wird toleriert
+    erkannt, macht den Eintrag aber sichtbar unsicher (HINWEIS_ANKER_KORRIGIERT
+    als Grund in pruefung.csv)."""
+    strassen, pruefung = _lauf5(tmp_path,
+        "Graitengraben: Sch}.-Nr.: 01067, Stadtteil Rüttenscheid, "
+        "Str.-Kl.: Gemeindestraße, Str.-Gr.: Flurname, 1900: Graitengraben.\n")
+    assert len(strassen) == 1
+    assert strassen[0]["status"] == "unsicher"
+    assert "Anker OCR-korrigiert" in [z["grund"] for z in pruefung]
