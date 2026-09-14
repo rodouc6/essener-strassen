@@ -32,20 +32,69 @@ bereitgestellt über KI:connect.nrw der Bergischen Universität Wuppertal (BUW) 
 (Mistral Small 4, 119 Mrd. Parameter) —, lesen unabhängig davon die Seitenbilder; jede Abweichung wird von einem Menschen am Scan
 entschieden und als Overlay über die Parser-Ausgabe gelegt.
 
-```mermaid
-flowchart LR
-  A["Scan (2 Bände, 300 dpi)"] --> B["Seitenteilung am Bundsteg,<br/>Tesseract OCR"]
-  B --> C["regelbasierter Parser<br/>strassen/erschliessen.py"]
-  C --> D[("strassen.csv,<br/>namen.csv")]
-  D --> E["Selbstprüfungen<br/>strassen/validierung.py"]
-  A --> F["Seitenbilder<br/>strassen/seiten.py"]
-  F --> G["zwei LLM-Zweitleser<br/>strassen/llm_leser.py"]
-  G --> H["Prüfliste<br/>strassen/llm_vergleich.py"]
-  D --> H
-  H --> I["manuelle Sichtung<br/>am Scan-Ausschnitt"]
-  I --> J["Overlay<br/>daten/korrekturen.csv"]
-  J --> C
-  D --> K["Konkordanz 1936<br/>strassen/veroeffentlichen.py"]
+```text
+                          ┌───────────────────────────┐
+                          │  Scan: 2 Bände, 300 dpi   │
+                          │  (194 Doppelseiten)       │
+                          └─────────────┬─────────────┘
+                                        │ je Doppelseite                          ┐
+                                        ▼                                         │
+                          ┌───────────────────────────┐                           │
+                          │  Teilung am Bundsteg,     │                           │  Stufe 1
+                          │  Tesseract OCR (deu)      │                           │  OCR
+                          └─────────────┬─────────────┘                           │
+                                        │ 388 Buchseiten                          │
+                                        ▼                                         │
+                          ┌───────────────────────────┐                           │
+                          │  OCR-Text je Buchseite    │  lokal, nicht             │
+                          │  ocr/seiten/              │  veröffentlicht           ┘
+                          └─────────────┬─────────────┘
+                                        │                                         ┐
+   ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐            ▼                                         │
+     Korrektur-Overlay          ┌───────────────────────────┐                     │
+     daten/korrekturen.csv ───▶ │  regelbasierter Parser    │                     │  Stufe 2
+     (526 belegte Zeilen)       │  strassen/erschliessen.py │                     │  Erschließung
+   └ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘    └─────────────┬─────────────┘                     │
+              ▲                               │                                   │
+              │                               ▼                                   │
+              │                 ┌───────────────────────────┐                     │
+              │                 │  daten/strassen.csv       │                     │
+              │                 │  daten/namen.csv          │                     ┘
+              │                 └──────┬─────────────┬──────┘
+              │                        │             │                            ┐
+              │                        │             ▼                            │
+              │                        │   ┌───────────────────────────┐          │  Stufe 3
+              │                        │   │  Selbstprüfungen          │          │  Validierung
+              │                        │   │  strassen/validierung.py  │          │  → docs/qualitaet.md
+              │                        │   └───────────────────────────┘          ┘
+              │                        │
+              │                        │        ┌───────────────────────────┐     ┐
+              │                        │        │  Seitenbilder             │     │
+              │                        │        │  strassen/seiten.py       │     │
+              │                        │        └─────────────┬─────────────┘     │
+              │                        │                      │ je Buchseite      │
+              │   ┌ ─ ─ ─ ─ ─ ─ ─ ┐    │                      ▼                   │
+              │     Prompt (ohne       │        ┌───────────────────────────┐     │  Stufe 4
+              │     OCR-Text)    ─────────────▶ │  zwei Open-Weight-Modelle │     │  Zweitlesung
+              │   └ ─ ─ ─ ─ ─ ─ ─ ┘    │        │  strassen/llm_leser.py    │     │  und Sichtung
+              │                        │        └─────────────┬─────────────┘     │
+              │                        │                      │ Lesung je Seite   │
+              │                        │                      ▼                   │
+              │                        │        ┌───────────────────────────┐     │
+              │                        └──────▶ │  Vergleich → Prüfliste    │     │
+              │                                 │  strassen/llm_vergleich.py│     │
+              │                                 └─────────────┬─────────────┘     │
+              │                                               │ Abweichungen      │
+              │                                               ▼                   │
+              │                                 ┌───────────────────────────┐     │
+              │                                 │  manuelle Sichtung        │     │
+              └──── geprüfte Korrekturen ────── │  am Scan-Ausschnitt       │     │
+                                                └───────────────────────────┘     ┘
+
+                                ┌───────────────────────────┐                     ┐
+   daten/strassen.csv + ──────▶ │  Stichtag 1936, Konkordanz│                     │  Stufe 5
+   daten/namen.csv              │  strassen/veroeffentlichen│ ──▶ konkordanz_1936 │  Ableitung
+                                └───────────────────────────┘                     ┘
 ```
 
 **Bereinigung.** In vier Runden, alle in [`docs/vorgehen.md`](docs/vorgehen.md) mit
