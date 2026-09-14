@@ -67,7 +67,7 @@ _FELDTYP_STADIUM = re.compile(r"^stadium_\d+_(datum|name)$")
 def buchseite_zu_scan(buchseite) -> tuple:
     """(band, pdf_seite, haelfte) für eine Buchseite.
 
-    Buchseite b -> Band 1 (b<=201), PDF-Seite (b-2)//2+1, sonst Band 2,
+    Buchseite b -> Scan-Datei 1 (b<=201), PDF-Seite (b-2)//2+1, sonst Scan-Datei 2,
     PDF-Seite (b-202)//2+1. Je PDF-Seite: links = gerade Buchseite, rechts =
     ungerade (s. Auftragsbeschreibung / BAENDE in ocr_lauf.py)."""
     b = int(buchseite)

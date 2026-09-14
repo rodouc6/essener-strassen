@@ -4,7 +4,7 @@ Der Prompt der unabhängigen LLM-Lesung (`strassen/llm_prompt.md`) wurde an acht
 **Entwicklungsseiten** entwickelt, die **keinen** Goldstandard-Eintrag enthalten — die
 Goldstandard-Messung (Task 12/13) bleibt dadurch eine Messung an ungesehenem Material.
 
-- Entwicklungsseiten: **30, 60, 100, 150** (Band 1) und **220, 260, 300, 340** (Band 2),
+- Entwicklungsseiten: **30, 60, 100, 150** (Scan-Datei 1) und **220, 260, 300, 340** (Scan-Datei 2),
   zusammen 84 Parser-Einträge.
 - Modelle: `inferenz-qwen3-8-27b` (im Folgenden *qwen*) und
   `inferenz-mistral-small-4-119b` (*mistral*), je Seite nur das Seitenbild, `temperature 0`.

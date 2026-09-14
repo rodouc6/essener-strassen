@@ -6,8 +6,8 @@
 > official key number, district(s), road class, and a chronological sequence of name
 > stages with dated transitions — enabling the resolution of historical Essen addresses
 > to any given cutoff date. Derived by OCR (page-split at the book's gutter) and a
-> deterministic, rule-based parser (no language model) from a scanned two-volume copy
-> of the source; the pipeline, validation checks, and known limitations are documented
+> deterministic, rule-based parser (no language model) from a scan of the source
+> (two PDF files); the pipeline, validation checks, and known limitations are documented
 > below. Explanatory text (name origins, biographies) from the source is **not**
 > included. Data licensed CC BY 4.0 for the derived structure and code; the underlying
 > facts remain attributable to Dickhoff 2015 (see [Lizenz](#lizenz-und-zitierhinweis)).
@@ -34,8 +34,8 @@ entschieden und als Overlay über die Parser-Ausgabe gelegt.
 
 ```text
                           ┌───────────────────────────┐
-                          │  Scan: 2 Bände, 300 dpi   │
-                          │  (194 Doppelseiten)       │
+                          │  Scan: 2 PDF-Dateien,     │
+                          │  300 dpi, 194 Doppelseiten│
                           └─────────────┬─────────────┘
                                         │ je Doppelseite                          ┐
                                         ▼                                         │
@@ -163,7 +163,7 @@ Fließtext und bleiben lokaler Arbeitsstand außerhalb dieser Veröffentlichung 
 Erwin Dickhoff: *Essener Straßen.* Klartext-Verlag, Essen 2015.
 ISBN 978-3-8375-1231-1.
 
-Vorlage war ein Scan in zwei Bänden (100 + 94 Doppelseiten, Buchseiten 2–201 und
+Vorlage war ein Scan des einbändigen Werks in zwei PDF-Dateien (100 + 94 Doppelseiten, Buchseiten 2–201 und
 202–388), 300 dpi, ohne Textebene — insgesamt 388 Buchseiten.
 
 ## Methode

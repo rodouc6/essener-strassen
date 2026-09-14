@@ -30,7 +30,7 @@ hergibt (269 Zeilen ohne „Zeitraum von"). Dickhoff datiert dagegen taggenau. B
 ## 2. Quelle und rechtlicher Rahmen
 
 **Quelle:** Erwin Dickhoff: *Essener Straßen*. Klartext-Verlag, Essen 2015.
-ISBN 978-3-8375-1231-1. Als Scan in zwei Bänden (100 + 94 Doppelseiten,
+ISBN 978-3-8375-1231-1. Als Scan des einbändigen Werks in zwei PDF-Dateien (100 + 94 Doppelseiten,
 Buchseiten 2–201 und 202–388), 300 dpi, ohne Textebene.
 
 **Rechtliche Linie.** Das Werk ist urheberrechtlich geschützt. Der Datensatz enthält

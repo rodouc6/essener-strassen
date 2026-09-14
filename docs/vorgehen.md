@@ -9,7 +9,7 @@ verlinkten Dokumente, sondern gibt den roten Faden zwischen ihnen.
 
 Als Quelle wurde Erwin Dickhoffs *Essener Straßen* (Klartext-Verlag, Essen 2015)
 gewählt, weil die bislang genutzte Konkordanz selbst nur eine zweifach abgeleitete,
-lückenhafte Form desselben Werks war. Die beiden Scan-Bände werden bei 300 dpi
+lückenhafte Form desselben Werks war. Die beiden Scan-Dateien (das Werk selbst ist einbändig) werden bei 300 dpi
 gelesen, am Bundsteg in Buchseiten geteilt und mit Tesseract OCR erschlossen; ein
 regelbasierter, deterministischer Parser (bewusst kein Sprachmodell) zerlegt jede
 Buchseite in Straßen mit datierten Namensstadien. Rechtlich beschränkt sich der
