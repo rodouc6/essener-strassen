@@ -163,10 +163,26 @@ Burg Altendorf hauser Straße", 00519; ebenso 00746, 03771) — alle drei stande
 Eintrag ihrer Seite, sodass die Modell-Zweitlesung die Kette nicht verglichen hatte (R7). Am
 Scan geprüft und per Overlay korrigiert (Overlay 526, `geprueft` 373, `automatisch` 2.977).
 
+## 9. 2026-09-14 — Veröffentlichung
+
+Stand der Daten beim Release: 3.354 Straßen (2.977 `automatisch`, 373 `geprueft`, 4 `unsicher`),
+5.513 Namensstadien, Konkordanz 1936 mit 473 Paaren, Overlay 526 Zeilen. Veröffentlicht als
+öffentliches GitHub-Repository https://github.com/rodouc6/essener-strassen (Release
+`v1.0.0`), von Zenodo über die GitHub-Integration archiviert: DOI der Version
+https://doi.org/10.5281/zenodo.22757901, versionsübergreifender Konzept-DOI
+https://doi.org/10.5281/zenodo.22757900. Die Zenodo-Metadaten stammen aus `.zenodo.json`; die
+DOIs wurden anschließend in README, `CITATION.cff` und `datapackage.json` nachgetragen (dieser
+Commit ist nicht Teil des archivierten Release-Stands). Neue Versionen entstehen durch ein
+weiteres GitHub-Release (z. B. `v1.0.1`); Zenodo legt sie automatisch unter dem Konzept-DOI an.
+
+Vor dem Release: README-Abschnitt „Auf einen Blick" (Inhalt, Pipeline-Schaubild, Bereinigung,
+Datenqualität, Beispiele), Klarstellung, dass das Werk einbändig ist und nur der Scan aus
+zwei PDF-Dateien besteht, sowie ein Veröffentlichungs-Check (längste Feldwerte je Datei), der
+drei Namensstadien mit Bildunterschrift-Resten aufdeckte (Abschnitt 8).
+
 ## Was als Nächstes offen ist
 
-Der Datenstand gilt als veröffentlichungsreif; nächster Schritt ist der Zenodo-Release mit
-DOI. Eine **Parser-Runde 3** ist bewusst nicht geplant (Abschnitt 7). Sollte je ein neuer
+Der Datensatz ist veröffentlicht (Abschnitt 9). Eine **Parser-Runde 3** ist bewusst nicht geplant (Abschnitt 7). Sollte je ein neuer
 Volllauf nötig werden — etwa mit besserer OCR —, sind die aus der Sichtung bekannten Muster
 mit Testfällen hier festgehalten; alle Fälle sind heute per Overlay korrigiert:
 
