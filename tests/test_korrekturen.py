@@ -328,3 +328,12 @@ def test_zuvor_stadium_ohne_datum_nachtragen():
                        _k("00001", "stadium_1_name", "", "Blechstraße")])
     st = [z for z in n if z["schl_nr"] == "00001"]
     assert (st[0]["datum_praezision"], st[0]["name"], st[0]["ist_urspruenglich"]) == ("unbekannt", "Blechstraße", "falsch")
+
+
+def test_iso_datum_wird_im_overlay_akzeptiert():
+    s, n = _daten()
+    ko.wende_an(s, n, [_k("00001", "stadium_2_datum", "1902-05-16", "1902-05-17")])
+    assert [z for z in n if z["schl_nr"] == "00001"][1]["gueltig_ab"] == "1902-05-17"
+    ko.wende_an(s, n, [_k("00002", "stadium_2_datum", "", "1935-11-14"), _k("00002", "stadium_2_name", "", "Neu")])
+    z = [z for z in n if z["schl_nr"] == "00002"][1]
+    assert (z["gueltig_ab"], z["datum_praezision"]) == ("1935-11-14", "tag")

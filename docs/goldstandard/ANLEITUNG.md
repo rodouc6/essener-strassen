@@ -209,8 +209,8 @@ laufen lassen, damit die Korrekturen wirksam werden.
 
 Erfahrungen aus der Sichtung vom 2026-09-13, die `uebernehmen` und das Overlay voraussetzen:
 
-- **Datum** in `korrektur` wie gedruckt oder als `TT.MM.JJJJ` eintragen — nicht als ISO-Datum
-  (`JJJJ-MM-TT` wird vom Overlay nicht gelesen). Ein Datum, das der Parser selbst nur
+- **Datum** in `korrektur` wie gedruckt, als `TT.MM.JJJJ` oder als ISO-Datum `JJJJ-MM-TT`
+  eintragen (seit 2026-09-14 akzeptiert das Overlay auch die ISO-Form). Ein Datum, das der Parser selbst nur
   eingeschränkt lesen kann (z. B. Doppeljahr „etwa 1910/11"), lässt sich nicht als
   Korrektur eintragen; der Parser-Wert bleibt.
 - **Ganzes Stadium nachtragen** (`feld=stadium_N`, `wert_parser` leer): `DATUM | NAME` mit

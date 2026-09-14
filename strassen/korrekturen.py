@@ -64,8 +64,16 @@ def _ist(z, art):
     return z["ist_urspruenglich"]
 
 
+_ISO_DATUM = re.compile(r"^(\d{4})-(\d{2})-(\d{2})$")
+
+
 def _setze(z, art, wert_neu, schl, feld):
     if art == "datum":
+        # ISO-Form (JJJJ-MM-TT, die Stichprobenform der Datensatzspalte gueltig_ab) ist
+        # eindeutig und wird wie der gedruckte Text 'TT.MM.JJJJ' angenommen.
+        m = _ISO_DATUM.match(wert_neu or "")
+        if m:
+            wert_neu = f"{m.group(3)}.{m.group(2)}.{m.group(1)}"
         d = lese_text(wert_neu)
         if d is None:
             raise KorrekturFehler(f"{schl} {feld}: Datum {wert_neu!r} nicht normalisierbar")
