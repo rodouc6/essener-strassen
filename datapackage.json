@@ -1,12 +1,22 @@
 {
   "name": "essener-strassen",
   "title": "Essener Straßenverzeichnis: Namen und Umbenennungen",
+  "id": "https://doi.org/10.5281/zenodo.22757901",
+  "version": "1.0.0",
+  "homepage": "https://github.com/rodouc6/essener-strassen",
   "description": "Strukturiertes Verzeichnis der Essener Straßen mit datierter Namensgeschichte, erschlossen aus Erwin Dickhoff: Essener Straßen (Klartext-Verlag, Essen 2015).",
-  "licenses": [{"name": "CC-BY-4.0", "path": "https://creativecommons.org/licenses/by/4.0/"}],
-  "sources": [{
-    "title": "Erwin Dickhoff: Essener Straßen. Klartext-Verlag, Essen 2015",
-    "path": "urn:isbn:9783837512311"
-  }],
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "path": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Erwin Dickhoff: Essener Straßen. Klartext-Verlag, Essen 2015",
+      "path": "urn:isbn:9783837512311"
+    }
+  ],
   "resources": [
     {
       "name": "strassen",
@@ -15,14 +25,53 @@
       "encoding": "utf-8",
       "schema": {
         "fields": [
-          {"name": "schl_nr", "type": "string", "description": "amtliche Schlüsselnummer, fünfstellig; nicht strikt eindeutig — 2 dokumentierte Dubletten der Vorlage (02402, 03448), siehe README; eine fünfstellige Ausnahme 001321 (so gedruckt)"},
-          {"name": "lemma", "type": "string", "description": "heutiger Straßenname (Stichwort des Eintrags)"},
-          {"name": "stadtteile", "type": "string", "description": "Stadtteil(e), mehrere mit '; ' getrennt"},
-          {"name": "strassenklasse", "type": "string", "description": "Gemeindestraße, Kreisstraße, Landstraße; mehrere mit '; ' getrennt"},
-          {"name": "namensgruppe", "type": "string", "description": "Str.-Gr. der Quelle, wörtlich übernommen"},
-          {"name": "verweis_auf", "type": "string", "description": "Ziel-Lemma bei 'Siehe X', sonst leer"},
-          {"name": "buchseite", "type": "integer", "description": "Beleg: Seite in Dickhoff 2015"},
-          {"name": "status", "type": "string", "constraints": {"enum": ["automatisch", "geprueft", "unsicher"]}, "description": "automatisch = Parser ohne Prüfgrund; unsicher = Parser mit Prüfgrund (Wert übernommen, gekennzeichnet); geprueft = Eintrag vollständig gegen den Scan geprüft, Korrekturen über das Overlay daten/korrekturen.csv angewandt (höchste Stufe)"}
+          {
+            "name": "schl_nr",
+            "type": "string",
+            "description": "amtliche Schlüsselnummer, fünfstellig; nicht strikt eindeutig — 2 dokumentierte Dubletten der Vorlage (02402, 03448), siehe README; eine fünfstellige Ausnahme 001321 (so gedruckt)"
+          },
+          {
+            "name": "lemma",
+            "type": "string",
+            "description": "heutiger Straßenname (Stichwort des Eintrags)"
+          },
+          {
+            "name": "stadtteile",
+            "type": "string",
+            "description": "Stadtteil(e), mehrere mit '; ' getrennt"
+          },
+          {
+            "name": "strassenklasse",
+            "type": "string",
+            "description": "Gemeindestraße, Kreisstraße, Landstraße; mehrere mit '; ' getrennt"
+          },
+          {
+            "name": "namensgruppe",
+            "type": "string",
+            "description": "Str.-Gr. der Quelle, wörtlich übernommen"
+          },
+          {
+            "name": "verweis_auf",
+            "type": "string",
+            "description": "Ziel-Lemma bei 'Siehe X', sonst leer"
+          },
+          {
+            "name": "buchseite",
+            "type": "integer",
+            "description": "Beleg: Seite in Dickhoff 2015"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "automatisch",
+                "geprueft",
+                "unsicher"
+              ]
+            },
+            "description": "automatisch = Parser ohne Prüfgrund; unsicher = Parser mit Prüfgrund (Wert übernommen, gekennzeichnet); geprueft = Eintrag vollständig gegen den Scan geprüft, Korrekturen über das Overlay daten/korrekturen.csv angewandt (höchste Stufe)"
+          }
         ]
       }
     },
@@ -32,14 +81,61 @@
       "format": "csv",
       "encoding": "utf-8",
       "schema": {
-        "foreignKeys": [{"fields": "schl_nr", "reference": {"resource": "strassen", "fields": "schl_nr"}}],
+        "foreignKeys": [
+          {
+            "fields": "schl_nr",
+            "reference": {
+              "resource": "strassen",
+              "fields": "schl_nr"
+            }
+          }
+        ],
         "fields": [
-          {"name": "schl_nr", "type": "string", "description": "Fremdschlüssel auf strassen.csv"},
-          {"name": "stadium", "type": "integer", "description": "laufende Nummer der Namensstufe, 1 = älteste"},
-          {"name": "gueltig_ab", "type": "string", "description": "ISO-Datum oder Jahr, leer wenn unbekannt"},
-          {"name": "datum_praezision", "type": "string", "constraints": {"enum": ["tag", "monat", "jahr", "jahrhundert", "vor", "nach", "unbekannt"]}},
-          {"name": "name", "type": "string", "description": "Straßenname in diesem Stadium"},
-          {"name": "ist_urspruenglich", "type": "string", "constraints": {"enum": ["wahr", "falsch"]}}
+          {
+            "name": "schl_nr",
+            "type": "string",
+            "description": "Fremdschlüssel auf strassen.csv"
+          },
+          {
+            "name": "stadium",
+            "type": "integer",
+            "description": "laufende Nummer der Namensstufe, 1 = älteste"
+          },
+          {
+            "name": "gueltig_ab",
+            "type": "string",
+            "description": "ISO-Datum oder Jahr, leer wenn unbekannt"
+          },
+          {
+            "name": "datum_praezision",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "tag",
+                "monat",
+                "jahr",
+                "jahrhundert",
+                "vor",
+                "nach",
+                "unbekannt"
+              ]
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "description": "Straßenname in diesem Stadium"
+          },
+          {
+            "name": "ist_urspruenglich",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "wahr",
+                "falsch"
+              ]
+            }
+          }
         ]
       }
     },
@@ -50,14 +146,51 @@
       "encoding": "utf-8",
       "schema": {
         "fields": [
-          {"name": "stadtteil", "type": "string"},
-          {"name": "ehemalig", "type": "string", "description": "Name zum Erhebungsstand des Adressbuchs 1936 (Arbeitsstichtag 1936-06-30), Klammerzusatz bereits abgetrennt (siehe Feld 'zusatz')"},
-          {"name": "heutig", "type": "string", "description": "heutiger Name"},
-          {"name": "schl_nr", "type": "string", "description": "amtliche Schlüsselnummer, fünfstellig"},
-          {"name": "datum_praezision", "type": "string", "description": "Genauigkeit der zugrunde liegenden Datierung"},
-          {"name": "quelle", "type": "string", "description": "Herkunft der Angabe, wörtlich 'Dickhoff 2015'"},
-          {"name": "zusatz", "type": "string", "description": "abgetrennter Klammerzusatz aus der Quelle (z. B. '(tlw.)', '(Verl.)'), leer wenn keiner vorlag"},
-          {"name": "eindeutig", "type": "string", "constraints": {"enum": ["ja", "nein"]}, "description": "'nein', wenn derselbe (stadtteil, ehemalig)-Name im selben Stadtteil auf mehr als eine schl_nr trifft (Kollision)"}
+          {
+            "name": "stadtteil",
+            "type": "string"
+          },
+          {
+            "name": "ehemalig",
+            "type": "string",
+            "description": "Name zum Erhebungsstand des Adressbuchs 1936 (Arbeitsstichtag 1936-06-30), Klammerzusatz bereits abgetrennt (siehe Feld 'zusatz')"
+          },
+          {
+            "name": "heutig",
+            "type": "string",
+            "description": "heutiger Name"
+          },
+          {
+            "name": "schl_nr",
+            "type": "string",
+            "description": "amtliche Schlüsselnummer, fünfstellig"
+          },
+          {
+            "name": "datum_praezision",
+            "type": "string",
+            "description": "Genauigkeit der zugrunde liegenden Datierung"
+          },
+          {
+            "name": "quelle",
+            "type": "string",
+            "description": "Herkunft der Angabe, wörtlich 'Dickhoff 2015'"
+          },
+          {
+            "name": "zusatz",
+            "type": "string",
+            "description": "abgetrennter Klammerzusatz aus der Quelle (z. B. '(tlw.)', '(Verl.)'), leer wenn keiner vorlag"
+          },
+          {
+            "name": "eindeutig",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "ja",
+                "nein"
+              ]
+            },
+            "description": "'nein', wenn derselbe (stadtteil, ehemalig)-Name im selben Stadtteil auf mehr als eine schl_nr trifft (Kollision)"
+          }
         ]
       }
     },
@@ -69,13 +202,46 @@
       "description": "Manuell gegen den Scan geprüfte Korrekturen, die erschliessen.main als letzten Schritt auf die Parser-Ausgabe anwendet; betroffene Einträge erhalten status=geprueft.",
       "schema": {
         "fields": [
-          {"name": "schl_nr", "type": "string", "description": "Fremdschlüssel auf strassen.csv"},
-          {"name": "feld", "type": "string", "description": "lemma | stadtteile | strassenklasse | namensgruppe | verweis_auf | buchseite | schl_nr (wert_alt = Lemma des Eintrags, wert_neu = neue Nummer) | stadium_N_datum | stadium_N_name | stadium_N_urspruenglich | eintrag (wert_alt und wert_neu leer: Bestätigung ohne Wertänderung; wert_neu = Lemma: Neuanlage eines vom Parser ausgelassenen Eintrags, gefüllt durch die weiteren Zeilen derselben Nummer). Nachtrag mit wert_neu 'vorm.', 'zuvor' bzw. 'urspr.' im Datumsfeld = undatiertes Stadium"},
-          {"name": "wert_alt", "type": "string", "description": "Parser-Wert zum Prüfzeitpunkt (Datum in Stichprobenform, z. B. 'vor 1898'); leer = Stadium nachtragen. Weicht er beim Anwenden ab, bricht der Lauf ab."},
-          {"name": "wert_neu", "type": "string", "description": "korrigierter Wert; bei Daten der gedruckte Text ('29.08.1927'); leer bei beiden Feldern eines Stadiums = streichen"},
-          {"name": "beleg", "type": "string", "description": "gedruckter Wortlaut der Stelle, ≤ 200 Zeichen"},
-          {"name": "quelle", "type": "string", "constraints": {"enum": ["goldstandard", "llm-lauf"]}},
-          {"name": "datum", "type": "date", "description": "Tag der Prüfung"}
+          {
+            "name": "schl_nr",
+            "type": "string",
+            "description": "Fremdschlüssel auf strassen.csv"
+          },
+          {
+            "name": "feld",
+            "type": "string",
+            "description": "lemma | stadtteile | strassenklasse | namensgruppe | verweis_auf | buchseite | schl_nr (wert_alt = Lemma des Eintrags, wert_neu = neue Nummer) | stadium_N_datum | stadium_N_name | stadium_N_urspruenglich | eintrag (wert_alt und wert_neu leer: Bestätigung ohne Wertänderung; wert_neu = Lemma: Neuanlage eines vom Parser ausgelassenen Eintrags, gefüllt durch die weiteren Zeilen derselben Nummer). Nachtrag mit wert_neu 'vorm.', 'zuvor' bzw. 'urspr.' im Datumsfeld = undatiertes Stadium"
+          },
+          {
+            "name": "wert_alt",
+            "type": "string",
+            "description": "Parser-Wert zum Prüfzeitpunkt (Datum in Stichprobenform, z. B. 'vor 1898'); leer = Stadium nachtragen. Weicht er beim Anwenden ab, bricht der Lauf ab."
+          },
+          {
+            "name": "wert_neu",
+            "type": "string",
+            "description": "korrigierter Wert; bei Daten der gedruckte Text ('29.08.1927'); leer bei beiden Feldern eines Stadiums = streichen"
+          },
+          {
+            "name": "beleg",
+            "type": "string",
+            "description": "gedruckter Wortlaut der Stelle, ≤ 200 Zeichen"
+          },
+          {
+            "name": "quelle",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "goldstandard",
+                "llm-lauf"
+              ]
+            }
+          },
+          {
+            "name": "datum",
+            "type": "date",
+            "description": "Tag der Prüfung"
+          }
         ]
       }
     }

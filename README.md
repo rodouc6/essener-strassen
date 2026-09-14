@@ -1,5 +1,8 @@
 # Essener Straßenverzeichnis: Namen und Umbenennungen
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22757900.svg)](https://doi.org/10.5281/zenodo.22757900)
+[![Lizenz: CC BY 4.0](https://img.shields.io/badge/Lizenz-CC%20BY%204.0-lightgrey.svg)](LICENSE)
+
 > **Abstract (English).** A structured, dated inventory of Essen's streets and their
 > naming history, derived from Erwin Dickhoff's reference work *Essener Straßen*
 > (Klartext-Verlag, Essen 2015, ISBN 978-3-8375-1231-1). Each street carries its
@@ -558,8 +561,13 @@ Der Code und die Datenstruktur/-zusammenstellung stehen unter **CC BY 4.0** (Vol
 zugrunde liegenden Sachangaben (Straßennamen, Daten, Schlüsselnummern) sind als Fakten
 nicht eigenständig schutzfähig, bleiben aber Dickhoff 2015 zuzuschreiben.
 
-**Diesen Datensatz zitieren:** siehe [`CITATION.cff`](CITATION.cff) (maschinenlesbar,
-GitHub/Zenodo-kompatibel).
+**Diesen Datensatz zitieren:**
+
+> Rodouniklis, Christos: *Essener Straßenverzeichnis: Namen und Umbenennungen.* Datensatz,
+> Version 1.0.0 (2026). Zenodo. https://doi.org/10.5281/zenodo.22757901
+
+Der versionsübergreifende DOI https://doi.org/10.5281/zenodo.22757900 verweist immer auf die neueste
+Version; maschinenlesbar in [`CITATION.cff`](CITATION.cff).
 
 **Dickhoff als Primärquelle zitieren:**
 
