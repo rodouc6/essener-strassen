@@ -320,3 +320,11 @@ def test_urspr_stadium_ohne_datum_nachtragen():
     assert (st[0]["gueltig_ab"], st[0]["datum_praezision"], st[0]["name"], st[0]["ist_urspruenglich"]) == (
         "", "unbekannt", "Velberter Sträßchen", "wahr")
     assert st[1]["name"] == "Abteistraße" and st[1]["stadium"] == 2
+
+
+def test_zuvor_stadium_ohne_datum_nachtragen():
+    s, n = _daten()
+    ko.wende_an(s, n, [_k("00001", "stadium_1_datum", "", "zuvor"),
+                       _k("00001", "stadium_1_name", "", "Blechstraße")])
+    st = [z for z in n if z["schl_nr"] == "00001"]
+    assert (st[0]["datum_praezision"], st[0]["name"], st[0]["ist_urspruenglich"]) == ("unbekannt", "Blechstraße", "falsch")

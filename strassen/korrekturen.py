@@ -33,7 +33,9 @@ KOPFFELDER = ("lemma", "stadtteile", "strassenklasse", "namensgruppe", "verweis_
 DATUM_VORMALS = "vorm."
 # Dito für "urspr. Name" ohne Datum: wie DATUM_VORMALS, aber ist_urspruenglich=wahr.
 DATUM_URSPRUENGLICH = "urspr."
-DATUM_UNDATIERT = (DATUM_VORMALS, DATUM_URSPRUENGLICH)
+# "zuvor: Name" (Vorlage) — wie vorm., ist_urspruenglich=falsch.
+DATUM_ZUVOR = "zuvor"
+DATUM_UNDATIERT = (DATUM_VORMALS, DATUM_URSPRUENGLICH, DATUM_ZUVOR)
 _STADIUM = re.compile(r"^stadium_(\d+)_(datum|name|urspruenglich)$")
 
 
@@ -248,7 +250,7 @@ def wende_an(strassen: list, namen: list, korrekturen: list) -> dict:
                  "name": "", "ist_urspruenglich": "falsch"}
             if nachtrag[n]["datum"] == DATUM_URSPRUENGLICH:
                 z["ist_urspruenglich"] = "wahr"
-            elif nachtrag[n]["datum"] != DATUM_VORMALS:
+            elif nachtrag[n]["datum"] not in (DATUM_VORMALS, DATUM_ZUVOR):
                 _setze(z, "datum", nachtrag[n]["datum"], schl, f"stadium_{n}_datum")
             _setze(z, "name", nachtrag[n]["name"], schl, f"stadium_{n}_name")
             st.insert(min(n - 1, len(st)), z)
