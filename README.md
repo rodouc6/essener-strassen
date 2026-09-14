@@ -34,18 +34,18 @@ entschieden und als Overlay über die Parser-Ausgabe gelegt.
 
 ```mermaid
 flowchart LR
-  A[Scan, 2 Bände, 300 dpi] --> B[Seitenteilung am Bundsteg<br>Tesseract OCR]
-  B --> C[regelbasierter Parser<br>strassen/erschliessen.py]
-  C --> D[(strassen.csv<br>namen.csv)]
-  D --> E[Selbstprüfungen<br>strassen/validierung.py]
-  A --> F[Seitenbilder<br>strassen/seiten.py]
-  F --> G[zwei LLM-Zweitleser<br>strassen/llm_leser.py]
-  G --> H[Prüfliste<br>strassen/llm_vergleich.py]
+  A["Scan (2 Bände, 300 dpi)"] --> B["Seitenteilung am Bundsteg,<br/>Tesseract OCR"]
+  B --> C["regelbasierter Parser<br/>strassen/erschliessen.py"]
+  C --> D[("strassen.csv,<br/>namen.csv")]
+  D --> E["Selbstprüfungen<br/>strassen/validierung.py"]
+  A --> F["Seitenbilder<br/>strassen/seiten.py"]
+  F --> G["zwei LLM-Zweitleser<br/>strassen/llm_leser.py"]
+  G --> H["Prüfliste<br/>strassen/llm_vergleich.py"]
   D --> H
-  H --> I[manuelle Sichtung<br>am Scan-Ausschnitt]
-  I --> J[Overlay<br>daten/korrekturen.csv]
+  H --> I["manuelle Sichtung<br/>am Scan-Ausschnitt"]
+  I --> J["Overlay<br/>daten/korrekturen.csv"]
   J --> C
-  D --> K[Konkordanz 1936<br>strassen/veroeffentlichen.py]
+  D --> K["Konkordanz 1936<br/>strassen/veroeffentlichen.py"]
 ```
 
 **Bereinigung.** In vier Runden, alle in [`docs/vorgehen.md`](docs/vorgehen.md) mit
