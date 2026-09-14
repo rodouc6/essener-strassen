@@ -588,6 +588,30 @@ def uebernehmen(pruefliste: list, korrekturen_vorhanden: list, datum: str) -> li
     return neu
 
 
+def pruefe_uebernahme(pruefliste: list, parser, korrekturen_vorhanden: list) -> list:
+    """Trockenlauf: ausgefüllte Prüflisten-Zeilen wie `uebernehmen` in Korrekturzeilen wandeln und
+    auf KOPIEN der Parser-Ausgabe anwenden. Liefert die Fehlermeldungen (leer = alles würde
+    durchgehen), ohne Dateien oder die übergebenen Daten zu verändern. Jede Schlüsselnummer
+    wird einzeln geprüft, damit eine Meldung je Eintrag entsteht statt nur die erste."""
+    import copy
+    from strassen.korrekturen import KorrekturFehler, wende_an
+    fehler = []
+    try:
+        neu = uebernehmen(pruefliste, korrekturen_vorhanden, "0000-00-00")
+    except ValueError as e:
+        return [str(e)]
+    je_schl = defaultdict(list)
+    for k in neu:
+        je_schl[k["schl_nr"]].append(k)
+    for schl, zeilen in je_schl.items():
+        s, n = copy.deepcopy(parser[0]), copy.deepcopy(parser[1])
+        try:
+            wende_an(s, n, [k for k in korrekturen_vorhanden if k["schl_nr"] == schl] + zeilen)
+        except KorrekturFehler as e:
+            fehler.append(str(e))
+    return fehler
+
+
 def pruefliste_hat_offene_korrekturen(pfad) -> bool:
     """Enthält eine vorhandene pruefung_llm.csv ausgefüllte, noch nicht übernommene
     korrektur-Zellen? Ein Neuaufbau der Prüfliste würde sie überschreiben."""
@@ -673,11 +697,23 @@ def _cli():
     p3 = sub.add_parser("uebernehmen"); p3.add_argument("--daten", default=str(DATEN_DIR))
     p3.add_argument("--datum", default=date.today().isoformat())
     p3.add_argument("--pruefliste", default="", help="andere Prüfliste als daten/pruefung_llm.csv (z. B. pruefung_unsicher.csv)")
+    p5 = sub.add_parser("pruefen", help="Trockenlauf: würde `uebernehmen` + Overlay mit dieser Prüfliste durchgehen?")
+    p5.add_argument("--daten", default=str(DATEN_DIR)); p5.add_argument("--pruefliste", default="")
     p4 = sub.add_parser("unsicher", help="vollständige Prüfliste aller Einträge mit status=unsicher")
     p4.add_argument("--antworten-dir", default=str(ANTWORTEN_DIR)); p4.add_argument("--daten", default=str(DATEN_DIR))
     p4.add_argument("--ausgabe", default=str(DATEN_DIR / "pruefung_unsicher.csv"))
     a = p.parse_args()
 
+    if a.befehl == "pruefen":
+        from strassen.korrekturen import lade_korrekturen
+        with open(a.pruefliste or Path(a.daten) / "pruefung_llm.csv", encoding="utf-8", newline="") as f:
+            pruefliste = list(csv.DictReader(f))
+        offen = sum(1 for z in pruefliste if (z.get("korrektur") or "").strip())
+        fehler = pruefe_uebernahme(pruefliste, _lade_parser(a.daten), lade_korrekturen(Path(a.daten) / "korrekturen.csv"))
+        for f_ in fehler:
+            print("Fehler:", f_)
+        print(f"{offen} ausgefüllte Zeilen, {len(fehler)} Fehler")
+        sys.exit(1 if fehler else 0)
     if a.befehl == "unsicher":
         if pruefliste_hat_offene_korrekturen(a.ausgabe):
             print(f"Fehler: {a.ausgabe} enthält nicht übernommene Korrekturen — erst `uebernehmen "

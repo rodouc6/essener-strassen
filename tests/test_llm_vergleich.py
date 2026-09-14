@@ -523,3 +523,13 @@ def test_gruende_aus_pruefung_csv_je_schl_nr(tmp_path):
                      {"buchseite": 40, "lemma_roh": "Abteistraße", "grund": "anders", "rohtext": ""}])
     g = lv.gruende_je_schl_nr(_parser()[0], p)
     assert g == {"00002": "Datum ohne Doppelpunkt; Lemma auffällig (Form)"}
+
+
+def test_pruefe_uebernahme_meldet_fehler_ohne_daten_zu_aendern():
+    strassen, namen = _parser()
+    pruefliste = [{"schl_nr": "00001", "feld": "stadtteile", "wert_parser": "Frohnhausen", "korrektur": "Frohnhausen-Nord", "beleg": ""},
+                  {"schl_nr": "00002", "feld": "stadium_2_datum", "wert_parser": "", "korrektur": "12.03.1903", "beleg": ""}]
+    fehler = lv.pruefe_uebernahme(pruefliste, (strassen, namen), [])
+    assert len(fehler) == 1 and "00002 stadium_2" in fehler[0]
+    assert strassen[0]["stadtteile"] == "Frohnhausen" and strassen[0]["status"] == "automatisch"   # unverändert
+    assert lv.pruefe_uebernahme(pruefliste[:1], (strassen, namen), []) == []

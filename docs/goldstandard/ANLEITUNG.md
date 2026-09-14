@@ -254,6 +254,20 @@ python3 -m strassen.llm_vergleich uebernehmen --pruefliste daten/pruefung_unsich
 python3 -m strassen.erschliessen && python3 -m strassen.veroeffentlichen
 ```
 
+Zwischendurch prüft ein Trockenlauf, ob die bisher ausgefüllten Zellen durchgehen würden,
+ohne etwas zu verändern:
+
+```bash
+python3 -m strassen.llm_vergleich pruefen --pruefliste daten/pruefung_unsicher.csv
+```
+
+Regeln, die dabei am häufigsten anschlagen: Nur die Spalte `korrektur` wirkt — Werte in
+`wert_parser` einer handangelegten Zeile tun nichts. Ein fehlendes Stadium wird als Zeile
+`stadium_N` (Zielposition, `wert_parser` leer, `korrektur` = `DATUM | NAME`) nachgetragen;
+vorhandene Stadien werden nie von Hand umnummeriert, sie rücken von selbst auf. Modellwerte
+wie „(nicht normalisierbar)" gehören nie in `korrektur`; ein Jahrhundert wird als
+`16. Jahrhundert` eingetragen.
+
 Schlüsselnummern-Dubletten (02402, 03448) fallen in dieser Liste zusammen und sind über
 `schl_nr` nicht korrigierbar; sie bleiben `unsicher`, solange sie so im Buch stehen.
 
