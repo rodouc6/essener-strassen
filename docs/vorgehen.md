@@ -153,6 +153,13 @@ mit Testfällen hier festgehalten; alle Fälle sind heute per Overlay korrigiert
   Anker ohne Nummer in der OCR (01655), Nummer mit Ziffer zu viel (02906 „029086").
 - **`vorm.:`-Stadien** ohne Datum (02512, 02513; 4 Vorkommen im Korpus).
 - **Anführungszeichen/Satzreste vor dem Lemma** (03448 „Wendin“ Wangeroogeweg").
+- **Verweise (`verweis_auf`)** erkennen weder Parser noch Modelle zuverlässig (Beobachtung
+  des Nutzers bei der Sichtung der unsicheren Einträge, 2026-09-14). Der Parser liest heute
+  nur „Siehe X" (`_VERWEIS` in `erschliessen.py`); Dickhoff verwendet aber auch „Vgl. auch X",
+  „Siehe auch X" und Verweise mitten in der Erläuterung (297 Fundstellen von „Siehe …"/„Vgl.
+  auch …" im OCR-Text, gefüllt sind nur 230 `verweis_auf`). Denkbar ist eine eigene, nachgeschaltete
+  Stufe, die gezielt nach solchen einleitenden Markern sucht und die Ziele gegen die Lemmata
+  des Datensatzes abgleicht.
 
 Ältere Restposten: `daten/pruefung.csv` führt 02568 weiterhin als „Schlüsselnummer mehrfach",
 weil die Dubletten-Prüfung vor dem Overlay läuft; `pruefung_validierung.csv` zählt
