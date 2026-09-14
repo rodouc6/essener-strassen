@@ -150,9 +150,13 @@ Konkordanz 444 → **455**, amtlich bestätigt 3.324 → **3.339** (nicht im Ver
 Alphabet-Auffällige 39 → 31, LLM-Prüfliste `einig=beide` 52 → 55 (keine braucht Korrektur).
 Die Sichtungsfassung liegt unter `llm/pruefung_unsicher_sichtung_2026-09-14.csv`.
 
-Die verbleibenden 112 unsicheren Einträge wurden in derselben Sichtung angesehen, aber nicht
-als Bestätigung eingetragen; sie behalten `unsicher`, bis eine Bestätigungszeile vorliegt
-(darunter die Buchdubletten 02402 und 03448, die das Overlay nicht adressieren kann).
+Die übrigen 108 in dieser Sichtung angesehenen Einträge ohne Korrekturbedarf wurden auf
+Bestätigung des Nutzers („alle 162 Einträge angesehen; wo nichts zu ändern war, nichts
+eingetragen") als Bestätigungszeilen (`feld=eintrag`) ins Overlay geschrieben (Overlay 415 →
+**523**). Endstand: `geprueft` **370**, `unsicher` **4** — nur noch die Buchdubletten 02402
+(Peenestraße/Porscheplatz) und 03448 (Wangeroogeweg/Wieselweg), die das Overlay nicht
+adressieren kann und die als Uneindeutigkeit der Vorlage dokumentiert bleiben. Konkordanz
+455 → **473** (die bestätigten Einträge zählen nun als belastbar), Konkordanz-Prüffälle 34.
 
 ## Was als Nächstes offen ist
 

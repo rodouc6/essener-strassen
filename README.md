@@ -166,7 +166,7 @@ Primärschlüssel: (`schl_nr`, `stadium`). Beispiel (Schl.-Nr. 01838, Buchseite 
 Damit lässt sich der Name der Straße zu jedem beliebigen Stichtag ableiten — nicht nur
 zum Erhebungsstand 1936.
 
-### `daten/konkordanz_1936.csv` (455 Zeilen)
+### `daten/konkordanz_1936.csv` (473 Zeilen)
 
 Abgeleitet aus `namen.csv`: für jede Straße mit `status=automatisch` das Namensstadium,
 das zum Erhebungsstand des Adressbuchs Essen 1936 galt (Arbeitsstichtag **1936-06-30**,
@@ -181,7 +181,7 @@ heutigen Namen.
 | `schl_nr` | amtliche Schlüsselnummer | siehe oben |
 | `datum_praezision` | Genauigkeit der zugrunde liegenden Datierung | wie in `namen.csv` |
 | `quelle` | Herkunft der Angabe | wörtlich „Dickhoff 2015" |
-| `zusatz` | abgetrennter Klammerzusatz aus der Quelle | z. B. „(tlw.)", „(Verl.)"; leer wenn keiner vorlag (164 von 455 Zeilen gefüllt) |
+| `zusatz` | abgetrennter Klammerzusatz aus der Quelle | z. B. „(tlw.)", „(Verl.)"; leer wenn keiner vorlag (173 von 473 Zeilen gefüllt) |
 | `eindeutig` | ob `(stadtteil, ehemalig)` auf genau eine `schl_nr` trifft | `ja` (386) \| `nein` (39, Kollisionen) |
 
 Straßen mit `status=unsicher` gehen **nicht** in die Konkordanz ein, da ihr heutiger
@@ -217,18 +217,18 @@ korrigierten Werte selbst, nicht über eine Änderung an `pruefung.csv`.
 
 - **388** OCR-Buchseiten → **3.354** vom Parser segmentierte Einträge.
 - `daten/strassen.csv`: **3.354** Zeilen (3.349 vom Parser, 5 per Overlay nachgetragen), davon
-  **112** mit `status=unsicher` (**2.980** `automatisch`, **262** `geprueft`).
+  **4** mit `status=unsicher` (**2.980** `automatisch`, **370** `geprueft`).
 - `daten/namen.csv`: **5.513** Namensstadien (Datierungsgenauigkeit: **4.777** `tag`,
   **334** `unbekannt`, **211** `jahr`, **182** `vor`, **9** `jahrhundert`).
-- `daten/konkordanz_1936.csv`: **455** Zeilen (**410** `eindeutig=ja`, 45 `eindeutig=nein`;
-  **164** mit Klammerzusatz).
+- `daten/konkordanz_1936.csv`: **473** Zeilen (**424** `eindeutig=ja`, 49 `eindeutig=nein`;
+  **173** mit Klammerzusatz).
 
 ### Drei unabhängige Selbstprüfungen
 
 | Prüfung | Ergebnis |
 |---|---|
 | Schlüsselnummern (amtlich, 1–3771 erwartet) | 3.349 erfasst, 425 Lücken, **3 Dubletten** |
-| alphabetische Ordnung der Lemmata | **31** aus der Sortierung fallende Lemmata (3 bereits als `unsicher` markiert, 28 neu auffällig) |
+| alphabetische Ordnung der Lemmata | **31** aus der Sortierung fallende Lemmata (0 bereits als `unsicher` markiert, 31 neu auffällig) |
 | Abgleich mit dem amtlichen Straßenverzeichnis (`strassen_aktuell.csv`) | **3.339** bestätigt, 15 nicht im Verzeichnis (erwartbar bei aufgehobenen Straßen) |
 
 Details, Methodik und Interpretation: [`docs/qualitaet.md`](docs/qualitaet.md); die
@@ -257,7 +257,7 @@ Volllauf vom 2026-09-12/13, Prompt-Stand `530d5c9e77b5`:
   weil dessen Namenskette auf der Folgeseite weiterlaufen kann und die Modelle sie dort
   nicht sehen. Ausgelassene Ketten: **340** (`mistral`) bzw. **334** (`qwen`),
   in [`docs/llm_lesung.md`](docs/llm_lesung.md) als `seitenende_ausgelassen` beziffert.
-- Daraus menschlich geprüft und angewandt: **262** Einträge mit `status=geprueft` —
+- Daraus menschlich geprüft und angewandt: **370** Einträge mit `status=geprueft` —
   200 aus der Sichtung aller 288 `einig=beide`-Zeilen am 2026-09-13 (jede Zeile am
   Scan-Ausschnitt geprüft; 245 Zeilen als Korrektur, 7 Einträge als Bestätigung des
   Parser-Werts), 1 aus der Goldstandard-Stichprobe, dazu 5 vom Parser ausgelassene und
@@ -265,8 +265,9 @@ Volllauf vom 2026-09-12/13, Prompt-Stand `530d5c9e77b5`:
   Schlüsselnummern-Dublette (OCR-Fehler), 2 Nachzügler aus der Sichtung, und **52** Einträge
   aus der Sichtung der `unsicher`-Einträge am 2026-09-14 (vollständige Prüfliste
   `daten/pruefung_unsicher.csv`, alle Felder je Eintrag am Scan-Ausschnitt geprüft, 84 Zellen
-  korrigiert). Das Overlay `daten/korrekturen.csv` hat **415** Zeilen. Nach Sichtung und Overlay-Erweiterung verbleiben 55 `einig=beide`-Zeilen, davon
-  24 bei bereits geprüften Einträgen (die Modelle lesen dort falsch) und 31 mit korrektem
+  korrigiert) sowie **108** in derselben Sichtung als korrekt bestätigte Einträge
+  (`feld=eintrag`). Das Overlay `daten/korrekturen.csv` hat **523** Zeilen. Nach Sichtung und Overlay-Erweiterung verbleiben 55 `einig=beide`-Zeilen, davon
+  25 bei bereits geprüften Einträgen (die Modelle lesen dort falsch) und 30 mit korrektem
   Parser-Wert; keine davon braucht eine Korrektur.
 
 Die Modelle verändern den Status nicht; alle `geprueft`-Einträge gehen auf manuelle
@@ -301,7 +302,7 @@ Regeln der Reparatur sind in
 [`docs/specs/2026-09-11-parser-reparatur-design.md`](docs/specs/2026-09-11-parser-reparatur-design.md)
 beschrieben, der Nachweis jeder Änderung in
 [`docs/regression/2026-09-parser-reparatur.md`](docs/regression/2026-09-parser-reparatur.md).
-Dass der Endstand mehr unsichere Einträge zählt als der Prototyp der Spec (256 nach Parser-Runde 2 statt 202; nach den manuellen Sichtungen 112),
+Dass der Endstand mehr unsichere Einträge zählt als der Prototyp der Spec (256 nach Parser-Runde 2 statt 202; nach den manuellen Sichtungen 4),
 ist gewollt und keine Regression: leere Kopffelder, Toleranz-Hinweise und unvollständig
 gelesene Namensketten sind seither eigene Prüfgründe — der Prototyp las diese Fälle still.
 
@@ -340,10 +341,12 @@ nur Stufe 1+2 (`strassen/erschliessen.py`) ausführen; `daten/strassen.csv` und
 Ehrlichkeit über die Grenzen dieses Datensatzes ist Teil seines Qualitätsanspruchs —
 nichts hier ist verschwiegen, um sauberer zu wirken:
 
-- **112 unsichere Einträge** (`status=unsicher` in `strassen.csv`) sind vom Parser nicht
-  sicher erschlossen; ihre Felder (insbesondere `strassenklasse`) können OCR-Rauschen
-  enthalten. Sie gehen bewusst nicht in die Konkordanz ein.
-- **33 Konkordanz-Prüffälle** (`daten/pruefung_konkordanz.csv`, nicht Teil des
+- **4 unsichere Einträge** (`status=unsicher` in `strassen.csv`): die beiden
+  Schlüsselnummern-Dubletten der Vorlage (02402 Peenestraße/Porscheplatz, 03448
+  Wangeroogeweg/Wieselweg). Alle anderen Einträge sind entweder vom Parser ohne Prüfgrund
+  gelesen (`automatisch`) oder gegen den Scan geprüft (`geprueft`). Die Dubletten gehen
+  bewusst nicht in die Konkordanz ein.
+- **34 Konkordanz-Prüffälle** (`daten/pruefung_konkordanz.csv`, nicht Teil des
   Publikationsumfangs, s. u.): Straßen, deren letztes Namensstadium vom aktuellen Lemma
   abweicht (unvollständige oder korrupte Namenskette in der Quelle). Sie erscheinen
   **nicht** in `konkordanz_1936.csv`, sondern werden gekennzeichnet statt geraten.

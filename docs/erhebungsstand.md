@@ -139,12 +139,12 @@ Ab Umbenennungen ab Februar 1936 reflektiert das Adressbuch keine einzige mehr �
 Die Konkordanz wird **nur aus Straßen mit `status=automatisch` oder `geprueft`** gebaut; unsichere Lemmata (`status=unsicher`) gehören nicht in die produktive Konkordanz, da ihr heutiger Name selbst nicht belastbar ist. Einträge, deren Namenskette intern widersprüchlich ist (letztes Stadium ≠ Lemma nach Zusatz-Abtrennung, mechanisches Konsistenz-Netz), landen nicht in der Konkordanz, sondern als Prüffall in `daten/pruefung_konkordanz.csv`.
 
 - Straßen gesamt: 3354
-- davon `status=automatisch` oder `geprueft` (Basis der Konkordanz): 3242
-- davon `status=unsicher` (ausgeschlossen): 112
-- Konkordanzeinträge: **455**
-  - davon `eindeutig=ja`: 410 / `eindeutig=nein` (Kollisionen): 45
-  - davon mit Klammerzusatz (z. B. „(tlw.)", „(Verl.)"): 164
-- Prüffälle (`daten/pruefung_konkordanz.csv`): **33**
+- davon `status=automatisch` oder `geprueft` (Basis der Konkordanz): 3350
+- davon `status=unsicher` (ausgeschlossen): 4
+- Konkordanzeinträge: **473**
+  - davon `eindeutig=ja`: 424 / `eindeutig=nein` (Kollisionen): 49
+  - davon mit Klammerzusatz (z. B. „(tlw.)", „(Verl.)"): 173
+- Prüffälle (`daten/pruefung_konkordanz.csv`): **34**
 
 Methodische Begründung der Konkordanz-Ableitung (Klammerzusätze abtrennen, Kollisionen markieren, mechanisches Konsistenz-Netz gegen unvollständige Namensketten, „(tlw.)"-Teilangaben als informationstragend behalten): siehe die Docstrings in `strassen/stichtag.py` (`_trenne_zusatz`, `_ist_teil_zusatz`, `_kandidat_oder_pruefung`, `baue_konkordanz`).
 
