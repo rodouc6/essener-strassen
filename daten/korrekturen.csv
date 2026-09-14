@@ -323,3 +323,94 @@ schl_nr,feld,wert_alt,wert_neu,beleg,quelle,datum
 02681,stadium_1_name,!,I. Siedlerweg,"05. Dezember 1951: I. Siedlerweg, 20. Juli 1966: Riedingerstraße (Scan S. 274; OCR las '!')",llm-lauf,2026-09-13
 03203,stadium_1_datum,,urspr.,"Str.-Gr.: Stadt und Ort, urspr. Velberter Sträßchen (Scan S. 330; 'urspr.' ohne Doppelpunkt, kein Datum)",llm-lauf,2026-09-13
 03203,stadium_1_name,,Velberter Sträßchen,urspr. Velberter Sträßchen,llm-lauf,2026-09-13
+00004,lemma,Da Achternbergstraße - Haus Achternberg Achtermbergbredde,Achtermbergbredde,,llm-lauf,2026-09-14
+00004,verweis_auf,,Brandhoffs Delle,,llm-lauf,2026-09-14
+03652,lemma,Ahnewinkelstraße - Hof Ahnewinkel Akademiestraße,Akademiestraße,,llm-lauf,2026-09-14
+03652,buchseite,25,26,Eintrag beginnt oben auf Buchseite 26 (Seitenendrest der Vorseite am Lemma),llm-lauf,2026-09-14
+01125,lemma,a _ Alfred-Herrhausen-Brücke,Alfred-Herrhausen-Brücke,,llm-lauf,2026-09-14
+01125,buchseite,27,28,Eintrag beginnt oben auf Buchseite 28 (Seitenendrest der Vorseite am Lemma),llm-lauf,2026-09-14
+03269,lemma,Ehemaliger Alfrediplatz mit Alfredibrunnen Alfred-Neuse-Weg,Alfred-Neuse-Weg,,llm-lauf,2026-09-14
+00042,stadium_1_datum,,02.06.1922,02. Juni 1922: Aloisstraße (Datum über Seitenumbruch 29/30 geteilt),llm-lauf,2026-09-14
+00042,stadium_1_name,,Aloisstraße,02. Juni 1922: Aloisstraße,llm-lauf,2026-09-14
+00042,verweis_auf,,Schaphausstraße,,llm-lauf,2026-09-14
+00569,namensgruppe,"Lagebezeichnung, zuvor: Blechstraße, zuvor: Auf dem Bleek",Lagebezeichnung,"Str.-Gr.: Lagebezeichnung, zuvor: Blechstraße, zuvor: Auf dem Bleek, 09. August 1927: Bottroper Straße (tlw.), 20. August 1980: Alte Bottroper Straße",llm-lauf,2026-09-14
+00569,stadium_1_datum,,zuvor,"Str.-Gr.: Lagebezeichnung, zuvor: Blechstraße, zuvor: Auf dem Bleek, 09. August 1927: Bottroper Straße (tlw.), 20. August 1980: Alte Bottroper Straße",llm-lauf,2026-09-14
+00569,stadium_1_name,,Blechstraße,"Str.-Gr.: Lagebezeichnung, zuvor: Blechstraße, zuvor: Auf dem Bleek, 09. August 1927: Bottroper Straße (tlw.), 20. August 1980: Alte Bottroper Straße",llm-lauf,2026-09-14
+00569,stadium_2_datum,,zuvor,"Str.-Gr.: Lagebezeichnung, zuvor: Blechstraße, zuvor: Auf dem Bleek, 09. August 1927: Bottroper Straße (tlw.), 20. August 1980: Alte Bottroper Straße",llm-lauf,2026-09-14
+00569,stadium_2_name,,Auf dem Bleek,"Str.-Gr.: Lagebezeichnung, zuvor: Blechstraße, zuvor: Auf dem Bleek, 09. August 1927: Bottroper Straße (tlw.), 20. August 1980: Alte Bottroper Straße",llm-lauf,2026-09-14
+00182,lemma,Am Gerichtshaus - Gerichtshaus Byfang 1916 Am Gerichtshaus,Am Gerichtshaus,,llm-lauf,2026-09-14
+00182,buchseite,34,35,Eintrag beginnt oben auf Buchseite 35 (Seitenendrest der Vorseite am Lemma),llm-lauf,2026-09-14
+02510,namensgruppe,"Lagebezeichnung, vorm.: Distelbeckhof (tiIw.)",Lagebezeichnung,,llm-lauf,2026-09-14
+02510,stadium_1_datum,,vorm.,"Str.-Gr.: Lagebezeichnung, vorm.: Distelbeckhof (tlw.), 24. Juni 1988: Am Reiterhof",llm-lauf,2026-09-14
+02510,stadium_1_name,,Distelbeckhof (tlw.),"Str.-Gr.: Lagebezeichnung, vorm.: Distelbeckhof (tlw.), 24. Juni 1988: Am Reiterhof",llm-lauf,2026-09-14
+00217,stadium_2_datum,,04.02.1977,04. Februar 1977: Am Thyssenhaus,llm-lauf,2026-09-14
+00217,stadium_2_name,,Am Thyssenhaus,04. Februar 1977: Am Thyssenhaus,llm-lauf,2026-09-14
+01149,namensgruppe,"Industrie und Wirtschaft, vorm.: Franz-Fischer-Weg_ (tiw.), vorm.: Schönscheidtstraße (tiw)",Industrie und Wirtschaft,,llm-lauf,2026-09-14
+01149,stadium_1_datum,,vorm.,"Str.-Gr.: Industrie und Wirtschaft, vorm.: Franz-Fischer-Weg (tlw.), vorm.: Schönscheidtstraße (tlw.), 18. Mai 1999: Am Technologiepark",llm-lauf,2026-09-14
+01149,stadium_1_name,,Franz-Fischer-Weg (tlw.),"Str.-Gr.: Industrie und Wirtschaft, vorm.: Franz-Fischer-Weg (tlw.), vorm.: Schönscheidtstraße (tlw.), 18. Mai 1999: Am Technologiepark",llm-lauf,2026-09-14
+01149,stadium_2_datum,,vorm.,s. o.,llm-lauf,2026-09-14
+01149,stadium_2_name,,Schönscheidtstraße (tlw.),s. o.,llm-lauf,2026-09-14
+03611,lemma,EEE EEE ER 4 4 bi Am Stadtwald,Am Stadtwald,,llm-lauf,2026-09-14
+03560,stadium_2_datum,,18.09.1974,18. September 1974: An der Schlucht (Datum über Seitenumbruch 50/51 geteilt),llm-lauf,2026-09-14
+03560,stadium_2_name,,An der Schlucht,18. September 1974: An der Schlucht (Datum über Seitenumbruch 50/51 geteilt),llm-lauf,2026-09-14
+02522,namensgruppe,"Person, Mann, Deutscher, Meteorologe, vorm.: Reckhammerweg (tiw.)","Person, Mann, Deutscher, Meteorologe",,llm-lauf,2026-09-14
+02522,stadium_1_datum,,vorm.,"Str.-Gr.: Person, Mann, Deutscher, Meteorologe, vorm.: Reckhammerweg (tlw.), 24. April 1990: Assmannweg",llm-lauf,2026-09-14
+02522,stadium_1_name,,Reckhammerweg (tlw.),vorm.: Reckhammerweg (tlw.),llm-lauf,2026-09-14
+03550,stadium_3_name,Auf dem Loh (Ver!.),Auf dem Loh (Verl.),,llm-lauf,2026-09-14
+00357,strassenklasse,,Gemeindestraße,,llm-lauf,2026-09-14
+00357,namensgruppe,"Gemeindestraße, Stadt und Ort, Siedlung","Stadt und Ort, Siedlung",,llm-lauf,2026-09-14
+00417,strassenklasse,,Gemeindeklasse,,llm-lauf,2026-09-14
+00422,stadium_1_datum,"(urspr., kein Datum)",16. Jahrhundert,urspr.: (16. Jh.): opme Brand,llm-lauf,2026-09-14
+00422,stadium_1_name,(16. Jh.): opme Brand,opme Brand,urspr.: (16. Jh.): opme Brand,llm-lauf,2026-09-14
+00422,stadium_2_datum,1860,1826,,llm-lauf,2026-09-14
+00422,stadium_2_name,Brandstraße,aufm Brande,,llm-lauf,2026-09-14
+00422,stadium_3_datum,,etwa 1860,"urspr.: (16. Jh.): opme Brand, 1826: aufm Brande, etwa 1860: Brandstraße",llm-lauf,2026-09-14
+00422,stadium_3_name,,Brandstraße,etwa 1860: Brandstraße,llm-lauf,2026-09-14
+00595,stadium_3_datum,1925-04-16,1905,10./13. April 1905: Schottländerweg (zwei Tagesangaben im Druck; precision-first auf das Jahr zurückgestuft),llm-lauf,2026-09-14
+00595,stadium_3_name,Dahlhauser Straße,Schottländerweg,,llm-lauf,2026-09-14
+00595,stadium_4_datum,,1925-04-16,,llm-lauf,2026-09-14
+00595,stadium_4_name,,Dahlhauser Straße,,llm-lauf,2026-09-14
+00601,lemma,Zur ehemaligen Zeche Eintracht II. Dandermannsteg,Dandermannsteg,,llm-lauf,2026-09-14
+00653,lemma,Dortmannhof - 1970 Dorstener Straße,Dorstener Straße,,llm-lauf,2026-09-14
+00685,stadium_1_datum,,1935-11-14,,llm-lauf,2026-09-14
+00685,stadium_1_name,,Dudweilerstraße,,llm-lauf,2026-09-14
+01146,stadium_1_name,Econova-Allee. „econova” ist der Name für das über 152 ha große Industrie- und G,Econova-Allee,,llm-lauf,2026-09-14
+01019,stadium_3_name,Düppenberg (Umb.tiw.),Düppenberg (Umb. tlw.),Düppenberg (Umb.tlw.),llm-lauf,2026-09-14
+01073,stadium_1_datum,1929,1929-02-05,,llm-lauf,2026-09-14
+01152,stadium_3_datum,,1934-06-05,,llm-lauf,2026-09-14
+01152,stadium_3_name,,Hachestraße,,llm-lauf,2026-09-14
+01168,stadium_2_datum,1934,1934-06-05,,llm-lauf,2026-09-14
+01148,buchseite,142,143,Eintrag beginnt oben auf Buchseite 143 (Seitenendrest der Vorseite am Lemma),llm-lauf,2026-09-14
+01225,lemma,De 3 Heckstraße - Hecktor Heckhülsenring,Heckhülsenring,,llm-lauf,2026-09-14
+01360,stadium_5_datum,,1901-12-13,,llm-lauf,2026-09-14
+01360,stadium_5_name,,Holsterhauser Straße,,llm-lauf,2026-09-14
+01386,stadium_3_datum,,1926-05-19,,llm-lauf,2026-09-14
+01386,stadium_3_name,,Lindenstraße (Verl.),,llm-lauf,2026-09-14
+01401,strassenklasse,,Gemeindestraße,,llm-lauf,2026-09-14
+02532,namensgruppe,"Person, Mann, Deutscher, Kruppscher Beamter, (vorm.) Bergheimer Straße (tlw.)","Person, Mann, Deutscher, Kruppscher Beamter",,llm-lauf,2026-09-14
+02532,stadium_1_datum,,vorm.,"(vorm.) Bergheimer Straße (tlw.), 13. November 1991: Hugo-Knippen-Straße",llm-lauf,2026-09-14
+02532,stadium_1_name,,Bergheimer Straße (tlw.),,llm-lauf,2026-09-14
+01450,stadtteile,Heidhausen,Iländerweg,,llm-lauf,2026-09-14
+01450,stadium_2_name,lländerweg,Iländerweg,,llm-lauf,2026-09-14
+01459,stadium_1_name,Im Breukel. (Breukel = kleiner Bruch),Im Breukel,,llm-lauf,2026-09-14
+01537,lemma,lländerhöhe,Iländerhöhe,,llm-lauf,2026-09-14
+01537,stadium_1_name,lländerhöhe,Iländerhöhe,,llm-lauf,2026-09-14
+01474,lemma,Höfe und ihre Aufsitzer die Schreibweise mit „v“ Im Hülsfeld,Im Hülfsfeld,,llm-lauf,2026-09-14
+01515,stadium_3_name,Il,II. Schockenhecke,,llm-lauf,2026-09-14
+01635,verweis_auf,,Askaristraße,,llm-lauf,2026-09-14
+03614,verweis_auf,,Weinberg,,llm-lauf,2026-09-14
+01702,lemma,ckuhl (wohl eine Verschreibung) und Kickuhlskuhle Kiekenberg,Kiekenberg,,llm-lauf,2026-09-14
+01718,lemma,ern von der Heiligen Elisabeth zu Essen-(Schuir) Klarastraße,Klarastraße,,llm-lauf,2026-09-14
+01724,stadium_1_name,! Heißener Straße,Heißener Straße,,llm-lauf,2026-09-14
+01760,stadium_1_name,«77 N Zn J Ne | FH E> £ \ SI 1-17 ueN N EIER K/ 13 nun N ASZo.L Köllmannstraße,Köllmannstraße,,llm-lauf,2026-09-14
+02153,namensgruppe,"Gemeindestraße, Str.-Gr.: Person, Mann, Deutscher, Politiker, Publizist, Historiker","Person, Mann, Deutscher, Politiker, Publizist, Historiker",,llm-lauf,2026-09-14
+02343,lemma,"sagenhaft"" Ottenkämperweg",Ottenkämperweg,,llm-lauf,2026-09-14
+02542,stadium_2_name,Kanarienberg (ttw.),Kanarienenberg (tlw.),,llm-lauf,2026-09-14
+02724,stadium_1_name,ee > Ternir! Salzmarkt Samoastraße,Samoastraße,,llm-lauf,2026-09-14
+00718,stadium_2_datum,,04.04.1986,"11. Dezember 1974: Siebrechtweg, 04. April 1986 aufgehoben: Siebrechtweg, 31. Januar 2006: Siebrechtweg",llm-lauf,2026-09-14
+00718,stadium_2_name,,Siebrechtweg (aufgehoben),"11. Dezember 1974: Siebrechtweg, 04. April 1986 aufgehoben: Siebrechtweg, 31. Januar 2006: Siebrechtweg",llm-lauf,2026-09-14
+03071,lemma,Tholstraße - Hof Thol Thusneldastraße,Thusneldastraße,,llm-lauf,2026-09-14
+03071,buchseite,323,324,Eintrag beginnt oben auf Buchseite 324 (Seitenendrest der Vorseite am Lemma),llm-lauf,2026-09-14
+03249,stadium_1_name,! Voßbuschstraße,Voßbuschstraße,,llm-lauf,2026-09-14
+03440,stadtteile,Alten-dorf; Bochold; Borbeck-Mitte,Altendorf; Bochold; Borbeck-Mitte,,llm-lauf,2026-09-14
+03493,lemma,208 ff Zeche Ernestine,Zeche Ernestine,,llm-lauf,2026-09-14

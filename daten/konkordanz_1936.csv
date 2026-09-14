@@ -1,10 +1,12 @@
 stadtteil,ehemalig,heutig,schl_nr,datum_praezision,quelle,zusatz,eindeutig
+Kray,Kreftenscheerstraße,Achtermbergbredde,00004,tag,Dickhoff 2015,,ja
 Kray,Achtermbergstraße,Achternbergstraße,00005,tag,Dickhoff 2015,(Umb.),ja
 Bergerhausen,Ludwigstraße,Adelgundenweg,00009,tag,Dickhoff 2015,,ja
 Kray,Am Knottenberg,Äbtissinsteig,00016,tag,Dickhoff 2015,(tlw.),ja
 Steele,Aastraße,Ahestraße,00020,tag,Dickhoff 2015,,ja
 Ostviertel,Alfredistraße,Alfrediquelle,00033,tag,Dickhoff 2015,(tlw.),ja
 Fischlaken,Hermannstraße,Alinenhöhe,00037,tag,Dickhoff 2015,,ja
+Bergeborbeck,Bottroper Straße,Alte Bottroper Straße,00569,tag,Dickhoff 2015,(tlw.),ja
 Haarzopf,Hatzper Straße,Alte Hatzper Straße,00253,tag,Dickhoff 2015,(tlw.),ja
 Burgaltendorf,Hauptstraße,Alte Hauptstraße,01428,tag,Dickhoff 2015,,ja
 Haarzopf,Raadter Straße,Alte Raadter Straße,00252,tag,Dickhoff 2015,(tlw.),ja
@@ -26,6 +28,7 @@ Bredeney,Eckbertstraße,Am Tann,00134,tag,Dickhoff 2015,(tlw.),ja
 Stadtwald,Wittekindstraße,Am Uhlenkrug,00255,tag,Dickhoff 2015,(tlw.),ja
 Stadtkern,Hochstraße,Am Waldthausenpark,00141,tag,Dickhoff 2015,,ja
 Stadtwald,Am Hang,Am Wiedenfeld,03552,tag,Dickhoff 2015,,ja
+Schönebeck,Schacht-Kronprinz-Straße,An der Schlucht,03560,tag,Dickhoff 2015,(tlw.),ja
 Kettwig,Kaiser-Wilhelm-Platz,An der Seilerei,03625,vor,Dickhoff 2015,,ja
 Werden,Ringstraße,An der Stadtmauer,02605,tag,Dickhoff 2015,,ja
 Südviertel,Freiligrathstraße,An St. Ignatius,00173,tag,Dickhoff 2015,,ja
@@ -203,6 +206,7 @@ Kettwig,Horst-Wessel-Platz,Hopmannplatz,03680,tag,Dickhoff 2015,,ja
 Horst,Altendorfer Straße,Horster Straße,01371,tag,Dickhoff 2015,,ja
 Altenessen-Nord,Holzschragen,Hossemsgarten,01423,tag,Dickhoff 2015,(tlw.),ja
 Frillendorf,Dortmunder Straße,Huckarder Straße,01425,tag,Dickhoff 2015,(tlw.),nein
+Steele,Lindenstraße,Hünninghausenweg,01386,tag,Dickhoff 2015,(Verl.),ja
 Stoppenberg,Barbarastraße,Hüsertreppe,01387,tag,Dickhoff 2015,,ja
 Schonnebeck,Richthofenstraße,Huestraße,01378,tag,Dickhoff 2015,,ja
 Werden,Mittelstraße,Hufergasse,01394,tag,Dickhoff 2015,,ja
@@ -221,6 +225,7 @@ Katernberg,Alte Kirchstraße,Imbuschweg,01461,tag,Dickhoff 2015,(tlw.),nein
 Schonnebeck,Luisenstraße,Immelmannstraße,01486,tag,Dickhoff 2015,,ja
 Ostviertel,Beuststraße,Immestraße,01487,tag,Dickhoff 2015,(tlIw.),ja
 Altendorf,Hagenbeck,In der Hagenbeck,01536,tag,Dickhoff 2015,,ja
+Karnap,II. Schockenhecke,In der Vogelwiesche,01515,tag,Dickhoff 2015,,ja
 Frohnhausen,Arndtstraße,Jacob-Grimm-Straße,00192,tag,Dickhoff 2015,,ja
 Bergeborbeck,Borbecker Straße,Johannes-Brokamp-Straße,01582,tag,Dickhoff 2015,(tlw.),ja
 Katernberg,Bruchweiher,Josef-Hoeren-Straße,01592,tag,Dickhoff 2015,,ja
@@ -238,7 +243,10 @@ Nordviertel,Hundebrinkstraße,Karolingerstraße,01667,tag,Dickhoff 2015,(tlw.),j
 Katernberg,Nienhausener Straße,Katernberger Straße,01675,tag,Dickhoff 2015,(tlw.),ja
 Werden,Kölner Straße,Kellerstraße,01685,tag,Dickhoff 2015,(tlw.),ja
 Stadtkern,Adolf-Hitler-Straße,Kettwiger Straße,01697,tag,Dickhoff 2015,(Umb.),nein
+Kettwig,Am Weinberg,Kettwiger Weinberg,03614,jahr,Dickhoff 2015,,ja
+Bedingrade,Querstraße,Kiekenberg,01702,vor,Dickhoff 2015,,ja
 Katernberg,Margarethenstraße,Kiepenkääls Weg,01705,vor,Dickhoff 2015,,ja
+Rüttenscheid,Horst-Wessel-Straße,Klarastraße,01718,tag,Dickhoff 2015,(Umb.),ja
 Altenessen-Süd,Rahmstraße,Kleine Rahmstraße,01869,tag,Dickhoff 2015,(tlw.),ja
 Altendorf,Richterstraße,Kleine Richterstraße,01730,tag,Dickhoff 2015,(tlw.),ja
 Südostviertel,Steubenstraße,Kleine Steubenstraße,01786,tag,Dickhoff 2015,(tlw.),ja
@@ -306,6 +314,7 @@ Heidhausen,Pustenberg,Oberer Pustenberg,02312,tag,Dickhoff 2015,(tlw.),ja
 Kettwig,Alte Straße,Oberlehberg,03733,jahr,Dickhoff 2015,(tlw.),nein
 Bergeborbeck,Herderstraße,Oskar-Pannen-Straße,01280,tag,Dickhoff 2015,,ja
 Rüttenscheid,Otmarstraße,Oskarstraße,02326,tag,Dickhoff 2015,(tlw.),ja
+Katernberg,Kastanienstraße,Ottenkämperweg,02343,vor,Dickhoff 2015,,ja
 Altenessen-Süd,Katernberger Straße,Palmbuschweg,02381,tag,Dickhoff 2015,,ja
 Bergerhausen,Mühlenbergstraße,Papenberghang,02383,tag,Dickhoff 2015,,ja
 Karnap,Hugostraße,Pastor-Fliedner-Weg,02390,tag,Dickhoff 2015,,ja
@@ -324,6 +333,7 @@ Kettwig,Hochstraße,Prälatenweg,03736,tag,Dickhoff 2015,(tlw.),nein
 Werden,Hochstraße,Propsteistraße,02466,tag,Dickhoff 2015,,nein
 Kupferdreh,Hochstraße,Provesthöhe,02468,tag,Dickhoff 2015,,ja
 Werden,Pustenberg,Pustenbergstiege,02470,tag,Dickhoff 2015,(tlw.),nein
+Freisenbruch,Kanarienenberg,Rademachers Weg,02542,tag,Dickhoff 2015,(tlw.),ja
 Holsterhausen,Rafaelstraße,Raffaelstraße,02544,tag,Dickhoff 2015,,ja
 Frohnhausen,Leipziger Straße,Raffelberger Straße,02689,tag,Dickhoff 2015,(tlw.),ja
 Stoppen- berg,Wasserstraße,Rahmbruchsweg,02547,tag,Dickhoff 2015,,ja
@@ -396,6 +406,7 @@ Bredeney,Beckmannsbusch,Theodor-Althoff-Straße,03108,tag,Dickhoff 2015,(tlw.),j
 Bochold,Borbecker Straße,Theodor-Hartz-Straße,03109,tag,Dickhoff 2015,(tlw.),ja
 Stoppenberg,Schulstraße,Theodor-Pyls-Straße,03110,tag,Dickhoff 2015,,ja
 Karnap,Am Goetheplatz,Thusneldaplatz,03070,tag,Dickhoff 2015,(tlw.),ja
+Karnap,Kantstraße,Thusneldastraße,03071,tag,Dickhoff 2015,,ja
 Werden,Towersack,Towersgarten,03085,tag,Dickhoff 2015,,ja
 Margarethenhöhe,Rosenweg,Trautes Heim,03088,tag,Dickhoff 2015,,ja
 Werden,Johannesstraße,Tuchmachersteig,03095,tag,Dickhoff 2015,,ja

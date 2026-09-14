@@ -131,6 +131,29 @@ verbleibende Prüfbestand (Prüfgründe: auffälliges Lemma, Namenskette unvolls
 ohne Doppelpunkt, Straßenklasse fehlt), zusätzlich 33 Konkordanz-Prüffälle und 69
 Validierungshinweise (überschneiden sich weitgehend).
 
+## 8. 2026-09-14 — Sichtung der unsicheren Einträge
+
+Für alle Einträge mit `status=unsicher` wurde eine **vollständige** Prüfliste erzeugt
+(`llm_vergleich unsicher` → `daten/pruefung_unsicher.csv`: alle Kopffelder und Stadien je
+Eintrag mit Parser- und Modellwerten, Spalte `grund` mit den Prüfgründen des Parsers,
+`einig` zusätzlich `keines`), dazu Prüfbilder unter `llm/pruefbilder_unsicher/` und ein
+Trockenlauf `llm_vergleich pruefen`, der vor der Übernahme meldet, was das Overlay ablehnen
+würde. Der Nutzer sichtete die 162 Einträge (1.516 Zeilen) am Scan; 84 Zellen bei 52
+Einträgen wurden korrigiert, per `uebernehmen --pruefliste` übernommen (91 Overlay-Zeilen,
+Overlay 324 → **415**) und angewandt. Für Fälle, die dabei auftraten, wurde das Overlay
+erweitert: Schlüsselwörter `zuvor` (wie `vorm.`) und `urspr.` für undatierte Stadien,
+ISO-Datum `JJJJ-MM-TT` in `wert_neu`; ein aufgehobener Straßenname (00718 Siebrechtweg,
+„04. April 1986 aufgehoben") ist als Stadium mit Klammerzusatz „(aufgehoben)" erfasst, eine
+Doppelangabe „10./13. April 1905" (00595) precision-first auf das Jahr zurückgestuft.
+Ergebnis: `geprueft` 210 → **262**, `unsicher` 164 → **112**, Stadien 5.496 → 5.513,
+Konkordanz 444 → **455**, amtlich bestätigt 3.324 → **3.339** (nicht im Verzeichnis 30 → 15),
+Alphabet-Auffällige 39 → 31, LLM-Prüfliste `einig=beide` 52 → 55 (keine braucht Korrektur).
+Die Sichtungsfassung liegt unter `llm/pruefung_unsicher_sichtung_2026-09-14.csv`.
+
+Die verbleibenden 112 unsicheren Einträge wurden in derselben Sichtung angesehen, aber nicht
+als Bestätigung eingetragen; sie behalten `unsicher`, bis eine Bestätigungszeile vorliegt
+(darunter die Buchdubletten 02402 und 03448, die das Overlay nicht adressieren kann).
+
 ## Was als Nächstes offen ist
 
 Der Datenstand gilt als veröffentlichungsreif; nächster Schritt ist der Zenodo-Release mit

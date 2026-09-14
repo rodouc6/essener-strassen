@@ -12,7 +12,7 @@ Für jede Umbenennung (Übergang von einem Namensstadium zum nächsten in `daten
 |-----:|------------------------------------:|-------------------------------------:|
 | 1825 | 0 | 1 |
 | 1826 | 1 | 0 |
-| 1860 | 1 | 1 |
+| 1860 | 1 | 2 |
 | 1868 | 1 | 0 |
 | 1871 | 1 | 0 |
 | 1872 | 0 | 1 |
@@ -34,7 +34,7 @@ Für jede Umbenennung (Übergang von einem Namensstadium zum nächsten in `daten
 | 1902 | 3 | 10 |
 | 1903 | 4 | 5 |
 | 1904 | 1 | 3 |
-| 1905 | 1 | 0 |
+| 1905 | 2 | 0 |
 | 1906 | 8 | 5 |
 | 1907 | 1 | 5 |
 | 1908 | 7 | 3 |
@@ -51,8 +51,8 @@ Für jede Umbenennung (Übergang von einem Namensstadium zum nächsten in `daten
 | 1922 | 5 | 8 |
 | 1923 | 0 | 2 |
 | 1924 | 1 | 2 |
-| 1925 | 1 | 1 |
-| 1926 | 2 | 8 |
+| 1925 | 1 | 2 |
+| 1926 | 3 | 8 |
 | 1927 | 2 | 5 |
 | 1928 | 3 | 2 |
 | 1929 | 6 | 8 |
@@ -63,7 +63,7 @@ Für jede Umbenennung (Übergang von einem Namensstadium zum nächsten in `daten
 | 1934 | 13 | 13 |
 | 1935 | 10 | 23 |
 | 1936 | 19 | 5 |
-| 1937 | 191 | 0 |
+| 1937 | 190 | 0 |
 | 1938 | 4 | 1 |
 | 1939 | 4 | 0 |
 | 1940 | 1 | 1 |
@@ -83,6 +83,7 @@ Für jede Umbenennung (Übergang von einem Namensstadium zum nächsten in `daten
 | 1958 | 0 | 1 |
 | 1959 | 7 | 0 |
 | 1961 | 4 | 1 |
+| 1962 | 1 | 0 |
 | 1963 | 5 | 1 |
 | 1964 | 2 | 0 |
 | 1965 | 3 | 0 |
@@ -125,7 +126,7 @@ Für jede Umbenennung (Übergang von einem Namensstadium zum nächsten in `daten
 | 1936-08 | 7 | 0 |
 | 1937-01 | 1 | 0 |
 | 1937-02 | 25 | 0 |
-| 1937-11 | 165 | 0 |
+| 1937-11 | 164 | 0 |
 
 (Nur Jahre/Monate mit mindestens einer verwertbar datierten Umbenennung sind aufgeführt; für die monatsscharfe Tabelle zusätzlich nur solche mit Tagespräzision.)
 
@@ -138,11 +139,11 @@ Ab Umbenennungen ab Februar 1936 reflektiert das Adressbuch keine einzige mehr �
 Die Konkordanz wird **nur aus Straßen mit `status=automatisch` oder `geprueft`** gebaut; unsichere Lemmata (`status=unsicher`) gehören nicht in die produktive Konkordanz, da ihr heutiger Name selbst nicht belastbar ist. Einträge, deren Namenskette intern widersprüchlich ist (letztes Stadium ≠ Lemma nach Zusatz-Abtrennung, mechanisches Konsistenz-Netz), landen nicht in der Konkordanz, sondern als Prüffall in `daten/pruefung_konkordanz.csv`.
 
 - Straßen gesamt: 3354
-- davon `status=automatisch` oder `geprueft` (Basis der Konkordanz): 3190
-- davon `status=unsicher` (ausgeschlossen): 164
-- Konkordanzeinträge: **444**
-  - davon `eindeutig=ja`: 399 / `eindeutig=nein` (Kollisionen): 45
-  - davon mit Klammerzusatz (z. B. „(tlw.)", „(Verl.)"): 159
+- davon `status=automatisch` oder `geprueft` (Basis der Konkordanz): 3242
+- davon `status=unsicher` (ausgeschlossen): 112
+- Konkordanzeinträge: **455**
+  - davon `eindeutig=ja`: 410 / `eindeutig=nein` (Kollisionen): 45
+  - davon mit Klammerzusatz (z. B. „(tlw.)", „(Verl.)"): 164
 - Prüffälle (`daten/pruefung_konkordanz.csv`): **33**
 
 Methodische Begründung der Konkordanz-Ableitung (Klammerzusätze abtrennen, Kollisionen markieren, mechanisches Konsistenz-Netz gegen unvollständige Namensketten, „(tlw.)"-Teilangaben als informationstragend behalten): siehe die Docstrings in `strassen/stichtag.py` (`_trenne_zusatz`, `_ist_teil_zusatz`, `_kandidat_oder_pruefung`, `baue_konkordanz`).

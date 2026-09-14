@@ -1,13 +1,4 @@
 schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,korrektur,beleg,grund
-00004,23,lemma,Da Achternbergstraße - Haus Achternberg Achtermbergbredde,Achtermbergbredde,Steeler Straße,unsicher,eines,,,
-00004,23,stadtteile,Kray,Kray,,unsicher,eines,,,
-00004,23,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,
-00004,23,namensgruppe,Flurname,Flurname,,unsicher,eines,,,
-00004,23,verweis_auf,,,,unsicher,keines,,,
-00004,23,stadium_1_datum,1921-09-26,1921-09-26,01.09.1808 – 28.06.1811 (nicht normalisierbar),unsicher,eines,,,
-00004,23,stadium_1_name,Kreftenscheerstraße,Kraftenscheerstraße,Kreftenscheerstraße,unsicher,eines,,,
-00004,23,stadium_2_datum,1937-11-20,1937-11-20,1811 – 1813 (nicht normalisierbar),unsicher,eines,,,
-00004,23,stadium_2_name,Achtermbergbredde,Achtermbergbredde,Albert Friedrich Bach,unsicher,eines,,,
 00010,24,lemma,Adelkampstraße,Adelkampstraße,Adelkampstraße,unsicher,keines,,,Randzeichen entfernt
 00010,24,stadtteile,Frohnhausen,Frohnhausen,Frohnhausen,unsicher,keines,,,Randzeichen entfernt
 00010,24,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Randzeichen entfernt
@@ -16,45 +7,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 00010,24,stadium_1_datum,vor 1874,vor 1874,"(urspr., kein Datum)",unsicher,eines,,,Randzeichen entfernt
 00010,24,stadium_1_name,Adelkampstraße,Adelkampstraße,Adelkamp,unsicher,eines,,,Randzeichen entfernt
 00010,24,stadium_1_urspruenglich,falsch,falsch,wahr,unsicher,eines,,,Randzeichen entfernt
-03652,25,lemma,Ahnewinkelstraße - Hof Ahnewinkel Akademiestraße,Akademiestraße,,unsicher,eines,,,Lemma auffällig (Länge)
-03652,25,stadtteile,Kettwig,Kettwig,,unsicher,eines,,,Lemma auffällig (Länge)
-03652,25,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Lemma auffällig (Länge)
-03652,25,namensgruppe,Lagebezeichnung,Lagebezeichnung,,unsicher,eines,,,Lemma auffällig (Länge)
-03652,25,verweis_auf,,,,unsicher,keines,,,Lemma auffällig (Länge)
-03652,25,stadium_1_datum,1937,1937,,unsicher,eines,,,Lemma auffällig (Länge)
-03652,25,stadium_1_name,Fichtestraße,Fichtestraße,,unsicher,eines,,,Lemma auffällig (Länge)
-03652,25,stadium_2_datum,1978-04-07,1978-04-07,,unsicher,eines,,,Lemma auffällig (Länge)
-03652,25,stadium_2_name,Akademiestraße,Akademiestraße,,unsicher,eines,,,Lemma auffällig (Länge)
-01125,27,lemma,a _ Alfred-Herrhausen-Brücke,Alfred-Herrhausen-Brücke,,unsicher,eines,,,Lemma auffällig (Form)
-01125,27,stadtteile,Stadtkern,Stadtkern,,unsicher,eines,,,Lemma auffällig (Form)
-01125,27,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Lemma auffällig (Form)
-01125,27,namensgruppe,"Person, Mann, Deutscher, Kaufmann, Direktor","Person, Mann, Deutscher, Kaufmann, Direktor",,unsicher,eines,,,Lemma auffällig (Form)
-01125,27,verweis_auf,,,,unsicher,keines,,,Lemma auffällig (Form)
-01125,27,stadium_1_datum,1965-02-17,1965-02-17,,unsicher,eines,,,Lemma auffällig (Form)
-01125,27,stadium_1_name,Waldthausenbrücke,Walddhausenbrücke,,unsicher,eines,,,Lemma auffällig (Form)
-01125,27,stadium_2_datum,1994-08-17,1994-08-17,,unsicher,eines,,,Lemma auffällig (Form)
-01125,27,stadium_2_name,Alfred-Herrhausen-Brücke,Alfred-Herrhausen-Brücke,,unsicher,eines,,,Lemma auffällig (Form)
-03269,28,lemma,Ehemaliger Alfrediplatz mit Alfredibrunnen Alfred-Neuse-Weg,Alfred-Neuse-Weg,,unsicher,eines,,,Lemma auffällig (Länge)
-03269,28,stadtteile,Haarzopf,Haarzopf,,unsicher,eines,,,Lemma auffällig (Länge)
-03269,28,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Lemma auffällig (Länge)
-03269,28,namensgruppe,"Person, Mann, Deutscher, Pfarrer","Person, Mann, Deutscher, Pfarrer",,unsicher,eines,,,Lemma auffällig (Länge)
-03269,28,verweis_auf,,,,unsicher,keines,,,Lemma auffällig (Länge)
-03269,28,stadium_1_datum,1984-06-22,1984-06-22,,unsicher,eines,,,Lemma auffällig (Länge)
-03269,28,stadium_1_name,Alfred-Neuse-Weg,Alfred-Neuse-Weg,,unsicher,eines,,,Lemma auffällig (Länge)
-00042,29,lemma,Aloisstraße,Aloisstraße,Aloisstraße,unsicher,keines,,,kein Namensstadium erkannt; Namenskette unvollständig gelesen
-00042,29,stadtteile,Fischlaken,Fischlaken,Fischlaken,unsicher,keines,,,kein Namensstadium erkannt; Namenskette unvollständig gelesen
-00042,29,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,kein Namensstadium erkannt; Namenskette unvollständig gelesen
-00042,29,namensgruppe,Männlicher Vorname,Männlicher Vorname,Männlicher Vorname,unsicher,keines,,,kein Namensstadium erkannt; Namenskette unvollständig gelesen
-00042,29,verweis_auf,,,,unsicher,keines,,,kein Namensstadium erkannt; Namenskette unvollständig gelesen
-00569,29,lemma,Alte Bottroper Straße,Alte Bottroper Straße,,unsicher,eines,,,Feld auffällig (Länge)
-00569,29,stadtteile,Bergeborbeck,Bergeborbeck,,unsicher,eines,,,Feld auffällig (Länge)
-00569,29,strassenklasse,Kreisstraße; Hauptstraße,Kreisstraße; Hauptstraße,,unsicher,eines,,,Feld auffällig (Länge)
-00569,29,namensgruppe,"Lagebezeichnung, zuvor: Blechstraße, zuvor: Auf dem Bleek",Lagebezeichnung,,unsicher,eines,,,Feld auffällig (Länge)
-00569,29,verweis_auf,,,,unsicher,keines,,,Feld auffällig (Länge)
-00569,29,stadium_1_datum,1927-08-09,zuvor (nicht normalisierbar),,unsicher,eines,,,Feld auffällig (Länge)
-00569,29,stadium_1_name,Bottroper Straße (tlw.),Blechstraße,,unsicher,eines,,,Feld auffällig (Länge)
-00569,29,stadium_2_datum,1980-08-20,zuvor (nicht normalisierbar),,unsicher,eines,,,Feld auffällig (Länge)
-00569,29,stadium_2_name,Alte Bottroper Straße,Auf dem Bleek,,unsicher,eines,,,Feld auffällig (Länge)
 00077,34,lemma,Am Freistein,Am Freistein,Eickelkamp,unsicher,eines,,,Datum: Komma nach Tag
 00077,34,stadtteile,Nordviertel,Nordviertel,Steele,unsicher,eines,,,Datum: Komma nach Tag
 00077,34,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Datum: Komma nach Tag
@@ -66,13 +18,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 00077,34,stadium_2_name,Feldstraße,Feldstraße,Elisenstraße,unsicher,eines,,,Datum: Komma nach Tag
 00077,34,stadium_3_datum,1933-05-08,1933-05-08,1892-03-29,unsicher,eines,,,Datum: Komma nach Tag
 00077,34,stadium_3_name,Am Freistein (Verl.),Am Freistein (Verl.),Feldstraße,unsicher,eines,,,Datum: Komma nach Tag
-00182,34,lemma,Am Gerichtshaus - Gerichtshaus Byfang 1916 Am Gerichtshaus,Am Gerichtshaus,,unsicher,eines,,,Lemma auffällig (Länge)
-00182,34,stadtteile,Kupferdreh,Kupferdreh,,unsicher,eines,,,Lemma auffällig (Länge)
-00182,34,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Lemma auffällig (Länge)
-00182,34,namensgruppe,Lagebezeichnung,Lagebezeichnung,,unsicher,eines,,,Lemma auffällig (Länge)
-00182,34,verweis_auf,,,,unsicher,keines,,,Lemma auffällig (Länge)
-00182,34,stadium_1_datum,1966-07-20,1966-07-20,,unsicher,eines,,,Lemma auffällig (Länge)
-00182,34,stadium_1_name,Am Gerichtshaus,Am Gerichtshaus,,unsicher,eines,,,Lemma auffällig (Länge)
 00117,41,lemma,Am Ringofen,Am Ringofen,Am Ringofen,unsicher,keines,,,Datum: Komma nach Tag
 00117,41,stadtteile,Bergeborbeck,Bergeborbeck,Bergeborbeck,unsicher,keines,,,Datum: Komma nach Tag
 00117,41,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Datum: Komma nach Tag
@@ -89,34 +34,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 00238,41,stadium_1_name,Frohnhauser Straße (tlw.),Frohnhauser Straße (tlw.),Frohnhauser Straße (tlw.),unsicher,keines,,,
 00238,41,stadium_2_datum,1963-09-04,1963-09-04,1963-09-04,unsicher,keines,,,
 00238,41,stadium_2_name,Am Richtenberg,Am Richtenberg,Am Richtenberg,unsicher,keines,,,
-02510,41,lemma,Am Reiterhof,Am Reiterhof,,unsicher,eines,,,Feld auffällig (Länge)
-02510,41,stadtteile,Stoppenberg,Stoppenberg,,unsicher,eines,,,Feld auffällig (Länge)
-02510,41,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Feld auffällig (Länge)
-02510,41,namensgruppe,"Lagebezeichnung, vorm.: Distelbeckhof (tiIw.)",Lagebezeichnung,,unsicher,eines,,,Feld auffällig (Länge)
-02510,41,verweis_auf,,,,unsicher,keines,,,Feld auffällig (Länge)
-02510,41,stadium_1_datum,1988-06-24,vorm. (nicht normalisierbar),,unsicher,eines,,,Feld auffällig (Länge)
-02510,41,stadium_1_name,Am Reiterhof,Distelbeckhof (tlw.),,unsicher,eines,,,Feld auffällig (Länge)
-00217,44,lemma,Am Thyssenhaus,Am Thyssenhaus,Am Thyssenhaus,unsicher,keines,,,Namenskette unvollständig gelesen
-00217,44,stadtteile,Südviertel,Südviertel,Südviertel,unsicher,keines,,,Namenskette unvollständig gelesen
-00217,44,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Namenskette unvollständig gelesen
-00217,44,namensgruppe,Lagebezeichnung,Lagebezeichnung,Lagebezeichnung,unsicher,keines,,,Namenskette unvollständig gelesen
-00217,44,verweis_auf,,,,unsicher,keines,,,Namenskette unvollständig gelesen
-00217,44,stadium_1_datum,1961-02-22,1961-02-22,1961-02-22,unsicher,keines,,,Namenskette unvollständig gelesen
-00217,44,stadium_1_name,Am Rheinstahlhaus,Am Rheinstahlhaus,Am Rheinstahlhaus,unsicher,keines,,,Namenskette unvollständig gelesen
-01149,44,lemma,Am Technologiepark,Am Technologiepark,,unsicher,eines,,,Feld auffällig (Länge)
-01149,44,stadtteile,Kray,Kray,,unsicher,eines,,,Feld auffällig (Länge)
-01149,44,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Feld auffällig (Länge)
-01149,44,namensgruppe,"Industrie und Wirtschaft, vorm.: Franz-Fischer-Weg_ (tiw.), vorm.: Schönscheidtstraße (tiw)",Industrie und Wirtschaft,,unsicher,eines,,,Feld auffällig (Länge)
-01149,44,verweis_auf,,,,unsicher,keines,,,Feld auffällig (Länge)
-01149,44,stadium_1_datum,1999-05-18,vorm. (nicht normalisierbar),,unsicher,eines,,,Feld auffällig (Länge)
-01149,44,stadium_1_name,Am Technologiepark,Franz-Fischer-Weg (tlw.),,unsicher,eines,,,Feld auffällig (Länge)
-03611,44,lemma,EEE EEE ER 4 4 bi Am Stadtwald,Am Stadtwald,,unsicher,eines,,,Lemma auffällig (Länge)
-03611,44,stadtteile,Kettwig,Kettwig,,unsicher,eines,,,Lemma auffällig (Länge)
-03611,44,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Lemma auffällig (Länge)
-03611,44,namensgruppe,Lagebezeichnung,Lagebezeichnung,,unsicher,eines,,,Lemma auffällig (Länge)
-03611,44,verweis_auf,,,,unsicher,keines,,,Lemma auffällig (Länge)
-03611,44,stadium_1_datum,1926,1926,,unsicher,eines,,,Lemma auffällig (Länge)
-03611,44,stadium_1_name,Am Stadtwald,Am Stadtwald,,unsicher,eines,,,Lemma auffällig (Länge)
 00137,45,lemma,Am Turm,Am Turm,Am Turm,unsicher,keines,,,Straßenklasse OCR-korrigiert
 00137,45,stadtteile,Heidhausen,Heidhausen,Heidhausen,unsicher,keines,,,Straßenklasse OCR-korrigiert
 00137,45,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Straßenklasse OCR-korrigiert
@@ -138,13 +55,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 00155,49,verweis_auf,,,,unsicher,keines,,,
 00155,49,stadium_1_datum,1929-07-29,1929-07-29,1929-07-29,unsicher,keines,,,
 00155,49,stadium_1_name,An der Braut,An der Braut,An der Braut,unsicher,keines,,,
-03560,50,lemma,An der Schlucht,An der Schlucht,Auf dem Loh,unsicher,eines,,,Namenskette unvollständig gelesen
-03560,50,stadtteile,Schönebeck,Schönebeck,Burgaltendorf,unsicher,eines,,,Namenskette unvollständig gelesen
-03560,50,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Namenskette unvollständig gelesen
-03560,50,namensgruppe,Lagebezeichnung,Lagebezeichnung,Flurname,unsicher,eines,,,Namenskette unvollständig gelesen
-03560,50,verweis_auf,,,,unsicher,keines,,,Namenskette unvollständig gelesen
-03560,50,stadium_1_datum,1916-02-18,1916-02-18,1916-02-18,unsicher,keines,,,Namenskette unvollständig gelesen
-03560,50,stadium_1_name,Schacht-Kronprinz-Straße (tlw.),Schacht-Kronprinz-Straße (tlw.),Schacht-Kronprinz-Straße (tlw.),unsicher,keines,,,Namenskette unvollständig gelesen
 00199,56,lemma,Asthöwerstraße,Asthöwerstraße,,unsicher,eines,,,Namenskette unvollständig gelesen
 00199,56,stadtteile,Holsterhausen,Holsterhausen,,unsicher,eines,,,Namenskette unvollständig gelesen
 00199,56,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Namenskette unvollständig gelesen
@@ -152,24 +62,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 00199,56,verweis_auf,,,,unsicher,keines,,,Namenskette unvollständig gelesen
 00199,56,stadium_1_datum,1957-01-23,1957-01-23,,unsicher,eines,,,Namenskette unvollständig gelesen
 00199,56,stadium_1_name,Asthöwerstraße,Asthöwerstraße,,unsicher,eines,,,Namenskette unvollständig gelesen
-02522,56,lemma,Assmannweg,Assmannweg,,unsicher,eines,,,Feld auffällig (Länge)
-02522,56,stadtteile,Nordviertel,Nordviertel,,unsicher,eines,,,Feld auffällig (Länge)
-02522,56,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Feld auffällig (Länge)
-02522,56,namensgruppe,"Person, Mann, Deutscher, Meteorologe, vorm.: Reckhammerweg (tiw.)","Person, Mann, Deutscher, Meteorologe",,unsicher,eines,,,Feld auffällig (Länge)
-02522,56,verweis_auf,,,,unsicher,keines,,,Feld auffällig (Länge)
-02522,56,stadium_1_datum,1990-04-24,vorm. (nicht normalisierbar),,unsicher,eines,,,Feld auffällig (Länge)
-02522,56,stadium_1_name,Assmannweg,Reckhammerweg (tlw.),,unsicher,eines,,,Feld auffällig (Länge)
-03550,56,lemma,Auf dem Loh,Auf dem Loh,,unsicher,eines,,,Namensstadium auffällig
-03550,56,stadtteile,Burgaltendorf,Burgaltendorf,,unsicher,eines,,,Namensstadium auffällig
-03550,56,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Namensstadium auffällig
-03550,56,namensgruppe,Flurname,Flurname,,unsicher,eines,,,Namensstadium auffällig
-03550,56,verweis_auf,,,,unsicher,keines,,,Namensstadium auffällig
-03550,56,stadium_1_datum,1911-06-16,1911-06-16,,unsicher,eines,,,Namensstadium auffällig
-03550,56,stadium_1_name,Auf dem Loh,Auf dem Loh,,unsicher,eines,,,Namensstadium auffällig
-03550,56,stadium_2_datum,1958,1958,,unsicher,eines,,,Namensstadium auffällig
-03550,56,stadium_2_name,Schulstraße,Schulstraße,,unsicher,eines,,,Namensstadium auffällig
-03550,56,stadium_3_datum,1978-10-03,1978-10-03,,unsicher,eines,,,Namensstadium auffällig
-03550,56,stadium_3_name,Auf dem Loh (Ver!.),Auf dem Loh (Verl.),,unsicher,eines,,,Namensstadium auffällig
 00210,57,lemma,Auf der Bredde,Auf der Bredde,Auf der Bredde,unsicher,keines,,,Straßenklasse OCR-korrigiert
 00210,57,stadtteile,Frillendorf,Frillendorf,Frillendorf,unsicher,keines,,,Straßenklasse OCR-korrigiert
 00210,57,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Straßenklasse OCR-korrigiert
@@ -191,13 +83,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 00471,66,verweis_auf,,,,unsicher,keines,,,Datum ohne Doppelpunkt
 00471,66,stadium_1_datum,1974-12-11,1974-12-11,vor 1898,unsicher,eines,,,Datum ohne Doppelpunkt
 00471,66,stadium_1_name,Berghausbusch,Berghausbusch,Pützstraße,unsicher,eines,,,Datum ohne Doppelpunkt
-00357,70,lemma,Bieberweg,Bieberweg,Bieberweg,unsicher,keines,,,Straßenklasse fehlt
-00357,70,stadtteile,Bedingrade; Geschede,Bedingrade; Geschede,Bedingrade; Gerschede,unsicher,eines,,,Straßenklasse fehlt
-00357,70,strassenklasse,,,Gemeindestraße; Siedlung,unsicher,eines,,,Straßenklasse fehlt
-00357,70,namensgruppe,"Gemeindestraße, Stadt und Ort, Siedlung","Gemeindestraße, Stadt und Ort, Siedlung",Stadt und Ort,unsicher,eines,,,Straßenklasse fehlt
-00357,70,verweis_auf,,,,unsicher,keines,,,Straßenklasse fehlt
-00357,70,stadium_1_datum,1938-10-21,1938-10-21,1938-10-21,unsicher,keines,,,Straßenklasse fehlt
-00357,70,stadium_1_name,Bieberweg,Bieberweg,Bieberweg,unsicher,keines,,,Straßenklasse fehlt
 00379,72,lemma,Bocholder Straße,Bocholder Straße,Bocholder Straße,unsicher,keines,,,urspr. ohne Doppelpunkt
 00379,72,stadtteile,Bochold; Borbeck-Mitte,Bochold; Borbeck-Mitte,Bochold; Borbeck-Mitte,unsicher,keines,,,urspr. ohne Doppelpunkt
 00379,72,strassenklasse,Landstraße,Landstraße,Landstraße,unsicher,keines,,,urspr. ohne Doppelpunkt
@@ -239,25 +124,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 02515,74,verweis_auf,,,,unsicher,keines,,,Monatsname OCR-korrigiert
 02515,74,stadium_1_datum,1989-05-18,1989-05-18,,unsicher,eines,,,Monatsname OCR-korrigiert
 02515,74,stadium_1_name,Bonsiepen,Bonsiepen,,unsicher,eines,,,Monatsname OCR-korrigiert
-00417,77,lemma,Brandenburger Straße,Brandenburger Straße,Bürgermeister,unsicher,eines,,,Straßenklasse fehlt
-00417,77,stadtteile,Frohnhausen,Frohnhausen,,unsicher,eines,,,Straßenklasse fehlt
-00417,77,strassenklasse,,Gemeindestraße,,unsicher,eines,,,Straßenklasse fehlt
-00417,77,namensgruppe,Stadt und Ort,Stadt und Ort,,unsicher,eines,,,Straßenklasse fehlt
-00417,77,verweis_auf,,,,unsicher,keines,,,Straßenklasse fehlt
-00417,77,stadium_1_datum,vor 1900,vor 1900,1945 – 1946 (nicht normalisierbar),unsicher,eines,,,Straßenklasse fehlt
-00417,77,stadium_1_name,Breilmannstraße,Breilmannstraße,Pfannenschoppen,unsicher,eines,,,Straßenklasse fehlt
-00417,77,stadium_2_datum,1902-05-16,1902-05-16,14.02.1946 – 31.03.1946 (nicht normalisierbar),unsicher,eines,,,Straßenklasse fehlt
-00417,77,stadium_2_name,Brandenburger Straße,Brandenburger Straße,Breilmannstraße,unsicher,eines,,,Straßenklasse fehlt
-00422,78,lemma,Brandstraße,Brandstraße,Brandstraße,unsicher,keines,,,Namensstadium auffällig; Namenskette unvollständig gelesen
-00422,78,stadtteile,Stadtkern,Stadtkern,Stadtkern,unsicher,keines,,,Namensstadium auffällig; Namenskette unvollständig gelesen
-00422,78,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Namensstadium auffällig; Namenskette unvollständig gelesen
-00422,78,namensgruppe,Lagebezeichnung,Lagebezeichnung,Lagebezeichnung,unsicher,keines,,,Namensstadium auffällig; Namenskette unvollständig gelesen
-00422,78,verweis_auf,,,,unsicher,keines,,,Namensstadium auffällig; Namenskette unvollständig gelesen
-00422,78,stadium_1_datum,"(urspr., kein Datum)",(16. Jh.) (nicht normalisierbar),16. Jh. (nicht normalisierbar),unsicher,eines,,,Namensstadium auffällig; Namenskette unvollständig gelesen
-00422,78,stadium_1_name,(16. Jh.): opme Brand,opme Brand,Pferdemarkt,unsicher,eines,,,Namensstadium auffällig; Namenskette unvollständig gelesen
-00422,78,stadium_1_urspruenglich,wahr,wahr,falsch,unsicher,eines,,,Namensstadium auffällig; Namenskette unvollständig gelesen
-00422,78,stadium_2_datum,1860,1826,"(urspr., kein Datum)",unsicher,eines,,,Namensstadium auffällig; Namenskette unvollständig gelesen
-00422,78,stadium_2_name,Brandstraße,aufm Brande,opme Brand,unsicher,eines,,,Namensstadium auffällig; Namenskette unvollständig gelesen
 00423,78,lemma,Brassertstraße,Brassertstraße,Brassertstraße,unsicher,keines,,,Datum: Komma nach Tag
 00423,78,stadtteile,Rüttenscheid,Rüttenscheid,Rüttenscheid,unsicher,keines,,,Datum: Komma nach Tag
 00423,78,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Datum: Komma nach Tag
@@ -267,24 +133,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 00423,78,stadium_1_name,Clementinenstraße,Clementinenstraße,Pferdkamp,unsicher,eines,,,Datum: Komma nach Tag
 00423,78,stadium_2_datum,1936-08-05,1936-08-05,1897-09-06,unsicher,eines,,,Datum: Komma nach Tag
 00423,78,stadium_2_name,Brassertstraße,Brassertstraße,Clementinenstraße,unsicher,eines,,,Datum: Komma nach Tag
-00595,91,lemma,Dahlhauser Straße,Dahlhauser Straße,Dahlhauser Straße,unsicher,keines,,,Namenskette unvollständig gelesen
-00595,91,stadtteile,Horst,Horst,Horst,unsicher,keines,,,Namenskette unvollständig gelesen
-00595,91,strassenklasse,Kreisstraße; Gemeindestraße,Kreisstraße; Gemeindestraße,Kreisstraße; Gemeindestraße,unsicher,keines,,,Namenskette unvollständig gelesen
-00595,91,namensgruppe,Stadt und Ort,Stadt und Ort,Stadt und Ort,unsicher,keines,,,Namenskette unvollständig gelesen
-00595,91,verweis_auf,,,,unsicher,keines,,,Namenskette unvollständig gelesen
-00595,91,stadium_1_datum,vor 1874,vor 1874,vor 1874,unsicher,keines,,,Namenskette unvollständig gelesen
-00595,91,stadium_1_name,Schottländerweg,Schottländerweg,Schottländerweg,unsicher,keines,,,Namenskette unvollständig gelesen
-00595,91,stadium_2_datum,vor 1874,vor 1874,1874,unsicher,eines,,,Namenskette unvollständig gelesen
-00595,91,stadium_2_name,Steeler Straße,Steeler Straße,Steeler Straße,unsicher,keines,,,Namenskette unvollständig gelesen
-00595,91,stadium_3_datum,1925-04-16,10./13. April 1905 (nicht normalisierbar),10.13. April 1905 (nicht normalisierbar),unsicher,eines,,,Namenskette unvollständig gelesen
-00595,91,stadium_3_name,Dahlhauser Straße,Schottländerweg,Schottländerweg,unsicher,beide,,,Namenskette unvollständig gelesen
-00601,91,lemma,Zur ehemaligen Zeche Eintracht II. Dandermannsteg,Dandermannsteg,Danderamnsteg,unsicher,eines,,,Lemma auffällig (Länge)
-00601,91,stadtteile,Stadtwald,Stadtwald,Stadtwald,unsicher,keines,,,Lemma auffällig (Länge)
-00601,91,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Lemma auffällig (Länge)
-00601,91,namensgruppe,Kotten,Kotten,Kotten,unsicher,keines,,,Lemma auffällig (Länge)
-00601,91,verweis_auf,,,,unsicher,keines,,,Lemma auffällig (Länge)
-00601,91,stadium_1_datum,1924-09-17,1924-09-17,1924-09-17,unsicher,keines,,,Lemma auffällig (Länge)
-00601,91,stadium_1_name,Dandermannsteg,Dandermannsteg,Danderamnsteg,unsicher,eines,,,Lemma auffällig (Länge)
 00608,92,lemma,Deilbachufer,Deilbachufer,Deilbachufer,unsicher,keines,,,Monatsname OCR-korrigiert
 00608,92,stadtteile,Kupferdreh,Kupferdreh,Kupferdreh,unsicher,keines,,,Monatsname OCR-korrigiert
 00608,92,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Monatsname OCR-korrigiert
@@ -310,25 +158,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 00623,94,stadium_4_name,Vesterstraße,Vesterstraße,,unsicher,eines,,,Datum ohne Doppelpunkt
 00623,94,stadium_5_datum,1970-12-16,1970-12-16,,unsicher,eines,,,Datum ohne Doppelpunkt
 00623,94,stadium_5_name,Dickmannstraße (Verl.),Dickmannstraße (Verl.),,unsicher,eines,,,Datum ohne Doppelpunkt
-00653,98,lemma,Dortmannhof - 1970 Dorstener Straße,Dorstener Straße,,unsicher,eines,,,Lemma auffällig (Länge)
-00653,98,stadtteile,Altendorf; Bochold,Altendorf; Bochold,,unsicher,eines,,,Lemma auffällig (Länge)
-00653,98,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Lemma auffällig (Länge)
-00653,98,namensgruppe,Stadt und Ort,Stadt und Ort,,unsicher,eines,,,Lemma auffällig (Länge)
-00653,98,verweis_auf,,,,unsicher,keines,,,Lemma auffällig (Länge)
-00653,98,stadium_1_datum,1909-11-26,1909-11-26,,unsicher,eines,,,Lemma auffällig (Länge)
-00653,98,stadium_1_name,Dorstener Straße,Dorstener Straße,,unsicher,eines,,,Lemma auffällig (Länge)
-00685,100,lemma,Dudweilerstraße,Dudweilerstraße,,unsicher,eines,,,kein Namensstadium erkannt; Namenskette unvollständig gelesen
-00685,100,stadtteile,Leithe,Leithe,,unsicher,eines,,,kein Namensstadium erkannt; Namenskette unvollständig gelesen
-00685,100,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,kein Namensstadium erkannt; Namenskette unvollständig gelesen
-00685,100,namensgruppe,Stadt und Ort,Stadt und Ort,,unsicher,eines,,,kein Namensstadium erkannt; Namenskette unvollständig gelesen
-00685,100,verweis_auf,Merziger Aue,Merziger Aue,,unsicher,eines,,,kein Namensstadium erkannt; Namenskette unvollständig gelesen
-01146,101,lemma,Econova-Allee,Econova-Allee,Econova-Allee,unsicher,keines,,,Namensstadium auffällig
-01146,101,stadtteile,Bergeborbeck,Bergeborbeck,Bergeborbeck,unsicher,keines,,,Namensstadium auffällig
-01146,101,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Namensstadium auffällig
-01146,101,namensgruppe,Industrie und Wirtschaft,Industrie und Wirtschaft,Industrie und Wirtschaft,unsicher,keines,,,Namensstadium auffällig
-01146,101,verweis_auf,,,,unsicher,keines,,,Namensstadium auffällig
-01146,101,stadium_1_datum,1999-02-24,1999-02-24,1999-02-24,unsicher,keines,,,Namensstadium auffällig
-01146,101,stadium_1_name,Econova-Allee. „econova” ist der Name für das über 152 ha große Industrie- und G,Econova-Allee,Econova-Allee,unsicher,beide,,,Namensstadium auffällig
 00733,103,lemma,Eibergweg,Eibergweg,Eibergweg,unsicher,keines,,,Straßenklasse ohne Marker
 00733,103,stadtteile,Freisenbruch,Freisenbruch,Freisenbruch,unsicher,keines,,,Straßenklasse ohne Marker
 00733,103,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Straßenklasse ohne Marker
@@ -426,19 +255,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 01013,126,verweis_auf,,,,unsicher,keines,,,Namenskette unvollständig gelesen
 01013,126,stadium_1_datum,1891-04-30,1891-04-30,1891-04-30,unsicher,keines,,,Namenskette unvollständig gelesen
 01013,126,stadium_1_name,Gerichtsstraße,Gerichtstraße,Gerichtsstraße,unsicher,eines,,,Namenskette unvollständig gelesen
-01019,127,lemma,Gerscheder Straße,Gerscheder Straße,Gerscheder Straße,unsicher,keines,,,Datum: Komma nach Tag
-01019,127,stadtteile,Gerschede,Gerschede,Gerschede,unsicher,keines,,,Datum: Komma nach Tag
-01019,127,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße; Bauerschaft,unsicher,eines,,,Datum: Komma nach Tag
-01019,127,namensgruppe,Bauerschaft,Bauerschaft,,unsicher,eines,,,Datum: Komma nach Tag
-01019,127,verweis_auf,,,,unsicher,keines,,,Datum: Komma nach Tag
-01019,127,stadium_1_datum,1891-04-30,1891-04-30,1891-04-30,unsicher,keines,,,Datum: Komma nach Tag
-01019,127,stadium_1_name,Gerscheder Straße,Gerscheder Straße,Gerscheder Straße,unsicher,keines,,,Datum: Komma nach Tag
-01019,127,stadium_2_datum,1891-04-30,1891-04-30,1891-04-30,unsicher,keines,,,Datum: Komma nach Tag
-01019,127,stadium_2_name,Steinstraße,Steinstraße,Steinstraße,unsicher,keines,,,Datum: Komma nach Tag
-01019,127,stadium_3_datum,1915-07-09,1915-07-09,1915-07-09,unsicher,keines,,,Datum: Komma nach Tag
-01019,127,stadium_3_name,Düppenberg (Umb.tiw.),Düppenberg (Umb.tlw.),Düppenberg (Umbtw.),unsicher,eines,,,Datum: Komma nach Tag
-01019,127,stadium_4_datum,1933-05-08,1933-05-08,1933-05-08,unsicher,keines,,,Datum: Komma nach Tag
-01019,127,stadium_4_name,Gerscheder Straße (Verl.),Gerscheder Straße (Verl.),Gerscheder Straße (Verl.),unsicher,keines,,,Datum: Komma nach Tag
 01026,128,lemma,Gewerbehofstraße,Gewerbehofstraße,Gewerbehofstraße,unsicher,keines,,,Datum: Komma nach Tag
 01026,128,stadtteile,Holsterhausen,Holsterhausen,Holsterhausen,unsicher,keines,,,Datum: Komma nach Tag
 01026,128,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Datum: Komma nach Tag
@@ -473,15 +289,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 01067,133,stadium_1_name,Lessingstraße,Lessingstraße,Lessingstraße,unsicher,keines,,,Anker OCR-korrigiert
 01067,133,stadium_2_datum,1915-07-09,1915-07-09,1915-07-09,unsicher,keines,,,Anker OCR-korrigiert
 01067,133,stadium_2_name,Graitengraben,Graitengraben,Graitengraben,unsicher,keines,,,Anker OCR-korrigiert
-01073,133,lemma,Graudenzstraße,Graudenzstraße,Graudenzstraße,unsicher,keines,,,Datum: Tag ungültig
-01073,133,stadtteile,Katernberg,Katernberg,Katernberg,unsicher,keines,,,Datum: Tag ungültig
-01073,133,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Datum: Tag ungültig
-01073,133,namensgruppe,Stadt und Ort,Stadt und Ort,Stadt und Ort,unsicher,keines,,,Datum: Tag ungültig
-01073,133,verweis_auf,,,,unsicher,keines,,,Datum: Tag ungültig
-01073,133,stadium_1_datum,1929,1929-02-05,1929-02-05,unsicher,beide,,,Datum: Tag ungültig
-01073,133,stadium_1_name,Heinrich-Lersch-Straße,Heinrich-Lersch-Straße,Heinrich-Lersch-Straße,unsicher,keines,,,Datum: Tag ungültig
-01073,133,stadium_2_datum,1930-05-31,1930-05-31,1930-05-31,unsicher,keines,,,Datum: Tag ungültig
-01073,133,stadium_2_name,Graudenzstraße,Graudenzstraße,Graudenzstraße,unsicher,keines,,,Datum: Tag ungültig
 01078,134,lemma,Grendgasse,Grendgasse,,unsicher,eines,,,Datum: Komma nach Tag
 01078,134,stadtteile,Steele,Steele,,unsicher,eines,,,Datum: Komma nach Tag
 01078,134,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Datum: Komma nach Tag
@@ -489,33 +296,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 01078,134,verweis_auf,Grendplatz,Grendplatz,,unsicher,eines,,,Datum: Komma nach Tag
 01078,134,stadium_1_datum,1890-11-18,1890-11-18,,unsicher,eines,,,Datum: Komma nach Tag
 01078,134,stadium_1_name,Grendgasse,Grendgasse,,unsicher,eines,,,Datum: Komma nach Tag
-01152,138,lemma,Hachestraße,Hachestraße,Hachestraße,unsicher,keines,,,Namenskette unvollständig gelesen
-01152,138,stadtteile,Stadtkern; Westviertel,Stadtkern; Westviertel,Stadtkern; Westviertel,unsicher,keines,,,Namenskette unvollständig gelesen
-01152,138,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Namenskette unvollständig gelesen
-01152,138,namensgruppe,"Person, Mann, Deutscher, Oberbürgermeister","Person, Mann, Deutscher, Oberbürgermeister","Person, Mann, Deutscher, Oberbürgermeister",unsicher,keines,,,Namenskette unvollständig gelesen
-01152,138,verweis_auf,,,,unsicher,keines,,,Namenskette unvollständig gelesen
-01152,138,stadium_1_datum,1864-05-06,1864-05-06,1864-05-06,unsicher,keines,,,Namenskette unvollständig gelesen
-01152,138,stadium_1_name,Am Bahnhof,Am Bahnhof,Am Bahnhof,unsicher,keines,,,Namenskette unvollständig gelesen
-01152,138,stadium_2_datum,1868-01-17,1868-01-17,1868-01-17,unsicher,keines,,,Namenskette unvollständig gelesen
-01152,138,stadium_2_name,Märkische Straße,Märkische Straße,Märkische Straße,unsicher,keines,,,Namenskette unvollständig gelesen
-01168,141,lemma,Hagmanngarten,Hagmanngarten,Hagmannsgarten,unsicher,eines,,,Datum: Tag ungültig
-01168,141,stadtteile,Heisingen,Heisingen,Heisingen,unsicher,keines,,,Datum: Tag ungültig
-01168,141,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Datum: Tag ungültig
-01168,141,namensgruppe,"Person, Mann, Deutscher, Bürgermeister","Person, Mann, Deutscher, Bürgermeister","Person, Mann, Deutscher, Bürgermeister, urspr.: Sartoriusstraße",unsicher,eines,,,Datum: Tag ungültig
-01168,141,verweis_auf,,,,unsicher,keines,,,Datum: Tag ungültig
-01168,141,stadium_1_datum,"(urspr., kein Datum)","(urspr., kein Datum)",1934-06-05,unsicher,eines,,,Datum: Tag ungültig
-01168,141,stadium_1_name,Sartoriusstraße,Sartoriusstraße,Hagmannsgarten,unsicher,eines,,,Datum: Tag ungültig
-01168,141,stadium_1_urspruenglich,wahr,wahr,falsch,unsicher,eines,,,Datum: Tag ungültig
-01168,141,stadium_2_datum,1934,1934-06-05,"(urspr., kein Datum)",unsicher,eines,,,Datum: Tag ungültig
-01168,141,stadium_2_name,Hagmanngarten,Hagmanngarten,Sartoriusstraße,unsicher,eines,,,Datum: Tag ungültig
-01168,141,stadium_2_urspruenglich,falsch,falsch,wahr,unsicher,eines,,,Datum: Tag ungültig
-01148,142,lemma,Hans-Fehr-Allee,Hans-Fehr-Allee,Hans-Fehr-Allee,unsicher,keines,,,
-01148,142,stadtteile,Bergeborbeck,Bergeborbeck,Bergeborbeck,unsicher,keines,,,
-01148,142,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,
-01148,142,namensgruppe,"Person Mann, Deutscher, Politiker","Person Mann, Deutscher, Politiker","Person, Mann, Deutscher, Politiker",unsicher,eines,,,
-01148,142,verweis_auf,,,,unsicher,keines,,,
-01148,142,stadium_1_datum,1999-02-24,1999-02-24,1999-02-24,unsicher,keines,,,
-01148,142,stadium_1_name,Hans-Fehr-Allee,Hans-Fehr-Allee,Hans-Fehr-Allee,unsicher,keines,,,
 01186,142,lemma,Hansastraße,Hansastraße,Hansastraße,unsicher,keines,,,Datum ohne Doppelpunkt
 01186,142,stadtteile,Steele,Steele,Steele,unsicher,keines,,,Datum ohne Doppelpunkt
 01186,142,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Datum ohne Doppelpunkt
@@ -606,13 +386,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 01218,147,stadium_2_name,Sternstraße,Sternstraße,Gerschede,unsicher,eines,,,
 01218,147,stadium_3_datum,1915-07-09,1915-07-09,1915-07-09,unsicher,keines,,,
 01218,147,stadium_3_name,Haus-Horl-Straße,Haus-Horl-Straße,Haus-Horl-Straße,unsicher,keines,,,
-01225,148,lemma,De 3 Heckstraße - Hecktor Heckhülsenring,Heckhülsenring,Heckhülsring,unsicher,eines,,,Lemma auffällig (Länge)
-01225,148,stadtteile,Heisingen,Heisingen,Heisingen,unsicher,keines,,,Lemma auffällig (Länge)
-01225,148,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Lemma auffällig (Länge)
-01225,148,namensgruppe,Flurname,Flurname,Flurname,unsicher,keines,,,Lemma auffällig (Länge)
-01225,148,verweis_auf,,,,unsicher,keines,,,Lemma auffällig (Länge)
-01225,148,stadium_1_datum,1938-10-21,1938-10-21,1938-10-21,unsicher,keines,,,Lemma auffällig (Länge)
-01225,148,stadium_1_name,Heckhülsenring,Heckhülsenring,Heckhülsring,unsicher,eines,,,Lemma auffällig (Länge)
 01228,148,lemma,Hedwigstraße,Hedwigstraße,Hedwigstraße,unsicher,keines,,,Datum ohne Doppelpunkt
 01228,148,stadtteile,Rüttenscheid,Rüttenscheid,Rüttenscheid,unsicher,keines,,,Datum ohne Doppelpunkt
 01228,148,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Datum ohne Doppelpunkt
@@ -685,23 +458,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 01333,163,verweis_auf,,,,unsicher,keines,,,Straßenklasse ohne Marker
 01333,163,stadium_1_datum,1919-04-01,1919-04-01,1919-04-01,unsicher,keines,,,Straßenklasse ohne Marker
 01333,163,stadium_1_name,Höntroper Straße,Höntroper Straße,Höntroper Straße,unsicher,keines,,,Straßenklasse ohne Marker
-01360,166,lemma,Holsterhauser Straße,Holsterhauser Straße,Holsterhauser Straße,unsicher,keines,,,Namenskette unvollständig gelesen
-01360,166,stadtteile,Holsterhausen; Südviertel,Holsterhausen; Südviertel,Holsterhausen; Südviertel,unsicher,keines,,,Namenskette unvollständig gelesen
-01360,166,strassenklasse,Kreisstraße,Kreisstraße,Kreisstraße,unsicher,keines,,,Namenskette unvollständig gelesen
-01360,166,namensgruppe,Bauerschaft,Bauerschaft,"Bauerschaft, urspr.: Marktstraße, urspr.: Böhmerstraße, urspr.: Torfstraße, urspr.: Mühlenstraße (tlw.)",unsicher,eines,,,Namenskette unvollständig gelesen
-01360,166,verweis_auf,,,,unsicher,keines,,,Namenskette unvollständig gelesen
-01360,166,stadium_1_datum,"(urspr., kein Datum)","(urspr., kein Datum)",am 13. Dezember 1901 (nicht normalisierbar),unsicher,eines,,,Namenskette unvollständig gelesen
-01360,166,stadium_1_name,Marktstraße,Marktstraße,Holsterhauser Straße,unsicher,eines,,,Namenskette unvollständig gelesen
-01360,166,stadium_1_urspruenglich,wahr,wahr,falsch,unsicher,eines,,,Namenskette unvollständig gelesen
-01360,166,stadium_2_datum,"(urspr., kein Datum)","(urspr., kein Datum)",,unsicher,eines,,,Namenskette unvollständig gelesen
-01360,166,stadium_2_name,Böhmerstraße,Böhmerstraße,,unsicher,eines,,,Namenskette unvollständig gelesen
-01360,166,stadium_2_urspruenglich,wahr,wahr,,unsicher,eines,,,Namenskette unvollständig gelesen
-01360,166,stadium_3_datum,"(urspr., kein Datum)","(urspr., kein Datum)",,unsicher,eines,,,Namenskette unvollständig gelesen
-01360,166,stadium_3_name,Torluestraße,Torluestraße,,unsicher,eines,,,Namenskette unvollständig gelesen
-01360,166,stadium_3_urspruenglich,wahr,wahr,,unsicher,eines,,,Namenskette unvollständig gelesen
-01360,166,stadium_4_datum,"(urspr., kein Datum)","(urspr., kein Datum)",,unsicher,eines,,,Namenskette unvollständig gelesen
-01360,166,stadium_4_name,Mühlenstraße (tlw.),Mühlenstraße (tlw.),,unsicher,eines,,,Namenskette unvollständig gelesen
-01360,166,stadium_4_urspruenglich,wahr,wahr,,unsicher,eines,,,Namenskette unvollständig gelesen
 01382,169,lemma,Hülsebergstraße,Hülsebergstraße,Hülsbergstraße,unsicher,eines,,,Straßenklasse ohne Marker
 01382,169,stadtteile,Horst,Horst,Horst,unsicher,keines,,,Straßenklasse ohne Marker
 01382,169,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Straßenklasse ohne Marker
@@ -709,18 +465,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 01382,169,verweis_auf,,,,unsicher,keines,,,Straßenklasse ohne Marker
 01382,169,stadium_1_datum,1919-05-28,1919-05-28,1919-05-28,unsicher,keines,,,Straßenklasse ohne Marker
 01382,169,stadium_1_name,Hülsebergstraße,Hülsebergstraße,Hülsbergstraße,unsicher,eines,,,Straßenklasse ohne Marker
-01386,170,lemma,Hünninghausenweg,Hünninghausenweg,Hünninghauserweg,unsicher,eines,,,Namenskette unvollständig gelesen
-01386,170,stadtteile,Steele,Steele,Steele,unsicher,keines,,,Namenskette unvollständig gelesen
-01386,170,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Namenskette unvollständig gelesen
-01386,170,namensgruppe,"Person, Mann, Deutscher, Kaufmann, Glasfabrikant","Person, Mann, Deutscher, Kaufmann, Glasfabrikant","Person, Mann, Deutscher, Kaufmann, Glasfabrikant, urspr.: Lindenmannstraße",unsicher,eines,,,Namenskette unvollständig gelesen
-01386,170,verweis_auf,,,,unsicher,keines,,,Namenskette unvollständig gelesen
-01386,170,stadium_1_datum,"(urspr., kein Datum)","(urspr., kein Datum)",1890-11-18,unsicher,eines,,,Namenskette unvollständig gelesen
-01386,170,stadium_1_name,Lindemannstraße,Lindemannstraße,Lindenstraße,unsicher,eines,,,Namenskette unvollständig gelesen
-01386,170,stadium_1_urspruenglich,wahr,wahr,falsch,unsicher,eines,,,Namenskette unvollständig gelesen
-01386,170,stadium_2_datum,1890-11-18,1890-11-18,1926-05-19,unsicher,eines,,,Namenskette unvollständig gelesen
-01386,170,stadium_2_name,Lindenstraße,Lindenstraße,Lindenstraße (Verl.),unsicher,eines,,,Namenskette unvollständig gelesen
-01386,170,stadium_3_datum,1937-11-20,1926-05-19,1937-11-20,unsicher,eines,,,Namenskette unvollständig gelesen
-01386,170,stadium_3_name,Hünninghausenweg,Lindenstraße (Verl.),Hünninghauserweg,unsicher,eines,,,Namenskette unvollständig gelesen
 01400,171,lemma,Hundackerweg,,Hundackerweg,unsicher,unlesbar,,,Namensstadium auffällig
 01400,171,stadtteile,Rüttenscheid,,Rüttenscheid,unsicher,unlesbar,,,Namensstadium auffällig
 01400,171,strassenklasse,Gemeindestraße,,Gemeindestraße,unsicher,unlesbar,,,Namensstadium auffällig
@@ -732,50 +476,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 01400,171,stadium_2_name,Altenhof | (tlw.),,Altenhof I (tlw.),unsicher,unlesbar,,,Namensstadium auffällig
 01400,171,stadium_3_datum,1935-10-14,,1935-10-14,unsicher,unlesbar,,,Namensstadium auffällig
 01400,171,stadium_3_name,Hundackerweg,,Hundackerweg,unsicher,unlesbar,,,Namensstadium auffällig
-01401,171,lemma,Hundebrinkstraße,,Hundebrinkstraße,unsicher,unlesbar,,,Straßenklasse fehlt
-01401,171,stadtteile,Altenessen-Süd,,Altenessen-Süd,unsicher,unlesbar,,,Straßenklasse fehlt
-01401,171,strassenklasse,,,Gemeindestraße,unsicher,unlesbar,,,Straßenklasse fehlt
-01401,171,namensgruppe,Essener Geschichte und Örtlichkeit,,Essener Geschichte und Örtlichkeit,unsicher,unlesbar,,,Straßenklasse fehlt
-01401,171,verweis_auf,,,,unsicher,unlesbar,,,Straßenklasse fehlt
-01401,171,stadium_1_datum,1896-02-13,,1896-02-13,unsicher,unlesbar,,,Straßenklasse fehlt
-01401,171,stadium_1_name,Hundebrinkstraße,,Hundebrinkstraße,unsicher,unlesbar,,,Straßenklasse fehlt
-02532,171,lemma,Hugo-Knippen-Straße,,Hugo-Knippen-Straße,unsicher,unlesbar,,,Namenskette unvollständig gelesen
-02532,171,stadtteile,Bedingrade,,Bedingrade,unsicher,unlesbar,,,Namenskette unvollständig gelesen
-02532,171,strassenklasse,Gemeindestraße,,Gemeindestraße,unsicher,unlesbar,,,Namenskette unvollständig gelesen
-02532,171,namensgruppe,"Person, Mann, Deutscher, Kruppscher Beamter, (vorm.) Bergheimer Straße (tlw.)",,"Person, Mann, Deutscher, Kruppscher Beamter, (vorm.) Bergheimer Straße (tlw.)",unsicher,unlesbar,,,Namenskette unvollständig gelesen
-02532,171,verweis_auf,,,,unsicher,unlesbar,,,Namenskette unvollständig gelesen
-02532,171,stadium_1_datum,1991-11-13,,1991-11-13,unsicher,unlesbar,,,Namenskette unvollständig gelesen
-02532,171,stadium_1_name,Hugo-Knippen-Straße,,Hugo-Knippen-Straße,unsicher,unlesbar,,,Namenskette unvollständig gelesen
-01450,174,lemma,lländerweg,Iländerweg,,unsicher,eines,,,Lemma auffällig (Form)
-01450,174,stadtteile,Heidhausen,Heidhausen,,unsicher,eines,,,Lemma auffällig (Form)
-01450,174,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Lemma auffällig (Form)
-01450,174,namensgruppe,Behandigungsgut,Behandlungsgut,,unsicher,eines,,,Lemma auffällig (Form)
-01450,174,verweis_auf,,,,unsicher,keines,,,Lemma auffällig (Form)
-01450,174,stadium_1_datum,"(urspr., kein Datum)","(urspr., kein Datum)",,unsicher,eines,,,Lemma auffällig (Form)
-01450,174,stadium_1_name,Friedenstraße,Friedenstraße,,unsicher,eines,,,Lemma auffällig (Form)
-01450,174,stadium_1_urspruenglich,wahr,wahr,,unsicher,eines,,,Lemma auffällig (Form)
-01450,174,stadium_2_datum,1937-11-20,1937-11-20,,unsicher,eines,,,Lemma auffällig (Form)
-01450,174,stadium_2_name,lländerweg,Iländerweg,,unsicher,eines,,,Lemma auffällig (Form)
-01459,174,lemma,Im Breukel,Im Breukel,Im Breukel,unsicher,keines,,,Namensstadium auffällig
-01459,174,stadtteile,Frintrop,Frintrop,Frintrop,unsicher,keines,,,Namensstadium auffällig
-01459,174,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Namensstadium auffällig
-01459,174,namensgruppe,Flurname,Flurname,Flurname,unsicher,keines,,,Namensstadium auffällig
-01459,174,verweis_auf,,,,unsicher,keines,,,Namensstadium auffällig
-01459,174,stadium_1_datum,1955-03-31,1955-03-31,"(urspr., kein Datum)",unsicher,eines,,,Namensstadium auffällig
-01459,174,stadium_1_name,Im Breukel. (Breukel = kleiner Bruch),Im Breukel,Breukel,unsicher,eines,,,Namensstadium auffällig
-01459,174,stadium_1_urspruenglich,falsch,falsch,wahr,unsicher,eines,,,Namensstadium auffällig
-01537,174,lemma,lländerhöhe,Iländerhöhe,,unsicher,eines,,,Lemma auffällig (Form)
-01537,174,stadtteile,Heidhausen,Heidhausen,,unsicher,eines,,,Lemma auffällig (Form)
-01537,174,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Lemma auffällig (Form)
-01537,174,namensgruppe,Behandigungsgut,Behandlungsgut,,unsicher,eines,,,Lemma auffällig (Form)
-01537,174,verweis_auf,,Iländerweg,,unsicher,eines,,,Lemma auffällig (Form)
-01537,174,stadium_1_datum,1973-02-21,1973-02-21,,unsicher,eines,,,Lemma auffällig (Form)
-01537,174,stadium_1_name,lländerhöhe,Iländerhöhe,,unsicher,eines,,,Lemma auffällig (Form)
-01474,175,lemma,Höfe und ihre Aufsitzer die Schreibweise mit „v“ Im Hülsfeld,Im Hülfsfeld,Im Hülsfeld,unsicher,eines,,,Lemma auffällig (Länge); Lemma auffällig (Form); kein Namensstadium erkannt; Namenskette unvollständig gelesen
-01474,175,stadtteile,Margarethenhöhe,Margarethenhöhe,Margarethenhöhe,unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form); kein Namensstadium erkannt; Namenskette unvollständig gelesen
-01474,175,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form); kein Namensstadium erkannt; Namenskette unvollständig gelesen
-01474,175,namensgruppe,Flurname,Flurname,Flurname,unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form); kein Namensstadium erkannt; Namenskette unvollständig gelesen
-01474,175,verweis_auf,,,,unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form); kein Namensstadium erkannt; Namenskette unvollständig gelesen
 01492,177,lemma,Im Riek,Im Riek,,unsicher,eines,,,Datum: Komma nach Tag
 01492,177,stadtteile,Schuir,Schuir,,unsicher,eines,,,Datum: Komma nach Tag
 01492,177,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Datum: Komma nach Tag
@@ -822,21 +522,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 01528,179,verweis_auf,,,,unsicher,keines,,,Datum ohne Doppelpunkt
 01528,179,stadium_1_datum,1960-09-07,1960-09-07,1960-09-07,unsicher,keines,,,Datum ohne Doppelpunkt
 01528,179,stadium_1_name,Immengarten,Immengarten,Immengarten,unsicher,keines,,,Datum ohne Doppelpunkt
-01515,180,lemma,In der Vogelwiesche,In der Vogelwiesche,In der Vogelwiesche,unsicher,keines,,,Namensstadium auffällig
-01515,180,stadtteile,Karnap,Karnap,Karnap,unsicher,keines,,,Namensstadium auffällig
-01515,180,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Namensstadium auffällig
-01515,180,namensgruppe,"Hofname, Flurname","Hofname, Flurname","Hofname, Flurname",unsicher,keines,,,Namensstadium auffällig
-01515,180,verweis_auf,,,,unsicher,keines,,,Namensstadium auffällig
-01515,180,stadium_1_datum,"(urspr., kein Datum)","(urspr., kein Datum)","(urspr., kein Datum)",unsicher,keines,,,Namensstadium auffällig
-01515,180,stadium_1_name,In der Vogelwiesche,In der Vogelwiesche,In der Vogelwiesche,unsicher,keines,,,Namensstadium auffällig
-01515,180,stadium_1_urspruenglich,wahr,wahr,wahr,unsicher,keines,,,Namensstadium auffällig
-01515,180,stadium_2_datum,"(urspr., kein Datum)","(urspr., kein Datum)","Im Emscherbruch, 31. Mai 1930 (nicht normalisierbar)",unsicher,eines,,,Namensstadium auffällig
-01515,180,stadium_2_name,Im Emscherbruch,Im Emscherbruch,II. Schockenhecke,unsicher,eines,,,Namensstadium auffällig
-01515,180,stadium_2_urspruenglich,wahr,wahr,falsch,unsicher,eines,,,Namensstadium auffällig
-01515,180,stadium_3_datum,1930-05-31,1930-05-31,1962-11-12,unsicher,eines,,,Namensstadium auffällig
-01515,180,stadium_3_name,Il,II. Schockenhecke,In der Vogelwiesche (Verl.),unsicher,eines,,,Namensstadium auffällig
-01515,180,stadium_4_datum,1962-11-12,1962-11-12,,unsicher,eines,,,Namensstadium auffällig
-01515,180,stadium_4_name,In der Vogelwiesche (Verl.),In der Vogelwiesche (Verl.),,unsicher,eines,,,Namensstadium auffällig
 01521,180,lemma,Irmastraße,Irmastraße,Irmastraße,unsicher,keines,,,Straßenklasse ohne Marker
 01521,180,stadtteile,Horst,Horst,Horst,unsicher,keines,,,Straßenklasse ohne Marker
 01521,180,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Straßenklasse ohne Marker
@@ -889,13 +574,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 01633,188,verweis_auf,,,,unsicher,keines,,,Datum: Komma nach Tag
 01633,188,stadium_1_datum,1954-02-23,1954-02-23,,unsicher,eines,,,Datum: Komma nach Tag
 01633,188,stadium_1_name,Kalthofweg,Kalthofweg,,unsicher,eines,,,Datum: Komma nach Tag
-01635,188,lemma,Kamerunstraße,Kamerunstraße,,unsicher,eines,,,Namenskette unvollständig gelesen
-01635,188,stadtteile,Gerschede,Gerschede,,unsicher,eines,,,Namenskette unvollständig gelesen
-01635,188,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Namenskette unvollständig gelesen
-01635,188,namensgruppe,Stadt und Ort,Stadt und Ort,,unsicher,eines,,,Namenskette unvollständig gelesen
-01635,188,verweis_auf,,,,unsicher,keines,,,Namenskette unvollständig gelesen
-01635,188,stadium_1_datum,1939-05-26,1939-05-26,,unsicher,eines,,,Namenskette unvollständig gelesen
-01635,188,stadium_1_name,Kamerunstraße,Kamerunstraße,,unsicher,eines,,,Namenskette unvollständig gelesen
 01687,193,lemma,Kelserweg,Kelserweg,Kemnastraße,unsicher,eines,,,Namenskette unvollständig gelesen
 01687,193,stadtteile,Überruhr-Hinsel,Überruhr-Hinsel,Leithe,unsicher,eines,,,Namenskette unvollständig gelesen
 01687,193,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Namenskette unvollständig gelesen
@@ -903,51 +581,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 01687,193,verweis_auf,,,,unsicher,keines,,,Namenskette unvollständig gelesen
 01687,193,stadium_1_datum,1959-09-08,1959-09-08,1959-09-08,unsicher,keines,,,Namenskette unvollständig gelesen
 01687,193,stadium_1_name,Kelserweg,Kelserweg,Kelsterweg,unsicher,eines,,,Namenskette unvollständig gelesen
-03614,195,lemma,Kettwiger Weinberg,Kettwiger Weinberg,,unsicher,eines,,,Datum ohne Doppelpunkt
-03614,195,stadtteile,Kettwig,Kettwig,,unsicher,eines,,,Datum ohne Doppelpunkt
-03614,195,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Datum ohne Doppelpunkt
-03614,195,namensgruppe,Lagebezeichnung,Lagebezeichnung,,unsicher,eines,,,Datum ohne Doppelpunkt
-03614,195,verweis_auf,,,,unsicher,keines,,,Datum ohne Doppelpunkt
-03614,195,stadium_1_datum,1924,1924,,unsicher,eines,,,Datum ohne Doppelpunkt
-03614,195,stadium_1_name,Am Weinberg,Am Weinberg,,unsicher,eines,,,Datum ohne Doppelpunkt
-03614,195,stadium_2_datum,1977-11-29,1977-11-29,,unsicher,eines,,,Datum ohne Doppelpunkt
-03614,195,stadium_2_name,Kettwiger Weinberg,Kettwiger Weinberg,,unsicher,eines,,,Datum ohne Doppelpunkt
-01702,196,lemma,ckuhl (wohl eine Verschreibung) und Kickuhlskuhle Kiekenberg,Kiekenberg,Kickenberg,unsicher,eines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01702,196,stadtteile,Bedingrade,Bedingrade,Bedingrade,unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01702,196,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01702,196,namensgruppe,"Flurname, Kotten","Flurname, Kotten","Flurname, Kotten",unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01702,196,verweis_auf,,,,unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01702,196,stadium_1_datum,vor 1904,vor 1904,vor 1904,unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01702,196,stadium_1_name,Querstraße,Querstraße,Querstraße,unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01702,196,stadium_2_datum,1937-02-25,1937-02-25,1937-02-25,unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01702,196,stadium_2_name,Kiekenberg,Kiekenberg,Kickenberg,unsicher,eines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01718,198,lemma,ern von der Heiligen Elisabeth zu Essen-(Schuir) Klarastraße,Klarastrabe,Klarastraße,unsicher,eines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01718,198,stadtteile,Rüttenscheid,Rüttenscheid,Rüttenscheid,unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01718,198,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01718,198,namensgruppe,Weiblicher Vorname,Weiblicher Vorname,Weiblicher Vorname,unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01718,198,verweis_auf,,,,unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01718,198,stadium_1_datum,1897-09-06,1897-09-06,1897-09-06,unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01718,198,stadium_1_name,Klarastraße,Klarastrabe,Klarastraße,unsicher,eines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01718,198,stadium_2_datum,1933-05-08,1933-05-08,1933-05-08,unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01718,198,stadium_2_name,Horst-Wessel-Straße (Umb.),Horst-Wessel-Straße (Umb.),Horst-Wessel-Straße (Umb.),unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01718,198,stadium_3_datum,1945-06-18,1945-06-18,1945-06-18,unsicher,keines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01718,198,stadium_3_name,Klarastraße (Umb.),Klarastrabe (Umb.),Klarastraße (Umb.),unsicher,eines,,,Lemma auffällig (Länge); Lemma auffällig (Form)
-01724,199,lemma,Kleine Buschstraße,,Kleine Buschstraße,unsicher,unlesbar,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-01724,199,stadtteile,Altendorf,,Altendorf,unsicher,unlesbar,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-01724,199,strassenklasse,Gemeindestraße,,Gemeindestraße,unsicher,unlesbar,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-01724,199,namensgruppe,Flurname,,"Flurname, urspr.: Heißener Straße",unsicher,unlesbar,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-01724,199,verweis_auf,,,,unsicher,unlesbar,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-01724,199,stadium_1_datum,"(urspr., kein Datum)",,1895-11-28,unsicher,unlesbar,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-01724,199,stadium_1_name,! Heißener Straße,,Buschstraße (tlw.),unsicher,unlesbar,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-01724,199,stadium_1_urspruenglich,wahr,,falsch,unsicher,unlesbar,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-01724,199,stadium_2_datum,1895-11-28,,1915-07-09,unsicher,unlesbar,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-01724,199,stadium_2_name,Buschstraße (tlw.),,Kleine Buschstraße,unsicher,unlesbar,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-01724,199,stadium_3_datum,1915-07-09,,1927-12-01,unsicher,unlesbar,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-01724,199,stadium_3_name,Kleine Buschstraße,,Winkhauser Straße (Umb.),unsicher,unlesbar,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-01724,199,stadium_4_datum,1927-12-01,,1931-12-11,unsicher,unlesbar,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-01724,199,stadium_4_name,Winkhauser Straße (Umb.),,Kleine Buschstraße (Verl.),unsicher,unlesbar,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-01724,199,stadium_5_datum,1931-12-11,,,unsicher,unlesbar,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-01724,199,stadium_5_name,Kleine Buschstraße (Verl.),,,unsicher,unlesbar,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
 01729,199,lemma,Kleine Lenbachstraße,,Kleine Lenbachstraße,unsicher,unlesbar,,,Anker OCR-korrigiert
 01729,199,stadtteile,Holsterhausen,,Holsterhausen,unsicher,unlesbar,,,Anker OCR-korrigiert
 01729,199,strassenklasse,Gemeindestraße,,Gemeindestraße,unsicher,unlesbar,,,Anker OCR-korrigiert
@@ -964,13 +597,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 01863,200,verweis_auf,,,,unsicher,keines,,,Straßenklasse OCR-korrigiert
 01863,200,stadium_1_datum,1970-10-21,1970-10-21,1970-10-21,unsicher,keines,,,Straßenklasse OCR-korrigiert
 01863,200,stadium_1_name,Kleiner Schirnkamp,Kleiner Schirnkamp,Kleiner Schirnkamp,unsicher,keines,,,Straßenklasse OCR-korrigiert
-01760,202,lemma,Köllmannstraße,Köllmannstraße,Köllmannstraße,unsicher,keines,,,Namensstadium auffällig
-01760,202,stadtteile,Steele,Steele,Steele,unsicher,keines,,,Namensstadium auffällig
-01760,202,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Namensstadium auffällig
-01760,202,namensgruppe,Hofname,Hofname,"Hofname, vor 1911:",unsicher,eines,,,Namensstadium auffällig
-01760,202,verweis_auf,,,,unsicher,keines,,,Namensstadium auffällig
-01760,202,stadium_1_datum,vor 1911,vor 1911,vor 1911,unsicher,keines,,,Namensstadium auffällig
-01760,202,stadium_1_name,«77 N Zn J Ne | FH E> £ \ SI 1-17 ueN N EIER K/ 13 nun N ASZo.L Köllmannstraße,,Köllmannstraße,unsicher,eines,,,Namensstadium auffällig
 01834,211,lemma,Külshammerweg,Külshammerweg,Kühlhammerweg,unsicher,eines,,,Straßenklasse fehlt
 01834,211,stadtteile,Rüttenscheid; Margarethenhöhe,Rüttenscheid; Margarethenhöhe,Rüttenscheid; Margarethenhöhe,unsicher,keines,,,Straßenklasse fehlt
 01834,211,strassenklasse,,,Gemeindestraße,unsicher,eines,,,Straßenklasse fehlt
@@ -1063,13 +689,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 02149,239,verweis_auf,,,,unsicher,keines,,,Monatsname OCR-korrigiert
 02149,239,stadium_1_datum,1908-04-13,1908-04-13,1908-04-13,unsicher,keines,,,Monatsname OCR-korrigiert
 02149,239,stadium_1_name,Möllneys Nocken,Möllneys Nocken,Möllneys Nocken,unsicher,keines,,,Monatsname OCR-korrigiert
-02153,240,lemma,Möserstraße,Möserstraße,,unsicher,eines,,,Feld auffällig (Länge); Straßenklasse fehlt
-02153,240,stadtteile,Frohnhausen,Frohnhausen,,unsicher,eines,,,Feld auffällig (Länge); Straßenklasse fehlt
-02153,240,strassenklasse,,Gemeindestraße,,unsicher,eines,,,Feld auffällig (Länge); Straßenklasse fehlt
-02153,240,namensgruppe,"Gemeindestraße, Str.-Gr.: Person, Mann, Deutscher, Politiker, Publizist, Historiker","Person, Mann, Deutscher, Politiker, Publizist, Historiker",,unsicher,eines,,,Feld auffällig (Länge); Straßenklasse fehlt
-02153,240,verweis_auf,,,,unsicher,keines,,,Feld auffällig (Länge); Straßenklasse fehlt
-02153,240,stadium_1_datum,1902-05-16,1902-05-16,,unsicher,eines,,,Feld auffällig (Länge); Straßenklasse fehlt
-02153,240,stadium_1_name,Möserstraße,Möserstraße,,unsicher,eines,,,Feld auffällig (Länge); Straßenklasse fehlt
 02171,242,lemma,Müllerstraße,Müllerstraße,Müllerstraße,unsicher,keines,,,Straßenklasse OCR-korrigiert
 02171,242,stadtteile,Holsterhausen,Holsterhausen,Holsterhausen,unsicher,keines,,,Straßenklasse OCR-korrigiert
 02171,242,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Straßenklasse OCR-korrigiert
@@ -1128,15 +747,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 02320,251,stadium_2_name,Ludgerusstraße,Ludgerusstraße,Ludgerusstraße,unsicher,keines,,,Datum ohne Doppelpunkt
 02320,251,stadium_3_datum,1910-09-16,1910-09-16,1910-09-16,unsicher,keines,,,Datum ohne Doppelpunkt
 02320,251,stadium_3_name,Oberstraße (Verl.),Oberstraße (Verl.),Oberstraße (Verl.),unsicher,keines,,,Datum ohne Doppelpunkt
-02343,254,lemma,"sagenhaft"" Ottenkämperweg",Ottenkämperweg,Ottenkamperweg,unsicher,eines,,,Lemma auffällig (Form)
-02343,254,stadtteile,Katernberg,Katernberg,Katernberg,unsicher,keines,,,Lemma auffällig (Form)
-02343,254,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Lemma auffällig (Form)
-02343,254,namensgruppe,Kotten,Kotten,Kotten,unsicher,keines,,,Lemma auffällig (Form)
-02343,254,verweis_auf,,,,unsicher,keines,,,Lemma auffällig (Form)
-02343,254,stadium_1_datum,vor 1893,vor 1893,vor 1893,unsicher,keines,,,Lemma auffällig (Form)
-02343,254,stadium_1_name,Kastanienstraße,Kastanienstraße,Kastanienstraße,unsicher,keines,,,Lemma auffällig (Form)
-02343,254,stadium_2_datum,1937-11-20,1937-11-20,1937-11-20,unsicher,keines,,,Lemma auffällig (Form)
-02343,254,stadium_2_name,Ottenkämperweg,Ottenkämperweg,Ottenkamperweg,unsicher,eines,,,Lemma auffällig (Form)
 02474,257,lemma,Paul-Goerens-Straße,Paul-Goerens-Straße,,unsicher,eines,,,Datum ohne Doppelpunkt
 02474,257,stadtteile,Frohnhausen,Frohnhausen,,unsicher,eines,,,Datum ohne Doppelpunkt
 02474,257,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Datum ohne Doppelpunkt
@@ -1185,17 +795,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 02449,264,stadium_1_name,Poststraße,Poststraße,Poststraße,unsicher,keines,,,Datum ohne Doppelpunkt
 02449,264,stadium_2_datum,2011-06-28,2011-06-28,2011-06-28,unsicher,keines,,,Datum ohne Doppelpunkt
 02449,264,stadium_2_name,Poststraße (Verl.),Poststraße (Verl.),Poststraße (Verl.),unsicher,keines,,,Datum ohne Doppelpunkt
-02542,267,lemma,Rademachers Weg,Rademachers Weg,Rademachers Weg,unsicher,keines,,,Straßenklasse ohne Marker
-02542,267,stadtteile,Freisenbruch; Horst,Freisenbruch; Horst,Freisenbruch; Horst,unsicher,keines,,,Straßenklasse ohne Marker
-02542,267,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Straßenklasse ohne Marker
-02542,267,namensgruppe,Hofname,Hofname,Hofname,unsicher,keines,,,Straßenklasse ohne Marker
-02542,267,verweis_auf,,,,unsicher,keines,,,Straßenklasse ohne Marker
-02542,267,stadium_1_datum,1919-05-28,1919-05-28,1919-05-28,unsicher,keines,,,Straßenklasse ohne Marker
-02542,267,stadium_1_name,Rademachers Weg,Rademachers Weg,Rademachers Weg,unsicher,keines,,,Straßenklasse ohne Marker
-02542,267,stadium_2_datum,1919-05-28,1919-05-28,1919-05-28,unsicher,keines,,,Straßenklasse ohne Marker
-02542,267,stadium_2_name,Kanarienberg (ttw.),Kanarienenberg (tlw.),Kanarienberg (tlw.),unsicher,eines,,,Straßenklasse ohne Marker
-02542,267,stadium_3_datum,1963-12-17,1963-12-17,1963-12-17,unsicher,keines,,,Straßenklasse ohne Marker
-02542,267,stadium_3_name,Rademachers Weg (Verl.),Rademachers Weg (Verl.),Rademachers Weg (Verl.),unsicher,keines,,,Straßenklasse ohne Marker
 02599,274,lemma,Riegelweg,Riegelweg,Riegelweg,unsicher,keines,,,Anker OCR-korrigiert
 02599,274,stadtteile,Schonnebeck,Schonnebeck,Schonnebeck,unsicher,keines,,,Anker OCR-korrigiert
 02599,274,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Anker OCR-korrigiert
@@ -1249,13 +848,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 02656,281,stadium_5_name,Hermann-Göring-Straße (Umb.),Hermann-Göring-Straße (Umb.),,unsicher,eines,,,Klammerzusatz ergänzt
 02656,281,stadium_6_datum,1945-06-18,1945-06-18,,unsicher,eines,,,Klammerzusatz ergänzt
 02656,281,stadium_6_name,Rüttenscheider Straße (Umb.),Rüttenscheider Straße (Umb.),,unsicher,eines,,,Klammerzusatz ergänzt
-02724,284,lemma,Samoastraße,Samoastraße,Samoastraße,unsicher,keines,,,Namensstadium auffällig
-02724,284,stadtteile,Gerschede,Gerschede,Gerschede,unsicher,keines,,,Namensstadium auffällig
-02724,284,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Namensstadium auffällig
-02724,284,namensgruppe,Insel,Insel,Insel,unsicher,keines,,,Namensstadium auffällig
-02724,284,verweis_auf,,,,unsicher,keines,,,Namensstadium auffällig
-02724,284,stadium_1_datum,1939-05-26,1939-05-26,1939-05-26,unsicher,keines,,,Namensstadium auffällig
-02724,284,stadium_1_name,ee > Ternir! Salzmarkt Samoastraße,,Samoastraße,unsicher,eines,,,Namensstadium auffällig
 02508,285,lemma,Schacht Neu-Cöln,Schacht Neu-Cöln,Schacht Neu-Cölln,unsicher,eines,,,Straßenklasse OCR-korrigiert
 02508,285,stadtteile,Borbeck-Mitte; Bergeborbeck,Borbeck-Mitte; Bergeborbeck,Borbeck-Mitte; Bergeborbeck,unsicher,keines,,,Straßenklasse OCR-korrigiert
 02508,285,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Straßenklasse OCR-korrigiert
@@ -1308,15 +900,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 02845,299,verweis_auf,Schwanhildenhöhe,Schwanhildenhöhe,Schwanhildenhöhe,unsicher,keines,,,Datum ohne Doppelpunkt
 02845,299,stadium_1_datum,1899-10-04,1899-10-04,1899-10-04,unsicher,keines,,,Datum ohne Doppelpunkt
 02845,299,stadium_1_name,Schwanhildenstraße,Schwanhildenstraße,Schwanhildenstraße,unsicher,keines,,,Datum ohne Doppelpunkt
-00718,303,lemma,Siebrechtweg,Siebrechtweg,Siebrechtweg,unsicher,keines,,,Namenskette unvollständig gelesen
-00718,303,stadtteile,Altenessen-Nord,Altenessen-Nord,Altenessen-Nord,unsicher,keines,,,Namenskette unvollständig gelesen
-00718,303,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Namenskette unvollständig gelesen
-00718,303,namensgruppe,"Person, Mann, Deutscher, Gerichtsassessor","Person, Mann, Deutscher, Gerichtsassessor","Person, Mann, Deutscher, Gerichtsassessor",unsicher,keines,,,Namenskette unvollständig gelesen
-00718,303,verweis_auf,,,,unsicher,keines,,,Namenskette unvollständig gelesen
-00718,303,stadium_1_datum,1974-12-11,1974-12-11,1974-12-11,unsicher,keines,,,Namenskette unvollständig gelesen
-00718,303,stadium_1_name,Siebrechtweg,Siebrechtweg,Siebrechtweg,unsicher,keines,,,Namenskette unvollständig gelesen
-00718,303,stadium_2_datum,2006-01-31,04. April 1986 aufgehoben (nicht normalisierbar),1986-04-04,unsicher,eines,,,Namenskette unvollständig gelesen
-00718,303,stadium_2_name,Siebrechtweg,Siebrechtweg,,unsicher,eines,,,Namenskette unvollständig gelesen
 03012,306,lemma,Spielkampshof,Spielkampshof,Spielkampshof,unsicher,keines,,,Straßenklasse fehlt
 03012,306,stadtteile,Haarzopf; Margarethenhöhe,Haarzopf; Margarethenhöhe,Haarzopf; Margarethenhöhe,unsicher,keines,,,Straßenklasse fehlt
 03012,306,strassenklasse,,,Hofname,unsicher,eines,,,Straßenklasse fehlt
@@ -1356,19 +939,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 03067,323,stadium_1_name,Schützenstraße,Schützenstraße,Thiesstraße,unsicher,eines,,,Namenskette unvollständig gelesen
 03067,323,stadium_2_datum,1915-07-09,1915-07-09,,unsicher,eines,,,Namenskette unvollständig gelesen
 03067,323,stadium_2_name,Thiesstraße,Thiesstraße,,unsicher,eines,,,Namenskette unvollständig gelesen
-03071,323,lemma,Tholstraße - Hof Thol Thusneldastraße,Thusneldastraße,ThusneldaStraße,unsicher,eines,,,Lemma auffällig (Länge)
-03071,323,stadtteile,Karnap,Karnap,Karnap,unsicher,keines,,,Lemma auffällig (Länge)
-03071,323,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Lemma auffällig (Länge)
-03071,323,namensgruppe,"Person, Frau, Germanischer Stamm","Person, Frau, Germanischer Stamm","Person, Frau, Germanischer Stamm",unsicher,keines,,,Lemma auffällig (Länge)
-03071,323,verweis_auf,Thusneldaplatz,Thusneldaplatz,ThusneldaPlatz,unsicher,eines,,,Lemma auffällig (Länge)
-03071,323,stadium_1_datum,1920-10-06,1920-10-06,1920-10-06,unsicher,keines,,,Lemma auffällig (Länge)
-03071,323,stadium_1_name,Am Goetheplatz (tlw.),Am Goetheplatz (tlw.),Am Goetheplatz (tlw.),unsicher,keines,,,Lemma auffällig (Länge)
-03071,323,stadium_2_datum,1920-10-06,1920-10-06,1920-10-06,unsicher,keines,,,Lemma auffällig (Länge)
-03071,323,stadium_2_name,Schillerallee,Schillerallee,Schillerallee,unsicher,keines,,,Lemma auffällig (Länge)
-03071,323,stadium_3_datum,1920-10-06,1920-10-06,1920-10-06,unsicher,keines,,,Lemma auffällig (Länge)
-03071,323,stadium_3_name,Kantstraße,Kantstraße,Kantstraße,unsicher,keines,,,Lemma auffällig (Länge)
-03071,323,stadium_4_datum,1937-11-20,1937-11-20,1937-11-20,unsicher,keines,,,Lemma auffällig (Länge)
-03071,323,stadium_4_name,Thusneldastraße,Thusneldastraße,ThusneldaStraße,unsicher,eines,,,Lemma auffällig (Länge)
 03760,328,lemma,Uhlandstraße,Uhlandstraße,Uhlandstraße,unsicher,keines,,,
 03760,328,stadtteile,Kettwig,Kettwig,Kettwig,unsicher,keines,,,
 03760,328,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,
@@ -1404,16 +974,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 03241,336,stadium_2_name,Ortrudstraße,Ortrudstraße,Ottilienstraße,unsicher,eines,,,Datum: Komma nach Tag
 03241,336,stadium_3_datum,1937-11-20,1937-11-20,1937-11-20,unsicher,keines,,,Datum: Komma nach Tag
 03241,336,stadium_3_name,Von-Einem-Straße,Von-Einem-Straße,Von-Einem-Straße,unsicher,keines,,,Datum: Komma nach Tag
-03249,336,lemma,Voßbusch,Voßbusch,Voßbusch,unsicher,keines,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-03249,336,stadtteile,Bredeney,Bredenei,Bredeney,unsicher,eines,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-03249,336,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-03249,336,namensgruppe,Flurname,Flurname,Flurname,unsicher,keines,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-03249,336,verweis_auf,,,,unsicher,keines,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-03249,336,stadium_1_datum,"(urspr., kein Datum)","(urspr., kein Datum)",urspr.: Voßbuschstraße (nicht normalisierbar),unsicher,eines,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-03249,336,stadium_1_name,! Voßbuschstraße,Voßbuschstraße,Voßbusch,unsicher,eines,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-03249,336,stadium_1_urspruenglich,wahr,wahr,wahr,unsicher,keines,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-03249,336,stadium_2_datum,1915-07-09,1915-07-09,,unsicher,eines,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
-03249,336,stadium_2_name,Voßbusch,Voßbusch,,unsicher,eines,,,Namensstadium auffällig; urspr. ohne Doppelpunkt
 03333,342,lemma,Wehnertweg,Wehnertweg,Wehnertweg,unsicher,keines,,,Datum: Komma nach Tag
 03333,342,stadtteile,Stadtwald,Stadtwald,Stadtwald,unsicher,keines,,,Datum: Komma nach Tag
 03333,342,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Datum: Komma nach Tag
@@ -1481,31 +1041,6 @@ schl_nr,buchseite,feld,wert_parser,wert_qwen,wert_mistral,status_parser,einig,ko
 03459,349,verweis_auf,,,,unsicher,keines,,,Datum ohne Doppelpunkt
 03459,349,stadium_1_datum,1976-12-08,1976-12-08,1976-12-08,unsicher,keines,,,Datum ohne Doppelpunkt
 03459,349,stadium_1_name,Wilhelm-Segerath-Straße,Wilhelm-Segerath-Straße,Wilhelm-Segerath-Straße,unsicher,keines,,,Datum ohne Doppelpunkt
-03440,355,lemma,Wüstenhöferstraße,,,unsicher,unlesbar,,,urspr. ohne Doppelpunkt
-03440,355,stadtteile,Alten-dorf; Bochold; Borbeck-Mitte,,,unsicher,unlesbar,,,urspr. ohne Doppelpunkt
-03440,355,strassenklasse,Kreisstraße; Gemeindestraße,,,unsicher,unlesbar,,,urspr. ohne Doppelpunkt
-03440,355,namensgruppe,"Person, Mann, Deutscher, Generaldirektor, Industrieller",,,unsicher,unlesbar,,,urspr. ohne Doppelpunkt
-03440,355,verweis_auf,,,,unsicher,unlesbar,,,urspr. ohne Doppelpunkt
-03440,355,stadium_1_datum,"(urspr., kein Datum)",,,unsicher,unlesbar,,,urspr. ohne Doppelpunkt
-03440,355,stadium_1_name,Styrumer Straße,,,unsicher,unlesbar,,,urspr. ohne Doppelpunkt
-03440,355,stadium_1_urspruenglich,wahr,,,unsicher,unlesbar,,,urspr. ohne Doppelpunkt
-03440,355,stadium_2_datum,1891,,,unsicher,unlesbar,,,urspr. ohne Doppelpunkt
-03440,355,stadium_2_name,Kuhstraße (Teil von Borbecker bis Bocholder Straße),,,unsicher,unlesbar,,,urspr. ohne Doppelpunkt
-03440,355,stadium_3_datum,1895-11-28,,,unsicher,unlesbar,,,urspr. ohne Doppelpunkt
-03440,355,stadium_3_name,Buschstraße (tlw.),,,unsicher,unlesbar,,,urspr. ohne Doppelpunkt
-03440,355,stadium_4_datum,1933-11-27,,,unsicher,unlesbar,,,urspr. ohne Doppelpunkt
-03440,355,stadium_4_name,Wüstenhöferstraße,,,unsicher,unlesbar,,,urspr. ohne Doppelpunkt
-03440,355,stadium_5_datum,1934-01-12,,,unsicher,unlesbar,,,urspr. ohne Doppelpunkt
-03440,355,stadium_5_name,Wüstenhöferstraße (Verl.),,,unsicher,unlesbar,,,urspr. ohne Doppelpunkt
-03493,356,lemma,208 ff Zeche Ernestine,Zeche Ernestine,,unsicher,eines,,,Lemma auffällig (Form)
-03493,356,stadtteile,Stoppenberg,Stoppenberg,,unsicher,eines,,,Lemma auffällig (Form)
-03493,356,strassenklasse,Gemeindestraße,Gemeindestraße,,unsicher,eines,,,Lemma auffällig (Form)
-03493,356,namensgruppe,Bergbau,Bergbau,,unsicher,eines,,,Lemma auffällig (Form)
-03493,356,verweis_auf,,,,unsicher,keines,,,Lemma auffällig (Form)
-03493,356,stadium_1_datum,1910-12-20,1910-12-20,,unsicher,eines,,,Lemma auffällig (Form)
-03493,356,stadium_1_name,Zechenstraße (tlw.),Zechenstraße (tlw.),,unsicher,eines,,,Lemma auffällig (Form)
-03493,356,stadium_2_datum,1933-11-27,1933-11-27,,unsicher,eines,,,Lemma auffällig (Form)
-03493,356,stadium_2_name,Zeche Ernestine,Zeche Ernestine,,unsicher,eines,,,Lemma auffällig (Form)
 03499,357,lemma,Zementstraße,Zementstraße,Zementstraße,unsicher,keines,,,Straßenklasse ohne Marker
 03499,357,stadtteile,Kupferdreh,Kupferdreh,Kupferdreh,unsicher,keines,,,Straßenklasse ohne Marker
 03499,357,strassenklasse,Gemeindestraße,Gemeindestraße,Gemeindestraße,unsicher,keines,,,Straßenklasse ohne Marker
