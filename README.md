@@ -26,8 +26,10 @@
 Nicht enthalten sind Dickhoffs Erläuterungstexte (Namensherkunft, Biographien), Koordinaten
 und die OCR-Rohtexte.
 
-**Entstehung.** Ein regelbasierter Parser liest den OCR-Text, zwei Sprachmodelle
-lesen unabhängig davon die Seitenbilder; jede Abweichung wird von einem Menschen am Scan
+**Entstehung.** Ein regelbasierter Parser liest den OCR-Text; zwei Open-Weight-Sprachmodelle,
+bereitgestellt über KI:connect.nrw der Bergischen Universität Wuppertal (BUW) —
+`inferenz-qwen3-8-27b` (Qwen3, 27 Mrd. Parameter) und `inferenz-mistral-small-4-119b`
+(Mistral Small 4, 119 Mrd. Parameter) —, lesen unabhängig davon die Seitenbilder; jede Abweichung wird von einem Menschen am Scan
 entschieden und als Overlay über die Parser-Ausgabe gelegt.
 
 ```mermaid
@@ -63,7 +65,7 @@ Schlüsselnummern-Dubletten der Vorlage). In der Goldstandard-Stichprobe lagen `
 gelesene Einträge vor allen Reparaturen bei 0,3 % Feldfehlern. 3.339 der 3.354 Lemmata
 finden sich im amtlichen Straßenverzeichnis wieder; die übrigen 15 sind erwartbar
 aufgehobene Straßen. Die Modelle allein wären keine Quelle: gegen den Goldstandard lasen sie
-zu 6,1 % (qwen) bzw. 22,4 % (mistral) falsch. Bekannte Grenzen: Verweise („Siehe …") sind
+zu 6,1 % (`inferenz-qwen3-8-27b`) bzw. 22,4 % (`inferenz-mistral-small-4-119b`) falsch. Bekannte Grenzen: Verweise („Siehe …") sind
 unvollständig erfasst, Datierungen sind nur so genau wie die Vorlage (`datum_praezision`),
 und wo der Parser auf einer Buchseite endete, prüfte die Modell-Zweitlesung nur den Kopf.
 
@@ -147,8 +149,11 @@ Namensstand des Adressbuchs Essen 1936 abgeleitet
 
 ### Stufe 5 — Unabhängige LLM-Lesung und Korrektur-Overlay
 
-Zusätzlich zu den drei Selbstprüfungen lesen zwei Sprachmodelle unabhängig voneinander
-die Seitenbilder direkt (`strassen/seiten.py` rendert alle Buchseiten als ganzseitige Bilder,
+Zusätzlich zu den drei Selbstprüfungen lesen zwei Open-Weight-Sprachmodelle —
+`inferenz-qwen3-8-27b` (Qwen3, 27 Mrd. Parameter) und `inferenz-mistral-small-4-119b`
+(Mistral Small 4, 119 Mrd. Parameter), bereitgestellt über den Dienst KI:connect.nrw der
+Bergischen Universität Wuppertal (BUW), im Folgenden kurz `qwen` und `mistral` —
+unabhängig voneinander die Seitenbilder direkt (`strassen/seiten.py` rendert alle Buchseiten als ganzseitige Bilder,
 `strassen/llm_leser.py` fragt die Modelle über einen OpenAI-kompatiblen Endpunkt ab) — **ohne**
 den OCR-Text zu sehen, damit ein gemeinsamer OCR-Fehler nicht unentdeckt bleibt. Weichen
 beide Modell-Lesungen oder eine Modell-Lesung vom Datensatz ab, landet der Fall in
@@ -313,7 +318,9 @@ konkreten Treffer (Lemma, Schlüsselnummer, Grund): `daten/pruefung_validierung.
 
 ### Unabhängige LLM-Lesung
 
-Zwei Sprachmodelle lesen die ganzseitigen Seitenbilder unabhängig voneinander und ohne
+Zwei Open-Weight-Sprachmodelle (`inferenz-qwen3-8-27b`, kurz `qwen`, und
+`inferenz-mistral-small-4-119b`, kurz `mistral`, bereitgestellt über KI:connect.nrw der
+Bergischen Universität Wuppertal) lesen die ganzseitigen Seitenbilder unabhängig voneinander und ohne
 Kenntnis des OCR-Texts (s. [Methode, Stufe 5](#stufe-5--unabhängige-llm-lesung-und-korrektur-overlay)).
 Volllauf vom 2026-09-12/13, Prompt-Stand `530d5c9e77b5`:
 
