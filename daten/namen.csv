@@ -978,7 +978,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00496,1,1860,jahr,Burgplatz,falsch
 00496,2,1933-04-20,tag,Adolf-Hitler-Platz,falsch
 00496,3,1945-05-15,tag,Burgplatz,falsch
-00519,1,1911-06-16,tag,Dahl- Burgstraße - Burg Altendorf hauser Straße,falsch
+00519,1,1911-06-16,tag,Dahlhauser Straße,falsch
 00519,2,1970-12-16,tag,Burgstraße,falsch
 00497,1,1938-10-21,tag,Im Geld,falsch
 00497,2,1957-01-23,tag,Burgundenweg,falsch
@@ -1275,7 +1275,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 00744,1,1920-10-01,tag,Eiland,falsch
 00815,1,1970-02-24,tag,Eilpeweg,falsch
 00745,1,1895-11-28,tag,Einbleckstraße,falsch
-00746,1,1907-08-06,tag,Prumendorfer Eisenhammerweg - Deilbachhammer Straße,falsch
+00746,1,1907-08-06,tag,Prumendorfer Straße,falsch
 00746,2,1915-07-09,tag,Einigkeitsstraße,falsch
 00747,1,1905-06-16,tag,Eintrachtstraße,falsch
 00748,1,1903-02-04,tag,Bahnhofstraße,falsch
@@ -5491,7 +5491,7 @@ schl_nr,stadium,gueltig_ab,datum_praezision,name,ist_urspruenglich
 03522,1,1929-07-12,tag,Zur Hagelfier,falsch
 01145,1,1999-02-24,tag,Zur Halbinsel,falsch
 01889,1,2013-08-30,tag,Zur Kammgarnspinnerei,falsch
-03771,1,1935,jahr,Zur Kammgarnspinnerei - Kammgarnspinnerei 1914 Zur Kanzel,falsch
+03771,1,1935,jahr,Zur Kanzel,falsch
 03524,1,1954-07-15,tag,Zur Nieden,falsch
 01132,1,1996-10-29,tag,Zur Schmiede,falsch
 03525,1,1950-07-05,tag,Zur Tackenburg,falsch

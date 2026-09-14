@@ -12,6 +12,83 @@
 > included. Data licensed CC BY 4.0 for the derived structure and code; the underlying
 > facts remain attributable to Dickhoff 2015 (see [Lizenz](#lizenz-und-zitierhinweis)).
 
+## Auf einen Blick
+
+**Was enthalten ist.** Drei Tabellen (CSV, UTF-8), beschrieben in `datapackage.json`:
+
+| Datei | Zeilen | Inhalt |
+|---|---|---|
+| `daten/strassen.csv` | 3.354 | ein Eintrag je Straße: Schlüsselnummer, Lemma, Stadtteil(e), Straßenklasse, Namensgruppe, Verweis, Buchseite, Prüfstatus |
+| `daten/namen.csv` | 5.513 | die datierten Namensstadien jeder Straße (Kette der Umbenennungen) |
+| `daten/konkordanz_1936.csv` | 473 | abgeleitet: Straßenname zum Erhebungsstand des Adressbuchs Essen 1936 → heutiger Name |
+| `daten/korrekturen.csv` | 526 | das Korrektur-Overlay: jede manuell geprüfte Änderung mit Beleg |
+
+Nicht enthalten sind Dickhoffs Erläuterungstexte (Namensherkunft, Biographien), Koordinaten
+und die OCR-Rohtexte.
+
+**Wie zusammengestellt.** Ein regelbasierter Parser liest den OCR-Text, zwei Sprachmodelle
+lesen unabhängig davon die Seitenbilder; jede Abweichung wird von einem Menschen am Scan
+entschieden und als Overlay über die Parser-Ausgabe gelegt.
+
+```mermaid
+flowchart LR
+  A[Scan, 2 Bände, 300 dpi] --> B[Seitenteilung am Bundsteg<br>Tesseract OCR]
+  B --> C[regelbasierter Parser<br>strassen/erschliessen.py]
+  C --> D[(strassen.csv<br>namen.csv)]
+  D --> E[Selbstprüfungen<br>strassen/validierung.py]
+  A --> F[Seitenbilder<br>strassen/seiten.py]
+  F --> G[zwei LLM-Zweitleser<br>strassen/llm_leser.py]
+  G --> H[Prüfliste<br>strassen/llm_vergleich.py]
+  D --> H
+  H --> I[manuelle Sichtung<br>am Scan-Ausschnitt]
+  I --> J[Overlay<br>daten/korrekturen.csv]
+  J --> C
+  D --> K[Konkordanz 1936<br>strassen/veroeffentlichen.py]
+```
+
+**Wie bereinigt.** In vier Runden, alle in [`docs/vorgehen.md`](docs/vorgehen.md) mit
+Zahlen dokumentiert: (1) eine geschichtete Stichprobe von 50 Einträgen wurde vollständig
+gegen den Scan geprüft (Goldstandard) und lieferte 21 Parser-Regeln; (2) alle 288 Stellen,
+an denen **beide** Modelle übereinstimmend anders lasen als der Parser, wurden gesichtet
+(201 Einträge korrigiert, dazu 7 weitere Parser-Regeln); (3) alle Einträge, die der Parser
+selbst als unsicher gekennzeichnet hatte, wurden mit allen Feldern gesichtet (52 korrigiert,
+108 bestätigt); (4) was das Overlay nicht ausdrücken konnte — falsche Seitenzahl, verlesene
+Schlüsselnummer, fünf ganz ausgelassene Einträge — wurde ihm beigebracht statt den Parser
+umzubauen, damit die geprüften Werte stabil bleiben. Die Modelle ändern nie selbst etwas;
+sie liefern nur Prüfhinweise.
+
+**Wie gut.** Prüfstatus in `strassen.csv`: **2.977** `automatisch` (Parser ohne Prüfgrund),
+**373** `geprueft` (ganzer Eintrag gegen den Scan geprüft), **4** `unsicher` (zwei
+Schlüsselnummern-Dubletten der Vorlage). In der Goldstandard-Stichprobe lagen `automatisch`
+gelesene Einträge vor allen Reparaturen bei 0,3 % Feldfehlern. 3.339 der 3.354 Lemmata
+finden sich im amtlichen Straßenverzeichnis wieder; die übrigen 15 sind erwartbar
+aufgehobene Straßen. Die Modelle allein wären keine Quelle: gegen den Goldstandard lasen sie
+zu 6,1 % (qwen) bzw. 22,4 % (mistral) falsch. Bekannte Grenzen: Verweise („Siehe …") sind
+unvollständig erfasst, Datierungen sind nur so genau wie die Vorlage (`datum_praezision`),
+und wo der Parser auf einer Buchseite endete, prüfte die Modell-Zweitlesung nur den Kopf.
+
+**Beispiele.** Drei Einträge, wie sie im Datensatz stehen:
+
+| schl_nr | Lemma | Stadtteil | Namensstadien (`namen.csv`) | Status |
+|---|---|---|---|---|
+| 00001 | Aachener Straße | Frohnhausen | vor 1898 Victoriastraße (tlw.) · 1902-05-16 Aachener Straße · 1909-03-05 Aachener Straße (Verl.) | automatisch |
+| 00016 | Äbtissinsteig | Kray; Steele | 1890-11-18 Knottenberg (tlw.) · … · 1929-12-12 Am Knottenberg (tlw.) · 1937-11-20 Äbtissinsteig | geprueft |
+| 00132 | Am Stift | Rellinghausen | 1904-02-04 Turmstraße · 1910-10-16 Am Stift; Verweis auf Stiftplatz | automatisch |
+
+Für den Äbtissinsteig liefert die Konkordanz 1936 deshalb die Zeile
+`Kray | Am Knottenberg | Äbtissinsteig | (tlw.)`: Wer 1936 „Am Knottenberg" suchte, findet heute den Äbtissinsteig.
+
+Und drei Korrekturen aus dem Overlay, je eine pro Fehlerursache:
+
+| Ursache | schl_nr / Feld | Parser las | korrigiert zu | Beleg |
+|---|---|---|---|---|
+| Druckfehler der Vorlage | 01854 `lemma` | Kyffhäuserstaße | Kyffhäuserstraße | „Kyffhäuserstaße [sic!]" |
+| OCR-Rauschen | 00085 `lemma`, `buchseite` | Am Handelshof - Handelshof 1913 KEN U E Weein Am Handelshof (S. 35) | Am Handelshof (S. 36) | Bildunterschrift vom Seitenende klebte am Lemma |
+| Parser-Grenze | 01392 `stadium_1` | kein Stadium | 14.05.1941 Hufeisen | Datum über den Seitenumbruch geteilt, Bildunterschrift dazwischen |
+
+Alle 526 Overlay-Zeilen tragen Feld, alten Wert, neuen Wert, Beleg und Quelle; der
+Datensatz lässt sich daraus jederzeit ohne und mit Korrekturen neu erzeugen.
+
 ## Was der Datensatz enthält — und was nicht
 
 Der Datensatz erfasst für jede im Werk aufgeführte Essener Straße:
@@ -131,7 +208,7 @@ Eigenschaften der Straße *und* eine Folge von Namensstadien trägt (1:n) — da
 maschinenlesbare Schema liegt zusätzlich in [`datapackage.json`](datapackage.json)
 (Frictionless-Format).
 
-### `daten/strassen.csv` (3.349 Zeilen)
+### `daten/strassen.csv` (3.354 Zeilen)
 
 | Feld | Beschreibung | Wertebereich |
 |---|---|---|
@@ -217,7 +294,7 @@ korrigierten Werte selbst, nicht über eine Änderung an `pruefung.csv`.
 
 - **388** OCR-Buchseiten → **3.354** vom Parser segmentierte Einträge.
 - `daten/strassen.csv`: **3.354** Zeilen (3.349 vom Parser, 5 per Overlay nachgetragen), davon
-  **4** mit `status=unsicher` (**2.980** `automatisch`, **370** `geprueft`).
+  **4** mit `status=unsicher` (**2.977** `automatisch`, **373** `geprueft`).
 - `daten/namen.csv`: **5.513** Namensstadien (Datierungsgenauigkeit: **4.777** `tag`,
   **334** `unbekannt`, **211** `jahr`, **182** `vor`, **9** `jahrhundert`).
 - `daten/konkordanz_1936.csv`: **473** Zeilen (**424** `eindeutig=ja`, 49 `eindeutig=nein`;
@@ -257,7 +334,7 @@ Volllauf vom 2026-09-12/13, Prompt-Stand `530d5c9e77b5`:
   weil dessen Namenskette auf der Folgeseite weiterlaufen kann und die Modelle sie dort
   nicht sehen. Ausgelassene Ketten: **340** (`mistral`) bzw. **334** (`qwen`),
   in [`docs/llm_lesung.md`](docs/llm_lesung.md) als `seitenende_ausgelassen` beziffert.
-- Daraus menschlich geprüft und angewandt: **370** Einträge mit `status=geprueft` —
+- Daraus menschlich geprüft und angewandt: **373** Einträge mit `status=geprueft` —
   200 aus der Sichtung aller 288 `einig=beide`-Zeilen am 2026-09-13 (jede Zeile am
   Scan-Ausschnitt geprüft; 245 Zeilen als Korrektur, 7 Einträge als Bestätigung des
   Parser-Werts), 1 aus der Goldstandard-Stichprobe, dazu 5 vom Parser ausgelassene und
@@ -266,7 +343,8 @@ Volllauf vom 2026-09-12/13, Prompt-Stand `530d5c9e77b5`:
   aus der Sichtung der `unsicher`-Einträge am 2026-09-14 (vollständige Prüfliste
   `daten/pruefung_unsicher.csv`, alle Felder je Eintrag am Scan-Ausschnitt geprüft, 84 Zellen
   korrigiert) sowie **108** in derselben Sichtung als korrekt bestätigte Einträge
-  (`feld=eintrag`). Das Overlay `daten/korrekturen.csv` hat **523** Zeilen. Nach Sichtung und Overlay-Erweiterung verbleiben 55 `einig=beide`-Zeilen, davon
+  (`feld=eintrag`), dazu 3 Namensstadien mit Bildunterschrift-Resten, die beim
+  Veröffentlichungs-Check auffielen. Das Overlay `daten/korrekturen.csv` hat **526** Zeilen. Nach Sichtung und Overlay-Erweiterung verbleiben 55 `einig=beide`-Zeilen, davon
   25 bei bereits geprüften Einträgen (die Modelle lesen dort falsch) und 30 mit korrektem
   Parser-Wert; keine davon braucht eine Korrektur.
 
@@ -346,7 +424,7 @@ nichts hier ist verschwiegen, um sauberer zu wirken:
   Wangeroogeweg/Wieselweg). Alle anderen Einträge sind entweder vom Parser ohne Prüfgrund
   gelesen (`automatisch`) oder gegen den Scan geprüft (`geprueft`). Die Dubletten gehen
   bewusst nicht in die Konkordanz ein.
-- **34 Konkordanz-Prüffälle** (`daten/pruefung_konkordanz.csv`, nicht Teil des
+- **33 Konkordanz-Prüffälle** (`daten/pruefung_konkordanz.csv`, nicht Teil des
   Publikationsumfangs, s. u.): Straßen, deren letztes Namensstadium vom aktuellen Lemma
   abweicht (unvollständige oder korrupte Namenskette in der Quelle). Sie erscheinen
   **nicht** in `konkordanz_1936.csv`, sondern werden gekennzeichnet statt geraten.

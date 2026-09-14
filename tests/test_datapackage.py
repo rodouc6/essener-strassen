@@ -28,7 +28,7 @@ def test_schl_nr_feldbeschreibung_nennt_die_dubletten():
     schl_nr_feld = next(f for f in strassen["schema"]["fields"] if f["name"] == "schl_nr")
     beschreibung = schl_nr_feld["description"]
     assert "nicht strikt eindeutig" in beschreibung
-    for nummer in ("02402", "02568", "03448"):
+    for nummer in ("02402", "03448"):
         assert nummer in beschreibung
 
 

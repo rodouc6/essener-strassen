@@ -91,7 +91,7 @@ Für jede Umbenennung (Übergang von einem Namensstadium zum nächsten in `daten
 | 1967 | 1 | 2 |
 | 1968 | 2 | 0 |
 | 1969 | 1 | 2 |
-| 1970 | 12 | 2 |
+| 1970 | 13 | 2 |
 | 1971 | 6 | 0 |
 | 1972 | 4 | 1 |
 | 1973 | 1 | 1 |
@@ -144,7 +144,7 @@ Die Konkordanz wird **nur aus Straßen mit `status=automatisch` oder `geprueft`*
 - Konkordanzeinträge: **473**
   - davon `eindeutig=ja`: 424 / `eindeutig=nein` (Kollisionen): 49
   - davon mit Klammerzusatz (z. B. „(tlw.)", „(Verl.)"): 173
-- Prüffälle (`daten/pruefung_konkordanz.csv`): **34**
+- Prüffälle (`daten/pruefung_konkordanz.csv`): **33**
 
 Methodische Begründung der Konkordanz-Ableitung (Klammerzusätze abtrennen, Kollisionen markieren, mechanisches Konsistenz-Netz gegen unvollständige Namensketten, „(tlw.)"-Teilangaben als informationstragend behalten): siehe die Docstrings in `strassen/stichtag.py` (`_trenne_zusatz`, `_ist_teil_zusatz`, `_kandidat_oder_pruefung`, `baue_konkordanz`).
 

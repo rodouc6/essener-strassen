@@ -157,6 +157,11 @@ eingetragen") als Bestätigungszeilen (`feld=eintrag`) ins Overlay geschrieben (
 (Peenestraße/Porscheplatz) und 03448 (Wangeroogeweg/Wieselweg), die das Overlay nicht
 adressieren kann und die als Uneindeutigkeit der Vorlage dokumentiert bleiben. Konkordanz
 455 → **473** (die bestätigten Einträge zählen nun als belastbar), Konkordanz-Prüffälle 34.
+Beim Veröffentlichungs-Check (längstes Feld je Datei) fielen drei Namensstadien auf, in
+denen eine Bildunterschrift mitten im Umbruch eines Namens steckte („Dahl- Burgstraße -
+Burg Altendorf hauser Straße", 00519; ebenso 00746, 03771) — alle drei standen als letzter
+Eintrag ihrer Seite, sodass die Modell-Zweitlesung die Kette nicht verglichen hatte (R7). Am
+Scan geprüft und per Overlay korrigiert (Overlay 526, `geprueft` 373, `automatisch` 2.977).
 
 ## Was als Nächstes offen ist
 

@@ -15,7 +15,7 @@
       "encoding": "utf-8",
       "schema": {
         "fields": [
-          {"name": "schl_nr", "type": "string", "description": "amtliche Schlüsselnummer, fünfstellig; nicht strikt eindeutig — 3 dokumentierte Dubletten (02402, 02568, 03448), siehe README"},
+          {"name": "schl_nr", "type": "string", "description": "amtliche Schlüsselnummer, fünfstellig; nicht strikt eindeutig — 2 dokumentierte Dubletten der Vorlage (02402, 03448), siehe README; eine fünfstellige Ausnahme 001321 (so gedruckt)"},
           {"name": "lemma", "type": "string", "description": "heutiger Straßenname (Stichwort des Eintrags)"},
           {"name": "stadtteile", "type": "string", "description": "Stadtteil(e), mehrere mit '; ' getrennt"},
           {"name": "strassenklasse", "type": "string", "description": "Gemeindestraße, Kreisstraße, Landstraße; mehrere mit '; ' getrennt"},

@@ -606,7 +606,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00494,Burgfeldstraße,Westviertel,Gemeindestraße,Essener Geschichte und Örtlichkeit,,85,automatisch
 00495,Burggrafenstraße,Ostviertel; Südostviertel,Landstraße,Lagebezeichnung,Hohenzollernstraße,85,geprueft
 00496,Burgplatz,Stadtkern,Gemeindestraße,"Essener Geschichte und Örtlichkeit, Platz",,85,automatisch
-00519,Burgstraße,Burgaltendorf,Kreisstraße,Burg,,85,automatisch
+00519,Burgstraße,Burgaltendorf,Kreisstraße,Burg,,85,geprueft
 00497,Burgundenweg,Kray,Gemeindestraße,Siedlung,,86,automatisch
 00498,Burhofer Brauk,Karnap,Gemeindestraße,Flurname,,86,automatisch
 00499,Buschfeldweg,Stadtwald,Gemeindestraße,"Person, Mann, Deutscher, Direktor, Kruppscher Beamter",,86,automatisch
@@ -797,7 +797,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 00744,Eiland,Stadtwald,Gemeindestraße,Lagebezeichnung,,104,automatisch
 00815,Eilpeweg,Überruhr-Holthausen,Gemeindestraße,"Person, Mann, Deutscher, Lehrer",,104,automatisch
 00745,Einbleckstraße,Dellwig,Gemeindestraße,Flurname,,104,geprueft
-00746,Einigkeitsstraße,Rüttenscheid; Bredeney,Gemeindestraße,Lagebezeichnung,,104,automatisch
+00746,Einigkeitsstraße,Rüttenscheid; Bredeney,Gemeindestraße,Lagebezeichnung,,104,geprueft
 00747,Eintrachtstraße,Südostviertel,Gemeindestraße,Industrie und Wirtschaft,,105,automatisch
 00748,Eisenbahnstraße,Rellinghausen,Hauptstraße,Eisenbahnwesen,,105,automatisch
 00749,Eisenhammerweg,Byfang; Kupferdreh,Gemeindestraße,Lagebezeichnung,,105,automatisch
@@ -3339,7 +3339,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 03522,Zur Hagelfier,Kray,Gemeindestraße,Kirche und Kloster,,360,automatisch
 01145,Zur Halbinsel,Bergeborbeck,Gemeindestraße,Lagebezeichnung,,360,automatisch
 01889,Zur Kammgarnspinnerei,Kettwig,Gemeindestraße,Lagebezeichnung,,360,automatisch
-03771,Zur Kanzel,Kettwig,Gemeindestraße,Bergbau,,360,automatisch
+03771,Zur Kanzel,Kettwig,Gemeindestraße,Bergbau,,360,geprueft
 03524,Zur Nieden,Altenessen-Süd,Gemeindestraße,Industrie und Wirtschaft,,361,automatisch
 01132,Zur Schmiede,Altenessen-Süd,Gemeindestraße,Industrie und Wirtschaft,,361,automatisch
 03525,Zur Tackenburg,Kupferdreh,Gemeindestraße,Hofname,,361,automatisch
