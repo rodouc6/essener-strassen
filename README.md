@@ -14,7 +14,7 @@
 
 ## Auf einen Blick
 
-**Was enthalten ist.** Drei Tabellen (CSV, UTF-8), beschrieben in `datapackage.json`:
+**Inhalt.** Drei Tabellen (CSV, UTF-8), beschrieben in `datapackage.json`:
 
 | Datei | Zeilen | Inhalt |
 |---|---|---|
@@ -26,7 +26,7 @@
 Nicht enthalten sind Dickhoffs Erläuterungstexte (Namensherkunft, Biographien), Koordinaten
 und die OCR-Rohtexte.
 
-**Wie zusammengestellt.** Ein regelbasierter Parser liest den OCR-Text, zwei Sprachmodelle
+**Entstehung.** Ein regelbasierter Parser liest den OCR-Text, zwei Sprachmodelle
 lesen unabhängig davon die Seitenbilder; jede Abweichung wird von einem Menschen am Scan
 entschieden und als Overlay über die Parser-Ausgabe gelegt.
 
@@ -46,7 +46,7 @@ flowchart LR
   D --> K[Konkordanz 1936<br>strassen/veroeffentlichen.py]
 ```
 
-**Wie bereinigt.** In vier Runden, alle in [`docs/vorgehen.md`](docs/vorgehen.md) mit
+**Bereinigung.** In vier Runden, alle in [`docs/vorgehen.md`](docs/vorgehen.md) mit
 Zahlen dokumentiert: (1) eine geschichtete Stichprobe von 50 Einträgen wurde vollständig
 gegen den Scan geprüft (Goldstandard) und lieferte 21 Parser-Regeln; (2) alle 288 Stellen,
 an denen **beide** Modelle übereinstimmend anders lasen als der Parser, wurden gesichtet
@@ -57,7 +57,7 @@ Schlüsselnummer, fünf ganz ausgelassene Einträge — wurde ihm beigebracht st
 umzubauen, damit die geprüften Werte stabil bleiben. Die Modelle ändern nie selbst etwas;
 sie liefern nur Prüfhinweise.
 
-**Wie gut.** Prüfstatus in `strassen.csv`: **2.977** `automatisch` (Parser ohne Prüfgrund),
+**Datenqualität.** Prüfstatus in `strassen.csv`: **2.977** `automatisch` (Parser ohne Prüfgrund),
 **373** `geprueft` (ganzer Eintrag gegen den Scan geprüft), **4** `unsicher` (zwei
 Schlüsselnummern-Dubletten der Vorlage). In der Goldstandard-Stichprobe lagen `automatisch`
 gelesene Einträge vor allen Reparaturen bei 0,3 % Feldfehlern. 3.339 der 3.354 Lemmata
