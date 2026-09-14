@@ -161,6 +161,16 @@ mit Testfällen hier festgehalten; alle Fälle sind heute per Overlay korrigiert
   Stufe, die gezielt nach solchen einleitenden Markern sucht und die Ziele gegen die Lemmata
   des Datensatzes abgleicht.
 
+**Für die Zenodo-Beschreibung** (Notiz des Nutzers, 2026-09-14): vor dem Release eine kleine
+Beispielsammlung zusammenstellen, wie die Daten überarbeitet wurden, getrennt nach Ursache —
+Druckfehler der Vorlage (fehlendes „r" in „-staße", „Gemeindstraße", „Familiename", fehlender
+oder doppelter Marker „Str.-Kl."/„Str.-Gr.", sechsstellige Schlüsselnummer 001321,
+Schlüsselnummern-Dubletten 02402/03448), OCR-Rauschen (Bildunterschriften und Randzeichen
+am Lemma, „Il"/„!" für römische Präfixe, „tiw." für „tlw.", vertauschte Zeilenfolge) und
+Parser-Grenzen (Umbruch mitten im Datum, undatierte Stadien „vorm.:"/„zuvor:"). Quelle dafür
+sind die Belege in `daten/korrekturen.csv` (Belege mit „[sic!]" oder „Druckfehler" markieren
+Fehler der Vorlage) und die Differenzberichte unter `docs/regression/`.
+
 Ältere Restposten: `daten/pruefung.csv` führt 02568 weiterhin als „Schlüsselnummer mehrfach",
 weil die Dubletten-Prüfung vor dem Overlay läuft; `pruefung_validierung.csv` zählt
 Lemma-Dubletten; der `goldstandard`-Befehl überschreibt den handgeschriebenen Abschnitt
