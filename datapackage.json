@@ -1,8 +1,8 @@
 {
   "name": "essener-strassen",
   "title": "Essener Straßenverzeichnis: Namen und Umbenennungen",
-  "id": "https://doi.org/10.5281/zenodo.22757901",
-  "version": "1.0.0",
+  "id": "https://doi.org/10.5281/zenodo.22757900",
+  "version": "1.0.1",
   "homepage": "https://github.com/rodouc6/essener-strassen",
   "description": "Strukturiertes Verzeichnis der Essener Straßen mit datierter Namensgeschichte, erschlossen aus Erwin Dickhoff: Essener Straßen (Klartext-Verlag, Essen 2015).",
   "licenses": [

@@ -111,8 +111,8 @@ Schlüsselnummer, fünf ganz ausgelassene Einträge — wurde ihm beigebracht st
 umzubauen, damit die geprüften Werte stabil bleiben. Die Modelle ändern nie selbst etwas;
 sie liefern nur Prüfhinweise.
 
-**Datenqualität.** Prüfstatus in `strassen.csv`: **2.977** `automatisch` (Parser ohne Prüfgrund),
-**373** `geprueft` (ganzer Eintrag gegen den Scan geprüft), **4** `unsicher` (zwei
+**Datenqualität.** Prüfstatus in `strassen.csv`: **2.972** `automatisch` (Parser ohne Prüfgrund),
+**378** `geprueft` (ganzer Eintrag gegen den Scan geprüft), **4** `unsicher` (zwei
 Schlüsselnummern-Dubletten der Vorlage). In der Goldstandard-Stichprobe lagen `automatisch`
 gelesene Einträge vor allen Reparaturen bei 0,3 % Feldfehlern. 3.339 der 3.354 Lemmata
 finden sich im amtlichen Straßenverzeichnis wieder; die übrigen 15 sind erwartbar
@@ -351,7 +351,7 @@ korrigierten Werte selbst, nicht über eine Änderung an `pruefung.csv`.
 
 - **388** OCR-Buchseiten → **3.354** vom Parser segmentierte Einträge.
 - `daten/strassen.csv`: **3.354** Zeilen (3.349 vom Parser, 5 per Overlay nachgetragen), davon
-  **4** mit `status=unsicher` (**2.977** `automatisch`, **373** `geprueft`).
+  **4** mit `status=unsicher` (**2.972** `automatisch`, **378** `geprueft`).
 - `daten/namen.csv`: **5.513** Namensstadien (Datierungsgenauigkeit: **4.777** `tag`,
   **334** `unbekannt`, **211** `jahr`, **182** `vor`, **9** `jahrhundert`).
 - `daten/konkordanz_1936.csv`: **474** Zeilen (**425** `eindeutig=ja`, 49 `eindeutig=nein`;
@@ -393,7 +393,8 @@ Volllauf vom 2026-09-12/13, Prompt-Stand `530d5c9e77b5`:
   weil dessen Namenskette auf der Folgeseite weiterlaufen kann und die Modelle sie dort
   nicht sehen. Ausgelassene Ketten: **340** (`mistral`) bzw. **334** (`qwen`),
   in [`docs/llm_lesung.md`](docs/llm_lesung.md) als `seitenende_ausgelassen` beziffert.
-- Daraus menschlich geprüft und angewandt: **373** Einträge mit `status=geprueft` —
+- Daraus menschlich geprüft und angewandt: **378** Einträge mit `status=geprueft` (5 davon erst in
+  Version 1.0.1, gefunden bei der Nutzung durch die Adressbuch-Pipeline, s. `docs/vorgehen.md` Abschnitt 10) —
   200 aus der Sichtung aller 288 `einig=beide`-Zeilen am 2026-09-13 (jede Zeile am
   Scan-Ausschnitt geprüft; 245 Zeilen als Korrektur, 7 Einträge als Bestätigung des
   Parser-Werts), 1 aus der Goldstandard-Stichprobe, dazu 5 vom Parser ausgelassene und
@@ -403,7 +404,7 @@ Volllauf vom 2026-09-12/13, Prompt-Stand `530d5c9e77b5`:
   `daten/pruefung_unsicher.csv`, alle Felder je Eintrag am Scan-Ausschnitt geprüft, 84 Zellen
   korrigiert) sowie **108** in derselben Sichtung als korrekt bestätigte Einträge
   (`feld=eintrag`), dazu 3 Namensstadien mit Bildunterschrift-Resten, die beim
-  Veröffentlichungs-Check auffielen. Das Overlay `daten/korrekturen.csv` hat **526** Zeilen. Nach Sichtung und Overlay-Erweiterung verbleiben 55 `einig=beide`-Zeilen, davon
+  Veröffentlichungs-Check auffielen. Das Overlay `daten/korrekturen.csv` hat **531** Zeilen. Nach Sichtung und Overlay-Erweiterung verbleiben 55 `einig=beide`-Zeilen, davon
   25 bei bereits geprüften Einträgen (die Modelle lesen dort falsch) und 30 mit korrektem
   Parser-Wert; keine davon braucht eine Korrektur.
 
@@ -564,7 +565,7 @@ nicht eigenständig schutzfähig, bleiben aber Dickhoff 2015 zuzuschreiben.
 **Diesen Datensatz zitieren:**
 
 > Rodouniklis, Christos: *Essener Straßenverzeichnis: Namen und Umbenennungen.* Datensatz,
-> Version 1.0.0 (2026). Zenodo. https://doi.org/10.5281/zenodo.22757901
+> Version 1.0.1 (2026). Zenodo. https://doi.org/10.5281/zenodo.22757900
 
 Der versionsübergreifende DOI https://doi.org/10.5281/zenodo.22757900 verweist immer auf die neueste
 Version; maschinenlesbar in [`CITATION.cff`](CITATION.cff).
