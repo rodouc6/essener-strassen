@@ -40,8 +40,8 @@ STATUS_BELASTBAR = ("automatisch", "geprueft")
 # Externe Quellen des Kartenprojekts (nicht Teil dieses Repos, s. README,
 # Abschnitt „Externe Eingaben") — Konstanten mit den bekannten Pfaden, per
 # argparse überschreibbar (--adressbuch / --amtliches-verzeichnis).
-ADRESSBUCH_PFAD = "/home/christos/Projekte/AdressbuchEssen-v2/data/essen1936.csv"
-AMTLICHES_VERZEICHNIS_PFAD = "/home/christos/Projekte/AdressbuchEssen-v2/shared/strassen_aktuell.csv"
+ADRESSBUCH_PFAD = "/home/christos/Projekte/essener-adressbuch-1936/data/essen1936.csv"
+AMTLICHES_VERZEICHNIS_PFAD = "/home/christos/Projekte/AdressbuchEssen1936/shared/strassen_aktuell.csv"
 
 # Arbeitswert, begründet in docs/erhebungsstand.md (s. u.): das Fenster
 # Februar 1936 bis Januar 1937 ist stabil (keine vom Adressbuch reflektierte

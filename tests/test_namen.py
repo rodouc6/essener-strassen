@@ -232,3 +232,17 @@ def test_parse_namenskette_abgeschnittener_zusatz_am_kettenende():
     st = parse_namenskette("29. März 1892: Thomaestraße (tiw")
     assert st[-1].name == "Thomaestraße (tlw.)"
     assert HINWEIS_ZUSATZ_ERGAENZT in st[-1].hinweis
+
+
+def test_keine_ocr_varianten_des_teilstreckenzusatzes():
+    """Dickhoffs Zusatz „(tlw.)“ darf im Datensatz nicht als OCR-Variante stehen.
+
+    Gefunden 2026-09-15 über die Adressbuch-Pipeline: „(tlIw.)“, „(tiIw.)“ und „(tim.)“
+    machten Teilstrecken zu scheinbaren Doppelnamen (Immestraße, Im Walpurgistal).
+    """
+    import csv, re
+    from pathlib import Path
+    muster = re.compile(r"\((?:Umb\.\s*)?(?:tlIw|tiIw|tim|tIw|tiw)\.")
+    with open(Path(__file__).resolve().parents[1] / "daten" / "namen.csv", encoding="utf-8", newline="") as f:
+        treffer = [z["name"] for z in csv.DictReader(f) if muster.search(z["name"]) or "Girardetstaße" in z["name"]]
+    assert treffer == []

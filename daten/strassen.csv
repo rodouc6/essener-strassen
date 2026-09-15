@@ -1069,7 +1069,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01032,Gillhausenstraße,Bredeney,Gemeindestraße,"Person, Mann, Deutscher, Bauingenieur, Industriemanager, Politiker",,129,automatisch
 01033,Gimkenstraße,Schönebeck,Gemeindestraße,Hofname,,129,automatisch
 01034,Ginsterweg,Margarethenhöhe,Gemeindestraße,Botanik,,129,automatisch
-01119,Girardetstraße,Rüttenscheid,Gemeindestraße,"Person, Mann, Deutscher, Buchbinder, Buchdrucker, Verleger, Unternehmer",,129,automatisch
+01119,Girardetstraße,Rüttenscheid,Gemeindestraße,"Person, Mann, Deutscher, Buchbinder, Buchdrucker, Verleger, Unternehmer",,129,geprueft
 01035,Girondellenstraße,Stadtwald,Gemeindestraße,Bergbau,,129,automatisch
 01036,Giselastraße,Rüttenscheid,Gemeindestraße,Weiblicher Vorname,,130,automatisch
 01037,Gladbecker Straße,Stadtkern; Nordviertel; Altenessen-Süd; Altenessen-Nord; Vogelheim; Karnap,Bundesstraße; Hauptstraße,Stadt und Ort,,130,geprueft
@@ -1550,7 +1550,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01500,Im Tannenbusch,Heidhausen,Gemeindestraße,Lagebezeichnung,,178,automatisch
 03692,Im Teelbruch,Kettwig,Gemeindestraße,Lagebezeichnung,,178,automatisch
 01535,Im Vaeste,Burgaltendorf,Gemeindestraße,Flurname,,178,automatisch
-00531,Im Walpurgistal,Bergerhausen; Stadtwald; Rellinghausen,Gemeindestraße,Volksmund,,178,automatisch
+00531,Im Walpurgistal,Bergerhausen; Stadtwald; Rellinghausen,Gemeindestraße,Volksmund,,178,geprueft
 00977,Im Welterbe,Stoppenberg,Gemeindestraße,Lagebezeichnung,,178,automatisch
 01501,Im Westerbruch,Katernberg,Gemeindestraße,Flurname,,178,geprueft
 03691,Im Winkel,Kettwig,Gemeindestraße,Flurname,,178,geprueft
@@ -1563,7 +1563,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 02512,Imkerweg,Altenessen-Nord,Gemeindestraße,Zoologie,,179,geprueft
 01486,Immelmannstraße,Schonnebeck,Gemeindestraße,"Person, Mann, Deutscher, Oberleutnant",,179,automatisch
 01528,Immengarten,Freisenbruch,Gemeindestraße,Zoologie,,179,geprueft
-01487,Immestraße,Ostviertel; Stadtkern,Gemeindestraße,"Person, Mann, Deutscher, Oberlehrer, Volkskundler",,179,automatisch
+01487,Immestraße,Ostviertel; Stadtkern,Gemeindestraße,"Person, Mann, Deutscher, Oberlehrer, Volkskundler",,179,geprueft
 01504,In den Berken,Kray,Gemeindestraße,Flurname,,179,automatisch
 01505,In den Höfen,Burgaltendorf,Gemeindestraße,Lagebezeichnung,,179,automatisch
 01506,In den Lotten,Stoppenberg,Gemeindestraße,Flurname,,179,automatisch
@@ -1646,7 +1646,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01624,Kaiserswerthstraße,Karnap,Gemeindestraße,Stadt und Ort,,186,automatisch
 01625,Kaiser-Wilhelm-Platz,Steele,Gemeindestraße,"Person, Mann, Deutscher, Kaiser, Platz",,186,automatisch
 01626,Kaiser-Wilhelm-Straße,Steele,Gemeindestraße,"Person, Mann, Deutscher, Kaiser",Kaiser-Wilhelm-Platz,187,automatisch
-01627,Kaldekirche,Schonnebeck,Gemeindestraße,"Hofname, Flurname",,187,automatisch
+01627,Kaldekirche,Schonnebeck,Gemeindestraße,"Hofname, Flurname",,187,geprueft
 01599,Kaldemorgenweg,Steele,Gemeindestraße,Hofname,,187,automatisch
 01628,Kaldenhof,Schönebeck,Gemeindestraße,Hofname,,187,automatisch
 01629,Kaldenhofs Kamp,Schönebeck,Gemeindestraße,Flurname,,187,geprueft
@@ -1827,7 +1827,7 @@ schl_nr,lemma,stadtteile,strassenklasse,namensgruppe,verweis_auf,buchseite,statu
 01784,Kopernikusstraße,Altendorf,Gemeindestraße,"Person, Mann, Preuße, Astronom, Jurist, Mathematiker",,205,automatisch
 01785,Kopfstraße,Bochold,Gemeindestraße,Lagebezeichnung,,205,automatisch
 01884,Koppestraße,Altendorf; Frohnhausen,Gemeindestraße,"Person, Mann, Deutscher, Professor, Geodät",,205,automatisch
-01787,Kopstadtplatz,Stadtkern,Gemeindestraße,"Person, Mann, Deutscher, Politiker, Bürgermeister, Platz",,205,automatisch
+01787,Kopstadtplatz,Stadtkern,Gemeindestraße,"Person, Mann, Deutscher, Politiker, Bürgermeister, Platz",,205,geprueft
 01789,Kordulastraße,Rüttenscheid,Gemeindestraße,Weiblicher Vorname,,206,automatisch
 01790,Kornmarkt,Stadtkern,Gemeindestraße,Essener Geschichte und Örtlichkeit,Markt,206,automatisch
 01792,Korthover Weg,Kray,Kreisstraße,Hofname,,206,automatisch

@@ -525,3 +525,8 @@ schl_nr,feld,wert_alt,wert_neu,beleg,quelle,datum
 00519,stadium_1_name,Dahl- Burgstraße - Burg Altendorf hauser Straße,Dahlhauser Straße,"16. Juni 1911: Dahlhauser Straße, 16. Dezember 1970: Burgstraße (Scan S. 85/86; Bildunterschrift „Burgstraße - Burg Altendorf“ im Umbruch des Namens)",llm-lauf,2026-09-14
 00746,stadium_1_name,Prumendorfer Eisenhammerweg - Deilbachhammer Straße,Prumendorfer Straße,"06. August 1907: Prumendorfer Straße, 09. Juli 1915: Einigkeitsstraße (Scan S. 104/105; Bildunterschrift „Eisenhammerweg - Deilbachhammer“ im Umbruch des Namens)",llm-lauf,2026-09-14
 03771,stadium_1_name,Zur Kammgarnspinnerei - Kammgarnspinnerei 1914 Zur Kanzel,Zur Kanzel,etwa 1935: Zur Kanzel (Scan S. 360/361; Bildunterschrift „Zur Kammgarnspinnerei - Kammgarnspinnerei 1914“ im Umbruch),llm-lauf,2026-09-14
+01487,stadium_1_name,Beuststraße (tlIw.),Beuststraße (tlw.),"17. Januar 1868: Beuststraße (tlw.) (Scan S. 179; OCR las 'tlIw')",adressbuch-1936,2026-09-15
+00531,stadium_1_name,Walpurgisstraße (tiIw.),Walpurgisstraße (tlw.),"26. Januar 1906: Walpurgisstraße (tlw.) (Scan S. 178; OCR las 'tiIw')",adressbuch-1936,2026-09-15
+01627,stadium_2_name,Riegelweg (Umb.tim.),Riegelweg (Umb. tlw.),"31. Juli 1952: Riegelweg (Umb. tlw.) (Scan S. 187; OCR las 'tim')",adressbuch-1936,2026-09-15
+01787,stadium_1_name,Brinkstraße (tim.),Brinkstraße (tlw.),"urspr.: Brinkstraße (tlw.) (Scan S. 205; OCR las 'tim')",adressbuch-1936,2026-09-15
+01119,stadium_3_name,Girardetstaße,Girardetstraße,"03. Juni 1965: Girardetstraße (Scan S. 130: Druck-/OCR-Fehler 'Girardetstaße')",adressbuch-1936,2026-09-15

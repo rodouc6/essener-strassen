@@ -223,3 +223,15 @@ Fehler der Vorlage) und die Differenzberichte unter `docs/regression/`.
 weil die Dubletten-Prüfung vor dem Overlay läuft; `pruefung_validierung.csv` zählt
 Lemma-Dubletten; der `goldstandard`-Befehl überschreibt den handgeschriebenen Abschnitt
 „Messgrundlage" in `ergebnis_llm.md`.
+
+## 10. Nachträge aus der Nutzung (ab 2026-09-15)
+
+Die Adressbuch-Pipeline (essener-adressbuch-1936) nutzt den Datensatz als Auflösungsgrundlage
+und findet dabei Fehler, die der Datensatz allein nicht zeigt. Erster Nachtrag 2026-09-15:
+fünf OCR-Varianten von Dickhoffs Zusatz „(tlw.)“ — „(tlIw.)“, „(tiIw.)“, zweimal „(tim.)“ —
+sowie der Druck-/OCR-Fehler „Girardetstaße“. Sie ließen Teilstrecken (Immestraße, Im
+Walpurgistal) als eigenständige Namen von 1936 erscheinen. Korrektur wie immer über das
+Overlay `daten/korrekturen.csv` (Quelle `adressbuch-1936`, Beleg mit Scan-Seite), Erschließung
+und Konkordanz neu abgeleitet (Overlay 531, Konkordanz 474 Paare — neu: Gerswidastraße → Girardetstraße),
+Regressionstest `test_keine_ocr_varianten_des_teilstreckenzusatzes`. Nebenbei die Pfad-Voreinstellungen
+in `veroeffentlichen.py` auf die umbenannten Projektordner gesetzt.

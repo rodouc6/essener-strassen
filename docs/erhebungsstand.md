@@ -141,10 +141,10 @@ Die Konkordanz wird **nur aus Straßen mit `status=automatisch` oder `geprueft`*
 - Straßen gesamt: 3354
 - davon `status=automatisch` oder `geprueft` (Basis der Konkordanz): 3350
 - davon `status=unsicher` (ausgeschlossen): 4
-- Konkordanzeinträge: **473**
-  - davon `eindeutig=ja`: 424 / `eindeutig=nein` (Kollisionen): 49
+- Konkordanzeinträge: **474**
+  - davon `eindeutig=ja`: 425 / `eindeutig=nein` (Kollisionen): 49
   - davon mit Klammerzusatz (z. B. „(tlw.)", „(Verl.)"): 173
-- Prüffälle (`daten/pruefung_konkordanz.csv`): **33**
+- Prüffälle (`daten/pruefung_konkordanz.csv`): **32**
 
 Methodische Begründung der Konkordanz-Ableitung (Klammerzusätze abtrennen, Kollisionen markieren, mechanisches Konsistenz-Netz gegen unvollständige Namensketten, „(tlw.)"-Teilangaben als informationstragend behalten): siehe die Docstrings in `strassen/stichtag.py` (`_trenne_zusatz`, `_ist_teil_zusatz`, `_kandidat_oder_pruefung`, `baue_konkordanz`).
 

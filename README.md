@@ -23,8 +23,8 @@
 |---|---|---|
 | `daten/strassen.csv` | 3.354 | ein Eintrag je Straße: Schlüsselnummer, Lemma, Stadtteil(e), Straßenklasse, Namensgruppe, Verweis, Buchseite, Prüfstatus |
 | `daten/namen.csv` | 5.513 | die datierten Namensstadien jeder Straße (Kette der Umbenennungen) |
-| `daten/konkordanz_1936.csv` | 473 | abgeleitet: Straßenname zum Erhebungsstand des Adressbuchs Essen 1936 → heutiger Name |
-| `daten/korrekturen.csv` | 526 | das Korrektur-Overlay: jede manuell geprüfte Änderung mit Beleg |
+| `daten/konkordanz_1936.csv` | 474 | abgeleitet: Straßenname zum Erhebungsstand des Adressbuchs Essen 1936 → heutiger Name |
+| `daten/korrekturen.csv` | 531 | das Korrektur-Overlay: jede manuell geprüfte Änderung mit Beleg |
 
 Nicht enthalten sind Dickhoffs Erläuterungstexte (Namensherkunft, Biographien), Koordinaten
 und die OCR-Rohtexte.
@@ -56,7 +56,7 @@ entschieden und als Overlay über die Parser-Ausgabe gelegt.
    ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐            ▼                                         │
      Korrektur-Overlay          ┌───────────────────────────┐                     │
      daten/korrekturen.csv ───▶ │  regelbasierter Parser    │                     │  Stufe 2
-     (526 belegte Zeilen)       │  strassen/erschliessen.py │                     │  Erschließung
+     (531 belegte Zeilen)       │  strassen/erschliessen.py │                     │  Erschließung
    └ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘    └─────────────┬─────────────┘                     │
               ▲                               │                                   │
               │                               ▼                                   │
@@ -140,7 +140,7 @@ Und drei Korrekturen aus dem Overlay, je eine pro Fehlerursache:
 | OCR-Rauschen | 00085 `lemma`, `buchseite` | Am Handelshof - Handelshof 1913 KEN U E Weein Am Handelshof (S. 35) | Am Handelshof (S. 36) | Bildunterschrift vom Seitenende klebte am Lemma |
 | Parser-Grenze | 01392 `stadium_1` | kein Stadium | 14.05.1941 Hufeisen | Datum über den Seitenumbruch geteilt, Bildunterschrift dazwischen |
 
-Alle 526 Overlay-Zeilen tragen Feld, alten Wert, neuen Wert, Beleg und Quelle; der
+Alle 531 Overlay-Zeilen tragen Feld, alten Wert, neuen Wert, Beleg und Quelle; der
 Datensatz lässt sich daraus jederzeit ohne und mit Korrekturen neu erzeugen.
 
 ## Was der Datensatz enthält — und was nicht
@@ -300,7 +300,7 @@ Primärschlüssel: (`schl_nr`, `stadium`). Beispiel (Schl.-Nr. 01838, Buchseite 
 Damit lässt sich der Name der Straße zu jedem beliebigen Stichtag ableiten — nicht nur
 zum Erhebungsstand 1936.
 
-### `daten/konkordanz_1936.csv` (473 Zeilen)
+### `daten/konkordanz_1936.csv` (474 Zeilen)
 
 Abgeleitet aus `namen.csv`: für jede Straße mit `status=automatisch` das Namensstadium,
 das zum Erhebungsstand des Adressbuchs Essen 1936 galt (Arbeitsstichtag **1936-06-30**,
@@ -354,7 +354,7 @@ korrigierten Werte selbst, nicht über eine Änderung an `pruefung.csv`.
   **4** mit `status=unsicher` (**2.977** `automatisch`, **373** `geprueft`).
 - `daten/namen.csv`: **5.513** Namensstadien (Datierungsgenauigkeit: **4.777** `tag`,
   **334** `unbekannt`, **211** `jahr`, **182** `vor`, **9** `jahrhundert`).
-- `daten/konkordanz_1936.csv`: **473** Zeilen (**424** `eindeutig=ja`, 49 `eindeutig=nein`;
+- `daten/konkordanz_1936.csv`: **474** Zeilen (**425** `eindeutig=ja`, 49 `eindeutig=nein`;
   **173** mit Klammerzusatz).
 
 ### Drei unabhängige Selbstprüfungen
