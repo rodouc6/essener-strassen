@@ -565,7 +565,7 @@ nicht eigenständig schutzfähig, bleiben aber Dickhoff 2015 zuzuschreiben.
 **Diesen Datensatz zitieren:**
 
 > Rodouniklis, Christos: *Essener Straßenverzeichnis: Namen und Umbenennungen.* Datensatz,
-> Version 1.0.1 (2026). Zenodo. https://doi.org/10.5281/zenodo.22757900
+> Version 1.0.1 (2026). Zenodo. https://doi.org/10.5281/zenodo.22776285
 
 Der versionsübergreifende DOI https://doi.org/10.5281/zenodo.22757900 verweist immer auf die neueste
 Version; maschinenlesbar in [`CITATION.cff`](CITATION.cff).

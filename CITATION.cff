@@ -4,7 +4,7 @@ message: "Wenn Sie diesen Datensatz nutzen, zitieren Sie ihn bitte wie folgt."
 type: dataset
 version: 1.0.1
 date-released: 2026-09-15
-doi: 10.5281/zenodo.22757900
+doi: 10.5281/zenodo.22776285
 identifiers:
   - type: doi
     value: 10.5281/zenodo.22757900

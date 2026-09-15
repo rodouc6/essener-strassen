@@ -238,5 +238,5 @@ in `veroeffentlichen.py` auf die umbenannten Projektordner gesetzt.
 
 Veröffentlicht als Release `v1.0.1` (2026-09-15; Stand: 3.354 Straßen, 2.972 `automatisch`,
 378 `geprueft`, 4 `unsicher`; 5.513 Stadien; Konkordanz 474; Overlay 531). Zenodo archiviert die
-Version automatisch unter dem Konzept-DOI 10.5281/zenodo.22757900; der Versions-DOI wird nach
-der Vergabe hier nachgetragen.
+Version automatisch unter dem Konzept-DOI 10.5281/zenodo.22757900; Versions-DOI https://doi.org/10.5281/zenodo.22776285
+(nachgetragen; dieser Commit ist nicht Teil des archivierten Release-Stands).
