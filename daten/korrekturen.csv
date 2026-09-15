@@ -530,3 +530,4 @@ schl_nr,feld,wert_alt,wert_neu,beleg,quelle,datum
 01627,stadium_2_name,Riegelweg (Umb.tim.),Riegelweg (Umb. tlw.),"31. Juli 1952: Riegelweg (Umb. tlw.) (Scan S. 187; OCR las 'tim')",adressbuch-1936,2026-09-15
 01787,stadium_1_name,Brinkstraße (tim.),Brinkstraße (tlw.),"urspr.: Brinkstraße (tlw.) (Scan S. 205; OCR las 'tim')",adressbuch-1936,2026-09-15
 01119,stadium_3_name,Girardetstaße,Girardetstraße,"03. Juni 1965: Girardetstraße (Scan S. 130: Druck-/OCR-Fehler 'Girardetstaße')",adressbuch-1936,2026-09-15
+02333,stadium_3_name,Ostenderstraße,Oslenderstraße,"05. Juni 1934: Oslenderstraße (OCR S. 253 las 'Ostenderstraße'; Lemma der Seite und Namensgeber Wilhelm Oslender)",adressbuch-1936,2026-09-15

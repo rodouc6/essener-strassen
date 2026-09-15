@@ -24,7 +24,7 @@
 | `daten/strassen.csv` | 3.354 | ein Eintrag je Straße: Schlüsselnummer, Lemma, Stadtteil(e), Straßenklasse, Namensgruppe, Verweis, Buchseite, Prüfstatus |
 | `daten/namen.csv` | 5.513 | die datierten Namensstadien jeder Straße (Kette der Umbenennungen) |
 | `daten/konkordanz_1936.csv` | 474 | abgeleitet: Straßenname zum Erhebungsstand des Adressbuchs Essen 1936 → heutiger Name |
-| `daten/korrekturen.csv` | 531 | das Korrektur-Overlay: jede manuell geprüfte Änderung mit Beleg |
+| `daten/korrekturen.csv` | 532 | das Korrektur-Overlay: jede manuell geprüfte Änderung mit Beleg |
 
 Nicht enthalten sind Dickhoffs Erläuterungstexte (Namensherkunft, Biographien), Koordinaten
 und die OCR-Rohtexte.
@@ -56,7 +56,7 @@ entschieden und als Overlay über die Parser-Ausgabe gelegt.
    ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐            ▼                                         │
      Korrektur-Overlay          ┌───────────────────────────┐                     │
      daten/korrekturen.csv ───▶ │  regelbasierter Parser    │                     │  Stufe 2
-     (531 belegte Zeilen)       │  strassen/erschliessen.py │                     │  Erschließung
+     (532 belegte Zeilen)       │  strassen/erschliessen.py │                     │  Erschließung
    └ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘    └─────────────┬─────────────┘                     │
               ▲                               │                                   │
               │                               ▼                                   │
@@ -112,7 +112,7 @@ umzubauen, damit die geprüften Werte stabil bleiben. Die Modelle ändern nie se
 sie liefern nur Prüfhinweise.
 
 **Datenqualität.** Prüfstatus in `strassen.csv`: **2.972** `automatisch` (Parser ohne Prüfgrund),
-**378** `geprueft` (ganzer Eintrag gegen den Scan geprüft), **4** `unsicher` (zwei
+**379** `geprueft` (ganzer Eintrag gegen den Scan geprüft), **4** `unsicher` (zwei
 Schlüsselnummern-Dubletten der Vorlage). In der Goldstandard-Stichprobe lagen `automatisch`
 gelesene Einträge vor allen Reparaturen bei 0,3 % Feldfehlern. 3.339 der 3.354 Lemmata
 finden sich im amtlichen Straßenverzeichnis wieder; die übrigen 15 sind erwartbar
@@ -140,7 +140,7 @@ Und drei Korrekturen aus dem Overlay, je eine pro Fehlerursache:
 | OCR-Rauschen | 00085 `lemma`, `buchseite` | Am Handelshof - Handelshof 1913 KEN U E Weein Am Handelshof (S. 35) | Am Handelshof (S. 36) | Bildunterschrift vom Seitenende klebte am Lemma |
 | Parser-Grenze | 01392 `stadium_1` | kein Stadium | 14.05.1941 Hufeisen | Datum über den Seitenumbruch geteilt, Bildunterschrift dazwischen |
 
-Alle 531 Overlay-Zeilen tragen Feld, alten Wert, neuen Wert, Beleg und Quelle; der
+Alle 532 Overlay-Zeilen tragen Feld, alten Wert, neuen Wert, Beleg und Quelle; der
 Datensatz lässt sich daraus jederzeit ohne und mit Korrekturen neu erzeugen.
 
 ## Was der Datensatz enthält — und was nicht
@@ -351,7 +351,7 @@ korrigierten Werte selbst, nicht über eine Änderung an `pruefung.csv`.
 
 - **388** OCR-Buchseiten → **3.354** vom Parser segmentierte Einträge.
 - `daten/strassen.csv`: **3.354** Zeilen (3.349 vom Parser, 5 per Overlay nachgetragen), davon
-  **4** mit `status=unsicher` (**2.972** `automatisch`, **378** `geprueft`).
+  **4** mit `status=unsicher` (**2.971** `automatisch`, **379** `geprueft`).
 - `daten/namen.csv`: **5.513** Namensstadien (Datierungsgenauigkeit: **4.777** `tag`,
   **334** `unbekannt`, **211** `jahr`, **182** `vor`, **9** `jahrhundert`).
 - `daten/konkordanz_1936.csv`: **474** Zeilen (**425** `eindeutig=ja`, 49 `eindeutig=nein`;
